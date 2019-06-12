@@ -106,3 +106,10 @@ alias .6='.5 && .1'
 alias .7='.6 && .1'
 alias .8='.7 && .1'
 alias .9='.8 && .1'
+
+# ls aliases
+alias p='pwd'
+alias l='p && ls'
+alias la='p && ls -a'
+alias lh='p && ls -lah'
+
