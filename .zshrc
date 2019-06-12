@@ -94,7 +94,15 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# cd aliases
+alias ..='cd ..'
+alias .1='cd ..'
+alias .2='.1 && .1'
+alias .3='.2 && .1'
+alias .4='.3 && .1'
+alias .5='.4 && .1'
+alias .6='.5 && .1'
+alias .7='.6 && .1'
+alias .8='.7 && .1'
+alias .9='.8 && .1'
