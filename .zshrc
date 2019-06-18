@@ -3,7 +3,7 @@
 
 POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=false
 POWERLEVEL9K_ALWAYS_SHOW_USER=false
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER='..'
 POWERLEVEL9K_SHORTEN_STRATEGY=(truncate_to_last truncate_absolute_chars)
@@ -144,6 +144,19 @@ alias p='pwd'
 alias l='p && ls'
 alias la='p && ls -a'
 alias lh='p && ls -lah'
+
+# git aliases
+alias gm='git checkout master'
+alias gn='git checkout -b '
+alias gh='git checkout '
+alias gb='git branch '
+alias gd='git branch -D '
+alias gl='git log'
+alias gc='git commit -am "diff"'
+alias gcm='git commit -am '
+alias gp='git pull origin master'
+alias gs='git stash'
+alias gsa='git stash apply'
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 source ~/powerlevel10k/powerlevel10k.zsh-theme
