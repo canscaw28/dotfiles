@@ -1,4 +1,6 @@
 # dotfiles
+Note to any lurkers: this repo is incredibly outdated. I now use MS word as my primary IDE. No judgemnet please. 
+
 Goals:
 1) update vimrc
 2) update tmux.conf
