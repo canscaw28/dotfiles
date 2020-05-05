@@ -1,19 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=false
-POWERLEVEL9K_ALWAYS_SHOW_USER=false
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_SHORTEN_DELIMITER='..'
-POWERLEVEL9K_SHORTEN_STRATEGY=(truncate_to_last truncate_absolute_chars)
-
-POWERLEVEL9K_VCS_SHORTEN_LENGTH=4
-POWERLEVEL9K_VCS_SHORTEN_MIN_LENGTH=11
-POWERLEVEL9K_SHORTEN_DELIMITER='..'
-POWERLEVEL9K_VCS_SHORTEN_STRATEGY="truncate_from_right"
-
-
 USER=""
 DEFAULT_USER=""
 
@@ -90,7 +77,24 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=false
+POWERLEVEL9K_ALWAYS_SHOW_USER=false
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=".."
+POWERLEVEL9K_SHORTEN_STRATEGY=(truncate_to_last truncate_absolute_chars)
+
+POWERLEVEL9K_VCS_SHORTEN_LENGTH=4
+POWERLEVEL9K_VCS_SHORTEN_MIN_LENGTH=4
+POWERLEVEL9K_SHORTEN_DELIMITER=".."
+POWERLEVEL9K_VCS_SHORTEN_STRATEGY="truncate_from_right"
+
+
 source $ZSH/oh-my-zsh.sh
+source $SCALE_HOME/bin/okta-helpers.bash
+#source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel9k.zsh-theme
+#source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+#source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # nvm config
 nvm() {
@@ -157,6 +161,3 @@ alias gcm='git commit -am '
 alias gp='git pull origin master'
 alias gs='git stash'
 alias gsa='git stash apply'
-
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-source ~/powerlevel10k/powerlevel10k.zsh-theme
