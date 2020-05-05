@@ -4,9 +4,6 @@
 USER=""
 DEFAULT_USER=""
 
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
-
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/craigweiss/.oh-my-zsh"
 
@@ -91,19 +88,9 @@ POWERLEVEL9K_VCS_SHORTEN_STRATEGY="truncate_from_right"
 
 
 source $ZSH/oh-my-zsh.sh
-source $SCALE_HOME/bin/okta-helpers.bash
 #source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel9k.zsh-theme
 #source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 #source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-# nvm config
-nvm() {
-  echo "🚨 NVM not loaded! Loading now..."
-  unset -f nvm
-  export NVM_PREFIX=$(brew --prefix nvm)
-  [ -s "$NVM_PREFIX/nvm.sh" ] && . "$NVM_PREFIX/nvm.sh"
-  nvm "$@"
-}
 
 autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do
