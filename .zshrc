@@ -1,3 +1,5 @@
+ZSH_DISABLE_COMPFIX=true
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -93,7 +95,7 @@ POWERLEVEL9K_VCS_SHORTEN_MIN_LENGTH=4
 POWERLEVEL9K_SHORTEN_DELIMITER=".."
 POWERLEVEL9K_VCS_SHORTEN_STRATEGY="truncate_from_right"
 
-
+ZDOTDIR=~/.cache/comp
 source $ZSH/oh-my-zsh.sh
 #source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel9k.zsh-theme
 #source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
@@ -104,6 +106,7 @@ for dump in ~/.zcompdump(N.mh+24); do
   compinit
 done
 compinit -C
+
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
