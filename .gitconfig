@@ -1,0 +1,5 @@
+[user]
+  name = Craig Weiss
+  email = craigweiss28@gmail.com
+[core]
+	pager = less -FRX
