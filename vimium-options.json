@@ -1,0 +1,18 @@
+{
+  "settingsVersion": "2.1.2",
+  "userDefinedLinkHintCss": "/* Vimium Hint Styling */\n\n/* Link hint boxes */\ndiv > .vimiumHintMarker {\n  background: linear-gradient(\n    to bottom,\n    rgba(255, 247, 133, 0.9) 0%, /* Transparent yellow gradient start */\n    rgba(255, 197, 66, 0.8) 100% /* Transparent orange gradient end */\n  );\n  border: 1px solid #E3BE23; /* Original border color */\n  border-radius: 0.4em; /* Slightly rounded corners */\n  padding: 0.175em 0.3em; /* Reduced padding for tighter fit */\n  box-shadow: 0em 0.1em 0.6em 0.1em rgba(0, 0, 0, 0.4); /* Subtle shadow for better visibility */\n}\n\n/* Link hint text */\ndiv > .vimiumHintMarker span {\n  color: #000000; /* Solid black text for maximum readability */\n  font-weight: bold; /* Bold for emphasis */\n  font-size: 13px; /* Keep font size consistent */\n  opacity: 1; /* Ensure text is fully opaque */\n  text-shadow: none;\n}\n\n/* Link hint matching characters */\ndiv > .vimiumHintMarker > .matchingCharacter {\n  color: #0070fa; /* Bright blue for highlighting matching characters */\n  font-weight: bold; /* Ensures contrast and visibility */\n}",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://mail.google.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://mail.superhuman.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://play.typeracer.com/*"
+    }
+  ]
+}
