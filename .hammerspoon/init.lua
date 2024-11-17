@@ -1,30 +1,23 @@
 -- Smooth scrolling configuration
-scrollSpeed = 1 -- Adjust for smoothness (lines per step)
-scrollInterval = 0.01 -- Interval between scroll steps in seconds
-scrollDirection = 0 -- Tracks the current scroll direction
+scrollSpeed = 1
+scrollInterval = 0.01
+scrollDirection = 0
 scrollTimer = nil
 smoothTimer = nil
-keyStates = {} -- Tracks the state of keys (pressed or released)
-activeTimers = {} -- To track smoothScroll timers
-debounceTimers = {} -- To differentiate taps and holds
-isContinuousScrolling = {} -- Tracks if continuous scrolling has started for a key
+keyStates = {}
+isContinuousScrolling = {}
 
--- Function to get the visible content height
 function getVisibleContentHeight()
     local win = hs.window.focusedWindow()
     if win then
-        local frame = win:frame()
-        return frame.h
+        return win:frame().h
     else
-        local screen = hs.screen.mainScreen()
-        local frame = screen:frame()
-        return frame.h
+        return hs.screen.mainScreen():frame().h
     end
 end
 
--- Function to start smooth scrolling
 function startScrolling(direction, horizontal, keyCode)
-    isContinuousScrolling[keyCode] = true -- Mark as continuous scrolling
+    isContinuousScrolling[keyCode] = true
     if scrollDirection ~= direction then
         scrollDirection = direction
         if scrollTimer then
@@ -40,9 +33,8 @@ function startScrolling(direction, horizontal, keyCode)
     end
 end
 
--- Function to stop smooth scrolling
 function stopScrolling(keyCode)
-    isContinuousScrolling[keyCode] = false -- Reset continuous scrolling flag
+    isContinuousScrolling[keyCode] = false
     scrollDirection = 0
     if scrollTimer then
         scrollTimer:stop()
@@ -50,35 +42,28 @@ function stopScrolling(keyCode)
     end
 end
 
--- Smooth scrolling function
 function smoothScroll(pixels, horizontal, duration)
-    local steps = math.max(1, math.floor(duration / scrollInterval)) -- Total number of steps
-    local easingFunction = function(t)
-        return t * t -- Quadratic easing
-    end
-
-    local totalDistance = 0 -- Tracks total distance to ensure accuracy
-    local distances = {} -- Precompute distances for each step
+    local steps = math.max(1, math.floor(duration / scrollInterval))
+    local easingFunction = function(t) return t * t end
+    local totalDistance = 0
+    local distances = {}
 
     for step = 1, steps do
-        local t = step / steps -- Normalize step to range [0, 1]
-        local easedStep = easingFunction(t) - easingFunction((step - 1) / steps) -- Delta easing
-        local stepDistance = math.floor(easedStep * pixels) -- Convert to integer
-        totalDistance = totalDistance + stepDistance -- Accumulate total distance
+        local t = step / steps
+        local easedStep = easingFunction(t) - easingFunction((step - 1) / steps)
+        local stepDistance = math.floor(easedStep * pixels)
+        totalDistance = totalDistance + stepDistance
         table.insert(distances, stepDistance)
     end
 
-    -- Adjust for rounding errors
     local adjustment = pixels - totalDistance
-    distances[#distances] = distances[#distances] + adjustment -- Apply adjustment to the last step
+    distances[#distances] = distances[#distances] + adjustment
 
-    -- Stop any existing smooth scrolling
     if smoothTimer then
         smoothTimer:stop()
         smoothTimer = nil
     end
 
-    -- Start scrolling
     local currentStep = 0
     smoothTimer = hs.timer.doEvery(scrollInterval, function()
         currentStep = currentStep + 1
@@ -96,7 +81,6 @@ function smoothScroll(pixels, horizontal, duration)
     end)
 end
 
--- Eventtap handler
 scrollHandler = hs.eventtap.new(
     {hs.eventtap.event.types.keyDown, hs.eventtap.event.types.keyUp},
     function(event)
@@ -108,19 +92,19 @@ scrollHandler = hs.eventtap.new(
             keyStates[keyCode] = true
             if modifiers.ctrl then
                 if keyCode == hs.keycodes.map["`"] then
-                    startScrolling(-10, false, keyCode) -- Scroll up
+                    startScrolling(-10, false, keyCode)
                 elseif keyCode == hs.keycodes.map["1"] then
-                    startScrolling(10, false, keyCode) -- Scroll down
+                    startScrolling(10, false, keyCode)
                 elseif keyCode == hs.keycodes.map["2"] then
-                    startScrolling(10, true, keyCode) -- Scroll right
+                    startScrolling(10, true, keyCode)
                 elseif keyCode == hs.keycodes.map["3"] then
-                    startScrolling(-10, true, keyCode) -- Scroll left
+                    startScrolling(-10, true, keyCode)
                 elseif keyCode == hs.keycodes.map["4"] then
-                    smoothScroll(-getVisibleContentHeight() * 0.55, false, 0.15) -- Half-page up
-                    startScrolling(-10, false, keyCode) -- Start continuous scrolling
+                    smoothScroll(-getVisibleContentHeight() * 0.55, false, 0.15)
+                    startScrolling(-10, false, keyCode)
                 elseif keyCode == hs.keycodes.map["5"] then
-                    smoothScroll(getVisibleContentHeight() * 0.55, false, 0.15) -- Half-page down
-                    startScrolling(10, false, keyCode) -- Start continuous scrolling
+                    smoothScroll(getVisibleContentHeight() * 0.55, false, 0.15)
+                    startScrolling(10, false, keyCode)
                 end
             end
         else
@@ -128,9 +112,8 @@ scrollHandler = hs.eventtap.new(
             stopScrolling(keyCode)
         end
 
-        return false -- Allow other apps to process these keys normally
+        return false
     end
 )
 
--- Start the event handler
 scrollHandler:start()
