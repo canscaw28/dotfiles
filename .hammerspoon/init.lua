@@ -5,7 +5,7 @@ scrollDirection = 0
 scrollTimer = nil
 smoothTimer = nil
 keyStates = {}
-isContinuousScrolling = {}
+lastKeyPressed = nil -- Tracks the most recently pressed key
 
 function getVisibleContentHeight()
     local win = hs.window.focusedWindow()
@@ -17,8 +17,9 @@ function getVisibleContentHeight()
 end
 
 function startScrolling(direction, horizontal, keyCode)
-    isContinuousScrolling[keyCode] = true
-    if scrollDirection ~= direction then
+    -- Only update if direction or scroll type changes
+    if scrollDirection ~= direction or lastKeyPressed ~= keyCode then
+        lastKeyPressed = keyCode
         scrollDirection = direction
         if scrollTimer then
             scrollTimer:stop()
@@ -34,15 +35,24 @@ function startScrolling(direction, horizontal, keyCode)
 end
 
 function stopScrolling(keyCode)
-    isContinuousScrolling[keyCode] = false
-    scrollDirection = 0
-    if scrollTimer then
-        scrollTimer:stop()
-        scrollTimer = nil
+    -- Only stop scrolling if the released key was the last active key
+    if keyCode == lastKeyPressed then
+        scrollDirection = 0
+        lastKeyPressed = nil
+        if scrollTimer then
+            scrollTimer:stop()
+            scrollTimer = nil
+        end
     end
 end
 
 function smoothScroll(pixels, horizontal, duration)
+    -- Cancel any ongoing smooth scrolling
+    if smoothTimer then
+        smoothTimer:stop()
+        smoothTimer = nil
+    end
+
     local steps = math.max(1, math.floor(duration / scrollInterval))
     local easingFunction = function(t) return t * t end
     local totalDistance = 0
@@ -58,11 +68,6 @@ function smoothScroll(pixels, horizontal, duration)
 
     local adjustment = pixels - totalDistance
     distances[#distances] = distances[#distances] + adjustment
-
-    if smoothTimer then
-        smoothTimer:stop()
-        smoothTimer = nil
-    end
 
     local currentStep = 0
     smoothTimer = hs.timer.doEvery(scrollInterval, function()
@@ -100,33 +105,20 @@ scrollHandler = hs.eventtap.new(
                 elseif keyCode == hs.keycodes.map["3"] then
                     startScrolling(-10, true, keyCode)
                 elseif keyCode == hs.keycodes.map["4"] then
-                    -- Smooth scroll for tap, delayed continuous scroll for hold
-                    if not isContinuousScrolling[keyCode] then
+                    if not lastKeyPressed then
                         smoothScroll(-getVisibleContentHeight() * 0.55, false, 0.15)
-                        isContinuousScrolling[keyCode] = true
-                        hs.timer.doAfter(0.05, function()
-                            if keyStates[keyCode] then
-                                startScrolling(-25, false, keyCode)
-                            end
-                        end)
                     end
+                    startScrolling(-25, false, keyCode)
                 elseif keyCode == hs.keycodes.map["5"] then
-                    -- Smooth scroll for tap, delayed continuous scroll for hold
-                    if not isContinuousScrolling[keyCode] then
+                    if not lastKeyPressed then
                         smoothScroll(getVisibleContentHeight() * 0.55, false, 0.15)
-                        isContinuousScrolling[keyCode] = true
-                        hs.timer.doAfter(0.05, function()
-                            if keyStates[keyCode] then
-                                startScrolling(25, false, keyCode)
-                            end
-                        end)
                     end
+                    startScrolling(25, false, keyCode)
                 end
             end
         else
             keyStates[keyCode] = nil
             stopScrolling(keyCode)
-            isContinuousScrolling[keyCode] = false
         end
 
         return false
