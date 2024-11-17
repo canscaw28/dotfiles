@@ -49,14 +49,14 @@ local scrollHandler = hs.eventtap.new(
 
         -- Ctrl + ` for scroll down
         if modifiers.ctrl and keyCode == hs.keycodes.map["`"] and isDown then
-            startScrolling(1) -- Scroll up
+            startScrolling(-1) -- Scroll up
         elseif modifiers.ctrl and keyCode == hs.keycodes.map["`"] and not isDown then
             stopScrolling()
         end
 
         -- Ctrl + 1 for scroll up
         if modifiers.ctrl and keyCode == hs.keycodes.map["1"] and isDown then
-            startScrolling(-1) -- Scroll down
+            startScrolling(1) -- Scroll down
         elseif modifiers.ctrl and keyCode == hs.keycodes.map["1"] and not isDown then
             stopScrolling()
         end
