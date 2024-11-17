@@ -47,16 +47,16 @@ local scrollHandler = hs.eventtap.new(
         local keyCode = event:getKeyCode()
         local isDown = event:getType() == hs.eventtap.event.types.keyDown
 
-        -- Ctrl + ` for scroll up
+        -- Ctrl + ` for scroll down
         if modifiers.ctrl and keyCode == hs.keycodes.map["`"] and isDown then
-            startScrolling(-1) -- Scroll up
+            startScrolling(1) -- Scroll up
         elseif modifiers.ctrl and keyCode == hs.keycodes.map["`"] and not isDown then
             stopScrolling()
         end
 
-        -- Ctrl + 1 for scroll down
+        -- Ctrl + 1 for scroll up
         if modifiers.ctrl and keyCode == hs.keycodes.map["1"] and isDown then
-            startScrolling(1) -- Scroll down
+            startScrolling(-1) -- Scroll down
         elseif modifiers.ctrl and keyCode == hs.keycodes.map["1"] and not isDown then
             stopScrolling()
         end
@@ -75,24 +75,30 @@ local scrollHandler = hs.eventtap.new(
             stopScrolling()
         end
 
-        -- Ctrl + 4 for half-page scroll up
         if modifiers.ctrl and keyCode == hs.keycodes.map["4"] and isDown then
-            singleScroll(-10) -- Adjust lines for half-page scroll up
+            startScrolling(-2) -- Scroll half a page down
+        elseif modifiers.ctrl and keyCode == hs.keycodes.map["4"] and not isDown then
+            stopScrolling()
         end
 
-        -- Ctrl + 5 for half-page scroll down
+        -- Ctrl + 1 for scroll down
         if modifiers.ctrl and keyCode == hs.keycodes.map["5"] and isDown then
-            singleScroll(10) -- Adjust lines for half-page scroll down
+            startScrolling(2) -- Scroll half a page up
+        elseif modifiers.ctrl and keyCode == hs.keycodes.map["5"] and not isDown then
+            stopScrolling()
         end
 
-        -- Ctrl + 6 for full-page scroll up
         if modifiers.ctrl and keyCode == hs.keycodes.map["6"] and isDown then
-            singleScroll(-25) -- Adjust lines for full-page scroll up
+            startScrolling(-4) -- Scroll a full half page down
+        elseif modifiers.ctrl and keyCode == hs.keycodes.map["6"] and not isDown then
+            stopScrolling()
         end
 
-        -- Ctrl + 7 for full-page scroll down
+        -- Ctrl + 1 for scroll down
         if modifiers.ctrl and keyCode == hs.keycodes.map["7"] and isDown then
-            singleScroll(25) -- Adjust lines for full-page scroll down
+            startScrolling(4) -- Scroll a full half page up
+        elseif modifiers.ctrl and keyCode == hs.keycodes.map["7"] and not isDown then
+            stopScrolling()
         end
 
         -- Ctrl + 8 for scroll to top
