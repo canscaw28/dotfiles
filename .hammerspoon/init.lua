@@ -6,6 +6,31 @@ local scrollTimer = nil
 local keyStates = {} -- Tracks the state of keys (pressed or released)
 local activeTimers = {} -- To track smoothScroll timers
 
+-- Periodic failsafe to stop scrolling
+local failsafeTimer = hs.timer.doEvery(0.5, function()
+    local isAnyKeyActive = false
+    for _, state in pairs(keyStates) do
+        if state then
+            isAnyKeyActive = true
+            break
+        end
+    end
+
+    if not isAnyKeyActive and scrollTimer then
+        stopScrolling()
+    end
+end)
+
+-- Reset key states periodically
+hs.timer.doEvery(1, function()
+    for key, _ in pairs(keyStates) do
+        keyStates[key] = nil
+    end
+    stopScrolling()
+end)
+
+
+
 -- Function to get the visible content height
 local function getVisibleContentHeight()
     local win = hs.window.focusedWindow()
@@ -47,6 +72,7 @@ local function stopScrolling()
     end
 end
 
+-- Improved smooth scrolling function
 local function smoothScroll(pixels, horizontal, duration)
     local steps = math.max(1, math.floor(duration / scrollInterval)) -- Total number of steps
     local easingFunction = function(t)
@@ -86,93 +112,50 @@ local function smoothScroll(pixels, horizontal, duration)
     end)
 end
 
-
--- Eventtap to handle various Ctrl + [2-9] key scrolls
-local scrollHandler = hs.eventtap.new(
-    { hs.eventtap.event.types.flagsChanged, hs.eventtap.event.types.keyDown, hs.eventtap.event.types.keyUp },
+-- Improved eventtap handler
+scrollHandler = hs.eventtap.new(
+    {hs.eventtap.event.types.flagsChanged, hs.eventtap.event.types.keyDown, hs.eventtap.event.types.keyUp},
     function(event)
         local modifiers = event:getFlags()
         local keyCode = event:getKeyCode()
         local isDown = event:getType() == hs.eventtap.event.types.keyDown
 
-        -- Handle key press/release state
+        -- Track key states
         if isDown then
-            if not keyStates[keyCode] then -- Only trigger smoothScroll on first press
-                keyStates[keyCode] = true
-
-                -- Ctrl + 4 for half-page scroll up
-                if modifiers.ctrl and keyCode == hs.keycodes.map["4"] then
-                    local halfPage = math.floor(getVisibleContentHeight() * 0.5) or 400 -- Default fallback to 400 pixels
-                    smoothScroll(-halfPage, false, 0.175) -- Smoothly scroll up over 0.5 seconds
-                    startScrolling(-20, false, 0.15) -- Optional continuous scrolling after delay
-                elseif modifiers.ctrl and keyCode == hs.keycodes.map["4"] and not isDown then
-                    stopScrolling()
-                end
-
-                -- Ctrl + 5 for half-page scroll down
-                if modifiers.ctrl and keyCode == hs.keycodes.map["5"] then
-                    local halfPage = math.floor(getVisibleContentHeight() * 0.5) or 400 -- Default fallback to 400 pixels
-                    smoothScroll(halfPage, false, 0.175) -- Smoothly scroll down over 0.5 seconds
-                    startScrolling(20, false, 0.15) -- Optional continuous scrolling after delay
-                elseif modifiers.ctrl and keyCode == hs.keycodes.map["5"] and not isDown then
-                    stopScrolling()
-                end
-
-                -- Ctrl + 6 for full-page scroll up
-                if modifiers.ctrl and keyCode == hs.keycodes.map["6"] then
-                    local fullPage = math.floor(getVisibleContentHeight()) or 800 -- Default fallback to 800 pixels
-                    smoothScroll(-fullPage, false, 0.8) -- Smoothly scroll up over 0.8 seconds
-                end
-
-                -- Ctrl + 7 for full-page scroll down
-                if modifiers.ctrl and keyCode == hs.keycodes.map["7"] then
-                    local fullPage = math.floor(getVisibleContentHeight()) or 800 -- Default fallback to 800 pixels
-                    smoothScroll(fullPage, false, 0.8) -- Smoothly scroll down over 0.8 seconds
-                end
-
-                -- Ctrl + 8 for scroll to top
-                if modifiers.ctrl and keyCode == hs.keycodes.map["8"] then
-                    hs.eventtap.keyStroke({}, "home")
-                end
-
-                -- Ctrl + 9 for scroll to bottom
-                if modifiers.ctrl and keyCode == hs.keycodes.map["9"] then
-                    hs.eventtap.keyStroke({}, "end")
-                end
-            end
+            keyStates[keyCode] = true
         else
-            keyStates[keyCode] = nil -- Reset key state on release
-            if modifiers.ctrl and (keyCode == hs.keycodes.map["4"] or keyCode == hs.keycodes.map["5"]) then
-                stopScrolling()
+            keyStates[keyCode] = nil
+            stopScrolling() -- Stop scrolling on key release
+        end
+
+        -- Continuous scrolling
+        if modifiers.ctrl then
+            if keyCode == hs.keycodes.map["`"] and isDown then
+                startScrolling(-10) -- Scroll up
+            elseif keyCode == hs.keycodes.map["1"] and isDown then
+                startScrolling(10) -- Scroll down
+            elseif keyCode == hs.keycodes.map["2"] and isDown then
+                startScrolling(10, true) -- Scroll right
+            elseif keyCode == hs.keycodes.map["3"] and isDown then
+                startScrolling(-10, true) -- Scroll left
             end
         end
 
-        -- Ctrl + ` for continuous scroll up
-        if modifiers.ctrl and keyCode == hs.keycodes.map["`"] and isDown then
-            startScrolling(-10) -- Scroll up
-        elseif modifiers.ctrl and keyCode == hs.keycodes.map["`"] and not isDown then
-            stopScrolling()
-        end
-
-        -- Ctrl + 1 for continuous scroll down
-        if modifiers.ctrl and keyCode == hs.keycodes.map["1"] and isDown then
-            startScrolling(10) -- Scroll down
-        elseif modifiers.ctrl and keyCode == hs.keycodes.map["1"] and not isDown then
-            stopScrolling()
-        end
-
-        -- Ctrl + 2 for scroll right
-        if modifiers.ctrl and keyCode == hs.keycodes.map["2"] and isDown then
-            startScrolling(10, true) -- Scroll right
-        elseif modifiers.ctrl and keyCode == hs.keycodes.map["2"] and not isDown then
-            stopScrolling()
-        end
-
-        -- Ctrl + 3 for scroll left
-        if modifiers.ctrl and keyCode == hs.keycodes.map["3"] and isDown then
-            startScrolling(-10, true) -- Scroll left
-        elseif modifiers.ctrl and keyCode == hs.keycodes.map["3"] and not isDown then
-            stopScrolling()
+        -- Half-page and full-page scrolls
+        if modifiers.ctrl and isDown then
+            if keyCode == hs.keycodes.map["4"] then
+                smoothScroll(-getVisibleContentHeight() * 0.5, false, 0.175) -- Half-page up
+            elseif keyCode == hs.keycodes.map["5"] then
+                smoothScroll(getVisibleContentHeight() * 0.5, false, 0.175) -- Half-page down
+            elseif keyCode == hs.keycodes.map["6"] then
+                smoothScroll(-getVisibleContentHeight(), false, 0.8) -- Full-page up
+            elseif keyCode == hs.keycodes.map["7"] then
+                smoothScroll(getVisibleContentHeight(), false, 0.8) -- Full-page down
+            elseif keyCode == hs.keycodes.map["8"] then
+                hs.eventtap.keyStroke({}, "home") -- Scroll to top
+            elseif keyCode == hs.keycodes.map["9"] then
+                hs.eventtap.keyStroke({}, "end") -- Scroll to bottom
+            end
         end
 
         return false -- Allow other apps to process these keys normally
@@ -181,3 +164,12 @@ local scrollHandler = hs.eventtap.new(
 
 -- Start the event handler
 scrollHandler:start()
+
+-- Modifier-based forced stop
+hs.eventtap.new({hs.eventtap.event.types.flagsChanged}, function(event)
+    local modifiers = event:getFlags()
+    if not modifiers.ctrl then
+        stopScrolling()
+    end
+    return false
+end):start()
