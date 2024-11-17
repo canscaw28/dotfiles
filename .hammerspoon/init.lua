@@ -1,9 +1,10 @@
 -- Smooth scrolling configuration
-local scrollSpeed = 1 -- Adjust for smoothness
-local scrollInterval = 0.04 -- Interval between scroll steps in seconds
+local scrollSpeed = 1 -- Adjust for smoothness (lines per step)
+local scrollInterval = 0.01 -- Interval between scroll steps in seconds
 local scrollDirection = 0 -- Tracks the current scroll direction
 local scrollTimer = nil
 local keyStates = {} -- Tracks the state of keys (pressed or released)
+local activeTimers = {} -- To track smoothScroll timers
 
 -- Function to get the visible content height
 local function getVisibleContentHeight()
@@ -28,9 +29,9 @@ local function startScrolling(direction, horizontal, delay)
         scrollTimer = hs.timer.doAfter(delay or 0, function()
             scrollTimer = hs.timer.doEvery(scrollInterval, function()
                 if horizontal then
-                    hs.eventtap.scrollWheel({direction * scrollSpeed}, {}, "line")
+                    hs.eventtap.scrollWheel({direction * scrollSpeed, 0}, {}, "pixel")
                 else
-                    hs.eventtap.scrollWheel({0, direction * scrollSpeed}, {}, "line")
+                    hs.eventtap.scrollWheel({0, direction * scrollSpeed}, {}, "pixel")
                 end
             end)
         end)
@@ -46,14 +47,45 @@ local function stopScrolling()
     end
 end
 
--- Function for one-time actions (like half/full page or top/bottom)
-local function singleScroll(pixels, horizontal)
-    if horizontal then
-        hs.eventtap.scrollWheel({pixels}, {}, "pixel")
-    else
-        hs.eventtap.scrollWheel({0, pixels}, {}, "pixel")
+local function smoothScroll(pixels, horizontal, duration)
+    local steps = math.max(1, math.floor(duration / scrollInterval)) -- Total number of steps
+    local easingFunction = function(t)
+        return t * t -- Quadratic easing
     end
+
+    local totalDistance = 0 -- Tracks total distance to ensure accuracy
+    local distances = {} -- Precompute distances for each step
+
+    -- Precompute step distances using the easing function
+    for step = 1, steps do
+        local t = step / steps -- Normalize step to range [0, 1]
+        local easedStep = easingFunction(t) - easingFunction((step - 1) / steps) -- Delta easing
+        local stepDistance = math.floor(easedStep * pixels) -- Convert to integer
+        totalDistance = totalDistance + stepDistance -- Accumulate total distance
+        table.insert(distances, stepDistance)
+    end
+
+    -- Adjust for rounding errors
+    local adjustment = pixels - totalDistance -- Remainder from rounding
+    distances[#distances] = distances[#distances] + adjustment -- Apply adjustment to the last step
+
+    -- Start scrolling
+    local currentStep = 0
+    local smoothTimer = hs.timer.doEvery(scrollInterval, function()
+        currentStep = currentStep + 1
+        if currentStep <= #distances then
+            local distance = distances[currentStep]
+            if horizontal then
+                hs.eventtap.scrollWheel({distance}, {}, "pixel")
+            else
+                hs.eventtap.scrollWheel({0, distance}, {}, "pixel")
+            end
+        else
+            smoothTimer:stop() -- Stop the timer after all steps are completed
+        end
+    end)
 end
+
 
 -- Eventtap to handle various Ctrl + [2-9] key scrolls
 local scrollHandler = hs.eventtap.new(
@@ -65,39 +97,46 @@ local scrollHandler = hs.eventtap.new(
 
         -- Handle key press/release state
         if isDown then
-            if not keyStates[keyCode] then -- Only trigger singleScroll on first press
+            if not keyStates[keyCode] then -- Only trigger smoothScroll on first press
                 keyStates[keyCode] = true
 
                 -- Ctrl + 4 for half-page scroll up
                 if modifiers.ctrl and keyCode == hs.keycodes.map["4"] then
-                    local halfPage = getVisibleContentHeight() / 2
-                    singleScroll(-halfPage) -- Scroll up
-                    startScrolling(-2, false, 0.1) -- Optional continuous scrolling after delay
+                    local halfPage = math.floor(getVisibleContentHeight() * 0.5) or 400 -- Default fallback to 400 pixels
+                    smoothScroll(-halfPage, false, 0.175) -- Smoothly scroll up over 0.5 seconds
+                    startScrolling(-20, false, 0.15) -- Optional continuous scrolling after delay
+                elseif modifiers.ctrl and keyCode == hs.keycodes.map["4"] and not isDown then
+                    stopScrolling()
+                end
 
                 -- Ctrl + 5 for half-page scroll down
-                elseif modifiers.ctrl and keyCode == hs.keycodes.map["5"] then
-                    local halfPage = getVisibleContentHeight() / 2
-                    singleScroll(halfPage) -- Scroll down
-                    startScrolling(2, false, 0.1) -- Optional continuous scrolling after delay
+                if modifiers.ctrl and keyCode == hs.keycodes.map["5"] then
+                    local halfPage = math.floor(getVisibleContentHeight() * 0.5) or 400 -- Default fallback to 400 pixels
+                    smoothScroll(halfPage, false, 0.175) -- Smoothly scroll down over 0.5 seconds
+                    startScrolling(20, false, 0.15) -- Optional continuous scrolling after delay
+                elseif modifiers.ctrl and keyCode == hs.keycodes.map["5"] and not isDown then
+                    stopScrolling()
+                end
 
                 -- Ctrl + 6 for full-page scroll up
-                elseif modifiers.ctrl and keyCode == hs.keycodes.map["6"] then
-                    local fullPage = getVisibleContentHeight()
-                    singleScroll(-fullPage) -- Scroll up
-                    startScrolling(-4, false, 0.1)
+                if modifiers.ctrl and keyCode == hs.keycodes.map["6"] then
+                    local fullPage = math.floor(getVisibleContentHeight()) or 800 -- Default fallback to 800 pixels
+                    smoothScroll(-fullPage, false, 0.8) -- Smoothly scroll up over 0.8 seconds
+                end
 
                 -- Ctrl + 7 for full-page scroll down
-                elseif modifiers.ctrl and keyCode == hs.keycodes.map["7"] then
-                    local fullPage = getVisibleContentHeight()
-                    singleScroll(fullPage) -- Scroll down
-                    startScrolling(4, false, 0.1)
+                if modifiers.ctrl and keyCode == hs.keycodes.map["7"] then
+                    local fullPage = math.floor(getVisibleContentHeight()) or 800 -- Default fallback to 800 pixels
+                    smoothScroll(fullPage, false, 0.8) -- Smoothly scroll down over 0.8 seconds
+                end
 
                 -- Ctrl + 8 for scroll to top
-                elseif modifiers.ctrl and keyCode == hs.keycodes.map["8"] then
+                if modifiers.ctrl and keyCode == hs.keycodes.map["8"] then
                     hs.eventtap.keyStroke({}, "home")
+                end
 
                 -- Ctrl + 9 for scroll to bottom
-                elseif modifiers.ctrl and keyCode == hs.keycodes.map["9"] then
+                if modifiers.ctrl and keyCode == hs.keycodes.map["9"] then
                     hs.eventtap.keyStroke({}, "end")
                 end
             end
@@ -110,28 +149,28 @@ local scrollHandler = hs.eventtap.new(
 
         -- Ctrl + ` for continuous scroll up
         if modifiers.ctrl and keyCode == hs.keycodes.map["`"] and isDown then
-            startScrolling(-1) -- Scroll up
+            startScrolling(-10) -- Scroll up
         elseif modifiers.ctrl and keyCode == hs.keycodes.map["`"] and not isDown then
             stopScrolling()
         end
 
         -- Ctrl + 1 for continuous scroll down
         if modifiers.ctrl and keyCode == hs.keycodes.map["1"] and isDown then
-            startScrolling(1) -- Scroll down
+            startScrolling(10) -- Scroll down
         elseif modifiers.ctrl and keyCode == hs.keycodes.map["1"] and not isDown then
             stopScrolling()
         end
 
         -- Ctrl + 2 for scroll right
         if modifiers.ctrl and keyCode == hs.keycodes.map["2"] and isDown then
-            startScrolling(1, true) -- Scroll right
+            startScrolling(10, true) -- Scroll right
         elseif modifiers.ctrl and keyCode == hs.keycodes.map["2"] and not isDown then
             stopScrolling()
         end
 
         -- Ctrl + 3 for scroll left
         if modifiers.ctrl and keyCode == hs.keycodes.map["3"] and isDown then
-            startScrolling(-1, true) -- Scroll left
+            startScrolling(-10, true) -- Scroll left
         elseif modifiers.ctrl and keyCode == hs.keycodes.map["3"] and not isDown then
             stopScrolling()
         end
