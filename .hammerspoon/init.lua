@@ -86,6 +86,14 @@ function smoothScroll(pixels, horizontal, duration)
     end)
 end
 
+function scrollToTop()
+    smoothScroll(-math.huge, false, 1) -- Scroll upwards by an arbitrarily large value
+end
+
+function scrollToBottom()
+    smoothScroll(math.huge, false, 1) -- Scroll downwards by an arbitrarily large value
+end
+
 scrollHandler = hs.eventtap.new(
     {hs.eventtap.event.types.keyDown, hs.eventtap.event.types.keyUp},
     function(event)
@@ -114,6 +122,20 @@ scrollHandler = hs.eventtap.new(
                         smoothScroll(getVisibleContentHeight() * 0.55, false, 0.15)
                     end
                     startScrolling(25, false, keyCode)
+                elseif keyCode == hs.keycodes.map["6"] then
+                    if not lastKeyPressed then
+                        smoothScroll(-getVisibleContentHeight() * 0.9, false, 0.3)
+                    end
+                    startScrolling(-50, false, keyCode)
+                elseif keyCode == hs.keycodes.map["7"] then
+                    if not lastKeyPressed then
+                        smoothScroll(getVisibleContentHeight() * 0.9, false, 0.3)
+                    end
+                    startScrolling(50, false, keyCode)
+                elseif keyCode == hs.keycodes.map["8"] then
+                    scrollToTop() -- Smooth scroll to top
+                elseif keyCode == hs.keycodes.map["9"] then
+                    scrollToBottom() -- Smooth scroll to bottom
                 end
             end
         else
@@ -125,3 +147,9 @@ scrollHandler = hs.eventtap.new(
 )
 
 scrollHandler:start()
+
+hs.shutdownCallback = function()
+    if scrollHandler then
+        scrollHandler:stop()
+    end
+end
