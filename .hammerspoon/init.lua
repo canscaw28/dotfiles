@@ -6,6 +6,7 @@ scrollTimer = nil
 smoothTimer = nil
 keyStates = {}
 lastKeyPressed = nil -- Tracks the most recently pressed key
+isContinuousScrolling = {}
 
 function getVisibleContentHeight()
     local win = hs.window.focusedWindow()
@@ -17,7 +18,7 @@ function getVisibleContentHeight()
 end
 
 function startScrolling(direction, horizontal, keyCode)
-    -- Only update if direction or scroll type changes
+    isContinuousScrolling[keyCode] = true
     if scrollDirection ~= direction or lastKeyPressed ~= keyCode then
         lastKeyPressed = keyCode
         scrollDirection = direction
@@ -35,7 +36,7 @@ function startScrolling(direction, horizontal, keyCode)
 end
 
 function stopScrolling(keyCode)
-    -- Only stop scrolling if the released key was the last active key
+    isContinuousScrolling[keyCode] = false
     if keyCode == lastKeyPressed then
         scrollDirection = 0
         lastKeyPressed = nil
@@ -47,7 +48,6 @@ function stopScrolling(keyCode)
 end
 
 function smoothScroll(pixels, horizontal, duration)
-    -- Cancel any ongoing smooth scrolling
     if smoothTimer then
         smoothTimer:stop()
         smoothTimer = nil
@@ -120,7 +120,6 @@ scrollHandler = hs.eventtap.new(
             keyStates[keyCode] = nil
             stopScrolling(keyCode)
         end
-
         return false
     end
 )
