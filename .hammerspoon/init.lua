@@ -87,11 +87,11 @@ function smoothScroll(pixels, horizontal, duration)
 end
 
 function scrollToTop()
-    smoothScroll(-math.huge, false, 1) -- Scroll upwards by an arbitrarily large value
+    smoothScroll(-1000000, false, 0.3) -- Scroll upwards by a large value over half a second
 end
 
 function scrollToBottom()
-    smoothScroll(math.huge, false, 1) -- Scroll downwards by an arbitrarily large value
+    smoothScroll(1000000, false, 0.3) -- Scroll downwards by a large value over half a second
 end
 
 scrollHandler = hs.eventtap.new(
