@@ -106,7 +106,7 @@ function moveToBottomLeftCornerOfFocusedWindow()
 end
 
 
-hs.hotkey.bind({"ctrl"}, "-", moveToBottomLeftCornerOfFocusedWindow)
+hs.hotkey.bind({"ctrl"}, "0", moveToBottomLeftCornerOfFocusedWindow)
 
 scrollHandler = hs.eventtap.new(
     {hs.eventtap.event.types.keyDown, hs.eventtap.event.types.keyUp},
