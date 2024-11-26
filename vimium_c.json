@@ -1,17 +1,21 @@
 {
 	"name": "Vimium C",
-	"@time": "11/17/2024, 9:43:53 PM",
-	"time": 1731908633229,
+	"@time": "11/25/2024, 7:00:15 PM",
+	"time": 1732590015834,
 	"environment": {
 		"extension": "2.11.3",
 		"platform": "mac",
-		"chromium": 130
+		"chromium": 131
 	},
+	"exclusionRules": [],
 	"keyLayout": 2,
 	"keyMappings": [
 		"#!no-check",
 		"map f LinkHints.activate",
 		"map F LinkHints.activate",
+		"unmap r",
+		"unmap t",
+		"unmap x",
 		""
 	],
 	"userDefinedCss": [
