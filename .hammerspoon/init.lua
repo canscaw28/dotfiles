@@ -94,6 +94,20 @@ function scrollToBottom()
     smoothScroll(1000000, false, 0.3) -- Scroll downwards by a large value over half a second
 end
 
+function moveToBottomLeftCornerOfFocusedWindow()
+    local win = hs.window.focusedWindow()
+    if win then
+        local f = win:frame()
+        local newPoint = hs.geometry.point(f.x + f.w - 50, f.y + f.h / 2)
+        hs.mouse.absolutePosition(newPoint)
+    else
+        hs.alert.show("No active window found")
+    end
+end
+
+
+hs.hotkey.bind({"ctrl"}, "-", moveToBottomLeftCornerOfFocusedWindow)
+
 scrollHandler = hs.eventtap.new(
     {hs.eventtap.event.types.keyDown, hs.eventtap.event.types.keyUp},
     function(event)
