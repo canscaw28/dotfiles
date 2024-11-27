@@ -119,6 +119,8 @@ cmd-ctrl-alt-m = 'join-with down'
 cmd-ctrl-alt-comma = 'join-with up'
 cmd-ctrl-alt-period = 'join-with right'
 
+cmd-ctrl-alt-quote = 'move-workspace-to-monitor --wrap-around next'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 cmd-ctrl-alt-shift-minus = 'resize smart -50'
 cmd-ctrl-alt-shift-equal = 'resize smart +50'
