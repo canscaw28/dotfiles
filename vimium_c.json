@@ -1,7 +1,7 @@
 {
 	"name": "Vimium C",
-	"@time": "11/25/2024, 7:00:15 PM",
-	"time": 1732590015834,
+	"@time": "11/27/2024, 2:15:52 PM",
+	"time": 1732745752392,
 	"environment": {
 		"extension": "2.11.3",
 		"platform": "mac",
@@ -13,6 +13,7 @@
 		"#!no-check",
 		"map f LinkHints.activate",
 		"map F LinkHints.activate",
+		"map gf LinkHints.activateHover",
 		"unmap r",
 		"unmap t",
 		"unmap x",
