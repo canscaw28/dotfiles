@@ -103,21 +103,21 @@ cmd-ctrl-alt-shift-slash = 'layout tiles horizontal vertical'
 cmd-ctrl-alt-shift-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-cmd-ctrl-alt-h = 'focus left'
-cmd-ctrl-alt-j = 'focus down'
-cmd-ctrl-alt-k = 'focus up'
-cmd-ctrl-alt-l = 'focus right'
+cmd-ctrl-alt-h = ['focus left', 'move-mouse window-lazy-center']
+cmd-ctrl-alt-j = ['focus down', 'move-mouse window-lazy-center']
+cmd-ctrl-alt-k = ['focus up', 'move-mouse window-lazy-center']
+cmd-ctrl-alt-l = ['focus right', 'move-mouse window-lazy-center']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-cmd-ctrl-alt-y = 'move left'
-cmd-ctrl-alt-u = 'move down'
-cmd-ctrl-alt-i = 'move up'
-cmd-ctrl-alt-o = 'move right'
+cmd-ctrl-alt-y = ['move left', 'move-mouse window-lazy-center']
+cmd-ctrl-alt-u = ['move down', 'move-mouse window-lazy-center']
+cmd-ctrl-alt-i = ['move up', 'move-mouse window-lazy-center']
+cmd-ctrl-alt-o = ['move right', 'move-mouse window-lazy-center']
 
-cmd-ctrl-alt-n = 'join-with left'
-cmd-ctrl-alt-m = 'join-with down'
-cmd-ctrl-alt-comma = 'join-with up'
-cmd-ctrl-alt-period = 'join-with right'
+cmd-ctrl-alt-n = ['join-with left', 'move-mouse window-lazy-center']
+cmd-ctrl-alt-m = ['join-with down', 'move-mouse window-lazy-center']
+cmd-ctrl-alt-comma = ['join-with up', 'move-mouse window-lazy-center']
+cmd-ctrl-alt-period = ['join-with right', 'move-mouse window-lazy-center']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 cmd-ctrl-alt-shift-minus = 'resize smart -50'
@@ -148,7 +148,7 @@ alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-0 = 'move-node-to-workspace 10'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-cmd-ctrl-alt-quote = 'workspace-back-and-forth'
+cmd-ctrl-alt-quote = ['workspace-back-and-forth', 'move-mouse window-lazy-center']
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
