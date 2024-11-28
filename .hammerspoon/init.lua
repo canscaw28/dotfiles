@@ -1,11 +1,10 @@
--- Smooth scrolling configuration
 scrollSpeed = 1
 scrollInterval = 0.01
 scrollDirection = 0
 scrollTimer = nil
 smoothTimer = nil
 keyStates = {}
-lastKeyPressed = nil -- Tracks the most recently pressed key
+lastKeyPressed = nil
 isContinuousScrolling = {}
 
 function getVisibleContentHeight()
@@ -87,11 +86,11 @@ function smoothScroll(pixels, horizontal, duration)
 end
 
 function scrollToTop()
-    smoothScroll(-1000000, false, 0.3) -- Scroll upwards by a large value over half a second
+    smoothScroll(-1000000, false, 0.3)
 end
 
 function scrollToBottom()
-    smoothScroll(1000000, false, 0.3) -- Scroll downwards by a large value over half a second
+    smoothScroll(1000000, false, 0.3)
 end
 
 function moveToBottomLeftCornerOfFocusedWindow()
@@ -147,9 +146,9 @@ scrollHandler = hs.eventtap.new(
                     end
                     startScrolling(50, false, keyCode)
                 elseif keyCode == hs.keycodes.map["8"] then
-                    scrollToTop() -- Smooth scroll to top
+                    scrollToTop()
                 elseif keyCode == hs.keycodes.map["9"] then
-                    scrollToBottom() -- Smooth scroll to bottom
+                    scrollToBottom()
                 end
             end
         else
