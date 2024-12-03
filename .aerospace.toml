@@ -99,8 +99,8 @@ outer.right =      0
 # '''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-cmd-ctrl-alt-shift-slash = 'layout tiles horizontal vertical'
-cmd-ctrl-alt-shift-comma = 'layout accordion horizontal vertical'
+cmd-alt-shift-slash = 'layout tiles horizontal vertical'
+cmd-alt-shift-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 cmd-ctrl-alt-h = 'focus left'
