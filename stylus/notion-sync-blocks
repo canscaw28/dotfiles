@@ -1,0 +1,9 @@
+@-moz-document domain("notion.so") {
+/* Faint orange halo for synced blocks */
+.notion-transclusion-block-halo {
+  border: none !important;
+  box-shadow: 0 0 0 1px rgba(255, 163, 68, 0.25) !important; /* same orange, 25% opacity */
+  opacity: 1 !important;
+}
+
+}
