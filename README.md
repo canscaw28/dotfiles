@@ -1,10 +1,34 @@
 # dotfiles
-Note to any lurkers: this repo is incredibly outdated. I now use MS word as my primary IDE. No judgement please. 
 
-Goals:
-1) update vimrc
-2) update tmux.conf
-3) zsh configuration
-4) create a script to automatically setup configurations
-5) color schemes and fonts
-6) shortcuts and aliases
+macOS configuration files and settings.
+
+## Contents
+
+### Shell
+- `.zshrc` - Zsh configuration
+- `.bash_profile` - Bash profile
+- `.p10k.zsh` - Powerlevel10k theme config
+- `.git-completion.bash` - Git autocompletion
+
+### Editor & Terminal
+- `.vimrc` - Vim configuration
+- `.tmux.conf` - Tmux configuration
+- `com.googlecode.iterm2.plist` - iTerm2 settings
+- `iterm_keymap.itermkeymap` - iTerm2 keybindings
+
+### Window Management
+- `.aerospace.toml` - [AeroSpace](https://github.com/nikitabobko/AeroSpace) tiling window manager
+
+### Keyboard
+- `karabiner/` - [Karabiner Elements](https://karabiner-elements.pqrs.org/) key remapping (see [karabiner/README.md](karabiner/README.md))
+- `keyboard-layouts/` - Custom keyboard layouts (Mongolian QWERTY)
+
+### Automation
+- `.hammerspoon/` - [Hammerspoon](https://www.hammerspoon.org/) automation scripts
+
+### Browser Extensions
+- `vimium_c.json` - [Vimium C](https://github.com/nicolerenee/vimium-c) settings
+- `stylus/` - Custom CSS styles for websites
+
+### Git
+- `.gitconfig` - Git configuration
