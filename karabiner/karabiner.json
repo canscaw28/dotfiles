@@ -7586,9 +7586,9 @@
                     "value": 0
                   },
                   {
-                    "name": "g_is_held",
+                    "name": "r_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "t_is_held",
@@ -7598,7 +7598,7 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "e_is_held",
@@ -7652,9 +7652,9 @@
                     "value": 0
                   },
                   {
-                    "name": "g_is_held",
+                    "name": "r_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "t_is_held",
@@ -7664,7 +7664,7 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "e_is_held",
@@ -7719,9 +7719,9 @@
                     "value": 0
                   },
                   {
-                    "name": "g_is_held",
+                    "name": "r_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "t_is_held",
@@ -7731,7 +7731,7 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "e_is_held",
@@ -7786,9 +7786,9 @@
                     "value": 0
                   },
                   {
-                    "name": "g_is_held",
+                    "name": "r_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "t_is_held",
@@ -7798,7 +7798,7 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "e_is_held",
@@ -7852,9 +7852,9 @@
                     "value": 0
                   },
                   {
-                    "name": "g_is_held",
+                    "name": "r_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "t_is_held",
@@ -7864,7 +7864,7 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "e_is_held",
@@ -7921,9 +7921,9 @@
                     "value": 0
                   },
                   {
-                    "name": "g_is_held",
+                    "name": "r_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "t_is_held",
@@ -7933,7 +7933,7 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "e_is_held",
@@ -7987,9 +7987,9 @@
                     "value": 0
                   },
                   {
-                    "name": "g_is_held",
+                    "name": "r_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "t_is_held",
@@ -7999,7 +7999,7 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "e_is_held",
@@ -8071,9 +8071,9 @@
                     "value": 0
                   },
                   {
-                    "name": "g_is_held",
+                    "name": "r_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "t_is_held",
@@ -8083,7 +8083,7 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "e_is_held",
@@ -8138,9 +8138,9 @@
                     "value": 0
                   },
                   {
-                    "name": "g_is_held",
+                    "name": "r_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "t_is_held",
@@ -8150,7 +8150,7 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "e_is_held",
@@ -8205,9 +8205,9 @@
                     "value": 0
                   },
                   {
-                    "name": "g_is_held",
+                    "name": "r_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "t_is_held",
@@ -8217,7 +8217,7 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "e_is_held",
@@ -8289,9 +8289,9 @@
                     "value": 0
                   },
                   {
-                    "name": "g_is_held",
+                    "name": "r_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "t_is_held",
@@ -8301,7 +8301,7 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "e_is_held",
@@ -8358,9 +8358,9 @@
                     "value": 0
                   },
                   {
-                    "name": "g_is_held",
+                    "name": "r_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "t_is_held",
@@ -8370,7 +8370,7 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "e_is_held",
@@ -8424,9 +8424,9 @@
                     "value": 0
                   },
                   {
-                    "name": "g_is_held",
+                    "name": "r_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "t_is_held",
@@ -8436,7 +8436,7 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "e_is_held",
@@ -8490,9 +8490,9 @@
                     "value": 0
                   },
                   {
-                    "name": "g_is_held",
+                    "name": "r_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "t_is_held",
@@ -8502,7 +8502,7 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "e_is_held",
