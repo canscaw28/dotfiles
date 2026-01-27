@@ -8,12 +8,13 @@
 | ⇪ + S | Layer 2 | Text Selection Layer |
 | ⇪ + D | Layer 3 | Text Deletion Layer |
 | ⇪ + F | Layer 4 | Scroll Layer |
-| ⇪ + G |  |  |
+| ⇪ + G | Layer 7 | Aerospace Join Layer |
 | ⇪ + Q |  |  |
 | ⇪ + W |  |  |
 | ⇪ + E |  |  |
 | ⇪ + R | Layer 5 | Chrome Tabs Layer |
-| ⇪ + T | Layer 6 | Aerospace Window Tiling Layer |
+| ⇪ + T | Layer 6 | Aerospace Focus Layer |
+| ⇪ + 5 | Layer 8 | Aerospace Move Layer |
 | ⇪ + Z |  |  |
 | ⇪ + X |  |  |
 | ⇪ + C |  |  |
@@ -135,7 +136,7 @@
 
 ---
 
-## Aerospace Window Tiling Layer
+## Aerospace Focus Layer
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -144,21 +145,30 @@
 | ⇪ + T + K | ⌘ + ⌥ + ⌃ + K | Focus up |
 | ⇪ + T + L | ⌘ + ⌥ + ⌃ + L | Focus right |
 | ⇪ + T + ; | ⌘ + ⌥ + ⌃ + ; | Mode service |
-| ⇪ + T + ‘ |  |  |
-| ⇪ + T + Y | ⌘ + ⌥ + ⌃ + H | Move left |
-| ⇪ + T + U | ⌘ + ⌥ + ⌃ + J | Move down |
-| ⇪ + T + I | ⌘ + ⌥ + ⌃ + K | Move up |
-| ⇪ + T + O | ⌘ + ⌥ + ⌃ + L | Move right |
-| ⇪ + T + P |  |  |
-| ⇪ + T + [ |  |  |
-| ⇪ + T + ] |  |  |
-| ⇪ + T + N | ⌘ + ⌥ + ⌃ + N | Join with left |
-| ⇪ + T + M | ⌘ + ⌥ + ⌃ + M | Join with down |
-| ⇪ + T + , | ⌘ + ⌥ + ⌃ + , | Join with up |
-| ⇪ + T + . | ⌘ + ⌥ + ⌃ + . | Join with right |
-| ⇪ + T + / |  |  |
-| ⇪ + T + - | ⌘ + ⌥ + ⌃ + - | Resize smart -50 |
-| ⇪ + T + = | ⌘ + ⌥ + ⌃ + = | Resize smart +50 |
+| ⇪ + T + - | ⌘ + ⌥ + ⌃ + ⇧ + - | Resize smart -50 |
+| ⇪ + T + = | ⌘ + ⌥ + ⌃ + ⇧ + = | Resize smart +50 |
+
+---
+
+## Aerospace Move Layer
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + 5 + H | ⌘ + ⌥ + ⌃ + Y | Move window left |
+| ⇪ + 5 + J | ⌘ + ⌥ + ⌃ + U | Move window down |
+| ⇪ + 5 + K | ⌘ + ⌥ + ⌃ + I | Move window up |
+| ⇪ + 5 + L | ⌘ + ⌥ + ⌃ + O | Move window right |
+
+---
+
+## Aerospace Join Layer
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + G + H | ⌘ + ⌥ + ⌃ + N | Join with left |
+| ⇪ + G + J | ⌘ + ⌥ + ⌃ + M | Join with down |
+| ⇪ + G + K | ⌘ + ⌥ + ⌃ + , | Join with up |
+| ⇪ + G + L | ⌘ + ⌥ + ⌃ + . | Join with right |
 
 ---
 
