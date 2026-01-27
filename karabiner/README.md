@@ -8,13 +8,12 @@
 | ⇪ + S | Layer 2 | Text Selection Layer |
 | ⇪ + D | Layer 3 | Text Deletion Layer |
 | ⇪ + F | Layer 4 | Scroll Layer |
-| ⇪ + G | Layer 7 | Aerospace Join Layer |
+| ⇪ + G | Layer 5 | Chrome Tabs Layer |
 | ⇪ + Q |  |  |
 | ⇪ + W |  |  |
-| ⇪ + E |  |  |
-| ⇪ + R | Layer 5 | Chrome Tabs Layer |
+| ⇪ + E | Layer 7 | Aerospace Join Layer |
+| ⇪ + R | Layer 8 | Aerospace Move Layer |
 | ⇪ + T | Layer 6 | Aerospace Focus Layer |
-| ⇪ + 5 | Layer 8 | Aerospace Move Layer |
 | ⇪ + Z |  |  |
 | ⇪ + X |  |  |
 | ⇪ + C |  |  |
@@ -115,24 +114,24 @@
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| ⇪ + R + H | ⌘ + 1 | Move to the first tab |
-| ⇪ + R + J | ⌘ + ⌥ + ← | Move to the left tab |
-| ⇪ + R + K | ⌘ + ⌥ + → | Move to the right tab |
-| ⇪ + R + L | ⌘ + 9 | Move to the last tab |
-| ⇪ + R + ; | Esc; T | Trigger Vimium Tab search |
-| ⇪ + R + ‘ | Esc; o | Trigger Vimium history search |
-| ⇪ + R + Y | Esc; 100<< | Trigger Vimium, move tab to position 0 |
-| ⇪ + R + U | ⌃ + ⇧ + Page Up | Move tab to the left |
-| ⇪ + R + I | ⌃ + ⇧ + Page Down | Move tab to the right |
-| ⇪ + R + O | Esc; 100>> | Trigger Vimium, move tab to last position |
-| ⇪ + R + P | Esc; yt | Trigger Vimium Duplicate tab |
-| ⇪ + R + [ | ⌘ + ← | Move back in history |
-| ⇪ + R + ] | ⌘ + → | Move forward in history |
-| ⇪ + R + N |  | Move tab to left adjacent chrome windows |
-| ⇪ + R + M |  | Move tab to bottom adjacent chrome window |
-| ⇪ + R + , |  | Move tab to top adjacent chrome window |
-| ⇪ + R + . |  | Move tab to right adjacent chrome window |
-| ⇪ + R + / | ⌘ + W | Delete current tab |
+| ⇪ + G + H | ⌘ + 1 | Move to the first tab |
+| ⇪ + G + J | ⌘ + ⌥ + ← | Move to the left tab |
+| ⇪ + G + K | ⌘ + ⌥ + → | Move to the right tab |
+| ⇪ + G + L | ⌘ + 9 | Move to the last tab |
+| ⇪ + G + ; | Esc; T | Trigger Vimium Tab search |
+| ⇪ + G + ' | Esc; o | Trigger Vimium history search |
+| ⇪ + G + Y | Esc; 100<< | Trigger Vimium, move tab to position 0 |
+| ⇪ + G + U | ⌃ + ⇧ + Page Up | Move tab to the left |
+| ⇪ + G + I | ⌃ + ⇧ + Page Down | Move tab to the right |
+| ⇪ + G + O | Esc; 100>> | Trigger Vimium, move tab to last position |
+| ⇪ + G + P | Esc; yt | Trigger Vimium Duplicate tab |
+| ⇪ + G + [ | ⌘ + ← | Move back in history |
+| ⇪ + G + ] | ⌘ + → | Move forward in history |
+| ⇪ + G + N |  | Move tab to left adjacent chrome windows |
+| ⇪ + G + M |  | Move tab to bottom adjacent chrome window |
+| ⇪ + G + , |  | Move tab to top adjacent chrome window |
+| ⇪ + G + . |  | Move tab to right adjacent chrome window |
+| ⇪ + G + / | ⌘ + W | Delete current tab |
 
 ---
 
@@ -154,10 +153,10 @@
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| ⇪ + 5 + H | ⌘ + ⌥ + ⌃ + Y | Move window left |
-| ⇪ + 5 + J | ⌘ + ⌥ + ⌃ + U | Move window down |
-| ⇪ + 5 + K | ⌘ + ⌥ + ⌃ + I | Move window up |
-| ⇪ + 5 + L | ⌘ + ⌥ + ⌃ + O | Move window right |
+| ⇪ + R + H | ⌘ + ⌥ + ⌃ + Y | Move window left |
+| ⇪ + R + J | ⌘ + ⌥ + ⌃ + U | Move window down |
+| ⇪ + R + K | ⌘ + ⌥ + ⌃ + I | Move window up |
+| ⇪ + R + L | ⌘ + ⌥ + ⌃ + O | Move window right |
 
 ---
 
@@ -165,10 +164,10 @@
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| ⇪ + G + H | ⌘ + ⌥ + ⌃ + N | Join with left |
-| ⇪ + G + J | ⌘ + ⌥ + ⌃ + M | Join with down |
-| ⇪ + G + K | ⌘ + ⌥ + ⌃ + , | Join with up |
-| ⇪ + G + L | ⌘ + ⌥ + ⌃ + . | Join with right |
+| ⇪ + E + H | ⌘ + ⌥ + ⌃ + N | Join with left |
+| ⇪ + E + J | ⌘ + ⌥ + ⌃ + M | Join with down |
+| ⇪ + E + K | ⌘ + ⌥ + ⌃ + , | Join with up |
+| ⇪ + E + L | ⌘ + ⌥ + ⌃ + . | Join with right |
 
 ---
 

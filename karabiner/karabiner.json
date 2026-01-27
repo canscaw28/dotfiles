@@ -359,7 +359,7 @@
                   }
                 ],
                 "from": {
-                  "key_code": "5",
+                  "key_code": "e",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -369,7 +369,7 @@
                 "to": [
                   {
                     "set_variable": {
-                      "name": "5_is_held",
+                      "name": "e_is_held",
                       "value": 1
                     }
                   }
@@ -377,7 +377,7 @@
                 "to_after_key_up": [
                   {
                     "set_variable": {
-                      "name": "5_is_held",
+                      "name": "e_is_held",
                       "value": 0
                     }
                   }
@@ -427,7 +427,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -490,7 +490,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -553,7 +553,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -616,7 +616,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -679,7 +679,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -737,7 +737,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -803,7 +803,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -869,7 +869,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -935,7 +935,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1001,7 +1001,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1067,7 +1067,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1133,7 +1133,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1199,7 +1199,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1265,7 +1265,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1331,7 +1331,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1397,7 +1397,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1463,7 +1463,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1530,7 +1530,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1597,7 +1597,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1664,7 +1664,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1738,7 +1738,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1811,7 +1811,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1878,7 +1878,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -1945,7 +1945,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2008,7 +2008,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2077,7 +2077,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2146,7 +2146,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2209,7 +2209,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2278,7 +2278,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2344,7 +2344,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2410,7 +2410,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2476,7 +2476,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2546,7 +2546,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2618,7 +2618,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2684,7 +2684,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2754,7 +2754,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2820,7 +2820,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2886,7 +2886,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2952,7 +2952,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -3018,7 +3018,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -3084,7 +3084,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -3150,7 +3150,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -3216,7 +3216,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -3282,7 +3282,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -3348,7 +3348,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -3414,7 +3414,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -3429,9 +3429,11 @@
                 },
                 "to": [
                   {
-                    "key_code": "1",
+                    "key_code": "y",
                     "modifiers": [
-                      "command"
+                      "command",
+                      "control",
+                      "option"
                     ]
                   }
                 ],
@@ -3480,7 +3482,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -3495,9 +3497,10 @@
                 },
                 "to": [
                   {
-                    "key_code": "left_arrow",
+                    "key_code": "u",
                     "modifiers": [
                       "command",
+                      "control",
                       "option"
                     ]
                   }
@@ -3547,7 +3550,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -3562,9 +3565,10 @@
                 },
                 "to": [
                   {
-                    "key_code": "right_arrow",
+                    "key_code": "i",
                     "modifiers": [
                       "command",
+                      "control",
                       "option"
                     ]
                   }
@@ -3614,7 +3618,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -3629,713 +3633,11 @@
                 },
                 "to": [
                   {
-                    "key_code": "9",
+                    "key_code": "o",
                     "modifiers": [
-                      "command"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "5_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "from": {
-                  "key_code": "semicolon",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "escape"
-                  },
-                  {
-                    "key_code": "t",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "5_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "from": {
-                  "key_code": "quote",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "escape"
-                  },
-                  {
-                    "key_code": "o"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "5_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "from": {
-                  "key_code": "y",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "escape"
-                  },
-                  {
-                    "key_code": "1"
-                  },
-                  {
-                    "key_code": "0"
-                  },
-                  {
-                    "key_code": "0"
-                  },
-                  {
-                    "key_code": "comma",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "comma",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "5_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "from": {
-                  "key_code": "u",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "page_up",
-                    "modifiers": [
+                      "command",
                       "control",
-                      "shift"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "5_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "from": {
-                  "key_code": "i",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "page_down",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "5_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "from": {
-                  "key_code": "o",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "escape"
-                  },
-                  {
-                    "key_code": "1"
-                  },
-                  {
-                    "key_code": "0"
-                  },
-                  {
-                    "key_code": "0"
-                  },
-                  {
-                    "key_code": "period",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "period",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "5_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "from": {
-                  "key_code": "p",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "escape"
-                  },
-                  {
-                    "key_code": "y"
-                  },
-                  {
-                    "key_code": "t"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "5_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "from": {
-                  "key_code": "open_bracket",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "open_bracket",
-                    "modifiers": [
-                      "command"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "5_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "from": {
-                  "key_code": "close_bracket",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "close_bracket",
-                    "modifiers": [
-                      "command"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "5_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "from": {
-                  "key_code": "slash",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "w",
-                    "modifiers": [
-                      "command"
+                      "option"
                     ]
                   }
                 ],
@@ -4384,7 +3686,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -4452,7 +3754,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -4520,7 +3822,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -4588,7 +3890,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -4656,7 +3958,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -4724,7 +4026,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -4792,7 +4094,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -4860,7 +4162,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -4928,7 +4230,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -4997,7 +4299,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5066,7 +4368,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5129,7 +4431,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5192,7 +4494,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5255,7 +4557,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5318,7 +4620,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5381,7 +4683,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5444,7 +4746,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5507,7 +4809,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5570,7 +4872,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5633,7 +4935,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5696,7 +4998,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5759,7 +5061,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5822,7 +5124,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5885,7 +5187,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5948,7 +5250,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6011,7 +5313,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6074,7 +5376,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6137,7 +5439,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6200,7 +5502,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6263,7 +5565,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6326,7 +5628,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6389,7 +5691,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6452,7 +5754,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6515,7 +5817,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6578,7 +5880,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6641,7 +5943,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6704,7 +6006,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6767,7 +6069,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6830,7 +6132,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6893,7 +6195,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6956,7 +6258,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7019,7 +6321,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7082,7 +6384,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7145,7 +6447,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7208,7 +6510,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7271,7 +6573,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7334,7 +6636,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7397,7 +6699,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7460,7 +6762,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7523,7 +6825,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7586,7 +6888,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7649,7 +6951,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7712,7 +7014,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7775,7 +7077,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7838,7 +7140,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7901,7 +7203,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7964,7 +7266,7 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -8027,281 +7329,9 @@
                     "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "h",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "y",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "5_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "j",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "u",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "5_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "k",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "i",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "5_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "l",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "o",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "5_is_held",
-                    "type": "variable_if",
-                    "value": 0
                   }
                 ],
                 "from": {
@@ -8364,12 +7394,12 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   }
                 ],
                 "from": {
@@ -8432,12 +7462,12 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   }
                 ],
                 "from": {
@@ -8500,12 +7530,12 @@
                   {
                     "name": "g_is_held",
                     "type": "variable_if",
-                    "value": 1
+                    "value": 0
                   },
                   {
-                    "name": "5_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   }
                 ],
                 "from": {
@@ -8523,6 +7553,976 @@
                       "command",
                       "control",
                       "option"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "1",
+                    "modifiers": [
+                      "command"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "left_arrow",
+                    "modifiers": [
+                      "command",
+                      "option"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "right_arrow",
+                    "modifiers": [
+                      "command",
+                      "option"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "9",
+                    "modifiers": [
+                      "command"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "semicolon",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "escape"
+                  },
+                  {
+                    "key_code": "t",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "quote",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "escape"
+                  },
+                  {
+                    "key_code": "o"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "y",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "escape"
+                  },
+                  {
+                    "key_code": "1"
+                  },
+                  {
+                    "key_code": "0"
+                  },
+                  {
+                    "key_code": "0"
+                  },
+                  {
+                    "key_code": "comma",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "comma",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "u",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "page_up",
+                    "modifiers": [
+                      "control",
+                      "shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "i",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "page_down",
+                    "modifiers": [
+                      "control",
+                      "shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "o",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "escape"
+                  },
+                  {
+                    "key_code": "1"
+                  },
+                  {
+                    "key_code": "0"
+                  },
+                  {
+                    "key_code": "0"
+                  },
+                  {
+                    "key_code": "period",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "period",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "p",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "escape"
+                  },
+                  {
+                    "key_code": "y"
+                  },
+                  {
+                    "key_code": "t"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "open_bracket",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "open_bracket",
+                    "modifiers": [
+                      "command"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "close_bracket",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "close_bracket",
+                    "modifiers": [
+                      "command"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "slash",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "w",
+                    "modifiers": [
+                      "command"
                     ]
                   }
                 ],
