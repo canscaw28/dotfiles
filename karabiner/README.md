@@ -11,8 +11,8 @@
 | ⇪ + G | Layer 5 | Chrome Tabs Layer |
 | ⇪ + Q |  |  |
 | ⇪ + W |  |  |
-| ⇪ + E | Layer 7 | Aerospace Join Layer |
-| ⇪ + R | Layer 8 | Aerospace Move Layer |
+| ⇪ + E |  |  |
+| ⇪ + R | Layer 7 | Aerospace Move/Join Layer |
 | ⇪ + T | Layer 6 | Aerospace Focus Layer |
 | ⇪ + Z |  |  |
 | ⇪ + X |  |  |
@@ -149,7 +149,7 @@
 
 ---
 
-## Aerospace Move Layer
+## Aerospace Move/Join Layer
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -157,17 +157,10 @@
 | ⇪ + R + J | ⌘ + ⌥ + ⌃ + U | Move window down |
 | ⇪ + R + K | ⌘ + ⌥ + ⌃ + I | Move window up |
 | ⇪ + R + L | ⌘ + ⌥ + ⌃ + O | Move window right |
-
----
-
-## Aerospace Join Layer
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| ⇪ + E + H | ⌘ + ⌥ + ⌃ + N | Join with left |
-| ⇪ + E + J | ⌘ + ⌥ + ⌃ + M | Join with down |
-| ⇪ + E + K | ⌘ + ⌥ + ⌃ + , | Join with up |
-| ⇪ + E + L | ⌘ + ⌥ + ⌃ + . | Join with right |
+| ⇪ + R + Y | ⌘ + ⌥ + ⌃ + N | Join with left |
+| ⇪ + R + U | ⌘ + ⌥ + ⌃ + M | Join with down |
+| ⇪ + R + I | ⌘ + ⌥ + ⌃ + , | Join with up |
+| ⇪ + R + O | ⌘ + ⌥ + ⌃ + . | Join with right |
 
 ---
 
