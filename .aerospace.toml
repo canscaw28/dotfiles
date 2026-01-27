@@ -110,8 +110,8 @@ cmd-ctrl-alt-l = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 cmd-ctrl-alt-y = ['move --boundaries-action stop left', 'exec-and-forget sleep 0.01 && aerospace move-mouse window-force-center']
-cmd-ctrl-alt-u = ['move --boundaries-action stop down', 'exec-and-forget sleep 0.01 && aerospace move-mouse window-force-center']
-cmd-ctrl-alt-i = ['move --boundaries-action stop up', 'exec-and-forget sleep 0.01 && aerospace move-mouse window-force-center']
+cmd-ctrl-alt-u = ['move down', 'exec-and-forget sleep 0.01 && aerospace move-mouse window-force-center']
+cmd-ctrl-alt-i = ['move up', 'exec-and-forget sleep 0.01 && aerospace move-mouse window-force-center']
 cmd-ctrl-alt-o = ['move --boundaries-action stop right', 'exec-and-forget sleep 0.01 && aerospace move-mouse window-force-center']
 
 cmd-ctrl-alt-n = 'join-with left'
