@@ -69,20 +69,14 @@ install_editor() {
 install_aerospace() {
     log_info "Installing AeroSpace config..."
     create_symlink "$DOTFILES_DIR/.aerospace.toml" "$HOME/.aerospace.toml"
+    "$DOTFILES_DIR/reload.sh" --aerospace
 }
 
 install_karabiner() {
     log_info "Installing Karabiner Elements config..."
     mkdir -p "$HOME/.config/karabiner"
     create_symlink "$DOTFILES_DIR/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
-
-    # Reload Karabiner Elements config
-    log_info "Reloading Karabiner Elements config..."
-    # Restart the console user server to reload config
-    launchctl kickstart -k "gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server" 2>/dev/null || true
-    # Touch config file to trigger file watcher
-    touch "$HOME/.config/karabiner/karabiner.json"
-    log_info "Karabiner Elements config reloaded"
+    "$DOTFILES_DIR/reload.sh" --karabiner
 }
 
 install_hammerspoon() {
