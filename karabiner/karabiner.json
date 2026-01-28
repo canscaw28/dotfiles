@@ -643,6 +643,11 @@
                     "value": 1
                   },
                   {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "bundle_identifiers": [
                       "^com\\.googlecode\\.iterm2$"
                     ],
@@ -675,6 +680,11 @@
                     "value": 1
                   },
                   {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "bundle_identifiers": [
                       "^com\\.googlecode\\.iterm2$"
                     ],
@@ -705,6 +715,11 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   },
                   {
                     "bundle_identifiers": [
