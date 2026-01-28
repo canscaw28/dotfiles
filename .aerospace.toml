@@ -109,10 +109,10 @@ cmd-ctrl-alt-k = 'focus up'
 cmd-ctrl-alt-l = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-cmd-ctrl-alt-y = ['move --boundaries-action stop left', 'exec-and-forget sleep 0.01 && aerospace move-mouse window-force-center']
-cmd-ctrl-alt-u = ['move down', 'exec-and-forget sleep 0.01 && aerospace move-mouse window-force-center']
-cmd-ctrl-alt-i = ['move up', 'exec-and-forget sleep 0.01 && aerospace move-mouse window-force-center']
-cmd-ctrl-alt-o = ['move --boundaries-action stop right', 'exec-and-forget sleep 0.01 && aerospace move-mouse window-force-center']
+cmd-ctrl-alt-y = 'exec-and-forget ~/.local/bin/smart-move.sh left'
+cmd-ctrl-alt-u = 'exec-and-forget ~/.local/bin/smart-move.sh down'
+cmd-ctrl-alt-i = 'exec-and-forget ~/.local/bin/smart-move.sh up'
+cmd-ctrl-alt-o = 'exec-and-forget ~/.local/bin/smart-move.sh right'
 
 cmd-ctrl-alt-n = 'join-with left'
 cmd-ctrl-alt-m = 'join-with down'
