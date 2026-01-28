@@ -164,6 +164,39 @@
 
 ---
 
+## iTerm2-Specific Overrides
+
+*These bindings override the standard behavior when iTerm2 is the frontmost application, using terminal-compatible key sequences.*
+
+### Cursor Movement (iTerm2)
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + Y | ⌃ + A | Jump to start of line |
+| ⇪ + U | ⌥ + ← | Jump back one word |
+| ⇪ + I | ⌥ + → | Jump forward one word |
+| ⇪ + O | ⌃ + E | Jump to end of line |
+
+### Text Deletion (iTerm2)
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + D + Y | ⌃ + U | Delete from cursor to start of line |
+| ⇪ + D + U | ⌃ + W | Delete word to the left |
+| ⇪ + D + I | Esc, d | Delete word to the right |
+| ⇪ + D + O | ⌃ + K | Delete from cursor to end of line |
+
+### G Layer - Tmux Pane Navigation (iTerm2)
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + G + H | ⌃ + B, ← | Select tmux pane left |
+| ⇪ + G + J | ⌃ + B, ↓ | Select tmux pane down |
+| ⇪ + G + K | ⌃ + B, ↑ | Select tmux pane up |
+| ⇪ + G + L | ⌃ + B, → | Select tmux pane right |
+
+---
+
 ## HammerSpoon
 
 *These keys are widely available for remapping*
