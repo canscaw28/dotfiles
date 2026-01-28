@@ -50924,7 +50924,7 @@
 			<key>Window Type</key>
 			<integer>0</integer>
 			<key>Working Directory</key>
-			<string>/Users/craigweiss</string>
+			<string>/Users/craig</string>
 		</dict>
 		<dict>
 			<key>ASCII Anti Aliased</key>
@@ -51604,7 +51604,7 @@
 			<key>Window Type</key>
 			<integer>0</integer>
 			<key>Working Directory</key>
-			<string>/Users/craigweiss</string>
+			<string>/Users/craig</string>
 		</dict>
 	</array>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
@@ -51661,7 +51661,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/craigweiss/iterm_settings</string>
+	<string>/Users/craig/iterm_settings</string>
 	<key>SUAutomaticallyUpdate</key>
 	<true/>
 	<key>SUEnableAutomaticChecks</key>
