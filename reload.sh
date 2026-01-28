@@ -32,10 +32,22 @@ reload_hammerspoon() {
     log_info "Hammerspoon config reloaded"
 }
 
+reload_iterm() {
+    log_info "Reloading iTerm2 config..."
+    DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    if [[ -f "$DOTFILES_DIR/com.googlecode.iterm2.plist" ]]; then
+        defaults import com.googlecode.iterm2 "$DOTFILES_DIR/com.googlecode.iterm2.plist"
+        log_info "iTerm2 config reloaded. Restart iTerm2 to apply changes."
+    else
+        log_error "iTerm2 plist not found at $DOTFILES_DIR/com.googlecode.iterm2.plist"
+    fi
+}
+
 reload_all() {
     reload_aerospace
     reload_karabiner
     reload_hammerspoon
+    reload_iterm
 }
 
 show_help() {
@@ -49,6 +61,7 @@ show_help() {
     echo "  --aerospace    Reload AeroSpace config"
     echo "  --karabiner    Reload Karabiner Elements config"
     echo "  --hammerspoon  Reload Hammerspoon config"
+    echo "  --iterm        Reload iTerm2 config"
     echo "  --help         Show this help message"
 }
 
@@ -72,6 +85,10 @@ else
                 ;;
             --hammerspoon)
                 reload_hammerspoon
+                shift
+                ;;
+            --iterm)
+                reload_iterm
                 shift
                 ;;
             --help|-h)
