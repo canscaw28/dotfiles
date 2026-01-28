@@ -93,6 +93,23 @@ install_hammerspoon() {
     create_symlink "$DOTFILES_DIR/.hammerspoon" "$HOME/.hammerspoon"
 }
 
+install_iterm() {
+    log_info "Installing iTerm2 config..."
+    if [[ -f "$DOTFILES_DIR/com.googlecode.iterm2.plist" ]]; then
+        # Backup existing preferences
+        if [[ -f "$HOME/Library/Preferences/com.googlecode.iterm2.plist" ]]; then
+            local backup="$HOME/Library/Preferences/com.googlecode.iterm2.plist.backup.$(date +%Y%m%d_%H%M%S)"
+            log_warn "Backing up existing iTerm2 preferences to $backup"
+            cp "$HOME/Library/Preferences/com.googlecode.iterm2.plist" "$backup"
+        fi
+        # Import preferences using defaults
+        defaults import com.googlecode.iterm2 "$DOTFILES_DIR/com.googlecode.iterm2.plist"
+        log_info "iTerm2 preferences imported. Restart iTerm2 to apply changes."
+    else
+        log_error "iTerm2 plist not found at $DOTFILES_DIR/com.googlecode.iterm2.plist"
+    fi
+}
+
 install_all() {
     install_shell
     install_git
@@ -100,6 +117,7 @@ install_all() {
     install_aerospace
     install_karabiner
     install_hammerspoon
+    install_iterm
 }
 
 show_help() {
@@ -113,6 +131,7 @@ show_help() {
     echo "  --aerospace    Install AeroSpace config"
     echo "  --karabiner    Install Karabiner Elements config"
     echo "  --hammerspoon  Install Hammerspoon config"
+    echo "  --iterm        Install iTerm2 config"
     echo "  --help         Show this help message"
     echo ""
     echo "Examples:"
@@ -173,6 +192,10 @@ else
                 install_hammerspoon
                 shift
                 ;;
+            --iterm)
+                install_iterm
+                shift
+                ;;
             --help|-h)
                 show_help
                 exit 0
@@ -192,7 +215,6 @@ echo "Done!"
 echo "========================================"
 echo ""
 echo "Manual steps (if needed):"
-echo "  - iTerm2: Import settings from com.googlecode.iterm2.plist"
 echo "  - Vimium C: Import settings from vimium_c.json"
 echo "  - Stylus: Import styles from stylus/ directory"
 echo "  - Keyboard layouts: Copy from keyboard-layouts/ to ~/Library/Keyboard Layouts/"
