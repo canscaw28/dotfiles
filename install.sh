@@ -66,8 +66,17 @@ install_editor() {
     create_symlink "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
 }
 
+install_scripts() {
+    log_info "Installing scripts..."
+    for script in "$DOTFILES_DIR"/scripts/*.sh; do
+        [[ -e "$script" ]] || continue
+        create_symlink "$script" "$HOME/.local/bin/$(basename "$script")"
+    done
+}
+
 install_aerospace() {
     log_info "Installing AeroSpace config..."
+    install_scripts
     create_symlink "$DOTFILES_DIR/.aerospace.toml" "$HOME/.aerospace.toml"
     "$DOTFILES_DIR/reload.sh" --aerospace
 }
