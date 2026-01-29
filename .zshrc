@@ -273,4 +273,49 @@ bindkey "^[[1;2F" select-to-line-end     # Shift+End
 bindkey "^[w" copy-region-as-kill
 # Cut selection (Ctrl+W) - already default
 # Paste (Ctrl+Y) - already default
+
+# Clipboard operations (copy/cut to system clipboard via pbcopy)
+function copy-region-to-clipboard() {
+  if ((REGION_ACTIVE)); then
+    zle copy-region-as-kill
+    print -rn -- "$CUTBUFFER" | pbcopy
+    REGION_ACTIVE=0
+  fi
+}
+zle -N copy-region-to-clipboard
+
+function cut-region-to-clipboard() {
+  if ((REGION_ACTIVE)); then
+    zle kill-region
+    print -rn -- "$CUTBUFFER" | pbcopy
+  fi
+}
+zle -N cut-region-to-clipboard
+
+# Bind Caps+Cmd+C/X (via Karabiner sending F15/F16)
+bindkey "^[[28~" copy-region-to-clipboard  # F15
+bindkey "^[[29~" cut-region-to-clipboard   # F16
+
+# Backspace/Delete wrappers - delete selection if active
+function backward-delete-char-or-region() {
+  if ((REGION_ACTIVE)); then
+    zle kill-region
+  else
+    zle backward-delete-char
+  fi
+}
+zle -N backward-delete-char-or-region
+
+function delete-char-or-region() {
+  if ((REGION_ACTIVE)); then
+    zle kill-region
+  else
+    zle delete-char
+  fi
+}
+zle -N delete-char-or-region
+
+bindkey "^?" backward-delete-char-or-region   # Backspace
+bindkey "^[[3~" delete-char-or-region         # Delete key
+
 export PATH="$HOME/.local/bin:$PATH"
