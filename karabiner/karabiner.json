@@ -643,6 +643,11 @@
                     "value": 1
                   },
                   {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "name": "d_is_held",
                     "type": "variable_if",
                     "value": 0
@@ -680,6 +685,11 @@
                     "value": 1
                   },
                   {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "name": "d_is_held",
                     "type": "variable_if",
                     "value": 0
@@ -715,6 +725,11 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   },
                   {
                     "name": "d_is_held",
