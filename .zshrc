@@ -162,3 +162,115 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# =============================================================================
+# Visual Selection Mode (like GUI text editors)
+# =============================================================================
+
+# Enable visual highlighting for selected region
+zle_highlight=(region:standout)
+
+# Deselect helper - clears selection without side effects
+function deselect-region() {
+  REGION_ACTIVE=0
+  zle -f vichange  # Clear visual feedback
+}
+zle -N deselect-region
+
+# Movement wrappers - deselect before moving (like GUI editors)
+function move-char-left() {
+  if ((REGION_ACTIVE)); then
+    REGION_ACTIVE=0
+    MARK=$CURSOR  # Clear region by moving mark to cursor
+  fi
+  zle backward-char
+}
+zle -N move-char-left
+
+function move-char-right() {
+  if ((REGION_ACTIVE)); then
+    REGION_ACTIVE=0
+    MARK=$CURSOR
+  fi
+  zle forward-char
+}
+zle -N move-char-right
+
+function move-word-left() {
+  if ((REGION_ACTIVE)); then
+    REGION_ACTIVE=0
+    MARK=$CURSOR
+  fi
+  zle backward-word
+}
+zle -N move-word-left
+
+function move-word-right() {
+  if ((REGION_ACTIVE)); then
+    REGION_ACTIVE=0
+    MARK=$CURSOR
+  fi
+  zle forward-word
+}
+zle -N move-word-right
+
+# Selection widgets - set mark if not selecting, then move
+function select-char-left() {
+  ((REGION_ACTIVE)) || zle set-mark-command
+  zle backward-char
+}
+zle -N select-char-left
+
+function select-char-right() {
+  ((REGION_ACTIVE)) || zle set-mark-command
+  zle forward-char
+}
+zle -N select-char-right
+
+function select-word-left() {
+  ((REGION_ACTIVE)) || zle set-mark-command
+  zle backward-word
+}
+zle -N select-word-left
+
+function select-word-right() {
+  ((REGION_ACTIVE)) || zle set-mark-command
+  zle forward-word
+}
+zle -N select-word-right
+
+function select-to-line-start() {
+  ((REGION_ACTIVE)) || zle set-mark-command
+  zle beginning-of-line
+}
+zle -N select-to-line-start
+
+function select-to-line-end() {
+  ((REGION_ACTIVE)) || zle set-mark-command
+  zle end-of-line
+}
+zle -N select-to-line-end
+
+# Bind plain arrow keys to deselecting movement (both normal and application mode)
+bindkey "^[[D" move-char-left            # Left arrow (normal mode)
+bindkey "^[[C" move-char-right           # Right arrow (normal mode)
+bindkey "^[OD" move-char-left            # Left arrow (application mode)
+bindkey "^[OC" move-char-right           # Right arrow (application mode)
+bindkey "^[b" move-word-left             # Option+Left (Esc+b)
+bindkey "^[f" move-word-right            # Option+Right (Esc+f)
+
+# Bind shift+arrow to selection
+bindkey "^[[1;2D" select-char-left       # Shift+Left
+bindkey "^[[1;2C" select-char-right      # Shift+Right
+
+# Word and line selection (via Karabiner iTerm2 overrides)
+bindkey "^[[1;6D" select-word-left       # Ctrl+Shift+Left
+bindkey "^[[1;6C" select-word-right      # Ctrl+Shift+Right
+bindkey "^[[1;2H" select-to-line-start   # Shift+Home
+bindkey "^[[1;2F" select-to-line-end     # Shift+End
+
+# Copy selection without cutting (Alt+W / Esc+W)
+bindkey "^[w" copy-region-as-kill
+# Cut selection (Ctrl+W) - already default
+# Paste (Ctrl+Y) - already default
+export PATH="$HOME/.local/bin:$PATH"
