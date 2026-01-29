@@ -186,6 +186,15 @@
 | ⇪ + D + I | Esc, d | Delete word to the right |
 | ⇪ + D + O | ⌃ + K | Delete from cursor to end of line |
 
+### Text Selection (iTerm2)
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + S + Y | ⇧ + Home | Select to start of line |
+| ⇪ + S + U | ⌃ + ⇧ + ← | Select word to the left |
+| ⇪ + S + I | ⌃ + ⇧ + → | Select word to the right |
+| ⇪ + S + O | ⇧ + End | Select to end of line |
+
 ### G Layer - Tmux Pane Navigation (iTerm2)
 
 | Key / Shortcut | Behavior | Description |
