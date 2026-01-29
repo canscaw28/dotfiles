@@ -158,8 +158,7 @@ alias gcm='git commit -am '
 alias gp='git pull origin master'
 alias gs='git stash'
 alias gsa='git stash apply'
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
