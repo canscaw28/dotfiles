@@ -190,10 +190,19 @@
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
+| ⇪ + S + H | ⇧ + ← | Select character to the left |
+| ⇪ + S + L | ⇧ + → | Select character to the right |
 | ⇪ + S + Y | ⇧ + Home | Select to start of line |
 | ⇪ + S + U | ⌃ + ⇧ + ← | Select word to the left |
 | ⇪ + S + I | ⌃ + ⇧ + → | Select word to the right |
 | ⇪ + S + O | ⇧ + End | Select to end of line |
+
+### Clipboard Operations (iTerm2)
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + ⌘ + C | F15 | Copy selection to system clipboard |
+| ⇪ + ⌘ + X | F16 | Cut selection to system clipboard |
 
 ### G Layer - Tmux Pane Navigation (iTerm2)
 
