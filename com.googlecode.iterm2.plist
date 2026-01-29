@@ -50584,6 +50584,13 @@
 			</array>
 			<key>Keyboard Map</key>
 			<dict>
+				<key>0xf702-0x220000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[1;2D</string>
+				</dict>
 				<key>0xf702-0x280000-0x7b</key>
 				<dict>
 					<key>Action</key>
@@ -50597,12 +50604,33 @@
 					<key>Version</key>
 					<integer>2</integer>
 				</dict>
+				<key>0xf702-0x2a0000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[1;4D</string>
+				</dict>
+				<key>0xf702-0x320000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[1;6D</string>
+				</dict>
 				<key>0xf702-0x80000</key>
 				<dict>
 					<key>Action</key>
 					<integer>10</integer>
 					<key>Text</key>
 					<string>b</string>
+				</dict>
+				<key>0xf703-0x220000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[1;2C</string>
 				</dict>
 				<key>0xf703-0x280000-0x7c</key>
 				<dict>
@@ -50616,6 +50644,20 @@
 					<string>f</string>
 					<key>Version</key>
 					<integer>2</integer>
+				</dict>
+				<key>0xf703-0x2a0000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[1;4C</string>
+				</dict>
+				<key>0xf703-0x320000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[1;6C</string>
 				</dict>
 				<key>0xf703-0x80000</key>
 				<dict>
@@ -51748,7 +51790,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2026-01-27T22:16:34Z</date>
+	<date>2026-01-28T22:53:38Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
