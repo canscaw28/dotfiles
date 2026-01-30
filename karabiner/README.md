@@ -185,8 +185,8 @@
 | ⇪ + D + U | ⌃ + W | Delete word to the left |
 | ⇪ + D + I | Esc, d | Delete word to the right |
 | ⇪ + D + O | ⌃ + K | Delete from cursor to end of line |
-| ⇪ + D + J | ⌃ + X, ⌃ + J | Delete to line below |
-| ⇪ + D + K | ⌃ + X, ⌃ + K | Delete to line above |
+| ⇪ + D + J | F18 | Delete to line below |
+| ⇪ + D + K | F19 | Delete to line above |
 
 ### Undo/Redo (iTerm2)
 

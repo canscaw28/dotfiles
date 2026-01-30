@@ -50230,6 +50230,20 @@
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
+		<key>0xf715-0x0</key>
+		<dict>
+			<key>Action</key>
+			<integer>10</integer>
+			<key>Text</key>
+			<string>[32~</string>
+		</dict>
+		<key>0xf716-0x0</key>
+		<dict>
+			<key>Action</key>
+			<integer>10</integer>
+			<key>Text</key>
+			<string>[33~</string>
+		</dict>
 	</dict>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
@@ -50584,6 +50598,20 @@
 			</array>
 			<key>Keyboard Map</key>
 			<dict>
+				<key>0xf715-0x0</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[32~</string>
+				</dict>
+				<key>0xf716-0x0</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[33~</string>
+				</dict>
 				<key>0xf702-0x220000</key>
 				<dict>
 					<key>Action</key>

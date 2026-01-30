@@ -319,22 +319,23 @@ bindkey "^?" backward-delete-char-or-region   # Backspace
 bindkey "^[[3~" delete-char-or-region         # Delete key
 
 # Delete to line above/below (Caps+D+K/J via Karabiner)
+# Uses up-line/down-line (not -or-history) to avoid navigating command history
 function delete-to-line-up() {
   zle set-mark-command
-  zle up-line-or-history
+  zle up-line || return  # Do nothing if already at top line
   zle kill-region
 }
 zle -N delete-to-line-up
 
 function delete-to-line-down() {
   zle set-mark-command
-  zle down-line-or-history
+  zle down-line || return  # Do nothing if already at bottom line
   zle kill-region
 }
 zle -N delete-to-line-down
 
-bindkey "^X^K" delete-to-line-up              # Ctrl+X Ctrl+K (via Karabiner Caps+D+K)
-bindkey "^X^J" delete-to-line-down            # Ctrl+X Ctrl+J (via Karabiner Caps+D+J)
+bindkey "^[[20;2~" delete-to-line-up          # Caps+D+K (F18 -> F9+Shift sequence)
+bindkey "^[[19;2~" delete-to-line-down        # Caps+D+J (F19 -> F8+Shift sequence)
 
 # Undo/Redo (Cmd+Z and Cmd+Shift+Z via Karabiner)
 bindkey "^_" undo                             # Ctrl+_ (Cmd+Z via Karabiner)

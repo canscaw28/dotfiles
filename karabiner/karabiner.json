@@ -2440,16 +2440,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "x",
-                    "modifiers": [
-                      "control"
-                    ]
-                  },
-                  {
-                    "key_code": "j",
-                    "modifiers": [
-                      "control"
-                    ]
+                    "key_code": "f18"
                   }
                 ],
                 "type": "basic"
@@ -2483,16 +2474,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "x",
-                    "modifiers": [
-                      "control"
-                    ]
-                  },
-                  {
-                    "key_code": "k",
-                    "modifiers": [
-                      "control"
-                    ]
+                    "key_code": "f19"
                   }
                 ],
                 "type": "basic"
