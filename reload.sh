@@ -43,11 +43,17 @@ reload_iterm() {
     fi
 }
 
+reload_shell() {
+    log_info "Shell config (.zshrc) cannot be reloaded from a script."
+    log_info "Run this in your terminal: source ~/.zshrc"
+}
+
 reload_all() {
     reload_aerospace
     reload_karabiner
     reload_hammerspoon
     reload_iterm
+    reload_shell
 }
 
 show_help() {
@@ -62,6 +68,7 @@ show_help() {
     echo "  --karabiner    Reload Karabiner Elements config"
     echo "  --hammerspoon  Reload Hammerspoon config"
     echo "  --iterm        Reload iTerm2 config"
+    echo "  --shell        Remind to source shell config (must be done manually)"
     echo "  --help         Show this help message"
 }
 
@@ -89,6 +96,10 @@ else
                 ;;
             --iterm)
                 reload_iterm
+                shift
+                ;;
+            --shell)
+                reload_shell
                 shift
                 ;;
             --help|-h)
