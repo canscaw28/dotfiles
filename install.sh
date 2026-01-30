@@ -49,15 +49,15 @@ create_symlink() {
 
 install_shell() {
     log_info "Installing shell configs..."
-    create_symlink "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
-    create_symlink "$DOTFILES_DIR/.bash_profile" "$HOME/.bash_profile"
-    create_symlink "$DOTFILES_DIR/.p10k.zsh" "$HOME/.p10k.zsh"
+    create_symlink "$DOTFILES_DIR/shell/.zshrc" "$HOME/.zshrc"
+    create_symlink "$DOTFILES_DIR/shell/.bash_profile" "$HOME/.bash_profile"
+    create_symlink "$DOTFILES_DIR/shell/.p10k.zsh" "$HOME/.p10k.zsh"
+    create_symlink "$DOTFILES_DIR/shell/.git-completion.bash" "$HOME/.git-completion.bash"
 }
 
 install_git() {
     log_info "Installing git configs..."
     create_symlink "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
-    create_symlink "$DOTFILES_DIR/.git-completion.bash" "$HOME/.git-completion.bash"
 }
 
 install_editor() {
