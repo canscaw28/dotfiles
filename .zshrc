@@ -341,3 +341,9 @@ bindkey "^_" undo                             # Ctrl+_ (Cmd+Z via Karabiner)
 bindkey "\e_" redo                            # Meta+_ (Cmd+Shift+Z via Karabiner)
 
 export PATH="$HOME/.local/bin:$PATH"
+
+# Track when .zshrc was sourced (for stale config indicator in prompt)
+# Resolve symlink to get actual file path for reliable mtime checking
+export ZSHRC_REAL_PATH=$(readlink ~/.zshrc || echo ~/.zshrc)
+export ZSHRC_SOURCED_MTIME=$(stat -f %m "$ZSHRC_REAL_PATH" 2>/dev/null)
+

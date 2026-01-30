@@ -42,6 +42,7 @@
   # automatically hidden when the input line reaches it. Right prompt above the
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+    zshrc_stale             # indicator when .zshrc needs to be re-sourced
     status                  # exit code of the last command
     command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
@@ -1531,6 +1532,15 @@
   # Type `p10k help segment` for documentation and a more sophisticated example.
   function prompt_example() {
     p10k segment -b 1 -f 3 -i '⭐' -t 'hello, %n'
+  }
+
+  # Zshrc stale indicator - shows when .zshrc has been modified since it was sourced
+  function prompt_zshrc_stale() {
+    [[ -n "$ZSHRC_SOURCED_MTIME" ]] || return
+    [[ -n "$ZSHRC_REAL_PATH" ]] || return
+    local current_mtime=$(stat -f %m "$ZSHRC_REAL_PATH" 2>/dev/null)
+    [[ "$current_mtime" != "$ZSHRC_SOURCED_MTIME" ]] || return
+    p10k segment -f 1 -i '⟳' -t 'run: source ~/.zshrc'
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
