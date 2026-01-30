@@ -318,4 +318,22 @@ zle -N delete-char-or-region
 bindkey "^?" backward-delete-char-or-region   # Backspace
 bindkey "^[[3~" delete-char-or-region         # Delete key
 
+# Delete to line above/below (Caps+D+K/J via Karabiner)
+function delete-to-line-up() {
+  zle set-mark-command
+  zle up-line-or-history
+  zle kill-region
+}
+zle -N delete-to-line-up
+
+function delete-to-line-down() {
+  zle set-mark-command
+  zle down-line-or-history
+  zle kill-region
+}
+zle -N delete-to-line-down
+
+bindkey "^X^K" delete-to-line-up              # Ctrl+X Ctrl+K (via Karabiner Caps+D+K)
+bindkey "^X^J" delete-to-line-down            # Ctrl+X Ctrl+J (via Karabiner Caps+D+J)
+
 export PATH="$HOME/.local/bin:$PATH"
