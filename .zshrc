@@ -336,4 +336,8 @@ zle -N delete-to-line-down
 bindkey "^X^K" delete-to-line-up              # Ctrl+X Ctrl+K (via Karabiner Caps+D+K)
 bindkey "^X^J" delete-to-line-down            # Ctrl+X Ctrl+J (via Karabiner Caps+D+J)
 
+# Undo/Redo (Cmd+Z and Cmd+Shift+Z via Karabiner)
+bindkey "^_" undo                             # Ctrl+_ (Cmd+Z via Karabiner)
+bindkey "\e_" redo                            # Meta+_ (Cmd+Shift+Z via Karabiner)
+
 export PATH="$HOME/.local/bin:$PATH"

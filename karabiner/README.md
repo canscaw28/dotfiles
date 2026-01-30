@@ -188,11 +188,12 @@
 | ⇪ + D + J | ⌃ + X, ⌃ + J | Delete to line below |
 | ⇪ + D + K | ⌃ + X, ⌃ + K | Delete to line above |
 
-### Undo (iTerm2)
+### Undo/Redo (iTerm2)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
 | ⌘ + Z | ⌃ + _ | Undo last text change |
+| ⌘ + ⇧ + Z | Esc + _ | Redo last undo |
 
 ### Text Selection (iTerm2)
 
