@@ -2691,10 +2691,10 @@
                 },
                 "to": [
                   {
-                    "key_code": "escape"
-                  },
-                  {
-                    "key_code": "d"
+                    "key_code": "d",
+                    "modifiers": [
+                      "option"
+                    ]
                   }
                 ],
                 "type": "basic"
