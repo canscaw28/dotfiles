@@ -185,6 +185,14 @@
 | ⇪ + D + U | ⌃ + W | Delete word to the left |
 | ⇪ + D + I | Esc, d | Delete word to the right |
 | ⇪ + D + O | ⌃ + K | Delete from cursor to end of line |
+| ⇪ + D + J | ⌃ + X, ⌃ + J | Delete to line below |
+| ⇪ + D + K | ⌃ + X, ⌃ + K | Delete to line above |
+
+### Undo (iTerm2)
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⌘ + Z | ⌃ + _ | Undo last text change |
 
 ### Text Selection (iTerm2)
 
