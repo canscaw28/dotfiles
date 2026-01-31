@@ -251,6 +251,18 @@ function select-to-line-end() {
 }
 zle -N select-to-line-end
 
+function select-line-up() {
+  ((REGION_ACTIVE)) || zle set-mark-command
+  zle up-line
+}
+zle -N select-line-up
+
+function select-line-down() {
+  ((REGION_ACTIVE)) || zle set-mark-command
+  zle down-line
+}
+zle -N select-line-down
+
 # Line movement wrappers - deselect before moving up/down
 function move-line-up() {
   if ((REGION_ACTIVE)); then
@@ -285,6 +297,8 @@ bindkey "^[f" move-word-right            # Option+Right (Esc+f)
 # Bind shift+arrow to selection
 bindkey "^[[1;2D" select-char-left       # Shift+Left
 bindkey "^[[1;2C" select-char-right      # Shift+Right
+bindkey "^[[1;2A" select-line-up         # Shift+Up
+bindkey "^[[1;2B" select-line-down       # Shift+Down
 
 # Word and line selection (via Karabiner iTerm2 overrides)
 bindkey "^[[1;6D" select-word-left       # Ctrl+Shift+Left
