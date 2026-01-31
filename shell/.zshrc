@@ -281,36 +281,10 @@ function select-line-down() {
 }
 zle -N select-line-down
 
-# Helper: get visual prompt width (strips ANSI escape sequences)
-function _get_prompt_width() {
-  local expanded="${(%)PROMPT}"
-  local stripped="${expanded//\%\{*\%\}/}"  # Strip %{...%} sequences
-  stripped="${stripped//\x1b\[[0-9;]*m/}"   # Strip ANSI escapes
-  echo ${#${stripped##*$'\n'}}  # Length of last line of prompt
-}
-
-# Helper: check if cursor is on first line of buffer
-function _on_first_line() {
-  [[ "${BUFFER[1,CURSOR]}" != *$'\n'* ]]
-}
-
-# Helper: get start position of current line
-function _line_start() {
-  local before="${BUFFER[1,CURSOR]}"
-  if [[ "$before" == *$'\n'* ]]; then
-    echo $(( ${#${before%$'\n'*}} + 1 ))
-  else
-    echo 0
-  fi
-}
-
-# Helper: get length of first line
-function _first_line_length() {
-  echo ${#${BUFFER%%$'\n'*}}
-}
-
-# Line movement wrappers - position-aware with visual column alignment
-# Adjusts cursor position to account for prompt width on first line
+# Line movement wrappers - position-aware history navigation
+# At position 0: up/down navigate history (down falls back to cursor if no forward history)
+# At end position: down navigates history forward
+# Elsewhere: pure cursor movement
 function move-line-up() {
   if ((REGION_ACTIVE)); then
     REGION_ACTIVE=0
@@ -320,21 +294,7 @@ function move-line-up() {
     zle up-history
     CURSOR=0
   else
-    local was_on_first=$(_on_first_line && echo 1 || echo 0)
-    local line_start=$(_line_start)
-    local col=$((CURSOR - line_start))
-
     zle up-line
-
-    # If we moved to first line from a lower line, adjust for prompt width
-    if ((!was_on_first)) && _on_first_line; then
-      local prompt_width=$(_get_prompt_width)
-      local first_line_len=$(_first_line_length)
-      local target=$((col - prompt_width))
-      ((target < 0)) && target=0
-      ((target > first_line_len)) && target=$first_line_len
-      CURSOR=$target
-    fi
   fi
 }
 zle -N move-line-up
@@ -358,25 +318,11 @@ function move-line-down() {
     zle down-history
     CURSOR=0
   else
-    local was_on_first=$(_on_first_line && echo 1 || echo 0)
-    local col=$((CURSOR - $(_line_start)))
+    # Try to move down; if on last line, go to end of buffer
     local old_cursor=$CURSOR
-
     zle down-line
-
     if ((CURSOR == old_cursor)); then
-      # On last line, go to end of buffer
       CURSOR=${#BUFFER}
-    elif ((was_on_first)); then
-      # Moved from first line, adjust for prompt width
-      local prompt_width=$(_get_prompt_width)
-      local new_line_start=$(_line_start)
-      local new_line_end=${BUFFER[(ib:new_line_start+1:)$'\n']-${#BUFFER}}
-      ((new_line_end == 0)) && new_line_end=${#BUFFER}
-      local new_line_len=$((new_line_end - new_line_start))
-      local target=$((new_line_start + col + prompt_width))
-      ((target > new_line_start + new_line_len)) && target=$((new_line_start + new_line_len))
-      CURSOR=$target
     fi
   fi
 }
