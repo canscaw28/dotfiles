@@ -214,6 +214,24 @@ function move-word-right() {
 }
 zle -N move-word-right
 
+function move-to-line-start() {
+  if ((REGION_ACTIVE)); then
+    REGION_ACTIVE=0
+    MARK=$CURSOR
+  fi
+  zle beginning-of-line
+}
+zle -N move-to-line-start
+
+function move-to-line-end() {
+  if ((REGION_ACTIVE)); then
+    REGION_ACTIVE=0
+    MARK=$CURSOR
+  fi
+  zle end-of-line
+}
+zle -N move-to-line-end
+
 # Selection widgets - set mark if not selecting, then move
 function select-char-left() {
   ((REGION_ACTIVE)) || zle set-mark-command
@@ -293,6 +311,8 @@ bindkey "^[OA" move-line-up              # Up arrow (application mode)
 bindkey "^[OB" move-line-down            # Down arrow (application mode)
 bindkey "^[b" move-word-left             # Option+Left (Esc+b)
 bindkey "^[f" move-word-right            # Option+Right (Esc+f)
+bindkey "^A" move-to-line-start          # Ctrl+A (Caps+Y in iTerm2)
+bindkey "^E" move-to-line-end            # Ctrl+E (Caps+O in iTerm2)
 
 # Bind shift+arrow to selection
 bindkey "^[[1;2D" select-char-left       # Shift+Left
