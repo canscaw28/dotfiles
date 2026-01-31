@@ -281,13 +281,20 @@ function select-line-down() {
 }
 zle -N select-line-down
 
-# Line movement wrappers - deselect before moving up/down
+# Line movement wrappers - position-aware history navigation
+# At position 0: up/down navigate history (down falls back to cursor if no forward history)
+# At end position: down navigates history forward
+# Elsewhere: pure cursor movement
 function move-line-up() {
   if ((REGION_ACTIVE)); then
     REGION_ACTIVE=0
     MARK=$CURSOR
   fi
-  zle up-line
+  if ((CURSOR == 0)); then
+    zle up-history
+  else
+    zle up-line
+  fi
 }
 zle -N move-line-up
 
@@ -296,7 +303,19 @@ function move-line-down() {
     REGION_ACTIVE=0
     MARK=$CURSOR
   fi
-  zle down-line
+  if ((CURSOR == 0)); then
+    # At start: try history forward, if none then move cursor down
+    local old_buffer="$BUFFER"
+    zle down-history
+    if [[ "$BUFFER" == "$old_buffer" ]]; then
+      zle down-line
+    fi
+  elif ((CURSOR == ${#BUFFER})); then
+    # At end: history forward
+    zle down-history
+  else
+    zle down-line
+  fi
 }
 zle -N move-line-down
 
