@@ -200,6 +200,8 @@
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
 | ⇪ + S + H | ⇧ + ← | Select character to the left |
+| ⇪ + S + J | ⇧ + ↓ | Select line down |
+| ⇪ + S + K | ⇧ + ↑ | Select line up |
 | ⇪ + S + L | ⇧ + → | Select character to the right |
 | ⇪ + S + Y | ⇧ + Home | Select to start of line |
 | ⇪ + S + U | ⌃ + ⇧ + ← | Select word to the left |
