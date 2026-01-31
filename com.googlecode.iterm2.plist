@@ -50258,6 +50258,20 @@
 			<key>Text</key>
 			<string>[1;2B</string>
 		</dict>
+		<key>0xf70e-0x0</key>
+		<dict>
+			<key>Action</key>
+			<integer>10</integer>
+			<key>Text</key>
+			<string>[34~</string>
+		</dict>
+		<key>0xf711-0x0</key>
+		<dict>
+			<key>Action</key>
+			<integer>10</integer>
+			<key>Text</key>
+			<string>[35~</string>
+		</dict>
 	</dict>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
@@ -50639,6 +50653,20 @@
 					<integer>10</integer>
 					<key>Text</key>
 					<string>[1;2B</string>
+				</dict>
+				<key>0xf70e-0x0</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[34~</string>
+				</dict>
+				<key>0xf711-0x0</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[35~</string>
 				</dict>
 				<key>0xf702-0x220000</key>
 				<dict>

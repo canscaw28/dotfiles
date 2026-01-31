@@ -177,6 +177,13 @@
 | ⇪ + I | ⌥ + → | Jump forward one word |
 | ⇪ + O | ⌃ + E | Jump to end of line |
 
+### History Navigation (iTerm2)
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + , | F20 | Navigate history backward (older) |
+| ⇪ + M | F17 | Navigate history forward (newer) |
+
 ### Text Deletion (iTerm2)
 
 | Key / Shortcut | Behavior | Description |
