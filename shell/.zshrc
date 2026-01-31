@@ -292,6 +292,7 @@ function move-line-up() {
   fi
   if ((CURSOR == 0)); then
     zle up-history
+    CURSOR=0
   else
     zle up-line
   fi
@@ -309,10 +310,13 @@ function move-line-down() {
     zle down-history
     if [[ "$BUFFER" == "$old_buffer" ]]; then
       zle down-line
+    else
+      CURSOR=0
     fi
   elif ((CURSOR == ${#BUFFER})); then
     # At end: history forward
     zle down-history
+    CURSOR=0
   else
     zle down-line
   fi
