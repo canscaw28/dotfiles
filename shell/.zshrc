@@ -251,11 +251,34 @@ function select-to-line-end() {
 }
 zle -N select-to-line-end
 
+# Line movement wrappers - deselect before moving up/down
+function move-line-up() {
+  if ((REGION_ACTIVE)); then
+    REGION_ACTIVE=0
+    MARK=$CURSOR
+  fi
+  zle up-line
+}
+zle -N move-line-up
+
+function move-line-down() {
+  if ((REGION_ACTIVE)); then
+    REGION_ACTIVE=0
+    MARK=$CURSOR
+  fi
+  zle down-line
+}
+zle -N move-line-down
+
 # Bind plain arrow keys to deselecting movement (both normal and application mode)
 bindkey "^[[D" move-char-left            # Left arrow (normal mode)
 bindkey "^[[C" move-char-right           # Right arrow (normal mode)
+bindkey "^[[A" move-line-up              # Up arrow (normal mode)
+bindkey "^[[B" move-line-down            # Down arrow (normal mode)
 bindkey "^[OD" move-char-left            # Left arrow (application mode)
 bindkey "^[OC" move-char-right           # Right arrow (application mode)
+bindkey "^[OA" move-line-up              # Up arrow (application mode)
+bindkey "^[OB" move-line-down            # Down arrow (application mode)
 bindkey "^[b" move-word-left             # Option+Left (Esc+b)
 bindkey "^[f" move-word-right            # Option+Right (Esc+f)
 
