@@ -318,7 +318,12 @@ function move-line-down() {
     zle down-history
     CURSOR=0
   else
+    # Try to move down; if on last line, go to end of buffer
+    local old_cursor=$CURSOR
     zle down-line
+    if ((CURSOR == old_cursor)); then
+      CURSOR=${#BUFFER}
+    fi
   fi
 }
 zle -N move-line-down
