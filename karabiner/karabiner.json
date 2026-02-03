@@ -953,37 +953,7 @@
                     "value": 1
                   },
                   {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
                     "type": "variable_if",
                     "value": 0
                   },
@@ -1004,7 +974,8 @@
                 },
                 "to": [
                   {
-                    "key_code": "f20"
+                    "key_code": "p",
+                    "modifiers": ["control"]
                   }
                 ],
                 "type": "basic"
@@ -1017,37 +988,7 @@
                     "value": 1
                   },
                   {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
                     "type": "variable_if",
                     "value": 0
                   },
@@ -1068,7 +1009,8 @@
                 },
                 "to": [
                   {
-                    "key_code": "f17"
+                    "key_code": "n",
+                    "modifiers": ["control"]
                   }
                 ],
                 "type": "basic"

@@ -381,9 +381,8 @@ zle -N cut-region-to-clipboard
 bindkey "^[[28~" copy-region-to-clipboard  # F15
 bindkey "^[[29~" cut-region-to-clipboard   # F16
 
-# History navigation (Caps+, and Caps+M via Karabiner sending F20/F17)
-bindkey "^[[35~" up-history                # F20 (Caps+,) - history backward
-bindkey "^[[34~" down-history              # F17 (Caps+M) - history forward
+# History navigation: Caps+, and Caps+M send Ctrl+P/Ctrl+N via Karabiner (iTerm2 only)
+# These use built-in readline bindings, no custom bindkey needed
 
 # Backspace/Delete wrappers - delete selection if active
 function backward-delete-char-or-region() {
