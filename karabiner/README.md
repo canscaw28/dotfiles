@@ -181,8 +181,8 @@
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| ⇪ + , | F20 | Navigate history backward (older) |
-| ⇪ + M | F17 | Navigate history forward (newer) |
+| ⇪ + , | ⌃ + P | Navigate history backward (older) |
+| ⇪ + M | ⌃ + N | Navigate history forward (newer) |
 
 ### Text Deletion (iTerm2)
 
