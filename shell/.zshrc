@@ -535,6 +535,16 @@ bindkey "^[[29~" cut-region-to-clipboard   # F16
 bindkey "^[a" select-all-buffer            # Option+A (Cmd+A and Caps+S+; in iTerm2)
 bindkey "^[c" copy-or-interrupt            # Option+C (Cmd+C in iTerm2)
 
+# Escape deselects if selection active
+function deselect-region() {
+  if ((REGION_ACTIVE)); then
+    REGION_ACTIVE=0
+    MARK=$CURSOR
+  fi
+}
+zle -N deselect-region
+bindkey '\e' deselect-region               # Escape to deselect
+
 # History navigation: Caps+, and Caps+M send Ctrl+P/Ctrl+N via Karabiner (iTerm2 only)
 # Prefix-based history search - type partial command, then search matching history
 bindkey "^P" history-beginning-search-backward  # Ctrl+P (Caps+, in iTerm2)
