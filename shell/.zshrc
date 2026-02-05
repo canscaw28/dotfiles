@@ -287,6 +287,14 @@ function select-line-down() {
 }
 zle -N select-line-down
 
+# Select entire command buffer
+function select-all-buffer() {
+  MARK=0
+  CURSOR=${#BUFFER}
+  REGION_ACTIVE=1
+}
+zle -N select-all-buffer
+
 # Line movement wrappers - position-aware history navigation
 # At position 0: up/down navigate history (down falls back to cursor if no forward history)
 # At end position: down navigates history forward
@@ -507,9 +515,25 @@ function cut-region-to-clipboard() {
 }
 zle -N cut-region-to-clipboard
 
+# Smart copy - copies selection if active, otherwise sends Ctrl+C (interrupt)
+function copy-or-interrupt() {
+  if ((REGION_ACTIVE)); then
+    zle copy-region-as-kill
+    print -rn -- "$CUTBUFFER" | pbcopy
+    REGION_ACTIVE=0
+  else
+    zle send-break  # Ctrl+C interrupt
+  fi
+}
+zle -N copy-or-interrupt
+
 # Bind Caps+Cmd+C/X (via Karabiner sending F15/F16)
 bindkey "^[[28~" copy-region-to-clipboard  # F15
 bindkey "^[[29~" cut-region-to-clipboard   # F16
+
+# Cmd+A select all, Cmd+C smart copy (via Karabiner iTerm2 overrides)
+bindkey "^[[26~" select-all-buffer         # F14 (Cmd+A and Caps+S+; in iTerm2)
+bindkey "^[[31~" copy-or-interrupt         # F17 (Cmd+C in iTerm2)
 
 # History navigation: Caps+, and Caps+M send Ctrl+P/Ctrl+N via Karabiner (iTerm2 only)
 # Prefix-based history search - type partial command, then search matching history

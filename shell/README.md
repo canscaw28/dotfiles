@@ -46,12 +46,14 @@ GUI-like text selection in the terminal, similar to standard text editors:
 
 | Shortcut | Action |
 |----------|--------|
+| Cmd+A | Select entire command buffer |
 | Shift+Left/Right | Select character by character |
 | Shift+Up/Down | Select line by line (to buffer boundaries at edges) |
 | Ctrl+Shift+Left/Right | Select word by word |
 | Shift+Home | Select to start of line |
 | Shift+End | Select to end of line |
 | Backspace/Delete | Delete selected text |
+| Cmd+C | Copy selection (or Ctrl+C if no selection) |
 | Caps+Cmd+C | Copy selection to system clipboard |
 | Caps+Cmd+X | Cut selection to system clipboard |
 
