@@ -342,220 +342,117 @@ typeset -g _HISTORY_NAV_SAVED_BUFFER=""
 typeset -g _HISTORY_NAV_SAVED_CURSOR=""
 typeset -gF _NAV_LAST_UP_TIME=0
 typeset -gF _NAV_LAST_DOWN_TIME=0
-typeset -g _NAV_UP_MODE=""    # "history" or "cursor"
-typeset -g _NAV_DOWN_MODE=""  # "history" or "cursor"
+typeset -g _NAV_MODE=""  # "history" or "cursor"
 
-# Reset cursor style and pending state on new line
-function _reset_history_nav_state() {
-  if [[ -n "$_HISTORY_NAV_PENDING" ]]; then
-    _HISTORY_NAV_PENDING=""
-    echo -ne '\e[6 q'  # Steady bar cursor
-  fi
-  _NAV_UP_MODE=""
-  _NAV_DOWN_MODE=""
+# Cursor style helpers
+_nav_cursor_normal() { echo -ne '\e[6 q'; }
+_nav_cursor_pending() { echo -ne '\e[1 q'; }
+
+# Clear pending state
+_nav_clear_pending() {
+  [[ -n "$_HISTORY_NAV_PENDING" ]] && { _HISTORY_NAV_PENDING=""; _nav_cursor_normal; }
+}
+
+# Enter pending state at boundary
+_nav_enter_pending() {  # $1=direction, $2=cursor_pos
+  CURSOR=$2
+  _HISTORY_NAV_PENDING=$1
+  _HISTORY_NAV_SAVED_BUFFER="$BUFFER"
+  _HISTORY_NAV_SAVED_CURSOR=$CURSOR
+  _nav_cursor_pending
+}
+
+# Navigate history and set mode
+_nav_do_history() {  # $1=direction
+  _nav_clear_pending
+  [[ $1 == "up" ]] && zle up-history || zle down-history
+  CURSOR=0
+  _NAV_MODE="history"
+}
+
+# Reset state on new line
+_reset_history_nav_state() {
+  _nav_clear_pending
+  _NAV_MODE=""
 }
 add-zle-hook-widget line-init _reset_history_nav_state
 
-# Clear pending state when buffer/cursor changes (user pressed another key)
-function _check_history_nav_pending() {
-  if [[ -n "$_HISTORY_NAV_PENDING" ]]; then
-    if [[ "$BUFFER" != "$_HISTORY_NAV_SAVED_BUFFER" ]] || \
-       ((CURSOR != _HISTORY_NAV_SAVED_CURSOR)); then
-      _HISTORY_NAV_PENDING=""
-      echo -ne '\e[6 q'  # Reset to steady bar cursor
-    fi
-  fi
+# Clear pending state when buffer/cursor changes
+_check_history_nav_pending() {
+  [[ -n "$_HISTORY_NAV_PENDING" ]] && \
+    { [[ "$BUFFER" != "$_HISTORY_NAV_SAVED_BUFFER" ]] || ((CURSOR != _HISTORY_NAV_SAVED_CURSOR)) } && \
+    _nav_clear_pending
 }
 add-zle-hook-widget line-pre-redraw _check_history_nav_pending
 
-function smart-history-up() {
-  if ((REGION_ACTIVE)); then
-    REGION_ACTIVE=0
-    MARK=$CURSOR
-  fi
+# Core navigation logic - $1=direction (up/down)
+_smart_history_nav() {
+  local dir=$1
+  local time_var="_NAV_LAST_${dir:u}_TIME"
+  local at_boundary boundary_pos text_to_check
 
-  # Detect key repeat vs new press (< 200ms = repeat)
+  # Clear selection
+  ((REGION_ACTIVE)) && { REGION_ACTIVE=0; MARK=$CURSOR; }
+
+  # Detect key repeat (< 200ms = repeat)
   local current_time=${EPOCHREALTIME}
-  local time_since_last=$(( (current_time - _NAV_LAST_UP_TIME) * 1000 ))
-  _NAV_LAST_UP_TIME=$current_time
-  local is_repeat=0
-  (( time_since_last < 200 )) && is_repeat=1
+  local is_repeat=$(( (current_time - ${(P)time_var}) * 1000 < 200 ))
+  : ${(P)time_var::=$current_time}
 
-  # On new press, reset mode and clear opposite direction's mode
-  if (( ! is_repeat )); then
-    _NAV_UP_MODE=""
-    _NAV_DOWN_MODE=""
+  # Reset mode on new press
+  ((is_repeat)) || _NAV_MODE=""
+
+  # Check boundary position
+  if [[ $dir == "up" ]]; then
+    text_to_check="${BUFFER:0:$CURSOR}"
+    at_boundary=$([[ "$text_to_check" != *$'\n'* ]] && echo 1 || echo 0)
+    boundary_pos=0
+  else
+    text_to_check="${BUFFER:$CURSOR}"
+    at_boundary=$([[ "$text_to_check" != *$'\n'* ]] && echo 1 || echo 0)
+    boundary_pos=${#BUFFER}
   fi
 
-  # If repeating in history mode, keep navigating history
-  if (( is_repeat )) && [[ "$_NAV_UP_MODE" == "history" ]]; then
-    zle history-beginning-search-backward
+  # Repeat in history mode - keep navigating
+  if ((is_repeat)) && [[ "$_NAV_MODE" == "history" ]]; then
+    [[ $dir == "up" ]] && zle history-beginning-search-backward || zle history-beginning-search-forward
     return
   fi
 
-  # If repeating in cursor mode, keep moving cursor or transition to history at boundary
-  if (( is_repeat )) && [[ "$_NAV_UP_MODE" == "cursor" ]]; then
-    local before_cursor="${BUFFER:0:$CURSOR}"
-    if [[ "$before_cursor" == *$'\n'* ]]; then
-      # Not at first line yet, keep moving
-      zle up-line
-      return
+  # Repeat in cursor mode
+  if ((is_repeat)) && [[ "$_NAV_MODE" == "cursor" ]]; then
+    if ((at_boundary)); then
+      [[ "$_HISTORY_NAV_PENDING" == "$dir" ]] && { _nav_do_history $dir; return; }
+      _nav_enter_pending $dir $boundary_pos
+    else
+      [[ $dir == "up" ]] && zle up-line || zle down-line
     fi
-    # At first line boundary
-    if [[ "$_HISTORY_NAV_PENDING" == "up" ]]; then
-      # Already pending, navigate history and switch to history mode
-      _HISTORY_NAV_PENDING=""
-      echo -ne '\e[6 q'
-      zle up-history
-      CURSOR=0
-      _NAV_UP_MODE="history"
-      return
-    fi
-    # First time at boundary during hold - enter pending state
-    CURSOR=0
-    _HISTORY_NAV_PENDING="up"
-    _HISTORY_NAV_SAVED_BUFFER="$BUFFER"
-    _HISTORY_NAV_SAVED_CURSOR=$CURSOR
-    echo -ne '\e[1 q'
     return
   fi
 
-  # New press: check for pending state (deliberate double-tap)
-  if [[ "$_HISTORY_NAV_PENDING" == "up" ]]; then
-    _HISTORY_NAV_PENDING=""
-    echo -ne '\e[6 q'
-    zle up-history
-    CURSOR=0
-    _NAV_UP_MODE="history"
-    return
-  fi
+  # New press: check for pending double-tap
+  [[ "$_HISTORY_NAV_PENDING" == "$dir" ]] && { _nav_do_history $dir; return; }
+  _nav_clear_pending
 
-  # Clear any other pending state
-  if [[ -n "$_HISTORY_NAV_PENDING" ]]; then
-    _HISTORY_NAV_PENDING=""
-    echo -ne '\e[6 q'
-  fi
-
-  # Single-line command - navigate history directly
+  # Single-line: navigate history directly
   if [[ "$BUFFER" != *$'\n'* ]]; then
-    _NAV_UP_MODE="history"
-    zle history-beginning-search-backward
+    _NAV_MODE="history"
+    [[ $dir == "up" ]] && zle history-beginning-search-backward || zle history-beginning-search-forward
     return
   fi
 
-  # Multi-line command - cursor mode
-  _NAV_UP_MODE="cursor"
-
-  # Check if we're on the first line (no newlines before cursor)
-  local before_cursor="${BUFFER:0:$CURSOR}"
-  if [[ "$before_cursor" != *$'\n'* ]]; then
-    # On first line - move to position 0 and enter pending state
-    CURSOR=0
-    _HISTORY_NAV_PENDING="up"
-    _HISTORY_NAV_SAVED_BUFFER="$BUFFER"
-    _HISTORY_NAV_SAVED_CURSOR=$CURSOR
-    echo -ne '\e[1 q'
-    return
+  # Multi-line: cursor mode
+  _NAV_MODE="cursor"
+  if ((at_boundary)); then
+    _nav_enter_pending $dir $boundary_pos
+  else
+    [[ $dir == "up" ]] && zle up-line || zle down-line
   fi
-
-  # Multi-line, not on first line - move cursor up
-  zle up-line
 }
+
+smart-history-up() { _smart_history_nav up; }
+smart-history-down() { _smart_history_nav down; }
 zle -N smart-history-up
-
-function smart-history-down() {
-  if ((REGION_ACTIVE)); then
-    REGION_ACTIVE=0
-    MARK=$CURSOR
-  fi
-
-  # Detect key repeat vs new press (< 200ms = repeat)
-  local current_time=${EPOCHREALTIME}
-  local time_since_last=$(( (current_time - _NAV_LAST_DOWN_TIME) * 1000 ))
-  _NAV_LAST_DOWN_TIME=$current_time
-  local is_repeat=0
-  (( time_since_last < 200 )) && is_repeat=1
-
-  # On new press, reset mode and clear opposite direction's mode
-  if (( ! is_repeat )); then
-    _NAV_DOWN_MODE=""
-    _NAV_UP_MODE=""
-  fi
-
-  # If repeating in history mode, keep navigating history
-  if (( is_repeat )) && [[ "$_NAV_DOWN_MODE" == "history" ]]; then
-    zle history-beginning-search-forward
-    return
-  fi
-
-  # If repeating in cursor mode, keep moving cursor or transition to history at boundary
-  if (( is_repeat )) && [[ "$_NAV_DOWN_MODE" == "cursor" ]]; then
-    local after_cursor="${BUFFER:$CURSOR}"
-    if [[ "$after_cursor" == *$'\n'* ]]; then
-      # Not at last line yet, keep moving
-      zle down-line
-      return
-    fi
-    # At last line boundary
-    if [[ "$_HISTORY_NAV_PENDING" == "down" ]]; then
-      # Already pending, navigate history and switch to history mode
-      _HISTORY_NAV_PENDING=""
-      echo -ne '\e[6 q'
-      zle down-history
-      CURSOR=0
-      _NAV_DOWN_MODE="history"
-      return
-    fi
-    # First time at boundary during hold - enter pending state
-    CURSOR=${#BUFFER}
-    _HISTORY_NAV_PENDING="down"
-    _HISTORY_NAV_SAVED_BUFFER="$BUFFER"
-    _HISTORY_NAV_SAVED_CURSOR=$CURSOR
-    echo -ne '\e[1 q'
-    return
-  fi
-
-  # New press: check for pending state (deliberate double-tap)
-  if [[ "$_HISTORY_NAV_PENDING" == "down" ]]; then
-    _HISTORY_NAV_PENDING=""
-    echo -ne '\e[6 q'
-    zle down-history
-    CURSOR=0
-    _NAV_DOWN_MODE="history"
-    return
-  fi
-
-  # Clear any other pending state
-  if [[ -n "$_HISTORY_NAV_PENDING" ]]; then
-    _HISTORY_NAV_PENDING=""
-    echo -ne '\e[6 q'
-  fi
-
-  # Single-line command - navigate history directly
-  if [[ "$BUFFER" != *$'\n'* ]]; then
-    _NAV_DOWN_MODE="history"
-    zle history-beginning-search-forward
-    return
-  fi
-
-  # Multi-line command - cursor mode
-  _NAV_DOWN_MODE="cursor"
-
-  # Check if we're on the last line (no newlines after cursor)
-  local after_cursor="${BUFFER:$CURSOR}"
-  if [[ "$after_cursor" != *$'\n'* ]]; then
-    # On last line - move to end and enter pending state
-    CURSOR=${#BUFFER}
-    _HISTORY_NAV_PENDING="down"
-    _HISTORY_NAV_SAVED_BUFFER="$BUFFER"
-    _HISTORY_NAV_SAVED_CURSOR=$CURSOR
-    echo -ne '\e[1 q'
-    return
-  fi
-
-  # Multi-line, not on last line - move cursor down
-  zle down-line
-}
 zle -N smart-history-down
 
 bindkey "^[[A" smart-history-up          # Up arrow (normal mode)
