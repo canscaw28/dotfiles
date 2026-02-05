@@ -328,15 +328,240 @@ function move-line-down() {
 }
 zle -N move-line-down
 
-# Bind plain arrow keys to deselecting movement (both normal and application mode)
+# Bind plain arrow keys (both normal and application mode)
 bindkey "^[[D" move-char-left            # Left arrow (normal mode)
 bindkey "^[[C" move-char-right           # Right arrow (normal mode)
-bindkey "^[[A" move-line-up              # Up arrow (normal mode)
-bindkey "^[[B" move-line-down            # Down arrow (normal mode)
 bindkey "^[OD" move-char-left            # Left arrow (application mode)
 bindkey "^[OC" move-char-right           # Right arrow (application mode)
-bindkey "^[OA" move-line-up              # Up arrow (application mode)
-bindkey "^[OB" move-line-down            # Down arrow (application mode)
+
+# Smart up/down: history for single-line, cursor movement for multi-line,
+# double-tap at boundary to navigate history (but not during key repeat)
+autoload -Uz add-zle-hook-widget
+typeset -g _HISTORY_NAV_PENDING=""
+typeset -g _HISTORY_NAV_SAVED_BUFFER=""
+typeset -g _HISTORY_NAV_SAVED_CURSOR=""
+typeset -gF _NAV_LAST_UP_TIME=0
+typeset -gF _NAV_LAST_DOWN_TIME=0
+typeset -g _NAV_UP_MODE=""    # "history" or "cursor"
+typeset -g _NAV_DOWN_MODE=""  # "history" or "cursor"
+
+# Reset cursor style and pending state on new line
+function _reset_history_nav_state() {
+  if [[ -n "$_HISTORY_NAV_PENDING" ]]; then
+    _HISTORY_NAV_PENDING=""
+    echo -ne '\e[6 q'  # Steady bar cursor
+  fi
+  _NAV_UP_MODE=""
+  _NAV_DOWN_MODE=""
+}
+add-zle-hook-widget line-init _reset_history_nav_state
+
+# Clear pending state when buffer/cursor changes (user pressed another key)
+function _check_history_nav_pending() {
+  if [[ -n "$_HISTORY_NAV_PENDING" ]]; then
+    if [[ "$BUFFER" != "$_HISTORY_NAV_SAVED_BUFFER" ]] || \
+       ((CURSOR != _HISTORY_NAV_SAVED_CURSOR)); then
+      _HISTORY_NAV_PENDING=""
+      echo -ne '\e[6 q'  # Reset to steady bar cursor
+    fi
+  fi
+}
+add-zle-hook-widget line-pre-redraw _check_history_nav_pending
+
+function smart-history-up() {
+  if ((REGION_ACTIVE)); then
+    REGION_ACTIVE=0
+    MARK=$CURSOR
+  fi
+
+  # Detect key repeat vs new press (< 200ms = repeat)
+  local current_time=${EPOCHREALTIME}
+  local time_since_last=$(( (current_time - _NAV_LAST_UP_TIME) * 1000 ))
+  _NAV_LAST_UP_TIME=$current_time
+  local is_repeat=0
+  (( time_since_last < 200 )) && is_repeat=1
+
+  # On new press, reset mode and clear opposite direction's mode
+  if (( ! is_repeat )); then
+    _NAV_UP_MODE=""
+    _NAV_DOWN_MODE=""
+  fi
+
+  # If repeating in history mode, keep navigating history
+  if (( is_repeat )) && [[ "$_NAV_UP_MODE" == "history" ]]; then
+    zle history-beginning-search-backward
+    return
+  fi
+
+  # If repeating in cursor mode, keep moving cursor or transition to history at boundary
+  if (( is_repeat )) && [[ "$_NAV_UP_MODE" == "cursor" ]]; then
+    local before_cursor="${BUFFER:0:$CURSOR}"
+    if [[ "$before_cursor" == *$'\n'* ]]; then
+      # Not at first line yet, keep moving
+      zle up-line
+      return
+    fi
+    # At first line boundary
+    if [[ "$_HISTORY_NAV_PENDING" == "up" ]]; then
+      # Already pending, navigate history and switch to history mode
+      _HISTORY_NAV_PENDING=""
+      echo -ne '\e[6 q'
+      zle up-history
+      CURSOR=0
+      _NAV_UP_MODE="history"
+      return
+    fi
+    # First time at boundary during hold - enter pending state
+    CURSOR=0
+    _HISTORY_NAV_PENDING="up"
+    _HISTORY_NAV_SAVED_BUFFER="$BUFFER"
+    _HISTORY_NAV_SAVED_CURSOR=$CURSOR
+    echo -ne '\e[1 q'
+    return
+  fi
+
+  # New press: check for pending state (deliberate double-tap)
+  if [[ "$_HISTORY_NAV_PENDING" == "up" ]]; then
+    _HISTORY_NAV_PENDING=""
+    echo -ne '\e[6 q'
+    zle up-history
+    CURSOR=0
+    _NAV_UP_MODE="history"
+    return
+  fi
+
+  # Clear any other pending state
+  if [[ -n "$_HISTORY_NAV_PENDING" ]]; then
+    _HISTORY_NAV_PENDING=""
+    echo -ne '\e[6 q'
+  fi
+
+  # Single-line command - navigate history directly
+  if [[ "$BUFFER" != *$'\n'* ]]; then
+    _NAV_UP_MODE="history"
+    zle history-beginning-search-backward
+    return
+  fi
+
+  # Multi-line command - cursor mode
+  _NAV_UP_MODE="cursor"
+
+  # Check if we're on the first line (no newlines before cursor)
+  local before_cursor="${BUFFER:0:$CURSOR}"
+  if [[ "$before_cursor" != *$'\n'* ]]; then
+    # On first line - move to position 0 and enter pending state
+    CURSOR=0
+    _HISTORY_NAV_PENDING="up"
+    _HISTORY_NAV_SAVED_BUFFER="$BUFFER"
+    _HISTORY_NAV_SAVED_CURSOR=$CURSOR
+    echo -ne '\e[1 q'
+    return
+  fi
+
+  # Multi-line, not on first line - move cursor up
+  zle up-line
+}
+zle -N smart-history-up
+
+function smart-history-down() {
+  if ((REGION_ACTIVE)); then
+    REGION_ACTIVE=0
+    MARK=$CURSOR
+  fi
+
+  # Detect key repeat vs new press (< 200ms = repeat)
+  local current_time=${EPOCHREALTIME}
+  local time_since_last=$(( (current_time - _NAV_LAST_DOWN_TIME) * 1000 ))
+  _NAV_LAST_DOWN_TIME=$current_time
+  local is_repeat=0
+  (( time_since_last < 200 )) && is_repeat=1
+
+  # On new press, reset mode and clear opposite direction's mode
+  if (( ! is_repeat )); then
+    _NAV_DOWN_MODE=""
+    _NAV_UP_MODE=""
+  fi
+
+  # If repeating in history mode, keep navigating history
+  if (( is_repeat )) && [[ "$_NAV_DOWN_MODE" == "history" ]]; then
+    zle history-beginning-search-forward
+    return
+  fi
+
+  # If repeating in cursor mode, keep moving cursor or transition to history at boundary
+  if (( is_repeat )) && [[ "$_NAV_DOWN_MODE" == "cursor" ]]; then
+    local after_cursor="${BUFFER:$CURSOR}"
+    if [[ "$after_cursor" == *$'\n'* ]]; then
+      # Not at last line yet, keep moving
+      zle down-line
+      return
+    fi
+    # At last line boundary
+    if [[ "$_HISTORY_NAV_PENDING" == "down" ]]; then
+      # Already pending, navigate history and switch to history mode
+      _HISTORY_NAV_PENDING=""
+      echo -ne '\e[6 q'
+      zle down-history
+      CURSOR=0
+      _NAV_DOWN_MODE="history"
+      return
+    fi
+    # First time at boundary during hold - enter pending state
+    CURSOR=${#BUFFER}
+    _HISTORY_NAV_PENDING="down"
+    _HISTORY_NAV_SAVED_BUFFER="$BUFFER"
+    _HISTORY_NAV_SAVED_CURSOR=$CURSOR
+    echo -ne '\e[1 q'
+    return
+  fi
+
+  # New press: check for pending state (deliberate double-tap)
+  if [[ "$_HISTORY_NAV_PENDING" == "down" ]]; then
+    _HISTORY_NAV_PENDING=""
+    echo -ne '\e[6 q'
+    zle down-history
+    CURSOR=0
+    _NAV_DOWN_MODE="history"
+    return
+  fi
+
+  # Clear any other pending state
+  if [[ -n "$_HISTORY_NAV_PENDING" ]]; then
+    _HISTORY_NAV_PENDING=""
+    echo -ne '\e[6 q'
+  fi
+
+  # Single-line command - navigate history directly
+  if [[ "$BUFFER" != *$'\n'* ]]; then
+    _NAV_DOWN_MODE="history"
+    zle history-beginning-search-forward
+    return
+  fi
+
+  # Multi-line command - cursor mode
+  _NAV_DOWN_MODE="cursor"
+
+  # Check if we're on the last line (no newlines after cursor)
+  local after_cursor="${BUFFER:$CURSOR}"
+  if [[ "$after_cursor" != *$'\n'* ]]; then
+    # On last line - move to end and enter pending state
+    CURSOR=${#BUFFER}
+    _HISTORY_NAV_PENDING="down"
+    _HISTORY_NAV_SAVED_BUFFER="$BUFFER"
+    _HISTORY_NAV_SAVED_CURSOR=$CURSOR
+    echo -ne '\e[1 q'
+    return
+  fi
+
+  # Multi-line, not on last line - move cursor down
+  zle down-line
+}
+zle -N smart-history-down
+
+bindkey "^[[A" smart-history-up          # Up arrow (normal mode)
+bindkey "^[[B" smart-history-down        # Down arrow (normal mode)
+bindkey "^[OA" smart-history-up          # Up arrow (application mode)
+bindkey "^[OB" smart-history-down        # Down arrow (application mode)
 bindkey "^[b" move-word-left             # Option+Left (Esc+b)
 bindkey "^[f" move-word-right            # Option+Right (Esc+f)
 bindkey "^A" move-to-line-start          # Ctrl+A (Caps+Y in iTerm2)
@@ -382,7 +607,9 @@ bindkey "^[[28~" copy-region-to-clipboard  # F15
 bindkey "^[[29~" cut-region-to-clipboard   # F16
 
 # History navigation: Caps+, and Caps+M send Ctrl+P/Ctrl+N via Karabiner (iTerm2 only)
-# These use built-in readline bindings, no custom bindkey needed
+# Prefix-based history search - type partial command, then search matching history
+bindkey "^P" history-beginning-search-backward  # Ctrl+P (Caps+, in iTerm2)
+bindkey "^N" history-beginning-search-forward   # Ctrl+N (Caps+M in iTerm2)
 
 # Backspace/Delete wrappers - delete selection if active
 function backward-delete-char-or-region() {
