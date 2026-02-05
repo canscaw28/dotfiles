@@ -345,8 +345,8 @@ typeset -gF _NAV_LAST_DOWN_TIME=0
 typeset -g _NAV_MODE=""  # "history" or "cursor"
 
 # Cursor style helpers
-_nav_cursor_normal() { echo -ne '\e[6 q'; }
-_nav_cursor_pending() { echo -ne '\e[1 q'; }
+_nav_cursor_normal() { echo -ne '\e[2 q'; }   # Steady block
+_nav_cursor_pending() { echo -ne '\e[1 q'; }  # Blinking block
 
 # Clear pending state
 _nav_clear_pending() {
