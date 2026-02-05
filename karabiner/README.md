@@ -215,8 +215,8 @@
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
 | ⇪ + S + H | ⇧ + ← | Select character to the left |
-| ⇪ + S + J | ⇧ + ↓ | Select line down |
-| ⇪ + S + K | ⇧ + ↑ | Select line up |
+| ⇪ + S + J | ⌃ + ⇧ + ↓ | Select line down (to end of buffer on last line) |
+| ⇪ + S + K | ⌃ + ⇧ + ↑ | Select line up (to start of buffer on first line) |
 | ⇪ + S + L | ⇧ + → | Select character to the right |
 | ⇪ + S + Y | ⇧ + Home | Select to start of line |
 | ⇪ + S + U | ⌃ + ⇧ + ← | Select word to the left |

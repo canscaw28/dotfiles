@@ -47,6 +47,7 @@ GUI-like text selection in the terminal, similar to standard text editors:
 | Shortcut | Action |
 |----------|--------|
 | Shift+Left/Right | Select character by character |
+| Shift+Up/Down | Select line by line (to buffer boundaries at edges) |
 | Ctrl+Shift+Left/Right | Select word by word |
 | Shift+Home | Select to start of line |
 | Shift+End | Select to end of line |

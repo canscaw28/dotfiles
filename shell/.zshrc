@@ -271,13 +271,19 @@ zle -N select-to-line-end
 
 function select-line-up() {
   ((REGION_ACTIVE)) || zle set-mark-command
+  local old_cursor=$CURSOR
   zle up-line
+  # If on first line, move to start of buffer
+  ((CURSOR == old_cursor)) && CURSOR=0
 }
 zle -N select-line-up
 
 function select-line-down() {
   ((REGION_ACTIVE)) || zle set-mark-command
+  local old_cursor=$CURSOR
   zle down-line
+  # If on last line, move to end of buffer
+  ((CURSOR == old_cursor)) && CURSOR=${#BUFFER}
 }
 zle -N select-line-down
 
@@ -473,6 +479,8 @@ bindkey "^[[1;2B" select-line-down       # Shift+Down
 # Word and line selection (via Karabiner iTerm2 overrides)
 bindkey "^[[1;6D" select-word-left       # Ctrl+Shift+Left
 bindkey "^[[1;6C" select-word-right      # Ctrl+Shift+Right
+bindkey "^[[1;6A" select-line-up         # Ctrl+Shift+Up (Caps+S+K in iTerm2)
+bindkey "^[[1;6B" select-line-down       # Ctrl+Shift+Down (Caps+S+J in iTerm2)
 bindkey "^[[1;2H" select-to-line-start   # Shift+Home
 bindkey "^[[1;2F" select-to-line-end     # Shift+End
 
