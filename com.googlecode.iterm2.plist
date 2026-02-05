@@ -50595,14 +50595,16 @@
 			<string></string>
 			<key>Cursor Color</key>
 			<dict>
-				<key>Blue Component</key>
-				<real>0.0</real>
-				<key>Color Space</key>
-				<string>sRGB</string>
-				<key>Green Component</key>
-				<real>0.6470000147819519</real>
-				<key>Red Component</key>
+				<key>Alpha Component</key>
 				<real>1</real>
+				<key>Blue Component</key>
+				<real>0.17793160369715735</real>
+				<key>Color Space</key>
+				<string>P3</string>
+				<key>Green Component</key>
+				<real>0.53530351396419251</real>
+				<key>Red Component</key>
+				<real>0.69232177734375</real>
 			</dict>
 			<key>Cursor Guide Color</key>
 			<dict>
@@ -50668,27 +50670,6 @@
 			</array>
 			<key>Keyboard Map</key>
 			<dict>
-				<key>0xf700-0x220000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[1;2A</string>
-				</dict>
-				<key>0xf701-0x220000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[1;2B</string>
-				</dict>
-				<key>0xf702-0x220000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[1;2D</string>
-				</dict>
 				<key>0xf702-0x280000-0x7b</key>
 				<dict>
 					<key>Action</key>
@@ -50702,34 +50683,6 @@
 					<key>Version</key>
 					<integer>2</integer>
 				</dict>
-				<key>0xf702-0x2a0000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[1;4D</string>
-				</dict>
-				<key>0xf702-0x320000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[1;6D</string>
-				</dict>
-				<key>0xf702-0x80000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>b</string>
-				</dict>
-				<key>0xf703-0x220000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[1;2C</string>
-				</dict>
 				<key>0xf703-0x280000-0x7c</key>
 				<dict>
 					<key>Action</key>
@@ -50742,97 +50695,6 @@
 					<string>f</string>
 					<key>Version</key>
 					<integer>2</integer>
-				</dict>
-				<key>0xf703-0x2a0000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[1;4C</string>
-				</dict>
-				<key>0xf703-0x320000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[1;6C</string>
-				</dict>
-				<key>0xf703-0x80000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>f</string>
-				</dict>
-				<key>0xf70a-0x0</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[25~</string>
-				</dict>
-				<key>0xf70b-0x0</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[26~</string>
-				</dict>
-				<key>0xf70e-0x0</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[34~</string>
-				</dict>
-				<key>0xf70f-0x0</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[36~</string>
-				</dict>
-				<key>0xf710-0x0</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[25~</string>
-				</dict>
-				<key>0xf711-0x0</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[35~</string>
-				</dict>
-				<key>0xf714-0x0</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[31~</string>
-				</dict>
-				<key>0xf715-0x0</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[32~</string>
-				</dict>
-				<key>0xf716-0x0</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[33~</string>
-				</dict>
-				<key>0xf717-0x0</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[35~</string>
 				</dict>
 			</dict>
 			<key>Link Color</key>
@@ -51975,5 +51837,9 @@
 	<integer>0</integer>
 	<key>iTerm Version</key>
 	<string>3.6.6</string>
+	<key>kCPKSelectionViewPreferredModeKey</key>
+	<integer>0</integer>
+	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
+	<false/>
 </dict>
 </plist>
