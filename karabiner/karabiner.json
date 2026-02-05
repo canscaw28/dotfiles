@@ -897,7 +897,10 @@
                 },
                 "to": [
                   {
-                    "key_code": "f14"
+                    "key_code": "a",
+                    "modifiers": [
+                      "option"
+                    ]
                   }
                 ],
                 "type": "basic"
@@ -921,7 +924,10 @@
                 },
                 "to": [
                   {
-                    "key_code": "f17"
+                    "key_code": "c",
+                    "modifiers": [
+                      "option"
+                    ]
                   }
                 ],
                 "type": "basic"
@@ -1702,7 +1708,10 @@
                 },
                 "to": [
                   {
-                    "key_code": "f14"
+                    "key_code": "a",
+                    "modifiers": [
+                      "option"
+                    ]
                   }
                 ],
                 "type": "basic"

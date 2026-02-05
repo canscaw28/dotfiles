@@ -531,9 +531,9 @@ zle -N copy-or-interrupt
 bindkey "^[[28~" copy-region-to-clipboard  # F15
 bindkey "^[[29~" cut-region-to-clipboard   # F16
 
-# Cmd+A select all, Cmd+C smart copy (via Karabiner iTerm2 overrides)
-bindkey "^[[26~" select-all-buffer         # F14 (Cmd+A and Caps+S+; in iTerm2)
-bindkey "^[[31~" copy-or-interrupt         # F17 (Cmd+C in iTerm2)
+# Cmd+A select all, Cmd+C smart copy (via Karabiner iTerm2 overrides sending Option+key)
+bindkey "^[a" select-all-buffer            # Option+A (Cmd+A and Caps+S+; in iTerm2)
+bindkey "^[c" copy-or-interrupt            # Option+C (Cmd+C in iTerm2)
 
 # History navigation: Caps+, and Caps+M send Ctrl+P/Ctrl+N via Karabiner (iTerm2 only)
 # Prefix-based history search - type partial command, then search matching history

@@ -222,14 +222,14 @@
 | ⇪ + S + U | ⌃ + ⇧ + ← | Select word to the left |
 | ⇪ + S + I | ⌃ + ⇧ + → | Select word to the right |
 | ⇪ + S + O | ⇧ + End | Select to end of line |
-| ⇪ + S + ; | F14 | Select entire command buffer |
+| ⇪ + S + ; | ⌥ + A | Select entire command buffer |
 
 ### Standard Commands (iTerm2)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| ⌘ + A | F14 | Select entire command buffer (not terminal output) |
-| ⌘ + C | F17 | Copy selection if active, else Ctrl+C interrupt |
+| ⌘ + A | ⌥ + A | Select entire command buffer (not terminal output) |
+| ⌘ + C | ⌥ + C | Copy selection if active, else Ctrl+C interrupt |
 
 ### Clipboard Operations (iTerm2)
 
