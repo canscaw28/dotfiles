@@ -13,6 +13,23 @@ Zsh and Bash shell configuration files.
 
 ## Zsh Features
 
+### Smart Up/Down Arrow Navigation
+
+Intelligent history and cursor navigation that adapts to context:
+
+**Single-line commands:**
+- Up/Down navigates history with prefix search (type "git" then up → finds commands starting with "git")
+
+**Multi-line commands:**
+- Up/Down moves cursor between lines
+- At first/last line boundary: cursor moves to start/end and enters "pending" state (cursor blinks)
+- Second tap at boundary navigates history
+- Any other key cancels pending state
+
+**Key repeat behavior:**
+- Holding the key continues the initial action (history or cursor movement)
+- When holding in cursor mode and reaching a boundary, transitions to history navigation
+
 ### Stale Config Indicator
 
 When `.zshrc` is modified after being sourced, a red indicator appears in your prompt:

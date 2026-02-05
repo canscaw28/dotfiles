@@ -172,17 +172,25 @@
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
+| ⇪ + H | ← | Move cursor left |
+| ⇪ + J | ↓ | Smart down: history for single-line, cursor for multi-line |
+| ⇪ + K | ↑ | Smart up: history for single-line, cursor for multi-line |
+| ⇪ + L | → | Move cursor right |
 | ⇪ + Y | ⌃ + A | Jump to start of line |
 | ⇪ + U | ⌥ + ← | Jump back one word |
 | ⇪ + I | ⌥ + → | Jump forward one word |
 | ⇪ + O | ⌃ + E | Jump to end of line |
 
+*⇪+J/K use smart navigation: on single-line commands they navigate history with prefix search. On multi-line commands they move the cursor, with double-tap at boundaries to switch to history navigation.*
+
 ### History Navigation (iTerm2)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| ⇪ + , | ⌃ + P | Navigate history backward (older) |
-| ⇪ + M | ⌃ + N | Navigate history forward (newer) |
+| ⇪ + , | ⌃ + P | Search history backward with prefix matching |
+| ⇪ + M | ⌃ + N | Search history forward with prefix matching |
+
+*Type a partial command, then use these keys to find matching history entries (e.g., type "git" then ⇪+, to find commands starting with "git").*
 
 ### Text Deletion (iTerm2)
 
