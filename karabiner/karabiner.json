@@ -8224,10 +8224,22 @@
                 },
                 "to": [
                   {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
+                    "key_code": "escape"
+                  },
+                  {
+                    "key_code": "3"
+                  },
+                  {
+                    "key_code": "comma",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "comma",
+                    "modifiers": [
+                      "shift"
+                    ]
                   }
                 ],
                 "type": "basic"
@@ -8285,10 +8297,22 @@
                 },
                 "to": [
                   {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
+                    "key_code": "escape"
+                  },
+                  {
+                    "key_code": "3"
+                  },
+                  {
+                    "key_code": "period",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "period",
+                    "modifiers": [
+                      "shift"
+                    ]
                   }
                 ],
                 "type": "basic"
@@ -9512,10 +9536,25 @@
                 },
                 "to": [
                   {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
+                    "key_code": "left_arrow",
+                    "modifiers": [
+                      "command",
+                      "option"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow",
+                    "modifiers": [
+                      "command",
+                      "option"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow",
+                    "modifiers": [
+                      "command",
+                      "option"
+                    ]
                   }
                 ],
                 "type": "basic"
@@ -9573,10 +9612,25 @@
                 },
                 "to": [
                   {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
+                    "key_code": "right_arrow",
+                    "modifiers": [
+                      "command",
+                      "option"
+                    ]
+                  },
+                  {
+                    "key_code": "right_arrow",
+                    "modifiers": [
+                      "command",
+                      "option"
+                    ]
+                  },
+                  {
+                    "key_code": "right_arrow",
+                    "modifiers": [
+                      "command",
+                      "option"
+                    ]
                   }
                 ],
                 "type": "basic"
