@@ -110,28 +110,49 @@
 
 ---
 
-## Chrome Tabs Layer
+## Chrome Tab Navigation Layer
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| ⇪ + G + H | ⌘ + 1 | Move to the first tab |
-| ⇪ + G + J | ⌘ + ⌥ + ← | Move to the left tab |
-| ⇪ + G + K | ⌘ + ⌥ + → | Move to the right tab |
-| ⇪ + G + L | ⌘ + 9 | Move to the last tab |
+| ⇪ + G + H | ⌘ + ⌥ + ← | Previous tab |
+| ⇪ + G + L | ⌘ + ⌥ + → | Next tab |
+| ⇪ + G + Y | ⌘ + 1 | First tab |
+| ⇪ + G + O | ⌘ + 9 | Last tab |
 | ⇪ + G + ; | Esc; T | Trigger Vimium Tab search |
 | ⇪ + G + ' | Esc; o | Trigger Vimium history search |
-| ⇪ + G + Y | Esc; 100<< | Trigger Vimium, move tab to position 0 |
-| ⇪ + G + U | ⌃ + ⇧ + Page Up | Move tab to the left |
-| ⇪ + G + I | ⌃ + ⇧ + Page Down | Move tab to the right |
-| ⇪ + G + O | Esc; 100>> | Trigger Vimium, move tab to last position |
 | ⇪ + G + P | Esc; yt | Trigger Vimium Duplicate tab |
 | ⇪ + G + [ | ⌘ + ← | Move back in history |
 | ⇪ + G + ] | ⌘ + → | Move forward in history |
-| ⇪ + G + N |  | Move tab to left adjacent chrome windows |
-| ⇪ + G + M |  | Move tab to bottom adjacent chrome window |
-| ⇪ + G + , |  | Move tab to top adjacent chrome window |
-| ⇪ + G + . |  | Move tab to right adjacent chrome window |
-| ⇪ + G + / | ⌘ + W | Delete current tab |
+| ⇪ + G + / | ⌘ + W | Close current tab |
+| ⇪ + G + J | *(guarded)* | Reserved for future use |
+| ⇪ + G + K | *(guarded)* | Reserved for future use |
+| ⇪ + G + U | *(guarded)* | Reserved for future use |
+| ⇪ + G + I | *(guarded)* | Reserved for future use |
+| ⇪ + G + N | *(guarded)* | Reserved for future use |
+| ⇪ + G + M | *(guarded)* | Reserved for future use |
+| ⇪ + G + , | *(guarded)* | Reserved for future use |
+| ⇪ + G + . | *(guarded)* | Reserved for future use |
+
+## Chrome Tab Movement Layer
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + F + G + H | Esc; << | Move tab one position to the left |
+| ⇪ + F + G + L | Esc; >> | Move tab one position to the right |
+| ⇪ + F + G + Y | Esc; 100<< | Move tab to the beginning |
+| ⇪ + F + G + O | Esc; 100>> | Move tab to the end |
+| ⇪ + F + G + J | *(guarded)* | Reserved for future use |
+| ⇪ + F + G + K | *(guarded)* | Reserved for future use |
+| ⇪ + F + G + U | *(guarded)* | Reserved for future use |
+| ⇪ + F + G + I | *(guarded)* | Reserved for future use |
+| ⇪ + F + G + P | *(guarded)* | Reserved for future use |
+| ⇪ + F + G + ; | *(guarded)* | Reserved for future use |
+| ⇪ + F + G + ' | *(guarded)* | Reserved for future use |
+| ⇪ + F + G + N | *(guarded)* | Reserved for future use |
+| ⇪ + F + G + M | *(guarded)* | Reserved for future use |
+| ⇪ + F + G + , | *(guarded)* | Reserved for future use |
+| ⇪ + F + G + . | *(guarded)* | Reserved for future use |
+| ⇪ + F + G + / | *(guarded)* | Reserved for future use |
 
 ---
 
