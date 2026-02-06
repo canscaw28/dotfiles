@@ -9688,10 +9688,13 @@
                 },
                 "to": [
                   {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
+                    "key_code": "escape"
+                  },
+                  {
+                    "key_code": "6",
+                    "modifiers": [
+                      "shift"
+                    ]
                   }
                 ],
                 "type": "basic"
@@ -9749,10 +9752,13 @@
                 },
                 "to": [
                   {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
+                    "key_code": "escape"
+                  },
+                  {
+                    "key_code": "6",
+                    "modifiers": [
+                      "shift"
+                    ]
                   }
                 ],
                 "type": "basic"
