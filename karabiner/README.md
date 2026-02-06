@@ -124,8 +124,8 @@
 | ⇪ + G + [ | ⌘ + ← | Move back in history |
 | ⇪ + G + ] | ⌘ + → | Move forward in history |
 | ⇪ + G + / | ⌘ + W | Close current tab |
-| ⇪ + G + J | *(guarded)* | Reserved for future use |
-| ⇪ + G + K | *(guarded)* | Reserved for future use |
+| ⇪ + G + J | Esc; ^ | Toggle to previously visited tab (forward) |
+| ⇪ + G + K | Esc; ^ | Toggle to previously visited tab (backward) |
 | ⇪ + G + U | ⌘ + ⌥ + ← ×3 | Jump 3 tabs left |
 | ⇪ + G + I | ⌘ + ⌥ + → ×3 | Jump 3 tabs right |
 | ⇪ + G + N | *(guarded)* | Reserved for future use |
