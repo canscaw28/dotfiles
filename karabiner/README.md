@@ -126,8 +126,8 @@
 | ⇪ + G + / | ⌘ + W | Close current tab |
 | ⇪ + G + J | *(guarded)* | Reserved for future use |
 | ⇪ + G + K | *(guarded)* | Reserved for future use |
-| ⇪ + G + U | *(guarded)* | Reserved for future use |
-| ⇪ + G + I | *(guarded)* | Reserved for future use |
+| ⇪ + G + U | ⌘ + ⌥ + ← ×3 | Jump 3 tabs left |
+| ⇪ + G + I | ⌘ + ⌥ + → ×3 | Jump 3 tabs right |
 | ⇪ + G + N | *(guarded)* | Reserved for future use |
 | ⇪ + G + M | *(guarded)* | Reserved for future use |
 | ⇪ + G + , | *(guarded)* | Reserved for future use |
@@ -143,8 +143,8 @@
 | ⇪ + F + G + O | Esc; 100>> | Move tab to the end |
 | ⇪ + F + G + J | *(guarded)* | Reserved for future use |
 | ⇪ + F + G + K | *(guarded)* | Reserved for future use |
-| ⇪ + F + G + U | *(guarded)* | Reserved for future use |
-| ⇪ + F + G + I | *(guarded)* | Reserved for future use |
+| ⇪ + F + G + U | Esc; 3<< | Move tab 3 positions to the left |
+| ⇪ + F + G + I | Esc; 3>> | Move tab 3 positions to the right |
 | ⇪ + F + G + P | *(guarded)* | Reserved for future use |
 | ⇪ + F + G + ; | *(guarded)* | Reserved for future use |
 | ⇪ + F + G + ' | *(guarded)* | Reserved for future use |
