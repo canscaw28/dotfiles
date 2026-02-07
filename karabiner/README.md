@@ -2,30 +2,45 @@
 
 ## Design Philosophy
 
-This configuration turns **Caps Lock** into a ergonomic command system built around two core ideas: the left hand selects *what* to do (context), the right hand selects *where* to do it (action) — and both hands require minimal unique muscle memory.
+This configuration turns **Caps Lock** into an ergonomic command system built around two core ideas: the left hand selects *what* to do (context), the right hand selects *where* to do it (action) — and both hands require minimal unique muscle memory.
 
 ### Left Hand: Layers and Modes
 
 The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
 
 1. **Pinky → Caps Lock (always held)** activates the entire system. Every shortcut starts here.
-2. **Pointer finger → Layer selection.** Each layer key opens a domain of commands:
-   - *(no layer key)* — Cursor movement (the implicit default layer)
-   - **S** — Text Selection
-   - **D** — Text Deletion
-   - **F** — Scroll
-   - **G** — Chrome
-   - **T** — Aerospace Focus
-   - **R** — Aerospace Move/Join
-3. **Middle and ring fingers → Mode selection.** Modes are sub-layers that modify a layer's behavior. They use keys ergonomically adjacent to the pointer finger's layer key. For example:
-   - **G** is the Chrome layer (pointer on G). Adding **F** (pointer slides left, or middle finger) activates the *tab movement* mode within Chrome — so `⇪+G` navigates tabs while `⇪+F+G` *moves* them.
-   - **T** is the Aerospace Focus layer. Its modes could naturally use **R**, **E**, **W**, or even **D**, **S**, **3**, **4** — whatever the middle or ring finger can comfortably reach relative to T.
+2. **Pointer finger → Layer selection.** A layer is a top-level domain — a completely different context for the right hand's actions. Each layer key is held by the pointer finger:
 
-The key insight: modes feel *relative to the pointer finger's position*, not absolute. This means learning a new layer doesn't require memorizing arbitrary modifier keys — the mode keys are always "the fingers next to the layer key."
+   | Pointer Position | Layer | Domain |
+   | --- | --- | --- |
+   | *(home / absent)* | Default | Cursor movement |
+   | F | Scroll | Page scrolling via HammerSpoon |
+   | G | Chrome | Browser tab control |
+   | T | Aerospace Focus | Window focus management |
+   | R | Aerospace Move | Window movement and joining |
+
+3. **Middle and ring fingers → Mode selection.** A mode is a *variation within a layer* — it changes how the right hand's actions are interpreted without changing the domain. Mode keys are ergonomically adjacent to the pointer finger's layer key, so they fall naturally under the middle or ring finger:
+
+   | Layer | Mode Key | Mode | Description |
+   | --- | --- | --- | --- |
+   | Default | *(none)* | Cursor | Move the cursor |
+   | Default | S (ring) | Selection | Select text instead of moving |
+   | Default | D (middle) | Deletion | Delete text instead of moving |
+   | Chrome (G) | *(none)* | Tab Navigation | Switch between tabs |
+   | Chrome (G) | F (middle) | Tab Movement | Physically reorder tabs |
+
+   Notice that S and D are not separate layers — they are **modes of the Default layer**. The pointer finger is absent (no layer key held), so the middle and ring fingers are free to select a mode on the home row. Similarly, F is not a mode of Chrome — it's a mode key for the G layer, pressed by the middle finger while the pointer holds G.
+
+   Mode keys are always relative to the pointer finger's position:
+   - **Default layer** (pointer absent): modes use home-row neighbors **S**, **D**
+   - **G layer** (pointer on G): modes use **F**, and potentially **D**, **V**, **B**
+   - **T layer** (pointer on T): modes could use **R**, **E**, **W**, or **D**, **S**, **3**, **4**
+
+   This means learning a new layer doesn't require memorizing arbitrary modifier keys — the mode keys are always "the fingers next to the layer key."
 
 ### Right Hand: Consistent Action Layout
 
-Regardless of which layer the left hand selects, the right hand uses the **same spatial layout**:
+Regardless of which layer or mode the left hand selects, the right hand uses the **same spatial layout**:
 
 ```
      Y  U  I  O              ← extreme actions (amplified h/j/k/l)
@@ -39,23 +54,23 @@ The directional keys mirror vim:
 - **Y / O** — far left / far right (jump to boundary)
 - **U / I** — big step left / big step right (intermediate jump)
 
-This mapping is consistent across every layer:
+This mapping is consistent across layers and modes:
 
-| Layer | H / L | U / I | Y / O |
-| --- | --- | --- | --- |
-| Cursor | ← / → | word left / word right | line start / line end |
-| Selection | select left / right | select word left / right | select to line start / end |
-| Deletion | delete left / right | delete word left / right | delete to line start / end |
-| Chrome tabs | prev / next tab | jump 3 tabs | first / last tab |
-| Chrome tab movement | move tab left / right | move tab 3 positions | move to start / end |
+| Layer | Mode | H / L | U / I | Y / O |
+| --- | --- | --- | --- | --- |
+| Default | Cursor | ← / → | word left / right | line start / end |
+| Default | Selection (S) | select ← / → | select word left / right | select to line start / end |
+| Default | Deletion (D) | delete ← / → | delete word left / right | delete to line start / end |
+| Chrome | Navigation (G) | prev / next tab | jump 3 tabs | first / last tab |
+| Chrome | Movement (F+G) | move tab ← / → | move tab 3 positions | move to start / end |
 
-Because the right hand layout never changes, you only learn it once. Switching layers is entirely a left-hand concern.
+Because the right hand layout never changes, you only learn it once. Switching layers and modes is entirely a left-hand concern.
 
 ### Why This Works
 
 - **Right hand** — near-zero unique muscle memory. The same finger movements mean analogous actions in every context. "H always goes left. Y always goes to the far left."
 - **Left hand** — layers have unique keys, but modes cluster naturally around the pointer finger. Selecting a layer and its mode is a single comfortable hand shape, not a sequence to memorize.
-- **Scalability** — new layers and modes can be added without disrupting existing muscle memory. A new mode on the G layer just means one more adjacent finger position; the right hand actions carry over automatically.
+- **Scalability** — new layers and modes slot in without disrupting existing muscle memory. A new mode on the G layer just means one more adjacent finger; a new layer means a new pointer position. The right hand actions carry over automatically.
 
 ---
 
@@ -65,16 +80,16 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | --- | --- | --- |
 | ⇪ + ⇪ | ⌃ + ⌃ | Trigger LanguageTool tooltip |
 | ⇪ + R⇧ | ⇪ | Trigger Caps-Lock |
-| ⇪ + A | Layer 1 |  |
-| ⇪ + S | Layer 2 | Text Selection Layer |
-| ⇪ + D | Layer 3 | Text Deletion Layer |
-| ⇪ + F | Layer 4 | Scroll Layer |
-| ⇪ + G | Layer 5 | Chrome Layer |
+| ⇪ + A | Layer |  |
+| ⇪ + S | Mode (Default) | Text Selection |
+| ⇪ + D | Mode (Default) | Text Deletion |
+| ⇪ + F | Layer | Scroll |
+| ⇪ + G | Layer | Chrome |
 | ⇪ + Q |  |  |
 | ⇪ + W |  |  |
 | ⇪ + E |  |  |
-| ⇪ + R | Layer 7 | Aerospace Move/Join Layer |
-| ⇪ + T | Layer 6 | Aerospace Focus Layer |
+| ⇪ + R | Layer | Aerospace Move/Join |
+| ⇪ + T | Layer | Aerospace Focus |
 | ⇪ + Z |  |  |
 | ⇪ + X |  |  |
 | ⇪ + C |  |  |
@@ -83,7 +98,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Cursor Movement Layer
+## Default Layer — Cursor Movement
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -105,7 +120,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Text Selection Layer
+## Default Layer — Selection Mode (S)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -127,7 +142,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Text Deletion Layer
+## Default Layer — Deletion Mode (D)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -149,7 +164,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Scroll Layer
+## Scroll Layer (F)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -171,7 +186,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Chrome Tab Navigation Layer
+## Chrome Layer (G) — Tab Navigation
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -194,7 +209,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + G + , | *(guarded)* | Reserved for future use |
 | ⇪ + G + . | *(guarded)* | Reserved for future use |
 
-## Chrome Tab Movement Layer
+## Chrome Layer (G) — Tab Movement Mode (F+G)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -217,7 +232,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Aerospace Focus Layer
+## Aerospace Focus Layer (T)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -231,7 +246,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Aerospace Move/Join Layer
+## Aerospace Move/Join Layer (R)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
