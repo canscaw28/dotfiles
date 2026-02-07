@@ -1,3 +1,5 @@
+require("hs.ipc")
+
 scrollSpeed = 1
 scrollInterval = 0.01
 scrollDirection = 0
@@ -164,5 +166,127 @@ scrollHandler:start()
 hs.shutdownCallback = function()
     if scrollHandler then
         scrollHandler:stop()
+    end
+end
+
+function chromeTabMove(direction)
+    local sourceWin = hs.window.focusedWindow()
+    if not sourceWin then return end
+    local app = sourceWin:application()
+    if not app or app:bundleID() ~= "com.google.Chrome" then return end
+
+    local ok, result = hs.osascript.applescript(
+        'tell application "Google Chrome" to return {active tab index of front window, count tabs of front window}'
+    )
+    if not ok then return end
+    local tabIndex = result[1]
+    local tabCount = result[2]
+    local sourceFrame = sourceWin:frame()
+
+    -- Find nearest Chrome window in the given direction (pure geometry, no focus dance)
+    local targetWin = nil
+    local bestDist = math.huge
+    for _, w in ipairs(app:allWindows()) do
+        if w:id() ~= sourceWin:id() and w:isVisible() then
+            local f = w:frame()
+            local inDir, dist = false, 0
+            if direction == "right" then
+                inDir = f.x >= sourceFrame.x + sourceFrame.w * 0.5
+                dist = f.x - (sourceFrame.x + sourceFrame.w)
+            elseif direction == "left" then
+                inDir = f.x + f.w <= sourceFrame.x + sourceFrame.w * 0.5
+                dist = sourceFrame.x - (f.x + f.w)
+            elseif direction == "down" then
+                inDir = f.y >= sourceFrame.y + sourceFrame.h * 0.5
+                dist = f.y - (sourceFrame.y + sourceFrame.h)
+            elseif direction == "up" then
+                inDir = f.y + f.h <= sourceFrame.y + sourceFrame.h * 0.5
+                dist = sourceFrame.y - (f.y + f.h)
+            end
+            if inDir and dist < bestDist then
+                bestDist = dist
+                targetWin = w
+            end
+        end
+    end
+    if not targetWin then return end
+
+    local targetFrame = targetWin:frame()
+    local origMouse = hs.mouse.absolutePosition()
+
+    -- Calculate source tab center position
+    -- Chrome tab bar: starts ~70px from left edge, tabs near window top
+    local tabBarLeft = sourceFrame.x + 70
+    local tabBarWidth = sourceFrame.w - 150
+    local tabWidth = math.min(tabBarWidth / tabCount, 240)
+    local tabX = tabBarLeft + (tabIndex - 0.5) * tabWidth
+    local tabY = sourceFrame.y + 25
+
+    -- Target: center of target tab bar
+    local dropX = targetFrame.x + targetFrame.w / 2
+    local dropY = targetFrame.y + 25
+
+    -- Detach height: drag below tab bar to initiate Chrome tab detach
+    local detachY = math.max(tabY, dropY) + 60
+
+    -- Build waypoints: grab → detach → traverse → drop
+    local waypoints = {
+        {x = tabX,  y = tabY},
+        {x = tabX,  y = detachY},
+        {x = dropX, y = detachY},
+        {x = dropX, y = dropY},
+    }
+
+    -- Helper: post mouse event with modifier flags cleared
+    local function mouseEvent(type, pt)
+        local e = hs.eventtap.event.newMouseEvent(type, pt)
+        e:setFlags({})
+        e:post()
+    end
+
+    -- Simulate drag: move actual cursor and post matching events
+    local stepsPerSegment = 20
+    local stepDelay = 6000 -- 6ms per step
+
+    -- Temporarily float source window so AeroSpace doesn't interfere with the drag
+    hs.execute("aerospace layout floating", true)
+    hs.timer.usleep(50000)
+
+    local success, err = pcall(function()
+        -- Move cursor to tab and press down
+        hs.mouse.absolutePosition(waypoints[1])
+        hs.timer.usleep(80000)
+        mouseEvent(hs.eventtap.event.types.leftMouseDown, waypoints[1])
+        hs.timer.usleep(150000)
+
+        -- Drag through waypoints
+        for seg = 1, #waypoints - 1 do
+            local from = waypoints[seg]
+            local to = waypoints[seg + 1]
+            for i = 1, stepsPerSegment do
+                local t = i / stepsPerSegment
+                local pt = {x = from.x + (to.x - from.x) * t, y = from.y + (to.y - from.y) * t}
+                hs.mouse.absolutePosition(pt)
+                mouseEvent(hs.eventtap.event.types.leftMouseDragged, pt)
+                hs.timer.usleep(stepDelay)
+            end
+        end
+
+        -- Release
+        mouseEvent(hs.eventtap.event.types.leftMouseUp, waypoints[#waypoints])
+        hs.timer.usleep(200000)
+    end)
+
+    -- Restore: tile the window back and reset mouse position
+    hs.execute("aerospace layout tiling", true)
+    hs.mouse.absolutePosition(origMouse)
+
+    if not success then
+        print("chromeTabMove error: " .. tostring(err))
+    end
+
+    -- Focus back to source window (if it still exists -- last tab case closes it)
+    if sourceWin:isVisible() then
+        sourceWin:focus()
     end
 end
