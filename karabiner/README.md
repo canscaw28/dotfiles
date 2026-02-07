@@ -213,8 +213,8 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + G + I | ⌘ + ⌥ + → ×3 | Jump 3 tabs right |
 | ⇪ + G + N | ⌘⌃⌥⇧N → HS | Move tab to window left |
 | ⇪ + G + M | ⌘⌃⌥⇧M → HS | Move tab to window right |
-| ⇪ + G + , | *(guarded)* | |
-| ⇪ + G + . | *(guarded)* | |
+| ⇪ + G + , | *available* | |
+| ⇪ + G + . | *available* | |
 
 ### Tab Movement Mode (⇪ + F + G)
 
@@ -224,18 +224,18 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + F + G + L | Esc; >> | Move tab one position to the right |
 | ⇪ + F + G + Y | Esc; 100<< | Move tab to the beginning |
 | ⇪ + F + G + O | Esc; 100>> | Move tab to the end |
-| ⇪ + F + G + J | *(guarded)* | |
-| ⇪ + F + G + K | *(guarded)* | |
+| ⇪ + F + G + J | *available* | |
+| ⇪ + F + G + K | *available* | |
 | ⇪ + F + G + U | Esc; 3<< | Move tab 3 positions to the left |
 | ⇪ + F + G + I | Esc; 3>> | Move tab 3 positions to the right |
-| ⇪ + F + G + P | *(guarded)* | |
-| ⇪ + F + G + ; | *(guarded)* | |
-| ⇪ + F + G + ' | *(guarded)* | |
-| ⇪ + F + G + N | *(guarded)* | |
-| ⇪ + F + G + M | *(guarded)* | |
-| ⇪ + F + G + , | *(guarded)* | |
-| ⇪ + F + G + . | *(guarded)* | |
-| ⇪ + F + G + / | *(guarded)* | |
+| ⇪ + F + G + P | *available* | |
+| ⇪ + F + G + ; | *available* | |
+| ⇪ + F + G + ' | *available* | |
+| ⇪ + F + G + N | *available* | |
+| ⇪ + F + G + M | *available* | |
+| ⇪ + F + G + , | *available* | |
+| ⇪ + F + G + . | *available* | |
+| ⇪ + F + G + / | *available* | |
 
 ---
 
@@ -252,14 +252,14 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + T + ; | ⌘ + ⌥ + ⌃ + ; | Mode service |
 | ⇪ + T + - | ⌘ + ⌥ + ⌃ + ⇧ + - | Resize smart -50 |
 | ⇪ + T + = | ⌘ + ⌥ + ⌃ + ⇧ + = | Resize smart +50 |
-| ⇪ + T + Y | *(guarded)* | |
-| ⇪ + T + U | *(guarded)* | |
-| ⇪ + T + I | *(guarded)* | |
-| ⇪ + T + O | *(guarded)* | |
-| ⇪ + T + N | *(guarded)* | |
-| ⇪ + T + M | *(guarded)* | |
-| ⇪ + T + , | *(guarded)* | |
-| ⇪ + T + . | *(guarded)* | |
+| ⇪ + T + Y | *available* | |
+| ⇪ + T + U | *available* | |
+| ⇪ + T + I | *available* | |
+| ⇪ + T + O | *available* | |
+| ⇪ + T + N | *available* | |
+| ⇪ + T + M | *available* | |
+| ⇪ + T + , | *available* | |
+| ⇪ + T + . | *available* | |
 
 ### Move Mode (⇪ + R + T)
 
@@ -269,18 +269,18 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + R + T + J | ⌘ + ⌥ + ⌃ + U | Move window down |
 | ⇪ + R + T + K | ⌘ + ⌥ + ⌃ + I | Move window up |
 | ⇪ + R + T + L | ⌘ + ⌥ + ⌃ + O | Move window right |
-| ⇪ + R + T + Y | *(guarded)* | |
-| ⇪ + R + T + U | *(guarded)* | |
-| ⇪ + R + T + I | *(guarded)* | |
-| ⇪ + R + T + O | *(guarded)* | |
-| ⇪ + R + T + P | *(guarded)* | |
-| ⇪ + R + T + ; | *(guarded)* | |
-| ⇪ + R + T + ' | *(guarded)* | |
-| ⇪ + R + T + N | *(guarded)* | |
-| ⇪ + R + T + M | *(guarded)* | |
-| ⇪ + R + T + , | *(guarded)* | |
-| ⇪ + R + T + . | *(guarded)* | |
-| ⇪ + R + T + / | *(guarded)* | |
+| ⇪ + R + T + Y | *available* | |
+| ⇪ + R + T + U | *available* | |
+| ⇪ + R + T + I | *available* | |
+| ⇪ + R + T + O | *available* | |
+| ⇪ + R + T + P | *available* | |
+| ⇪ + R + T + ; | *available* | |
+| ⇪ + R + T + ' | *available* | |
+| ⇪ + R + T + N | *available* | |
+| ⇪ + R + T + M | *available* | |
+| ⇪ + R + T + , | *available* | |
+| ⇪ + R + T + . | *available* | |
+| ⇪ + R + T + / | *available* | |
 
 ### Join Mode (⇪ + E + T)
 
@@ -290,18 +290,18 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + E + T + J | ⌘ + ⌥ + ⌃ + M | Join with down |
 | ⇪ + E + T + K | ⌘ + ⌥ + ⌃ + , | Join with up |
 | ⇪ + E + T + L | ⌘ + ⌥ + ⌃ + . | Join with right |
-| ⇪ + E + T + Y | *(guarded)* | |
-| ⇪ + E + T + U | *(guarded)* | |
-| ⇪ + E + T + I | *(guarded)* | |
-| ⇪ + E + T + O | *(guarded)* | |
-| ⇪ + E + T + P | *(guarded)* | |
-| ⇪ + E + T + ; | *(guarded)* | |
-| ⇪ + E + T + ' | *(guarded)* | |
-| ⇪ + E + T + N | *(guarded)* | |
-| ⇪ + E + T + M | *(guarded)* | |
-| ⇪ + E + T + , | *(guarded)* | |
-| ⇪ + E + T + . | *(guarded)* | |
-| ⇪ + E + T + / | *(guarded)* | |
+| ⇪ + E + T + Y | *available* | |
+| ⇪ + E + T + U | *available* | |
+| ⇪ + E + T + I | *available* | |
+| ⇪ + E + T + O | *available* | |
+| ⇪ + E + T + P | *available* | |
+| ⇪ + E + T + ; | *available* | |
+| ⇪ + E + T + ' | *available* | |
+| ⇪ + E + T + N | *available* | |
+| ⇪ + E + T + M | *available* | |
+| ⇪ + E + T + , | *available* | |
+| ⇪ + E + T + . | *available* | |
+| ⇪ + E + T + / | *available* | |
 
 ---
 
