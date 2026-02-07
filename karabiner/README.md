@@ -1,3 +1,64 @@
+# Karabiner Elements Configuration
+
+## Design Philosophy
+
+This configuration turns **Caps Lock** into a ergonomic command system built around two core ideas: the left hand selects *what* to do (context), the right hand selects *where* to do it (action) — and both hands require minimal unique muscle memory.
+
+### Left Hand: Layers and Modes
+
+The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
+
+1. **Pinky → Caps Lock (always held)** activates the entire system. Every shortcut starts here.
+2. **Pointer finger → Layer selection.** Each layer key opens a domain of commands:
+   - *(no layer key)* — Cursor movement (the implicit default layer)
+   - **S** — Text Selection
+   - **D** — Text Deletion
+   - **F** — Scroll
+   - **G** — Chrome
+   - **T** — Aerospace Focus
+   - **R** — Aerospace Move/Join
+3. **Middle and ring fingers → Mode selection.** Modes are sub-layers that modify a layer's behavior. They use keys ergonomically adjacent to the pointer finger's layer key. For example:
+   - **G** is the Chrome layer (pointer on G). Adding **F** (pointer slides left, or middle finger) activates the *tab movement* mode within Chrome — so `⇪+G` navigates tabs while `⇪+F+G` *moves* them.
+   - **T** is the Aerospace Focus layer. Its modes could naturally use **R**, **E**, **W**, or even **D**, **S**, **3**, **4** — whatever the middle or ring finger can comfortably reach relative to T.
+
+The key insight: modes feel *relative to the pointer finger's position*, not absolute. This means learning a new layer doesn't require memorizing arbitrary modifier keys — the mode keys are always "the fingers next to the layer key."
+
+### Right Hand: Consistent Action Layout
+
+Regardless of which layer the left hand selects, the right hand uses the **same spatial layout**:
+
+```
+     Y  U  I  O              ← extreme actions (amplified h/j/k/l)
+       H  J  K  L            ← directional core (←↓↑→)
+         N  M  ,  .          ← contextual extensions
+```
+
+The directional keys mirror vim:
+- **H / L** — left / right (single step)
+- **J / K** — down / up (or the closest conceptual equivalent)
+- **Y / O** — far left / far right (jump to boundary)
+- **U / I** — big step left / big step right (intermediate jump)
+
+This mapping is consistent across every layer:
+
+| Layer | H / L | U / I | Y / O |
+| --- | --- | --- | --- |
+| Cursor | ← / → | word left / word right | line start / line end |
+| Selection | select left / right | select word left / right | select to line start / end |
+| Deletion | delete left / right | delete word left / right | delete to line start / end |
+| Chrome tabs | prev / next tab | jump 3 tabs | first / last tab |
+| Chrome tab movement | move tab left / right | move tab 3 positions | move to start / end |
+
+Because the right hand layout never changes, you only learn it once. Switching layers is entirely a left-hand concern.
+
+### Why This Works
+
+- **Right hand** — near-zero unique muscle memory. The same finger movements mean analogous actions in every context. "H always goes left. Y always goes to the far left."
+- **Left hand** — layers have unique keys, but modes cluster naturally around the pointer finger. Selecting a layer and its mode is a single comfortable hand shape, not a sequence to memorize.
+- **Scalability** — new layers and modes can be added without disrupting existing muscle memory. A new mode on the G layer just means one more adjacent finger position; the right hand actions carry over automatically.
+
+---
+
 ## Layer Keys and Misc Keys
 
 | Key / Shortcut | Behavior | Description |
@@ -8,7 +69,7 @@
 | ⇪ + S | Layer 2 | Text Selection Layer |
 | ⇪ + D | Layer 3 | Text Deletion Layer |
 | ⇪ + F | Layer 4 | Scroll Layer |
-| ⇪ + G | Layer 5 | Chrome Tabs Layer |
+| ⇪ + G | Layer 5 | Chrome Layer |
 | ⇪ + Q |  |  |
 | ⇪ + W |  |  |
 | ⇪ + E |  |  |
