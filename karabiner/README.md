@@ -76,17 +76,17 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ## Layers and Modes
 
-| Layer Key | Layer | Mode Key | Mode | Description |
+| Layer | Layer Key | Mode Key | Mode | Description |
 | --- | --- | --- | --- | --- |
-| *(none)* | Default | — | Cursor | Move the cursor |
-| | | S | Selection | Select text instead of moving |
-| | | D | Deletion | Delete text instead of moving |
-| F | Scroll | — | — | Page scrolling via HammerSpoon |
-| G | Chrome | — | Navigation | Switch between tabs |
-| | | F | Movement | Physically reorder tabs |
-| T | Aerospace Focus | — | — | Window focus management |
-| R | Aerospace Move | — | — | Window movement and joining |
-| A | *(unassigned)* | | | |
+| Default | ⇪ | — | Cursor | Move the cursor |
+| | ⇪ | S | Selection | Select text instead of moving |
+| | ⇪ | D | Deletion | Delete text instead of moving |
+| Scroll | ⇪ + F | — | — | Page scrolling via HammerSpoon |
+| Chrome | ⇪ + G | — | Navigation | Switch between tabs |
+| | ⇪ + G | F | Movement | Physically reorder tabs |
+| Aerospace Focus | ⇪ + T | — | — | Window focus management |
+| Aerospace Move | ⇪ + R | — | — | Window movement and joining |
+| *(unassigned)* | ⇪ + A | | | |
 
 *Available layer keys: Q, W, E, Z, X, C, V, B*
 
@@ -99,7 +99,9 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Default Layer — Cursor Movement
+## Default Layer (⇪)
+
+### Cursor Movement
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -109,7 +111,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + L | →  | Move cursor to the right |
 | ⇪ + ; | Esc | Easy to reach Esc key alternative |
 | ⇪ + Y | ⌘ + ← | Jumps cursor to the start of the line |
-| ⇪ +U | ⌥ + ← | Jump back one word |
+| ⇪ + U | ⌥ + ← | Jump back one word |
 | ⇪ + I | ⌥ + → | Jump forward one word |
 | ⇪ + O | ⌘ + → | Jumps cursor to the end of the line |
 | ⇪ + P |  |  |
@@ -119,9 +121,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + . |  |  |
 | ⇪ + / |  |  |
 
----
-
-## Default Layer — Selection Mode (S)
+### Selection Mode (⇪ + S)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -141,9 +141,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + S + . |  |  |
 | ⇪ + S + / |  |  |
 
----
-
-## Default Layer — Deletion Mode (D)
+### Deletion Mode (⇪ + D)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -165,7 +163,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Scroll Layer (F)
+## Scroll Layer (⇪ + F)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -187,7 +185,9 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Chrome Layer (G) — Tab Navigation
+## Chrome Layer (⇪ + G)
+
+### Tab Navigation
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -210,7 +210,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + G + , | *(guarded)* | Reserved for future use |
 | ⇪ + G + . | *(guarded)* | Reserved for future use |
 
-## Chrome Layer (G) — Tab Movement Mode (F+G)
+### Tab Movement Mode (⇪ + F + G)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -233,7 +233,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Aerospace Focus Layer (T)
+## Aerospace Focus Layer (⇪ + T)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -247,7 +247,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Aerospace Move/Join Layer (R)
+## Aerospace Move/Join Layer (⇪ + R)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
