@@ -207,12 +207,12 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + G + [ | ⌘ + ← | Move back in history |
 | ⇪ + G + ] | ⌘ + → | Move forward in history |
 | ⇪ + G + / | ⌘ + W | Close current tab |
-| ⇪ + G + J | ⌘⌃⌥⇧J → HS | Move tab to window below |
-| ⇪ + G + K | ⌘⌃⌥⇧K → HS | Move tab to window above |
+| ⇪ + G + J | *available* | |
+| ⇪ + G + K | *available* | |
 | ⇪ + G + U | ⌘ + ⌥ + ← ×3 | Jump 3 tabs left |
 | ⇪ + G + I | ⌘ + ⌥ + → ×3 | Jump 3 tabs right |
-| ⇪ + G + N | ⌘⌃⌥⇧N → HS | Move tab to window left |
-| ⇪ + G + M | ⌘⌃⌥⇧M → HS | Move tab to window right |
+| ⇪ + G + N | *available* | |
+| ⇪ + G + M | *available* | |
 | ⇪ + G + , | *available* | |
 | ⇪ + G + . | *available* | |
 
