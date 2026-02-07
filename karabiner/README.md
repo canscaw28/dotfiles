@@ -89,6 +89,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | Scroll | ⇪ + F | — | — | Page scrolling via HammerSpoon |
 | Chrome | ⇪ + G | — | Navigation | Switch between tabs |
 | | ⇪ + G | F | Movement | Physically reorder tabs |
+| | ⇪ + G | D | Window | Move tab to adjacent Chrome window |
 | Aerospace | ⇪ + T | — | Focus | Window focus management |
 | | ⇪ + T | R | Move | Move windows directionally |
 | | ⇪ + T | E | Join | Join windows directionally |
@@ -236,6 +237,15 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + F + G + , | *available* | |
 | ⇪ + F + G + . | *available* | |
 | ⇪ + F + G + / | *available* | |
+
+### Tab Window Mode (⇪ + D + G)
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + D + G + H | ⌘⌃⌥⇧H → HS | Move tab to window left |
+| ⇪ + D + G + J | ⌘⌃⌥⇧J → HS | Move tab to window below |
+| ⇪ + D + G + K | ⌘⌃⌥⇧K → HS | Move tab to window above |
+| ⇪ + D + G + L | ⌘⌃⌥⇧L → HS | Move tab to window right |
 
 ---
 

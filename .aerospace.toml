@@ -123,6 +123,12 @@ cmd-ctrl-alt-period = 'join-with right'
 cmd-ctrl-alt-shift-minus = 'resize smart -50'
 cmd-ctrl-alt-shift-equal = 'resize smart +50'
 
+# Chrome tab move to adjacent window (via Hammerspoon mouse drag)
+cmd-ctrl-alt-shift-h = 'exec-and-forget ~/.local/bin/chrome-tab-move.sh left'
+cmd-ctrl-alt-shift-j = 'exec-and-forget ~/.local/bin/chrome-tab-move.sh down'
+cmd-ctrl-alt-shift-k = 'exec-and-forget ~/.local/bin/chrome-tab-move.sh up'
+cmd-ctrl-alt-shift-l = 'exec-and-forget ~/.local/bin/chrome-tab-move.sh right'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 cmd-ctrl-alt-quote = ['workspace-back-and-forth', 'move-mouse window-lazy-center']
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
