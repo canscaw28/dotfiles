@@ -74,27 +74,28 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Layer Keys and Misc Keys
+## Layers and Modes
 
-| Key / Shortcut | Behavior | Description |
+| Layer Key | Layer | Mode Key | Mode | Description |
+| --- | --- | --- | --- | --- |
+| *(none)* | Default | — | Cursor | Move the cursor |
+| | | S | Selection | Select text instead of moving |
+| | | D | Deletion | Delete text instead of moving |
+| F | Scroll | — | — | Page scrolling via HammerSpoon |
+| G | Chrome | — | Navigation | Switch between tabs |
+| | | F | Movement | Physically reorder tabs |
+| T | Aerospace Focus | — | — | Window focus management |
+| R | Aerospace Move | — | — | Window movement and joining |
+| A | *(unassigned)* | | | |
+
+*Available layer keys: Q, W, E, Z, X, C, V, B*
+
+## Misc Shortcuts
+
+| Shortcut | Behavior | Description |
 | --- | --- | --- |
 | ⇪ + ⇪ | ⌃ + ⌃ | Trigger LanguageTool tooltip |
 | ⇪ + R⇧ | ⇪ | Trigger Caps-Lock |
-| ⇪ + A | Layer |  |
-| ⇪ + S | Mode (Default) | Text Selection |
-| ⇪ + D | Mode (Default) | Text Deletion |
-| ⇪ + F | Layer | Scroll |
-| ⇪ + G | Layer | Chrome |
-| ⇪ + Q |  |  |
-| ⇪ + W |  |  |
-| ⇪ + E |  |  |
-| ⇪ + R | Layer | Aerospace Move/Join |
-| ⇪ + T | Layer | Aerospace Focus |
-| ⇪ + Z |  |  |
-| ⇪ + X |  |  |
-| ⇪ + C |  |  |
-| ⇪ + V |  |  |
-| ⇪ + B |  |  |
 
 ---
 
