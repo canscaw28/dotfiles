@@ -213,8 +213,8 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + G + I | ⌘ + ⌥ + → ×3 | Jump 3 tabs right |
 | ⇪ + G + N | ⌘⌃⌥⇧N → HS | Move tab to window left |
 | ⇪ + G + M | ⌘⌃⌥⇧M → HS | Move tab to window right |
-| ⇪ + G + , | *(guarded)* | Reserved for future use |
-| ⇪ + G + . | *(guarded)* | Reserved for future use |
+| ⇪ + G + , | *(guarded)* | |
+| ⇪ + G + . | *(guarded)* | |
 
 ### Tab Movement Mode (⇪ + F + G)
 
@@ -224,18 +224,18 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + F + G + L | Esc; >> | Move tab one position to the right |
 | ⇪ + F + G + Y | Esc; 100<< | Move tab to the beginning |
 | ⇪ + F + G + O | Esc; 100>> | Move tab to the end |
-| ⇪ + F + G + J | *(guarded)* | Reserved for future use |
-| ⇪ + F + G + K | *(guarded)* | Reserved for future use |
+| ⇪ + F + G + J | *(guarded)* | |
+| ⇪ + F + G + K | *(guarded)* | |
 | ⇪ + F + G + U | Esc; 3<< | Move tab 3 positions to the left |
 | ⇪ + F + G + I | Esc; 3>> | Move tab 3 positions to the right |
-| ⇪ + F + G + P | *(guarded)* | Reserved for future use |
-| ⇪ + F + G + ; | *(guarded)* | Reserved for future use |
-| ⇪ + F + G + ' | *(guarded)* | Reserved for future use |
-| ⇪ + F + G + N | *(guarded)* | Reserved for future use |
-| ⇪ + F + G + M | *(guarded)* | Reserved for future use |
-| ⇪ + F + G + , | *(guarded)* | Reserved for future use |
-| ⇪ + F + G + . | *(guarded)* | Reserved for future use |
-| ⇪ + F + G + / | *(guarded)* | Reserved for future use |
+| ⇪ + F + G + P | *(guarded)* | |
+| ⇪ + F + G + ; | *(guarded)* | |
+| ⇪ + F + G + ' | *(guarded)* | |
+| ⇪ + F + G + N | *(guarded)* | |
+| ⇪ + F + G + M | *(guarded)* | |
+| ⇪ + F + G + , | *(guarded)* | |
+| ⇪ + F + G + . | *(guarded)* | |
+| ⇪ + F + G + / | *(guarded)* | |
 
 ---
 
@@ -252,14 +252,14 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + T + ; | ⌘ + ⌥ + ⌃ + ; | Mode service |
 | ⇪ + T + - | ⌘ + ⌥ + ⌃ + ⇧ + - | Resize smart -50 |
 | ⇪ + T + = | ⌘ + ⌥ + ⌃ + ⇧ + = | Resize smart +50 |
-| ⇪ + T + Y | *(guarded)* | Reserved for future use |
-| ⇪ + T + U | *(guarded)* | Reserved for future use |
-| ⇪ + T + I | *(guarded)* | Reserved for future use |
-| ⇪ + T + O | *(guarded)* | Reserved for future use |
-| ⇪ + T + N | *(guarded)* | Reserved for future use |
-| ⇪ + T + M | *(guarded)* | Reserved for future use |
-| ⇪ + T + , | *(guarded)* | Reserved for future use |
-| ⇪ + T + . | *(guarded)* | Reserved for future use |
+| ⇪ + T + Y | *(guarded)* | |
+| ⇪ + T + U | *(guarded)* | |
+| ⇪ + T + I | *(guarded)* | |
+| ⇪ + T + O | *(guarded)* | |
+| ⇪ + T + N | *(guarded)* | |
+| ⇪ + T + M | *(guarded)* | |
+| ⇪ + T + , | *(guarded)* | |
+| ⇪ + T + . | *(guarded)* | |
 
 ### Move Mode (⇪ + R + T)
 
@@ -269,18 +269,18 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + R + T + J | ⌘ + ⌥ + ⌃ + U | Move window down |
 | ⇪ + R + T + K | ⌘ + ⌥ + ⌃ + I | Move window up |
 | ⇪ + R + T + L | ⌘ + ⌥ + ⌃ + O | Move window right |
-| ⇪ + R + T + Y | *(guarded)* | Reserved for future use |
-| ⇪ + R + T + U | *(guarded)* | Reserved for future use |
-| ⇪ + R + T + I | *(guarded)* | Reserved for future use |
-| ⇪ + R + T + O | *(guarded)* | Reserved for future use |
-| ⇪ + R + T + P | *(guarded)* | Reserved for future use |
-| ⇪ + R + T + ; | *(guarded)* | Reserved for future use |
-| ⇪ + R + T + ' | *(guarded)* | Reserved for future use |
-| ⇪ + R + T + N | *(guarded)* | Reserved for future use |
-| ⇪ + R + T + M | *(guarded)* | Reserved for future use |
-| ⇪ + R + T + , | *(guarded)* | Reserved for future use |
-| ⇪ + R + T + . | *(guarded)* | Reserved for future use |
-| ⇪ + R + T + / | *(guarded)* | Reserved for future use |
+| ⇪ + R + T + Y | *(guarded)* | |
+| ⇪ + R + T + U | *(guarded)* | |
+| ⇪ + R + T + I | *(guarded)* | |
+| ⇪ + R + T + O | *(guarded)* | |
+| ⇪ + R + T + P | *(guarded)* | |
+| ⇪ + R + T + ; | *(guarded)* | |
+| ⇪ + R + T + ' | *(guarded)* | |
+| ⇪ + R + T + N | *(guarded)* | |
+| ⇪ + R + T + M | *(guarded)* | |
+| ⇪ + R + T + , | *(guarded)* | |
+| ⇪ + R + T + . | *(guarded)* | |
+| ⇪ + R + T + / | *(guarded)* | |
 
 ### Join Mode (⇪ + E + T)
 
@@ -290,18 +290,18 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + E + T + J | ⌘ + ⌥ + ⌃ + M | Join with down |
 | ⇪ + E + T + K | ⌘ + ⌥ + ⌃ + , | Join with up |
 | ⇪ + E + T + L | ⌘ + ⌥ + ⌃ + . | Join with right |
-| ⇪ + E + T + Y | *(guarded)* | Reserved for future use |
-| ⇪ + E + T + U | *(guarded)* | Reserved for future use |
-| ⇪ + E + T + I | *(guarded)* | Reserved for future use |
-| ⇪ + E + T + O | *(guarded)* | Reserved for future use |
-| ⇪ + E + T + P | *(guarded)* | Reserved for future use |
-| ⇪ + E + T + ; | *(guarded)* | Reserved for future use |
-| ⇪ + E + T + ' | *(guarded)* | Reserved for future use |
-| ⇪ + E + T + N | *(guarded)* | Reserved for future use |
-| ⇪ + E + T + M | *(guarded)* | Reserved for future use |
-| ⇪ + E + T + , | *(guarded)* | Reserved for future use |
-| ⇪ + E + T + . | *(guarded)* | Reserved for future use |
-| ⇪ + E + T + / | *(guarded)* | Reserved for future use |
+| ⇪ + E + T + Y | *(guarded)* | |
+| ⇪ + E + T + U | *(guarded)* | |
+| ⇪ + E + T + I | *(guarded)* | |
+| ⇪ + E + T + O | *(guarded)* | |
+| ⇪ + E + T + P | *(guarded)* | |
+| ⇪ + E + T + ; | *(guarded)* | |
+| ⇪ + E + T + ' | *(guarded)* | |
+| ⇪ + E + T + N | *(guarded)* | |
+| ⇪ + E + T + M | *(guarded)* | |
+| ⇪ + E + T + , | *(guarded)* | |
+| ⇪ + E + T + . | *(guarded)* | |
+| ⇪ + E + T + / | *(guarded)* | |
 
 ---
 
