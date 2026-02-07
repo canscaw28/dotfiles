@@ -16,8 +16,7 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    | *(home / absent)* | Default | Cursor movement |
    | F | Scroll | Page scrolling via HammerSpoon |
    | G | Chrome | Browser tab control |
-   | T | Aerospace Focus | Window focus management |
-   | R | Aerospace Move | Window movement and joining |
+   | T | Aerospace | Window focus, movement, and joining |
 
 3. **Middle and ring fingers → Mode selection.** A mode is a *variation within a layer* — it changes how the right hand's actions are interpreted without changing the domain. Mode keys are ergonomically adjacent to the pointer finger's layer key, so they fall naturally under the middle or ring finger:
 
@@ -28,6 +27,9 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    | Default | D (middle) | Deletion | Delete text instead of moving |
    | Chrome (G) | *(none)* | Tab Navigation | Switch between tabs |
    | Chrome (G) | F (middle) | Tab Movement | Physically reorder tabs |
+   | Aerospace (T) | *(none)* | Focus | Focus windows directionally |
+   | Aerospace (T) | R (ring) | Move | Move windows directionally |
+   | Aerospace (T) | E (middle) | Join | Join windows directionally |
 
    Notice that S and D are not separate layers — they are **modes of the Default layer**. The pointer finger is absent (no layer key held), so the middle and ring fingers are free to select a mode on the home row. Similarly, F is not a mode of Chrome — it's a mode key for the G layer, pressed by the middle finger while the pointer holds G.
 
@@ -63,6 +65,9 @@ This mapping is consistent across layers and modes:
 | Default | Deletion (D) | delete ← / → | delete word left / right | delete to line start / end |
 | Chrome | Navigation (G) | prev / next tab | jump 3 tabs | first / last tab |
 | Chrome | Movement (F+G) | move tab ← / → | move tab 3 positions | move to start / end |
+| Aerospace | Focus (T) | focus ← / → | | |
+| Aerospace | Move (R+T) | move window ← / → | | |
+| Aerospace | Join (E+T) | join ← / → | | |
 
 Because the right hand layout never changes, you only learn it once. Switching layers and modes is entirely a left-hand concern.
 
@@ -84,11 +89,12 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | Scroll | ⇪ + F | — | — | Page scrolling via HammerSpoon |
 | Chrome | ⇪ + G | — | Navigation | Switch between tabs |
 | | ⇪ + G | F | Movement | Physically reorder tabs |
-| Aerospace Focus | ⇪ + T | — | — | Window focus management |
-| Aerospace Move | ⇪ + R | — | — | Window movement and joining |
+| Aerospace | ⇪ + T | — | Focus | Window focus management |
+| | ⇪ + T | R | Move | Move windows directionally |
+| | ⇪ + T | E | Join | Join windows directionally |
 | *(unassigned)* | ⇪ + A | | | |
 
-*Available layer keys: Q, W, E, Z, X, C, V, B*
+*Available layer keys: R, Q, W, E, Z, X, C, V, B*
 
 ## Misc Shortcuts
 
@@ -233,7 +239,9 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Aerospace Focus Layer (⇪ + T)
+## Aerospace Layer (⇪ + T)
+
+### Focus
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -245,20 +253,23 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + T + - | ⌘ + ⌥ + ⌃ + ⇧ + - | Resize smart -50 |
 | ⇪ + T + = | ⌘ + ⌥ + ⌃ + ⇧ + = | Resize smart +50 |
 
----
-
-## Aerospace Move/Join Layer (⇪ + R)
+### Move Mode (⇪ + R + T)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| ⇪ + R + H | ⌘ + ⌥ + ⌃ + Y | Move window left |
-| ⇪ + R + J | ⌘ + ⌥ + ⌃ + U | Move window down |
-| ⇪ + R + K | ⌘ + ⌥ + ⌃ + I | Move window up |
-| ⇪ + R + L | ⌘ + ⌥ + ⌃ + O | Move window right |
-| ⇪ + R + Y | ⌘ + ⌥ + ⌃ + N | Join with left |
-| ⇪ + R + U | ⌘ + ⌥ + ⌃ + M | Join with down |
-| ⇪ + R + I | ⌘ + ⌥ + ⌃ + , | Join with up |
-| ⇪ + R + O | ⌘ + ⌥ + ⌃ + . | Join with right |
+| ⇪ + R + T + H | ⌘ + ⌥ + ⌃ + Y | Move window left |
+| ⇪ + R + T + J | ⌘ + ⌥ + ⌃ + U | Move window down |
+| ⇪ + R + T + K | ⌘ + ⌥ + ⌃ + I | Move window up |
+| ⇪ + R + T + L | ⌘ + ⌥ + ⌃ + O | Move window right |
+
+### Join Mode (⇪ + E + T)
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + E + T + H | ⌘ + ⌥ + ⌃ + N | Join with left |
+| ⇪ + E + T + J | ⌘ + ⌥ + ⌃ + M | Join with down |
+| ⇪ + E + T + K | ⌘ + ⌥ + ⌃ + , | Join with up |
+| ⇪ + E + T + L | ⌘ + ⌥ + ⌃ + . | Join with right |
 
 ---
 
