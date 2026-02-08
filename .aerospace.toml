@@ -153,6 +153,28 @@ ctrl-shift-comma = 'exec-and-forget ~/.local/bin/ws.sh focus-1 comma'
 ctrl-shift-period = 'exec-and-forget ~/.local/bin/ws.sh focus-1 .'
 ctrl-shift-slash = 'exec-and-forget ~/.local/bin/ws.sh focus-1 /'
 
+# R layer + E: focus workspace on display 2 (alt-shift)
+alt-shift-6 = 'exec-and-forget ~/.local/bin/ws.sh focus-2 6'
+alt-shift-7 = 'exec-and-forget ~/.local/bin/ws.sh focus-2 7'
+alt-shift-8 = 'exec-and-forget ~/.local/bin/ws.sh focus-2 8'
+alt-shift-9 = 'exec-and-forget ~/.local/bin/ws.sh focus-2 9'
+alt-shift-0 = 'exec-and-forget ~/.local/bin/ws.sh focus-2 0'
+alt-shift-y = 'exec-and-forget ~/.local/bin/ws.sh focus-2 y'
+alt-shift-u = 'exec-and-forget ~/.local/bin/ws.sh focus-2 u'
+alt-shift-i = 'exec-and-forget ~/.local/bin/ws.sh focus-2 i'
+alt-shift-o = 'exec-and-forget ~/.local/bin/ws.sh focus-2 o'
+alt-shift-p = 'exec-and-forget ~/.local/bin/ws.sh focus-2 p'
+alt-shift-h = 'exec-and-forget ~/.local/bin/ws.sh focus-2 h'
+alt-shift-j = 'exec-and-forget ~/.local/bin/ws.sh focus-2 j'
+alt-shift-k = 'exec-and-forget ~/.local/bin/ws.sh focus-2 k'
+alt-shift-l = 'exec-and-forget ~/.local/bin/ws.sh focus-2 l'
+alt-shift-semicolon = 'exec-and-forget ~/.local/bin/ws.sh focus-2 ";"'
+alt-shift-n = 'exec-and-forget ~/.local/bin/ws.sh focus-2 n'
+alt-shift-m = 'exec-and-forget ~/.local/bin/ws.sh focus-2 m'
+alt-shift-comma = 'exec-and-forget ~/.local/bin/ws.sh focus-2 comma'
+alt-shift-period = 'exec-and-forget ~/.local/bin/ws.sh focus-2 .'
+alt-shift-slash = 'exec-and-forget ~/.local/bin/ws.sh focus-2 /'
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]

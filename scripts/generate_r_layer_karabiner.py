@@ -38,6 +38,8 @@ WORKSPACE_KEYS = [
 # Operations: (name, karabiner_modifiers, r_val, e_val, w_val, q_val)
 # Most specific (most positive conditions) first for Karabiner priority
 OPERATIONS = [
+    # R+E: focus display 2 → alt+shift (most specific first)
+    ("focus-2", ["option", "shift"], 1, 1, 0, 0),
     # R only: focus display 1 → ctrl+shift
     ("focus-1", ["control", "shift"], 1, 0, 0, 0),
 ]
