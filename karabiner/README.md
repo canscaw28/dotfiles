@@ -333,7 +333,7 @@ n  m  ,  .  /       ← monitor 2 (fallback: 1)
 | ⇪ + R + 6…0 | Switch to workspace 6, 7, 8, 9, or 0 |
 | ⇪ + R + Y…P | Switch to workspace y, u, i, o, or p |
 | ⇪ + R + H…; | Switch to workspace h, j, k, l, or ; |
-| ⇪ + R + N…/ | Switch to workspace n, m, comma, period, or slash |
+| ⇪ + R + N…/ | Switch to workspace n, m, comma, ., or / |
 
 ### Move Mode (⇪ + W + R)
 
