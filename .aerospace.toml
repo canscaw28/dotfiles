@@ -241,6 +241,28 @@ ctrl-alt-shift-comma = 'exec-and-forget ~/.local/bin/ws.sh swap comma'
 ctrl-alt-shift-period = 'exec-and-forget ~/.local/bin/ws.sh swap .'
 ctrl-alt-shift-slash = 'exec-and-forget ~/.local/bin/ws.sh swap /'
 
+# R layer + Q + E: swap workspaces and follow (cmd-ctrl-alt-shift)
+cmd-ctrl-alt-shift-6 = 'exec-and-forget ~/.local/bin/ws.sh swap-follow 6'
+cmd-ctrl-alt-shift-7 = 'exec-and-forget ~/.local/bin/ws.sh swap-follow 7'
+cmd-ctrl-alt-shift-8 = 'exec-and-forget ~/.local/bin/ws.sh swap-follow 8'
+cmd-ctrl-alt-shift-9 = 'exec-and-forget ~/.local/bin/ws.sh swap-follow 9'
+cmd-ctrl-alt-shift-0 = 'exec-and-forget ~/.local/bin/ws.sh swap-follow 0'
+cmd-ctrl-alt-shift-y = 'exec-and-forget ~/.local/bin/ws.sh swap-follow y'
+cmd-ctrl-alt-shift-u = 'exec-and-forget ~/.local/bin/ws.sh swap-follow u'
+cmd-ctrl-alt-shift-i = 'exec-and-forget ~/.local/bin/ws.sh swap-follow i'
+cmd-ctrl-alt-shift-o = 'exec-and-forget ~/.local/bin/ws.sh swap-follow o'
+cmd-ctrl-alt-shift-p = 'exec-and-forget ~/.local/bin/ws.sh swap-follow p'
+cmd-ctrl-alt-shift-h = 'exec-and-forget ~/.local/bin/ws.sh swap-follow h'
+cmd-ctrl-alt-shift-j = 'exec-and-forget ~/.local/bin/ws.sh swap-follow j'
+cmd-ctrl-alt-shift-k = 'exec-and-forget ~/.local/bin/ws.sh swap-follow k'
+cmd-ctrl-alt-shift-l = 'exec-and-forget ~/.local/bin/ws.sh swap-follow l'
+cmd-ctrl-alt-shift-semicolon = 'exec-and-forget ~/.local/bin/ws.sh swap-follow ";"'
+cmd-ctrl-alt-shift-n = 'exec-and-forget ~/.local/bin/ws.sh swap-follow n'
+cmd-ctrl-alt-shift-m = 'exec-and-forget ~/.local/bin/ws.sh swap-follow m'
+cmd-ctrl-alt-shift-comma = 'exec-and-forget ~/.local/bin/ws.sh swap-follow comma'
+cmd-ctrl-alt-shift-period = 'exec-and-forget ~/.local/bin/ws.sh swap-follow .'
+cmd-ctrl-alt-shift-slash = 'exec-and-forget ~/.local/bin/ws.sh swap-follow /'
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]

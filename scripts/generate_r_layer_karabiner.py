@@ -40,6 +40,8 @@ WORKSPACE_KEYS = [
 OPERATIONS = [
     # R+W+E: move window + follow on current display → cmd+ctrl+shift (most specific first)
     ("move-focus", ["command", "control", "shift"], 1, 1, 1, 0),
+    # R+Q+E: swap workspaces, follow to other monitor → cmd+ctrl+alt+shift
+    ("swap-follow", ["command", "control", "option", "shift"], 1, 1, 0, 1),
     # R+W: move window to workspace → cmd+shift
     ("move", ["command", "shift"], 1, 0, 1, 0),
     # R+Q: swap workspaces, stay on current monitor → ctrl+alt+shift
