@@ -9,7 +9,7 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = ['workspace h', 'workspace 6']
 
 # Start AeroSpace at login
 start-at-login = true
@@ -131,6 +131,72 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 cmd-ctrl-alt-semicolon = 'mode service'
 
+# R layer: switch to workspace (ctrl-shift)
+ctrl-shift-6 = 'workspace 6'
+ctrl-shift-7 = 'workspace 7'
+ctrl-shift-8 = 'workspace 8'
+ctrl-shift-9 = 'workspace 9'
+ctrl-shift-0 = 'workspace 0'
+ctrl-shift-y = 'workspace y'
+ctrl-shift-u = 'workspace u'
+ctrl-shift-i = 'workspace i'
+ctrl-shift-o = 'workspace o'
+ctrl-shift-p = 'workspace p'
+ctrl-shift-h = 'workspace h'
+ctrl-shift-j = 'workspace j'
+ctrl-shift-k = 'workspace k'
+ctrl-shift-l = 'workspace l'
+ctrl-shift-semicolon = 'workspace semicolon'
+ctrl-shift-n = 'workspace n'
+ctrl-shift-m = 'workspace m'
+ctrl-shift-comma = 'workspace comma'
+ctrl-shift-period = 'workspace period'
+ctrl-shift-slash = 'workspace slash'
+
+# R layer + W: move window to workspace (cmd-ctrl-shift)
+cmd-ctrl-shift-6 = 'move-node-to-workspace 6'
+cmd-ctrl-shift-7 = 'move-node-to-workspace 7'
+cmd-ctrl-shift-8 = 'move-node-to-workspace 8'
+cmd-ctrl-shift-9 = 'move-node-to-workspace 9'
+cmd-ctrl-shift-0 = 'move-node-to-workspace 0'
+cmd-ctrl-shift-y = 'move-node-to-workspace y'
+cmd-ctrl-shift-u = 'move-node-to-workspace u'
+cmd-ctrl-shift-i = 'move-node-to-workspace i'
+cmd-ctrl-shift-o = 'move-node-to-workspace o'
+cmd-ctrl-shift-p = 'move-node-to-workspace p'
+cmd-ctrl-shift-h = 'move-node-to-workspace h'
+cmd-ctrl-shift-j = 'move-node-to-workspace j'
+cmd-ctrl-shift-k = 'move-node-to-workspace k'
+cmd-ctrl-shift-l = 'move-node-to-workspace l'
+cmd-ctrl-shift-semicolon = 'move-node-to-workspace semicolon'
+cmd-ctrl-shift-n = 'move-node-to-workspace n'
+cmd-ctrl-shift-m = 'move-node-to-workspace m'
+cmd-ctrl-shift-comma = 'move-node-to-workspace comma'
+cmd-ctrl-shift-period = 'move-node-to-workspace period'
+cmd-ctrl-shift-slash = 'move-node-to-workspace slash'
+
+# R layer + E: move window to workspace and follow (ctrl-alt-shift)
+ctrl-alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
+ctrl-alt-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
+ctrl-alt-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
+ctrl-alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
+ctrl-alt-shift-0 = ['move-node-to-workspace 0', 'workspace 0']
+ctrl-alt-shift-y = ['move-node-to-workspace y', 'workspace y']
+ctrl-alt-shift-u = ['move-node-to-workspace u', 'workspace u']
+ctrl-alt-shift-i = ['move-node-to-workspace i', 'workspace i']
+ctrl-alt-shift-o = ['move-node-to-workspace o', 'workspace o']
+ctrl-alt-shift-p = ['move-node-to-workspace p', 'workspace p']
+ctrl-alt-shift-h = ['move-node-to-workspace h', 'workspace h']
+ctrl-alt-shift-j = ['move-node-to-workspace j', 'workspace j']
+ctrl-alt-shift-k = ['move-node-to-workspace k', 'workspace k']
+ctrl-alt-shift-l = ['move-node-to-workspace l', 'workspace l']
+ctrl-alt-shift-semicolon = ['move-node-to-workspace semicolon', 'workspace semicolon']
+ctrl-alt-shift-n = ['move-node-to-workspace n', 'workspace n']
+ctrl-alt-shift-m = ['move-node-to-workspace m', 'workspace m']
+ctrl-alt-shift-comma = ['move-node-to-workspace comma', 'workspace comma']
+ctrl-alt-shift-period = ['move-node-to-workspace period', 'workspace period']
+ctrl-alt-shift-slash = ['move-node-to-workspace slash', 'workspace slash']
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
@@ -138,34 +204,11 @@ esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-1 = ['workspace 1', 'mode main']
-2 = ['workspace 2', 'mode main']
-3 = ['workspace 3', 'mode main']
-4 = ['workspace 4', 'mode main']
-5 = ['workspace 5', 'mode main']
-6 = ['workspace 6', 'mode main']
-7 = ['workspace 7', 'mode main']
-8 = ['workspace 8', 'mode main']
-9 = ['workspace 9', 'mode main']
-0 = ['workspace 10', 'mode main']
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-shift-1 = ['move-node-to-workspace 1', 'mode main']
-shift-2 = ['move-node-to-workspace 2', 'mode main']
-shift-3 = ['move-node-to-workspace 3', 'mode main']
-shift-4 = ['move-node-to-workspace 4', 'mode main']
-shift-5 = ['move-node-to-workspace 5', 'mode main']
-shift-6 = ['move-node-to-workspace 6', 'mode main']
-shift-7 = ['move-node-to-workspace 7', 'mode main']
-shift-8 = ['move-node-to-workspace 8', 'mode main']
-shift-9 = ['move-node-to-workspace 9', 'mode main']
-shift-0 = ['move-node-to-workspace 10', 'mode main']
-
 q = 'mode main'
 w = 'mode main'
 e = 'mode main'
-# r = 'mode main't = 'mode main'
+# r = 'mode main'
+t = 'mode main'
 y = 'mode main'
 u = 'mode main'
 i = 'mode main'
@@ -197,13 +240,23 @@ slash = 'mode main'
 #s = ['layout sticky tiling', 'mode main']
 
 [workspace-to-monitor-force-assignment]
-1 = [1]
-2 = [1]
-3 = [1]
-4 = [1]
-5 = [1]
-6 = [2,1]
-7 = [2,1]
-8 = [2,1]
-9 = [3,2,1]
-10 = [3,2,1]
+6 = [1]
+7 = [1]
+8 = [1]
+9 = [1]
+0 = [1]
+y = [1]
+u = [1]
+i = [1]
+o = [1]
+p = [1]
+h = [2, 1]
+j = [2, 1]
+k = [2, 1]
+l = [2, 1]
+semicolon = [2, 1]
+n = [2, 1]
+m = [2, 1]
+comma = [2, 1]
+period = [2, 1]
+slash = [2, 1]
