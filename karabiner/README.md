@@ -320,10 +320,10 @@ Because the right hand layout never changes, you only learn it once. Switching l
 20 workspaces mapped to a right-hand grid:
 
 ```
-6  7  8  9  0       ← monitor 1
-y  u  i  o  p       ← monitor 1
-h  j  k  l  ;       ← monitor 2 (fallback: 1)
-n  m  ,  .  /       ← monitor 2 (fallback: 1)
+6  7  8 | 9  0
+y  u  i | o  p       monitor 1 ← left
+h  j  k | l  ;       monitor 2 → right (fallback: 1)
+n  m  , | .  /
 ```
 
 ### Switch (⇪ + R)
