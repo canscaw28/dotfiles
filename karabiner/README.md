@@ -31,9 +31,7 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    | Aerospace (T) | *(none)* | Focus | Focus windows directionally |
    | Aerospace (T) | R (ring) | Move | Move windows directionally |
    | Aerospace (T) | R+E (ring+middle) | Join | Join windows directionally |
-   | Workspace (R) | *(none)* | Switch | Switch to workspace |
-   | Workspace (R) | E (middle) | Move | Move window to workspace |
-   | Workspace (R) | E+W (middle+ring) | Follow | Move window + follow to workspace |
+   | Workspace (R) | *(none)* | Focus 1 | Focus workspace on display 1 |
 
    Notice that S and D are not separate layers — they are **modes of the Default layer**. The pointer finger is absent (no layer key held), so the middle and ring fingers are free to select a mode on the home row. Similarly, F is not a mode of Chrome — it's a mode key for the G layer, pressed by the middle finger while the pointer holds G.
 
@@ -41,7 +39,7 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    - **Default layer** (pointer absent): modes use home-row neighbors **S**, **D**
    - **G layer** (pointer on G): modes use **F**, and potentially **D**, **V**, **B**
    - **T layer** (pointer on T): modes could use **R**, **E**, **W**, or **D**, **S**, **3**, **4**
-   - **R layer** (pointer on R): modes use **E**, **W**
+   - **R layer** (pointer on R): modes use **E**, **W**, **Q**
 
    This means learning a new layer doesn't require memorizing arbitrary modifier keys — the mode keys are always "the fingers next to the layer key."
 
@@ -97,12 +95,10 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | Aerospace | ⇪ + T | — | Focus | Window focus management |
 | | ⇪ + T | R | Move | Move windows directionally |
 | | ⇪ + T | R+E | Join | Join windows directionally |
-| Workspace | ⇪ + R | — | Switch | Switch to workspace |
-| | ⇪ + R | E | Move | Move window to workspace |
-| | ⇪ + R | E+W | Follow | Move window + follow to workspace |
+| Workspace | ⇪ + R | — | Focus 1 | Focus workspace on display 1 |
 | *(unassigned)* | ⇪ + A | | | |
 
-*Available layer keys: Q, W, E, Z, X, C, V, B*
+*Available layer keys: Z, X, C, V, B*
 
 ## Misc Shortcuts
 
@@ -317,35 +313,20 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ## Workspace Layer (⇪ + R)
 
-20 workspaces mapped to a right-hand grid:
+20 workspaces mapped to a right-hand grid (workspaces float freely between displays):
 
 ```
-6  7  8 | 9  0
-y  u  i | o  p       monitor 1 ← left
-h  j  k | l  ;       monitor 2 → right (fallback: 1)
-n  m  , | .  /
+6  7  8  9  0
+y  u  i  o  p
+h  j  k  l  ;
+n  m  ,  .  /
 ```
 
-### Switch (⇪ + R)
+### Focus Display 1 (⇪ + R)
 
 | Key / Shortcut | Description |
 | --- | --- |
-| ⇪ + R + 6…0 | Switch to workspace 6, 7, 8, 9, or 0 |
-| ⇪ + R + Y…P | Switch to workspace y, u, i, o, or p |
-| ⇪ + R + H…; | Switch to workspace h, j, k, l, or ; |
-| ⇪ + R + N…/ | Switch to workspace n, m, comma, ., or / |
-
-### Move Mode (⇪ + E + R)
-
-| Key / Shortcut | Description |
-| --- | --- |
-| ⇪ + E + R + *key* | Move focused window to workspace (stay on current) |
-
-### Follow Mode (⇪ + E + W + R)
-
-| Key / Shortcut | Description |
-| --- | --- |
-| ⇪ + E + W + R + *key* | Move focused window to workspace and follow |
+| ⇪ + R + *key* | Switch to workspace and move it to display 1 |
 
 ---
 

@@ -131,71 +131,27 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 cmd-ctrl-alt-semicolon = 'mode service'
 
-# R layer: switch to workspace (ctrl-shift)
-ctrl-shift-6 = 'workspace 6'
-ctrl-shift-7 = 'workspace 7'
-ctrl-shift-8 = 'workspace 8'
-ctrl-shift-9 = 'workspace 9'
-ctrl-shift-0 = 'workspace 0'
-ctrl-shift-y = 'workspace y'
-ctrl-shift-u = 'workspace u'
-ctrl-shift-i = 'workspace i'
-ctrl-shift-o = 'workspace o'
-ctrl-shift-p = 'workspace p'
-ctrl-shift-h = 'workspace h'
-ctrl-shift-j = 'workspace j'
-ctrl-shift-k = 'workspace k'
-ctrl-shift-l = 'workspace l'
-ctrl-shift-semicolon = 'workspace ;'
-ctrl-shift-n = 'workspace n'
-ctrl-shift-m = 'workspace m'
-ctrl-shift-comma = 'workspace comma'
-ctrl-shift-period = 'workspace .'
-ctrl-shift-slash = 'workspace /'
-
-# R layer + W: move window to workspace (cmd-ctrl-shift)
-cmd-ctrl-shift-6 = 'move-node-to-workspace 6'
-cmd-ctrl-shift-7 = 'move-node-to-workspace 7'
-cmd-ctrl-shift-8 = 'move-node-to-workspace 8'
-cmd-ctrl-shift-9 = 'move-node-to-workspace 9'
-cmd-ctrl-shift-0 = 'move-node-to-workspace 0'
-cmd-ctrl-shift-y = 'move-node-to-workspace y'
-cmd-ctrl-shift-u = 'move-node-to-workspace u'
-cmd-ctrl-shift-i = 'move-node-to-workspace i'
-cmd-ctrl-shift-o = 'move-node-to-workspace o'
-cmd-ctrl-shift-p = 'move-node-to-workspace p'
-cmd-ctrl-shift-h = 'move-node-to-workspace h'
-cmd-ctrl-shift-j = 'move-node-to-workspace j'
-cmd-ctrl-shift-k = 'move-node-to-workspace k'
-cmd-ctrl-shift-l = 'move-node-to-workspace l'
-cmd-ctrl-shift-semicolon = 'move-node-to-workspace ;'
-cmd-ctrl-shift-n = 'move-node-to-workspace n'
-cmd-ctrl-shift-m = 'move-node-to-workspace m'
-cmd-ctrl-shift-comma = 'move-node-to-workspace comma'
-cmd-ctrl-shift-period = 'move-node-to-workspace .'
-cmd-ctrl-shift-slash = 'move-node-to-workspace /'
-
-# R layer + E: move window to workspace and follow (ctrl-alt-shift)
-ctrl-alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
-ctrl-alt-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
-ctrl-alt-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
-ctrl-alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
-ctrl-alt-shift-0 = ['move-node-to-workspace 0', 'workspace 0']
-ctrl-alt-shift-y = ['move-node-to-workspace y', 'workspace y']
-ctrl-alt-shift-u = ['move-node-to-workspace u', 'workspace u']
-ctrl-alt-shift-i = ['move-node-to-workspace i', 'workspace i']
-ctrl-alt-shift-o = ['move-node-to-workspace o', 'workspace o']
-ctrl-alt-shift-p = ['move-node-to-workspace p', 'workspace p']
-ctrl-alt-shift-h = ['move-node-to-workspace h', 'workspace h']
-ctrl-alt-shift-j = ['move-node-to-workspace j', 'workspace j']
-ctrl-alt-shift-k = ['move-node-to-workspace k', 'workspace k']
-ctrl-alt-shift-l = ['move-node-to-workspace l', 'workspace l']
-ctrl-alt-shift-semicolon = ['move-node-to-workspace ;', 'workspace ;']
-ctrl-alt-shift-n = ['move-node-to-workspace n', 'workspace n']
-ctrl-alt-shift-m = ['move-node-to-workspace m', 'workspace m']
-ctrl-alt-shift-comma = ['move-node-to-workspace comma', 'workspace comma']
-ctrl-alt-shift-period = ['move-node-to-workspace .', 'workspace .']
-ctrl-alt-shift-slash = ['move-node-to-workspace /', 'workspace /']
+# R layer: focus workspace on display 1 (ctrl-shift)
+ctrl-shift-6 = 'exec-and-forget ~/.local/bin/ws.sh focus-1 6'
+ctrl-shift-7 = 'exec-and-forget ~/.local/bin/ws.sh focus-1 7'
+ctrl-shift-8 = 'exec-and-forget ~/.local/bin/ws.sh focus-1 8'
+ctrl-shift-9 = 'exec-and-forget ~/.local/bin/ws.sh focus-1 9'
+ctrl-shift-0 = 'exec-and-forget ~/.local/bin/ws.sh focus-1 0'
+ctrl-shift-y = 'exec-and-forget ~/.local/bin/ws.sh focus-1 y'
+ctrl-shift-u = 'exec-and-forget ~/.local/bin/ws.sh focus-1 u'
+ctrl-shift-i = 'exec-and-forget ~/.local/bin/ws.sh focus-1 i'
+ctrl-shift-o = 'exec-and-forget ~/.local/bin/ws.sh focus-1 o'
+ctrl-shift-p = 'exec-and-forget ~/.local/bin/ws.sh focus-1 p'
+ctrl-shift-h = 'exec-and-forget ~/.local/bin/ws.sh focus-1 h'
+ctrl-shift-j = 'exec-and-forget ~/.local/bin/ws.sh focus-1 j'
+ctrl-shift-k = 'exec-and-forget ~/.local/bin/ws.sh focus-1 k'
+ctrl-shift-l = 'exec-and-forget ~/.local/bin/ws.sh focus-1 l'
+ctrl-shift-semicolon = 'exec-and-forget ~/.local/bin/ws.sh focus-1 ";"'
+ctrl-shift-n = 'exec-and-forget ~/.local/bin/ws.sh focus-1 n'
+ctrl-shift-m = 'exec-and-forget ~/.local/bin/ws.sh focus-1 m'
+ctrl-shift-comma = 'exec-and-forget ~/.local/bin/ws.sh focus-1 comma'
+ctrl-shift-period = 'exec-and-forget ~/.local/bin/ws.sh focus-1 .'
+ctrl-shift-slash = 'exec-and-forget ~/.local/bin/ws.sh focus-1 /'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -239,24 +195,3 @@ slash = 'mode main'
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 #s = ['layout sticky tiling', 'mode main']
 
-[workspace-to-monitor-force-assignment]
-6 = [1]
-7 = [1]
-8 = [1]
-y = [1]
-u = [1]
-i = [1]
-h = [1]
-j = [1]
-k = [1]
-n = [1]
-m = [1]
-comma = [1]
-9 = [2, 1]
-0 = [2, 1]
-o = [2, 1]
-p = [2, 1]
-l = [2, 1]
-";" = [2, 1]
-"." = [2, 1]
-"/" = [2, 1]
