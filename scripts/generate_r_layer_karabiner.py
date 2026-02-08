@@ -43,10 +43,10 @@ WORKSPACE_KEYS = [
 # Operations: (name, modifiers_list, conditions for r/e/w)
 # Each tuple: (description, karabiner_modifiers, r_val, e_val, w_val)
 OPERATIONS = [
-    # R+E: move + follow → ctrl+alt+shift (most specific first)
-    ("move+follow", ["control", "option", "shift"], 1, 1, 0),
-    # R+W: move window → cmd+ctrl+shift
-    ("move", ["command", "control", "shift"], 1, 0, 1),
+    # R+E+W: move + follow → ctrl+alt+shift (most specific first)
+    ("move+follow", ["control", "option", "shift"], 1, 1, 1),
+    # R+E: move window (stay) → cmd+ctrl+shift
+    ("move", ["command", "control", "shift"], 1, 1, 0),
     # R only: switch workspace → ctrl+shift
     ("switch", ["control", "shift"], 1, 0, 0),
 ]
@@ -61,8 +61,10 @@ GUARD_RIGHT_KEYS = [
     "backslash",
 ]
 
-# Left-hand keys that aren't mode keys (r, e, w) and need guards
+# Left-hand keys that aren't mode keys (r, e) and need guards
+# W is guarded because it only activates as a sub-mode of R+E
 GUARD_LEFT_KEYS = [
+    "w",
     "q",
     "a",
     "s",
@@ -132,11 +134,12 @@ def make_guard_manipulator(key_code):
 
 
 def make_r_w_setter():
-    """R+W mode setter: when r_is_held=1, pressing w sets w_is_held=1."""
+    """R+E+W mode setter: when r+e held, pressing w sets w_is_held=1."""
     return {
         "conditions": [
             make_condition("caps_lock_is_held", 1),
             make_condition("r_is_held", 1),
+            make_condition("e_is_held", 1),
         ],
         "from": {
             "key_code": "w",

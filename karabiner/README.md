@@ -32,8 +32,8 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    | Aerospace (T) | R (ring) | Move | Move windows directionally |
    | Aerospace (T) | R+E (ring+middle) | Join | Join windows directionally |
    | Workspace (R) | *(none)* | Switch | Switch to workspace |
-   | Workspace (R) | W (ring) | Move | Move window to workspace |
-   | Workspace (R) | E (middle) | Follow | Move window + follow to workspace |
+   | Workspace (R) | E (middle) | Move | Move window to workspace |
+   | Workspace (R) | E+W (middle+ring) | Follow | Move window + follow to workspace |
 
    Notice that S and D are not separate layers — they are **modes of the Default layer**. The pointer finger is absent (no layer key held), so the middle and ring fingers are free to select a mode on the home row. Similarly, F is not a mode of Chrome — it's a mode key for the G layer, pressed by the middle finger while the pointer holds G.
 
@@ -98,8 +98,8 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | | ⇪ + T | R | Move | Move windows directionally |
 | | ⇪ + T | R+E | Join | Join windows directionally |
 | Workspace | ⇪ + R | — | Switch | Switch to workspace |
-| | ⇪ + R | W | Move | Move window to workspace |
-| | ⇪ + R | E | Follow | Move window + follow to workspace |
+| | ⇪ + R | E | Move | Move window to workspace |
+| | ⇪ + R | E+W | Follow | Move window + follow to workspace |
 | *(unassigned)* | ⇪ + A | | | |
 
 *Available layer keys: Q, W, E, Z, X, C, V, B*
@@ -335,17 +335,17 @@ n  m  , | .  /
 | ⇪ + R + H…; | Switch to workspace h, j, k, l, or ; |
 | ⇪ + R + N…/ | Switch to workspace n, m, comma, ., or / |
 
-### Move Mode (⇪ + W + R)
+### Move Mode (⇪ + E + R)
 
 | Key / Shortcut | Description |
 | --- | --- |
-| ⇪ + W + R + *key* | Move focused window to workspace (stay on current) |
+| ⇪ + E + R + *key* | Move focused window to workspace (stay on current) |
 
-### Follow Mode (⇪ + E + R)
+### Follow Mode (⇪ + E + W + R)
 
 | Key / Shortcut | Description |
 | --- | --- |
-| ⇪ + E + R + *key* | Move focused window to workspace and follow |
+| ⇪ + E + W + R + *key* | Move focused window to workspace and follow |
 
 ---
 
