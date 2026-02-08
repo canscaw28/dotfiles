@@ -42,6 +42,8 @@ OPERATIONS = [
     ("move-focus", ["command", "control", "shift"], 1, 1, 1, 0),
     # R+W: move window to workspace → cmd+shift
     ("move", ["command", "shift"], 1, 0, 1, 0),
+    # R+Q: swap workspaces, stay on current monitor → ctrl+alt+shift
+    ("swap", ["control", "option", "shift"], 1, 0, 0, 1),
     # R+E: focus display 2 → alt+shift
     ("focus-2", ["option", "shift"], 1, 1, 0, 0),
     # R only: focus display 1 → ctrl+shift
@@ -128,6 +130,23 @@ def make_guard_manipulator(key_code):
     }
 
 
+def make_r_q_setter():
+    """R+Q mode setter: when r_is_held=1, pressing q sets q_is_held=1."""
+    return {
+        "conditions": [
+            make_condition("caps_lock_is_held", 1),
+            make_condition("r_is_held", 1),
+        ],
+        "from": {
+            "key_code": "q",
+            "modifiers": {"optional": ["any"]},
+        },
+        "to": [{"set_variable": {"name": "q_is_held", "value": 1}}],
+        "to_after_key_up": [{"set_variable": {"name": "q_is_held", "value": 0}}],
+        "type": "basic",
+    }
+
+
 def make_r_w_setter():
     """R+W mode setter: when r_is_held=1, pressing w sets w_is_held=1."""
     return {
@@ -180,6 +199,7 @@ def make_r_layer_setter():
 
 def generate():
     result = {
+        "r_q_setter": make_r_q_setter(),
         "r_w_setter": make_r_w_setter(),
         "r_e_setter": make_r_e_setter(),
         "r_layer_setter": make_r_layer_setter(),

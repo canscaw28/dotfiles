@@ -36,6 +36,25 @@ case "$OP" in
         aerospace workspace "$WS"
         aerospace move-workspace-to-monitor --workspace "$WS" "$CURRENT_MONITOR"
         ;;
+    swap)
+        # Swap current workspace with target workspace between monitors.
+        # After swap, stay on current monitor (target workspace appears here).
+        CURRENT_WS=$(aerospace list-workspaces --focused)
+        CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+
+        # Find which monitor the target workspace is on (empty if not visible)
+        TARGET_MONITOR=$(aerospace list-monitors --workspace "$WS" --format '%{monitor-id}' 2>/dev/null || true)
+
+        if [ -n "$TARGET_MONITOR" ] && [ "$TARGET_MONITOR" != "$CURRENT_MONITOR" ]; then
+            # Target is visible on another monitor — perform a true swap
+            aerospace move-workspace-to-monitor --workspace "$WS" "$CURRENT_MONITOR"
+            aerospace move-workspace-to-monitor --workspace "$CURRENT_WS" "$TARGET_MONITOR"
+            aerospace workspace "$WS"
+        else
+            # Target not visible or on same monitor — just switch to it
+            aerospace workspace "$WS"
+        fi
+        ;;
     *)
         echo "ws.sh: unknown operation '$OP'" >&2
         exit 1

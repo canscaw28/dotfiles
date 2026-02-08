@@ -219,6 +219,28 @@ cmd-ctrl-shift-comma = 'exec-and-forget ~/.local/bin/ws.sh move-focus comma'
 cmd-ctrl-shift-period = 'exec-and-forget ~/.local/bin/ws.sh move-focus .'
 cmd-ctrl-shift-slash = 'exec-and-forget ~/.local/bin/ws.sh move-focus /'
 
+# R layer + Q: swap workspaces between monitors, stay (ctrl-alt-shift)
+ctrl-alt-shift-6 = 'exec-and-forget ~/.local/bin/ws.sh swap 6'
+ctrl-alt-shift-7 = 'exec-and-forget ~/.local/bin/ws.sh swap 7'
+ctrl-alt-shift-8 = 'exec-and-forget ~/.local/bin/ws.sh swap 8'
+ctrl-alt-shift-9 = 'exec-and-forget ~/.local/bin/ws.sh swap 9'
+ctrl-alt-shift-0 = 'exec-and-forget ~/.local/bin/ws.sh swap 0'
+ctrl-alt-shift-y = 'exec-and-forget ~/.local/bin/ws.sh swap y'
+ctrl-alt-shift-u = 'exec-and-forget ~/.local/bin/ws.sh swap u'
+ctrl-alt-shift-i = 'exec-and-forget ~/.local/bin/ws.sh swap i'
+ctrl-alt-shift-o = 'exec-and-forget ~/.local/bin/ws.sh swap o'
+ctrl-alt-shift-p = 'exec-and-forget ~/.local/bin/ws.sh swap p'
+ctrl-alt-shift-h = 'exec-and-forget ~/.local/bin/ws.sh swap h'
+ctrl-alt-shift-j = 'exec-and-forget ~/.local/bin/ws.sh swap j'
+ctrl-alt-shift-k = 'exec-and-forget ~/.local/bin/ws.sh swap k'
+ctrl-alt-shift-l = 'exec-and-forget ~/.local/bin/ws.sh swap l'
+ctrl-alt-shift-semicolon = 'exec-and-forget ~/.local/bin/ws.sh swap ";"'
+ctrl-alt-shift-n = 'exec-and-forget ~/.local/bin/ws.sh swap n'
+ctrl-alt-shift-m = 'exec-and-forget ~/.local/bin/ws.sh swap m'
+ctrl-alt-shift-comma = 'exec-and-forget ~/.local/bin/ws.sh swap comma'
+ctrl-alt-shift-period = 'exec-and-forget ~/.local/bin/ws.sh swap .'
+ctrl-alt-shift-slash = 'exec-and-forget ~/.local/bin/ws.sh swap /'
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
