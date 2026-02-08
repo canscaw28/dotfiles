@@ -25,6 +25,9 @@ case "$OP" in
         aerospace workspace "$WS"
         aerospace move-workspace-to-monitor --workspace "$WS" 2
         ;;
+    move)
+        aerospace move-node-to-workspace "$WS"
+        ;;
     *)
         echo "ws.sh: unknown operation '$OP'" >&2
         exit 1

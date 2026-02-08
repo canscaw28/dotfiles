@@ -175,6 +175,28 @@ alt-shift-comma = 'exec-and-forget ~/.local/bin/ws.sh focus-2 comma'
 alt-shift-period = 'exec-and-forget ~/.local/bin/ws.sh focus-2 .'
 alt-shift-slash = 'exec-and-forget ~/.local/bin/ws.sh focus-2 /'
 
+# R layer + W: move window to workspace (cmd-shift)
+cmd-shift-6 = 'exec-and-forget ~/.local/bin/ws.sh move 6'
+cmd-shift-7 = 'exec-and-forget ~/.local/bin/ws.sh move 7'
+cmd-shift-8 = 'exec-and-forget ~/.local/bin/ws.sh move 8'
+cmd-shift-9 = 'exec-and-forget ~/.local/bin/ws.sh move 9'
+cmd-shift-0 = 'exec-and-forget ~/.local/bin/ws.sh move 0'
+cmd-shift-y = 'exec-and-forget ~/.local/bin/ws.sh move y'
+cmd-shift-u = 'exec-and-forget ~/.local/bin/ws.sh move u'
+cmd-shift-i = 'exec-and-forget ~/.local/bin/ws.sh move i'
+cmd-shift-o = 'exec-and-forget ~/.local/bin/ws.sh move o'
+cmd-shift-p = 'exec-and-forget ~/.local/bin/ws.sh move p'
+cmd-shift-h = 'exec-and-forget ~/.local/bin/ws.sh move h'
+cmd-shift-j = 'exec-and-forget ~/.local/bin/ws.sh move j'
+cmd-shift-k = 'exec-and-forget ~/.local/bin/ws.sh move k'
+cmd-shift-l = 'exec-and-forget ~/.local/bin/ws.sh move l'
+cmd-shift-semicolon = 'exec-and-forget ~/.local/bin/ws.sh move ";"'
+cmd-shift-n = 'exec-and-forget ~/.local/bin/ws.sh move n'
+cmd-shift-m = 'exec-and-forget ~/.local/bin/ws.sh move m'
+cmd-shift-comma = 'exec-and-forget ~/.local/bin/ws.sh move comma'
+cmd-shift-period = 'exec-and-forget ~/.local/bin/ws.sh move .'
+cmd-shift-slash = 'exec-and-forget ~/.local/bin/ws.sh move /'
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]

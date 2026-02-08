@@ -38,7 +38,9 @@ WORKSPACE_KEYS = [
 # Operations: (name, karabiner_modifiers, r_val, e_val, w_val, q_val)
 # Most specific (most positive conditions) first for Karabiner priority
 OPERATIONS = [
-    # R+E: focus display 2 → alt+shift (most specific first)
+    # R+W: move window to workspace → cmd+shift (most specific first)
+    ("move", ["command", "shift"], 1, 0, 1, 0),
+    # R+E: focus display 2 → alt+shift
     ("focus-2", ["option", "shift"], 1, 1, 0, 0),
     # R only: focus display 1 → ctrl+shift
     ("focus-1", ["control", "shift"], 1, 0, 0, 0),
@@ -124,6 +126,23 @@ def make_guard_manipulator(key_code):
     }
 
 
+def make_r_w_setter():
+    """R+W mode setter: when r_is_held=1, pressing w sets w_is_held=1."""
+    return {
+        "conditions": [
+            make_condition("caps_lock_is_held", 1),
+            make_condition("r_is_held", 1),
+        ],
+        "from": {
+            "key_code": "w",
+            "modifiers": {"optional": ["any"]},
+        },
+        "to": [{"set_variable": {"name": "w_is_held", "value": 1}}],
+        "to_after_key_up": [{"set_variable": {"name": "w_is_held", "value": 0}}],
+        "type": "basic",
+    }
+
+
 def make_r_e_setter():
     """R+E mode setter: when r_is_held=1, pressing e sets e_is_held=1."""
     return {
@@ -159,6 +178,7 @@ def make_r_layer_setter():
 
 def generate():
     result = {
+        "r_w_setter": make_r_w_setter(),
         "r_e_setter": make_r_e_setter(),
         "r_layer_setter": make_r_layer_setter(),
         "actions": [],
