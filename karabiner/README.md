@@ -35,8 +35,8 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    | Workspace (R) | E (middle) | Focus 2 | Focus workspace on display 2 |
    | Workspace (R) | W (ring) | Move | Move window to workspace (stay) |
    | Workspace (R) | W+E (ring+middle) | Follow | Move window + follow on current display |
-   | Workspace (R) | Q (pinky) | Swap | Swap workspaces between monitors (stay) |
-   | Workspace (R) | Q+E (pinky+middle) | Swap+Follow | Swap workspaces, follow to other monitor |
+   | Workspace (R) | Q (pinky) | Swap | Swap current and selected workspaces between monitors |
+   | Workspace (R) | Q+E (pinky+middle) | Swap+Focus | Swap workspaces, then focus the selected workspace |
 
    Notice that S and D are not separate layers — they are **modes of the Default layer**. The pointer finger is absent (no layer key held), so the middle and ring fingers are free to select a mode on the home row. Similarly, F is not a mode of Chrome — it's a mode key for the G layer, pressed by the middle finger while the pointer holds G.
 
@@ -104,8 +104,8 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | | ⇪ + R | E | Focus 2 | Focus workspace on display 2 |
 | | ⇪ + R | W | Move | Move window to workspace (stay) |
 | | ⇪ + R | W+E | Follow | Move window + follow on current display |
-| | ⇪ + R | Q | Swap | Swap workspaces between monitors (stay) |
-| | ⇪ + R | Q+E | Swap+Follow | Swap workspaces, follow to other monitor |
+| | ⇪ + R | Q | Swap | Swap current and selected workspaces between monitors |
+| | ⇪ + R | Q+E | Swap+Focus | Swap workspaces, then focus the selected workspace |
 | *(unassigned)* | ⇪ + A | | | |
 
 *Available layer keys: Z, X, C, V, B*
@@ -360,13 +360,13 @@ n  m  ,  .  /
 
 | Key / Shortcut | Description |
 | --- | --- |
-| ⇪ + Q + R + *key* | Swap current workspace with target between monitors (stay on current monitor) |
+| ⇪ + Q + R + *key* | Swap current workspace with selected workspace between monitors |
 
-### Swap + Follow (⇪ + Q + E + R)
+### Swap + Focus (⇪ + Q + E + R)
 
 | Key / Shortcut | Description |
 | --- | --- |
-| ⇪ + Q + E + R + *key* | Swap workspaces between monitors and follow your workspace to other monitor |
+| ⇪ + Q + E + R + *key* | Swap workspaces between monitors, then focus the selected workspace |
 
 ### Window State Preservation
 

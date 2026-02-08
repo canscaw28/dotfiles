@@ -8,8 +8,8 @@
 #   focus-2     Switch to workspace on monitor 2
 #   move        Move focused window to workspace (stay on current)
 #   move-focus  Move focused window to workspace, follow it on current monitor
-#   swap        Swap current workspace with target workspace between monitors (stay)
-#   swap-follow Swap workspaces and follow your workspace to the other monitor
+#   swap        Swap current workspace with selected workspace between monitors
+#   swap-follow Swap workspaces, then focus the selected workspace
 
 set -euo pipefail
 
@@ -37,8 +37,8 @@ case "$OP" in
         aerospace move-workspace-to-monitor --workspace "$WS" "$CURRENT_MONITOR"
         ;;
     swap)
-        # Swap current workspace with target workspace between monitors.
-        # After swap, stay on current monitor (target workspace appears here).
+        # Swap current workspace with selected workspace between monitors.
+        # No explicit focus change — just rearrange monitor assignments.
         CURRENT_WS=$(aerospace list-workspaces --focused)
         CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
 
@@ -46,32 +46,24 @@ case "$OP" in
         TARGET_MONITOR=$(aerospace list-monitors --workspace "$WS" --format '%{monitor-id}' 2>/dev/null || true)
 
         if [ -n "$TARGET_MONITOR" ] && [ "$TARGET_MONITOR" != "$CURRENT_MONITOR" ]; then
-            # Target is visible on another monitor — perform a true swap
+            # Target is on another monitor — swap the two workspaces
             aerospace move-workspace-to-monitor --workspace "$WS" "$CURRENT_MONITOR"
             aerospace move-workspace-to-monitor --workspace "$CURRENT_WS" "$TARGET_MONITOR"
-            aerospace workspace "$WS"
-        else
-            # Target not visible or on same monitor — just switch to it
-            aerospace workspace "$WS"
         fi
         ;;
     swap-follow)
-        # Swap workspaces between monitors, then follow your original workspace
-        # to the other monitor.
+        # Swap workspaces between monitors, then focus the selected workspace.
         CURRENT_WS=$(aerospace list-workspaces --focused)
         CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
 
         TARGET_MONITOR=$(aerospace list-monitors --workspace "$WS" --format '%{monitor-id}' 2>/dev/null || true)
 
         if [ -n "$TARGET_MONITOR" ] && [ "$TARGET_MONITOR" != "$CURRENT_MONITOR" ]; then
-            # Perform swap, then focus original workspace (now on other monitor)
             aerospace move-workspace-to-monitor --workspace "$WS" "$CURRENT_MONITOR"
             aerospace move-workspace-to-monitor --workspace "$CURRENT_WS" "$TARGET_MONITOR"
-            aerospace workspace "$CURRENT_WS"
-        else
-            # Target not visible or on same monitor — switch to target
-            aerospace workspace "$WS"
         fi
+        # Explicitly focus the selected workspace
+        aerospace workspace "$WS"
         ;;
     *)
         echo "ws.sh: unknown operation '$OP'" >&2
