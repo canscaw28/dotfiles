@@ -368,6 +368,10 @@ n  m  ,  .  /
 | --- | --- |
 | ⇪ + Q + E + R + *key* | Swap workspaces between monitors and follow your workspace to other monitor |
 
+### Window State Preservation
+
+Window-to-workspace assignments are automatically saved after every workspace operation. On AeroSpace restart, windows are restored to their previous workspaces by matching on app name and window title.
+
 ---
 
 ## iTerm2-Specific Overrides

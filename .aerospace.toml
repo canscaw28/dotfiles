@@ -9,7 +9,11 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = ['workspace h', 'workspace 6']
+after-startup-command = [
+    'exec-and-forget ~/.local/bin/restore-ws-state.sh',
+    'workspace h',
+    'workspace 6',
+]
 
 # Start AeroSpace at login
 start-at-login = true

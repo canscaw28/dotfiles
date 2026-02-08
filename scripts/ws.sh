@@ -78,3 +78,6 @@ case "$OP" in
         exit 1
         ;;
 esac
+
+# Save window state after every operation (for restore on restart)
+~/.local/bin/save-ws-state.sh &
