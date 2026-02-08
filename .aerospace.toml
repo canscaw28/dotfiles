@@ -146,12 +146,12 @@ ctrl-shift-h = 'workspace h'
 ctrl-shift-j = 'workspace j'
 ctrl-shift-k = 'workspace k'
 ctrl-shift-l = 'workspace l'
-ctrl-shift-semicolon = 'workspace semicolon'
+ctrl-shift-semicolon = 'workspace ;'
 ctrl-shift-n = 'workspace n'
 ctrl-shift-m = 'workspace m'
 ctrl-shift-comma = 'workspace comma'
-ctrl-shift-period = 'workspace period'
-ctrl-shift-slash = 'workspace slash'
+ctrl-shift-period = 'workspace .'
+ctrl-shift-slash = 'workspace /'
 
 # R layer + W: move window to workspace (cmd-ctrl-shift)
 cmd-ctrl-shift-6 = 'move-node-to-workspace 6'
@@ -168,12 +168,12 @@ cmd-ctrl-shift-h = 'move-node-to-workspace h'
 cmd-ctrl-shift-j = 'move-node-to-workspace j'
 cmd-ctrl-shift-k = 'move-node-to-workspace k'
 cmd-ctrl-shift-l = 'move-node-to-workspace l'
-cmd-ctrl-shift-semicolon = 'move-node-to-workspace semicolon'
+cmd-ctrl-shift-semicolon = 'move-node-to-workspace ;'
 cmd-ctrl-shift-n = 'move-node-to-workspace n'
 cmd-ctrl-shift-m = 'move-node-to-workspace m'
 cmd-ctrl-shift-comma = 'move-node-to-workspace comma'
-cmd-ctrl-shift-period = 'move-node-to-workspace period'
-cmd-ctrl-shift-slash = 'move-node-to-workspace slash'
+cmd-ctrl-shift-period = 'move-node-to-workspace .'
+cmd-ctrl-shift-slash = 'move-node-to-workspace /'
 
 # R layer + E: move window to workspace and follow (ctrl-alt-shift)
 ctrl-alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
@@ -190,12 +190,12 @@ ctrl-alt-shift-h = ['move-node-to-workspace h', 'workspace h']
 ctrl-alt-shift-j = ['move-node-to-workspace j', 'workspace j']
 ctrl-alt-shift-k = ['move-node-to-workspace k', 'workspace k']
 ctrl-alt-shift-l = ['move-node-to-workspace l', 'workspace l']
-ctrl-alt-shift-semicolon = ['move-node-to-workspace semicolon', 'workspace semicolon']
+ctrl-alt-shift-semicolon = ['move-node-to-workspace ;', 'workspace ;']
 ctrl-alt-shift-n = ['move-node-to-workspace n', 'workspace n']
 ctrl-alt-shift-m = ['move-node-to-workspace m', 'workspace m']
 ctrl-alt-shift-comma = ['move-node-to-workspace comma', 'workspace comma']
-ctrl-alt-shift-period = ['move-node-to-workspace period', 'workspace period']
-ctrl-alt-shift-slash = ['move-node-to-workspace slash', 'workspace slash']
+ctrl-alt-shift-period = ['move-node-to-workspace .', 'workspace .']
+ctrl-alt-shift-slash = ['move-node-to-workspace /', 'workspace /']
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -254,9 +254,9 @@ h = [2, 1]
 j = [2, 1]
 k = [2, 1]
 l = [2, 1]
-semicolon = [2, 1]
+";" = [2, 1]
 n = [2, 1]
 m = [2, 1]
 comma = [2, 1]
-period = [2, 1]
-slash = [2, 1]
+"." = [2, 1]
+"/" = [2, 1]
