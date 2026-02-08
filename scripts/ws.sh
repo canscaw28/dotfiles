@@ -28,6 +28,14 @@ case "$OP" in
     move)
         aerospace move-node-to-workspace "$WS"
         ;;
+    move-focus)
+        # Save which monitor we're on, move window, switch to workspace,
+        # then bring workspace to the monitor we started on
+        CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+        aerospace move-node-to-workspace "$WS"
+        aerospace workspace "$WS"
+        aerospace move-workspace-to-monitor --workspace "$WS" "$CURRENT_MONITOR"
+        ;;
     *)
         echo "ws.sh: unknown operation '$OP'" >&2
         exit 1

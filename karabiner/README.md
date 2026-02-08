@@ -34,6 +34,7 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    | Workspace (R) | *(none)* | Focus 1 | Focus workspace on display 1 |
    | Workspace (R) | E (middle) | Focus 2 | Focus workspace on display 2 |
    | Workspace (R) | W (ring) | Move | Move window to workspace (stay) |
+   | Workspace (R) | W+E (ring+middle) | Follow | Move window + follow on current display |
 
    Notice that S and D are not separate layers — they are **modes of the Default layer**. The pointer finger is absent (no layer key held), so the middle and ring fingers are free to select a mode on the home row. Similarly, F is not a mode of Chrome — it's a mode key for the G layer, pressed by the middle finger while the pointer holds G.
 
@@ -100,6 +101,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | Workspace | ⇪ + R | — | Focus 1 | Focus workspace on display 1 |
 | | ⇪ + R | E | Focus 2 | Focus workspace on display 2 |
 | | ⇪ + R | W | Move | Move window to workspace (stay) |
+| | ⇪ + R | W+E | Follow | Move window + follow on current display |
 | *(unassigned)* | ⇪ + A | | | |
 
 *Available layer keys: Z, X, C, V, B*
@@ -343,6 +345,12 @@ n  m  ,  .  /
 | Key / Shortcut | Description |
 | --- | --- |
 | ⇪ + W + R + *key* | Move focused window to workspace (stay on current) |
+
+### Move + Follow (⇪ + W + E + R)
+
+| Key / Shortcut | Description |
+| --- | --- |
+| ⇪ + W + E + R + *key* | Move window to workspace and follow it on current display |
 
 ---
 

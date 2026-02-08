@@ -38,7 +38,9 @@ WORKSPACE_KEYS = [
 # Operations: (name, karabiner_modifiers, r_val, e_val, w_val, q_val)
 # Most specific (most positive conditions) first for Karabiner priority
 OPERATIONS = [
-    # R+W: move window to workspace → cmd+shift (most specific first)
+    # R+W+E: move window + follow on current display → cmd+ctrl+shift (most specific first)
+    ("move-focus", ["command", "control", "shift"], 1, 1, 1, 0),
+    # R+W: move window to workspace → cmd+shift
     ("move", ["command", "shift"], 1, 0, 1, 0),
     # R+E: focus display 2 → alt+shift
     ("focus-2", ["option", "shift"], 1, 1, 0, 0),

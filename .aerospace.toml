@@ -197,6 +197,28 @@ cmd-shift-comma = 'exec-and-forget ~/.local/bin/ws.sh move comma'
 cmd-shift-period = 'exec-and-forget ~/.local/bin/ws.sh move .'
 cmd-shift-slash = 'exec-and-forget ~/.local/bin/ws.sh move /'
 
+# R layer + W + E: move window to workspace and follow (cmd-ctrl-shift)
+cmd-ctrl-shift-6 = 'exec-and-forget ~/.local/bin/ws.sh move-focus 6'
+cmd-ctrl-shift-7 = 'exec-and-forget ~/.local/bin/ws.sh move-focus 7'
+cmd-ctrl-shift-8 = 'exec-and-forget ~/.local/bin/ws.sh move-focus 8'
+cmd-ctrl-shift-9 = 'exec-and-forget ~/.local/bin/ws.sh move-focus 9'
+cmd-ctrl-shift-0 = 'exec-and-forget ~/.local/bin/ws.sh move-focus 0'
+cmd-ctrl-shift-y = 'exec-and-forget ~/.local/bin/ws.sh move-focus y'
+cmd-ctrl-shift-u = 'exec-and-forget ~/.local/bin/ws.sh move-focus u'
+cmd-ctrl-shift-i = 'exec-and-forget ~/.local/bin/ws.sh move-focus i'
+cmd-ctrl-shift-o = 'exec-and-forget ~/.local/bin/ws.sh move-focus o'
+cmd-ctrl-shift-p = 'exec-and-forget ~/.local/bin/ws.sh move-focus p'
+cmd-ctrl-shift-h = 'exec-and-forget ~/.local/bin/ws.sh move-focus h'
+cmd-ctrl-shift-j = 'exec-and-forget ~/.local/bin/ws.sh move-focus j'
+cmd-ctrl-shift-k = 'exec-and-forget ~/.local/bin/ws.sh move-focus k'
+cmd-ctrl-shift-l = 'exec-and-forget ~/.local/bin/ws.sh move-focus l'
+cmd-ctrl-shift-semicolon = 'exec-and-forget ~/.local/bin/ws.sh move-focus ";"'
+cmd-ctrl-shift-n = 'exec-and-forget ~/.local/bin/ws.sh move-focus n'
+cmd-ctrl-shift-m = 'exec-and-forget ~/.local/bin/ws.sh move-focus m'
+cmd-ctrl-shift-comma = 'exec-and-forget ~/.local/bin/ws.sh move-focus comma'
+cmd-ctrl-shift-period = 'exec-and-forget ~/.local/bin/ws.sh move-focus .'
+cmd-ctrl-shift-slash = 'exec-and-forget ~/.local/bin/ws.sh move-focus /'
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
