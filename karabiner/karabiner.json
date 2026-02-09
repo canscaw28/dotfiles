@@ -11223,6 +11223,14 @@
                     ]
                   }
                 ],
+                "parameters": {
+                  "basic.to_if_held_down_threshold_milliseconds": 500
+                },
+                "to_if_held_down": [
+                  {
+                    "key_code": "f13"
+                  }
+                ],
                 "type": "basic"
               },
               {
@@ -11404,6 +11412,14 @@
                     "modifiers": [
                       "command"
                     ]
+                  }
+                ],
+                "parameters": {
+                  "basic.to_if_held_down_threshold_milliseconds": 500
+                },
+                "to_if_held_down": [
+                  {
+                    "key_code": "f14"
                   }
                 ],
                 "type": "basic"
@@ -12158,6 +12174,14 @@
                     ]
                   }
                 ],
+                "parameters": {
+                  "basic.to_if_held_down_threshold_milliseconds": 500
+                },
+                "to_if_held_down": [
+                  {
+                    "key_code": "f17"
+                  }
+                ],
                 "type": "basic"
               },
               {
@@ -12342,6 +12366,14 @@
                       "command",
                       "shift"
                     ]
+                  }
+                ],
+                "parameters": {
+                  "basic.to_if_held_down_threshold_milliseconds": 500
+                },
+                "to_if_held_down": [
+                  {
+                    "key_code": "f20"
                   }
                 ],
                 "type": "basic"
