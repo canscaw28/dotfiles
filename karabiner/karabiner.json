@@ -22,7 +22,21 @@
                     ]
                   }
                 },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 1
+                    }
+                  }
+                ],
                 "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
                   {
                     "key_code": "left_control"
                   },
