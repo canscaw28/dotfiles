@@ -15,10 +15,12 @@
 -- AND the OS key repeat delay stack up. Only one delay exists (Karabiner's
 -- to_if_held_down threshold), then Hammerspoon repeats at the system rate.
 --
--- F13 = Up,        then Cmd+Left         (caps+Y held)
--- F14 = Down,      then Cmd+Right        (caps+O held)
--- F17 = Shift+Up,  then Cmd+Shift+Left   (caps+S+Y held)
--- F20 = Shift+Down,then Cmd+Shift+Right  (caps+S+O held)
+-- F13 = Up,             then Cmd+Left         (caps+Y held)
+-- F14 = Down,           then Cmd+Right        (caps+O held)
+-- F17 = Shift+Up,       then Cmd+Shift+Left   (caps+S+Y held)
+-- F20 = Shift+Down,     then Cmd+Shift+Right  (caps+S+O held)
+-- F5  = Shift+Down,     then forwarddelete     (caps+D+O held)
+-- F6  = Shift+Up,       then delete            (caps+D+Y held)
 
 local lineNav = {}
 
@@ -49,11 +51,17 @@ end
 
 local function doCompound(keyCode, cfg)
     postKeyStroke(cfg.arrowMods, cfg.arrowKey)
-    if snapTimers[keyCode] then snapTimers[keyCode]:stop() end
-    snapTimers[keyCode] = hs.timer.doAfter(SNAP_DELAY, function()
+    if cfg.noDelay then
+        -- Fire immediately (delete ops: no visible selection flash)
         postKeyStroke(cfg.snapMods, cfg.snapKey)
-        snapTimers[keyCode] = nil
-    end)
+    else
+        -- Fire after delay (nav ops: app needs time to reflow before snap)
+        if snapTimers[keyCode] then snapTimers[keyCode]:stop() end
+        snapTimers[keyCode] = hs.timer.doAfter(SNAP_DELAY, function()
+            postKeyStroke(cfg.snapMods, cfg.snapKey)
+            snapTimers[keyCode] = nil
+        end)
+    end
 end
 
 local function startAction(keyCode, cfg)
@@ -71,6 +79,8 @@ local configs = {
     [107] = {arrowKey="down", arrowMods={},        snapKey="right", snapMods={"cmd"}},          -- F14
     [64]  = {arrowKey="up",   arrowMods={"shift"}, snapKey="left",  snapMods={"cmd","shift"}},  -- F17
     [90]  = {arrowKey="down", arrowMods={"shift"}, snapKey="right", snapMods={"cmd","shift"}},  -- F20
+    [96]  = {arrowKey="down", arrowMods={"shift"}, snapKey="forwarddelete", snapMods={}, noDelay=true}, -- F5
+    [97]  = {arrowKey="up",   arrowMods={"shift"}, snapKey="delete",        snapMods={}, noDelay=true}, -- F6
 }
 
 lineNav.handler = hs.eventtap.new(

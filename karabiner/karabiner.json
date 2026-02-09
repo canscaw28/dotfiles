@@ -13165,6 +13165,14 @@
                     ]
                   }
                 ],
+                "parameters": {
+                  "basic.to_if_held_down_threshold_milliseconds": 500
+                },
+                "to_if_held_down": [
+                  {
+                    "key_code": "f6"
+                  }
+                ],
                 "type": "basic"
               },
               {
@@ -13350,6 +13358,14 @@
                   },
                   {
                     "key_code": "delete_or_backspace"
+                  }
+                ],
+                "parameters": {
+                  "basic.to_if_held_down_threshold_milliseconds": 500
+                },
+                "to_if_held_down": [
+                  {
+                    "key_code": "f5"
                   }
                 ],
                 "type": "basic"
