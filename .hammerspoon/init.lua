@@ -1,3 +1,5 @@
+require("line_nav")
+
 scrollSpeed = 1
 scrollInterval = 0.01
 scrollDirection = 0
