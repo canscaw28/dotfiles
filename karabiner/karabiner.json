@@ -12342,13 +12342,6 @@
                       "command",
                       "shift"
                     ]
-                  },
-                  {
-                    "key_code": "right_arrow",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
                   }
                 ],
                 "type": "basic"
