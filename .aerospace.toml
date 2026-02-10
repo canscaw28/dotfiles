@@ -156,8 +156,10 @@ ctrl-shift-m = 'exec-and-forget ~/.local/bin/ws.sh focus m'
 ctrl-shift-comma = 'exec-and-forget ~/.local/bin/ws.sh focus comma'
 ctrl-shift-period = 'exec-and-forget ~/.local/bin/ws.sh focus .'
 ctrl-shift-slash = 'exec-and-forget ~/.local/bin/ws.sh focus /'
+# R+': swap workspaces between monitors (ctrl-shift)
+ctrl-shift-quote = 'exec-and-forget ~/.local/bin/ws.sh swap-monitors'
 
-# R layer + W: move window to workspace (cmd-shift)
+# R layer + E: move window to workspace (cmd-shift)
 cmd-shift-6 = 'exec-and-forget ~/.local/bin/ws.sh move 6'
 cmd-shift-7 = 'exec-and-forget ~/.local/bin/ws.sh move 7'
 cmd-shift-8 = 'exec-and-forget ~/.local/bin/ws.sh move 8'

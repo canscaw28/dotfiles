@@ -9,11 +9,25 @@
 #   move-focus  Move focused window to workspace, follow it on current monitor
 #   swap        Swap current workspace with selected workspace between monitors
 #   swap-follow Swap workspaces, then focus the selected workspace
+#   swap-monitors  Swap workspaces between current and next monitor
 
 set -euo pipefail
 
 OP="$1"
 WS="${2:-}"
+
+next_monitor() {
+    local current="$1"
+    local monitors
+    monitors=($(aerospace list-monitors --format '%{monitor-id}'))
+    local count=${#monitors[@]}
+    for i in "${!monitors[@]}"; do
+        if [[ "${monitors[$i]}" == "$current" ]]; then
+            echo "${monitors[$(( (i + 1) % count ))]}"
+            return
+        fi
+    done
+}
 
 case "$OP" in
     focus)
@@ -60,6 +74,15 @@ case "$OP" in
         fi
         # Explicitly focus the selected workspace
         aerospace workspace "$WS"
+        ;;
+    swap-monitors)
+        # Swap workspaces between current and next monitor (wraps for >2)
+        CURRENT_WS=$(aerospace list-workspaces --focused)
+        CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+        NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
+        NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
+        aerospace move-workspace-to-monitor --workspace "$CURRENT_WS" "$NEXT_MONITOR"
+        aerospace move-workspace-to-monitor --workspace "$NEXT_WS" "$CURRENT_MONITOR"
         ;;
     *)
         echo "ws.sh: unknown operation '$OP'" >&2
