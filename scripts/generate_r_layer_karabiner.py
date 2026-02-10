@@ -33,6 +33,7 @@ WORKSPACE_KEYS = [
     (",", "comma"),
     (".", "period"),
     ("/", "slash"),
+    ("'", "quote"),
 ]
 
 # Operations: (name, karabiner_modifiers, r_val, e_val, w_val, q_val)
@@ -52,7 +53,6 @@ OPERATIONS = [
 
 # Right-hand keys NOT in workspace set that need guards
 GUARD_RIGHT_KEYS = [
-    "quote",
     "open_bracket",
     "close_bracket",
     "hyphen",
