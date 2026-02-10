@@ -13726,10 +13726,11 @@
                 },
                 "to": [
                   {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
+                    "key_code": "quote",
+                    "modifiers": [
+                      "command",
+                      "shift"
+                    ]
                   }
                 ],
                 "type": "basic"
