@@ -11,6 +11,7 @@
 #   swap-follow Swap workspaces, then focus the selected workspace
 #   swap-monitors  Swap workspaces between current and next monitor
 #   move-monitor   Move focused window to next monitor
+#   move-monitor-focus  Move focused window to next monitor and follow
 
 set -euo pipefail
 
@@ -82,6 +83,14 @@ case "$OP" in
         NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
         NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
         aerospace move-node-to-workspace "$NEXT_WS"
+        ;;
+    move-monitor-focus)
+        # Move focused window to next monitor and follow it
+        CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+        NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
+        NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
+        aerospace move-node-to-workspace "$NEXT_WS"
+        aerospace workspace "$NEXT_WS"
         ;;
     swap-monitors)
         # Swap workspaces between current and next monitor (wraps for >2)

@@ -204,6 +204,8 @@ cmd-ctrl-shift-m = 'exec-and-forget ~/.local/bin/ws.sh move-focus m'
 cmd-ctrl-shift-comma = 'exec-and-forget ~/.local/bin/ws.sh move-focus comma'
 cmd-ctrl-shift-period = 'exec-and-forget ~/.local/bin/ws.sh move-focus .'
 cmd-ctrl-shift-slash = 'exec-and-forget ~/.local/bin/ws.sh move-focus /'
+# R+E+W+': move focused window to next monitor and follow (cmd-ctrl-shift)
+cmd-ctrl-shift-quote = 'exec-and-forget ~/.local/bin/ws.sh move-monitor-focus'
 
 # R layer + Q: swap workspaces between monitors, stay (ctrl-alt-shift)
 ctrl-alt-shift-6 = 'exec-and-forget ~/.local/bin/ws.sh swap 6'
