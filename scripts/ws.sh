@@ -4,8 +4,7 @@
 #
 # Usage: ws.sh <operation> <workspace>
 # Operations:
-#   focus-1     Switch to workspace on monitor 1
-#   focus-2     Switch to workspace on monitor 2
+#   focus       Switch to workspace on the currently focused monitor
 #   move        Move focused window to workspace (stay on current)
 #   move-focus  Move focused window to workspace, follow it on current monitor
 #   swap        Swap current workspace with selected workspace between monitors
@@ -17,13 +16,10 @@ OP="$1"
 WS="$2"
 
 case "$OP" in
-    focus-1)
+    focus)
+        CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
         aerospace workspace "$WS"
-        aerospace move-workspace-to-monitor --workspace "$WS" 1
-        ;;
-    focus-2)
-        aerospace workspace "$WS"
-        aerospace move-workspace-to-monitor --workspace "$WS" 2
+        aerospace move-workspace-to-monitor --workspace "$WS" "$CURRENT_MONITOR"
         ;;
     move)
         aerospace move-node-to-workspace "$WS"

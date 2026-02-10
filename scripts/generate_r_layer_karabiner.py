@@ -38,18 +38,16 @@ WORKSPACE_KEYS = [
 # Operations: (name, karabiner_modifiers, r_val, e_val, w_val, q_val)
 # Most specific (most positive conditions) first for Karabiner priority
 OPERATIONS = [
-    # R+W+E: move window + follow on current display → cmd+ctrl+shift (most specific first)
+    # R+E+W: move window + follow on current display → cmd+ctrl+shift (most specific first)
     ("move-focus", ["command", "control", "shift"], 1, 1, 1, 0),
     # R+Q+E: swap workspaces, follow to other monitor → cmd+ctrl+alt+shift
     ("swap-follow", ["command", "control", "option", "shift"], 1, 1, 0, 1),
-    # R+W: move window to workspace → cmd+shift
-    ("move", ["command", "shift"], 1, 0, 1, 0),
+    # R+E: move window to workspace → cmd+shift
+    ("move", ["command", "shift"], 1, 1, 0, 0),
     # R+Q: swap workspaces, stay on current monitor → ctrl+alt+shift
     ("swap", ["control", "option", "shift"], 1, 0, 0, 1),
-    # R+E: focus display 2 → alt+shift
-    ("focus-2", ["option", "shift"], 1, 1, 0, 0),
-    # R only: focus display 1 → ctrl+shift
-    ("focus-1", ["control", "shift"], 1, 0, 0, 0),
+    # R only: focus workspace on current display → ctrl+shift
+    ("focus", ["control", "shift"], 1, 0, 0, 0),
 ]
 
 # Right-hand keys NOT in workspace set that need guards
@@ -90,7 +88,10 @@ def make_action_manipulator(key_code, modifiers, r_val, e_val, w_val, q_val):
         make_condition("d_is_held", 0),
         make_condition("f_is_held", 0),
         make_condition("r_is_held", r_val),
-        make_condition("e_is_held", e_val),
+    ]
+    if e_val is not None:
+        conditions.append(make_condition("e_is_held", e_val))
+    conditions += [
         make_condition("w_is_held", w_val),
         make_condition("q_is_held", q_val),
         make_condition("t_is_held", 0),
