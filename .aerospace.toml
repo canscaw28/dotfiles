@@ -107,10 +107,10 @@ cmd-alt-shift-slash = 'layout tiles horizontal vertical'
 cmd-alt-shift-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-cmd-ctrl-alt-h = 'focus left'
-cmd-ctrl-alt-j = 'focus down'
-cmd-ctrl-alt-k = 'focus up'
-cmd-ctrl-alt-l = 'focus right'
+cmd-ctrl-alt-h = 'exec-and-forget ~/.local/bin/smart-focus.sh left'
+cmd-ctrl-alt-j = 'exec-and-forget ~/.local/bin/smart-focus.sh down'
+cmd-ctrl-alt-k = 'exec-and-forget ~/.local/bin/smart-focus.sh up'
+cmd-ctrl-alt-l = 'exec-and-forget ~/.local/bin/smart-focus.sh right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 cmd-ctrl-alt-y = 'exec-and-forget ~/.local/bin/smart-move.sh left'
