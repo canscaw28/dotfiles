@@ -2,7 +2,7 @@
 # Workspace operations helper for AeroSpace
 # Called from AeroSpace keybindings via Karabiner-Elements R layer
 #
-# Usage: ws.sh <operation> <workspace>
+# Usage: ws.sh <operation> [workspace]
 # Operations:
 #   focus       Switch to workspace on the currently focused monitor
 #   move        Move focused window to workspace (stay on current)
@@ -13,7 +13,7 @@
 set -euo pipefail
 
 OP="$1"
-WS="$2"
+WS="${2:-}"
 
 case "$OP" in
     focus)
