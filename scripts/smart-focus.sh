@@ -4,10 +4,13 @@
 direction="$1"
 
 # Try to focus within the current workspace
-if aerospace focus --boundaries-action fail "$direction" 2>/dev/null; then
-    exit 0
-fi
+BEFORE=$(aerospace list-windows --focused --format '%{window-id}')
+aerospace focus "$direction"
+AFTER=$(aerospace list-windows --focused --format '%{window-id}')
 
-# At workspace boundary — focus the adjacent monitor in this direction
+# If focus didn't change, we're at the workspace boundary —
+# try the adjacent monitor in this direction
 # (no --wrap-around, so nothing happens if no monitor exists there)
-aerospace focus-monitor "$direction"
+if [ "$BEFORE" = "$AFTER" ]; then
+    aerospace focus-monitor "$direction"
+fi
