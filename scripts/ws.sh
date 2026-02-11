@@ -1,6 +1,6 @@
 #!/bin/bash
 # Workspace operations helper for AeroSpace
-# Called from AeroSpace keybindings via Karabiner-Elements R layer
+# Called from Karabiner-Elements shell_command via R layer
 #
 # Usage: ws.sh <operation> [workspace]
 # Operations:
@@ -12,6 +12,9 @@
 #   swap-monitors  Swap workspaces between current and next monitor
 #   move-monitor   Move focused window to next monitor
 #   move-monitor-focus  Move focused window to next monitor and follow
+
+# Karabiner shell_command runs with minimal PATH; ensure homebrew is available
+export PATH="/opt/homebrew/bin:$PATH"
 
 set -euo pipefail
 
