@@ -53,7 +53,7 @@ def is_r_mode_setter(m):
 
 
 def is_r_action(m):
-    """Match R layer action manipulators (r=1, t=0, has modifier output, not T-layer)."""
+    """Match R layer action manipulators (r=1, t=0, has modifier or shell_command output)."""
     conds = m.get("conditions", [])
     to = m.get("to", [{}])[0]
 
@@ -61,8 +61,8 @@ def is_r_action(m):
         return False
     if get_cond(conds, "t_is_held") != 0:
         return False
-    # Must have modifier output (action) not set_variable (setter/guard)
-    if "modifiers" not in to:
+    # Must have action output (modifiers or shell_command), not set_variable (setter/guard)
+    if "shell_command" not in to and "modifiers" not in to:
         return False
     return True
 

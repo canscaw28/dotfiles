@@ -627,12 +627,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "6",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus 6"
                   }
                 ],
                 "type": "basic"
@@ -705,12 +700,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "7",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus 7"
                   }
                 ],
                 "type": "basic"
@@ -783,12 +773,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "8",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus 8"
                   }
                 ],
                 "type": "basic"
@@ -861,12 +846,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "9",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus 9"
                   }
                 ],
                 "type": "basic"
@@ -939,12 +919,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "0",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus 0"
                   }
                 ],
                 "type": "basic"
@@ -1017,12 +992,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "y",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus y"
                   }
                 ],
                 "type": "basic"
@@ -1095,12 +1065,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "u",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus u"
                   }
                 ],
                 "type": "basic"
@@ -1173,12 +1138,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "i",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus i"
                   }
                 ],
                 "type": "basic"
@@ -1251,12 +1211,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "o",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus o"
                   }
                 ],
                 "type": "basic"
@@ -1329,12 +1284,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "p",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus p"
                   }
                 ],
                 "type": "basic"
@@ -1407,12 +1357,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "h",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus h"
                   }
                 ],
                 "type": "basic"
@@ -1485,12 +1430,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "j",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus j"
                   }
                 ],
                 "type": "basic"
@@ -1563,12 +1503,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "k",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus k"
                   }
                 ],
                 "type": "basic"
@@ -1641,12 +1576,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "l",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus l"
                   }
                 ],
                 "type": "basic"
@@ -1719,12 +1649,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "semicolon",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus \";\""
                   }
                 ],
                 "type": "basic"
@@ -1797,12 +1722,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "n",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus n"
                   }
                 ],
                 "type": "basic"
@@ -1875,12 +1795,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "m",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus m"
                   }
                 ],
                 "type": "basic"
@@ -1953,12 +1868,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "comma",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus comma"
                   }
                 ],
                 "type": "basic"
@@ -2031,12 +1941,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "period",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus ."
                   }
                 ],
                 "type": "basic"
@@ -2109,90 +2014,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "slash",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "w_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "q_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "from": {
-                  "key_code": "quote",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "quote",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move-focus /"
                   }
                 ],
                 "type": "basic"
@@ -2265,13 +2087,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "6",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow 6"
                   }
                 ],
                 "type": "basic"
@@ -2344,13 +2160,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "7",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow 7"
                   }
                 ],
                 "type": "basic"
@@ -2423,13 +2233,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "8",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow 8"
                   }
                 ],
                 "type": "basic"
@@ -2502,13 +2306,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "9",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow 9"
                   }
                 ],
                 "type": "basic"
@@ -2581,13 +2379,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "0",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow 0"
                   }
                 ],
                 "type": "basic"
@@ -2660,13 +2452,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "y",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow y"
                   }
                 ],
                 "type": "basic"
@@ -2739,13 +2525,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "u",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow u"
                   }
                 ],
                 "type": "basic"
@@ -2818,13 +2598,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "i",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow i"
                   }
                 ],
                 "type": "basic"
@@ -2897,13 +2671,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "o",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow o"
                   }
                 ],
                 "type": "basic"
@@ -2976,13 +2744,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "p",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow p"
                   }
                 ],
                 "type": "basic"
@@ -3055,13 +2817,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "h",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow h"
                   }
                 ],
                 "type": "basic"
@@ -3134,13 +2890,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "j",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow j"
                   }
                 ],
                 "type": "basic"
@@ -3213,13 +2963,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "k",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow k"
                   }
                 ],
                 "type": "basic"
@@ -3292,13 +3036,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "l",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow l"
                   }
                 ],
                 "type": "basic"
@@ -3371,13 +3109,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "semicolon",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow \";\""
                   }
                 ],
                 "type": "basic"
@@ -3450,13 +3182,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "n",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow n"
                   }
                 ],
                 "type": "basic"
@@ -3529,13 +3255,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "m",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow m"
                   }
                 ],
                 "type": "basic"
@@ -3608,13 +3328,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "comma",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow comma"
                   }
                 ],
                 "type": "basic"
@@ -3687,13 +3401,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "period",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow ."
                   }
                 ],
                 "type": "basic"
@@ -3766,92 +3474,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "slash",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "w_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "q_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "from": {
-                  "key_code": "quote",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "quote",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-follow /"
                   }
                 ],
                 "type": "basic"
@@ -3924,11 +3547,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "6",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move 6"
                   }
                 ],
                 "type": "basic"
@@ -4001,11 +3620,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "7",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move 7"
                   }
                 ],
                 "type": "basic"
@@ -4078,11 +3693,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "8",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move 8"
                   }
                 ],
                 "type": "basic"
@@ -4155,11 +3766,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "9",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move 9"
                   }
                 ],
                 "type": "basic"
@@ -4232,11 +3839,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "0",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move 0"
                   }
                 ],
                 "type": "basic"
@@ -4309,11 +3912,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "y",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move y"
                   }
                 ],
                 "type": "basic"
@@ -4386,11 +3985,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "u",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move u"
                   }
                 ],
                 "type": "basic"
@@ -4463,11 +4058,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "i",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move i"
                   }
                 ],
                 "type": "basic"
@@ -4540,11 +4131,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "o",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move o"
                   }
                 ],
                 "type": "basic"
@@ -4617,11 +4204,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "p",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move p"
                   }
                 ],
                 "type": "basic"
@@ -4694,11 +4277,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "h",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move h"
                   }
                 ],
                 "type": "basic"
@@ -4771,11 +4350,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "j",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move j"
                   }
                 ],
                 "type": "basic"
@@ -4848,11 +4423,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "k",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move k"
                   }
                 ],
                 "type": "basic"
@@ -4925,11 +4496,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "l",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move l"
                   }
                 ],
                 "type": "basic"
@@ -5002,11 +4569,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "semicolon",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move \";\""
                   }
                 ],
                 "type": "basic"
@@ -5079,11 +4642,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "n",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move n"
                   }
                 ],
                 "type": "basic"
@@ -5156,11 +4715,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "m",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move m"
                   }
                 ],
                 "type": "basic"
@@ -5233,11 +4788,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "comma",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move comma"
                   }
                 ],
                 "type": "basic"
@@ -5310,11 +4861,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "period",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move ."
                   }
                 ],
                 "type": "basic"
@@ -5387,88 +4934,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "slash",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "w_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "q_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "from": {
-                  "key_code": "quote",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "quote",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh move /"
                   }
                 ],
                 "type": "basic"
@@ -5541,12 +5007,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "6",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap 6"
                   }
                 ],
                 "type": "basic"
@@ -5619,12 +5080,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "7",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap 7"
                   }
                 ],
                 "type": "basic"
@@ -5697,12 +5153,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "8",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap 8"
                   }
                 ],
                 "type": "basic"
@@ -5775,12 +5226,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "9",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap 9"
                   }
                 ],
                 "type": "basic"
@@ -5853,12 +5299,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "0",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap 0"
                   }
                 ],
                 "type": "basic"
@@ -5931,12 +5372,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "y",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap y"
                   }
                 ],
                 "type": "basic"
@@ -6009,12 +5445,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "u",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap u"
                   }
                 ],
                 "type": "basic"
@@ -6087,12 +5518,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "i",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap i"
                   }
                 ],
                 "type": "basic"
@@ -6165,12 +5591,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "o",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap o"
                   }
                 ],
                 "type": "basic"
@@ -6243,12 +5664,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "p",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap p"
                   }
                 ],
                 "type": "basic"
@@ -6321,12 +5737,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "h",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap h"
                   }
                 ],
                 "type": "basic"
@@ -6399,12 +5810,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "j",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap j"
                   }
                 ],
                 "type": "basic"
@@ -6477,12 +5883,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "k",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap k"
                   }
                 ],
                 "type": "basic"
@@ -6555,12 +5956,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "l",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap l"
                   }
                 ],
                 "type": "basic"
@@ -6633,12 +6029,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "semicolon",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap \";\""
                   }
                 ],
                 "type": "basic"
@@ -6711,12 +6102,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "n",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap n"
                   }
                 ],
                 "type": "basic"
@@ -6789,12 +6175,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "m",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap m"
                   }
                 ],
                 "type": "basic"
@@ -6867,12 +6248,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "comma",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap comma"
                   }
                 ],
                 "type": "basic"
@@ -6945,12 +6321,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "period",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap ."
                   }
                 ],
                 "type": "basic"
@@ -7023,90 +6394,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "slash",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "w_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "q_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "from": {
-                  "key_code": "quote",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "quote",
-                    "modifiers": [
-                      "control",
-                      "option",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap /"
                   }
                 ],
                 "type": "basic"
@@ -7179,11 +6467,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "6",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus 6"
                   }
                 ],
                 "type": "basic"
@@ -7256,11 +6540,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "7",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus 7"
                   }
                 ],
                 "type": "basic"
@@ -7333,11 +6613,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "8",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus 8"
                   }
                 ],
                 "type": "basic"
@@ -7410,11 +6686,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "9",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus 9"
                   }
                 ],
                 "type": "basic"
@@ -7487,11 +6759,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "0",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus 0"
                   }
                 ],
                 "type": "basic"
@@ -7564,11 +6832,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "y",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus y"
                   }
                 ],
                 "type": "basic"
@@ -7641,11 +6905,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "u",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus u"
                   }
                 ],
                 "type": "basic"
@@ -7718,11 +6978,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "i",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus i"
                   }
                 ],
                 "type": "basic"
@@ -7795,11 +7051,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "o",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus o"
                   }
                 ],
                 "type": "basic"
@@ -7872,11 +7124,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "p",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus p"
                   }
                 ],
                 "type": "basic"
@@ -7949,11 +7197,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "h",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus h"
                   }
                 ],
                 "type": "basic"
@@ -8026,11 +7270,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "j",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus j"
                   }
                 ],
                 "type": "basic"
@@ -8103,11 +7343,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "k",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus k"
                   }
                 ],
                 "type": "basic"
@@ -8180,11 +7416,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "l",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus l"
                   }
                 ],
                 "type": "basic"
@@ -8257,11 +7489,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "semicolon",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus \";\""
                   }
                 ],
                 "type": "basic"
@@ -8334,11 +7562,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "n",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus n"
                   }
                 ],
                 "type": "basic"
@@ -8411,11 +7635,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "m",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus m"
                   }
                 ],
                 "type": "basic"
@@ -8488,11 +7708,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "comma",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus comma"
                   }
                 ],
                 "type": "basic"
@@ -8565,11 +7781,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "period",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh focus ."
                   }
                 ],
                 "type": "basic"
@@ -8642,11 +7854,153 @@
                 },
                 "to": [
                   {
-                    "key_code": "slash",
-                    "modifiers": [
-                      "control",
-                      "shift"
+                    "shell_command": "$HOME/.local/bin/ws.sh focus /"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "r_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "w_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "q_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "quote",
+                  "modifiers": {
+                    "optional": [
+                      "any"
                     ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh move-monitor-focus"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "r_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "w_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "q_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "from": {
+                  "key_code": "quote",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh move-monitor"
                   }
                 ],
                 "type": "basic"
@@ -8719,11 +8073,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "quote",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-monitors"
                   }
                 ],
                 "type": "basic"

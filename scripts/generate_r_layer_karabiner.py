@@ -4,51 +4,62 @@
 Outputs JSON fragments for:
   1. Mode setters (R+E, R+W, R+Q)
   2. R layer setter (caps → sets r_is_held)
-  3. Action manipulators (20 keys × N operations)
+  3. Action manipulators (20 keys × N operations + quote key specials)
   4. Guard/noop manipulators for unmapped keys in R layer
 """
 
 import json
 import sys
 
-# 20 workspace keys and their Karabiner key_codes
+# 20 workspace keys: (display_name, karabiner_key_code, ws.sh_argument)
+# Quote key is excluded — it has special per-mode behavior.
 WORKSPACE_KEYS = [
-    ("6", "6"),
-    ("7", "7"),
-    ("8", "8"),
-    ("9", "9"),
-    ("0", "0"),
-    ("y", "y"),
-    ("u", "u"),
-    ("i", "i"),
-    ("o", "o"),
-    ("p", "p"),
-    ("h", "h"),
-    ("j", "j"),
-    ("k", "k"),
-    ("l", "l"),
-    (";", "semicolon"),
-    ("n", "n"),
-    ("m", "m"),
-    (",", "comma"),
-    (".", "period"),
-    ("/", "slash"),
-    ("'", "quote"),
+    ("6", "6", "6"),
+    ("7", "7", "7"),
+    ("8", "8", "8"),
+    ("9", "9", "9"),
+    ("0", "0", "0"),
+    ("y", "y", "y"),
+    ("u", "u", "u"),
+    ("i", "i", "i"),
+    ("o", "o", "o"),
+    ("p", "p", "p"),
+    ("h", "h", "h"),
+    ("j", "j", "j"),
+    ("k", "k", "k"),
+    ("l", "l", "l"),
+    (";", "semicolon", '";"'),
+    ("n", "n", "n"),
+    ("m", "m", "m"),
+    (",", "comma", "comma"),
+    (".", "period", "."),
+    ("/", "slash", "/"),
 ]
 
-# Operations: (name, karabiner_modifiers, r_val, e_val, w_val, q_val)
+# Operations: (name, r_val, e_val, w_val, q_val)
 # Most specific (most positive conditions) first for Karabiner priority
 OPERATIONS = [
-    # R+E+W: move window + follow on current display → cmd+ctrl+shift (most specific first)
-    ("move-focus", ["command", "control", "shift"], 1, 1, 1, 0),
-    # R+Q+E: swap workspaces, follow to other monitor → cmd+ctrl+alt+shift
-    ("swap-follow", ["command", "control", "option", "shift"], 1, 1, 0, 1),
-    # R+E: move window to workspace → cmd+shift
-    ("move", ["command", "shift"], 1, 1, 0, 0),
-    # R+Q: swap workspaces, stay on current monitor → ctrl+alt+shift
-    ("swap", ["control", "option", "shift"], 1, 0, 0, 1),
-    # R only: focus workspace on current display → ctrl+shift
-    ("focus", ["control", "shift"], 1, 0, 0, 0),
+    # R+E+W: move window + follow on current display (most specific first)
+    ("move-focus", 1, 1, 1, 0),
+    # R+Q+E: swap workspaces, follow to other monitor
+    ("swap-follow", 1, 1, 0, 1),
+    # R+E: move window to workspace
+    ("move", 1, 1, 0, 0),
+    # R+Q: swap workspaces, stay on current monitor
+    ("swap", 1, 0, 0, 1),
+    # R only: focus workspace on current display
+    ("focus", 1, 0, 0, 0),
+]
+
+# Quote key special operations (no workspace arg needed)
+# Most specific first for priority
+QUOTE_OPERATIONS = [
+    # R+E+W+': move window to next monitor and follow
+    ("move-monitor-focus", 1, 1, 1, 0),
+    # R+E+': move window to next monitor
+    ("move-monitor", 1, 1, 0, 0),
+    # R+': swap workspaces between monitors
+    ("swap-monitors", 1, 0, 0, 0),
 ]
 
 # Right-hand keys NOT in workspace set that need guards
@@ -79,7 +90,7 @@ def make_condition(name, value):
     return {"name": name, "type": "variable_if", "value": value}
 
 
-def make_action_manipulator(key_code, modifiers, r_val, e_val, w_val, q_val):
+def make_action_manipulator(key_code, shell_cmd, r_val, e_val, w_val, q_val):
     """Create an action manipulator for R layer workspace operation."""
     conditions = [
         make_condition("caps_lock_is_held", 1),
@@ -106,8 +117,7 @@ def make_action_manipulator(key_code, modifiers, r_val, e_val, w_val, q_val):
         },
         "to": [
             {
-                "key_code": key_code,
-                "modifiers": modifiers,
+                "shell_command": shell_cmd,
             }
         ],
         "type": "basic",
@@ -210,12 +220,22 @@ def generate():
         "guards": [],
     }
 
-    # Generate action manipulators (N operations × 20 keys)
-    for op_name, modifiers, r_val, e_val, w_val, q_val in OPERATIONS:
-        for _display, key_code in WORKSPACE_KEYS:
+    ws_bin = "$HOME/.local/bin/ws.sh"
+
+    # Generate action manipulators for workspace keys (N operations × 20 keys)
+    for op_name, r_val, e_val, w_val, q_val in OPERATIONS:
+        for _display, key_code, ws_arg in WORKSPACE_KEYS:
+            shell_cmd = f"{ws_bin} {op_name} {ws_arg}"
             result["actions"].append(
-                make_action_manipulator(key_code, modifiers, r_val, e_val, w_val, q_val)
+                make_action_manipulator(key_code, shell_cmd, r_val, e_val, w_val, q_val)
             )
+
+    # Generate action manipulators for quote key (special monitor operations)
+    for op_name, r_val, e_val, w_val, q_val in QUOTE_OPERATIONS:
+        shell_cmd = f"{ws_bin} {op_name}"
+        result["actions"].append(
+            make_action_manipulator("quote", shell_cmd, r_val, e_val, w_val, q_val)
+        )
 
     # Generate guard manipulators
     for key_code in GUARD_RIGHT_KEYS + GUARD_LEFT_KEYS:
