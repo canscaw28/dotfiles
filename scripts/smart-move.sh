@@ -1,4 +1,15 @@
 #!/bin/bash
+# Prevent concurrent aerospace operations (shared with ws.sh, smart-focus.sh)
+LOCKFILE="/tmp/aerospace-lock.pid"
+acquire_lock() {
+    if (set -o noclobber; echo $$ > "$LOCKFILE") 2>/dev/null; then return 0; fi
+    local holder; holder=$(<"$LOCKFILE" 2>/dev/null) || { rm -f "$LOCKFILE"; return 1; }
+    kill -0 "$holder" 2>/dev/null && return 1
+    rm -f "$LOCKFILE"; return 1
+}
+acquire_lock || acquire_lock || exit 0
+trap 'rm -f "$LOCKFILE"' EXIT
+
 direction="$1"
 root_layout=$(aerospace list-windows --focused --format '%{workspace-root-container-layout}')
 

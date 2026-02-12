@@ -18,6 +18,26 @@ export PATH="/opt/homebrew/bin:$PATH"
 
 set -euo pipefail
 
+# Prevent concurrent aerospace operations (swap is multi-step and can't be
+# interrupted). Other scripts (smart-focus.sh, smart-move.sh) also check this.
+# If the lock holder is dead, force-remove to prevent permanent lockout.
+LOCKFILE="/tmp/aerospace-lock.pid"
+acquire_lock() {
+    if (set -o noclobber; echo $$ > "$LOCKFILE") 2>/dev/null; then
+        return 0
+    fi
+    # Lock exists — check if holder is alive
+    local holder
+    holder=$(<"$LOCKFILE" 2>/dev/null) || { rm -f "$LOCKFILE"; return 1; }
+    if ! kill -0 "$holder" 2>/dev/null; then
+        rm -f "$LOCKFILE"
+        return 1  # Stale lock removed, caller should retry
+    fi
+    return 1  # Lock held by live process
+}
+acquire_lock || acquire_lock || exit 0
+trap 'rm -f "$LOCKFILE"' EXIT
+
 OP="$1"
 WS="${2:-}"
 
@@ -105,6 +125,8 @@ swap_workspaces() {
 case "$OP" in
     focus)
         # Move workspace to current monitor first (hidden), then focus it.
+        # Avoids jitter: aerospace workspace would briefly show WS on the
+        # wrong monitor before move-workspace-to-monitor pulls it back.
         CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
         aerospace move-workspace-to-monitor --workspace "$WS" "$CURRENT_MONITOR"
         aerospace workspace "$WS"
@@ -162,6 +184,7 @@ case "$OP" in
         # Focus stays on current monitor (now showing the other workspace).
         CURRENT_WS=$(aerospace list-workspaces --focused)
         CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+        # For 2-monitor setups, inline the other monitor ID to save a command.
         if [[ "$CURRENT_MONITOR" == "1" ]]; then NEXT_MONITOR=2; else NEXT_MONITOR=1; fi
         NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
         swap_workspaces "$CURRENT_WS" "$NEXT_MONITOR" "$NEXT_WS" "$CURRENT_MONITOR"
