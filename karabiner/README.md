@@ -370,6 +370,14 @@ n  m  ,  .  /
 | ⇪ + R + E + ' | Move focused window to next monitor |
 | ⇪ + R + E + W + ' | Move focused window to next monitor and follow |
 
+### Swap Implementation
+
+Swap operations use `summon-workspace` with an empty buffer workspace (`~`) to avoid visual jitter. AeroSpace's `move-workspace-to-monitor` internally refocuses the moved workspace, causing random workspaces to flash on the source monitor. The summon-based approach only shows `~` (empty) as an intermediate state.
+
+The `on-focus-changed` callback is deliberately disabled in `.aerospace.toml` — it fires on every intermediate focus change during swaps, causing AeroSpace to drop commands. Instead, `move-mouse window-lazy-center` is called explicitly at the end of each operation in `ws.sh`, `smart-focus.sh`, and `smart-move.sh`.
+
+A shared PID-based lock (`/tmp/aerospace-lock.pid`) prevents concurrent aerospace script execution. Stale locks from killed processes are automatically cleaned up.
+
 ### Window State Preservation
 
 Window-to-workspace assignments are automatically saved after every workspace operation. On AeroSpace restart, windows are restored to their previous workspaces by matching on app name and window title.
