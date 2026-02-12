@@ -43,8 +43,9 @@ default-root-container-orientation = 'auto'
 # Move mouse to the center of the focused window on monitor change
 # on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
-# Move mouse to the center of the focused window
-on-focus-changed = ['move-mouse window-lazy-center']
+# move-mouse is handled explicitly in ws.sh, smart-focus.sh, and smart-move.sh
+# to avoid interfering with multi-step swap operations.
+# on-focus-changed = ['move-mouse window-lazy-center']
 
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
@@ -130,7 +131,7 @@ cmd-ctrl-alt-shift-equal = 'resize smart +50'
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 cmd-ctrl-alt-quote = ['workspace-back-and-forth', 'move-mouse window-lazy-center']
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+alt-shift-tab = ['move-workspace-to-monitor --wrap-around next', 'move-mouse window-lazy-center']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 cmd-ctrl-alt-semicolon = 'mode service'

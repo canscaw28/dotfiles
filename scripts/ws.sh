@@ -172,5 +172,9 @@ case "$OP" in
         ;;
 esac
 
+# Move mouse to focused window (replaces on-focus-changed callback which
+# interferes with multi-step swap operations)
+aerospace move-mouse window-lazy-center 2>/dev/null || true
+
 # Save window state after every operation (for restore on restart)
 ~/.local/bin/save-ws-state.sh &
