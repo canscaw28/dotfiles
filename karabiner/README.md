@@ -31,6 +31,7 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    | Aerospace (T) | *(none)* | Focus | Focus windows directionally |
    | Aerospace (T) | R (ring) | Move | Move windows directionally |
    | Aerospace (T) | E (middle) | Join | Join windows directionally |
+   | Aerospace (T) | W (ring) | Move to WS | Move window to workspace (stay) |
    | Workspace (R) | *(none)* | Focus Mon 1 | Focus workspace on monitor 1 |
    | Workspace (R) | E (middle) | Focus Mon 2 | Focus workspace on monitor 2 |
 
@@ -39,7 +40,7 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    Mode keys are always relative to the pointer finger's position:
    - **Default layer** (pointer absent): modes use home-row neighbors **S**, **D**
    - **G layer** (pointer on G): modes use **F**, and potentially **D**, **V**, **B**
-   - **T layer** (pointer on T): modes use **R**, **E**
+   - **T layer** (pointer on T): modes use **R**, **E**, **W**
    - **R layer** (pointer on R): modes use **E**
 
    This means learning a new layer doesn't require memorizing arbitrary modifier keys — the mode keys are always "the fingers next to the layer key."
@@ -96,6 +97,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | Aerospace | ⇪ + T | — | Focus | Window focus management |
 | | ⇪ + T | R | Move | Move windows directionally |
 | | ⇪ + T | E | Join | Join windows directionally |
+| | ⇪ + T | W | Move to WS | Move window to workspace (stay) |
 | Workspace | ⇪ + R | — | Focus Mon 1 | Focus workspace on monitor 1 |
 | | ⇪ + R | E | Focus Mon 2 | Focus workspace on monitor 2 |
 | *(unassigned)* | ⇪ + A | | | |
@@ -310,6 +312,14 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + E + T + , | *available* | |
 | ⇪ + E + T + . | *available* | |
 | ⇪ + E + T + / | *available* | |
+
+### Move to Workspace (⇪ + W + T)
+
+Moves the focused window to the selected workspace (stays on current workspace). Uses the same 20-key workspace grid as the R layer.
+
+| Key / Shortcut | Description |
+| --- | --- |
+| ⇪ + W + T + *key* | Move focused window to workspace (stay on current) |
 
 ---
 
