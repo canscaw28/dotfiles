@@ -129,6 +129,16 @@ case "$OP" in
         # internally refocuses the workspace, causing unexpected fallbacks).
         aerospace summon-workspace "$WS"
         ;;
+    focus-1)
+        # Focus workspace on monitor 1 specifically
+        aerospace focus-monitor 1
+        aerospace summon-workspace "$WS"
+        ;;
+    focus-2)
+        # Focus workspace on monitor 2 specifically
+        aerospace focus-monitor 2
+        aerospace summon-workspace "$WS"
+        ;;
     move)
         aerospace move-node-to-workspace "$WS"
         ;;

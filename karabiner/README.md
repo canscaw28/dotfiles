@@ -31,11 +31,8 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    | Aerospace (T) | *(none)* | Focus | Focus windows directionally |
    | Aerospace (T) | R (ring) | Move | Move windows directionally |
    | Aerospace (T) | E (middle) | Join | Join windows directionally |
-   | Workspace (R) | *(none)* | Focus | Focus workspace on current display |
-   | Workspace (R) | E (middle) | Move | Move window to workspace (stay) |
-   | Workspace (R) | E+W (middle+ring) | Move+Follow | Move window + follow on current display |
-   | Workspace (R) | Q (pinky) | Swap | Swap current and selected workspaces between monitors |
-   | Workspace (R) | Q+E (pinky+middle) | Swap+Follow | Swap workspaces, then focus the selected workspace |
+   | Workspace (R) | *(none)* | Focus Mon 1 | Focus workspace on monitor 1 |
+   | Workspace (R) | E (middle) | Focus Mon 2 | Focus workspace on monitor 2 |
 
    Notice that S and D are not separate layers — they are **modes of the Default layer**. The pointer finger is absent (no layer key held), so the middle and ring fingers are free to select a mode on the home row. Similarly, F is not a mode of Chrome — it's a mode key for the G layer, pressed by the middle finger while the pointer holds G.
 
@@ -43,7 +40,7 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    - **Default layer** (pointer absent): modes use home-row neighbors **S**, **D**
    - **G layer** (pointer on G): modes use **F**, and potentially **D**, **V**, **B**
    - **T layer** (pointer on T): modes use **R**, **E**
-   - **R layer** (pointer on R): modes use **E**, **W**, **Q**
+   - **R layer** (pointer on R): modes use **E**
 
    This means learning a new layer doesn't require memorizing arbitrary modifier keys — the mode keys are always "the fingers next to the layer key."
 
@@ -99,11 +96,8 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | Aerospace | ⇪ + T | — | Focus | Window focus management |
 | | ⇪ + T | R | Move | Move windows directionally |
 | | ⇪ + T | E | Join | Join windows directionally |
-| Workspace | ⇪ + R | — | Focus | Focus workspace on current display |
-| | ⇪ + R | E | Move | Move window to workspace (stay) |
-| | ⇪ + R | E+W | Move+Follow | Move window + follow on current display |
-| | ⇪ + R | Q | Swap | Swap current and selected workspaces between monitors |
-| | ⇪ + R | Q+E | Swap+Follow | Swap workspaces, then focus the selected workspace |
+| Workspace | ⇪ + R | — | Focus Mon 1 | Focus workspace on monitor 1 |
+| | ⇪ + R | E | Focus Mon 2 | Focus workspace on monitor 2 |
 | *(unassigned)* | ⇪ + A | | | |
 
 *Available layer keys: Z, X, C, V, B*
@@ -323,7 +317,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 Workspace operations execute directly via Karabiner `shell_command` (calling `ws.sh`), bypassing AeroSpace keybindings entirely. This avoids modifier conflicts with app shortcuts like `Cmd+Shift+H`.
 
-20 workspaces mapped to a right-hand grid (workspaces float freely between displays):
+20 workspaces mapped to a right-hand grid:
 
 ```
 6  7  8  9  0
@@ -332,43 +326,17 @@ h  j  k  l  ;
 n  m  ,  .  /
 ```
 
-### Focus (⇪ + R)
+### Focus Monitor 1 (⇪ + R)
 
 | Key / Shortcut | Description |
 | --- | --- |
-| ⇪ + R + *key* | Switch to workspace on the currently focused monitor |
+| ⇪ + R + *key* | Focus workspace on monitor 1 |
 
-### Move Window (⇪ + R + E)
-
-| Key / Shortcut | Description |
-| --- | --- |
-| ⇪ + R + E + *key* | Move focused window to workspace (stay on current) |
-
-### Move + Follow (⇪ + R + E + W)
+### Focus Monitor 2 (⇪ + R + E)
 
 | Key / Shortcut | Description |
 | --- | --- |
-| ⇪ + R + E + W + *key* | Move window to workspace and follow it on current display |
-
-### Swap (⇪ + R + Q)
-
-| Key / Shortcut | Description |
-| --- | --- |
-| ⇪ + R + Q + *key* | Swap current workspace with selected workspace between monitors |
-
-### Swap + Follow (⇪ + R + Q + E)
-
-| Key / Shortcut | Description |
-| --- | --- |
-| ⇪ + R + Q + E + *key* | Swap workspaces between monitors, then focus the selected workspace |
-
-### Quote Key Monitor Operations
-
-| Key / Shortcut | Description |
-| --- | --- |
-| ⇪ + R + ' | Swap workspaces between current and next monitor |
-| ⇪ + R + E + ' | Move focused window to next monitor |
-| ⇪ + R + E + W + ' | Move focused window to next monitor and follow |
+| ⇪ + R + E + *key* | Focus workspace on monitor 2 |
 
 ### Swap Implementation
 
