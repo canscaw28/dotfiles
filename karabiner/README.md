@@ -30,7 +30,7 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    | Chrome (G) | F (middle) | Tab Movement | Physically reorder tabs |
    | Aerospace (T) | *(none)* | Focus | Focus windows directionally |
    | Aerospace (T) | R (ring) | Move | Move windows directionally |
-   | Aerospace (T) | R+E (ring+middle) | Join | Join windows directionally |
+   | Aerospace (T) | E (middle) | Join | Join windows directionally |
    | Workspace (R) | *(none)* | Focus | Focus workspace on current display |
    | Workspace (R) | E (middle) | Move | Move window to workspace (stay) |
    | Workspace (R) | E+W (middle+ring) | Move+Follow | Move window + follow on current display |
@@ -42,7 +42,7 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    Mode keys are always relative to the pointer finger's position:
    - **Default layer** (pointer absent): modes use home-row neighbors **S**, **D**
    - **G layer** (pointer on G): modes use **F**, and potentially **D**, **V**, **B**
-   - **T layer** (pointer on T): modes could use **R**, **E**, **W**, or **D**, **S**, **3**, **4**
+   - **T layer** (pointer on T): modes use **R**, **E**
    - **R layer** (pointer on R): modes use **E**, **W**, **Q**
 
    This means learning a new layer doesn't require memorizing arbitrary modifier keys — the mode keys are always "the fingers next to the layer key."
@@ -98,7 +98,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | | ⇪ + G | F | Movement | Physically reorder tabs |
 | Aerospace | ⇪ + T | — | Focus | Window focus management |
 | | ⇪ + T | R | Move | Move windows directionally |
-| | ⇪ + T | R+E | Join | Join windows directionally |
+| | ⇪ + T | E | Join | Join windows directionally |
 | Workspace | ⇪ + R | — | Focus | Focus workspace on current display |
 | | ⇪ + R | E | Move | Move window to workspace (stay) |
 | | ⇪ + R | E+W | Move+Follow | Move window + follow on current display |
@@ -296,26 +296,26 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + R + T + . | *available* | |
 | ⇪ + R + T + / | *available* | |
 
-### Join Mode (⇪ + R + E + T)
+### Join Mode (⇪ + E + T)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| ⇪ + R + E + T + H | ⌘ + ⌥ + ⌃ + N | Join with left |
-| ⇪ + R + E + T + J | ⌘ + ⌥ + ⌃ + M | Join with down |
-| ⇪ + R + E + T + K | ⌘ + ⌥ + ⌃ + , | Join with up |
-| ⇪ + R + E + T + L | ⌘ + ⌥ + ⌃ + . | Join with right |
-| ⇪ + R + E + T + Y | *available* | |
-| ⇪ + R + E + T + U | *available* | |
-| ⇪ + R + E + T + I | *available* | |
-| ⇪ + R + E + T + O | *available* | |
-| ⇪ + R + E + T + P | *available* | |
-| ⇪ + R + E + T + ; | *available* | |
-| ⇪ + R + E + T + ' | *available* | |
-| ⇪ + R + E + T + N | *available* | |
-| ⇪ + R + E + T + M | *available* | |
-| ⇪ + R + E + T + , | *available* | |
-| ⇪ + R + E + T + . | *available* | |
-| ⇪ + R + E + T + / | *available* | |
+| ⇪ + E + T + H | ⌘ + ⌥ + ⌃ + N | Join with left |
+| ⇪ + E + T + J | ⌘ + ⌥ + ⌃ + M | Join with down |
+| ⇪ + E + T + K | ⌘ + ⌥ + ⌃ + , | Join with up |
+| ⇪ + E + T + L | ⌘ + ⌥ + ⌃ + . | Join with right |
+| ⇪ + E + T + Y | *available* | |
+| ⇪ + E + T + U | *available* | |
+| ⇪ + E + T + I | *available* | |
+| ⇪ + E + T + O | *available* | |
+| ⇪ + E + T + P | *available* | |
+| ⇪ + E + T + ; | *available* | |
+| ⇪ + E + T + ' | *available* | |
+| ⇪ + E + T + N | *available* | |
+| ⇪ + E + T + M | *available* | |
+| ⇪ + E + T + , | *available* | |
+| ⇪ + E + T + . | *available* | |
+| ⇪ + E + T + / | *available* | |
 
 ---
 
