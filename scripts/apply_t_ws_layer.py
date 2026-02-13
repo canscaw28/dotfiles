@@ -47,6 +47,8 @@ WORKSPACE_KEYS = [
 # Operations: (ws.sh_op, t_val, e_val, w_val, r_val)
 # Most specific first for Karabiner priority
 OPERATIONS = [
+    # T+E+W: move window to workspace + follow (most specific first)
+    ("move-focus", 1, 1, 1, 0),
     # T+W: move window to workspace (stay on current)
     ("move", 1, 0, 1, 0),
 ]

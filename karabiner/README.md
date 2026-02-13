@@ -32,6 +32,7 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    | Aerospace (T) | R (ring) | Move | Move windows directionally |
    | Aerospace (T) | E (middle) | Join | Join windows directionally |
    | Aerospace (T) | W (ring) | Move to WS | Move window to workspace (stay) |
+   | Aerospace (T) | E+W (middle+ring) | Move+Follow | Move window to workspace and follow |
    | Workspace (R) | *(none)* | Focus Mon 1 | Focus workspace on monitor 1 |
    | Workspace (R) | E (middle) | Focus Mon 2 | Focus workspace on monitor 2 |
 
@@ -98,6 +99,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | | ⇪ + T | R | Move | Move windows directionally |
 | | ⇪ + T | E | Join | Join windows directionally |
 | | ⇪ + T | W | Move to WS | Move window to workspace (stay) |
+| | ⇪ + T | E+W | Move+Follow | Move window to workspace and follow |
 | Workspace | ⇪ + R | — | Focus Mon 1 | Focus workspace on monitor 1 |
 | | ⇪ + R | E | Focus Mon 2 | Focus workspace on monitor 2 |
 | *(unassigned)* | ⇪ + A | | | |
@@ -320,6 +322,14 @@ Moves the focused window to the selected workspace (stays on current workspace).
 | Key / Shortcut | Description |
 | --- | --- |
 | ⇪ + W + T + *key* | Move focused window to workspace (stay on current) |
+
+### Move + Follow to Workspace (⇪ + E + W + T)
+
+Moves the focused window to the selected workspace and follows it (the current monitor switches to that workspace).
+
+| Key / Shortcut | Description |
+| --- | --- |
+| ⇪ + E + W + T + *key* | Move window to workspace and follow on current monitor |
 
 ---
 
