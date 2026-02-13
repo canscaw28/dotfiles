@@ -124,22 +124,18 @@ swap_workspaces() {
 
 case "$OP" in
     focus)
-        # Move workspace to current monitor first (hidden), then focus it.
-        # Avoids jitter: aerospace workspace would briefly show WS on the
-        # wrong monitor before move-workspace-to-monitor pulls it back.
-        CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
-        aerospace move-workspace-to-monitor --workspace "$WS" "$CURRENT_MONITOR"
-        aerospace workspace "$WS"
+        # Pull workspace to the focused monitor. summon-workspace doesn't
+        # disrupt the source monitor (unlike move-workspace-to-monitor which
+        # internally refocuses the workspace, causing unexpected fallbacks).
+        aerospace summon-workspace "$WS"
         ;;
     move)
         aerospace move-node-to-workspace "$WS"
         ;;
     move-focus)
-        # Move window, bring workspace to current monitor, then focus it.
-        CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+        # Move window to workspace, then pull that workspace to current monitor.
         aerospace move-node-to-workspace "$WS"
-        aerospace move-workspace-to-monitor --workspace "$WS" "$CURRENT_MONITOR"
-        aerospace workspace "$WS"
+        aerospace summon-workspace "$WS"
         ;;
     swap)
         # Swap current workspace with selected workspace between monitors.
