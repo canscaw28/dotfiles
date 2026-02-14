@@ -182,20 +182,16 @@ def is_t_ws_guard(m):
             and sv.get("name") == "guard_noop")
 
 
-def is_t_e_manipulator(m):
-    """Match T+E join action or guard (t=1, e=1, r=0, not a setter)."""
+def is_t_layer_manipulator(m):
+    """Match any T layer action or guard (t=1, not a setter, not a T+W/T+E+W action)."""
     conds = m.get("conditions", [])
-    to = m.get("to", [{}])[0]
-    sv = to.get("set_variable", {})
-    # Must be t=1, e=1, r=0
     if get_cond(conds, "t_is_held") != 1:
-        return False
-    if get_cond(conds, "e_is_held") != 1:
-        return False
-    if get_cond(conds, "r_is_held") != 0:
         return False
     # Must not be a setter (setters have to_after_key_up)
     if "to_after_key_up" in m:
+        return False
+    # Must not already be a T+W action (w=1 with shell_command)
+    if get_cond(conds, "w_is_held") == 1:
         return False
     return True
 
@@ -215,9 +211,14 @@ def find_t_e_setter(manips):
 
 
 def find_first_t_e_manipulator(manips):
-    """Find the first T+E join action/guard in the list."""
+    """Find the first T+E join action/guard (t=1, e=1, r=0) in the list."""
     for i, m in enumerate(manips):
-        if is_t_e_manipulator(m):
+        conds = m.get("conditions", [])
+        if (get_cond(conds, "t_is_held") == 1
+                and get_cond(conds, "e_is_held") == 1
+                and get_cond(conds, "r_is_held") == 0
+                and "to_after_key_up" not in m
+                and get_cond(conds, "w_is_held") != 1):
             return i
     return -1
 
@@ -245,19 +246,23 @@ def main():
 
     print(f"Removed: {removed['setter']} setter, {removed['actions']} actions, {removed['guards']} guards")
 
-    # Phase 2: Add w_is_held=0 to T+E join actions/guards (if not already present)
+    # Phase 2: Add w_is_held=0 to all T layer actions/guards (if not already present)
     w_added = 0
     for m in manips:
-        if is_t_e_manipulator(m):
+        if is_t_layer_manipulator(m):
             conds = m["conditions"]
             if get_cond(conds, "w_is_held") is None:
-                # Insert w_is_held=0 after e_is_held
+                # Insert w_is_held=0 after t_is_held (or e_is_held if present)
+                insert_after = "t_is_held"
+                for c in conds:
+                    if c.get("name") in ("e_is_held", "r_is_held"):
+                        insert_after = c.get("name")
                 for j, c in enumerate(conds):
-                    if c.get("name") == "e_is_held":
+                    if c.get("name") == insert_after:
                         conds.insert(j + 1, make_condition("w_is_held", 0))
                         w_added += 1
                         break
-    print(f"Added w_is_held=0 to {w_added} T+E manipulators")
+    print(f"Added w_is_held=0 to {w_added} T layer manipulators")
 
     # Phase 3: Insert T+W setter after T+E setter
     te_idx = find_t_e_setter(manips)
