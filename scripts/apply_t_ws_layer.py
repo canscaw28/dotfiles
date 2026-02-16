@@ -3,10 +3,9 @@
 
 Generates and inserts:
   - T+W mode setter (pressing w in T layer sets w_is_held)
-  - Action manipulators for 7 workspace operations (20 keys each = 140 total):
+  - Action manipulators for 6 workspace operations (20 keys each = 120 total):
       T+E       -> ws.sh move        (move window to workspace, stay)
       T+R+E     -> ws.sh move-focus  (move window + follow)
-      T+W       -> ws.sh focus       (focus workspace on current monitor)
       T+W+E     -> ws.sh focus-1     (focus workspace on monitor 1)
       T+W+R     -> ws.sh focus-2     (focus workspace on monitor 2)
       T+W+3     -> ws.sh focus-3     (focus workspace on monitor 3)
@@ -60,7 +59,6 @@ OPERATIONS = [
     ("focus-3",    {"w": 1, "3": 1, "e": 0, "r": 0, "4": 0}),  # T+W+3
     ("focus-4",    {"w": 1, "4": 1, "e": 0, "r": 0, "3": 0}),  # T+W+4
     ("move",       {"e": 1, "r": 0, "w": 0, "3": 0, "4": 0}),  # T+E
-    ("focus",      {"w": 1, "e": 0, "r": 0, "3": 0, "4": 0}),  # T+W
 ]
 
 # Right-hand keys NOT in workspace set that need guards

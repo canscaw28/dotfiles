@@ -32,7 +32,6 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    | Aerospace (T) | 4 (number row) | Join | Join windows directionally |
    | Aerospace (T) | E (middle) | Move to WS | Move window to workspace (stay) |
    | Aerospace (T) | R+E (ring+middle) | Move+Follow | Move window to workspace and follow |
-   | Aerospace (T) | W (ring) | Focus WS | Focus workspace on current monitor |
    | Aerospace (T) | W+E | Focus Mon 1 | Focus workspace on monitor 1 |
    | Aerospace (T) | W+R | Focus Mon 2 | Focus workspace on monitor 2 |
    | Aerospace (T) | W+3 | Focus Mon 3 | Focus workspace on monitor 3 |
@@ -103,7 +102,6 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | | ⇪ + T | 4 | Join | Join windows directionally |
 | | ⇪ + T | E | Move to WS | Move window to workspace (stay) |
 | | ⇪ + T | R+E | Move+Follow | Move window to workspace and follow |
-| | ⇪ + T | W | Focus WS | Focus workspace on current monitor |
 | | ⇪ + T | W+E | Focus Mon 1 | Focus workspace on monitor 1 |
 | | ⇪ + T | W+R | Focus Mon 2 | Focus workspace on monitor 2 |
 | | ⇪ + T | W+3 | Focus Mon 3 | Focus workspace on monitor 3 |
@@ -284,10 +282,10 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| ⇪ + R + T + H | ⌘ + ⌥ + ⌃ + Y | Move window left |
-| ⇪ + R + T + J | ⌘ + ⌥ + ⌃ + U | Move window down |
-| ⇪ + R + T + K | ⌘ + ⌥ + ⌃ + I | Move window up |
-| ⇪ + R + T + L | ⌘ + ⌥ + ⌃ + O | Move window right |
+| ⇪ + R + T + H | ⌘ + ⌥ + ⌃ + Y | Move window left (crosses to adjacent monitor at edge) |
+| ⇪ + R + T + J | ⌘ + ⌥ + ⌃ + U | Move window down (crosses to adjacent monitor at edge) |
+| ⇪ + R + T + K | ⌘ + ⌥ + ⌃ + I | Move window up (crosses to adjacent monitor at edge) |
+| ⇪ + R + T + L | ⌘ + ⌥ + ⌃ + O | Move window right (crosses to adjacent monitor at edge) |
 | ⇪ + R + T + Y | *available* | |
 | ⇪ + R + T + U | *available* | |
 | ⇪ + R + T + I | *available* | |
@@ -346,12 +344,6 @@ n  m  ,  .  /
 | Key / Shortcut | Description |
 | --- | --- |
 | ⇪ + R + E + T + *key* | Move window to workspace and follow on current monitor |
-
-### Focus Workspace (⇪ + W + T)
-
-| Key / Shortcut | Description |
-| --- | --- |
-| ⇪ + W + T + *key* | Focus workspace on current monitor |
 
 ### Focus Monitor 1 (⇪ + W + E + T)
 
