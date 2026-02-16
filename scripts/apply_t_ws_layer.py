@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
-"""Add T layer workspace operations (T+W, T+E+W) to karabiner.json.
+"""Add T layer workspace operations to karabiner.json.
 
 Generates and inserts:
   - T+W mode setter (pressing w in T layer sets w_is_held)
-  - T+W action manipulators (20 workspace keys -> ws.sh move)
-  - T+E+W action manipulators (20 workspace keys -> ws.sh move-focus) [if enabled]
-  - Guard manipulators for non-workspace keys in T+W mode
+  - Action manipulators for 7 workspace operations (20 keys each = 140 total):
+      T+E       -> ws.sh move        (move window to workspace, stay)
+      T+R+E     -> ws.sh move-focus  (move window + follow)
+      T+W       -> ws.sh focus       (focus workspace on current monitor)
+      T+W+E     -> ws.sh focus-1     (focus workspace on monitor 1)
+      T+W+R     -> ws.sh focus-2     (focus workspace on monitor 2)
+      T+W+3     -> ws.sh focus-3     (focus workspace on monitor 3)
+      T+W+4     -> ws.sh focus-4     (focus workspace on monitor 4)
+  - Guard manipulators for T+E and T+W modes
 
-Also ensures T+E join actions/guards have w_is_held=0 condition to prevent
-conflicts with T+E+W mode.
+Also ensures existing T layer manipulators have 3_is_held=0 and 4_is_held=0
+conditions to prevent conflicts.
 
-Idempotent: removes old T+W/T+E+W components before inserting new ones.
+Idempotent: removes old workspace components before inserting new ones.
 """
 
 import json
@@ -20,7 +26,7 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 KARABINER_PATH = os.path.join(SCRIPT_DIR, "..", "karabiner", "karabiner.json")
 
-# Same workspace keys as R layer
+# 20 workspace keys: (display_name, karabiner_key_code, ws.sh_argument)
 WORKSPACE_KEYS = [
     ("6", "6", "6"),
     ("7", "7", "7"),
@@ -44,13 +50,17 @@ WORKSPACE_KEYS = [
     ("/", "slash", "/"),
 ]
 
-# Operations: (ws.sh_op, t_val, e_val, w_val, r_val)
-# Most specific first for Karabiner priority
+# Operations: (ws.sh_op, mode_conditions_dict)
+# mode_conditions_dict maps variable names to required values.
+# Most specific (most positive conditions) first for Karabiner priority.
 OPERATIONS = [
-    # T+E+W: move window to workspace + follow (most specific first)
-    ("move-focus", 1, 1, 1, 0),
-    # T+W: move window to workspace (stay on current)
-    ("move", 1, 0, 1, 0),
+    ("move-focus", {"e": 1, "r": 1, "w": 0, "3": 0, "4": 0}),  # T+R+E
+    ("focus-1",    {"w": 1, "e": 1, "r": 0, "3": 0, "4": 0}),  # T+W+E
+    ("focus-2",    {"w": 1, "r": 1, "e": 0, "3": 0, "4": 0}),  # T+W+R
+    ("focus-3",    {"w": 1, "3": 1, "e": 0, "r": 0, "4": 0}),  # T+W+3
+    ("focus-4",    {"w": 1, "4": 1, "e": 0, "r": 0, "3": 0}),  # T+W+4
+    ("move",       {"e": 1, "r": 0, "w": 0, "3": 0, "4": 0}),  # T+E
+    ("focus",      {"w": 1, "e": 0, "r": 0, "3": 0, "4": 0}),  # T+W
 ]
 
 # Right-hand keys NOT in workspace set that need guards
@@ -58,6 +68,9 @@ GUARD_KEYS = [
     "quote", "open_bracket", "close_bracket",
     "hyphen", "equal_sign", "backslash",
 ]
+
+# Variable names for mode keys used in workspace operations
+MODE_VARS = ["e", "r", "w", "3", "4"]
 
 
 def make_condition(name, value):
@@ -71,22 +84,27 @@ def get_cond(conditions, name):
     return None
 
 
-def make_action_manipulator(key_code, shell_cmd, t_val, e_val, w_val, r_val):
+def make_action_manipulator(key_code, shell_cmd, mode_conds):
     """Create an action manipulator for T layer workspace operation."""
+    conditions = [
+        make_condition("caps_lock_is_held", 1),
+        make_condition("a_is_held", 0),
+        make_condition("s_is_held", 0),
+        make_condition("d_is_held", 0),
+        make_condition("f_is_held", 0),
+        make_condition("t_is_held", 1),
+    ]
+    # Add mode variable conditions in consistent order
+    for var in MODE_VARS:
+        if var in mode_conds:
+            conditions.append(make_condition(f"{var}_is_held", mode_conds[var]))
+    conditions += [
+        make_condition("q_is_held", 0),
+        make_condition("g_is_held", 0),
+    ]
+
     return {
-        "conditions": [
-            make_condition("caps_lock_is_held", 1),
-            make_condition("a_is_held", 0),
-            make_condition("s_is_held", 0),
-            make_condition("d_is_held", 0),
-            make_condition("f_is_held", 0),
-            make_condition("t_is_held", t_val),
-            make_condition("r_is_held", r_val),
-            make_condition("e_is_held", e_val),
-            make_condition("w_is_held", w_val),
-            make_condition("q_is_held", 0),
-            make_condition("g_is_held", 0),
-        ],
+        "conditions": conditions,
         "from": {
             "key_code": key_code,
             "modifiers": {"optional": ["any"]},
@@ -96,14 +114,15 @@ def make_action_manipulator(key_code, shell_cmd, t_val, e_val, w_val, r_val):
     }
 
 
-def make_guard_manipulator(key_code):
-    """Create a guard/noop manipulator for T+W mode."""
+def make_guard_manipulator(key_code, guard_conds, description):
+    """Create a guard/noop manipulator."""
+    conditions = [make_condition("caps_lock_is_held", 1), make_condition("t_is_held", 1)]
+    for name, value in guard_conds:
+        conditions.append(make_condition(name, value))
+
     return {
-        "conditions": [
-            make_condition("caps_lock_is_held", 1),
-            make_condition("t_is_held", 1),
-            make_condition("w_is_held", 1),
-        ],
+        "conditions": conditions,
+        "description": description,
         "from": {
             "key_code": key_code,
             "modifiers": {"optional": ["any"]},
@@ -134,19 +153,29 @@ def generate():
     ws_bin = "$HOME/.local/bin/ws.sh"
     actions = []
 
-    for op_name, t_val, e_val, w_val, r_val in OPERATIONS:
+    for op_name, mode_conds in OPERATIONS:
         for _display, key_code, ws_arg in WORKSPACE_KEYS:
             shell_cmd = f"{ws_bin} {op_name} {ws_arg}"
             actions.append(
-                make_action_manipulator(key_code, shell_cmd, t_val, e_val, w_val, r_val)
+                make_action_manipulator(key_code, shell_cmd, mode_conds)
             )
 
-    guards = [make_guard_manipulator(kc) for kc in GUARD_KEYS]
+    # T+E guards: block non-workspace keys when E is held in T layer
+    e_guards = [
+        make_guard_manipulator(kc, [("e_is_held", 1)], "t-ws-guard")
+        for kc in GUARD_KEYS
+    ]
+
+    # T+W guards: block non-workspace keys when W is held in T layer
+    w_guards = [
+        make_guard_manipulator(kc, [("w_is_held", 1)], "t-ws-guard")
+        for kc in GUARD_KEYS
+    ]
 
     return {
         "t_w_setter": make_t_w_setter(),
         "actions": actions,
-        "guards": guards,
+        "guards": e_guards + w_guards,
     }
 
 
@@ -164,34 +193,42 @@ def is_t_w_setter(m):
 
 
 def is_t_ws_action(m):
-    """Match T layer workspace action (t=1, w=1, has shell_command with ws.sh)."""
+    """Match T layer workspace action (t=1, has shell_command with ws.sh)."""
     conds = m.get("conditions", [])
     to = m.get("to", [{}])[0]
+    cmd = to.get("shell_command", "")
     return (get_cond(conds, "t_is_held") == 1
-            and get_cond(conds, "w_is_held") == 1
-            and "shell_command" in to)
+            and "to_after_key_up" not in m
+            and "ws.sh" in cmd)
 
 
 def is_t_ws_guard(m):
-    """Match T+W guard (t=1, w=1, sets guard_noop)."""
+    """Match T workspace guard (description=t-ws-guard, or old pattern: t=1, w=1, guard_noop with 3 conds)."""
+    if m.get("description") == "t-ws-guard":
+        return True
+    # Legacy detection: T+W guard with exactly 3 conditions (caps=1, t=1, w=1)
     conds = m.get("conditions", [])
     to = m.get("to", [{}])[0]
     sv = to.get("set_variable", {})
-    return (get_cond(conds, "t_is_held") == 1
+    return (len(conds) == 3
+            and get_cond(conds, "t_is_held") == 1
             and get_cond(conds, "w_is_held") == 1
             and sv.get("name") == "guard_noop")
 
 
 def is_t_layer_manipulator(m):
-    """Match any T layer action or guard (t=1, not a setter, not a T+W/T+E+W action)."""
+    """Match any T layer action or guard (t=1, not a setter, not a workspace action)."""
     conds = m.get("conditions", [])
     if get_cond(conds, "t_is_held") != 1:
         return False
-    # Must not be a setter (setters have to_after_key_up)
     if "to_after_key_up" in m:
         return False
-    # Must not already be a T+W action (w=1 with shell_command)
-    if get_cond(conds, "w_is_held") == 1:
+    # Skip workspace actions (ws.sh shell commands)
+    to = m.get("to", [{}])[0]
+    if "ws.sh" in to.get("shell_command", ""):
+        return False
+    # Skip workspace guards
+    if is_t_ws_guard(m):
         return False
     return True
 
@@ -210,15 +247,13 @@ def find_t_e_setter(manips):
     return -1
 
 
-def find_first_t_e_manipulator(manips):
-    """Find the first T+E join action/guard (t=1, e=1, r=0) in the list."""
+def find_first_t_4_manipulator(manips):
+    """Find the first T+4 join action/guard (t=1, 4_is_held=1)."""
     for i, m in enumerate(manips):
         conds = m.get("conditions", [])
         if (get_cond(conds, "t_is_held") == 1
-                and get_cond(conds, "e_is_held") == 1
-                and get_cond(conds, "r_is_held") == 0
-                and "to_after_key_up" not in m
-                and get_cond(conds, "w_is_held") != 1):
+                and get_cond(conds, "4_is_held") == 1
+                and "to_after_key_up" not in m):
             return i
     return -1
 
@@ -230,7 +265,7 @@ def main():
     manips = config["profiles"][0]["complex_modifications"]["rules"][0]["manipulators"]
     generated = generate()
 
-    # Phase 1: Remove old T+W components
+    # Phase 1: Remove old T workspace components
     removed = {"setter": 0, "actions": 0, "guards": 0}
     for i in range(len(manips) - 1, -1, -1):
         m = manips[i]
@@ -246,23 +281,25 @@ def main():
 
     print(f"Removed: {removed['setter']} setter, {removed['actions']} actions, {removed['guards']} guards")
 
-    # Phase 2: Add w_is_held=0 to all T layer actions/guards (if not already present)
-    w_added = 0
+    # Phase 2: Add 3_is_held=0 and 4_is_held=0 to all T layer manipulators
+    vars_added = {"3_is_held": 0, "4_is_held": 0}
     for m in manips:
         if is_t_layer_manipulator(m):
             conds = m["conditions"]
-            if get_cond(conds, "w_is_held") is None:
-                # Insert w_is_held=0 after t_is_held (or e_is_held if present)
-                insert_after = "t_is_held"
-                for c in conds:
-                    if c.get("name") in ("e_is_held", "r_is_held"):
-                        insert_after = c.get("name")
-                for j, c in enumerate(conds):
-                    if c.get("name") == insert_after:
-                        conds.insert(j + 1, make_condition("w_is_held", 0))
-                        w_added += 1
-                        break
-    print(f"Added w_is_held=0 to {w_added} T layer manipulators")
+            for var_name in ["3_is_held", "4_is_held"]:
+                if get_cond(conds, var_name) is None:
+                    # Insert after w_is_held (or after the last mode variable)
+                    insert_after = "w_is_held"
+                    for c in conds:
+                        if c.get("name") in ("w_is_held", "3_is_held", "4_is_held"):
+                            insert_after = c.get("name")
+                    for j, c in enumerate(conds):
+                        if c.get("name") == insert_after:
+                            conds.insert(j + 1, make_condition(var_name, 0))
+                            vars_added[var_name] += 1
+                            break
+    for var_name, count in vars_added.items():
+        print(f"Added {var_name}=0 to {count} T layer manipulators")
 
     # Phase 3: Insert T+W setter after T+E setter
     te_idx = find_t_e_setter(manips)
@@ -273,16 +310,16 @@ def main():
     manips.insert(te_idx + 1, generated["t_w_setter"])
     print("Inserted T+W setter after T+E setter")
 
-    # Phase 4: Insert actions and guards before T+E join manipulators
-    te_first = find_first_t_e_manipulator(manips)
-    if te_first == -1:
-        print("ERROR: Could not find T+E join manipulators", file=sys.stderr)
+    # Phase 4: Insert actions and guards before T+4 join manipulators
+    t4_first = find_first_t_4_manipulator(manips)
+    if t4_first == -1:
+        print("ERROR: Could not find T+4 join manipulators", file=sys.stderr)
         sys.exit(1)
 
-    insert_pos = te_first
+    insert_pos = t4_first
     for j, action in enumerate(generated["actions"]):
         manips.insert(insert_pos + j, action)
-    print(f"Inserted {len(generated['actions'])} action manipulators before T+E join")
+    print(f"Inserted {len(generated['actions'])} action manipulators")
 
     insert_pos += len(generated["actions"])
     for j, guard in enumerate(generated["guards"]):
