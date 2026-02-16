@@ -268,11 +268,6 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 1
                   }
                 ],
                 "from": {
@@ -305,11 +300,6 @@
                 "conditions": [
                   {
                     "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
                     "type": "variable_if",
                     "value": 1
                   }
@@ -346,11 +336,6 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 1
                   }
                 ],
                 "from": {
@@ -385,11 +370,6 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 1
                   }
                 ],
                 "from": {
@@ -422,11 +402,6 @@
                 "conditions": [
                   {
                     "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
                     "type": "variable_if",
                     "value": 1
                   }

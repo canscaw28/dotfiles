@@ -133,11 +133,10 @@ def make_guard_manipulator(key_code, guard_conds, description):
 
 
 def make_t_w_setter():
-    """T+W mode setter: when t_is_held=1, pressing w sets w_is_held=1."""
+    """W mode setter: when caps is held, pressing w sets w_is_held=1."""
     return {
         "conditions": [
             make_condition("caps_lock_is_held", 1),
-            make_condition("t_is_held", 1),
         ],
         "from": {
             "key_code": "w",
@@ -182,13 +181,13 @@ def generate():
 # --- Detection functions ---
 
 def is_t_w_setter(m):
-    """Match T+W setter (key=w, t_is_held=1, sets w_is_held)."""
+    """Match W setter (key=w, caps=1, sets w_is_held)."""
     conds = m.get("conditions", [])
     kc = m.get("from", {}).get("key_code", "")
     to = m.get("to", [{}])[0]
     sv = to.get("set_variable", {})
     return (kc == "w"
-            and get_cond(conds, "t_is_held") == 1
+            and get_cond(conds, "caps_lock_is_held") == 1
             and sv.get("name") == "w_is_held")
 
 
@@ -234,14 +233,14 @@ def is_t_layer_manipulator(m):
 
 
 def find_t_e_setter(manips):
-    """Find T+E setter (key=e, t_is_held=1, sets e_is_held)."""
+    """Find E setter (key=e, caps=1, sets e_is_held)."""
     for i, m in enumerate(manips):
         conds = m.get("conditions", [])
         kc = m.get("from", {}).get("key_code", "")
         to = m.get("to", [{}])[0]
         sv = to.get("set_variable", {})
         if (kc == "e"
-                and get_cond(conds, "t_is_held") == 1
+                and get_cond(conds, "caps_lock_is_held") == 1
                 and sv.get("name") == "e_is_held"):
             return i
     return -1
