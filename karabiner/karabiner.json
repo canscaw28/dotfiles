@@ -18468,6 +18468,11 @@
                   {
                     "name": "e_is_held",
                     "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
+                    "type": "variable_if",
                     "value": 1
                   },
                   {
@@ -18540,6 +18545,11 @@
                   },
                   {
                     "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -18614,6 +18624,11 @@
                   {
                     "name": "e_is_held",
                     "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
+                    "type": "variable_if",
                     "value": 1
                   },
                   {
@@ -18686,6 +18701,11 @@
                   },
                   {
                     "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -18760,6 +18780,11 @@
                   {
                     "name": "e_is_held",
                     "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
+                    "type": "variable_if",
                     "value": 1
                   },
                   {
@@ -18830,6 +18855,11 @@
                   },
                   {
                     "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -18902,6 +18932,11 @@
                   {
                     "name": "e_is_held",
                     "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
+                    "type": "variable_if",
                     "value": 1
                   },
                   {
@@ -18972,6 +19007,11 @@
                   },
                   {
                     "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -19044,6 +19084,11 @@
                   {
                     "name": "e_is_held",
                     "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
+                    "type": "variable_if",
                     "value": 1
                   },
                   {
@@ -19114,6 +19159,11 @@
                   },
                   {
                     "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -19186,6 +19236,11 @@
                   {
                     "name": "e_is_held",
                     "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
+                    "type": "variable_if",
                     "value": 1
                   },
                   {
@@ -19256,6 +19311,11 @@
                   },
                   {
                     "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -19328,6 +19388,11 @@
                   {
                     "name": "e_is_held",
                     "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
+                    "type": "variable_if",
                     "value": 1
                   },
                   {
@@ -19398,6 +19463,11 @@
                   },
                   {
                     "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -19470,6 +19540,11 @@
                   {
                     "name": "e_is_held",
                     "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
+                    "type": "variable_if",
                     "value": 1
                   },
                   {
@@ -19540,6 +19615,11 @@
                   },
                   {
                     "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
