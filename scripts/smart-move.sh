@@ -1,4 +1,5 @@
 #!/bin/bash
+# Move window in a direction, crossing monitor boundaries when at the edge.
 # Prevent concurrent aerospace operations (shared with ws.sh, smart-focus.sh)
 LOCKFILE="/tmp/aerospace-lock.pid"
 acquire_lock() {
@@ -11,13 +12,22 @@ acquire_lock || acquire_lock || exit 0
 trap 'rm -f "$LOCKFILE"' EXIT
 
 direction="$1"
+case "$direction" in
+    right) opposite="left" ;;
+    left)  opposite="right" ;;
+    up)    opposite="down" ;;
+    down)  opposite="up" ;;
+esac
+
 root_layout=$(aerospace list-windows --focused --format '%{workspace-root-container-layout}')
 
+# Try to move within the current workspace
 if aerospace move --boundaries-action fail "$direction" 2>/dev/null; then
     sleep 0.01 && aerospace move-mouse window-force-center
     exit 0
 fi
 
+# Cross-axis moves (e.g., up/down in h_tiles) wrap within the workspace
 is_cross_axis=false
 case "$root_layout" in
     h_tiles|h_accordion)
@@ -31,4 +41,14 @@ esac
 if $is_cross_axis; then
     aerospace move "$direction"
     sleep 0.01 && aerospace move-mouse window-force-center
+    exit 0
 fi
+
+# At boundary in the same axis — cross to adjacent monitor
+if ! aerospace move-node-to-monitor "$direction" --focus-follows-window 2>/dev/null; then
+    exit 0  # No monitor in that direction
+fi
+
+# Position window at the entering edge (moving right → leftmost position, etc.)
+while aerospace move --boundaries-action fail "$opposite" 2>/dev/null; do :; done
+aerospace move-mouse window-force-center
