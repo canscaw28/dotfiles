@@ -1,10 +1,14 @@
 #!/bin/bash
 # Workspace operations helper for AeroSpace
-# Called from Karabiner-Elements shell_command via R layer
+# Called from Karabiner-Elements shell_command via T layer
 #
 # Usage: ws.sh <operation> [workspace]
 # Operations:
 #   focus       Switch to workspace on the currently focused monitor
+#   focus-1     Focus workspace on monitor 1
+#   focus-2     Focus workspace on monitor 2 (falls back to monitor 1)
+#   focus-3     Focus workspace on monitor 3 (falls back to monitor 1)
+#   focus-4     Focus workspace on monitor 4 (falls back to monitor 1)
 #   move        Move focused window to workspace (stay on current)
 #   move-focus  Move focused window to workspace, follow it on current monitor
 #   swap        Swap current workspace with selected workspace between monitors
@@ -40,6 +44,19 @@ trap 'rm -f "$LOCKFILE"' EXIT
 
 OP="$1"
 WS="${2:-}"
+
+resolve_monitor() {
+    local target=$1
+    local monitors
+    monitors=($(aerospace list-monitors --format '%{monitor-id}'))
+    for mon in "${monitors[@]}"; do
+        if [[ "$mon" == "$target" ]]; then
+            echo "$target"
+            return
+        fi
+    done
+    echo "1"
+}
 
 next_monitor() {
     local current="$1"
@@ -137,6 +154,12 @@ case "$OP" in
     focus-2)
         # Focus workspace on monitor 2 specifically
         aerospace focus-monitor 2
+        aerospace summon-workspace "$WS"
+        ;;
+    focus-3)
+        # Focus workspace on monitor 3 (falls back to monitor 1)
+        mon=$(resolve_monitor 3)
+        aerospace focus-monitor "$mon"
         aerospace summon-workspace "$WS"
         ;;
     move)
