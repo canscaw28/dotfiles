@@ -152,8 +152,9 @@ case "$OP" in
         aerospace summon-workspace "$WS"
         ;;
     focus-2)
-        # Focus workspace on monitor 2 specifically
-        aerospace focus-monitor 2
+        # Focus workspace on monitor 2 (falls back to monitor 1)
+        mon=$(resolve_monitor 2)
+        aerospace focus-monitor "$mon"
         aerospace summon-workspace "$WS"
         ;;
     focus-3)
