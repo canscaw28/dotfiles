@@ -84,6 +84,33 @@ visible_on_monitor() {
     done
 }
 
+# Focus a workspace on a specific monitor, swapping if necessary.
+# summon-workspace only works for hidden workspaces — for a workspace that's
+# already visible on another monitor, it just redirects focus there and picks
+# a random fallback for the source monitor. This helper detects that case and
+# uses swap_workspaces to move the workspace to the target monitor.
+focus_ws_on_monitor() {
+    local target_mon="$1" ws="$2"
+    local ws_mon
+    ws_mon=$(visible_on_monitor "$ws")
+
+    if [[ "$ws_mon" == "$target_mon" ]]; then
+        # Already on the target monitor, just focus it
+        aerospace focus-monitor "$target_mon"
+    elif [[ -n "$ws_mon" ]]; then
+        # Visible on a different monitor — swap to the target
+        local target_ws
+        target_ws=$(aerospace list-workspaces --monitor "$target_mon" --visible)
+        swap_workspaces "$ws" "$target_mon" "$target_ws" "$ws_mon"
+        sleep 0.05
+        aerospace workspace "$ws"
+    else
+        # Hidden workspace — summon works correctly for these
+        aerospace focus-monitor "$target_mon"
+        aerospace summon-workspace "$ws"
+    fi
+}
+
 # Swap two workspaces between monitors using summon-workspace.
 # Args: $1=workspace_a $2=dest_monitor_a $3=workspace_b $4=dest_monitor_b
 # ws_a starts on mon_b (the focused monitor), ws_b starts on mon_a.
@@ -141,41 +168,28 @@ swap_workspaces() {
 
 case "$OP" in
     focus)
-        # Pull workspace to the focused monitor. summon-workspace doesn't
-        # disrupt the source monitor (unlike move-workspace-to-monitor which
-        # internally refocuses the workspace, causing unexpected fallbacks).
-        aerospace summon-workspace "$WS"
+        focus_ws_on_monitor "$(aerospace list-monitors --focused --format '%{monitor-id}')" "$WS"
         ;;
     focus-1)
-        # Focus workspace on monitor 1 specifically
-        aerospace focus-monitor 1
-        aerospace summon-workspace "$WS"
+        focus_ws_on_monitor "$(resolve_monitor 1)" "$WS"
         ;;
     focus-2)
-        # Focus workspace on monitor 2 (falls back to monitor 1)
-        mon=$(resolve_monitor 2)
-        aerospace focus-monitor "$mon"
-        aerospace summon-workspace "$WS"
+        focus_ws_on_monitor "$(resolve_monitor 2)" "$WS"
         ;;
     focus-3)
-        # Focus workspace on monitor 3 (falls back to monitor 1)
-        mon=$(resolve_monitor 3)
-        aerospace focus-monitor "$mon"
-        aerospace summon-workspace "$WS"
+        focus_ws_on_monitor "$(resolve_monitor 3)" "$WS"
         ;;
     focus-4)
-        # Focus workspace on monitor 4 (falls back to monitor 1)
-        mon=$(resolve_monitor 4)
-        aerospace focus-monitor "$mon"
-        aerospace summon-workspace "$WS"
+        focus_ws_on_monitor "$(resolve_monitor 4)" "$WS"
         ;;
     move)
         aerospace move-node-to-workspace "$WS"
         ;;
     move-focus)
         # Move window to workspace, then pull that workspace to current monitor.
+        CURRENT_MON=$(aerospace list-monitors --focused --format '%{monitor-id}')
         aerospace move-node-to-workspace "$WS"
-        aerospace summon-workspace "$WS"
+        focus_ws_on_monitor "$CURRENT_MON" "$WS"
         ;;
     swap)
         # Swap current workspace with selected workspace between monitors.
