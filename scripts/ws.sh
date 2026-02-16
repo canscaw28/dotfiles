@@ -112,7 +112,7 @@ focus_ws_on_monitor() {
 
     if [[ -z "$ws_mon" ]]; then
         # Hidden workspace — summon works correctly for these
-        aerospace focus-monitor "$target_mon"
+        aerospace focus-monitor "$target_mon"; sleep 0.05
         aerospace summon-workspace "$ws"
         return
     fi
