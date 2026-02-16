@@ -51,14 +51,15 @@ WORKSPACE_KEYS = [
 
 # Operations: (ws.sh_op, mode_conditions_dict)
 # mode_conditions_dict maps variable names to required values.
-# Most specific (most positive conditions) first for Karabiner priority.
+# Focus operations use ws_submode (set by E/R/3/4 setters) to disambiguate
+# during key overlap — the last-pressed sub-mode key always wins.
 OPERATIONS = [
     ("move-focus", {"e": 1, "r": 1, "w": 0, "3": 0, "4": 0}),  # T+R+E
-    ("focus-1",    {"w": 1, "e": 1, "r": 0, "3": 0, "4": 0}),  # T+W+E
-    ("focus-2",    {"w": 1, "r": 1, "e": 0, "3": 0, "4": 0}),  # T+W+R
-    ("focus-3",    {"w": 1, "3": 1, "e": 0, "r": 0, "4": 0}),  # T+W+3
-    ("focus-4",    {"w": 1, "4": 1, "e": 0, "r": 0, "3": 0}),  # T+W+4
-    ("move",       {"e": 1, "r": 0, "w": 0, "3": 0, "4": 0}),  # T+E
+    ("focus-1",    {"w": 1, "e": 1, "ws_submode": 1}),            # T+W+E
+    ("focus-2",    {"w": 1, "r": 1, "ws_submode": 2}),            # T+W+R
+    ("focus-3",    {"w": 1, "3": 1, "ws_submode": 3}),            # T+W+3
+    ("focus-4",    {"w": 1, "4": 1, "ws_submode": 4}),            # T+W+4
+    ("move",       {"e": 1, "r": 0, "w": 0, "3": 0, "4": 0}),    # T+E
 ]
 
 # Right-hand keys NOT in workspace set that need guards
@@ -96,6 +97,9 @@ def make_action_manipulator(key_code, shell_cmd, mode_conds):
     for var in MODE_VARS:
         if var in mode_conds:
             conditions.append(make_condition(f"{var}_is_held", mode_conds[var]))
+    # ws_submode disambiguates focus operations during key overlap
+    if "ws_submode" in mode_conds:
+        conditions.append(make_condition("ws_submode", mode_conds["ws_submode"]))
     conditions += [
         make_condition("q_is_held", 0),
         make_condition("g_is_held", 0),
@@ -230,6 +234,50 @@ def is_t_layer_manipulator(m):
     return True
 
 
+# Mapping of sub-mode key → (key_code, variable_name, ws_submode value)
+WS_SUBMODE_SETTERS = [
+    ("e", "e_is_held", 1),
+    ("r", "r_is_held", 2),
+    ("3", "3_is_held", 3),
+    ("4", "4_is_held", 4),
+]
+
+
+def find_setter(manips, key_code, var_name):
+    """Find a setter manipulator (caps=1, key_code, sets var_name)."""
+    for i, m in enumerate(manips):
+        conds = m.get("conditions", [])
+        kc = m.get("from", {}).get("key_code", "")
+        to = m.get("to", [{}])[0]
+        sv = to.get("set_variable", {})
+        if (kc == key_code
+                and get_cond(conds, "caps_lock_is_held") == 1
+                and sv.get("name") == var_name):
+            return i
+    return -1
+
+
+def add_ws_submode_to_setters(manips):
+    """Add ws_submode variable to E, R, 3, 4 setters for focus disambiguation."""
+    for key_code, var_name, submode_val in WS_SUBMODE_SETTERS:
+        idx = find_setter(manips, key_code, var_name)
+        if idx == -1:
+            print(f"WARNING: Could not find {key_code} setter")
+            continue
+        m = manips[idx]
+        to_list = m.get("to", [])
+        # Check if ws_submode already present
+        existing = [
+            item for item in to_list
+            if item.get("set_variable", {}).get("name") == "ws_submode"
+        ]
+        if existing:
+            existing[0]["set_variable"]["value"] = submode_val
+        else:
+            to_list.append({"set_variable": {"name": "ws_submode", "value": submode_val}})
+        print(f"Set ws_submode={submode_val} on {key_code} setter")
+
+
 def find_t_e_setter(manips):
     """Find E setter (key=e, caps=1, sets e_is_held)."""
     for i, m in enumerate(manips):
@@ -297,6 +345,9 @@ def main():
                             break
     for var_name, count in vars_added.items():
         print(f"Added {var_name}=0 to {count} T layer manipulators")
+
+    # Phase 2b: Add ws_submode to E, R, 3, 4 setters
+    add_ws_submode_to_setters(manips)
 
     # Phase 3: Insert T+W setter after T+E setter
     te_idx = find_t_e_setter(manips)

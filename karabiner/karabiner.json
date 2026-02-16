@@ -284,6 +284,12 @@
                       "name": "r_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "ws_submode",
+                      "value": 2
+                    }
                   }
                 ],
                 "to_after_key_up": [
@@ -316,6 +322,12 @@
                   {
                     "set_variable": {
                       "name": "e_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "ws_submode",
                       "value": 1
                     }
                   }
@@ -386,6 +398,12 @@
                       "name": "4_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "ws_submode",
+                      "value": 4
+                    }
                   }
                 ],
                 "to_after_key_up": [
@@ -419,6 +437,12 @@
                     "set_variable": {
                       "name": "3_is_held",
                       "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "ws_submode",
+                      "value": 3
                     }
                   }
                 ],
@@ -13743,24 +13767,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -13826,24 +13840,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -13909,24 +13913,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -13992,24 +13986,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -14075,24 +14059,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -14158,24 +14132,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -14241,24 +14205,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -14324,24 +14278,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -14407,24 +14351,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -14490,24 +14424,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -14573,24 +14497,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -14656,24 +14570,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -14739,24 +14643,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -14822,24 +14716,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -14905,24 +14789,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -14988,24 +14862,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -15071,24 +14935,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -15154,24 +15008,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -15237,24 +15081,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -15320,24 +15154,14 @@
                     "value": 1
                   },
                   {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 1
                   },
                   {
                     "name": "q_is_held",
@@ -15398,11 +15222,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -15413,14 +15232,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -15481,11 +15295,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -15496,14 +15305,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -15564,11 +15368,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -15579,14 +15378,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -15647,11 +15441,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -15662,14 +15451,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -15730,11 +15514,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -15745,14 +15524,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -15813,11 +15587,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -15828,14 +15597,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -15896,11 +15660,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -15911,14 +15670,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -15979,11 +15733,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -15994,14 +15743,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -16062,11 +15806,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -16077,14 +15816,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -16145,11 +15879,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -16160,14 +15889,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -16228,11 +15952,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -16243,14 +15962,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -16311,11 +16025,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -16326,14 +16035,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -16394,11 +16098,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -16409,14 +16108,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -16477,11 +16171,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -16492,14 +16181,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -16560,11 +16244,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -16575,14 +16254,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -16643,11 +16317,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -16658,14 +16327,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -16726,11 +16390,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -16741,14 +16400,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -16809,11 +16463,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -16824,14 +16473,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -16892,11 +16536,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -16907,14 +16546,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -16975,11 +16609,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "r_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -16990,14 +16619,9 @@
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
+                    "value": 2
                   },
                   {
                     "name": "q_is_held",
@@ -17058,16 +16682,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -17078,9 +16692,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -17141,16 +16755,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -17161,9 +16765,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -17224,16 +16828,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -17244,9 +16838,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -17307,16 +16901,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -17327,9 +16911,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -17390,16 +16974,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -17410,9 +16984,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -17473,16 +17047,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -17493,9 +17057,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -17556,16 +17120,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -17576,9 +17130,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -17639,16 +17193,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -17659,9 +17203,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -17722,16 +17266,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -17742,9 +17276,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -17805,16 +17339,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -17825,9 +17349,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -17888,16 +17412,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -17908,9 +17422,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -17971,16 +17485,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -17991,9 +17495,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -18054,16 +17558,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -18074,9 +17568,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -18137,16 +17631,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -18157,9 +17641,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -18220,16 +17704,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -18240,9 +17714,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -18303,16 +17777,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -18323,9 +17787,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -18386,16 +17850,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -18406,9 +17860,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -18469,16 +17923,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -18489,9 +17933,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -18552,16 +17996,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -18572,9 +18006,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -18635,16 +18069,6 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -18655,9 +18079,9 @@
                     "value": 1
                   },
                   {
-                    "name": "4_is_held",
+                    "name": "ws_submode",
                     "type": "variable_if",
-                    "value": 0
+                    "value": 3
                   },
                   {
                     "name": "q_is_held",
@@ -18718,29 +18142,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -18801,29 +18215,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -18884,29 +18288,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -18967,29 +18361,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -19050,29 +18434,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -19133,29 +18507,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -19216,29 +18580,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -19299,29 +18653,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -19382,29 +18726,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -19465,29 +18799,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -19548,29 +18872,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -19631,29 +18945,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -19714,29 +19018,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -19797,29 +19091,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -19880,29 +19164,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -19963,29 +19237,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -20046,29 +19310,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -20129,29 +19383,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -20212,29 +19456,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
@@ -20295,29 +19529,19 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "w_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
                   {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "4_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "ws_submode",
+                    "type": "variable_if",
+                    "value": 4
                   },
                   {
                     "name": "q_is_held",
