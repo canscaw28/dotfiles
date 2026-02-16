@@ -84,29 +84,58 @@ visible_on_monitor() {
     done
 }
 
-# Focus a workspace on a specific monitor, swapping if necessary.
+# Place the ~ buffer workspace on a specific monitor.
+# ~ always creates on mon1; if a different monitor is needed, move it there.
+place_buffer_on() {
+    local mon="$1"
+    aerospace workspace "$BUFFER_WS"; sleep 0.05
+    if [[ "$mon" != "1" ]]; then
+        aerospace move-workspace-to-monitor "$mon"; sleep 0.05
+    fi
+}
+
+# Focus a workspace on a specific monitor.
 # summon-workspace only works for hidden workspaces — for a workspace that's
 # already visible on another monitor, it just redirects focus there and picks
 # a random fallback for the source monitor. This helper detects that case and
-# uses swap_workspaces to move the workspace to the target monitor.
+# yanks the workspace to the target, leaving ~ on the source monitor.
 focus_ws_on_monitor() {
     local target_mon="$1" ws="$2"
-    local ws_mon
+    local ws_mon buf_mon
     ws_mon=$(visible_on_monitor "$ws")
 
     if [[ "$ws_mon" == "$target_mon" ]]; then
         # Already on the target monitor, just focus it
         aerospace focus-monitor "$target_mon"
-    elif [[ -n "$ws_mon" ]]; then
-        # Visible on a different monitor — swap to the target
-        local target_ws
-        target_ws=$(aerospace list-workspaces --monitor "$target_mon" --visible)
-        swap_workspaces "$ws" "$target_mon" "$target_ws" "$ws_mon"
-        sleep 0.05
-        aerospace workspace "$ws"
-    else
+        return
+    fi
+
+    if [[ -z "$ws_mon" ]]; then
         # Hidden workspace — summon works correctly for these
         aerospace focus-monitor "$target_mon"
+        aerospace summon-workspace "$ws"
+        return
+    fi
+
+    # ws is visible on ws_mon, want it on target_mon, leave ~ on ws_mon.
+    buf_mon=$(visible_on_monitor "$BUFFER_WS")
+
+    if [[ "$buf_mon" == "$target_mon" ]]; then
+        # ~ occupies our target from a previous yank. Move ws there directly
+        # (replaces ~, which gets GC'd). Then put fresh ~ on ws_mon.
+        aerospace focus-monitor "$ws_mon"; sleep 0.05
+        aerospace move-workspace-to-monitor "$target_mon"; sleep 0.05
+        place_buffer_on "$ws_mon"
+        aerospace workspace "$ws"
+    else
+        # Reclaim stale ~ to mon1 if it's stranded on another monitor (3+ monitors).
+        if [[ -n "$buf_mon" && "$buf_mon" != "1" ]]; then
+            aerospace focus-monitor "$buf_mon"; sleep 0.05
+            aerospace move-workspace-to-monitor 1; sleep 0.05
+        fi
+        # Place ~ on ws_mon to hide ws, then summon ws to target.
+        place_buffer_on "$ws_mon"
+        aerospace focus-monitor "$target_mon"; sleep 0.05
         aerospace summon-workspace "$ws"
     fi
 }
