@@ -47,6 +47,8 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
 
    This means learning a new layer doesn't require memorizing arbitrary modifier keys — the mode keys are always "the fingers next to the layer key."
 
+   **Order-independent**: Mode key setters activate on `caps_lock_is_held` alone (not `caps + layer_key`), so keys can be pressed in any order. For example, `⇪ + W + R + T + m` works identically whether you press T before W and R or after — as long as all keys are held simultaneously when the workspace key is pressed.
+
 ### Right Hand: Consistent Action Layout
 
 Regardless of which layer or mode the left hand selects, the right hand uses the **same spatial layout**:
