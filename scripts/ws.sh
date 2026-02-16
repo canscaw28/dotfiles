@@ -274,6 +274,16 @@ case "$OP" in
         ;;
 esac
 
+# Show workspace notification overlay
+NOTIFY_WS="$WS"
+case "$OP" in
+    swap-monitors)       NOTIFY_WS="$NEXT_WS" ;;
+    move-monitor|move-monitor-focus) NOTIFY_WS="$NEXT_WS" ;;
+esac
+if [[ -n "$NOTIFY_WS" ]]; then
+    /opt/homebrew/bin/hs -c "require('ws_notify').show('$NOTIFY_WS')" 2>/dev/null &
+fi
+
 # Move mouse to focused window (replaces on-focus-changed callback which
 # interferes with multi-step swap operations)
 aerospace move-mouse window-lazy-center 2>/dev/null || true

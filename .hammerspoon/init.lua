@@ -1,4 +1,5 @@
 require("line_nav")
+require("ws_notify")
 
 scrollSpeed = 1
 scrollInterval = 0.01
