@@ -284,6 +284,9 @@
                       "name": "r_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('r')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -292,6 +295,9 @@
                       "name": "r_is_held",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('r')\" &"
                   }
                 ],
                 "type": "basic"
@@ -318,6 +324,9 @@
                       "name": "e_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('e')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -326,6 +335,9 @@
                       "name": "e_is_held",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('e')\" &"
                   }
                 ],
                 "type": "basic"
@@ -352,6 +364,9 @@
                       "name": "w_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('w')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -360,6 +375,9 @@
                       "name": "w_is_held",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('w')\" &"
                   }
                 ],
                 "type": "basic"
@@ -386,6 +404,9 @@
                       "name": "4_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('4')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -394,6 +415,9 @@
                       "name": "4_is_held",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('4')\" &"
                   }
                 ],
                 "type": "basic"
@@ -420,6 +444,9 @@
                       "name": "3_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('3')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -428,6 +455,9 @@
                       "name": "3_is_held",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('3')\" &"
                   }
                 ],
                 "type": "basic"

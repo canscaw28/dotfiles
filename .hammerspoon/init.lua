@@ -1,6 +1,7 @@
 require("line_nav")
 require("ws_notify")
 require("focus_border")
+require("ws_grid")
 
 scrollSpeed = 1
 scrollInterval = 0.01

@@ -130,6 +130,15 @@ def make_guard_manipulator(key_code, guard_conds, description):
     }
 
 
+HS_BIN = "/opt/homebrew/bin/hs"
+GRID_CMD_TEMPLATE = HS_BIN + " -c \"require('ws_grid').key{}('{}')\" &"
+
+
+def make_grid_shell_command(key, direction):
+    """Create a shell_command dict for ws_grid keyDown/keyUp."""
+    return {"shell_command": GRID_CMD_TEMPLATE.format(direction, key)}
+
+
 def make_t_w_setter():
     """W mode setter: when caps is held, pressing w sets w_is_held=1."""
     return {
@@ -140,8 +149,14 @@ def make_t_w_setter():
             "key_code": "w",
             "modifiers": {"optional": ["any"]},
         },
-        "to": [{"set_variable": {"name": "w_is_held", "value": 1}}],
-        "to_after_key_up": [{"set_variable": {"name": "w_is_held", "value": 0}}],
+        "to": [
+            {"set_variable": {"name": "w_is_held", "value": 1}},
+            make_grid_shell_command("w", "Down"),
+        ],
+        "to_after_key_up": [
+            {"set_variable": {"name": "w_is_held", "value": 0}},
+            make_grid_shell_command("w", "Up"),
+        ],
         "type": "basic",
     }
 
@@ -267,6 +282,25 @@ def remove_ws_submode_from_setters(manips):
             ]
 
 
+def add_grid_shell_commands_to_setters(manips):
+    """Add ws_grid keyDown/keyUp shell commands to E, R, 3, 4 setters."""
+    for key_code, var_name in MODE_KEY_SETTERS:
+        idx = find_setter(manips, key_code, var_name)
+        if idx == -1:
+            continue
+        m = manips[idx]
+        for field, direction in [("to", "Down"), ("to_after_key_up", "Up")]:
+            items = m.get(field, [])
+            # Remove any existing grid shell commands (idempotent)
+            items = [
+                item for item in items
+                if "ws_grid" not in item.get("shell_command", "")
+            ]
+            # Append grid command
+            items.append(make_grid_shell_command(key_code, direction))
+            m[field] = items
+
+
 def find_t_e_setter(manips):
     """Find E setter (key=e, caps=1, sets e_is_held)."""
     for i, m in enumerate(manips):
@@ -337,6 +371,10 @@ def main():
 
     # Phase 2b: Clean up any leftover ws_submode from setters
     remove_ws_submode_from_setters(manips)
+
+    # Phase 2c: Add ws_grid shell commands to E, R, 3, 4 setters
+    add_grid_shell_commands_to_setters(manips)
+    print("Added ws_grid shell commands to E, R, 3, 4 setters")
 
     # Phase 3: Insert T+W setter after T+E setter
     te_idx = find_t_e_setter(manips)
