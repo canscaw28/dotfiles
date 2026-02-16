@@ -30,7 +30,7 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    | Chrome (G) | F (middle) | Tab Movement | Physically reorder tabs |
    | Aerospace (T) | *(none)* | Focus | Focus windows directionally |
    | Aerospace (T) | R (ring) | Move | Move windows directionally |
-   | Aerospace (T) | E (middle) | Join | Join windows directionally |
+   | Aerospace (T) | 4 (number row) | Join | Join windows directionally |
    | Aerospace (T) | W (ring) | Move to WS | Move window to workspace (stay) |
    | Aerospace (T) | E+W (middle+ring) | Move+Follow | Move window to workspace and follow |
    | Workspace (R) | *(none)* | Focus Mon 1 | Focus workspace on monitor 1 |
@@ -41,7 +41,7 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    Mode keys are always relative to the pointer finger's position:
    - **Default layer** (pointer absent): modes use home-row neighbors **S**, **D**
    - **G layer** (pointer on G): modes use **F**, and potentially **D**, **V**, **B**
-   - **T layer** (pointer on T): modes use **R**, **E**, **W**
+   - **T layer** (pointer on T): modes use **R**, **E**, **W**, **4**
    - **R layer** (pointer on R): modes use **E**
 
    This means learning a new layer doesn't require memorizing arbitrary modifier keys — the mode keys are always "the fingers next to the layer key."
@@ -73,7 +73,7 @@ This mapping is consistent across layers and modes:
 | Chrome | Movement (F+G) | move tab ← / → | move tab 3 positions | move to start / end |
 | Aerospace | Focus (T) | focus ← / → | | |
 | Aerospace | Move (R+T) | move window ← / → | | |
-| Aerospace | Join (R+E+T) | join ← / → | | |
+| Aerospace | Join (4+T) | join ← / → | | |
 
 Because the right hand layout never changes, you only learn it once. Switching layers and modes is entirely a left-hand concern.
 
@@ -97,7 +97,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | | ⇪ + G | F | Movement | Physically reorder tabs |
 | Aerospace | ⇪ + T | — | Focus | Window focus management |
 | | ⇪ + T | R | Move | Move windows directionally |
-| | ⇪ + T | E | Join | Join windows directionally |
+| | ⇪ + T | 4 | Join | Join windows directionally |
 | | ⇪ + T | W | Move to WS | Move window to workspace (stay) |
 | | ⇪ + T | E+W | Move+Follow | Move window to workspace and follow |
 | Workspace | ⇪ + R | — | Focus Mon 1 | Focus workspace on monitor 1 |
@@ -294,26 +294,26 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + R + T + . | *available* | |
 | ⇪ + R + T + / | *available* | |
 
-### Join Mode (⇪ + E + T)
+### Join Mode (⇪ + 4 + T)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| ⇪ + E + T + H | ⌘ + ⌥ + ⌃ + N | Join with left |
-| ⇪ + E + T + J | ⌘ + ⌥ + ⌃ + M | Join with down |
-| ⇪ + E + T + K | ⌘ + ⌥ + ⌃ + , | Join with up |
-| ⇪ + E + T + L | ⌘ + ⌥ + ⌃ + . | Join with right |
-| ⇪ + E + T + Y | *available* | |
-| ⇪ + E + T + U | *available* | |
-| ⇪ + E + T + I | *available* | |
-| ⇪ + E + T + O | *available* | |
-| ⇪ + E + T + P | *available* | |
-| ⇪ + E + T + ; | *available* | |
-| ⇪ + E + T + ' | *available* | |
-| ⇪ + E + T + N | *available* | |
-| ⇪ + E + T + M | *available* | |
-| ⇪ + E + T + , | *available* | |
-| ⇪ + E + T + . | *available* | |
-| ⇪ + E + T + / | *available* | |
+| ⇪ + 4 + T + H | ⌘ + ⌥ + ⌃ + N | Join with left |
+| ⇪ + 4 + T + J | ⌘ + ⌥ + ⌃ + M | Join with down |
+| ⇪ + 4 + T + K | ⌘ + ⌥ + ⌃ + , | Join with up |
+| ⇪ + 4 + T + L | ⌘ + ⌥ + ⌃ + . | Join with right |
+| ⇪ + 4 + T + Y | *available* | |
+| ⇪ + 4 + T + U | *available* | |
+| ⇪ + 4 + T + I | *available* | |
+| ⇪ + 4 + T + O | *available* | |
+| ⇪ + 4 + T + P | *available* | |
+| ⇪ + 4 + T + ; | *available* | |
+| ⇪ + 4 + T + ' | *available* | |
+| ⇪ + 4 + T + N | *available* | |
+| ⇪ + 4 + T + M | *available* | |
+| ⇪ + 4 + T + , | *available* | |
+| ⇪ + 4 + T + . | *available* | |
+| ⇪ + 4 + T + / | *available* | |
 
 ### Move to Workspace (⇪ + W + T)
 
