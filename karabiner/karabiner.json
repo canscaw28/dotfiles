@@ -27398,7 +27398,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap 6"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows 6"
                   }
                 ],
                 "type": "basic"
@@ -27481,7 +27481,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap 7"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows 7"
                   }
                 ],
                 "type": "basic"
@@ -27564,7 +27564,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap 8"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows 8"
                   }
                 ],
                 "type": "basic"
@@ -27647,7 +27647,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap 9"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows 9"
                   }
                 ],
                 "type": "basic"
@@ -27730,7 +27730,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap 0"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows 0"
                   }
                 ],
                 "type": "basic"
@@ -27813,7 +27813,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap y"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows y"
                   }
                 ],
                 "type": "basic"
@@ -27896,7 +27896,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap u"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows u"
                   }
                 ],
                 "type": "basic"
@@ -27979,7 +27979,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap i"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows i"
                   }
                 ],
                 "type": "basic"
@@ -28062,7 +28062,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap o"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows o"
                   }
                 ],
                 "type": "basic"
@@ -28145,7 +28145,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap p"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows p"
                   }
                 ],
                 "type": "basic"
@@ -28228,7 +28228,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap h"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows h"
                   }
                 ],
                 "type": "basic"
@@ -28311,7 +28311,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap j"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows j"
                   }
                 ],
                 "type": "basic"
@@ -28394,7 +28394,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap k"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows k"
                   }
                 ],
                 "type": "basic"
@@ -28477,7 +28477,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap l"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows l"
                   }
                 ],
                 "type": "basic"
@@ -28560,7 +28560,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap \";\""
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows \";\""
                   }
                 ],
                 "type": "basic"
@@ -28643,7 +28643,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap n"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows n"
                   }
                 ],
                 "type": "basic"
@@ -28726,7 +28726,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap m"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows m"
                   }
                 ],
                 "type": "basic"
@@ -28809,7 +28809,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap comma"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows comma"
                   }
                 ],
                 "type": "basic"
@@ -28892,7 +28892,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap ."
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows ."
                   }
                 ],
                 "type": "basic"
@@ -28975,7 +28975,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh swap /"
+                    "shell_command": "$HOME/.local/bin/ws.sh swap-windows /"
                   }
                 ],
                 "type": "basic"

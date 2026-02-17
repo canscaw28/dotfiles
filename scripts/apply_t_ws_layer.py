@@ -11,7 +11,7 @@ Generates and inserts:
       T+W+R     -> ws.sh focus-2        (focus workspace on monitor 2)
       T+W+3     -> ws.sh focus-3        (focus workspace on monitor 3)
       T+W+4     -> ws.sh focus-4        (focus workspace on monitor 4)
-      T+Q       -> ws.sh swap           (swap workspaces between monitors)
+      T+Q       -> ws.sh swap-windows   (swap all windows between workspaces)
       T+Q+3     -> ws.sh push-windows   (push all windows to target workspace)
       T+Q+E     -> ws.sh pull-windows   (pull all windows from target workspace)
   - Guard manipulators for T+E, T+W, and T+Q modes
@@ -66,7 +66,7 @@ OPERATIONS = [
     ("move",          {"e": 1, "r": 0, "w": 0, "3": 0, "4": 0, "q": 0}),   # T+E
     ("push-windows",  {"q": 1, "3": 1, "e": 0, "r": 0, "w": 0, "4": 0}),   # T+Q+3
     ("pull-windows",  {"q": 1, "e": 1, "3": 0, "r": 0, "w": 0, "4": 0}),   # T+Q+E
-    ("swap",          {"q": 1, "e": 0, "r": 0, "w": 0, "3": 0, "4": 0}),   # T+Q
+    ("swap-windows",  {"q": 1, "e": 0, "r": 0, "w": 0, "3": 0, "4": 0}),   # T+Q
 ]
 
 # Right-hand keys NOT in workspace set that need guards

@@ -17,6 +17,7 @@
 #   move-monitor   Move focused window to next monitor
 #   move-monitor-focus  Move focused window to next monitor and follow
 #   move-monitor-yank   Move focused window to next monitor, yank that workspace back
+#   swap-windows   Swap all windows between focused workspace and target workspace
 #   push-windows   Move all windows from focused workspace to target workspace
 #   pull-windows   Pull all windows from target workspace to focused workspace
 
@@ -269,24 +270,35 @@ case "$OP" in
         aerospace move-node-to-workspace "$NEXT_WS"
         focus_ws_on_monitor "$CURRENT_MONITOR" "$NEXT_WS"
         ;;
+    swap-windows)
+        # Swap all windows between focused workspace and target workspace
+        CURRENT_WS=$(aerospace list-workspaces --focused)
+        CURRENT_WIDS=$(aerospace list-windows --workspace "$CURRENT_WS" --format '%{window-id}')
+        TARGET_WIDS=$(aerospace list-windows --workspace "$WS" --format '%{window-id}')
+        for wid in $CURRENT_WIDS; do
+            aerospace move-node-to-workspace --window-id "$wid" "$WS"
+        done
+        for wid in $TARGET_WIDS; do
+            aerospace move-node-to-workspace --window-id "$wid" "$CURRENT_WS"
+        done
+        aerospace workspace "$CURRENT_WS"
+        ;;
     push-windows)
         # Move all windows from focused workspace to target workspace
         CURRENT_WS=$(aerospace list-workspaces --focused)
         WINDOW_IDS=$(aerospace list-windows --workspace "$CURRENT_WS" --format '%{window-id}')
         for wid in $WINDOW_IDS; do
-            aerospace focus --window-id "$wid" 2>/dev/null || continue
-            aerospace move-node-to-workspace "$WS"
+            aerospace move-node-to-workspace --window-id "$wid" "$WS"
         done
+        aerospace workspace "$CURRENT_WS"
         ;;
     pull-windows)
         # Pull all windows from target workspace to focused workspace
         CURRENT_WS=$(aerospace list-workspaces --focused)
         WINDOW_IDS=$(aerospace list-windows --workspace "$WS" --format '%{window-id}')
         for wid in $WINDOW_IDS; do
-            aerospace focus --window-id "$wid" 2>/dev/null || continue
-            aerospace move-node-to-workspace "$CURRENT_WS"
+            aerospace move-node-to-workspace --window-id "$wid" "$CURRENT_WS"
         done
-        aerospace workspace "$CURRENT_WS"
         ;;
     swap-monitors)
         # Swap workspaces between current and next monitor (wraps for >2)
