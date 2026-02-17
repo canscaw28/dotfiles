@@ -331,7 +331,7 @@ fi
 
 # Move mouse to focused window (replaces on-focus-changed callback which
 # interferes with multi-step swap operations)
-aerospace move-mouse window-lazy-center 2>/dev/null || true
+aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null || true
 
 # Flash border around focused window to track movement (skip for focus — grid provides feedback)
 if [[ "$OP" != "focus" ]]; then
