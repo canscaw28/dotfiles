@@ -52,6 +52,16 @@ function M.show(workspaceName, monitorId)
     local x = sf.x + (sf.w - SIZE) / 2
     local y = sf.y + (sf.h - SIZE) / 2
 
+    -- Position above grid overlay if it's visible on this screen
+    local ok, ws_grid = pcall(require, "ws_grid")
+    if ok and ws_grid.getFrame then
+        local gf = ws_grid.getFrame()
+        if gf then
+            local GAP = 12
+            y = gf.y - SIZE - GAP
+        end
+    end
+
     local borderColor = MONITOR_COLORS[monitorId] or DEFAULT_BORDER
     local displayName = DISPLAY_NAMES[workspaceName] or workspaceName
 

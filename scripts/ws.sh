@@ -316,21 +316,19 @@ case "$OP" in
         ;;
 esac
 
-# Show workspace notification overlay (skip for focus — grid is already visible)
-if [[ "$OP" != "focus" ]]; then
-    NOTIFY_WS="$WS"
-    NOTIFY_MON=""
-    case "$OP" in
-        focus-[1-4])         NOTIFY_MON="${OP##focus-}" ;;
-        move-focus)          NOTIFY_MON="$CURRENT_MON" ;;
-        swap|swap-follow)    NOTIFY_MON="$CURRENT_MONITOR" ;;
-        swap-monitors)       NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
-        move-monitor|move-monitor-focus) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$NEXT_MONITOR" ;;
-        move-monitor-yank) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
-    esac
-    if [[ -n "$NOTIFY_WS" ]]; then
-        /usr/local/bin/hs -c "require('ws_notify').show('$NOTIFY_WS', ${NOTIFY_MON:-0})" 2>/dev/null &
-    fi
+# Show workspace notification overlay
+NOTIFY_WS="$WS"
+NOTIFY_MON=""
+case "$OP" in
+    focus-[1-4])         NOTIFY_MON="${OP##focus-}" ;;
+    move-focus)          NOTIFY_MON="$CURRENT_MON" ;;
+    swap|swap-follow)    NOTIFY_MON="$CURRENT_MONITOR" ;;
+    swap-monitors)       NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
+    move-monitor|move-monitor-focus) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$NEXT_MONITOR" ;;
+    move-monitor-yank) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
+esac
+if [[ -n "$NOTIFY_WS" ]]; then
+    /usr/local/bin/hs -c "require('ws_notify').show('$NOTIFY_WS', ${NOTIFY_MON:-0})" 2>/dev/null &
 fi
 
 # Move mouse to focused window (replaces on-focus-changed callback which

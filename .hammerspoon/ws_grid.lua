@@ -226,6 +226,11 @@ function M.showGrid()
     pendingTask:start()
 end
 
+function M.getFrame()
+    if grid then return grid:frame() end
+    return nil
+end
+
 function M.hideGrid()
     if pendingTask and pendingTask:isRunning() then
         pendingTask:terminate()
