@@ -1,5 +1,5 @@
 -- focus_border.lua
--- Persistent blue border around the focused window, fading after 2 seconds.
+-- Blue border flash around the focused window, triggered by ws.sh operations.
 
 local M = {}
 
@@ -58,28 +58,11 @@ local function showBorder(win)
     end)
 end
 
-local function hideBorder()
-    if fadeTimer then
-        fadeTimer:stop()
-        fadeTimer = nil
-    end
-    if border then border:hide() end
-end
-
 function M.flash()
     local win = hs.window.focusedWindow()
     if win then
         showBorder(win)
     end
 end
-
-local wf = hs.window.filter.default
-wf:subscribe(hs.window.filter.windowFocused, function(win)
-    if win then
-        showBorder(win)
-    else
-        hideBorder()
-    end
-end)
 
 return M

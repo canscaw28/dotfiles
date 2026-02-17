@@ -1,17 +1,18 @@
 -- ws_notify.lua
 -- Flash workspace name centered on screen after workspace operations.
+-- Styled as a macOS-like HUD overlay.
 
 local M = {}
 
 local overlay = nil
 local fadeTimer = nil
 
-local BG_COLOR = {red = 0.13, green = 0.13, blue = 0.13, alpha = 0.85}
-local TEXT_COLOR = {red = 0.95, green = 0.95, blue = 0.95, alpha = 1}
-local FONT_SIZE = 48
-local PADDING_H = 40
-local PADDING_V = 20
-local CORNER_RADIUS = 12
+local BG_COLOR = {red = 0.1, green = 0.1, blue = 0.1, alpha = 0.75}
+local TEXT_COLOR = {red = 1, green = 1, blue = 1, alpha = 1}
+local FONT_SIZE = 36
+local FONT_NAME = "Helvetica Neue Medium"
+local SIZE = 120
+local CORNER_RADIUS = 18
 local DISPLAY_TIME = 0.7
 local FADE_STEPS = 8
 local FADE_INTERVAL = 0.02
@@ -27,20 +28,11 @@ function M.show(workspaceName)
     end
 
     local screen = hs.screen.mainScreen()
-    local screenFrame = screen:frame()
+    local sf = screen:frame()
+    local x = sf.x + (sf.w - SIZE) / 2
+    local y = sf.y + (sf.h - SIZE) / 2
 
-    local styledText = hs.styledtext.new(workspaceName, {
-        font = {name = "Helvetica Neue Bold", size = FONT_SIZE},
-        color = TEXT_COLOR,
-        paragraphStyle = {alignment = "center"},
-    })
-    local textSize = hs.drawing.getTextDrawingSize(styledText)
-    local w = textSize.w + PADDING_H * 2
-    local h = textSize.h + PADDING_V * 2
-    local x = screenFrame.x + (screenFrame.w - w) / 2
-    local y = screenFrame.y + (screenFrame.h - h) / 2
-
-    overlay = hs.canvas.new({x = x, y = y, w = w, h = h})
+    overlay = hs.canvas.new({x = x, y = y, w = SIZE, h = SIZE})
     overlay:level(hs.canvas.windowLevels.overlay)
     overlay:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
     overlay:clickActivating(false)
@@ -53,7 +45,13 @@ function M.show(workspaceName)
         roundedRectRadii = {xRadius = CORNER_RADIUS, yRadius = CORNER_RADIUS},
     }, {
         type = "text",
-        text = styledText,
+        text = workspaceName,
+        textColor = TEXT_COLOR,
+        textSize = FONT_SIZE,
+        textFont = FONT_NAME,
+        textAlignment = "center",
+        textLineBreak = "clip",
+        frame = {x = 0, y = (SIZE - FONT_SIZE * 1.3) / 2, w = SIZE, h = FONT_SIZE * 1.5},
     })
 
     overlay:alpha(1)
