@@ -26,6 +26,17 @@ local MONITOR_COLORS = {
 }
 local DEFAULT_BORDER = {red = 0.5, green = 0.5, blue = 0.5, alpha = 0.6}
 
+-- Map AeroSpace workspace names to display characters
+local DISPLAY_NAMES = {comma = ","}
+
+-- Get screen for an AeroSpace monitor ID (sorted left-to-right to match AeroSpace ordering)
+local function screenForMonitor(monitorId)
+    if not monitorId or monitorId < 1 then return hs.screen.mainScreen() end
+    local screens = hs.screen.allScreens()
+    table.sort(screens, function(a, b) return a:frame().x < b:frame().x end)
+    return screens[monitorId] or hs.screen.mainScreen()
+end
+
 function M.show(workspaceName, monitorId)
     if fadeTimer then
         fadeTimer:stop()
@@ -36,12 +47,13 @@ function M.show(workspaceName, monitorId)
         overlay = nil
     end
 
-    local screen = hs.screen.mainScreen()
+    local screen = screenForMonitor(monitorId)
     local sf = screen:frame()
     local x = sf.x + (sf.w - SIZE) / 2
     local y = sf.y + (sf.h - SIZE) / 2
 
     local borderColor = MONITOR_COLORS[monitorId] or DEFAULT_BORDER
+    local displayName = DISPLAY_NAMES[workspaceName] or workspaceName
 
     overlay = hs.canvas.new({x = x, y = y, w = SIZE, h = SIZE})
     overlay:level(hs.canvas.windowLevels.overlay + 1)
@@ -62,7 +74,7 @@ function M.show(workspaceName, monitorId)
         roundedRectRadii = {xRadius = CORNER_RADIUS, yRadius = CORNER_RADIUS},
     }, {
         type = "text",
-        text = workspaceName,
+        text = displayName,
         textColor = TEXT_COLOR,
         textSize = FONT_SIZE,
         textFont = FONT_NAME,
