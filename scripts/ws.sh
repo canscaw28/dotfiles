@@ -338,10 +338,8 @@ if [[ "$OP" != "focus" ]]; then
     /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
 fi
 
-# Refresh workspace grid overlay (T+W mode keeps grid visible during focus ops)
-if [[ "$OP" == "focus" ]]; then
-    /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
-fi
+# Refresh workspace grid overlay if visible
+/usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
 
 # Save window state after every operation (for restore on restart)
 ~/.local/bin/save-ws-state.sh &
