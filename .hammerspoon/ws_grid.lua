@@ -157,13 +157,16 @@ local function drawGrid(visibleWs, focusedKey)
             -- Key label (vertically centered — hs.canvas text renders from top)
             local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
             local displayText = isFocused and ("*" .. key) or key
+            local fontName = isActive and "Helvetica-Bold" or "Helvetica"
+            local styledText = hs.styledtext.new(displayText, {
+                font = {name = fontName, size = FONT_SIZE},
+                color = labelColor,
+                paragraphStyle = {alignment = "center"},
+            })
             local textOffsetY = (CELL_SIZE - FONT_SIZE * 1.25) / 2
             grid:appendElements({
                 type = "text",
-                text = displayText,
-                textColor = labelColor,
-                textSize = FONT_SIZE,
-                textAlignment = "center",
+                text = styledText,
                 frame = {x = cellX, y = cellY + textOffsetY, w = CELL_SIZE, h = FONT_SIZE * 1.5},
             })
 
