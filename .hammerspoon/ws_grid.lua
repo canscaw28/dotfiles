@@ -4,7 +4,7 @@
 
 local M = {}
 
-local canvas = nil
+local grid = nil
 local keys = {w = false, e = false, r = false, ["3"] = false, ["4"] = false}
 
 -- Grid layout: 4 rows of 5 keys with keyboard stagger
@@ -33,18 +33,12 @@ local FONT_SIZE = 24
 local RING_WIDTH = 3
 local PADDING = 20
 
--- Map ws.sh workspace arg back to display name
-local WS_DISPLAY = {
-    ['";"'] = ";", ['comma'] = ",",
-}
-
 -- Map AeroSpace workspace names to grid display keys
 local AERO_TO_KEY = {
     [";"] = ";", ["comma"] = ",",
 }
 
 local function getVisibleWorkspaces()
-    -- Returns {workspace_name = monitor_id, ...}
     local mapping = {}
     local output, ok = hs.execute("/opt/homebrew/bin/aerospace list-monitors --format '%{monitor-id}'")
     if not ok then return mapping end
@@ -54,7 +48,6 @@ local function getVisibleWorkspaces()
         if ok2 then
             local ws = wsOutput:match("^%s*(.-)%s*$")
             if ws and ws ~= "" then
-                -- Normalize: AeroSpace uses literal names
                 local displayKey = AERO_TO_KEY[ws] or ws
                 mapping[displayKey] = tonumber(monId)
             end
@@ -64,9 +57,9 @@ local function getVisibleWorkspaces()
 end
 
 function M.showGrid()
-    if canvas then
-        canvas:delete()
-        canvas = nil
+    if grid then
+        grid:delete()
+        grid = nil
     end
 
     local screen = hs.screen.mainScreen()
@@ -74,7 +67,6 @@ function M.showGrid()
 
     local visibleWs = getVisibleWorkspaces()
 
-    -- Calculate grid dimensions
     local numCols = 5
     local numRows = #ROWS
     local maxStagger = ROWS[numRows].stagger * CELL_SIZE
@@ -86,14 +78,14 @@ function M.showGrid()
     local x = screenFrame.x + (screenFrame.w - totalW) / 2
     local y = screenFrame.y + (screenFrame.h - totalH) / 2
 
-    canvas = hs.canvas.new({x = x, y = y, w = totalW, h = totalH})
-    canvas:level(hs.canvas.windowLevels.overlay)
-    canvas:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
-    canvas:clickActivating(false)
-    canvas:canvasMouseEvents(false)
+    grid = hs.canvas.new({x = x, y = y, w = totalW, h = totalH})
+    grid:level(hs.canvas.windowLevels.overlay)
+    grid:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
+    grid:clickActivating(false)
+    grid:canvasMouseEvents(false)
 
     -- Background
-    canvas:appendElements({
+    grid:appendElements({
         type = "rectangle",
         action = "fill",
         fillColor = BG_COLOR,
@@ -106,14 +98,14 @@ function M.showGrid()
             local cellX = PADDING + (colIdx - 1) * (CELL_SIZE + CELL_GAP) + row.stagger * CELL_SIZE
             local cellY = PADDING + (rowIdx - 1) * (CELL_SIZE + CELL_GAP)
 
-            -- Convert to fractional coordinates for canvas
+            -- Fractional coords for rectangles (works fine)
             local fx = cellX / totalW
             local fy = cellY / totalH
             local fw = CELL_SIZE / totalW
             local fh = CELL_SIZE / totalH
 
             -- Cell background
-            canvas:appendElements({
+            grid:appendElements({
                 type = "rectangle",
                 action = "fill",
                 fillColor = CELL_BG,
@@ -124,7 +116,7 @@ function M.showGrid()
             -- Monitor indicator ring
             local monId = visibleWs[key]
             if monId and MONITOR_COLORS[monId] then
-                canvas:appendElements({
+                grid:appendElements({
                     type = "rectangle",
                     action = "stroke",
                     strokeColor = MONITOR_COLORS[monId],
@@ -134,28 +126,26 @@ function M.showGrid()
                 })
             end
 
-            -- Key label
-            local label = hs.styledtext.new(key, {
-                font = {name = "Helvetica Neue Bold", size = FONT_SIZE},
-                color = TEXT_COLOR,
-                paragraphStyle = {alignment = "center"},
-            })
-            canvas:appendElements({
+            -- Key label (absolute pixel coords — fractional breaks text)
+            grid:appendElements({
                 type = "text",
-                text = label,
-                frame = {x = fx, y = fy, w = fw, h = fh},
+                text = key,
+                textColor = TEXT_COLOR,
+                textSize = FONT_SIZE,
+                textAlignment = "center",
+                frame = {x = cellX, y = cellY, w = CELL_SIZE, h = CELL_SIZE},
             })
         end
     end
 
-    canvas:alpha(1)
-    canvas:show()
+    grid:alpha(1)
+    grid:show()
 end
 
 function M.hideGrid()
-    if canvas then
-        canvas:delete()
-        canvas = nil
+    if grid then
+        grid:delete()
+        grid = nil
     end
 end
 

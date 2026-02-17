@@ -16,10 +16,7 @@ local DISPLAY_TIME = 0.7
 local FADE_STEPS = 8
 local FADE_INTERVAL = 0.02
 
-local FONT_NAME = "Helvetica Neue Bold"
-
 function M.show(workspaceName)
-    -- Cancel any existing fade
     if fadeTimer then
         fadeTimer:stop()
         fadeTimer = nil
@@ -33,7 +30,7 @@ function M.show(workspaceName)
     local screenFrame = screen:frame()
 
     local styledText = hs.styledtext.new(workspaceName, {
-        font = {name = FONT_NAME, size = FONT_SIZE},
+        font = {name = "Helvetica Neue Bold", size = FONT_SIZE},
         color = TEXT_COLOR,
         paragraphStyle = {alignment = "center"},
     })
@@ -57,13 +54,11 @@ function M.show(workspaceName)
     }, {
         type = "text",
         text = styledText,
-        frame = {x = 0, y = PADDING_V / h, w = 1, h = 1 - (2 * PADDING_V / h)},
     })
 
     overlay:alpha(1)
     overlay:show()
 
-    -- Fade out after display time
     fadeTimer = hs.timer.doAfter(DISPLAY_TIME, function()
         local step = 0
         fadeTimer = hs.timer.doEvery(FADE_INTERVAL, function()
