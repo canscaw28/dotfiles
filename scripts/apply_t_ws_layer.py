@@ -206,14 +206,19 @@ def is_t_w_setter(m):
             and sv.get("name") == "w_is_held")
 
 
+_WORKSPACE_KEY_CODES = {kc for _, kc, _ in WORKSPACE_KEYS}
+
+
 def is_t_ws_action(m):
-    """Match T layer workspace action (t=1, has shell_command with ws.sh)."""
+    """Match T layer workspace action (t=1, has shell_command with ws.sh, workspace key)."""
     conds = m.get("conditions", [])
+    kc = m.get("from", {}).get("key_code", "")
     to = m.get("to", [{}])[0]
     cmd = to.get("shell_command", "")
     return (get_cond(conds, "t_is_held") == 1
             and "to_after_key_up" not in m
-            and "ws.sh" in cmd)
+            and "ws.sh" in cmd
+            and kc in _WORKSPACE_KEY_CODES)
 
 
 def is_t_ws_guard(m):

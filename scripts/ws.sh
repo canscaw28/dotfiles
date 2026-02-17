@@ -16,6 +16,7 @@
 #   swap-monitors  Swap workspaces between current and next monitor
 #   move-monitor   Move focused window to next monitor
 #   move-monitor-focus  Move focused window to next monitor and follow
+#   move-monitor-yank   Move focused window to next monitor, yank that workspace back
 
 # Karabiner shell_command runs with minimal PATH; ensure homebrew is available
 export PATH="/opt/homebrew/bin:$PATH"
@@ -258,6 +259,14 @@ case "$OP" in
         aerospace move-node-to-workspace "$NEXT_WS"
         aerospace workspace "$NEXT_WS"
         ;;
+    move-monitor-yank)
+        # Move window to next monitor, then yank that workspace to current monitor
+        CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+        NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
+        NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
+        aerospace move-node-to-workspace "$NEXT_WS"
+        focus_ws_on_monitor "$CURRENT_MONITOR" "$NEXT_WS"
+        ;;
     swap-monitors)
         # Swap workspaces between current and next monitor (wraps for >2)
         # Focus stays on current monitor (now showing the other workspace).
@@ -284,6 +293,7 @@ if [[ "$OP" != "focus" ]]; then
         swap|swap-follow)    NOTIFY_MON="$CURRENT_MONITOR" ;;
         swap-monitors)       NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
         move-monitor|move-monitor-focus) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$NEXT_MONITOR" ;;
+        move-monitor-yank) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
     esac
     if [[ -n "$NOTIFY_WS" ]]; then
         /usr/local/bin/hs -c "require('ws_notify').show('$NOTIFY_WS', ${NOTIFY_MON:-0})" 2>/dev/null &
