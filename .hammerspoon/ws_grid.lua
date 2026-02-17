@@ -64,7 +64,7 @@ end
 
 -- Get screen for an AeroSpace monitor ID (sorted left-to-right to match AeroSpace ordering)
 local function screenForMonitor(monitorId)
-    if not monitorId or monitorId < 1 then return hs.screen.mainScreen() end
+    if not monitorId or monitorId < 1 then return hs.mouse.getCurrentScreen() or hs.screen.mainScreen() end
     local screens = hs.screen.allScreens()
     table.sort(screens, function(a, b) return a:frame().x < b:frame().x end)
     return screens[monitorId]  -- nil if monitor doesn't exist
