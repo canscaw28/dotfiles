@@ -9,10 +9,10 @@ local fadeTimer = nil
 
 local BG_COLOR = {red = 0.1, green = 0.1, blue = 0.1, alpha = 0.75}
 local TEXT_COLOR = {red = 1, green = 1, blue = 1, alpha = 1}
-local FONT_SIZE = 36
+local FONT_SIZE = 28
 local FONT_NAME = "Helvetica Neue Medium"
-local SIZE = 120
-local CORNER_RADIUS = 18
+local SIZE = 56
+local CORNER_RADIUS = 14
 local DISPLAY_TIME = 0.7
 local FADE_STEPS = 8
 local FADE_INTERVAL = 0.02

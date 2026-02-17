@@ -1,8 +1,8 @@
 -- ws_grid.lua
 -- Workspace grid overlay shown while caps+T+W is held.
 -- Hides when a sub-mode key (E/R/3/4) is also held.
--- Displays 4x5 grid of workspace keys with colored text and underlines
--- for workspaces visible on each monitor. Focused workspace gets a * prefix.
+-- Displays 4x5 grid of workspace keys styled as keyboard keycaps.
+-- Visible workspaces colored by monitor. Focused workspace gets a * prefix.
 
 local M = {}
 
@@ -26,15 +26,20 @@ local MONITOR_COLORS = {
     [4] = {red = 0.6, green = 0.3, blue = 0.9, alpha = 1},    -- purple
 }
 
-local BG_COLOR = {red = 0.1, green = 0.1, blue = 0.1, alpha = 0.8}
-local CELL_BG = {red = 0.2, green = 0.2, blue = 0.2, alpha = 0.9}
-local TEXT_COLOR_DIM = {red = 0.5, green = 0.5, blue = 0.5, alpha = 1}
-local CELL_SIZE = 40
-local CELL_GAP = 6
-local CELL_RADIUS = 6
-local FONT_SIZE = 18
+-- Keycap styling
+local BG_COLOR = {red = 0.08, green = 0.08, blue = 0.08, alpha = 0.7}
+local KEY_FACE = {red = 0.22, green = 0.22, blue = 0.24, alpha = 0.95}
+local KEY_FACE_ACTIVE = {red = 0.28, green = 0.28, blue = 0.30, alpha = 0.95}
+local KEY_BORDER = {red = 0.35, green = 0.35, blue = 0.38, alpha = 0.6}
+local KEY_SHADOW = {red = 0.0, green = 0.0, blue = 0.0, alpha = 0.4}
+local TEXT_COLOR_DIM = {red = 0.45, green = 0.45, blue = 0.45, alpha = 1}
+local CELL_SIZE = 42
+local CELL_GAP = 5
+local KEY_RADIUS = 8
+local FONT_SIZE = 17
+local SHADOW_OFFSET = 2
 local UNDERLINE_HEIGHT = 3
-local PADDING = 14
+local PADDING = 12
 
 -- Map AeroSpace workspace names to grid display keys
 local AERO_TO_KEY = {
@@ -71,40 +76,61 @@ local function drawGrid(visibleWs, focusedKey)
     grid:clickActivating(false)
     grid:canvasMouseEvents(false)
 
-    -- Background
+    -- Subtle backdrop
     grid:appendElements({
         type = "rectangle",
         action = "fill",
         fillColor = BG_COLOR,
-        roundedRectRadii = {xRadius = 12, yRadius = 12},
+        roundedRectRadii = {xRadius = 14, yRadius = 14},
     })
 
-    -- Draw cells
+    -- Draw keycaps
     for rowIdx, row in ipairs(ROWS) do
         for colIdx, key in ipairs(row.keys) do
             local cellX = PADDING + (colIdx - 1) * (CELL_SIZE + CELL_GAP) + row.stagger * CELL_SIZE
             local cellY = PADDING + (rowIdx - 1) * (CELL_SIZE + CELL_GAP)
 
-            -- Fractional coords for rectangles
+            local monId = visibleWs[key]
+            local isFocused = (key == focusedKey)
+            local isActive = monId ~= nil
+
+            -- Shadow (offset down-right for depth)
+            local sx = (cellX + SHADOW_OFFSET) / totalW
+            local sy = (cellY + SHADOW_OFFSET) / totalH
+            local sw = CELL_SIZE / totalW
+            local sh = CELL_SIZE / totalH
+            grid:appendElements({
+                type = "rectangle",
+                action = "fill",
+                fillColor = KEY_SHADOW,
+                roundedRectRadii = {xRadius = KEY_RADIUS, yRadius = KEY_RADIUS},
+                frame = {x = sx, y = sy, w = sw, h = sh},
+            })
+
+            -- Keycap face
             local fx = cellX / totalW
             local fy = cellY / totalH
             local fw = CELL_SIZE / totalW
             local fh = CELL_SIZE / totalH
-
-            local monId = visibleWs[key]
-            local isFocused = (key == focusedKey)
-
-            -- Cell background
             grid:appendElements({
                 type = "rectangle",
                 action = "fill",
-                fillColor = CELL_BG,
-                roundedRectRadii = {xRadius = CELL_RADIUS, yRadius = CELL_RADIUS},
+                fillColor = isActive and KEY_FACE_ACTIVE or KEY_FACE,
+                roundedRectRadii = {xRadius = KEY_RADIUS, yRadius = KEY_RADIUS},
                 frame = {x = fx, y = fy, w = fw, h = fh},
             })
 
-            -- Key label — monitor color for visible workspaces, dim for others
-            -- Focused workspace (on focused monitor) gets a star prefix
+            -- Keycap border
+            grid:appendElements({
+                type = "rectangle",
+                action = "stroke",
+                strokeWidth = 1,
+                strokeColor = KEY_BORDER,
+                roundedRectRadii = {xRadius = KEY_RADIUS, yRadius = KEY_RADIUS},
+                frame = {x = fx, y = fy, w = fw, h = fh},
+            })
+
+            -- Key label
             local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
             local displayText = isFocused and ("*" .. key) or key
             grid:appendElements({
@@ -118,9 +144,9 @@ local function drawGrid(visibleWs, focusedKey)
 
             -- Colored underline for visible workspaces
             if monId and MONITOR_COLORS[monId] then
-                local barInset = 6
+                local barInset = 8
                 local barX = (cellX + barInset) / totalW
-                local barY = (cellY + CELL_SIZE - UNDERLINE_HEIGHT - 4) / totalH
+                local barY = (cellY + CELL_SIZE - UNDERLINE_HEIGHT - 6) / totalH
                 local barW = (CELL_SIZE - barInset * 2) / totalW
                 local barH = UNDERLINE_HEIGHT / totalH
 
@@ -128,7 +154,7 @@ local function drawGrid(visibleWs, focusedKey)
                     type = "rectangle",
                     action = "fill",
                     fillColor = MONITOR_COLORS[monId],
-                    roundedRectRadii = {xRadius = 1, yRadius = 1},
+                    roundedRectRadii = {xRadius = 1.5, yRadius = 1.5},
                     frame = {x = barX, y = barY, w = barW, h = barH},
                 })
             end
