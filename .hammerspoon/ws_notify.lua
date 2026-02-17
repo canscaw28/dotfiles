@@ -86,6 +86,15 @@ function M.show(workspaceName, monitorId)
     overlay:alpha(1)
     overlay:show()
 
+    -- Nudge cursor below toast if it overlaps (move-mouse may land on top)
+    hs.timer.doAfter(0.15, function()
+        if not overlay then return end
+        local mp = hs.mouse.absolutePosition()
+        if mp.x >= x and mp.x <= x + SIZE and mp.y >= y and mp.y <= y + SIZE then
+            hs.mouse.absolutePosition({x = mp.x, y = y + SIZE + 10})
+        end
+    end)
+
     fadeTimer = hs.timer.doAfter(DISPLAY_TIME, function()
         local step = 0
         fadeTimer = hs.timer.doEvery(FADE_INTERVAL, function()
