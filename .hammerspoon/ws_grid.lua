@@ -8,7 +8,7 @@ local M = {}
 
 local grid = nil
 local pendingTask = nil
-local keys = {t = false, w = false, e = false, r = false, ["3"] = false, ["4"] = false}
+local keys = {t = false, w = false, e = false, r = false, ["3"] = false, ["4"] = false, q = false}
 
 -- Grid layout: 4 rows of 5 keys with keyboard stagger
 local ROWS = {
@@ -48,7 +48,10 @@ local AERO_TO_KEY = {
 }
 
 local function shouldShowGrid()
-    return keys.t and keys.w and not (keys.e or keys.r or keys["3"] or keys["4"])
+    if not keys.t then return false end
+    if keys.q then return true end
+    if keys.w and not (keys.e or keys.r or keys["3"] or keys["4"]) then return true end
+    return false
 end
 
 local function drawGrid(visibleWs, focusedKey)
@@ -251,6 +254,7 @@ function M.keyDown(k)
         keys.r = false
         keys["3"] = false
         keys["4"] = false
+        keys.q = false
     end
     keys[k] = true
     refresh()
