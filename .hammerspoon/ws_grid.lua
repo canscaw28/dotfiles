@@ -176,7 +176,7 @@ local function drawGrid(visibleWs, focusedKey)
         end
     end
 
-    grid:alpha(1)
+    grid:alpha(0.9)
     grid:show()
 end
 
