@@ -7,6 +7,7 @@ local M = {}
 
 local border = nil
 local fadeTimer = nil
+local delayTimer = nil
 
 local STROKE_WIDTH = 6
 local STROKE_COLOR = {red = 0.2, green = 0.5, blue = 1, alpha = 0.8}
@@ -14,9 +15,9 @@ local CORNER_RADIUS = 6
 local DISPLAY_TIME = 0.5
 local FADE_STEPS = 8
 local FADE_INTERVAL = 0.02
-local FLASH_DELAY = 0.25
+local FLASH_DELAY = 0.1
 
-local function showBorder(win)
+local function clearBorder()
     if fadeTimer then
         fadeTimer:stop()
         fadeTimer = nil
@@ -25,6 +26,10 @@ local function showBorder(win)
         border:delete()
         border = nil
     end
+end
+
+local function showBorder(win)
+    clearBorder()
 
     local frame = win:frame()
 
@@ -51,7 +56,7 @@ local function showBorder(win)
             if step >= FADE_STEPS then
                 fadeTimer:stop()
                 fadeTimer = nil
-                if border then border:hide() end
+                if border then border:delete(); border = nil end
             else
                 if border then
                     border:alpha(1 - step / FADE_STEPS)
@@ -61,10 +66,19 @@ local function showBorder(win)
     end)
 end
 
--- Explicit flash from ws.sh (always fires).
--- Brief delay lets AeroSpace focus settle before querying the focused window.
+-- Explicit flash from ws.sh, smart-focus.sh, smart-move.sh.
+-- Immediately clears any existing/fading border, then waits briefly
+-- for AeroSpace focus to settle before drawing the new one.
 function M.flash()
-    hs.timer.doAfter(FLASH_DELAY, function()
+    -- Kill any pending delay and any visible/fading border immediately
+    if delayTimer then
+        delayTimer:stop()
+        delayTimer = nil
+    end
+    clearBorder()
+
+    delayTimer = hs.timer.doAfter(FLASH_DELAY, function()
+        delayTimer = nil
         local win = hs.window.focusedWindow()
         if win then
             showBorder(win)
