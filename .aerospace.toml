@@ -119,10 +119,10 @@ cmd-ctrl-alt-u = 'exec-and-forget ~/.local/bin/smart-move.sh down'
 cmd-ctrl-alt-i = 'exec-and-forget ~/.local/bin/smart-move.sh up'
 cmd-ctrl-alt-o = 'exec-and-forget ~/.local/bin/smart-move.sh right'
 
-cmd-ctrl-alt-n = 'join-with left'
-cmd-ctrl-alt-m = 'join-with down'
-cmd-ctrl-alt-comma = 'join-with up'
-cmd-ctrl-alt-period = 'join-with right'
+cmd-ctrl-alt-n = "exec-and-forget /opt/homebrew/bin/aerospace join-with left && /usr/local/bin/hs -c \"require('focus_border').flash()\" &"
+cmd-ctrl-alt-m = "exec-and-forget /opt/homebrew/bin/aerospace join-with down && /usr/local/bin/hs -c \"require('focus_border').flash()\" &"
+cmd-ctrl-alt-comma = "exec-and-forget /opt/homebrew/bin/aerospace join-with up && /usr/local/bin/hs -c \"require('focus_border').flash()\" &"
+cmd-ctrl-alt-period = "exec-and-forget /opt/homebrew/bin/aerospace join-with right && /usr/local/bin/hs -c \"require('focus_border').flash()\" &"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 cmd-ctrl-alt-shift-minus = 'resize smart -50'
