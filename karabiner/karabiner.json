@@ -29231,10 +29231,7 @@
                 },
                 "to": [
                   {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
+                    "shell_command": "/opt/homebrew/bin/aerospace focus-monitor --wrap-around next && /opt/homebrew/bin/aerospace move-mouse window-lazy-center && /usr/local/bin/hs -c \"require('focus_border').flash(); require('ws_grid').showGrid()\" &"
                   }
                 ],
                 "type": "basic"
