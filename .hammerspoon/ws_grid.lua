@@ -47,11 +47,31 @@ local AERO_TO_KEY = {
     [";"] = ";", ["comma"] = ",",
 }
 
+-- Map sub-mode keys to AeroSpace monitor IDs
+local MODE_TO_MONITOR = {e = 1, r = 2, ["3"] = 3, ["4"] = 4}
+
+-- Determine target monitor ID for grid display (nil = don't show)
+local function targetMonitor()
+    if not keys.t then return nil end
+    if keys.q then return 0 end  -- 0 = current monitor
+    if not keys.w then return nil end
+    -- W held: check if a focus-on-monitor sub-mode is active
+    for k, monId in pairs(MODE_TO_MONITOR) do
+        if keys[k] then return monId end
+    end
+    return 0  -- W only = current monitor
+end
+
+-- Get screen for an AeroSpace monitor ID (sorted left-to-right to match AeroSpace ordering)
+local function screenForMonitor(monitorId)
+    if not monitorId or monitorId < 1 then return hs.screen.mainScreen() end
+    local screens = hs.screen.allScreens()
+    table.sort(screens, function(a, b) return a:frame().x < b:frame().x end)
+    return screens[monitorId]  -- nil if monitor doesn't exist
+end
+
 local function shouldShowGrid()
-    if not keys.t then return false end
-    if keys.q then return true end
-    if keys.w and not (keys.e or keys.r or keys["3"] or keys["4"]) then return true end
-    return false
+    return targetMonitor() ~= nil
 end
 
 local function drawGrid(visibleWs, focusedKey)
@@ -60,7 +80,10 @@ local function drawGrid(visibleWs, focusedKey)
         grid = nil
     end
 
-    local screen = hs.screen.mainScreen()
+    local monId = targetMonitor()
+    if monId == nil then return end
+    local screen = screenForMonitor(monId)
+    if not screen then return end  -- target monitor doesn't exist
     local screenFrame = screen:frame()
 
     local numCols = 5

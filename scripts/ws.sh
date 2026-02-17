@@ -318,11 +318,9 @@ esac
 
 # Show workspace notification overlay
 NOTIFY_WS="$WS"
-NOTIFY_MON=""
+NOTIFY_MON=$(aerospace list-monitors --focused --format '%{monitor-id}' 2>/dev/null)
 case "$OP" in
     focus-[1-4])         NOTIFY_MON="${OP##focus-}" ;;
-    move-focus)          NOTIFY_MON="$CURRENT_MON" ;;
-    swap|swap-follow)    NOTIFY_MON="$CURRENT_MONITOR" ;;
     swap-monitors)       NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
     move-monitor|move-monitor-focus) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$NEXT_MONITOR" ;;
     move-monitor-yank) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
