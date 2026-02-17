@@ -1,6 +1,8 @@
 -- ws_grid.lua
--- Workspace grid overlay shown while caps+T+W+(E/R/3/4) is held.
--- Displays 4x5 grid of workspace keys with colored circles for visible workspaces.
+-- Workspace grid overlay shown while caps+T+W is held.
+-- Hides when a sub-mode key (E/R/3/4) is also held.
+-- Displays 4x5 grid of workspace keys with colored underlines
+-- for workspaces visible on each monitor.
 
 local M = {}
 
@@ -17,20 +19,21 @@ local ROWS = {
 
 -- Monitor colors
 local MONITOR_COLORS = {
-    [1] = {red = 0.2, green = 0.5, blue = 1, alpha = 0.9},    -- blue
-    [2] = {red = 1, green = 0.4, blue = 0.2, alpha = 0.9},    -- orange
-    [3] = {red = 0.2, green = 0.8, blue = 0.4, alpha = 0.9},  -- green
-    [4] = {red = 0.6, green = 0.3, blue = 0.9, alpha = 0.9},  -- purple
+    [1] = {red = 0.2, green = 0.5, blue = 1, alpha = 1},      -- blue
+    [2] = {red = 1, green = 0.4, blue = 0.2, alpha = 1},      -- orange
+    [3] = {red = 0.2, green = 0.8, blue = 0.4, alpha = 1},    -- green
+    [4] = {red = 0.6, green = 0.3, blue = 0.9, alpha = 1},    -- purple
 }
 
 local BG_COLOR = {red = 0.1, green = 0.1, blue = 0.1, alpha = 0.8}
 local CELL_BG = {red = 0.2, green = 0.2, blue = 0.2, alpha = 0.9}
 local TEXT_COLOR = {red = 0.9, green = 0.9, blue = 0.9, alpha = 1}
+local TEXT_COLOR_DIM = {red = 0.5, green = 0.5, blue = 0.5, alpha = 1}
 local CELL_SIZE = 40
 local CELL_GAP = 6
 local CELL_RADIUS = 6
 local FONT_SIZE = 18
-local RING_WIDTH = 3
+local UNDERLINE_HEIGHT = 3
 local PADDING = 14
 
 -- Map AeroSpace workspace names to grid display keys
@@ -38,22 +41,33 @@ local AERO_TO_KEY = {
     [";"] = ";", ["comma"] = ",",
 }
 
-local function getVisibleWorkspaces()
-    local mapping = {}
+local function getWorkspaceState()
+    -- Returns: visibleWs = {key = monitorId}, focusedKey = string
+    local visibleWs = {}
+    local focusedKey = nil
+
     local output, ok = hs.execute("/opt/homebrew/bin/aerospace list-monitors --format '%{monitor-id}'")
-    if not ok then return mapping end
+    if not ok then return visibleWs, focusedKey end
+
+    local focusedOutput, ok2 = hs.execute("/opt/homebrew/bin/aerospace list-workspaces --focused")
+    if ok2 then
+        local ws = focusedOutput:match("^%s*(.-)%s*$")
+        if ws and ws ~= "" then
+            focusedKey = AERO_TO_KEY[ws] or ws
+        end
+    end
 
     for monId in output:gmatch("(%d+)") do
-        local wsOutput, ok2 = hs.execute("/opt/homebrew/bin/aerospace list-workspaces --monitor " .. monId .. " --visible")
-        if ok2 then
+        local wsOutput, ok3 = hs.execute("/opt/homebrew/bin/aerospace list-workspaces --monitor " .. monId .. " --visible")
+        if ok3 then
             local ws = wsOutput:match("^%s*(.-)%s*$")
             if ws and ws ~= "" then
                 local displayKey = AERO_TO_KEY[ws] or ws
-                mapping[displayKey] = tonumber(monId)
+                visibleWs[displayKey] = tonumber(monId)
             end
         end
     end
-    return mapping
+    return visibleWs, focusedKey
 end
 
 function M.showGrid()
@@ -65,7 +79,7 @@ function M.showGrid()
     local screen = hs.screen.mainScreen()
     local screenFrame = screen:frame()
 
-    local visibleWs = getVisibleWorkspaces()
+    local visibleWs, focusedKey = getWorkspaceState()
 
     local numCols = 5
     local numRows = #ROWS
@@ -98,11 +112,14 @@ function M.showGrid()
             local cellX = PADDING + (colIdx - 1) * (CELL_SIZE + CELL_GAP) + row.stagger * CELL_SIZE
             local cellY = PADDING + (rowIdx - 1) * (CELL_SIZE + CELL_GAP)
 
-            -- Fractional coords for rectangles (works fine)
+            -- Fractional coords for rectangles
             local fx = cellX / totalW
             local fy = cellY / totalH
             local fw = CELL_SIZE / totalW
             local fh = CELL_SIZE / totalH
+
+            local monId = visibleWs[key]
+            local isFocused = (key == focusedKey)
 
             -- Cell background
             grid:appendElements({
@@ -113,28 +130,33 @@ function M.showGrid()
                 frame = {x = fx, y = fy, w = fw, h = fh},
             })
 
-            -- Monitor indicator ring
-            local monId = visibleWs[key]
-            if monId and MONITOR_COLORS[monId] then
-                grid:appendElements({
-                    type = "rectangle",
-                    action = "stroke",
-                    strokeColor = MONITOR_COLORS[monId],
-                    strokeWidth = RING_WIDTH,
-                    roundedRectRadii = {xRadius = CELL_RADIUS, yRadius = CELL_RADIUS},
-                    frame = {x = fx, y = fy, w = fw, h = fh},
-                })
-            end
-
-            -- Key label (absolute pixel coords — fractional breaks text)
+            -- Key label — bright white for visible workspaces, dim for others
+            local labelColor = monId and TEXT_COLOR or TEXT_COLOR_DIM
             grid:appendElements({
                 type = "text",
                 text = key,
-                textColor = TEXT_COLOR,
+                textColor = labelColor,
                 textSize = FONT_SIZE,
                 textAlignment = "center",
                 frame = {x = cellX, y = cellY, w = CELL_SIZE, h = CELL_SIZE},
             })
+
+            -- Colored underline for visible workspaces
+            if monId and MONITOR_COLORS[monId] then
+                local barInset = 6
+                local barX = (cellX + barInset) / totalW
+                local barY = (cellY + CELL_SIZE - UNDERLINE_HEIGHT - 4) / totalH
+                local barW = (CELL_SIZE - barInset * 2) / totalW
+                local barH = UNDERLINE_HEIGHT / totalH
+
+                grid:appendElements({
+                    type = "rectangle",
+                    action = "fill",
+                    fillColor = MONITOR_COLORS[monId],
+                    roundedRectRadii = {xRadius = 1, yRadius = 1},
+                    frame = {x = barX, y = barY, w = barW, h = barH},
+                })
+            end
         end
     end
 
@@ -150,7 +172,7 @@ function M.hideGrid()
 end
 
 local function refresh()
-    if keys.w and (keys.e or keys.r or keys["3"] or keys["4"]) then
+    if keys.w and not (keys.e or keys.r or keys["3"] or keys["4"]) then
         M.showGrid()
     else
         M.hideGrid()
