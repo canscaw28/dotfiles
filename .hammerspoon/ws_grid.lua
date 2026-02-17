@@ -26,12 +26,12 @@ local MONITOR_COLORS = {
 local BG_COLOR = {red = 0.1, green = 0.1, blue = 0.1, alpha = 0.8}
 local CELL_BG = {red = 0.2, green = 0.2, blue = 0.2, alpha = 0.9}
 local TEXT_COLOR = {red = 0.9, green = 0.9, blue = 0.9, alpha = 1}
-local CELL_SIZE = 60
-local CELL_GAP = 8
-local CELL_RADIUS = 8
-local FONT_SIZE = 24
+local CELL_SIZE = 40
+local CELL_GAP = 6
+local CELL_RADIUS = 6
+local FONT_SIZE = 18
 local RING_WIDTH = 3
-local PADDING = 20
+local PADDING = 14
 
 -- Map AeroSpace workspace names to grid display keys
 local AERO_TO_KEY = {
