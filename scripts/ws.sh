@@ -17,6 +17,8 @@
 #   move-monitor   Move focused window to next monitor
 #   move-monitor-focus  Move focused window to next monitor and follow
 #   move-monitor-yank   Move focused window to next monitor, yank that workspace back
+#   push-windows   Move all windows from focused workspace to target workspace
+#   pull-windows   Pull all windows from target workspace to focused workspace
 
 # Karabiner shell_command runs with minimal PATH; ensure homebrew is available
 export PATH="/opt/homebrew/bin:$PATH"
@@ -266,6 +268,25 @@ case "$OP" in
         NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
         aerospace move-node-to-workspace "$NEXT_WS"
         focus_ws_on_monitor "$CURRENT_MONITOR" "$NEXT_WS"
+        ;;
+    push-windows)
+        # Move all windows from focused workspace to target workspace
+        CURRENT_WS=$(aerospace list-workspaces --focused)
+        WINDOW_IDS=$(aerospace list-windows --workspace "$CURRENT_WS" --format '%{window-id}')
+        for wid in $WINDOW_IDS; do
+            aerospace focus --window-id "$wid" 2>/dev/null || continue
+            aerospace move-node-to-workspace "$WS"
+        done
+        ;;
+    pull-windows)
+        # Pull all windows from target workspace to focused workspace
+        CURRENT_WS=$(aerospace list-workspaces --focused)
+        WINDOW_IDS=$(aerospace list-windows --workspace "$WS" --format '%{window-id}')
+        for wid in $WINDOW_IDS; do
+            aerospace focus --window-id "$wid" 2>/dev/null || continue
+            aerospace move-node-to-workspace "$CURRENT_WS"
+        done
+        aerospace workspace "$CURRENT_WS"
         ;;
     swap-monitors)
         # Swap workspaces between current and next monitor (wraps for >2)
