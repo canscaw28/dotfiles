@@ -28,7 +28,10 @@ reload_karabiner() {
 
 reload_hammerspoon() {
     log_info "Reloading Hammerspoon config..."
-    hs -c "hs.reload()" 2>/dev/null || log_error "Hammerspoon not running or not installed"
+    # hs.reload() restarts Hammerspoon, killing the IPC connection before
+    # the CLI can read a response. Use hs.timer to defer the reload so
+    # the IPC call returns cleanly first.
+    /usr/local/bin/hs -c "hs.timer.doAfter(0.1, hs.reload)" 2>/dev/null || log_error "Hammerspoon not running or not installed"
     log_info "Hammerspoon config reloaded"
 }
 
