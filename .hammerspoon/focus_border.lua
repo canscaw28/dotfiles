@@ -66,6 +66,13 @@ local function hideBorder()
     if border then border:hide() end
 end
 
+function M.flash()
+    local win = hs.window.focusedWindow()
+    if win then
+        showBorder(win)
+    end
+end
+
 local wf = hs.window.filter.default
 wf:subscribe(hs.window.filter.windowFocused, function(win)
     if win then
