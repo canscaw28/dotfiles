@@ -1,3 +1,4 @@
+require("hs.ipc")
 require("line_nav")
 require("ws_notify")
 require("focus_border")

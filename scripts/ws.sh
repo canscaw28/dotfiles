@@ -281,7 +281,7 @@ case "$OP" in
     move-monitor|move-monitor-focus) NOTIFY_WS="$NEXT_WS" ;;
 esac
 if [[ -n "$NOTIFY_WS" ]]; then
-    /opt/homebrew/bin/hs -c "require('ws_notify').show('$NOTIFY_WS')" 2>/dev/null &
+    /usr/local/bin/hs -c "require('ws_notify').show('$NOTIFY_WS')" 2>/dev/null &
 fi
 
 # Move mouse to focused window (replaces on-focus-changed callback which

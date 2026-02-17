@@ -286,7 +286,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('r')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('r')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -297,7 +297,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('r')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('r')\" &"
                   }
                 ],
                 "type": "basic"
@@ -326,7 +326,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('e')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('e')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -337,7 +337,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('e')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('e')\" &"
                   }
                 ],
                 "type": "basic"
@@ -366,7 +366,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('w')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('w')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -377,7 +377,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('w')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('w')\" &"
                   }
                 ],
                 "type": "basic"
@@ -406,7 +406,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('4')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('4')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -417,7 +417,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('4')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('4')\" &"
                   }
                 ],
                 "type": "basic"
@@ -446,7 +446,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('3')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('3')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -457,7 +457,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('3')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('3')\" &"
                   }
                 ],
                 "type": "basic"

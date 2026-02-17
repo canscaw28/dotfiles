@@ -130,7 +130,7 @@ def make_guard_manipulator(key_code, guard_conds, description):
     }
 
 
-HS_BIN = "/opt/homebrew/bin/hs"
+HS_BIN = "/usr/local/bin/hs"
 GRID_CMD_TEMPLATE = HS_BIN + " -c \"require('ws_grid').key{}('{}')\" &"
 
 

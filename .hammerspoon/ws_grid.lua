@@ -46,11 +46,11 @@ local AERO_TO_KEY = {
 local function getVisibleWorkspaces()
     -- Returns {workspace_name = monitor_id, ...}
     local mapping = {}
-    local ok, output = hs.execute("/opt/homebrew/bin/aerospace list-monitors --format '%{monitor-id}'")
+    local output, ok = hs.execute("/opt/homebrew/bin/aerospace list-monitors --format '%{monitor-id}'")
     if not ok then return mapping end
 
     for monId in output:gmatch("(%d+)") do
-        local ok2, wsOutput = hs.execute("/opt/homebrew/bin/aerospace list-workspaces --monitor " .. monId .. " --visible")
+        local wsOutput, ok2 = hs.execute("/opt/homebrew/bin/aerospace list-workspaces --monitor " .. monId .. " --visible")
         if ok2 then
             local ws = wsOutput:match("^%s*(.-)%s*$")
             if ws and ws ~= "" then

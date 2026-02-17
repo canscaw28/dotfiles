@@ -9,9 +9,9 @@ local fadeTimer = nil
 local STROKE_WIDTH = 6
 local STROKE_COLOR = {red = 0.2, green = 0.5, blue = 1, alpha = 0.8}
 local CORNER_RADIUS = 6
-local DISPLAY_TIME = 2
-local FADE_STEPS = 10
-local FADE_INTERVAL = 0.03
+local DISPLAY_TIME = 0.7
+local FADE_STEPS = 8
+local FADE_INTERVAL = 0.02
 
 local function showBorder(win)
     if fadeTimer then
