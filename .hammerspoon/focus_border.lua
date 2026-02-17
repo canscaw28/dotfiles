@@ -10,8 +10,8 @@ local fadeTimer = nil
 local delayTimer = nil
 
 local STROKE_WIDTH = 6
-local STROKE_COLOR = {red = 0.2, green = 0.5, blue = 1, alpha = 0.8}
-local CORNER_RADIUS = 6
+local STROKE_COLOR = {red = 1, green = 0.6, blue = 0.1, alpha = 0.8}
+local CORNER_RADIUS = 12
 local DISPLAY_TIME = 0.5
 local FADE_STEPS = 8
 local FADE_INTERVAL = 0.02
