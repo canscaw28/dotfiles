@@ -14,7 +14,7 @@ local CORNER_RADIUS = 6
 local DISPLAY_TIME = 0.5
 local FADE_STEPS = 8
 local FADE_INTERVAL = 0.02
-local FLASH_DELAY = 0.1
+local FLASH_DELAY = 0.25
 
 local function showBorder(win)
     if fadeTimer then
