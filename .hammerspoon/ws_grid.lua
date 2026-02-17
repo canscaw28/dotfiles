@@ -20,26 +20,27 @@ local ROWS = {
 
 -- Monitor colors
 local MONITOR_COLORS = {
-    [1] = {red = 0.2, green = 0.5, blue = 1, alpha = 1},      -- blue
-    [2] = {red = 1, green = 0.4, blue = 0.2, alpha = 1},      -- orange
-    [3] = {red = 0.2, green = 0.8, blue = 0.4, alpha = 1},    -- green
-    [4] = {red = 0.6, green = 0.3, blue = 0.9, alpha = 1},    -- purple
+    [1] = {red = 0.1, green = 0.3, blue = 0.7, alpha = 1},      -- blue
+    [2] = {red = 0.7, green = 0.25, blue = 0.1, alpha = 1},     -- orange
+    [3] = {red = 0.1, green = 0.5, blue = 0.25, alpha = 1},     -- green
+    [4] = {red = 0.4, green = 0.15, blue = 0.6, alpha = 1},     -- purple
 }
 
--- Keycap styling
-local BG_COLOR = {red = 0.08, green = 0.08, blue = 0.08, alpha = 0.7}
-local KEY_FACE = {red = 0.22, green = 0.22, blue = 0.24, alpha = 0.95}
-local KEY_FACE_ACTIVE = {red = 0.28, green = 0.28, blue = 0.30, alpha = 0.95}
-local KEY_BORDER = {red = 0.35, green = 0.35, blue = 0.38, alpha = 0.6}
-local KEY_SHADOW = {red = 0.0, green = 0.0, blue = 0.0, alpha = 0.4}
-local TEXT_COLOR_DIM = {red = 0.45, green = 0.45, blue = 0.45, alpha = 1}
-local CELL_SIZE = 42
-local CELL_GAP = 5
-local KEY_RADIUS = 8
+-- Keycap styling — high contrast so keys read as individual caps, not a blob
+local BG_COLOR = {red = 0.1, green = 0.1, blue = 0.1, alpha = 0.85}
+local KEY_FACE = {red = 0.38, green = 0.38, blue = 0.40, alpha = 0.95}
+local KEY_FACE_ACTIVE = {red = 0.48, green = 0.48, blue = 0.50, alpha = 0.95}
+local KEY_EDGE = {red = 0.28, green = 0.28, blue = 0.30, alpha = 0.95}  -- darker bottom/side for 3D
+local KEY_BORDER = {red = 0.55, green = 0.55, blue = 0.58, alpha = 0.8}
+local KEY_SHADOW = {red = 0, green = 0, blue = 0, alpha = 0.5}
+local TEXT_COLOR_DIM = {red = 0.18, green = 0.18, blue = 0.20, alpha = 1}
+local CELL_SIZE = 44
+local CELL_GAP = 8
+local KEY_RADIUS = 7
 local FONT_SIZE = 17
-local SHADOW_OFFSET = 2
-local UNDERLINE_HEIGHT = 3
-local PADDING = 12
+local SHADOW_OFFSET = 3
+local EDGE_HEIGHT = 4     -- visible "thickness" of keycap bottom edge
+local PADDING = 14
 
 -- Map AeroSpace workspace names to grid display keys
 local AERO_TO_KEY = {
@@ -63,7 +64,7 @@ local function drawGrid(visibleWs, focusedKey)
     local numRows = #ROWS
     local maxStagger = ROWS[numRows].stagger * CELL_SIZE
     local gridW = numCols * (CELL_SIZE + CELL_GAP) - CELL_GAP + maxStagger
-    local gridH = numRows * (CELL_SIZE + CELL_GAP) - CELL_GAP
+    local gridH = numRows * (CELL_SIZE + CELL_GAP) - CELL_GAP + EDGE_HEIGHT
     local totalW = gridW + PADDING * 2
     local totalH = gridH + PADDING * 2
 
@@ -76,15 +77,33 @@ local function drawGrid(visibleWs, focusedKey)
     grid:clickActivating(false)
     grid:canvasMouseEvents(false)
 
-    -- Subtle backdrop
-    grid:appendElements({
-        type = "rectangle",
-        action = "fill",
-        fillColor = BG_COLOR,
-        roundedRectRadii = {xRadius = 14, yRadius = 14},
-    })
+    -- Plate: one opaque rounded rect per row, overlapping vertically.
+    -- Even padding on all sides; smooth corner radius blends the row transitions.
+    local PLATE_PAD = 12
+    local PLATE_RADIUS = 10
+    local PLATE_COLOR = {red = 0.1, green = 0.1, blue = 0.12, alpha = 1}
+    local rowW = numCols * (CELL_SIZE + CELL_GAP) - CELL_GAP
+    for rowIdx, row in ipairs(ROWS) do
+        local rLeft = PADDING + row.stagger * CELL_SIZE - PLATE_PAD
+        local rTop = PADDING + (rowIdx - 1) * (CELL_SIZE + CELL_GAP) - PLATE_PAD
+        local rW = rowW + 2 * PLATE_PAD
+        local rH = CELL_SIZE + 2 * PLATE_PAD
+        if rowIdx < numRows then
+            rH = rH + CELL_GAP  -- overlap into gap to merge with next row
+        else
+            rH = rH + EDGE_HEIGHT  -- cover key edge on last row
+        end
+        grid:appendElements({
+            type = "rectangle",
+            action = "fill",
+            fillColor = PLATE_COLOR,
+            roundedRectRadii = {xRadius = PLATE_RADIUS, yRadius = PLATE_RADIUS},
+            frame = {x = rLeft, y = rTop, w = rW, h = rH},
+        })
+    end
 
     -- Draw keycaps
+    -- All coordinates use absolute pixels (fractional 0-1 coords break rendering)
     for rowIdx, row in ipairs(ROWS) do
         for colIdx, key in ipairs(row.keys) do
             local cellX = PADDING + (colIdx - 1) * (CELL_SIZE + CELL_GAP) + row.stagger * CELL_SIZE
@@ -94,70 +113,60 @@ local function drawGrid(visibleWs, focusedKey)
             local isFocused = (key == focusedKey)
             local isActive = monId ~= nil
 
-            -- Shadow (offset down-right for depth)
-            local sx = (cellX + SHADOW_OFFSET) / totalW
-            local sy = (cellY + SHADOW_OFFSET) / totalH
-            local sw = CELL_SIZE / totalW
-            local sh = CELL_SIZE / totalH
+            -- Layer 1: Drop shadow (offset down for ground shadow)
             grid:appendElements({
                 type = "rectangle",
                 action = "fill",
                 fillColor = KEY_SHADOW,
                 roundedRectRadii = {xRadius = KEY_RADIUS, yRadius = KEY_RADIUS},
-                frame = {x = sx, y = sy, w = sw, h = sh},
+                frame = {x = cellX + 1, y = cellY + SHADOW_OFFSET,
+                         w = CELL_SIZE, h = CELL_SIZE},
             })
 
-            -- Keycap face
-            local fx = cellX / totalW
-            local fy = cellY / totalH
-            local fw = CELL_SIZE / totalW
-            local fh = CELL_SIZE / totalH
+            -- Layer 2: Key edge/side (taller, darker — "thickness" peeks out at bottom)
+            grid:appendElements({
+                type = "rectangle",
+                action = "fill",
+                fillColor = KEY_EDGE,
+                roundedRectRadii = {xRadius = KEY_RADIUS, yRadius = KEY_RADIUS},
+                frame = {x = cellX, y = cellY,
+                         w = CELL_SIZE, h = CELL_SIZE + EDGE_HEIGHT},
+            })
+
+            -- Layer 3: Key face (top surface, lighter, shorter to reveal edge at bottom)
             grid:appendElements({
                 type = "rectangle",
                 action = "fill",
                 fillColor = isActive and KEY_FACE_ACTIVE or KEY_FACE,
                 roundedRectRadii = {xRadius = KEY_RADIUS, yRadius = KEY_RADIUS},
-                frame = {x = fx, y = fy, w = fw, h = fh},
+                frame = {x = cellX, y = cellY,
+                         w = CELL_SIZE, h = CELL_SIZE},
             })
 
-            -- Keycap border
+            -- Layer 4: Border for definition
             grid:appendElements({
                 type = "rectangle",
                 action = "stroke",
-                strokeWidth = 1,
+                strokeWidth = 1.5,
                 strokeColor = KEY_BORDER,
                 roundedRectRadii = {xRadius = KEY_RADIUS, yRadius = KEY_RADIUS},
-                frame = {x = fx, y = fy, w = fw, h = fh},
+                frame = {x = cellX, y = cellY,
+                         w = CELL_SIZE, h = CELL_SIZE},
             })
 
-            -- Key label
+            -- Key label (vertically centered — hs.canvas text renders from top)
             local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
             local displayText = isFocused and ("*" .. key) or key
+            local textOffsetY = (CELL_SIZE - FONT_SIZE * 1.25) / 2
             grid:appendElements({
                 type = "text",
                 text = displayText,
                 textColor = labelColor,
                 textSize = FONT_SIZE,
                 textAlignment = "center",
-                frame = {x = cellX, y = cellY, w = CELL_SIZE, h = CELL_SIZE},
+                frame = {x = cellX, y = cellY + textOffsetY, w = CELL_SIZE, h = FONT_SIZE * 1.5},
             })
 
-            -- Colored underline for visible workspaces
-            if monId and MONITOR_COLORS[monId] then
-                local barInset = 8
-                local barX = (cellX + barInset) / totalW
-                local barY = (cellY + CELL_SIZE - UNDERLINE_HEIGHT - 6) / totalH
-                local barW = (CELL_SIZE - barInset * 2) / totalW
-                local barH = UNDERLINE_HEIGHT / totalH
-
-                grid:appendElements({
-                    type = "rectangle",
-                    action = "fill",
-                    fillColor = MONITOR_COLORS[monId],
-                    roundedRectRadii = {xRadius = 1.5, yRadius = 1.5},
-                    frame = {x = barX, y = barY, w = barW, h = barH},
-                })
-            end
         end
     end
 
