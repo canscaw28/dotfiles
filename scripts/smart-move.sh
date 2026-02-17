@@ -24,6 +24,7 @@ root_layout=$(aerospace list-windows --focused --format '%{workspace-root-contai
 # Try to move within the current workspace
 if aerospace move --boundaries-action fail "$direction" 2>/dev/null; then
     sleep 0.01 && aerospace move-mouse window-force-center
+    /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
     exit 0
 fi
 
@@ -41,6 +42,7 @@ esac
 if $is_cross_axis; then
     aerospace move "$direction"
     sleep 0.01 && aerospace move-mouse window-force-center
+    /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
     exit 0
 fi
 
@@ -52,3 +54,4 @@ fi
 # Position window at the entering edge (moving right → leftmost position, etc.)
 while aerospace move --boundaries-action fail "$opposite" 2>/dev/null; do :; done
 aerospace move-mouse window-force-center
+/usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &

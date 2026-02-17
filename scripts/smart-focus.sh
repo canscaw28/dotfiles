@@ -31,6 +31,7 @@ AFTER=$(aerospace list-windows --focused --format '%{window-id}')
 
 if [ "$BEFORE" != "$AFTER" ]; then
     aerospace move-mouse window-lazy-center 2>/dev/null || true
+    /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
     exit 0  # Moved within workspace
 fi
 
@@ -47,3 +48,4 @@ while true; do
     [ "$BEFORE" = "$AFTER" ] && break
 done
 aerospace move-mouse window-lazy-center 2>/dev/null || true
+/usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &

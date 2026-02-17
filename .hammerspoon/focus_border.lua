@@ -1,48 +1,45 @@
 -- focus_border.lua
 -- Blue border flash around the focused window.
--- Triggers on keyboard-driven focus changes and ws.sh operations.
--- Only fires from window filter when a key was recently pressed,
--- so mouse clicks don't trigger the border.
+-- Called explicitly from ws.sh, smart-focus.sh, and smart-move.sh.
+-- Never fires on mouse clicks — only keyboard-driven operations.
 
 local M = {}
 
 local border = nil
 local fadeTimer = nil
-local keyActive = false
-local keyTimer = nil
 
 local STROKE_WIDTH = 6
 local STROKE_COLOR = {red = 0.2, green = 0.5, blue = 1, alpha = 0.8}
 local CORNER_RADIUS = 6
-local DISPLAY_TIME = 0.3
+local DISPLAY_TIME = 0.5
 local FADE_STEPS = 8
 local FADE_INTERVAL = 0.02
-local KEY_WINDOW = 0.5
+local FLASH_DELAY = 0.1
 
 local function showBorder(win)
     if fadeTimer then
         fadeTimer:stop()
         fadeTimer = nil
     end
+    if border then
+        border:delete()
+        border = nil
+    end
 
     local frame = win:frame()
 
-    if not border then
-        border = hs.canvas.new(frame)
-        border:level(hs.canvas.windowLevels.overlay)
-        border:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
-        border:clickActivating(false)
-        border:canvasMouseEvents(false)
-        border:appendElements({
-            type = "rectangle",
-            action = "stroke",
-            strokeWidth = STROKE_WIDTH,
-            strokeColor = STROKE_COLOR,
-            roundedRectRadii = {xRadius = CORNER_RADIUS, yRadius = CORNER_RADIUS},
-        })
-    else
-        border:frame(frame)
-    end
+    border = hs.canvas.new(frame)
+    border:level(hs.canvas.windowLevels.overlay)
+    border:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
+    border:clickActivating(false)
+    border:canvasMouseEvents(false)
+    border:appendElements({
+        type = "rectangle",
+        action = "stroke",
+        strokeWidth = STROKE_WIDTH,
+        strokeColor = STROKE_COLOR,
+        roundedRectRadii = {xRadius = CORNER_RADIUS, yRadius = CORNER_RADIUS},
+    })
 
     border:alpha(1)
     border:show()
@@ -64,33 +61,15 @@ local function showBorder(win)
     end)
 end
 
--- Explicit flash from ws.sh (always fires)
+-- Explicit flash from ws.sh (always fires).
+-- Brief delay lets AeroSpace focus settle before querying the focused window.
 function M.flash()
-    local win = hs.window.focusedWindow()
-    if win then
-        showBorder(win)
-    end
-end
-
--- Track keyboard activity
-local keyWatcher = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function()
-    keyActive = true
-    if keyTimer then keyTimer:stop() end
-    keyTimer = hs.timer.doAfter(KEY_WINDOW, function()
-        keyActive = false
-        keyTimer = nil
+    hs.timer.doAfter(FLASH_DELAY, function()
+        local win = hs.window.focusedWindow()
+        if win then
+            showBorder(win)
+        end
     end)
-    return false
-end)
-keyWatcher:start()
-
--- Window focus filter — only fires when keyboard was recently active
-local wf = hs.window.filter.default
-wf:subscribe(hs.window.filter.windowFocused, function(win)
-    if not keyActive then return end
-    if win then
-        showBorder(win)
-    end
-end)
+end
 
 return M

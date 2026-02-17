@@ -1,12 +1,13 @@
 -- ws_grid.lua
 -- Workspace grid overlay shown while caps+T+W is held.
 -- Hides when a sub-mode key (E/R/3/4) is also held.
--- Displays 4x5 grid of workspace keys with colored underlines
--- for workspaces visible on each monitor.
+-- Displays 4x5 grid of workspace keys with colored text and underlines
+-- for workspaces visible on each monitor. Focused workspace gets a * prefix.
 
 local M = {}
 
 local grid = nil
+local pendingTask = nil
 local keys = {t = false, w = false, e = false, r = false, ["3"] = false, ["4"] = false}
 
 -- Grid layout: 4 rows of 5 keys with keyboard stagger
@@ -27,7 +28,6 @@ local MONITOR_COLORS = {
 
 local BG_COLOR = {red = 0.1, green = 0.1, blue = 0.1, alpha = 0.8}
 local CELL_BG = {red = 0.2, green = 0.2, blue = 0.2, alpha = 0.9}
-local TEXT_COLOR = {red = 0.9, green = 0.9, blue = 0.9, alpha = 1}
 local TEXT_COLOR_DIM = {red = 0.5, green = 0.5, blue = 0.5, alpha = 1}
 local CELL_SIZE = 40
 local CELL_GAP = 6
@@ -41,36 +41,11 @@ local AERO_TO_KEY = {
     [";"] = ";", ["comma"] = ",",
 }
 
-local function getWorkspaceState()
-    -- Returns: visibleWs = {key = monitorId}, focusedKey = string
-    local visibleWs = {}
-    local focusedKey = nil
-
-    local output, ok = hs.execute("/opt/homebrew/bin/aerospace list-monitors --format '%{monitor-id}'")
-    if not ok then return visibleWs, focusedKey end
-
-    local focusedOutput, ok2 = hs.execute("/opt/homebrew/bin/aerospace list-workspaces --focused")
-    if ok2 then
-        local ws = focusedOutput:match("^%s*(.-)%s*$")
-        if ws and ws ~= "" then
-            focusedKey = AERO_TO_KEY[ws] or ws
-        end
-    end
-
-    for monId in output:gmatch("(%d+)") do
-        local wsOutput, ok3 = hs.execute("/opt/homebrew/bin/aerospace list-workspaces --monitor " .. monId .. " --visible")
-        if ok3 then
-            local ws = wsOutput:match("^%s*(.-)%s*$")
-            if ws and ws ~= "" then
-                local displayKey = AERO_TO_KEY[ws] or ws
-                visibleWs[displayKey] = tonumber(monId)
-            end
-        end
-    end
-    return visibleWs, focusedKey
+local function shouldShowGrid()
+    return keys.t and keys.w and not (keys.e or keys.r or keys["3"] or keys["4"])
 end
 
-function M.showGrid()
+local function drawGrid(visibleWs, focusedKey)
     if grid then
         grid:delete()
         grid = nil
@@ -78,8 +53,6 @@ function M.showGrid()
 
     local screen = hs.screen.mainScreen()
     local screenFrame = screen:frame()
-
-    local visibleWs, focusedKey = getWorkspaceState()
 
     local numCols = 5
     local numRows = #ROWS
@@ -130,11 +103,13 @@ function M.showGrid()
                 frame = {x = fx, y = fy, w = fw, h = fh},
             })
 
-            -- Key label — bright white for visible workspaces, dim for others
-            local labelColor = monId and TEXT_COLOR or TEXT_COLOR_DIM
+            -- Key label — monitor color for visible workspaces, dim for others
+            -- Focused workspace (on focused monitor) gets a star prefix
+            local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+            local displayText = isFocused and ("*" .. key) or key
             grid:appendElements({
                 type = "text",
-                text = key,
+                text = displayText,
                 textColor = labelColor,
                 textSize = FONT_SIZE,
                 textAlignment = "center",
@@ -164,7 +139,57 @@ function M.showGrid()
     grid:show()
 end
 
+function M.showGrid()
+    -- Cancel any in-flight workspace query
+    if pendingTask and pendingTask:isRunning() then
+        pendingTask:terminate()
+        pendingTask = nil
+    end
+
+    -- Query workspace state asynchronously to avoid blocking Hammerspoon IPC
+    pendingTask = hs.task.new("/bin/bash", function(exitCode, stdout, stderr)
+        pendingTask = nil
+        if exitCode ~= 0 then return end
+        -- Re-check key state — user may have released keys during async query
+        if not shouldShowGrid() then return end
+
+        local visibleWs = {}
+        local focusedKey = nil
+        for line in stdout:gmatch("[^\n]+") do
+            local focused = line:match("^F:(.+)")
+            if focused then
+                focused = focused:match("^%s*(.-)%s*$")
+                if focused ~= "" then
+                    focusedKey = AERO_TO_KEY[focused] or focused
+                end
+            end
+            local monId, ws = line:match("^M:(%d+):(.+)")
+            if monId and ws then
+                ws = ws:match("^%s*(.-)%s*$")
+                if ws ~= "" then
+                    local displayKey = AERO_TO_KEY[ws] or ws
+                    visibleWs[displayKey] = tonumber(monId)
+                end
+            end
+        end
+
+        drawGrid(visibleWs, focusedKey)
+    end, {"-c", [[
+        focused=$(/opt/homebrew/bin/aerospace list-workspaces --focused)
+        echo "F:$focused"
+        for m in $(/opt/homebrew/bin/aerospace list-monitors --format '%{monitor-id}'); do
+            ws=$(/opt/homebrew/bin/aerospace list-workspaces --monitor "$m" --visible)
+            echo "M:$m:$ws"
+        done
+    ]]})
+    pendingTask:start()
+end
+
 function M.hideGrid()
+    if pendingTask and pendingTask:isRunning() then
+        pendingTask:terminate()
+        pendingTask = nil
+    end
     if grid then
         grid:delete()
         grid = nil
@@ -172,7 +197,7 @@ function M.hideGrid()
 end
 
 local function refresh()
-    if keys.t and keys.w and not (keys.e or keys.r or keys["3"] or keys["4"]) then
+    if shouldShowGrid() then
         M.showGrid()
     else
         M.hideGrid()
