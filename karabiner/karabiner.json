@@ -29231,7 +29231,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/aerospace focus-monitor --wrap-around next && (/opt/homebrew/bin/aerospace move-mouse window-lazy-center 2>/dev/null || /opt/homebrew/bin/aerospace move-mouse monitor-lazy-center) && /usr/local/bin/hs -c \"require('focus_border').flash(); require('ws_grid').showGrid()\" &"
+                    "shell_command": "$HOME/.local/bin/switch-monitor.sh"
                   }
                 ],
                 "type": "basic"
