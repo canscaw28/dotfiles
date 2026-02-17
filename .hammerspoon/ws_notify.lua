@@ -33,7 +33,7 @@ function M.show(workspaceName)
     local y = sf.y + (sf.h - SIZE) / 2
 
     overlay = hs.canvas.new({x = x, y = y, w = SIZE, h = SIZE})
-    overlay:level(hs.canvas.windowLevels.overlay)
+    overlay:level(hs.canvas.windowLevels.overlay + 1)
     overlay:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
     overlay:clickActivating(false)
     overlay:canvasMouseEvents(false)
