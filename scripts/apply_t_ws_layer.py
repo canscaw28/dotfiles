@@ -2,19 +2,22 @@
 """Add T layer workspace operations to karabiner.json.
 
 Generates and inserts:
-  - T+W mode setter (pressing w in T layer sets w_is_held)
-  - Action manipulators for 7 workspace operations (20 keys each = 140 total):
-      T+W       -> ws.sh focus       (focus workspace on current monitor)
-      T+E       -> ws.sh move        (move window to workspace, stay)
-      T+R+E     -> ws.sh move-focus  (move window + follow)
-      T+W+E     -> ws.sh focus-1     (focus workspace on monitor 1)
-      T+W+R     -> ws.sh focus-2     (focus workspace on monitor 2)
-      T+W+3     -> ws.sh focus-3     (focus workspace on monitor 3)
-      T+W+4     -> ws.sh focus-4     (focus workspace on monitor 4)
-  - Guard manipulators for T+E and T+W modes
+  - T+W and T+Q mode setters
+  - Action manipulators for 10 workspace operations (20 keys each = 200 total):
+      T+W       -> ws.sh focus          (focus workspace on current monitor)
+      T+E       -> ws.sh move           (move window to workspace, stay)
+      T+R+E     -> ws.sh move-focus     (move window + follow)
+      T+W+E     -> ws.sh focus-1        (focus workspace on monitor 1)
+      T+W+R     -> ws.sh focus-2        (focus workspace on monitor 2)
+      T+W+3     -> ws.sh focus-3        (focus workspace on monitor 3)
+      T+W+4     -> ws.sh focus-4        (focus workspace on monitor 4)
+      T+Q       -> ws.sh swap           (swap workspaces between monitors)
+      T+Q+3     -> ws.sh push-windows   (push all windows to target workspace)
+      T+Q+E     -> ws.sh pull-windows   (pull all windows from target workspace)
+  - Guard manipulators for T+E, T+W, and T+Q modes
 
-Also ensures existing T layer manipulators have 3_is_held=0 and 4_is_held=0
-conditions to prevent conflicts.
+Also ensures existing T layer manipulators have 3_is_held=0, 4_is_held=0,
+and q_is_held=0 conditions to prevent conflicts.
 
 Idempotent: removes old workspace components before inserting new ones.
 """
@@ -54,13 +57,16 @@ WORKSPACE_KEYS = [
 # mode_conditions_dict maps variable names to required values.
 # Each mode key that isn't part of the combo is explicitly set to 0.
 OPERATIONS = [
-    ("move-focus", {"e": 1, "r": 1, "w": 0, "3": 0, "4": 0}),  # T+R+E
-    ("focus-1",    {"w": 1, "e": 1, "r": 0, "3": 0, "4": 0}),   # T+W+E
-    ("focus-2",    {"w": 1, "r": 1, "e": 0, "3": 0, "4": 0}),   # T+W+R
-    ("focus-3",    {"w": 1, "3": 1, "e": 0, "r": 0, "4": 0}),   # T+W+3
-    ("focus-4",    {"w": 1, "4": 1, "e": 0, "r": 0, "3": 0}),   # T+W+4
-    ("focus",      {"w": 1, "e": 0, "r": 0, "3": 0, "4": 0}),   # T+W
-    ("move",       {"e": 1, "r": 0, "w": 0, "3": 0, "4": 0}),   # T+E
+    ("move-focus",    {"e": 1, "r": 1, "w": 0, "3": 0, "4": 0, "q": 0}),   # T+R+E
+    ("focus-1",       {"w": 1, "e": 1, "r": 0, "3": 0, "4": 0, "q": 0}),   # T+W+E
+    ("focus-2",       {"w": 1, "r": 1, "e": 0, "3": 0, "4": 0, "q": 0}),   # T+W+R
+    ("focus-3",       {"w": 1, "3": 1, "e": 0, "r": 0, "4": 0, "q": 0}),   # T+W+3
+    ("focus-4",       {"w": 1, "4": 1, "e": 0, "r": 0, "3": 0, "q": 0}),   # T+W+4
+    ("focus",         {"w": 1, "e": 0, "r": 0, "3": 0, "4": 0, "q": 0}),   # T+W
+    ("move",          {"e": 1, "r": 0, "w": 0, "3": 0, "4": 0, "q": 0}),   # T+E
+    ("push-windows",  {"q": 1, "3": 1, "e": 0, "r": 0, "w": 0, "4": 0}),   # T+Q+3
+    ("pull-windows",  {"q": 1, "e": 1, "3": 0, "r": 0, "w": 0, "4": 0}),   # T+Q+E
+    ("swap",          {"q": 1, "e": 0, "r": 0, "w": 0, "3": 0, "4": 0}),   # T+Q
 ]
 
 # Right-hand keys NOT in workspace set that need guards
@@ -70,7 +76,7 @@ GUARD_KEYS = [
 ]
 
 # Variable names for mode keys used in workspace operations
-MODE_VARS = ["e", "r", "w", "3", "4"]
+MODE_VARS = ["e", "r", "w", "3", "4", "q"]
 
 
 def make_condition(name, value):
@@ -98,10 +104,7 @@ def make_action_manipulator(key_code, shell_cmd, mode_conds):
     for var in MODE_VARS:
         if var in mode_conds:
             conditions.append(make_condition(f"{var}_is_held", mode_conds[var]))
-    conditions += [
-        make_condition("q_is_held", 0),
-        make_condition("g_is_held", 0),
-    ]
+    conditions.append(make_condition("g_is_held", 0))
 
     return {
         "conditions": conditions,
@@ -163,6 +166,28 @@ def make_t_w_setter():
     }
 
 
+def make_t_q_setter():
+    """Q mode setter: when caps is held, pressing q sets q_is_held=1."""
+    return {
+        "conditions": [
+            make_condition("caps_lock_is_held", 1),
+        ],
+        "from": {
+            "key_code": "q",
+            "modifiers": {"optional": ["any"]},
+        },
+        "to": [
+            {"set_variable": {"name": "q_is_held", "value": 1}},
+            make_grid_shell_command("q", "Down"),
+        ],
+        "to_after_key_up": [
+            {"set_variable": {"name": "q_is_held", "value": 0}},
+            make_grid_shell_command("q", "Up"),
+        ],
+        "type": "basic",
+    }
+
+
 def generate():
     ws_bin = "$HOME/.local/bin/ws.sh"
     actions = []
@@ -186,10 +211,17 @@ def generate():
         for kc in GUARD_KEYS
     ]
 
+    # T+Q guards: block non-workspace keys when Q is held in T layer
+    q_guards = [
+        make_guard_manipulator(kc, [("q_is_held", 1)], "t-ws-guard")
+        for kc in GUARD_KEYS
+    ]
+
     return {
         "t_w_setter": make_t_w_setter(),
+        "t_q_setter": make_t_q_setter(),
         "actions": actions,
-        "guards": e_guards + w_guards,
+        "guards": e_guards + w_guards + q_guards,
     }
 
 
@@ -204,6 +236,26 @@ def is_t_w_setter(m):
     return (kc == "w"
             and get_cond(conds, "caps_lock_is_held") == 1
             and sv.get("name") == "w_is_held")
+
+
+def is_t_q_setter(m):
+    """Match Q setter (key=q, caps=1, sets q_is_held)."""
+    conds = m.get("conditions", [])
+    kc = m.get("from", {}).get("key_code", "")
+    to = m.get("to", [{}])[0]
+    sv = to.get("set_variable", {})
+    return (kc == "q"
+            and get_cond(conds, "caps_lock_is_held") == 1
+            and sv.get("name") == "q_is_held")
+
+
+def is_old_q_noop(m):
+    """Match old Q noop (key=q, caps=1, to vk_none)."""
+    kc = m.get("from", {}).get("key_code", "")
+    to = m.get("to", [{}])[0]
+    return (kc == "q"
+            and to.get("key_code") == "vk_none"
+            and get_cond(m.get("conditions", []), "caps_lock_is_held") == 1)
 
 
 _WORKSPACE_KEY_CODES = {kc for _, kc, _ in WORKSPACE_KEYS}
@@ -257,6 +309,7 @@ MODE_KEY_SETTERS = [
     ("r", "r_is_held"),
     ("3", "3_is_held"),
     ("4", "4_is_held"),
+    ("q", "q_is_held"),
 ]
 
 
@@ -344,32 +397,38 @@ def main():
     generated = generate()
 
     # Phase 1: Remove old T workspace components
-    removed = {"setter": 0, "actions": 0, "guards": 0}
+    removed = {"setters": 0, "actions": 0, "guards": 0, "q_noop": 0}
     for i in range(len(manips) - 1, -1, -1):
         m = manips[i]
-        if is_t_w_setter(m):
+        if is_t_w_setter(m) or is_t_q_setter(m):
             manips.pop(i)
-            removed["setter"] += 1
+            removed["setters"] += 1
         elif is_t_ws_action(m):
             manips.pop(i)
             removed["actions"] += 1
         elif is_t_ws_guard(m):
             manips.pop(i)
             removed["guards"] += 1
+        elif is_old_q_noop(m):
+            manips.pop(i)
+            removed["q_noop"] += 1
 
-    print(f"Removed: {removed['setter']} setter, {removed['actions']} actions, {removed['guards']} guards")
+    print(f"Removed: {removed['setters']} setters, {removed['actions']} actions, "
+          f"{removed['guards']} guards, {removed['q_noop']} q_noop")
 
-    # Phase 2: Add 3_is_held=0 and 4_is_held=0 to all T layer manipulators
-    vars_added = {"3_is_held": 0, "4_is_held": 0}
+    # Phase 2: Add 3_is_held=0, 4_is_held=0, q_is_held=0 to all T layer manipulators
+    new_mode_vars = ["3_is_held", "4_is_held", "q_is_held"]
+    search_names = {"w_is_held", "3_is_held", "4_is_held", "q_is_held"}
+    vars_added = {v: 0 for v in new_mode_vars}
     for m in manips:
         if is_t_layer_manipulator(m):
             conds = m["conditions"]
-            for var_name in ["3_is_held", "4_is_held"]:
+            for var_name in new_mode_vars:
                 if get_cond(conds, var_name) is None:
-                    # Insert after w_is_held (or after the last mode variable)
+                    # Insert after the last mode variable present
                     insert_after = "w_is_held"
                     for c in conds:
-                        if c.get("name") in ("w_is_held", "3_is_held", "4_is_held"):
+                        if c.get("name") in search_names:
                             insert_after = c.get("name")
                     for j, c in enumerate(conds):
                         if c.get("name") == insert_after:
@@ -382,18 +441,19 @@ def main():
     # Phase 2b: Clean up any leftover ws_submode from setters
     remove_ws_submode_from_setters(manips)
 
-    # Phase 2c: Add ws_grid shell commands to E, R, 3, 4 setters
+    # Phase 2c: Add ws_grid shell commands to E, R, 3, 4, Q setters
     add_grid_shell_commands_to_setters(manips)
-    print("Added ws_grid shell commands to T, E, R, 3, 4 setters")
+    print("Added ws_grid shell commands to T, E, R, 3, 4, Q setters")
 
-    # Phase 3: Insert T+W setter after T+E setter
+    # Phase 3: Insert T+W and T+Q setters after T+E setter
     te_idx = find_t_e_setter(manips)
     if te_idx == -1:
         print("ERROR: Could not find T+E setter", file=sys.stderr)
         sys.exit(1)
 
+    manips.insert(te_idx + 1, generated["t_q_setter"])
     manips.insert(te_idx + 1, generated["t_w_setter"])
-    print("Inserted T+W setter after T+E setter")
+    print("Inserted T+W and T+Q setters after T+E setter")
 
     # Phase 4: Insert actions and guards before T+4 join manipulators
     t4_first = find_first_t_4_manipulator(manips)
