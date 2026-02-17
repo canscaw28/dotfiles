@@ -243,6 +243,15 @@ local function refresh()
 end
 
 function M.keyDown(k)
+    if k == "t" then
+        -- Fresh T layer activation — clear stale mode key states
+        -- that may linger from missed keyUp events
+        keys.w = false
+        keys.e = false
+        keys.r = false
+        keys["3"] = false
+        keys["4"] = false
+    end
     keys[k] = true
     refresh()
 end
