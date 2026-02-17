@@ -1,6 +1,6 @@
 -- ws_notify.lua
 -- Flash workspace name centered on screen after workspace operations.
--- Styled as a macOS-like HUD overlay.
+-- Styled as a macOS-like HUD overlay with monitor-colored border.
 
 local M = {}
 
@@ -13,11 +13,20 @@ local FONT_SIZE = 28
 local FONT_NAME = "Helvetica Neue Medium"
 local SIZE = 56
 local CORNER_RADIUS = 14
+local BORDER_WIDTH = 3
 local DISPLAY_TIME = 0.7
 local FADE_STEPS = 8
 local FADE_INTERVAL = 0.02
 
-function M.show(workspaceName)
+local MONITOR_COLORS = {
+    [1] = {red = 0.2, green = 0.5, blue = 1, alpha = 1},
+    [2] = {red = 1, green = 0.45, blue = 0.15, alpha = 1},
+    [3] = {red = 0.2, green = 0.75, blue = 0.4, alpha = 1},
+    [4] = {red = 0.6, green = 0.3, blue = 0.85, alpha = 1},
+}
+local DEFAULT_BORDER = {red = 0.5, green = 0.5, blue = 0.5, alpha = 0.6}
+
+function M.show(workspaceName, monitorId)
     if fadeTimer then
         fadeTimer:stop()
         fadeTimer = nil
@@ -32,6 +41,8 @@ function M.show(workspaceName)
     local x = sf.x + (sf.w - SIZE) / 2
     local y = sf.y + (sf.h - SIZE) / 2
 
+    local borderColor = MONITOR_COLORS[monitorId] or DEFAULT_BORDER
+
     overlay = hs.canvas.new({x = x, y = y, w = SIZE, h = SIZE})
     overlay:level(hs.canvas.windowLevels.overlay + 1)
     overlay:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
@@ -42,6 +53,12 @@ function M.show(workspaceName)
         type = "rectangle",
         action = "fill",
         fillColor = BG_COLOR,
+        roundedRectRadii = {xRadius = CORNER_RADIUS, yRadius = CORNER_RADIUS},
+    }, {
+        type = "rectangle",
+        action = "stroke",
+        strokeWidth = BORDER_WIDTH,
+        strokeColor = borderColor,
         roundedRectRadii = {xRadius = CORNER_RADIUS, yRadius = CORNER_RADIUS},
     }, {
         type = "text",
