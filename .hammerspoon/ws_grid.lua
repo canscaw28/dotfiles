@@ -135,13 +135,14 @@ function M.showGrid()
             end
 
             -- Key label
+            local label = hs.styledtext.new(key, {
+                font = {name = "Helvetica Neue Bold", size = FONT_SIZE},
+                color = TEXT_COLOR,
+                paragraphStyle = {alignment = "center"},
+            })
             canvas:appendElements({
                 type = "text",
-                text = key,
-                textFont = ".AppleSystemUIFontBold",
-                textSize = FONT_SIZE,
-                textColor = TEXT_COLOR,
-                textAlignment = "center",
+                text = label,
                 frame = {x = fx, y = fy, w = fw, h = fh},
             })
         end
