@@ -282,9 +282,12 @@ def remove_ws_submode_from_setters(manips):
             ]
 
 
+GRID_KEY_SETTERS = [("t", "t_is_held")] + MODE_KEY_SETTERS
+
+
 def add_grid_shell_commands_to_setters(manips):
-    """Add ws_grid keyDown/keyUp shell commands to E, R, 3, 4 setters."""
-    for key_code, var_name in MODE_KEY_SETTERS:
+    """Add ws_grid keyDown/keyUp shell commands to T, E, R, 3, 4 setters."""
+    for key_code, var_name in GRID_KEY_SETTERS:
         idx = find_setter(manips, key_code, var_name)
         if idx == -1:
             continue
@@ -374,7 +377,7 @@ def main():
 
     # Phase 2c: Add ws_grid shell commands to E, R, 3, 4 setters
     add_grid_shell_commands_to_setters(manips)
-    print("Added ws_grid shell commands to E, R, 3, 4 setters")
+    print("Added ws_grid shell commands to T, E, R, 3, 4 setters")
 
     # Phase 3: Insert T+W setter after T+E setter
     te_idx = find_t_e_setter(manips)

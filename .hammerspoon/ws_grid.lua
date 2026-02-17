@@ -7,7 +7,7 @@
 local M = {}
 
 local grid = nil
-local keys = {w = false, e = false, r = false, ["3"] = false, ["4"] = false}
+local keys = {t = false, w = false, e = false, r = false, ["3"] = false, ["4"] = false}
 
 -- Grid layout: 4 rows of 5 keys with keyboard stagger
 local ROWS = {
@@ -172,7 +172,7 @@ function M.hideGrid()
 end
 
 local function refresh()
-    if keys.w and not (keys.e or keys.r or keys["3"] or keys["4"]) then
+    if keys.t and keys.w and not (keys.e or keys.r or keys["3"] or keys["4"]) then
         M.showGrid()
     else
         M.hideGrid()

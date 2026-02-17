@@ -484,6 +484,9 @@
                       "name": "t_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('t')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -492,6 +495,9 @@
                       "name": "t_is_held",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('t')\" &"
                   }
                 ],
                 "type": "basic"
