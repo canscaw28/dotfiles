@@ -4,6 +4,9 @@
 # a different app gains focus on the target — this script detects and fixes that.
 set -euo pipefail
 
+# Karabiner shell_command runs with minimal PATH; ensure homebrew is available
+export PATH="/opt/homebrew/bin:$PATH"
+
 SOURCE_MON=$(aerospace list-monitors --focused --format '%{monitor-id}')
 SOURCE_WS=$(aerospace list-workspaces --focused)
 
