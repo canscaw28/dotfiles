@@ -341,9 +341,5 @@ fi
 # Refresh workspace grid overlay if visible
 /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
 
-# Guard against Chrome's makeKeyAndOrderFront stealing focus
-GUARD_WID=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null)
-[[ -n "$GUARD_WID" ]] && ~/.local/bin/focus-guard.sh "$GUARD_WID" &
-
 # Save window state after every operation (for restore on restart)
 ~/.local/bin/save-ws-state.sh &
