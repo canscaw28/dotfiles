@@ -98,7 +98,7 @@ local function drawGrid(visibleWs, focusedKey)
     local y = screenFrame.y + (screenFrame.h - totalH) / 2
 
     grid = hs.canvas.new({x = x, y = y, w = totalW, h = totalH})
-    grid:level(hs.canvas.windowLevels.overlay)
+    grid:level(hs.canvas.windowLevels.overlay + 1)
     grid:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
     grid:clickActivating(false)
     grid:canvasMouseEvents(false)
