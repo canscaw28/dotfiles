@@ -74,7 +74,7 @@ local function shouldShowGrid()
     return targetMonitor() ~= nil
 end
 
-local function drawGrid(visibleWs, focusedKey)
+local function drawGrid(visibleWs, focusedKey, focusedMonId)
     if grid then
         grid:delete()
         grid = nil
@@ -82,7 +82,8 @@ local function drawGrid(visibleWs, focusedKey)
 
     local monId = targetMonitor()
     if monId == nil then return end
-    local screen = screenForMonitor(monId)
+    -- For "current monitor" (0), use AeroSpace's focused monitor instead of mouse position
+    local screen = screenForMonitor(monId == 0 and (focusedMonId or 0) or monId)
     if not screen then return end  -- target monitor doesn't exist
     local screenFrame = screen:frame()
 
@@ -219,6 +220,7 @@ function M.showGrid()
 
         local visibleWs = {}
         local focusedKey = nil
+        local focusedMonId = nil
         for line in stdout:gmatch("[^\n]+") do
             local focused = line:match("^F:(.+)")
             if focused then
@@ -226,6 +228,10 @@ function M.showGrid()
                 if focused ~= "" then
                     focusedKey = AERO_TO_KEY[focused] or focused
                 end
+            end
+            local fm = line:match("^FM:(%d+)")
+            if fm then
+                focusedMonId = tonumber(fm)
             end
             local monId, ws = line:match("^M:(%d+):(.+)")
             if monId and ws then
@@ -237,10 +243,12 @@ function M.showGrid()
             end
         end
 
-        drawGrid(visibleWs, focusedKey)
+        drawGrid(visibleWs, focusedKey, focusedMonId)
     end, {"-c", [[
         focused=$(/opt/homebrew/bin/aerospace list-workspaces --focused)
         echo "F:$focused"
+        focused_mon=$(/opt/homebrew/bin/aerospace list-monitors --focused --format '%{monitor-id}')
+        echo "FM:$focused_mon"
         for m in $(/opt/homebrew/bin/aerospace list-monitors --format '%{monitor-id}'); do
             ws=$(/opt/homebrew/bin/aerospace list-workspaces --monitor "$m" --visible)
             echo "M:$m:$ws"
