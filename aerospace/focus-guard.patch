@@ -1,0 +1,40 @@
+diff --git a/Sources/AppBundle/focusCache.swift b/Sources/AppBundle/focusCache.swift
+index d70519e2..755410b1 100644
+--- a/Sources/AppBundle/focusCache.swift
++++ b/Sources/AppBundle/focusCache.swift
+@@ -1,4 +1,7 @@
++import Foundation
++
+ @MainActor private var lastKnownNativeFocusedWindowId: UInt32? = nil
++@MainActor var lastCommandTime: Date? = nil
+
+ /// The data should flow (from nativeFocused to focused) and
+ ///                      (from nativeFocused to lastKnownNativeFocusedWindowId)
+@@ -8,6 +11,15 @@
+         return
+     }
+     if nativeFocused?.windowId != lastKnownNativeFocusedWindowId {
++        // Ignore focus changes to hidden-in-corner windows shortly after
++        // an AeroSpace command (workaround for Chrome makeKeyAndOrderFront)
++        if let macWindow = nativeFocused as? MacWindow,
++           macWindow.isHiddenInCorner,
++           let lastCmd = lastCommandTime,
++           Date().timeIntervalSince(lastCmd) < 0.5 {
++            lastKnownNativeFocusedWindowId = nativeFocused?.windowId
++            return
++        }
+         _ = nativeFocused?.focusWindow()
+         lastKnownNativeFocusedWindowId = nativeFocused?.windowId
+     }
+diff --git a/Sources/AppBundle/layout/refresh.swift b/Sources/AppBundle/layout/refresh.swift
+index 56603a90..2b94911f 100644
+--- a/Sources/AppBundle/layout/refresh.swift
++++ b/Sources/AppBundle/layout/refresh.swift
+@@ -74,6 +74,7 @@ func runLightSession<T>(
+             if focusBefore != focusAfter {
+                 focusAfter?.nativeFocus() // syncFocusToMacOs
+             }
++            lastCommandTime = Date()
+             scheduleRefreshSession(event)
+             return result
+         }
