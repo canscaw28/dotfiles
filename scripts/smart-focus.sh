@@ -37,12 +37,7 @@ fi
 
 # At boundary — cross to adjacent monitor (no --wrap-around, so
 # nothing happens if no monitor exists in this direction)
-SOURCE_MON=$(aerospace list-monitors --focused --format '%{monitor-id}')
-SOURCE_WS=$(aerospace list-workspaces --focused)
-
 aerospace focus-monitor "$direction" 2>/dev/null || exit 0
-
-TARGET_MON=$(aerospace list-monitors --focused --format '%{monitor-id}')
 
 # Navigate to the edge closest to where we came from
 # (e.g., moving right → leftmost window on new monitor)
@@ -55,12 +50,6 @@ done
 aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null
 /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
 
-# Restore source workspace if macOS app activation changed it
-sleep 0.05
-ACTUAL_SOURCE=$(aerospace list-workspaces --monitor "$SOURCE_MON" --visible 2>/dev/null)
-if [[ "$ACTUAL_SOURCE" != "$SOURCE_WS" ]]; then
-    aerospace focus-monitor "$SOURCE_MON" 2>/dev/null; sleep 0.05
-    aerospace workspace "$SOURCE_WS" 2>/dev/null; sleep 0.05
-    aerospace focus-monitor "$TARGET_MON" 2>/dev/null
-    aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null
-fi
+# Guard against Chrome's makeKeyAndOrderFront stealing focus
+GUARD_WID=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null)
+[[ -n "$GUARD_WID" ]] && ~/.local/bin/focus-guard.sh "$GUARD_WID" &
