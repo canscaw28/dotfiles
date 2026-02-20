@@ -341,6 +341,14 @@ execute_op() {
 # --- Post-processing ---
 
 per_op_post_process() {
+    # Refresh workspace grid overlay after each op so it tracks workspace changes live
+    /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
+}
+
+# Full post-processing for the last operation in a drain cycle.
+# Synchronous aerospace calls (move-mouse, list-monitors) go here instead of
+# per_op_post_process to avoid adding ~100-200ms latency between each queued op.
+final_post_process() {
     # Show workspace notification overlay
     NOTIFY_WS="$WS"
     NOTIFY_MON=$(aerospace list-monitors --focused --format '%{monitor-id}' 2>/dev/null) || true
@@ -354,20 +362,14 @@ per_op_post_process() {
         /usr/local/bin/hs -c "require('ws_notify').show('$NOTIFY_WS', ${NOTIFY_MON:-0})" 2>/dev/null &
     fi
 
-    # Move mouse to focused window (replaces on-focus-changed callback which
-    # interferes with multi-step swap operations)
+    # Move mouse to focused window
     aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null || true
 
-    # Flash border around focused window to track movement (skip for focus — grid provides feedback)
+    # Flash border around focused window (skip for focus — grid provides feedback)
     if [[ "$OP" != "focus" ]]; then
         /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
     fi
 
-    # Refresh workspace grid overlay after each op so it tracks workspace changes live
-    /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
-}
-
-final_post_process() {
     # Refresh workspace grid overlay if visible
     /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
 
@@ -377,7 +379,7 @@ final_post_process() {
 
 # --- Queue drain ---
 
-COLLAPSE_THRESHOLD=10
+COLLAPSE_THRESHOLD=7
 
 drain_queue() {
     while true; do
