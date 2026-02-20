@@ -167,6 +167,7 @@ focus_ws_on_monitor() {
     if [[ "$ws_mon" == "$target_mon" ]]; then
         # Already on the target monitor, just focus it
         aerospace focus-monitor "$target_mon"
+        [[ $_CACHED -eq 1 ]] && _C_FOCUSED_MON="$target_mon"
         return
     fi
 
@@ -174,10 +175,16 @@ focus_ws_on_monitor() {
         # Hidden workspace — summon works correctly for these
         aerospace focus-monitor "$target_mon"; sleep 0.05
         aerospace summon-workspace "$ws"
+        if [[ $_CACHED -eq 1 ]]; then
+            # Previous ws on target_mon is now hidden; target_mon shows $ws
+            printf -v "_C_MON_WS_${target_mon}" '%s' "$ws"
+            _C_FOCUSED_MON="$target_mon"
+        fi
         return
     fi
 
     # ws is visible on ws_mon, want it on target_mon, leave ~ on ws_mon.
+    # These paths are complex — refresh cache fully afterward.
     buf_mon=$(visible_on_monitor "$BUFFER_WS")
 
     if [[ "$buf_mon" == "$target_mon" ]]; then
@@ -198,6 +205,7 @@ focus_ws_on_monitor() {
         aerospace focus-monitor "$target_mon"; sleep 0.05
         aerospace summon-workspace "$ws"
     fi
+    [[ $_CACHED -eq 1 ]] && cache_state
 }
 
 # Swap two workspaces between monitors using summon-workspace.
