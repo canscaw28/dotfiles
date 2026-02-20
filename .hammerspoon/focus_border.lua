@@ -77,17 +77,17 @@ function M.flash()
 
     delayTimer = hs.timer.doAfter(FLASH_DELAY, function()
         delayTimer = nil
+        local screen = hs.mouse.getCurrentScreen()
         local win = hs.window.focusedWindow()
-        if win then
+        -- Check the window is on the current screen — macOS keeps reporting
+        -- the old focused window even after AeroSpace switches to an empty workspace
+        if win and screen and win:screen() == screen then
             showBorder(win:frame())
-        else
+        elseif screen then
             -- Empty workspace — highlight the focused monitor
-            local screen = hs.mouse.getCurrentScreen()
-            if screen then
-                local f = screen:frame()
-                local pad = STROKE_WIDTH
-                showBorder({x = f.x + pad, y = f.y + pad, w = f.w - 2 * pad, h = f.h - 2 * pad})
-            end
+            local f = screen:frame()
+            local pad = STROKE_WIDTH
+            showBorder({x = f.x + pad, y = f.y + pad, w = f.w - 2 * pad, h = f.h - 2 * pad})
         end
     end)
 end
