@@ -24,14 +24,23 @@
 # Karabiner shell_command runs with minimal PATH; ensure homebrew is available
 export PATH="/opt/homebrew/bin:$PATH"
 
-set -euo pipefail
+trap '' PIPE  # Ignore SIGPIPE — aerospace CLI gets spurious broken pipes under rapid invocation
 
-# Prevent concurrent aerospace operations (swap is multi-step and can't be
-# interrupted). Other scripts (smart-focus.sh, smart-move.sh) also check this.
-# If the lock holder is dead, force-remove to prevent permanent lockout.
+# --- Lock and queue infrastructure ---
+
 LOCKFILE="/tmp/aerospace-lock.pid"
+QUEUE_DIR="/tmp/ws-queue"
+DEBUG_LOG="/tmp/ws-debug.log"
+_ms() { perl -MTime::HiRes=time -e 'printf "%.3f\n", time' 2>/dev/null || date +%s; }
+_START_TS=$(perl -MTime::HiRes=time -e 'printf "%.6f", time' 2>/dev/null || date +%s)
+debug() { printf '%s [%d] %s\n' "$(_ms)" $$ "$*" >> "$DEBUG_LOG" 2>/dev/null; }
+
+_LOCK_HOLDER=0
+trap '_ec=$?; [[ $_LOCK_HOLDER -eq 1 ]] && rm -f "$LOCKFILE"; debug "EXIT code=$_ec"' EXIT
+
 acquire_lock() {
     if (set -o noclobber; echo $$ > "$LOCKFILE") 2>/dev/null; then
+        _LOCK_HOLDER=1
         return 0
     fi
     # Lock exists — check if holder is alive
@@ -43,11 +52,20 @@ acquire_lock() {
     fi
     return 1  # Lock held by live process
 }
-acquire_lock || acquire_lock || exit 0
-trap 'rm -f "$LOCKFILE"' EXIT
 
-OP="$1"
-WS="${2:-}"
+enqueue() {
+    local op="$1" ws="$2"
+    mkdir -p "$QUEUE_DIR"
+    local tmp
+    tmp=$(mktemp "$QUEUE_DIR/.tmp.XXXXXX")
+    printf '%s %s\n' "$op" "$ws" > "$tmp"
+    # Use start timestamp as filename so ls sorts in keypress order.
+    # _START_TS is captured at script entry (microsecond precision) before
+    # any lock contention delays, so it reflects actual keypress ordering.
+    mv "$tmp" "$QUEUE_DIR/${_START_TS}-$$"
+}
+
+# --- AeroSpace helpers ---
 
 resolve_monitor() {
     local target=$1
@@ -90,6 +108,8 @@ visible_on_monitor() {
 
 # Place the ~ buffer workspace on a specific monitor.
 # ~ always creates on mon1; if a different monitor is needed, move it there.
+BUFFER_WS='~'
+
 place_buffer_on() {
     local mon="$1"
     aerospace workspace "$BUFFER_WS"; sleep 0.05
@@ -155,8 +175,6 @@ focus_ws_on_monitor() {
 #
 # AeroSpace occasionally drops commands in rapid succession, so swaps are
 # verified and retried with a longer delay if needed.
-BUFFER_WS='~'
-
 swap_workspaces() {
     local ws_a="$1" mon_a="$2" ws_b="$3" mon_b="$4"
 
@@ -199,147 +217,236 @@ swap_workspaces() {
     done
 }
 
-case "$OP" in
-    focus)
-        focus_ws_on_monitor "$(aerospace list-monitors --focused --format '%{monitor-id}')" "$WS"
-        ;;
-    focus-1)
-        focus_ws_on_monitor "$(resolve_monitor 1)" "$WS"
-        ;;
-    focus-2)
-        focus_ws_on_monitor "$(resolve_monitor 2)" "$WS"
-        ;;
-    focus-3)
-        focus_ws_on_monitor "$(resolve_monitor 3)" "$WS"
-        ;;
-    focus-4)
-        focus_ws_on_monitor "$(resolve_monitor 4)" "$WS"
-        ;;
-    move)
-        aerospace move-node-to-workspace "$WS"
-        ;;
-    move-focus)
-        # Move window to workspace, then pull that workspace to current monitor.
-        CURRENT_MON=$(aerospace list-monitors --focused --format '%{monitor-id}')
-        aerospace move-node-to-workspace "$WS"
-        focus_ws_on_monitor "$CURRENT_MON" "$WS"
-        ;;
-    swap)
-        # Swap current workspace with selected workspace between monitors.
-        # Focus stays on current monitor (now showing the target workspace).
-        CURRENT_WS=$(aerospace list-workspaces --focused)
-        CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
-        TARGET_MONITOR=$(visible_on_monitor "$WS")
+# --- Operation execution ---
 
-        if [ -n "$TARGET_MONITOR" ] && [ "$TARGET_MONITOR" != "$CURRENT_MONITOR" ]; then
-            swap_workspaces "$CURRENT_WS" "$TARGET_MONITOR" "$WS" "$CURRENT_MONITOR"
+execute_op() {
+    case "$OP" in
+        focus)
+            focus_ws_on_monitor "$(aerospace list-monitors --focused --format '%{monitor-id}')" "$WS"
+            ;;
+        focus-1)
+            focus_ws_on_monitor "$(resolve_monitor 1)" "$WS"
+            ;;
+        focus-2)
+            focus_ws_on_monitor "$(resolve_monitor 2)" "$WS"
+            ;;
+        focus-3)
+            focus_ws_on_monitor "$(resolve_monitor 3)" "$WS"
+            ;;
+        focus-4)
+            focus_ws_on_monitor "$(resolve_monitor 4)" "$WS"
+            ;;
+        move)
+            aerospace move-node-to-workspace "$WS"
+            ;;
+        move-focus)
+            # Move window to workspace, then pull that workspace to current monitor.
+            CURRENT_MON=$(aerospace list-monitors --focused --format '%{monitor-id}')
+            aerospace move-node-to-workspace "$WS"
+            focus_ws_on_monitor "$CURRENT_MON" "$WS"
+            ;;
+        swap)
+            # Swap current workspace with selected workspace between monitors.
+            # Focus stays on current monitor (now showing the target workspace).
+            CURRENT_WS=$(aerospace list-workspaces --focused)
+            CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+            TARGET_MONITOR=$(visible_on_monitor "$WS")
+
+            if [ -n "$TARGET_MONITOR" ] && [ "$TARGET_MONITOR" != "$CURRENT_MONITOR" ]; then
+                swap_workspaces "$CURRENT_WS" "$TARGET_MONITOR" "$WS" "$CURRENT_MONITOR"
+            fi
+            ;;
+        swap-follow)
+            # Swap workspaces between monitors, then focus the selected workspace.
+            CURRENT_WS=$(aerospace list-workspaces --focused)
+            CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+            TARGET_MONITOR=$(visible_on_monitor "$WS")
+
+            if [ -n "$TARGET_MONITOR" ] && [ "$TARGET_MONITOR" != "$CURRENT_MONITOR" ]; then
+                swap_workspaces "$CURRENT_WS" "$TARGET_MONITOR" "$WS" "$CURRENT_MONITOR"
+            fi
+            # Follow: focus the selected workspace (now on current monitor)
+            aerospace workspace "$WS"
+            ;;
+        move-monitor)
+            # Move focused window to the next monitor's visible workspace
+            CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+            NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
+            NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
+            aerospace move-node-to-workspace "$NEXT_WS"
+            ;;
+        move-monitor-focus)
+            # Move focused window to next monitor and follow it
+            CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+            NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
+            NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
+            aerospace move-node-to-workspace "$NEXT_WS"
+            aerospace workspace "$NEXT_WS"
+            ;;
+        move-monitor-yank)
+            # Move window to next monitor, then yank that workspace to current monitor
+            CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+            NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
+            NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
+            aerospace move-node-to-workspace "$NEXT_WS"
+            focus_ws_on_monitor "$CURRENT_MONITOR" "$NEXT_WS"
+            ;;
+        swap-windows)
+            # Swap all windows between focused workspace and target workspace
+            CURRENT_WS=$(aerospace list-workspaces --focused)
+            CURRENT_WIDS=$(aerospace list-windows --workspace "$CURRENT_WS" --format '%{window-id}')
+            TARGET_WIDS=$(aerospace list-windows --workspace "$WS" --format '%{window-id}')
+            for wid in $CURRENT_WIDS; do
+                aerospace move-node-to-workspace --window-id "$wid" "$WS"
+            done
+            for wid in $TARGET_WIDS; do
+                aerospace move-node-to-workspace --window-id "$wid" "$CURRENT_WS"
+            done
+            aerospace workspace "$CURRENT_WS"
+            ;;
+        push-windows)
+            # Move all windows from focused workspace to target workspace
+            CURRENT_WS=$(aerospace list-workspaces --focused)
+            WINDOW_IDS=$(aerospace list-windows --workspace "$CURRENT_WS" --format '%{window-id}')
+            for wid in $WINDOW_IDS; do
+                aerospace move-node-to-workspace --window-id "$wid" "$WS"
+            done
+            aerospace workspace "$CURRENT_WS"
+            ;;
+        pull-windows)
+            # Pull all windows from target workspace to focused workspace
+            CURRENT_WS=$(aerospace list-workspaces --focused)
+            WINDOW_IDS=$(aerospace list-windows --workspace "$WS" --format '%{window-id}')
+            for wid in $WINDOW_IDS; do
+                aerospace move-node-to-workspace --window-id "$wid" "$CURRENT_WS"
+            done
+            ;;
+        swap-monitors)
+            # Swap workspaces between current and next monitor (wraps for >2)
+            # Focus stays on current monitor (now showing the other workspace).
+            CURRENT_WS=$(aerospace list-workspaces --focused)
+            CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+            # For 2-monitor setups, inline the other monitor ID to save a command.
+            if [[ "$CURRENT_MONITOR" == "1" ]]; then NEXT_MONITOR=2; else NEXT_MONITOR=1; fi
+            NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
+            swap_workspaces "$CURRENT_WS" "$NEXT_MONITOR" "$NEXT_WS" "$CURRENT_MONITOR"
+            ;;
+        *)
+            echo "ws.sh: unknown operation '$OP'" >&2
+            exit 1
+            ;;
+    esac
+}
+
+# --- Post-processing ---
+
+per_op_post_process() {
+    # Show workspace notification overlay
+    NOTIFY_WS="$WS"
+    NOTIFY_MON=$(aerospace list-monitors --focused --format '%{monitor-id}' 2>/dev/null) || true
+    case "$OP" in
+        focus-[1-4])         NOTIFY_MON="${OP##focus-}" ;;
+        swap-monitors)       NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
+        move-monitor|move-monitor-focus) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$NEXT_MONITOR" ;;
+        move-monitor-yank) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
+    esac
+    if [[ -n "$NOTIFY_WS" ]]; then
+        /usr/local/bin/hs -c "require('ws_notify').show('$NOTIFY_WS', ${NOTIFY_MON:-0})" 2>/dev/null &
+    fi
+
+    # Move mouse to focused window (replaces on-focus-changed callback which
+    # interferes with multi-step swap operations)
+    aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null || true
+
+    # Flash border around focused window to track movement (skip for focus — grid provides feedback)
+    if [[ "$OP" != "focus" ]]; then
+        /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    fi
+
+    # Refresh workspace grid overlay after each op so it tracks workspace changes live
+    /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
+}
+
+final_post_process() {
+    # Refresh workspace grid overlay if visible
+    /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
+
+    # Save window state after every operation (for restore on restart)
+    ~/.local/bin/save-ws-state.sh &
+}
+
+# --- Queue drain ---
+
+COLLAPSE_THRESHOLD=10
+
+drain_queue() {
+    while true; do
+        local next
+        next=$(ls "$QUEUE_DIR"/[0-9]* 2>/dev/null | head -1) || true
+        [[ -z "$next" ]] && return
+
+        local line
+        line=$(<"$next")
+        local op="${line%% *}"
+        local ws="${line#* }"
+
+        # Collapse consecutive focus ops when the queue is deep (> threshold).
+        # Small bursts execute fully so the user sees each transition.
+        # Large backlogs skip intermediate focus ops to catch up quickly.
+        if [[ "$op" == focus* ]]; then
+            local depth
+            depth=$(ls "$QUEUE_DIR"/[0-9]* 2>/dev/null | wc -l)
+            depth=${depth// /}
+            if [[ "$depth" -gt "$COLLAPSE_THRESHOLD" ]]; then
+                local peek
+                peek=$(ls "$QUEUE_DIR"/[0-9]* 2>/dev/null | sed -n '2p') || true
+                if [[ -n "$peek" ]]; then
+                    local peek_line
+                    peek_line=$(<"$peek")
+                    local peek_op="${peek_line%% *}"
+                    if [[ "$peek_op" == focus* ]]; then
+                        debug "SKIP $op $ws (queue depth $depth)"
+                        rm -f "$next"
+                        continue
+                    fi
+                fi
+            fi
         fi
-        ;;
-    swap-follow)
-        # Swap workspaces between monitors, then focus the selected workspace.
-        CURRENT_WS=$(aerospace list-workspaces --focused)
-        CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
-        TARGET_MONITOR=$(visible_on_monitor "$WS")
 
-        if [ -n "$TARGET_MONITOR" ] && [ "$TARGET_MONITOR" != "$CURRENT_MONITOR" ]; then
-            swap_workspaces "$CURRENT_WS" "$TARGET_MONITOR" "$WS" "$CURRENT_MONITOR"
-        fi
-        # Follow: focus the selected workspace (now on current monitor)
-        aerospace workspace "$WS"
-        ;;
-    move-monitor)
-        # Move focused window to the next monitor's visible workspace
-        CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
-        NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
-        NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
-        aerospace move-node-to-workspace "$NEXT_WS"
-        ;;
-    move-monitor-focus)
-        # Move focused window to next monitor and follow it
-        CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
-        NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
-        NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
-        aerospace move-node-to-workspace "$NEXT_WS"
-        aerospace workspace "$NEXT_WS"
-        ;;
-    move-monitor-yank)
-        # Move window to next monitor, then yank that workspace to current monitor
-        CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
-        NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
-        NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
-        aerospace move-node-to-workspace "$NEXT_WS"
-        focus_ws_on_monitor "$CURRENT_MONITOR" "$NEXT_WS"
-        ;;
-    swap-windows)
-        # Swap all windows between focused workspace and target workspace
-        CURRENT_WS=$(aerospace list-workspaces --focused)
-        CURRENT_WIDS=$(aerospace list-windows --workspace "$CURRENT_WS" --format '%{window-id}')
-        TARGET_WIDS=$(aerospace list-windows --workspace "$WS" --format '%{window-id}')
-        for wid in $CURRENT_WIDS; do
-            aerospace move-node-to-workspace --window-id "$wid" "$WS"
-        done
-        for wid in $TARGET_WIDS; do
-            aerospace move-node-to-workspace --window-id "$wid" "$CURRENT_WS"
-        done
-        aerospace workspace "$CURRENT_WS"
-        ;;
-    push-windows)
-        # Move all windows from focused workspace to target workspace
-        CURRENT_WS=$(aerospace list-workspaces --focused)
-        WINDOW_IDS=$(aerospace list-windows --workspace "$CURRENT_WS" --format '%{window-id}')
-        for wid in $WINDOW_IDS; do
-            aerospace move-node-to-workspace --window-id "$wid" "$WS"
-        done
-        aerospace workspace "$CURRENT_WS"
-        ;;
-    pull-windows)
-        # Pull all windows from target workspace to focused workspace
-        CURRENT_WS=$(aerospace list-workspaces --focused)
-        WINDOW_IDS=$(aerospace list-windows --workspace "$WS" --format '%{window-id}')
-        for wid in $WINDOW_IDS; do
-            aerospace move-node-to-workspace --window-id "$wid" "$CURRENT_WS"
-        done
-        ;;
-    swap-monitors)
-        # Swap workspaces between current and next monitor (wraps for >2)
-        # Focus stays on current monitor (now showing the other workspace).
-        CURRENT_WS=$(aerospace list-workspaces --focused)
-        CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
-        # For 2-monitor setups, inline the other monitor ID to save a command.
-        if [[ "$CURRENT_MONITOR" == "1" ]]; then NEXT_MONITOR=2; else NEXT_MONITOR=1; fi
-        NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
-        swap_workspaces "$CURRENT_WS" "$NEXT_MONITOR" "$NEXT_WS" "$CURRENT_MONITOR"
-        ;;
-    *)
-        echo "ws.sh: unknown operation '$OP'" >&2
-        exit 1
-        ;;
-esac
+        OP="$op"
+        WS="$ws"
+        debug "DRAIN $OP $WS (from $(basename "$next"))"
+        execute_op
+        per_op_post_process
+        rm -f "$next"
+    done
+}
 
-# Show workspace notification overlay
-NOTIFY_WS="$WS"
-NOTIFY_MON=$(aerospace list-monitors --focused --format '%{monitor-id}' 2>/dev/null)
-case "$OP" in
-    focus-[1-4])         NOTIFY_MON="${OP##focus-}" ;;
-    swap-monitors)       NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
-    move-monitor|move-monitor-focus) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$NEXT_MONITOR" ;;
-    move-monitor-yank) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
-esac
-if [[ -n "$NOTIFY_WS" ]]; then
-    /usr/local/bin/hs -c "require('ws_notify').show('$NOTIFY_WS', ${NOTIFY_MON:-0})" 2>/dev/null &
+# --- Main flow ---
+# Every invocation enqueues its command first — this makes commands durable
+# even if the executing process dies (Karabiner spawns processes that can be
+# killed unpredictably). Then one process becomes the worker and drains the
+# queue sequentially.
+
+OP="${1:-}"
+WS="${2:-}"
+
+debug "START $OP $WS"
+enqueue "$OP" "$WS"
+
+if acquire_lock || acquire_lock; then
+    debug "WORKER — draining"
+    drain_queue
+    final_post_process
+    debug "DONE"
+else
+    # Lock held by another worker — it will drain our enqueued command.
+    # Sleep briefly and retry in case the worker died before reaching our entry.
+    sleep 0.15
+    if acquire_lock; then
+        debug "WORKER (retry) — draining"
+        drain_queue
+        final_post_process
+        debug "DONE"
+    fi
 fi
-
-# Move mouse to focused window (replaces on-focus-changed callback which
-# interferes with multi-step swap operations)
-aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null || true
-
-# Flash border around focused window to track movement (skip for focus — grid provides feedback)
-if [[ "$OP" != "focus" ]]; then
-    /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
-fi
-
-# Refresh workspace grid overlay if visible
-/usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
-
-# Save window state after every operation (for restore on restart)
-~/.local/bin/save-ws-state.sh &
