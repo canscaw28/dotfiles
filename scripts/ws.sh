@@ -87,7 +87,11 @@ cache_state() {
 resolve_monitor() {
     local target=$1
     local monitors
-    monitors=($(aerospace list-monitors --format '%{monitor-id}'))
+    if [[ $_CACHED -eq 1 ]]; then
+        monitors=("${_C_MONITORS[@]}")
+    else
+        monitors=($(aerospace list-monitors --format '%{monitor-id}'))
+    fi
     for mon in "${monitors[@]}"; do
         if [[ "$mon" == "$target" ]]; then
             echo "$target"
@@ -100,7 +104,11 @@ resolve_monitor() {
 next_monitor() {
     local current="$1"
     local monitors
-    monitors=($(aerospace list-monitors --format '%{monitor-id}'))
+    if [[ $_CACHED -eq 1 ]]; then
+        monitors=("${_C_MONITORS[@]}")
+    else
+        monitors=($(aerospace list-monitors --format '%{monitor-id}'))
+    fi
     local count=${#monitors[@]}
     for i in "${!monitors[@]}"; do
         if [[ "${monitors[$i]}" == "$current" ]]; then
