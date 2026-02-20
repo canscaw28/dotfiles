@@ -84,10 +84,8 @@ function M.flash()
         if win and screen and win:screen() == screen then
             showBorder(win:frame())
         elseif screen then
-            -- Empty workspace — highlight the focused monitor
-            local f = screen:frame()
-            local pad = STROKE_WIDTH
-            showBorder({x = f.x + pad, y = f.y + pad, w = f.w - 2 * pad, h = f.h - 2 * pad})
+            -- Empty workspace — highlight the full monitor edge
+            showBorder(screen:frame())
         end
     end)
 end
