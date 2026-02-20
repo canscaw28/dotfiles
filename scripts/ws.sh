@@ -65,6 +65,23 @@ enqueue() {
     mv "$tmp" "$QUEUE_DIR/${_START_TS}-$$"
 }
 
+# --- AeroSpace state cache ---
+# During drain cycles we hold the lock, so no external process can change
+# AeroSpace state. Query once and track in memory to avoid redundant CLI calls.
+
+_CACHED=0
+_C_FOCUSED_MON=""
+_C_MONITORS=()
+
+cache_state() {
+    _C_FOCUSED_MON=$(aerospace list-monitors --focused --format '%{monitor-id}')
+    _C_MONITORS=($(aerospace list-monitors --format '%{monitor-id}'))
+    for _cm in "${_C_MONITORS[@]}"; do
+        printf -v "_C_MON_WS_${_cm}" '%s' "$(aerospace list-workspaces --monitor "$_cm" --visible)"
+    done
+    _CACHED=1
+}
+
 # --- AeroSpace helpers ---
 
 resolve_monitor() {
