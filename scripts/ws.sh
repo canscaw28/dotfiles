@@ -406,7 +406,7 @@ final_post_process() {
         move-monitor|move-monitor-focus) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$NEXT_MONITOR" ;;
         move-monitor-yank) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
     esac
-    if [[ -n "$NOTIFY_WS" ]]; then
+    if [[ -n "$NOTIFY_WS" && "$OP" != "move" ]]; then
         /usr/local/bin/hs -c "require('ws_notify').show('$NOTIFY_WS', ${NOTIFY_MON:-0})" 2>/dev/null &
     fi
 
