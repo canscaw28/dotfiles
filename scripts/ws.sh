@@ -399,7 +399,7 @@ per_op_post_process() {
 final_post_process() {
     # Show workspace notification overlay
     NOTIFY_WS="$WS"
-    NOTIFY_MON=$(aerospace list-monitors --focused --format '%{monitor-id}' 2>/dev/null) || true
+    NOTIFY_MON="$_C_FOCUSED_MON"
     case "$OP" in
         focus-[1-4])         NOTIFY_MON="${OP##focus-}" ;;
         swap-monitors)       NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
