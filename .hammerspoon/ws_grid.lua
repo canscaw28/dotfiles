@@ -7,6 +7,7 @@ local M = {}
 
 local grid = nil
 local pendingTask = nil
+local taskGeneration = 0
 local keys = {t = false, w = false, e = false, r = false, ["3"] = false, ["4"] = false, q = false}
 
 -- Grid layout: 4 rows of 5 keys with keyboard stagger
@@ -211,9 +212,15 @@ function M.showGrid()
         pendingTask = nil
     end
 
+    -- Bump generation so stale callbacks (from a just-completed task whose
+    -- callback is already queued on the event loop) are silently ignored.
+    taskGeneration = taskGeneration + 1
+    local myGeneration = taskGeneration
+
     -- Query workspace state asynchronously to avoid blocking Hammerspoon IPC
     pendingTask = hs.task.new("/bin/bash", function(exitCode, stdout, stderr)
         pendingTask = nil
+        if myGeneration ~= taskGeneration then return end  -- stale callback
         if exitCode ~= 0 then return end
         -- Re-check key state — user may have released keys during async query
         if not shouldShowGrid() then return end
