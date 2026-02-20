@@ -28,10 +28,8 @@ local function clearBorder()
     end
 end
 
-local function showBorder(win)
+local function showBorder(frame)
     clearBorder()
-
-    local frame = win:frame()
 
     border = hs.canvas.new(frame)
     border:level(hs.canvas.windowLevels.overlay)
@@ -81,7 +79,15 @@ function M.flash()
         delayTimer = nil
         local win = hs.window.focusedWindow()
         if win then
-            showBorder(win)
+            showBorder(win:frame())
+        else
+            -- Empty workspace — highlight the focused monitor
+            local screen = hs.mouse.getCurrentScreen()
+            if screen then
+                local f = screen:frame()
+                local pad = STROKE_WIDTH
+                showBorder({x = f.x + pad, y = f.y + pad, w = f.w - 2 * pad, h = f.h - 2 * pad})
+            end
         end
     end)
 end
