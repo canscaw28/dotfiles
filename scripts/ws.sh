@@ -316,14 +316,16 @@ execute_op() {
             # Move focused window to the next monitor's visible workspace
             CURRENT_MONITOR="$_C_FOCUSED_MON"
             NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
-            NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
+            local _nm_var="_C_MON_WS_${NEXT_MONITOR}"
+            NEXT_WS="${!_nm_var}"
             aerospace move-node-to-workspace "$NEXT_WS"
             ;;
         move-monitor-focus)
             # Move focused window to next monitor and follow it
             CURRENT_MONITOR="$_C_FOCUSED_MON"
             NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
-            NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
+            local _nm_var="_C_MON_WS_${NEXT_MONITOR}"
+            NEXT_WS="${!_nm_var}"
             aerospace move-node-to-workspace "$NEXT_WS"
             aerospace workspace "$NEXT_WS"
             ;;
@@ -331,7 +333,8 @@ execute_op() {
             # Move window to next monitor, then yank that workspace to current monitor
             CURRENT_MONITOR="$_C_FOCUSED_MON"
             NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
-            NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
+            local _nm_var="_C_MON_WS_${NEXT_MONITOR}"
+            NEXT_WS="${!_nm_var}"
             aerospace move-node-to-workspace "$NEXT_WS"
             focus_ws_on_monitor "$CURRENT_MONITOR" "$NEXT_WS"
             ;;
@@ -372,7 +375,8 @@ execute_op() {
             CURRENT_MONITOR="$_C_FOCUSED_MON"
             # For 2-monitor setups, inline the other monitor ID to save a command.
             if [[ "$CURRENT_MONITOR" == "1" ]]; then NEXT_MONITOR=2; else NEXT_MONITOR=1; fi
-            NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
+            local _nm_var="_C_MON_WS_${NEXT_MONITOR}"
+            NEXT_WS="${!_nm_var}"
             swap_workspaces "$CURRENT_WS" "$NEXT_MONITOR" "$NEXT_WS" "$CURRENT_MONITOR"
             ;;
         *)
