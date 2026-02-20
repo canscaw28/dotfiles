@@ -426,6 +426,7 @@ final_post_process() {
 COLLAPSE_THRESHOLD=7
 
 drain_queue() {
+    cache_state
     while true; do
         local next
         next=$(ls "$QUEUE_DIR"/[0-9]* 2>/dev/null | head -1) || true
@@ -463,6 +464,8 @@ drain_queue() {
         WS="$ws"
         debug "DRAIN $OP $WS (from $(basename "$next"))"
         execute_op
+        # Non-focus ops modify state in complex ways; refresh cache fully
+        [[ "$OP" != focus* ]] && cache_state
         per_op_post_process
         rm -f "$next"
     done
