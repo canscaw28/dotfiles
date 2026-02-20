@@ -67,7 +67,9 @@ end
 -- Explicit flash from ws.sh, smart-focus.sh, smart-move.sh.
 -- Immediately clears any existing/fading border, then waits briefly
 -- for AeroSpace focus to settle before drawing the new one.
-function M.flash()
+-- monitorOnly: when true, always draw border around the monitor
+-- (caller knows the workspace is empty — avoids unreliable hs.window.focusedWindow)
+function M.flash(monitorOnly)
     -- Kill any pending delay and any visible/fading border immediately
     if delayTimer then
         delayTimer:stop()
@@ -78,13 +80,14 @@ function M.flash()
     delayTimer = hs.timer.doAfter(FLASH_DELAY, function()
         delayTimer = nil
         local screen = hs.mouse.getCurrentScreen()
-        local win = hs.window.focusedWindow()
-        -- Check the window is on the current screen — macOS keeps reporting
-        -- the old focused window even after AeroSpace switches to an empty workspace
-        if win and screen and win:screen() == screen then
-            showBorder(win:frame())
-        elseif screen then
-            -- Empty workspace — highlight the full monitor edge
+        if not monitorOnly then
+            local win = hs.window.focusedWindow()
+            if win and screen and win:screen() == screen then
+                showBorder(win:frame())
+                return
+            end
+        end
+        if screen then
             showBorder(screen:frame())
         end
     end)

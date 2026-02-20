@@ -48,4 +48,7 @@ while true; do
     [ "$BEFORE" = "$AFTER" ] && break
 done
 aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null
-/usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+FOCUSED_WIN=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || FOCUSED_WIN=""
+FLASH_MON=""
+[ -z "$FOCUSED_WIN" ] && FLASH_MON="true"
+/usr/local/bin/hs -c "require('focus_border').flash($FLASH_MON)" 2>/dev/null &
