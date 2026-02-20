@@ -266,7 +266,7 @@ swap_workspaces() {
 execute_op() {
     case "$OP" in
         focus)
-            focus_ws_on_monitor "$(aerospace list-monitors --focused --format '%{monitor-id}')" "$WS"
+            focus_ws_on_monitor "$_C_FOCUSED_MON" "$WS"
             ;;
         focus-1)
             focus_ws_on_monitor "$(resolve_monitor 1)" "$WS"
@@ -285,7 +285,7 @@ execute_op() {
             ;;
         move-focus)
             # Move window to workspace, then pull that workspace to current monitor.
-            CURRENT_MON=$(aerospace list-monitors --focused --format '%{monitor-id}')
+            CURRENT_MON="$_C_FOCUSED_MON"
             aerospace move-node-to-workspace "$WS"
             focus_ws_on_monitor "$CURRENT_MON" "$WS"
             ;;
@@ -293,7 +293,7 @@ execute_op() {
             # Swap current workspace with selected workspace between monitors.
             # Focus stays on current monitor (now showing the target workspace).
             CURRENT_WS=$(aerospace list-workspaces --focused)
-            CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+            CURRENT_MONITOR="$_C_FOCUSED_MON"
             TARGET_MONITOR=$(visible_on_monitor "$WS")
 
             if [ -n "$TARGET_MONITOR" ] && [ "$TARGET_MONITOR" != "$CURRENT_MONITOR" ]; then
@@ -303,7 +303,7 @@ execute_op() {
         swap-follow)
             # Swap workspaces between monitors, then focus the selected workspace.
             CURRENT_WS=$(aerospace list-workspaces --focused)
-            CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+            CURRENT_MONITOR="$_C_FOCUSED_MON"
             TARGET_MONITOR=$(visible_on_monitor "$WS")
 
             if [ -n "$TARGET_MONITOR" ] && [ "$TARGET_MONITOR" != "$CURRENT_MONITOR" ]; then
@@ -314,14 +314,14 @@ execute_op() {
             ;;
         move-monitor)
             # Move focused window to the next monitor's visible workspace
-            CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+            CURRENT_MONITOR="$_C_FOCUSED_MON"
             NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
             NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
             aerospace move-node-to-workspace "$NEXT_WS"
             ;;
         move-monitor-focus)
             # Move focused window to next monitor and follow it
-            CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+            CURRENT_MONITOR="$_C_FOCUSED_MON"
             NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
             NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
             aerospace move-node-to-workspace "$NEXT_WS"
@@ -329,7 +329,7 @@ execute_op() {
             ;;
         move-monitor-yank)
             # Move window to next monitor, then yank that workspace to current monitor
-            CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+            CURRENT_MONITOR="$_C_FOCUSED_MON"
             NEXT_MONITOR=$(next_monitor "$CURRENT_MONITOR")
             NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
             aerospace move-node-to-workspace "$NEXT_WS"
@@ -369,7 +369,7 @@ execute_op() {
             # Swap workspaces between current and next monitor (wraps for >2)
             # Focus stays on current monitor (now showing the other workspace).
             CURRENT_WS=$(aerospace list-workspaces --focused)
-            CURRENT_MONITOR=$(aerospace list-monitors --focused --format '%{monitor-id}')
+            CURRENT_MONITOR="$_C_FOCUSED_MON"
             # For 2-monitor setups, inline the other monitor ID to save a command.
             if [[ "$CURRENT_MONITOR" == "1" ]]; then NEXT_MONITOR=2; else NEXT_MONITOR=1; fi
             NEXT_WS=$(aerospace list-workspaces --monitor "$NEXT_MONITOR" --visible)
