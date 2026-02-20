@@ -113,6 +113,17 @@ next_monitor() {
 # Find which monitor a workspace is visible on (empty if not visible on any).
 visible_on_monitor() {
     local ws="$1"
+    if [[ $_CACHED -eq 1 ]]; then
+        local var
+        for mon in "${_C_MONITORS[@]}"; do
+            var="_C_MON_WS_${mon}"
+            if [[ "${!var}" == "$ws" ]]; then
+                echo "$mon"
+                return
+            fi
+        done
+        return
+    fi
     local monitors
     monitors=($(aerospace list-monitors --format '%{monitor-id}'))
     for mon in "${monitors[@]}"; do
