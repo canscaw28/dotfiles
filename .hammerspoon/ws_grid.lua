@@ -1,6 +1,5 @@
 -- ws_grid.lua
--- Workspace grid overlay shown while caps+T+W is held.
--- Hides when a sub-mode key (E/R/3/4) is also held.
+-- Workspace grid overlay shown while caps+T+W, caps+T+E, or caps+T+Q is held.
 -- Displays 4x5 grid of workspace keys styled as keyboard keycaps.
 -- Visible workspaces colored by monitor. Focused workspace gets a * prefix.
 
@@ -54,6 +53,7 @@ local MODE_TO_MONITOR = {e = 1, r = 2, ["3"] = 3, ["4"] = 4}
 local function targetMonitor()
     if not keys.t then return nil end
     if keys.q then return 0 end  -- 0 = current monitor
+    if keys.e and not keys.w then return 0 end  -- move/move-focus mode
     if not keys.w then return nil end
     -- W held: check if a focus-on-monitor sub-mode is active
     for k, monId in pairs(MODE_TO_MONITOR) do
