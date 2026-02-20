@@ -25,9 +25,9 @@ case "$direction" in
 esac
 
 # Try to focus within the current workspace
-BEFORE=$(aerospace list-windows --focused --format '%{window-id}')
-aerospace focus "$direction"
-AFTER=$(aerospace list-windows --focused --format '%{window-id}')
+BEFORE=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || BEFORE=""
+aerospace focus "$direction" 2>/dev/null || true
+AFTER=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || AFTER=""
 
 if [ "$BEFORE" != "$AFTER" ]; then
     aerospace move-mouse window-lazy-center 2>/dev/null || true
@@ -42,9 +42,9 @@ aerospace focus-monitor "$direction" 2>/dev/null || exit 0
 # Navigate to the edge closest to where we came from
 # (e.g., moving right → leftmost window on new monitor)
 while true; do
-    BEFORE=$(aerospace list-windows --focused --format '%{window-id}')
+    BEFORE=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || break
     aerospace focus "$opposite" 2>/dev/null || break
-    AFTER=$(aerospace list-windows --focused --format '%{window-id}')
+    AFTER=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || break
     [ "$BEFORE" = "$AFTER" ] && break
 done
 aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null
