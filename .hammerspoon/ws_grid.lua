@@ -28,10 +28,10 @@ local MONITOR_COLORS = {
 
 -- Keycap styling — high contrast so keys read as individual caps, not a blob
 local BG_COLOR = {red = 0.1, green = 0.1, blue = 0.1, alpha = 0.85}
-local KEY_FACE = {red = 0.38, green = 0.38, blue = 0.40, alpha = 0.95}
-local KEY_FACE_ACTIVE = {red = 0.48, green = 0.48, blue = 0.50, alpha = 0.95}
-local KEY_EDGE = {red = 0.28, green = 0.28, blue = 0.30, alpha = 0.95}  -- darker bottom/side for 3D
-local KEY_BORDER = {red = 0.55, green = 0.55, blue = 0.58, alpha = 0.8}
+local KEY_FACE = {red = 0.38, green = 0.38, blue = 0.40, alpha = 0.9}
+local KEY_FACE_ACTIVE = {red = 0.48, green = 0.48, blue = 0.50, alpha = 0.9}
+local KEY_EDGE = {red = 0.28, green = 0.28, blue = 0.30, alpha = 0.9}   -- darker bottom/side for 3D
+local KEY_BORDER = {red = 0.55, green = 0.55, blue = 0.58, alpha = 0.9}
 local KEY_SHADOW = {red = 0, green = 0, blue = 0, alpha = 0.5}
 local TEXT_COLOR_DIM = {red = 0.18, green = 0.18, blue = 0.20, alpha = 1}
 local CELL_SIZE = 44
@@ -109,7 +109,7 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
     -- Even padding on all sides; smooth corner radius blends the row transitions.
     local PLATE_PAD = 12
     local PLATE_RADIUS = 10
-    local PLATE_COLOR = {red = 0.1, green = 0.1, blue = 0.12, alpha = 1}
+    local PLATE_COLOR = {red = 0.1, green = 0.1, blue = 0.12, alpha = 0.85}
     local rowW = numCols * (CELL_SIZE + CELL_GAP) - CELL_GAP
     for rowIdx, row in ipairs(ROWS) do
         local rLeft = PADDING + row.stagger * CELL_SIZE - PLATE_PAD
@@ -201,7 +201,7 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
         end
     end
 
-    grid:alpha(0.9)
+    grid:alpha(1)
     grid:show()
 end
 
