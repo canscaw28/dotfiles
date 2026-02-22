@@ -50,11 +50,9 @@ summon_to_monitor() {
     fi
 
     # Visible on another monitor — yank via ~ buffer
-    # ~ always creates on mon1; move it to ws_mon to hide the workspace there
+    # Create ~, then explicitly move it to ws_mon to hide the workspace there
     aerospace workspace '~' 2>/dev/null; sleep 0.05
-    if [[ "$ws_mon" != "1" ]]; then
-        aerospace move-workspace-to-monitor "$ws_mon" 2>/dev/null; sleep 0.05
-    fi
+    aerospace move-workspace-to-monitor "$ws_mon" 2>/dev/null; sleep 0.05
     aerospace focus-monitor "$target_mon" 2>/dev/null; sleep 0.05
     aerospace summon-workspace "$ws" 2>/dev/null
 }
