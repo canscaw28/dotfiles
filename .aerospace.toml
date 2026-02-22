@@ -11,8 +11,6 @@ after-login-command = []
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
     'exec-and-forget ~/.local/bin/restore-ws-state.sh',
-    'workspace h',
-    'workspace 6',
 ]
 
 # Start AeroSpace at login
