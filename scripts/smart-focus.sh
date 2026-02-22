@@ -17,36 +17,27 @@ trap 'rm -f "$LOCKFILE"' EXIT
 
 direction="$1"
 
+# DFS index for edge navigation after crossing monitors:
+# moving right/down → want first (leftmost/topmost) window → index 0
+# moving left/up    → want last (rightmost/bottommost) window → index -1
 case "$direction" in
-    right) opposite="left" ;;
-    left)  opposite="right" ;;
-    up)    opposite="down" ;;
-    down)  opposite="up" ;;
+    right|down) edge_index=0  ;;
+    left|up)    edge_index=-1 ;;
 esac
 
-# Try to focus within the current workspace
-BEFORE=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || BEFORE=""
-aerospace focus "$direction" 2>/dev/null || true
-AFTER=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || AFTER=""
-
-if [ "$BEFORE" != "$AFTER" ]; then
+# Try to focus within the current workspace (fail at boundary instead of wrapping)
+if aerospace focus --boundaries-action fail "$direction" 2>/dev/null; then
     aerospace move-mouse window-lazy-center 2>/dev/null || true
     /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
-    exit 0  # Moved within workspace
+    exit 0
 fi
 
 # At boundary — cross to adjacent monitor (no --wrap-around, so
 # nothing happens if no monitor exists in this direction)
 aerospace focus-monitor "$direction" 2>/dev/null || exit 0
 
-# Navigate to the edge closest to where we came from
-# (e.g., moving right → leftmost window on new monitor)
-while true; do
-    BEFORE=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || break
-    aerospace focus "$opposite" 2>/dev/null || break
-    AFTER=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || break
-    [ "$BEFORE" = "$AFTER" ] && break
-done
+# Jump directly to the edge window closest to where we came from
+aerospace focus --dfs-index "$edge_index" 2>/dev/null || true
 aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null
 FOCUSED_WIN=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || FOCUSED_WIN=""
 FLASH_MON=""
