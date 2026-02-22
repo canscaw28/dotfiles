@@ -18,6 +18,47 @@ is_valid() {
     return 1
 }
 
+# Find which monitor a workspace is visible on (empty if hidden)
+visible_on_monitor() {
+    local ws="$1"
+    local monitors
+    monitors=$(aerospace list-monitors --format '%{monitor-id}' 2>/dev/null)
+    for mon in $monitors; do
+        if [[ "$(aerospace list-workspaces --monitor "$mon" --visible 2>/dev/null)" == "$ws" ]]; then
+            echo "$mon"
+            return
+        fi
+    done
+}
+
+# Summon a workspace to a monitor, using ~ buffer yank if it's visible elsewhere
+summon_to_monitor() {
+    local target_mon="$1" ws="$2"
+    local ws_mon
+    ws_mon=$(visible_on_monitor "$ws")
+
+    if [[ -z "$ws_mon" ]]; then
+        # Hidden — simple summon
+        aerospace focus-monitor "$target_mon" 2>/dev/null; sleep 0.05
+        aerospace summon-workspace "$ws" 2>/dev/null
+        return
+    fi
+
+    if [[ "$ws_mon" == "$target_mon" ]]; then
+        # Already there
+        return
+    fi
+
+    # Visible on another monitor — yank via ~ buffer
+    # ~ always creates on mon1; move it to ws_mon to hide the workspace there
+    aerospace workspace '~' 2>/dev/null; sleep 0.05
+    if [[ "$ws_mon" != "1" ]]; then
+        aerospace move-workspace-to-monitor "$ws_mon" 2>/dev/null; sleep 0.05
+    fi
+    aerospace focus-monitor "$target_mon" 2>/dev/null; sleep 0.05
+    aerospace summon-workspace "$ws" 2>/dev/null
+}
+
 all_ws=$(aerospace list-workspaces --all 2>/dev/null) || exit 0
 
 invalid=()
@@ -36,22 +77,16 @@ if [[ -f "$STATE_FILE" ]]; then
 fi
 
 for ws in "${invalid[@]}"; do
-    # Move all windows from invalid workspace to h
+    # Move all windows from invalid workspace to 0
     wids=$(aerospace list-windows --workspace "$ws" --format '%{window-id}' 2>/dev/null)
     for wid in $wids; do
         aerospace move-node-to-workspace --window-id "$wid" 0 2>/dev/null || true
     done
 
     # If visible on a monitor, replace it with a valid workspace
-    monitors=$(aerospace list-monitors --format '%{monitor-id}' 2>/dev/null)
-    for mid in $monitors; do
-        visible=$(aerospace list-workspaces --monitor "$mid" --visible 2>/dev/null)
-        if [[ "$visible" == "$ws" ]]; then
-            # Use saved workspace for this monitor, or fall back to 0
-            replacement="${SAVED_MON[$mid]:-0}"
-            aerospace focus-monitor "$mid" 2>/dev/null
-            aerospace summon-workspace "$replacement" 2>/dev/null
-            break
-        fi
-    done
+    inv_mon=$(visible_on_monitor "$ws")
+    if [[ -n "$inv_mon" ]]; then
+        replacement="${SAVED_MON[$inv_mon]:-0}"
+        summon_to_monitor "$inv_mon" "$replacement"
+    fi
 done
