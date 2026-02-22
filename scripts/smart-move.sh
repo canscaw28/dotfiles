@@ -19,8 +19,6 @@ case "$direction" in
     down)  opposite="up" ;;
 esac
 
-root_layout=$(aerospace list-windows --focused --format '%{workspace-root-container-layout}')
-
 # Try to move within the current workspace
 if aerospace move --boundaries-action fail "$direction" 2>/dev/null; then
     sleep 0.01 && aerospace move-mouse window-force-center
@@ -29,6 +27,7 @@ if aerospace move --boundaries-action fail "$direction" 2>/dev/null; then
 fi
 
 # Cross-axis moves (e.g., up/down in h_tiles) wrap within the workspace
+root_layout=$(aerospace list-windows --focused --format '%{workspace-root-container-layout}')
 is_cross_axis=false
 case "$root_layout" in
     h_tiles|h_accordion)
