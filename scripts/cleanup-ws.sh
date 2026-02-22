@@ -45,7 +45,6 @@ summon_to_monitor() {
     fi
 
     if [[ "$ws_mon" == "$target_mon" ]]; then
-        # Already there
         return
     fi
 
