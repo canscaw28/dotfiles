@@ -4,6 +4,12 @@ require("ws_notify")
 require("focus_border")
 require("ws_grid")
 
+hs.screen.watcher.new(function()
+    hs.timer.doAfter(2.0, function()
+        hs.task.new("/Users/craig/.local/bin/cleanup-ws.sh", nil):start()
+    end)
+end):start()
+
 scrollSpeed = 1
 scrollInterval = 0.01
 scrollDirection = 0
