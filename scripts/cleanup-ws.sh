@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # Remove invalid workspaces from AeroSpace.
 # Valid workspaces: 6 7 8 9 0 y u i o p h j k l ; n m comma . / ~
 # Invalid workspaces (e.g. numbered defaults) have their windows moved to 0,
@@ -12,7 +12,7 @@ STATE_FILE="$HOME/.aerospace-ws-state"
 
 is_valid() {
     local ws="$1"
-    for v in $VALID_WS; do
+    for v in ${=VALID_WS}; do
         [[ "$v" == "$ws" ]] && return 0
     done
     return 1
@@ -23,7 +23,7 @@ visible_on_monitor() {
     local ws="$1"
     local monitors
     monitors=$(aerospace list-monitors --format '%{monitor-id}' 2>/dev/null)
-    for mon in $monitors; do
+    for mon in ${=monitors}; do
         if [[ "$(aerospace list-workspaces --monitor "$mon" --visible 2>/dev/null)" == "$ws" ]]; then
             echo "$mon"
             return
@@ -59,24 +59,24 @@ summon_to_monitor() {
 all_ws=$(aerospace list-workspaces --all 2>/dev/null) || exit 0
 
 invalid=()
-for ws in $all_ws; do
+for ws in ${(f)all_ws}; do
     is_valid "$ws" || invalid+=("$ws")
 done
 
-[[ ${#invalid[@]} -eq 0 ]] && exit 0
+[[ ${#invalid} -eq 0 ]] && exit 0
 
 # Load saved monitor mapping for replacement workspaces
-declare -A SAVED_MON
+typeset -A SAVED_MON
 if [[ -f "$STATE_FILE" ]]; then
-    while IFS='|' read -r type mid ws; do
-        [[ "$type" == "monitor" ]] && SAVED_MON["$mid"]="$ws"
+    while IFS=$'\t' read -r type mid ws; do
+        [[ "$type" == "monitor" ]] && SAVED_MON[$mid]="$ws"
     done < "$STATE_FILE"
 fi
 
 for ws in "${invalid[@]}"; do
     # Move all windows from invalid workspace to 0
     wids=$(aerospace list-windows --workspace "$ws" --format '%{window-id}' 2>/dev/null)
-    for wid in $wids; do
+    for wid in ${=wids}; do
         aerospace move-node-to-workspace --window-id "$wid" 0 2>/dev/null || true
     done
 
