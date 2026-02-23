@@ -44,9 +44,12 @@ acquire_lock() {
         _LOCK_HOLDER=1
         return 0
     fi
-    # Lock exists — check if holder is alive
+    # Lock exists — check if holder is alive.
+    # Guard against reading an empty file (race between create and PID write):
+    # if holder is empty or non-numeric, treat lock as held and back off.
     local holder
-    holder=$(<"$LOCKFILE" 2>/dev/null) || { rm -f "$LOCKFILE"; return 1; }
+    holder=$(<"$LOCKFILE" 2>/dev/null) || return 1
+    [[ "$holder" =~ ^[0-9]+$ ]] || return 1
     if ! kill -0 "$holder" 2>/dev/null; then
         rm -f "$LOCKFILE"
         return 1  # Stale lock removed, caller should retry
@@ -149,9 +152,9 @@ BUFFER_WS='~'
 
 place_buffer_on() {
     local mon="$1"
-    aerospace workspace "$BUFFER_WS"; sleep 0.05
+    aerospace workspace "$BUFFER_WS"; sleep 0.03
     if [[ "$mon" != "1" ]]; then
-        aerospace move-workspace-to-monitor "$mon"; sleep 0.05
+        aerospace move-workspace-to-monitor "$mon"; sleep 0.03
     fi
 }
 
@@ -174,7 +177,7 @@ focus_ws_on_monitor() {
 
     if [[ -z "$ws_mon" ]]; then
         # Hidden workspace — summon works correctly for these
-        aerospace focus-monitor "$target_mon"; sleep 0.05
+        aerospace focus-monitor "$target_mon"; sleep 0.03
         aerospace summon-workspace "$ws"
         if [[ $_CACHED -eq 1 ]]; then
             # Previous ws on target_mon is now hidden; target_mon shows $ws
@@ -191,19 +194,19 @@ focus_ws_on_monitor() {
     if [[ "$buf_mon" == "$target_mon" ]]; then
         # ~ occupies our target from a previous yank. Move ws there directly
         # (replaces ~, which gets GC'd). Then put fresh ~ on ws_mon.
-        aerospace focus-monitor "$ws_mon"; sleep 0.05
-        aerospace move-workspace-to-monitor "$target_mon"; sleep 0.05
+        aerospace focus-monitor "$ws_mon"; sleep 0.03
+        aerospace move-workspace-to-monitor "$target_mon"; sleep 0.03
         place_buffer_on "$ws_mon"
         aerospace workspace "$ws"
     else
         # Reclaim stale ~ to mon1 if it's stranded on another monitor (3+ monitors).
         if [[ -n "$buf_mon" && "$buf_mon" != "1" ]]; then
-            aerospace focus-monitor "$buf_mon"; sleep 0.05
-            aerospace move-workspace-to-monitor 1; sleep 0.05
+            aerospace focus-monitor "$buf_mon"; sleep 0.03
+            aerospace move-workspace-to-monitor 1; sleep 0.03
         fi
         # Place ~ on ws_mon to hide ws, then summon ws to target.
         place_buffer_on "$ws_mon"
-        aerospace focus-monitor "$target_mon"; sleep 0.05
+        aerospace focus-monitor "$target_mon"; sleep 0.03
         aerospace summon-workspace "$ws"
     fi
     [[ $_CACHED -eq 1 ]] && cache_state
