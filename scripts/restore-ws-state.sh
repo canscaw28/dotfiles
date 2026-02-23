@@ -21,7 +21,7 @@ SAVED_FOCUSED=""
 typeset -a MON_IDS=()
 typeset -A MON_WS=()
 typeset -A WIN_WS=()         # wid → ws (for window-id matching)
-typeset -A BY_FINGER=()      # "app\ttitle\ttc\tat" → "ws1 ws2 ..."
+typeset -A BY_FINGER=()      # "url1|url2|url3|count" → "ws1 ws2 ..."
 typeset -A BY_APPTITLE=()    # "app\ttitle" → "ws1 ws2 ..."
 
 if [[ -f "$STATE_FILE" ]]; then
@@ -34,12 +34,11 @@ if [[ -f "$STATE_FILE" ]]; then
             MON_IDS+=("$mid")
             MON_WS[$mid]="$ws"
         elif [[ "$line" == window$'\t'* ]]; then
-            IFS=$'\t' read -r _ wid app title tc at ws <<< "$line"
+            IFS=$'\t' read -r _ wid app title finger ws <<< "$line"
             WIN_WS[$wid]="$ws"
-            # Fingerprint map (with Chrome tab info when available)
-            if [[ -n "$tc" ]]; then
-                local fkey="${app}"$'\t'"${title}"$'\t'"${tc}"$'\t'"${at}"
-                BY_FINGER[$fkey]="${BY_FINGER[$fkey]:+${BY_FINGER[$fkey]} }${ws}"
+            # Fingerprint map (Chrome windows with URL-based fingerprint)
+            if [[ -n "$finger" ]]; then
+                BY_FINGER[$finger]="${BY_FINGER[$finger]:+${BY_FINGER[$finger]} }${ws}"
             fi
             # App+title map (fallback for all windows)
             local atkey="${app}"$'\t'"${title}"
@@ -81,12 +80,12 @@ done
 
 # --- Phase 3: Move windows to saved workspaces ---
 
-# Query current Chrome tab info for fingerprint matching
-typeset -A CUR_TC CUR_AT
-while IFS=$'\t' read -r _t _tc _at; do
+# Query current Chrome fingerprints: first 3 tab URLs + tab count per window
+# Keyed by Chrome title (for correlation with AeroSpace windows)
+typeset -A CUR_FINGER  # chrome_title → "url1|url2|url3|count"
+while IFS=$'\t' read -r _t _u1 _u2 _u3 _n; do
     [[ -z "$_t" ]] && continue
-    CUR_TC[$_t]=$_tc
-    CUR_AT[$_t]=$_at
+    CUR_FINGER[$_t]="${_u1}|${_u2}|${_u3}|${_n}"
 done < <(osascript -e '
     set sep to ASCII character 9
     if application "Google Chrome" is running then
@@ -94,9 +93,13 @@ done < <(osascript -e '
             set output to ""
             repeat with w in windows
                 set t to title of w
-                set n to (count of tabs of w) as text
-                set a to (active tab index of w) as text
-                set output to output & t & sep & n & sep & a & linefeed
+                set n to count of tabs of w
+                set u1 to URL of tab 1 of w
+                set u2 to ""
+                set u3 to ""
+                if n > 1 then set u2 to URL of tab 2 of w
+                if n > 2 then set u3 to URL of tab 3 of w
+                set output to output & t & sep & u1 & sep & u2 & sep & u3 & sep & (n as text) & linefeed
             end repeat
             return output
         end tell
@@ -122,33 +125,28 @@ for (( i=1; i<=${#CUR_WIDS}; i++ )); do
     fi
 done
 
-# Pass 2: Full fingerprint match (app + title + Chrome tab info)
+# Pass 2: Chrome fingerprint match (first 3 tab URLs + tab count)
 for (( i=1; i<=${#CUR_WIDS}; i++ )); do
     local wid="${CUR_WIDS[$i]}" app="${CUR_APPS[$i]}" title="${CUR_TITLES[$i]}"
     [[ -n "${ASSIGNED[$wid]+x}" ]] && continue
+    [[ "$app" != "Google Chrome" ]] && continue
 
-    local tc="" at=""
-    if [[ "$app" == "Google Chrome" ]]; then
-        # AeroSpace title: "<page> - High memory usage - X GB - Google Chrome - <Profile>"
-        # AppleScript title: "<page>" only. Strip both suffixes to match.
-        local chrome_title="${title% - Google Chrome*}"
-        chrome_title="${chrome_title% - High memory usage*}"
-        tc="${CUR_TC[$chrome_title]:-}"
-        at="${CUR_AT[$chrome_title]:-}"
-    fi
-    [[ -z "$tc" ]] && continue  # no Chrome info, skip to pass 3
+    # Strip AeroSpace suffixes to get Chrome title for fingerprint lookup
+    local chrome_title="${title% - Google Chrome*}"
+    chrome_title="${chrome_title% - High memory usage*}"
+    local finger="${CUR_FINGER[$chrome_title]:-}"
+    [[ -z "$finger" ]] && continue
 
-    local fkey="${app}"$'\t'"${title}"$'\t'"${tc}"$'\t'"${at}"
-    local flist="${BY_FINGER[$fkey]}"
+    local flist="${BY_FINGER[$finger]}"
     [[ -z "$flist" ]] && continue
 
     # Consume first workspace from list
     ASSIGNED[$wid]="${flist%% *}"
     local rest="${flist#* }"
     if [[ "$rest" == "$flist" ]]; then
-        unset "BY_FINGER[$fkey]"
+        unset "BY_FINGER[$finger]"
     else
-        BY_FINGER[$fkey]="$rest"
+        BY_FINGER[$finger]="$rest"
     fi
 
     # Also consume from app+title map to prevent double-assignment
@@ -164,7 +162,7 @@ for (( i=1; i<=${#CUR_WIDS}; i++ )); do
     fi
 done
 
-# Pass 3: App+title match (fallback — handles title drift, non-Chrome apps)
+# Pass 3: App+title match (fallback — non-Chrome apps, title drift)
 for (( i=1; i<=${#CUR_WIDS}; i++ )); do
     local wid="${CUR_WIDS[$i]}" app="${CUR_APPS[$i]}" title="${CUR_TITLES[$i]}"
     [[ -n "${ASSIGNED[$wid]+x}" ]] && continue
