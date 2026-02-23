@@ -10,6 +10,15 @@ local pendingTask = nil
 local taskGeneration = 0
 local keys = {t = false, w = false, e = false, r = false, ["3"] = false, ["4"] = false, q = false}
 
+-- Fade state: tracks recently-focused keys for color fade trail
+local flashState = {}       -- key -> {color = {r,g,b,a}, lastActive = timestamp}
+local fadeTimer = nil
+local lastVisibleWs = {}    -- cached for fade timer re-renders
+local lastFocusedKey = nil
+local lastFocusedMonId = nil
+local FADE_DURATION = 0.5   -- seconds
+local FADE_INTERVAL = 0.033 -- ~30fps
+
 -- Grid layout: 4 rows of 5 keys with keyboard stagger
 local ROWS = {
     {keys = {"6", "7", "8", "9", "0"}, stagger = 0},
@@ -73,6 +82,15 @@ end
 
 local function shouldShowGrid()
     return targetMonitor() ~= nil
+end
+
+local function lerpColor(a, b, t)
+    return {
+        red   = a.red   + (b.red   - a.red)   * t,
+        green = a.green + (b.green - a.green) * t,
+        blue  = a.blue  + (b.blue  - a.blue)  * t,
+        alpha = 1,
+    }
 end
 
 local function drawGrid(visibleWs, focusedKey, focusedMonId)
@@ -183,7 +201,29 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
             })
 
             -- Key label (vertically centered — hs.canvas text renders from top)
-            local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+            local now = hs.timer.secondsSinceEpoch()
+            local labelColor
+            if isFocused then
+                -- Currently focused: full monitor color, update flash state
+                labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+                if monId and MONITOR_COLORS[monId] then
+                    flashState[key] = {color = MONITOR_COLORS[monId], lastActive = now}
+                end
+            elseif flashState[key] then
+                -- Recently focused: fade from monitor color → dim
+                local elapsed = now - flashState[key].lastActive
+                if elapsed < FADE_DURATION then
+                    local progress = elapsed / FADE_DURATION
+                    -- Ease out for smooth deceleration
+                    progress = 1 - (1 - progress) * (1 - progress)
+                    labelColor = lerpColor(flashState[key].color, TEXT_COLOR_DIM, progress)
+                else
+                    flashState[key] = nil
+                    labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+                end
+            else
+                labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+            end
             local displayText = isFocused and ("*" .. key) or key
             local fontName = isActive and "Helvetica-Bold" or "Helvetica"
             local styledText = hs.styledtext.new(displayText, {
@@ -250,7 +290,35 @@ function M.showGrid()
             end
         end
 
+        -- Cache for fade timer re-renders
+        lastVisibleWs = visibleWs
+        lastFocusedKey = focusedKey
+        lastFocusedMonId = focusedMonId
+
         drawGrid(visibleWs, focusedKey, focusedMonId)
+
+        -- Start fade timer if any fades are active
+        if not fadeTimer and next(flashState) then
+            fadeTimer = hs.timer.doEvery(FADE_INTERVAL, function()
+                if not shouldShowGrid() then
+                    fadeTimer:stop(); fadeTimer = nil
+                    return
+                end
+                local now = hs.timer.secondsSinceEpoch()
+                local anyActive = false
+                for k, v in pairs(flashState) do
+                    if now - v.lastActive < FADE_DURATION then
+                        anyActive = true
+                        break
+                    end
+                end
+                if not anyActive then
+                    fadeTimer:stop(); fadeTimer = nil
+                    return
+                end
+                drawGrid(lastVisibleWs, lastFocusedKey, lastFocusedMonId)
+            end)
+        end
     end, {"-c", [[
         focused=$(/opt/homebrew/bin/aerospace list-workspaces --focused)
         echo "F:$focused"
@@ -270,6 +338,7 @@ function M.getFrame()
 end
 
 function M.hideGrid()
+    if fadeTimer then fadeTimer:stop(); fadeTimer = nil end
     if pendingTask and pendingTask:isRunning() then
         pendingTask:terminate()
         pendingTask = nil
