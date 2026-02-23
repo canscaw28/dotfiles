@@ -31,12 +31,13 @@ trap '' PIPE  # Ignore SIGPIPE — aerospace CLI gets spurious broken pipes unde
 LOCKFILE="/tmp/aerospace-lock.pid"
 QUEUE_DIR="/tmp/ws-queue"
 DEBUG_LOG="/tmp/ws-debug.log"
+_WS_DEBUG=${WS_DEBUG:-0}
 _ms() { perl -MTime::HiRes=time -e 'printf "%.3f\n", time' 2>/dev/null || date +%s; }
 _START_TS=$(perl -MTime::HiRes=time -e 'printf "%.6f", time' 2>/dev/null || date +%s)
-debug() { printf '%s [%d] %s\n' "$(_ms)" $$ "$*" >> "$DEBUG_LOG" 2>/dev/null; }
+debug() { [[ $_WS_DEBUG -eq 1 ]] || return 0; printf '%s [%d] %s\n' "$(_ms)" $$ "$*" >> "$DEBUG_LOG" 2>/dev/null; }
 
 _LOCK_HOLDER=0
-trap '_ec=$?; [[ $_LOCK_HOLDER -eq 1 ]] && rm -f "$LOCKFILE"; debug "EXIT code=$_ec"' EXIT
+trap '_ec=$?; [[ $_LOCK_HOLDER -eq 1 ]] && rm -f "$LOCKFILE"; [[ $_WS_DEBUG -eq 1 ]] && debug "EXIT code=$_ec"' EXIT
 
 acquire_lock() {
     if (set -o noclobber; echo $$ > "$LOCKFILE") 2>/dev/null; then
@@ -432,9 +433,9 @@ COLLAPSE_THRESHOLD=7
 drain_queue() {
     cache_state
     while true; do
-        local next
-        next=$(ls "$QUEUE_DIR"/[0-9]* 2>/dev/null | head -1) || true
-        [[ -z "$next" ]] && return
+        local files=("$QUEUE_DIR"/[0-9]*)
+        [[ -e "${files[0]}" ]] || return
+        local next="${files[0]}"
 
         local line
         line=$(<"$next")
@@ -445,13 +446,10 @@ drain_queue() {
         # Small bursts execute fully so the user sees each transition.
         # Large backlogs skip intermediate focus ops to catch up quickly.
         if [[ "$op" == focus* ]]; then
-            local depth
-            depth=$(ls "$QUEUE_DIR"/[0-9]* 2>/dev/null | wc -l)
-            depth=${depth// /}
+            local depth=${#files[@]}
             if [[ "$depth" -gt "$COLLAPSE_THRESHOLD" ]]; then
-                local peek
-                peek=$(ls "$QUEUE_DIR"/[0-9]* 2>/dev/null | sed -n '2p') || true
-                if [[ -n "$peek" ]]; then
+                local peek="${files[1]:-}"
+                if [[ -n "$peek" && -e "$peek" ]]; then
                     local peek_line
                     peek_line=$(<"$peek")
                     local peek_op="${peek_line%% *}"
