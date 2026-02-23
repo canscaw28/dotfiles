@@ -40,16 +40,16 @@ _LOCK_HOLDER=0
 trap '_ec=$?; [[ $_LOCK_HOLDER -eq 1 ]] && rm -f "$LOCKFILE"; [[ $_WS_DEBUG -eq 1 ]] && debug "EXIT code=$_ec"' EXIT
 
 acquire_lock() {
-    if (set -o noclobber; echo $$ > "$LOCKFILE") 2>/dev/null; then
+    # Symlink-based lock: ln -s creates symlink atomically (target=PID in one syscall).
+    # No window where the file exists but content is empty, unlike echo > file.
+    if ln -s $$ "$LOCKFILE" 2>/dev/null; then
         _LOCK_HOLDER=1
         return 0
     fi
-    # Lock exists — check if holder is alive.
-    # Guard against reading an empty file (race between create and PID write):
-    # if holder is empty or non-numeric, treat lock as held and back off.
+    # Lock exists — check if holder is alive
     local holder
-    holder=$(<"$LOCKFILE" 2>/dev/null) || return 1
-    [[ "$holder" =~ ^[0-9]+$ ]] || return 1
+    holder=$(readlink "$LOCKFILE" 2>/dev/null) || return 1
+    [[ "$holder" =~ ^[0-9]+$ ]] || { rm -f "$LOCKFILE"; return 1; }
     if ! kill -0 "$holder" 2>/dev/null; then
         rm -f "$LOCKFILE"
         return 1  # Stale lock removed, caller should retry
