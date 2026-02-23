@@ -3,7 +3,7 @@
 # Writes focused workspace, monitor-workspace mapping, and window info
 # to ~/.aerospace-ws-state. Tab-delimited. Atomic write via tmp+mv.
 #
-# Chrome windows are fingerprinted by first 3 tab URLs + tab count
+# Chrome windows are fingerprinted by first 5 tab URLs + tab count
 # (queried via AppleScript). This is more stable than window title
 # since it doesn't change when the user switches active tabs.
 
@@ -15,11 +15,11 @@ TMP_FILE="${STATE_FILE}.tmp.$$"
 focused=$(aerospace list-workspaces --focused 2>/dev/null) || exit 0
 monitors=(${(f)"$(aerospace list-monitors --format '%{monitor-id}' 2>/dev/null)"}) || exit 0
 
-# Query Chrome: title (for correlation), first 3 tab URLs, tab count per window
-typeset -A CHROME_FINGER  # chrome_title → "url1|url2|url3|count"
-while IFS=$'\t' read -r _t _u1 _u2 _u3 _n; do
+# Query Chrome: title (for correlation), first 5 tab URLs, tab count per window
+typeset -A CHROME_FINGER  # chrome_title → "url1|url2|url3|url4|url5|count"
+while IFS=$'\t' read -r _t _u1 _u2 _u3 _u4 _u5 _n; do
     [[ -z "$_t" ]] && continue
-    CHROME_FINGER[$_t]="${_u1}|${_u2}|${_u3}|${_n}"
+    CHROME_FINGER[$_t]="${_u1}|${_u2}|${_u3}|${_u4}|${_u5}|${_n}"
 done < <(osascript -e '
     set sep to ASCII character 9
     if application "Google Chrome" is running then
@@ -31,9 +31,13 @@ done < <(osascript -e '
                 set u1 to URL of tab 1 of w
                 set u2 to ""
                 set u3 to ""
+                set u4 to ""
+                set u5 to ""
                 if n > 1 then set u2 to URL of tab 2 of w
                 if n > 2 then set u3 to URL of tab 3 of w
-                set output to output & t & sep & u1 & sep & u2 & sep & u3 & sep & (n as text) & linefeed
+                if n > 3 then set u4 to URL of tab 4 of w
+                if n > 4 then set u5 to URL of tab 5 of w
+                set output to output & t & sep & u1 & sep & u2 & sep & u3 & sep & u4 & sep & u5 & sep & (n as text) & linefeed
             end repeat
             return output
         end tell

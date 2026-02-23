@@ -21,7 +21,7 @@ SAVED_FOCUSED=""
 typeset -a MON_IDS=()
 typeset -A MON_WS=()
 typeset -A WIN_WS=()         # wid → ws (for window-id matching)
-typeset -A BY_FINGER=()      # "url1|url2|url3|count" → "ws1 ws2 ..."
+typeset -A BY_FINGER=()      # "url1|url2|url3|url4|url5|count" → "ws1 ws2 ..."
 typeset -A BY_APPTITLE=()    # "app\ttitle" → "ws1 ws2 ..."
 
 if [[ -f "$STATE_FILE" ]]; then
@@ -80,12 +80,12 @@ done
 
 # --- Phase 3: Move windows to saved workspaces ---
 
-# Query current Chrome fingerprints: first 3 tab URLs + tab count per window
+# Query current Chrome fingerprints: first 5 tab URLs + tab count per window
 # Keyed by Chrome title (for correlation with AeroSpace windows)
-typeset -A CUR_FINGER  # chrome_title → "url1|url2|url3|count"
-while IFS=$'\t' read -r _t _u1 _u2 _u3 _n; do
+typeset -A CUR_FINGER  # chrome_title → "url1|url2|url3|url4|url5|count"
+while IFS=$'\t' read -r _t _u1 _u2 _u3 _u4 _u5 _n; do
     [[ -z "$_t" ]] && continue
-    CUR_FINGER[$_t]="${_u1}|${_u2}|${_u3}|${_n}"
+    CUR_FINGER[$_t]="${_u1}|${_u2}|${_u3}|${_u4}|${_u5}|${_n}"
 done < <(osascript -e '
     set sep to ASCII character 9
     if application "Google Chrome" is running then
@@ -97,9 +97,13 @@ done < <(osascript -e '
                 set u1 to URL of tab 1 of w
                 set u2 to ""
                 set u3 to ""
+                set u4 to ""
+                set u5 to ""
                 if n > 1 then set u2 to URL of tab 2 of w
                 if n > 2 then set u3 to URL of tab 3 of w
-                set output to output & t & sep & u1 & sep & u2 & sep & u3 & sep & (n as text) & linefeed
+                if n > 3 then set u4 to URL of tab 4 of w
+                if n > 4 then set u5 to URL of tab 5 of w
+                set output to output & t & sep & u1 & sep & u2 & sep & u3 & sep & u4 & sep & u5 & sep & (n as text) & linefeed
             end repeat
             return output
         end tell
@@ -125,7 +129,7 @@ for (( i=1; i<=${#CUR_WIDS}; i++ )); do
     fi
 done
 
-# Pass 2: Chrome fingerprint match (first 3 tab URLs + tab count)
+# Pass 2: Chrome fingerprint match (first 5 tab URLs + tab count)
 for (( i=1; i<=${#CUR_WIDS}; i++ )); do
     local wid="${CUR_WIDS[$i]}" app="${CUR_APPS[$i]}" title="${CUR_TITLES[$i]}"
     [[ -n "${ASSIGNED[$wid]+x}" ]] && continue
