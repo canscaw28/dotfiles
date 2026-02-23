@@ -58,7 +58,7 @@ done < <(osascript -e '
     # Window-workspace mapping with Chrome fingerprint
     while IFS=$'\t' read -r wid app title ws; do
         [[ -z "$wid" ]] && continue
-        finger=""
+        finger="-"
         if [[ "$app" == "Google Chrome" ]]; then
             # AeroSpace title: "<page> - High memory usage - X GB - Google Chrome - <Profile>"
             # AppleScript title: "<page>" only. Strip both suffixes to match.

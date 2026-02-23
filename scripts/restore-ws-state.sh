@@ -37,7 +37,7 @@ if [[ -f "$STATE_FILE" ]]; then
             IFS=$'\t' read -r _ wid app title finger ws <<< "$line"
             WIN_WS[$wid]="$ws"
             # Fingerprint map (Chrome windows with URL-based fingerprint)
-            if [[ -n "$finger" ]]; then
+            if [[ -n "$finger" && "$finger" != "-" ]]; then
                 BY_FINGER[$finger]="${BY_FINGER[$finger]:+${BY_FINGER[$finger]} }${ws}"
             fi
             # App+title map (fallback for all windows)
