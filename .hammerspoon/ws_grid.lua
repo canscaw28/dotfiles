@@ -461,7 +461,23 @@ end
 
 local function refresh()
     if shouldShowGrid() then
-        M.showGrid()
+        if grid then
+            -- Grid already visible: just reposition to target screen.
+            -- Don't re-query AeroSpace — state may be transient during ops.
+            -- ws.sh calls showGrid() directly when ops complete with correct state.
+            local monId = targetMonitor()
+            local screen = screenForMonitor(monId == 0 and (lastFocusedMonId or 0) or monId)
+            if screen then
+                local screenFrame = screen:frame()
+                local f = grid:frame()
+                grid:topLeft({
+                    x = screenFrame.x + (screenFrame.w - f.w) / 2,
+                    y = screenFrame.y + (screenFrame.h - f.h) / 2,
+                })
+            end
+        else
+            M.showGrid()
+        end
         if not wsEventTap:isEnabled() then wsEventTap:start() end
     else
         M.hideGrid()
