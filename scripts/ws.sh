@@ -393,8 +393,12 @@ execute_op() {
 # --- Post-processing ---
 
 per_op_post_process() {
-    # Refresh workspace grid overlay after each op so it tracks workspace changes live
-    /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
+    # Focus ops: instant visual feedback (visitKey) fires from Karabiner
+    # shell_command before ws.sh even starts — no action needed here.
+    # Non-focus ops: trigger full grid refresh.
+    if [[ "$OP" != focus* ]]; then
+        /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
+    fi
 }
 
 # Full post-processing for the last operation in a drain cycle.
@@ -486,6 +490,7 @@ OP="${1:-}"
 WS="${2:-}"
 
 debug "START $OP $WS"
+[[ -f /tmp/ws-invoke.log ]] && printf '%s %s %s\n' "$_START_TS" "$OP" "$WS" >> /tmp/ws-invoke.log
 enqueue "$OP" "$WS"
 
 if acquire_lock || acquire_lock; then
