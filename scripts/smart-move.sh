@@ -47,7 +47,8 @@ fi
 
 # At boundary in the same axis — cross to adjacent monitor
 if ! aerospace move-node-to-monitor "$direction" --focus-follows-window 2>/dev/null; then
-    exit 0  # No monitor in that direction
+    /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    exit 0
 fi
 
 # Position window at the entering edge (moving right → leftmost position, etc.)

@@ -34,7 +34,10 @@ fi
 
 # At boundary — cross to adjacent monitor (no --wrap-around, so
 # nothing happens if no monitor exists in this direction)
-aerospace focus-monitor "$direction" 2>/dev/null || exit 0
+if ! aerospace focus-monitor "$direction" 2>/dev/null; then
+    /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    exit 0
+fi
 
 # Jump directly to the edge window closest to where we came from
 aerospace focus --dfs-index "$edge_index" 2>/dev/null || true
