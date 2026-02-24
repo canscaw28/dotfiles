@@ -277,12 +277,23 @@ execute_op() {
             # or captured from cache on first focus-N op in this batch.
             local _home_mon="${FOCUS_N_RESTORE_MON:-$_C_FOCUSED_MON}"
             [[ -z "$FOCUS_N_RESTORE_MON" ]] && FOCUS_N_RESTORE_MON="$_home_mon"
-            focus_ws_on_monitor "$(resolve_monitor "${OP##focus-}")" "$WS"
+            # Re-persist home file if missing (TRANSITION deletes it, but more
+            # focus-N ops may arrive in the same drain cycle). Without the file,
+            # the next invocation writes the transient focused monitor (wrong).
+            if [[ ! -f "$FOCUS_N_HOME_FILE" ]]; then
+                echo "$_home_mon" > "$FOCUS_N_HOME_FILE"
+                debug "HOME re-persisted $_home_mon after transition"
+            fi
+            local _target_mon
+            _target_mon=$(resolve_monitor "${OP##focus-}")
+            debug "FOCUS-N target_mon=$_target_mon ws=$WS home=$_home_mon restore=$FOCUS_N_RESTORE_MON cached_focus=$_C_FOCUSED_MON"
+            focus_ws_on_monitor "$_target_mon" "$WS"
             # Restore focus to home monitor IMMEDIATELY after each op.
             # Karabiner SIGKILL's workers at any moment — deferring restore
             # to final_post_process means it often never runs.
             aerospace focus-monitor "$_home_mon"
             [[ $_CACHED -eq 1 ]] && _C_FOCUSED_MON="$_home_mon"
+            debug "FOCUS-N restored to mon=$_home_mon"
             ;;
         move)
             aerospace move-node-to-workspace "$WS"
@@ -534,12 +545,21 @@ debug "START $OP $WS"
 # the file and skip writing. This survives Karabiner killing processes mid-op.
 FOCUS_N_HOME_FILE="/tmp/ws-focus-n-home"
 if [[ -f "$FOCUS_N_HOME_FILE" ]]; then
-    # Remove stale file from a previous batch that wasn't cleaned up.
-    # 5s threshold: long enough to survive rapid-fire sessions where workers
-    # get killed mid-batch, short enough to not persist across manual
-    # monitor switches between sessions.
+    # Remove stale file from a previous session that wasn't cleaned up.
+    # 30s threshold: must survive gaps between bursts (user pauses, mode
+    # transitions, slow AeroSpace) where workers get killed with focus
+    # stranded on the wrong monitor. Only truly orphaned files (from a
+    # previous session minutes ago) should expire.
     _home_age=$(( $(date +%s) - $(stat -f %m "$FOCUS_N_HOME_FILE") ))
-    [[ $_home_age -gt 5 ]] && rm -f "$FOCUS_N_HOME_FILE"
+    if [[ $_home_age -gt 30 ]]; then
+        debug "HOME stale (${_home_age}s) — removing"
+        rm -f "$FOCUS_N_HOME_FILE"
+    elif [[ "$OP" == focus-[1-4] ]]; then
+        # Touch to keep fresh during sustained use — prevents the staleness
+        # check from expiring the file mid-session (which would cause the
+        # next invocation to re-query and capture transient focus state).
+        touch "$FOCUS_N_HOME_FILE"
+    fi
 fi
 if [[ "$OP" == focus-[1-4] && ! -f "$FOCUS_N_HOME_FILE" ]]; then
     aerospace list-monitors --focused --format '%{monitor-id}' > "$FOCUS_N_HOME_FILE"
