@@ -6349,7 +6349,7 @@
                     "value": 0
                   },
                   {
-                    "name": "w_is_held",
+                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   },
@@ -14119,7 +14119,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 6"
+                    "shell_command": "printf '6\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 6"
                   }
                 ],
                 "type": "basic"
@@ -14202,7 +14202,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 7"
+                    "shell_command": "printf '7\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 7"
                   }
                 ],
                 "type": "basic"
@@ -14285,7 +14285,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 8"
+                    "shell_command": "printf '8\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 8"
                   }
                 ],
                 "type": "basic"
@@ -14368,7 +14368,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 9"
+                    "shell_command": "printf '9\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 9"
                   }
                 ],
                 "type": "basic"
@@ -14451,7 +14451,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 0"
+                    "shell_command": "printf '0\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 0"
                   }
                 ],
                 "type": "basic"
@@ -14534,7 +14534,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 y"
+                    "shell_command": "printf 'y\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 y"
                   }
                 ],
                 "type": "basic"
@@ -14617,7 +14617,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 u"
+                    "shell_command": "printf 'u\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 u"
                   }
                 ],
                 "type": "basic"
@@ -14700,7 +14700,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 i"
+                    "shell_command": "printf 'i\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 i"
                   }
                 ],
                 "type": "basic"
@@ -14783,7 +14783,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 o"
+                    "shell_command": "printf 'o\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 o"
                   }
                 ],
                 "type": "basic"
@@ -14866,7 +14866,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 p"
+                    "shell_command": "printf 'p\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 p"
                   }
                 ],
                 "type": "basic"
@@ -14949,7 +14949,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 h"
+                    "shell_command": "printf 'h\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 h"
                   }
                 ],
                 "type": "basic"
@@ -15032,7 +15032,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 j"
+                    "shell_command": "printf 'j\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 j"
                   }
                 ],
                 "type": "basic"
@@ -15115,7 +15115,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 k"
+                    "shell_command": "printf 'k\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 k"
                   }
                 ],
                 "type": "basic"
@@ -15198,7 +15198,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 l"
+                    "shell_command": "printf 'l\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 l"
                   }
                 ],
                 "type": "basic"
@@ -15281,7 +15281,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 \";\""
+                    "shell_command": "printf ';\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 \";\""
                   }
                 ],
                 "type": "basic"
@@ -15364,7 +15364,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 n"
+                    "shell_command": "printf 'n\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 n"
                   }
                 ],
                 "type": "basic"
@@ -15447,7 +15447,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 m"
+                    "shell_command": "printf 'm\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 m"
                   }
                 ],
                 "type": "basic"
@@ -15530,7 +15530,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 comma"
+                    "shell_command": "printf ',\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 comma"
                   }
                 ],
                 "type": "basic"
@@ -15613,7 +15613,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 ."
+                    "shell_command": "printf '.\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 ."
                   }
                 ],
                 "type": "basic"
@@ -15696,7 +15696,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 /"
+                    "shell_command": "printf '/\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 /"
                   }
                 ],
                 "type": "basic"
@@ -15779,7 +15779,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 6"
+                    "shell_command": "printf '6\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 6"
                   }
                 ],
                 "type": "basic"
@@ -15862,7 +15862,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 7"
+                    "shell_command": "printf '7\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 7"
                   }
                 ],
                 "type": "basic"
@@ -15945,7 +15945,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 8"
+                    "shell_command": "printf '8\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 8"
                   }
                 ],
                 "type": "basic"
@@ -16028,7 +16028,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 9"
+                    "shell_command": "printf '9\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 9"
                   }
                 ],
                 "type": "basic"
@@ -16111,7 +16111,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 0"
+                    "shell_command": "printf '0\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 0"
                   }
                 ],
                 "type": "basic"
@@ -16194,7 +16194,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 y"
+                    "shell_command": "printf 'y\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 y"
                   }
                 ],
                 "type": "basic"
@@ -16277,7 +16277,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 u"
+                    "shell_command": "printf 'u\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 u"
                   }
                 ],
                 "type": "basic"
@@ -16360,7 +16360,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 i"
+                    "shell_command": "printf 'i\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 i"
                   }
                 ],
                 "type": "basic"
@@ -16443,7 +16443,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 o"
+                    "shell_command": "printf 'o\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 o"
                   }
                 ],
                 "type": "basic"
@@ -16526,7 +16526,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 p"
+                    "shell_command": "printf 'p\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 p"
                   }
                 ],
                 "type": "basic"
@@ -16609,7 +16609,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 h"
+                    "shell_command": "printf 'h\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 h"
                   }
                 ],
                 "type": "basic"
@@ -16692,7 +16692,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 j"
+                    "shell_command": "printf 'j\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 j"
                   }
                 ],
                 "type": "basic"
@@ -16775,7 +16775,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 k"
+                    "shell_command": "printf 'k\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 k"
                   }
                 ],
                 "type": "basic"
@@ -16858,7 +16858,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 l"
+                    "shell_command": "printf 'l\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 l"
                   }
                 ],
                 "type": "basic"
@@ -16941,7 +16941,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 \";\""
+                    "shell_command": "printf ';\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 \";\""
                   }
                 ],
                 "type": "basic"
@@ -17024,7 +17024,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 n"
+                    "shell_command": "printf 'n\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 n"
                   }
                 ],
                 "type": "basic"
@@ -17107,7 +17107,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 m"
+                    "shell_command": "printf 'm\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 m"
                   }
                 ],
                 "type": "basic"
@@ -17190,7 +17190,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 comma"
+                    "shell_command": "printf ',\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 comma"
                   }
                 ],
                 "type": "basic"
@@ -17273,7 +17273,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 ."
+                    "shell_command": "printf '.\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 ."
                   }
                 ],
                 "type": "basic"
@@ -17356,7 +17356,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 /"
+                    "shell_command": "printf '/\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 /"
                   }
                 ],
                 "type": "basic"
@@ -17439,7 +17439,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 6"
+                    "shell_command": "printf '6\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 6"
                   }
                 ],
                 "type": "basic"
@@ -17522,7 +17522,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 7"
+                    "shell_command": "printf '7\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 7"
                   }
                 ],
                 "type": "basic"
@@ -17605,7 +17605,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 8"
+                    "shell_command": "printf '8\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 8"
                   }
                 ],
                 "type": "basic"
@@ -17688,7 +17688,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 9"
+                    "shell_command": "printf '9\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 9"
                   }
                 ],
                 "type": "basic"
@@ -17771,7 +17771,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 0"
+                    "shell_command": "printf '0\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 0"
                   }
                 ],
                 "type": "basic"
@@ -17854,7 +17854,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 y"
+                    "shell_command": "printf 'y\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 y"
                   }
                 ],
                 "type": "basic"
@@ -17937,7 +17937,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 u"
+                    "shell_command": "printf 'u\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 u"
                   }
                 ],
                 "type": "basic"
@@ -18020,7 +18020,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 i"
+                    "shell_command": "printf 'i\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 i"
                   }
                 ],
                 "type": "basic"
@@ -18103,7 +18103,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 o"
+                    "shell_command": "printf 'o\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 o"
                   }
                 ],
                 "type": "basic"
@@ -18186,7 +18186,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 p"
+                    "shell_command": "printf 'p\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 p"
                   }
                 ],
                 "type": "basic"
@@ -18269,7 +18269,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 h"
+                    "shell_command": "printf 'h\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 h"
                   }
                 ],
                 "type": "basic"
@@ -18352,7 +18352,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 j"
+                    "shell_command": "printf 'j\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 j"
                   }
                 ],
                 "type": "basic"
@@ -18435,7 +18435,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 k"
+                    "shell_command": "printf 'k\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 k"
                   }
                 ],
                 "type": "basic"
@@ -18518,7 +18518,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 l"
+                    "shell_command": "printf 'l\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 l"
                   }
                 ],
                 "type": "basic"
@@ -18601,7 +18601,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 \";\""
+                    "shell_command": "printf ';\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 \";\""
                   }
                 ],
                 "type": "basic"
@@ -18684,7 +18684,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 n"
+                    "shell_command": "printf 'n\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 n"
                   }
                 ],
                 "type": "basic"
@@ -18767,7 +18767,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 m"
+                    "shell_command": "printf 'm\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 m"
                   }
                 ],
                 "type": "basic"
@@ -18850,7 +18850,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 comma"
+                    "shell_command": "printf ',\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 comma"
                   }
                 ],
                 "type": "basic"
@@ -18933,7 +18933,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 ."
+                    "shell_command": "printf '.\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 ."
                   }
                 ],
                 "type": "basic"
@@ -19016,7 +19016,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 /"
+                    "shell_command": "printf '/\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 /"
                   }
                 ],
                 "type": "basic"
@@ -19099,7 +19099,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 6"
+                    "shell_command": "printf '6\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 6"
                   }
                 ],
                 "type": "basic"
@@ -19182,7 +19182,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 7"
+                    "shell_command": "printf '7\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 7"
                   }
                 ],
                 "type": "basic"
@@ -19265,7 +19265,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 8"
+                    "shell_command": "printf '8\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 8"
                   }
                 ],
                 "type": "basic"
@@ -19348,7 +19348,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 9"
+                    "shell_command": "printf '9\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 9"
                   }
                 ],
                 "type": "basic"
@@ -19431,7 +19431,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 0"
+                    "shell_command": "printf '0\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 0"
                   }
                 ],
                 "type": "basic"
@@ -19514,7 +19514,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 y"
+                    "shell_command": "printf 'y\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 y"
                   }
                 ],
                 "type": "basic"
@@ -19597,7 +19597,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 u"
+                    "shell_command": "printf 'u\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 u"
                   }
                 ],
                 "type": "basic"
@@ -19680,7 +19680,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 i"
+                    "shell_command": "printf 'i\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 i"
                   }
                 ],
                 "type": "basic"
@@ -19763,7 +19763,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 o"
+                    "shell_command": "printf 'o\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 o"
                   }
                 ],
                 "type": "basic"
@@ -19846,7 +19846,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 p"
+                    "shell_command": "printf 'p\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 p"
                   }
                 ],
                 "type": "basic"
@@ -19929,7 +19929,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 h"
+                    "shell_command": "printf 'h\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 h"
                   }
                 ],
                 "type": "basic"
@@ -20012,7 +20012,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 j"
+                    "shell_command": "printf 'j\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 j"
                   }
                 ],
                 "type": "basic"
@@ -20095,7 +20095,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 k"
+                    "shell_command": "printf 'k\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 k"
                   }
                 ],
                 "type": "basic"
@@ -20178,7 +20178,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 l"
+                    "shell_command": "printf 'l\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 l"
                   }
                 ],
                 "type": "basic"
@@ -20261,7 +20261,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 \";\""
+                    "shell_command": "printf ';\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 \";\""
                   }
                 ],
                 "type": "basic"
@@ -20344,7 +20344,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 n"
+                    "shell_command": "printf 'n\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 n"
                   }
                 ],
                 "type": "basic"
@@ -20427,7 +20427,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 m"
+                    "shell_command": "printf 'm\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 m"
                   }
                 ],
                 "type": "basic"
@@ -20510,7 +20510,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 comma"
+                    "shell_command": "printf ',\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 comma"
                   }
                 ],
                 "type": "basic"
@@ -20593,7 +20593,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 ."
+                    "shell_command": "printf '.\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 ."
                   }
                 ],
                 "type": "basic"
@@ -20676,7 +20676,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 /"
+                    "shell_command": "printf '/\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 /"
                   }
                 ],
                 "type": "basic"
@@ -20759,7 +20759,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus 6"
+                    "shell_command": "printf '6\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus 6"
                   }
                 ],
                 "type": "basic"
@@ -20842,7 +20842,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus 7"
+                    "shell_command": "printf '7\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus 7"
                   }
                 ],
                 "type": "basic"
@@ -20925,7 +20925,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus 8"
+                    "shell_command": "printf '8\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus 8"
                   }
                 ],
                 "type": "basic"
@@ -21008,7 +21008,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus 9"
+                    "shell_command": "printf '9\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus 9"
                   }
                 ],
                 "type": "basic"
@@ -21091,7 +21091,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus 0"
+                    "shell_command": "printf '0\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus 0"
                   }
                 ],
                 "type": "basic"
@@ -21174,7 +21174,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus y"
+                    "shell_command": "printf 'y\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus y"
                   }
                 ],
                 "type": "basic"
@@ -21257,7 +21257,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus u"
+                    "shell_command": "printf 'u\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus u"
                   }
                 ],
                 "type": "basic"
@@ -21340,7 +21340,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus i"
+                    "shell_command": "printf 'i\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus i"
                   }
                 ],
                 "type": "basic"
@@ -21423,7 +21423,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus o"
+                    "shell_command": "printf 'o\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus o"
                   }
                 ],
                 "type": "basic"
@@ -21506,7 +21506,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus p"
+                    "shell_command": "printf 'p\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus p"
                   }
                 ],
                 "type": "basic"
@@ -21589,7 +21589,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus h"
+                    "shell_command": "printf 'h\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus h"
                   }
                 ],
                 "type": "basic"
@@ -21672,7 +21672,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus j"
+                    "shell_command": "printf 'j\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus j"
                   }
                 ],
                 "type": "basic"
@@ -21755,7 +21755,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus k"
+                    "shell_command": "printf 'k\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus k"
                   }
                 ],
                 "type": "basic"
@@ -21838,7 +21838,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus l"
+                    "shell_command": "printf 'l\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus l"
                   }
                 ],
                 "type": "basic"
@@ -21921,7 +21921,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus \";\""
+                    "shell_command": "printf ';\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus \";\""
                   }
                 ],
                 "type": "basic"
@@ -22004,7 +22004,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus n"
+                    "shell_command": "printf 'n\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus n"
                   }
                 ],
                 "type": "basic"
@@ -22087,7 +22087,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus m"
+                    "shell_command": "printf 'm\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus m"
                   }
                 ],
                 "type": "basic"
@@ -22170,7 +22170,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus comma"
+                    "shell_command": "printf ',\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus comma"
                   }
                 ],
                 "type": "basic"
@@ -22253,7 +22253,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus ."
+                    "shell_command": "printf '.\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus ."
                   }
                 ],
                 "type": "basic"
@@ -22336,7 +22336,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/ws.sh focus /"
+                    "shell_command": "printf '/\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus /"
                   }
                 ],
                 "type": "basic"
@@ -29232,7 +29232,10 @@
                 },
                 "to": [
                   {
-                    "shell_command": "$HOME/.local/bin/switch-monitor.sh"
+                    "set_variable": {
+                      "name": "guard_noop",
+                      "value": 0
+                    }
                   }
                 ],
                 "type": "basic"
