@@ -463,24 +463,26 @@ drain_queue() {
         local files=("$QUEUE_DIR"/[0-9]*)
         [[ -e "${files[0]}" ]] || return
 
-        # Collapse: when queue has more than COLLAPSE_KEEP focus ops,
-        # bulk-skip excess from the front. Keeps the last N focus ops
-        # so the user lands on their intended workspace quickly.
-        # Non-focus ops (move, swap) are never skipped.
+        # Collapse: when queue has more than COLLAPSE_KEEP focus-N ops,
+        # bulk-skip excess from the front. Keeps the last N so the user
+        # lands on their intended workspace quickly.
+        # Plain focus ops are NEVER collapsed — they represent intentional
+        # selections on the user's own monitor (e.g. pressing a key after
+        # releasing E). Non-focus ops (move, swap) are also never skipped.
         local depth=${#files[@]}
         if [[ "$depth" -gt "$COLLAPSE_KEEP" ]]; then
             local focus_count=0
             for f in "${files[@]}"; do
                 local l=$(<"$f")
-                [[ "${l%% *}" == focus* ]] && ((focus_count++))
+                [[ "${l%% *}" == focus-[1-4] ]] && ((focus_count++))
             done
             local excess=$((focus_count - COLLAPSE_KEEP))
             if [[ "$excess" -gt 0 ]]; then
                 for f in "${files[@]}"; do
                     [[ "$excess" -le 0 ]] && break
                     local l=$(<"$f")
-                    if [[ "${l%% *}" == focus* ]]; then
-                        debug "COLLAPSE skip ${l%% *} ${l#* } ($focus_count focus ops, keeping $COLLAPSE_KEEP)"
+                    if [[ "${l%% *}" == focus-[1-4] ]]; then
+                        debug "COLLAPSE skip ${l%% *} ${l#* } ($focus_count focus-N ops, keeping $COLLAPSE_KEEP)"
                         rm -f "$f"
                         ((excess--))
                     fi
