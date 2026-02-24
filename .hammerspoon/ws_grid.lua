@@ -478,12 +478,31 @@ local function refresh()
 end
 
 function M.keyDown(k)
+    if k == "t" then
+        -- T pressed: clear sub-mode keys to prevent stale state from
+        -- out-of-order hs CLI IPC calls (each keyDown/keyUp is a separate
+        -- background process that can race)
+        keys.w = false
+        keys.e = false
+        keys.r = false
+        keys["3"] = false
+        keys["4"] = false
+        keys.q = false
+    end
     keys[k] = true
     refresh()
 end
 
 function M.keyUp(k)
-    keys[k] = false
+    if k == "t" then
+        -- T released: clear ALL key state so stuck sub-mode keys
+        -- can't cause the grid to show on next T press
+        for key in pairs(keys) do
+            keys[key] = false
+        end
+    else
+        keys[k] = false
+    end
     refresh()
 end
 
