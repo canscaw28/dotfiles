@@ -10,14 +10,16 @@ local pendingTask = nil
 local taskGeneration = 0
 local keys = {t = false, w = false, e = false, r = false, ["3"] = false, ["4"] = false, q = false}
 
--- Fade state: tracks recently-focused keys for color fade trail
-local flashState = {}       -- key -> {color = {r,g,b,a}, lastActive = timestamp}
-local fadeTimer = nil
-local lastVisibleWs = {}    -- cached for fade timer re-renders
+local lastVisibleWs = {}    -- key -> monitorId for cached workspace state
 local lastFocusedKey = nil
 local lastFocusedMonId = nil
-local FADE_DURATION = 0.5   -- seconds
-local FADE_INTERVAL = 0.033 -- ~30fps
+
+-- Element index lookup for in-place canvas updates (populated by drawGrid)
+local keyFaceIdx = {}   -- key -> canvas element index for face rectangle
+local keyTextIdx = {}   -- key -> canvas element index for text element
+
+-- Forward declarations for key drain (referenced by showGrid callback)
+local startKeyDrain, stopKeyDrain
 
 -- Grid layout: 4 rows of 5 keys with keyboard stagger
 local ROWS = {
@@ -36,7 +38,6 @@ local MONITOR_COLORS = {
 }
 
 -- Keycap styling — high contrast so keys read as individual caps, not a blob
-local BG_COLOR = {red = 0.1, green = 0.1, blue = 0.1, alpha = 0.85}
 local KEY_FACE = {red = 0.38, green = 0.38, blue = 0.40, alpha = 0.9}
 local KEY_FACE_ACTIVE = {red = 0.48, green = 0.48, blue = 0.50, alpha = 0.9}
 local KEY_EDGE = {red = 0.28, green = 0.28, blue = 0.30, alpha = 0.9}   -- darker bottom/side for 3D
@@ -84,13 +85,22 @@ local function shouldShowGrid()
     return targetMonitor() ~= nil
 end
 
-local function lerpColor(a, b, t)
-    return {
-        red   = a.red   + (b.red   - a.red)   * t,
-        green = a.green + (b.green - a.green) * t,
-        blue  = a.blue  + (b.blue  - a.blue)  * t,
-        alpha = 1,
-    }
+-- Lightweight in-place update of a single key's face color and text label.
+-- Uses hs.canvas:elementAttribute() to avoid full canvas recreation.
+local function patchKey(key, isActive, isFocused, labelColor)
+    if not grid then return end
+    local fi = keyFaceIdx[key]
+    local ti = keyTextIdx[key]
+    if not fi or not ti then return end
+    grid:elementAttribute(fi, "fillColor", isActive and KEY_FACE_ACTIVE or KEY_FACE)
+    local displayText = isFocused and ("*" .. key) or key
+    local fontName = isActive and "Helvetica-Bold" or "Helvetica"
+    local styledText = hs.styledtext.new(displayText, {
+        font = {name = fontName, size = FONT_SIZE},
+        color = labelColor,
+        paragraphStyle = {alignment = "center"},
+    })
+    grid:elementAttribute(ti, "text", styledText)
 end
 
 local function drawGrid(visibleWs, focusedKey, focusedMonId)
@@ -98,6 +108,8 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
         grid:delete()
         grid = nil
     end
+    keyFaceIdx = {}
+    keyTextIdx = {}
 
     local monId = targetMonitor()
     if monId == nil then return end
@@ -124,7 +136,6 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
     grid:canvasMouseEvents(false)
 
     -- Plate: one opaque rounded rect per row, overlapping vertically.
-    -- Even padding on all sides; smooth corner radius blends the row transitions.
     local PLATE_PAD = 12
     local PLATE_RADIUS = 10
     local PLATE_COLOR = {red = 0.1, green = 0.1, blue = 0.12, alpha = 0.85}
@@ -148,18 +159,19 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
         })
     end
 
-    -- Draw keycaps
-    -- All coordinates use absolute pixels (fractional 0-1 coords break rendering)
+    -- Draw keycaps (5 elements per key: shadow, edge, face, border, text)
+    -- Track element count to record face/text indices for patchKey
+    local elementCount = #ROWS  -- plates already added
     for rowIdx, row in ipairs(ROWS) do
         for colIdx, key in ipairs(row.keys) do
             local cellX = PADDING + (colIdx - 1) * (CELL_SIZE + CELL_GAP) + row.stagger * CELL_SIZE
             local cellY = PADDING + (rowIdx - 1) * (CELL_SIZE + CELL_GAP)
 
-            local monId = visibleWs[key]
+            local keyMonId = visibleWs[key]
             local isFocused = (key == focusedKey)
-            local isActive = monId ~= nil
+            local isActive = keyMonId ~= nil
 
-            -- Layer 1: Drop shadow (offset down for ground shadow)
+            -- Layer 1: Drop shadow
             grid:appendElements({
                 type = "rectangle",
                 action = "fill",
@@ -168,8 +180,9 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
                 frame = {x = cellX + 1, y = cellY + SHADOW_OFFSET,
                          w = CELL_SIZE, h = CELL_SIZE},
             })
+            elementCount = elementCount + 1
 
-            -- Layer 2: Key edge/side (taller, darker — "thickness" peeks out at bottom)
+            -- Layer 2: Key edge/side
             grid:appendElements({
                 type = "rectangle",
                 action = "fill",
@@ -178,8 +191,9 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
                 frame = {x = cellX, y = cellY,
                          w = CELL_SIZE, h = CELL_SIZE + EDGE_HEIGHT},
             })
+            elementCount = elementCount + 1
 
-            -- Layer 3: Key face (top surface, lighter, shorter to reveal edge at bottom)
+            -- Layer 3: Key face
             grid:appendElements({
                 type = "rectangle",
                 action = "fill",
@@ -188,8 +202,10 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
                 frame = {x = cellX, y = cellY,
                          w = CELL_SIZE, h = CELL_SIZE},
             })
+            elementCount = elementCount + 1
+            keyFaceIdx[key] = elementCount
 
-            -- Layer 4: Border for definition
+            -- Layer 4: Border
             grid:appendElements({
                 type = "rectangle",
                 action = "stroke",
@@ -199,31 +215,10 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
                 frame = {x = cellX, y = cellY,
                          w = CELL_SIZE, h = CELL_SIZE},
             })
+            elementCount = elementCount + 1
 
-            -- Key label (vertically centered — hs.canvas text renders from top)
-            local now = hs.timer.secondsSinceEpoch()
-            local labelColor
-            if isFocused then
-                -- Currently focused: full monitor color, update flash state
-                labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
-                if monId and MONITOR_COLORS[monId] then
-                    flashState[key] = {color = MONITOR_COLORS[monId], lastActive = now}
-                end
-            elseif flashState[key] then
-                -- Recently focused: fade from monitor color → dim
-                local elapsed = now - flashState[key].lastActive
-                if elapsed < FADE_DURATION then
-                    local progress = elapsed / FADE_DURATION
-                    -- Ease out for smooth deceleration
-                    progress = 1 - (1 - progress) * (1 - progress)
-                    labelColor = lerpColor(flashState[key].color, TEXT_COLOR_DIM, progress)
-                else
-                    flashState[key] = nil
-                    labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
-                end
-            else
-                labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
-            end
+            -- Key label
+            local labelColor = (keyMonId and MONITOR_COLORS[keyMonId]) or TEXT_COLOR_DIM
             local displayText = isFocused and ("*" .. key) or key
             local fontName = isActive and "Helvetica-Bold" or "Helvetica"
             local styledText = hs.styledtext.new(displayText, {
@@ -237,12 +232,56 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
                 text = styledText,
                 frame = {x = cellX, y = cellY + textOffsetY, w = CELL_SIZE, h = FONT_SIZE * 1.5},
             })
-
+            elementCount = elementCount + 1
+            keyTextIdx[key] = elementCount
         end
     end
 
     grid:alpha(1)
     grid:show()
+end
+
+-- Instant update for rapid key sequences.
+-- Patches only changed keys (prev focused, displaced, current) instead of
+-- recreating the entire 104-element canvas.
+function M.visitKey(key, targetMon)
+    local displayKey = AERO_TO_KEY[key] or key
+    local monId = targetMon or lastFocusedMonId
+
+    local prevFocused = lastFocusedKey
+    local displacedKey = nil
+
+    -- Update cached visible workspace state
+    if monId then
+        for k, m in pairs(lastVisibleWs) do
+            if m == monId then
+                displacedKey = k
+                lastVisibleWs[k] = nil
+                break
+            end
+        end
+        lastVisibleWs[displayKey] = monId
+    end
+    lastFocusedKey = displayKey
+
+    -- Patch only changed keys (no full canvas recreation)
+    if grid and shouldShowGrid() then
+        -- Previous focused key: revert to normal state
+        if prevFocused and prevFocused ~= displayKey then
+            local prevMonId = lastVisibleWs[prevFocused]
+            local prevColor = (prevMonId and MONITOR_COLORS[prevMonId]) or TEXT_COLOR_DIM
+            patchKey(prevFocused, prevMonId ~= nil, false, prevColor)
+        end
+
+        -- Displaced key: lost its monitor assignment
+        if displacedKey and displacedKey ~= displayKey and displacedKey ~= prevFocused then
+            patchKey(displacedKey, false, false, TEXT_COLOR_DIM)
+        end
+
+        -- Current focused key
+        local curColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+        patchKey(displayKey, monId ~= nil, true, curColor)
+    end
 end
 
 function M.showGrid()
@@ -252,8 +291,7 @@ function M.showGrid()
         pendingTask = nil
     end
 
-    -- Bump generation so stale callbacks (from a just-completed task whose
-    -- callback is already queued on the event loop) are silently ignored.
+    -- Bump generation so stale callbacks are silently ignored.
     taskGeneration = taskGeneration + 1
     local myGeneration = taskGeneration
 
@@ -262,7 +300,6 @@ function M.showGrid()
         pendingTask = nil
         if myGeneration ~= taskGeneration then return end  -- stale callback
         if exitCode ~= 0 then return end
-        -- Re-check key state — user may have released keys during async query
         if not shouldShowGrid() then return end
 
         local visibleWs = {}
@@ -280,45 +317,24 @@ function M.showGrid()
             if fm then
                 focusedMonId = tonumber(fm)
             end
-            local monId, ws = line:match("^M:(%d+):(.+)")
-            if monId and ws then
+            local monIdStr, ws = line:match("^M:(%d+):(.+)")
+            if monIdStr and ws then
                 ws = ws:match("^%s*(.-)%s*$")
                 if ws ~= "" then
                     local displayKey = AERO_TO_KEY[ws] or ws
-                    visibleWs[displayKey] = tonumber(monId)
+                    visibleWs[displayKey] = tonumber(monIdStr)
                 end
             end
         end
 
-        -- Cache for fade timer re-renders
         lastVisibleWs = visibleWs
         lastFocusedKey = focusedKey
         lastFocusedMonId = focusedMonId
 
         drawGrid(visibleWs, focusedKey, focusedMonId)
 
-        -- Start fade timer if any fades are active
-        if not fadeTimer and next(flashState) then
-            fadeTimer = hs.timer.doEvery(FADE_INTERVAL, function()
-                if not shouldShowGrid() then
-                    fadeTimer:stop(); fadeTimer = nil
-                    return
-                end
-                local now = hs.timer.secondsSinceEpoch()
-                local anyActive = false
-                for k, v in pairs(flashState) do
-                    if now - v.lastActive < FADE_DURATION then
-                        anyActive = true
-                        break
-                    end
-                end
-                if not anyActive then
-                    fadeTimer:stop(); fadeTimer = nil
-                    return
-                end
-                drawGrid(lastVisibleWs, lastFocusedKey, lastFocusedMonId)
-            end)
-        end
+        -- Drain any keys that accumulated while the async query was in flight
+        startKeyDrain()
     end, {"-c", [[
         focused=$(/opt/homebrew/bin/aerospace list-workspaces --focused)
         echo "F:$focused"
@@ -337,8 +353,109 @@ function M.getFrame()
     return nil
 end
 
+-- File poll: Karabiner writes key names to /tmp/ws-grid-keys (printf builtin,
+-- ~0ms). We poll at 60Hz while the grid is visible. Keys are queued and
+-- drained one per display frame (~16ms) so each gets its own drawRect pass.
+-- (hs.canvas:elementAttribute calls setNeedsDisplay which defers to runloop;
+-- multiple calls in one callback produce only one visible frame.)
+local WS_KEY_SET = {}
+for _, row in ipairs(ROWS) do
+    for _, key in ipairs(row.keys) do
+        WS_KEY_SET[key] = true
+    end
+end
+
+local KEY_FILE = "/tmp/ws-grid-keys"
+local KEY_TMP  = "/tmp/ws-grid-keys.tmp"
+local keyPollTimer = nil
+local pendingKeyQueue = {}
+local keyDrainTimer = nil
+
+stopKeyDrain = function()
+    pendingKeyQueue = {}
+    if keyDrainTimer then keyDrainTimer:stop(); keyDrainTimer = nil end
+end
+
+local function drainOneKey()
+    if #pendingKeyQueue == 0 then
+        if keyDrainTimer then keyDrainTimer:stop(); keyDrainTimer = nil end
+        return
+    end
+    -- Wait for grid to be ready (showGrid async query still in flight)
+    if not grid then return end
+    if not shouldShowGrid() then
+        stopKeyDrain()
+        return
+    end
+    local entry = table.remove(pendingKeyQueue, 1)
+    M.visitKey(entry.key, entry.mon)
+    if #pendingKeyQueue == 0 then
+        if keyDrainTimer then keyDrainTimer:stop(); keyDrainTimer = nil end
+    end
+end
+
+startKeyDrain = function()
+    if keyDrainTimer then return end  -- already draining
+    if #pendingKeyQueue == 0 then return end
+    -- Process first key immediately if grid is ready
+    if grid then
+        drainOneKey()
+    end
+    -- Start timer to drain remaining (or retry when grid becomes ready)
+    if #pendingKeyQueue > 0 and not keyDrainTimer then
+        keyDrainTimer = hs.timer.doEvery(0.016, drainOneKey)
+    end
+end
+
+local function pollKeys()
+    -- Safety: if grid should no longer be visible, clean up
+    if not shouldShowGrid() then
+        if keyPollTimer then keyPollTimer:stop(); keyPollTimer = nil end
+        stopKeyDrain()
+        os.remove(KEY_FILE)
+        os.remove(KEY_TMP)
+        if grid then grid:delete(); grid = nil end
+        return
+    end
+
+    local ok = os.rename(KEY_FILE, KEY_TMP)
+    if not ok then return end
+    local f = io.open(KEY_TMP, "r")
+    if not f then return end
+    local content = f:read("*a")
+    f:close()
+    os.remove(KEY_TMP)
+
+    -- Enqueue valid keys for frame-paced draining
+    local added = false
+    for key in content:gmatch("[^\n]+") do
+        if WS_KEY_SET[key] then
+            local mon = targetMonitor()
+            if mon == 0 then mon = nil end
+            pendingKeyQueue[#pendingKeyQueue + 1] = {key = key, mon = mon}
+            added = true
+        end
+    end
+    if added then startKeyDrain() end
+end
+
+local function startKeyPoll()
+    if keyPollTimer then return end
+    keyPollTimer = hs.timer.doEvery(0.016, pollKeys)  -- 60Hz (matches display)
+end
+
+local function stopKeyPoll()
+    if keyPollTimer then
+        keyPollTimer:stop()
+        keyPollTimer = nil
+    end
+    stopKeyDrain()
+end
+
 function M.hideGrid()
-    if fadeTimer then fadeTimer:stop(); fadeTimer = nil end
+    stopKeyPoll()
+    os.remove(KEY_FILE)
+    os.remove(KEY_TMP)
     if pendingTask and pendingTask:isRunning() then
         pendingTask:terminate()
         pendingTask = nil
@@ -347,11 +464,14 @@ function M.hideGrid()
         grid:delete()
         grid = nil
     end
+    keyFaceIdx = {}
+    keyTextIdx = {}
 end
 
 local function refresh()
     if shouldShowGrid() then
         M.showGrid()
+        startKeyPoll()
     else
         M.hideGrid()
     end
