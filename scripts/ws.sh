@@ -414,16 +414,20 @@ final_post_process() {
     fi
 
     # Show workspace notification overlay
-    NOTIFY_WS="$WS"
+    NOTIFY_TEXT="$WS"
     NOTIFY_MON="$_C_FOCUSED_MON"
     case "$OP" in
+        move|move-focus)     NOTIFY_TEXT="${SOURCE_WS} → ${WS}" ;;
+        swap-windows)        NOTIFY_TEXT="${SOURCE_WS} ↔ ${WS}" ;;
+        push-windows)        NOTIFY_TEXT="${SOURCE_WS} → ${WS}" ;;
+        pull-windows)        NOTIFY_TEXT="${WS} → ${SOURCE_WS}" ;;
         focus-[1-4])         NOTIFY_MON="${OP##focus-}" ;;
-        swap-monitors)       NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
-        move-monitor|move-monitor-focus) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$NEXT_MONITOR" ;;
-        move-monitor-yank) NOTIFY_WS="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
+        swap-monitors)       NOTIFY_TEXT="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
+        move-monitor|move-monitor-focus) NOTIFY_TEXT="$NEXT_WS"; NOTIFY_MON="$NEXT_MONITOR" ;;
+        move-monitor-yank) NOTIFY_TEXT="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
     esac
-    if [[ -n "$NOTIFY_WS" && "$OP" != "move" ]]; then
-        /usr/local/bin/hs -c "require('ws_notify').show('$NOTIFY_WS', ${NOTIFY_MON:-0})" 2>/dev/null &
+    if [[ -n "$NOTIFY_TEXT" ]]; then
+        /usr/local/bin/hs -c "require('ws_notify').show('$NOTIFY_TEXT', ${NOTIFY_MON:-0})" 2>/dev/null &
     fi
 
     # Move mouse to focused window
@@ -500,6 +504,9 @@ drain_queue() {
             FOCUS_N_RESTORE_MON=""
             rm -f "$FOCUS_N_HOME_FILE"
         fi
+        # Capture source workspace before op (for action notifications)
+        local _src_var="_C_MON_WS_${_C_FOCUSED_MON}"
+        SOURCE_WS="${!_src_var}"
         execute_op
         # Non-focus ops modify state in complex ways; refresh cache fully
         [[ "$OP" != focus* ]] && cache_state
