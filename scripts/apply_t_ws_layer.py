@@ -112,7 +112,10 @@ def make_action_manipulator(key_code, shell_cmd, mode_conds):
             "key_code": key_code,
             "modifiers": {"optional": ["any"]},
         },
-        "to": [{"shell_command": shell_cmd}],
+        "to": [
+            {"key_code": key_code, "modifiers": ["fn"]},
+            {"shell_command": shell_cmd},
+        ],
         "type": "basic",
     }
 
@@ -192,21 +195,9 @@ def generate():
     ws_bin = "$HOME/.local/bin/ws.sh"
     actions = []
 
-    # Focus ops: prepend a file write for instant grid feedback.
-    # printf (shell builtin, ~0ms) writes the key to a file that Hammerspoon
-    # polls at 200Hz while the grid is visible. ~5ms average visual latency,
-    # no process spawning. The ws.sh queue handles the actual workspace switch.
-    key_file = "/tmp/ws-grid-keys"
-
     for op_name, mode_conds in OPERATIONS:
         for display_name, key_code, ws_arg in WORKSPACE_KEYS:
-            if op_name.startswith("focus"):
-                shell_cmd = (
-                    f"printf '{display_name}\\n'>>{key_file};"
-                    f"{ws_bin} {op_name} {ws_arg}"
-                )
-            else:
-                shell_cmd = f"{ws_bin} {op_name} {ws_arg}"
+            shell_cmd = f"{ws_bin} {op_name} {ws_arg}"
             actions.append(
                 make_action_manipulator(key_code, shell_cmd, mode_conds)
             )
@@ -306,9 +297,8 @@ def is_t_layer_manipulator(m):
         return False
     if "to_after_key_up" in m:
         return False
-    # Skip workspace actions (ws.sh shell commands)
-    to = m.get("to", [{}])[0]
-    if "ws.sh" in to.get("shell_command", ""):
+    # Skip workspace actions (ws.sh shell commands) — check ALL to events
+    if any("ws.sh" in ev.get("shell_command", "") for ev in m.get("to", [])):
         return False
     # Skip workspace guards
     if is_t_ws_guard(m):
