@@ -272,17 +272,13 @@ execute_op() {
         focus)
             focus_ws_on_monitor "$_C_FOCUSED_MON" "$WS"
             ;;
-        focus-1)
-            focus_ws_on_monitor "$(resolve_monitor 1)" "$WS"
-            ;;
-        focus-2)
-            focus_ws_on_monitor "$(resolve_monitor 2)" "$WS"
-            ;;
-        focus-3)
-            focus_ws_on_monitor "$(resolve_monitor 3)" "$WS"
-            ;;
-        focus-4)
-            focus_ws_on_monitor "$(resolve_monitor 4)" "$WS"
+        focus-[1-4])
+            ORIG_MON="$_C_FOCUSED_MON"
+            focus_ws_on_monitor "$(resolve_monitor "${OP##focus-}")" "$WS"
+            # Restore focus to original monitor — caps+T+W+(e/r/3/4) changes
+            # the workspace on the target monitor without moving focus
+            aerospace focus-monitor "$ORIG_MON"
+            [[ $_CACHED -eq 1 ]] && _C_FOCUSED_MON="$ORIG_MON"
             ;;
         move)
             aerospace move-node-to-workspace "$WS"
