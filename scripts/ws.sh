@@ -274,8 +274,7 @@ execute_op() {
             ;;
         focus-[1-4])
             # FOCUS_N_RESTORE_MON is pre-set from home file in drain_queue.
-            # Fall back to cache if file was missing (shouldn't happen normally).
-            [[ -z "$FOCUS_N_RESTORE_MON" ]] && FOCUS_N_RESTORE_MON="$_C_FOCUSED_MON"
+            # No fallback to _C_FOCUSED_MON — it may be corrupted by killed processes.
             focus_ws_on_monitor "$(resolve_monitor "${OP##focus-}")" "$WS"
             ;;
         move)
@@ -491,6 +490,13 @@ drain_queue() {
         OP="${line%% *}"
         WS="${line#* }"
         debug "DRAIN $OP $WS (from $(basename "$next"))"
+        # If user transitioned from focus-N to another op type (e.g. released E),
+        # cancel the pending focus restore — the new ops determine final state.
+        if [[ "$OP" != focus-[1-4] && -n "$FOCUS_N_RESTORE_MON" ]]; then
+            debug "CLEAR focus-N restore (transitioned to $OP)"
+            FOCUS_N_RESTORE_MON=""
+            rm -f "$FOCUS_N_HOME_FILE"
+        fi
         execute_op
         # Non-focus ops modify state in complex ways; refresh cache fully
         [[ "$OP" != focus* ]] && cache_state
