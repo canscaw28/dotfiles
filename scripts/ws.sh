@@ -273,12 +273,9 @@ execute_op() {
             focus_ws_on_monitor "$_C_FOCUSED_MON" "$WS"
             ;;
         focus-[1-4])
-            ORIG_MON="$_C_FOCUSED_MON"
+            # Save original monitor once (first focus-N in a drain batch)
+            [[ -z "$FOCUS_N_RESTORE_MON" ]] && FOCUS_N_RESTORE_MON="$_C_FOCUSED_MON"
             focus_ws_on_monitor "$(resolve_monitor "${OP##focus-}")" "$WS"
-            # Restore focus to original monitor — caps+T+W+(e/r/3/4) changes
-            # the workspace on the target monitor without moving focus
-            aerospace focus-monitor "$ORIG_MON"
-            [[ $_CACHED -eq 1 ]] && _C_FOCUSED_MON="$ORIG_MON"
             ;;
         move)
             aerospace move-node-to-workspace "$WS"
@@ -401,6 +398,13 @@ per_op_post_process() {
 # Synchronous aerospace calls (move-mouse, list-monitors) go here instead of
 # per_op_post_process to avoid adding ~100-200ms latency between each queued op.
 final_post_process() {
+    # Restore focus to original monitor after focus-N batch (deferred from
+    # execute_op so consecutive focus-N ops don't ping-pong between monitors)
+    if [[ -n "$FOCUS_N_RESTORE_MON" ]]; then
+        aerospace focus-monitor "$FOCUS_N_RESTORE_MON"
+        [[ $_CACHED -eq 1 ]] && _C_FOCUSED_MON="$FOCUS_N_RESTORE_MON"
+    fi
+
     # Show workspace notification overlay
     NOTIFY_WS="$WS"
     NOTIFY_MON="$_C_FOCUSED_MON"
@@ -435,6 +439,7 @@ COLLAPSE_THRESHOLD=7
 
 drain_queue() {
     cache_state
+    FOCUS_N_RESTORE_MON=""
     while true; do
         local files=("$QUEUE_DIR"/[0-9]*)
         [[ -e "${files[0]}" ]] || return
