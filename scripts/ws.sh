@@ -273,7 +273,8 @@ execute_op() {
             focus_ws_on_monitor "$_C_FOCUSED_MON" "$WS"
             ;;
         focus-[1-4])
-            # Save original monitor once (first focus-N in a drain batch)
+            # FOCUS_N_RESTORE_MON is pre-set from home file in drain_queue.
+            # Fall back to cache if file was missing (shouldn't happen normally).
             [[ -z "$FOCUS_N_RESTORE_MON" ]] && FOCUS_N_RESTORE_MON="$_C_FOCUSED_MON"
             focus_ws_on_monitor "$(resolve_monitor "${OP##focus-}")" "$WS"
             ;;
@@ -401,8 +402,16 @@ final_post_process() {
     # Restore focus to original monitor after focus-N batch (deferred from
     # execute_op so consecutive focus-N ops don't ping-pong between monitors)
     if [[ -n "$FOCUS_N_RESTORE_MON" ]]; then
-        aerospace focus-monitor "$FOCUS_N_RESTORE_MON"; sleep 0.03
+        debug "RESTORE target=$FOCUS_N_RESTORE_MON before=$(aerospace list-monitors --focused --format '%{monitor-id}')"
+        aerospace focus-monitor "$FOCUS_N_RESTORE_MON"; sleep 0.05
+        local _actual_mon
+        _actual_mon=$(aerospace list-monitors --focused --format '%{monitor-id}')
+        if [[ "$_actual_mon" != "$FOCUS_N_RESTORE_MON" ]]; then
+            debug "RESTORE retry — focus didn't take (got $_actual_mon)"
+            aerospace focus-monitor "$FOCUS_N_RESTORE_MON"; sleep 0.05
+        fi
         [[ $_CACHED -eq 1 ]] && _C_FOCUSED_MON="$FOCUS_N_RESTORE_MON"
+        rm -f "$FOCUS_N_HOME_FILE"
     fi
 
     # Show workspace notification overlay
@@ -440,6 +449,12 @@ COLLAPSE_KEEP=5
 drain_queue() {
     cache_state
     FOCUS_N_RESTORE_MON=""
+    # Read pre-saved home monitor for focus-N batch (written by first invocation
+    # before any ops ran, so it reflects the user's actual focused monitor)
+    if [[ -f "$FOCUS_N_HOME_FILE" ]]; then
+        FOCUS_N_RESTORE_MON=$(<"$FOCUS_N_HOME_FILE")
+        debug "HOME read $FOCUS_N_RESTORE_MON from file"
+    fi
     while true; do
         local files=("$QUEUE_DIR"/[0-9]*)
         [[ -e "${files[0]}" ]] || return
@@ -494,6 +509,20 @@ OP="${1:-}"
 WS="${2:-}"
 
 debug "START $OP $WS"
+
+# For focus-N ops, persist the user's home monitor to a file on the FIRST
+# invocation (before any ops corrupt AeroSpace state). Later invocations see
+# the file and skip writing. This survives Karabiner killing processes mid-op.
+FOCUS_N_HOME_FILE="/tmp/ws-focus-n-home"
+if [[ -f "$FOCUS_N_HOME_FILE" ]]; then
+    # Remove stale file from a previous batch that wasn't cleaned up
+    _home_age=$(( $(date +%s) - $(stat -f %m "$FOCUS_N_HOME_FILE") ))
+    [[ $_home_age -gt 2 ]] && rm -f "$FOCUS_N_HOME_FILE"
+fi
+if [[ "$OP" == focus-[1-4] && ! -f "$FOCUS_N_HOME_FILE" ]]; then
+    aerospace list-monitors --focused --format '%{monitor-id}' > "$FOCUS_N_HOME_FILE"
+    debug "HOME wrote $(<"$FOCUS_N_HOME_FILE") to $FOCUS_N_HOME_FILE"
+fi
 enqueue "$OP" "$WS"
 
 if acquire_lock || acquire_lock; then
