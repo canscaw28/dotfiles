@@ -360,21 +360,21 @@ function M.getFrame()
     return nil
 end
 
--- File poll: Karabiner writes key names to /tmp/ws-grid-keys (printf builtin,
--- ~0ms). We poll at 60Hz while the grid is visible. Keys are queued and
--- drained one per display frame (~16ms) so each gets its own drawRect pass.
+-- Eventtap: Karabiner workspace manipulators output fn+key (instant HID event)
+-- before firing shell_command. We catch these key events directly — no file I/O,
+-- no polling, no race conditions. Keys are queued and drained one per display
+-- frame (~16ms) so each gets its own drawRect pass.
 -- (hs.canvas:elementAttribute calls setNeedsDisplay which defers to runloop;
 -- multiple calls in one callback produce only one visible frame.)
-local WS_KEY_SET = {}
-for _, row in ipairs(ROWS) do
-    for _, key in ipairs(row.keys) do
-        WS_KEY_SET[key] = true
-    end
-end
 
-local KEY_FILE = "/tmp/ws-grid-keys"
-local KEY_TMP  = "/tmp/ws-grid-keys.tmp"
-local keyPollTimer = nil
+-- macOS virtual keyCode → workspace key string
+local KEY_CODE_MAP = {
+    [22] = "6", [26] = "7", [28] = "8", [25] = "9", [29] = "0",
+    [16] = "y", [32] = "u", [34] = "i", [31] = "o", [35] = "p",
+    [4]  = "h", [38] = "j", [40] = "k", [37] = "l", [41] = ";",
+    [45] = "n", [46] = "m", [43] = ",", [47] = ".", [44] = "/",
+}
+
 local pendingKeyQueue = {}
 local keyDrainTimer = nil
 
@@ -414,55 +414,39 @@ startKeyDrain = function()
     end
 end
 
-local function pollKeys()
-    -- Safety: if grid should no longer be visible, clean up
-    if not shouldShowGrid() then
-        if keyPollTimer then keyPollTimer:stop(); keyPollTimer = nil end
-        stopKeyDrain()
-        os.remove(KEY_FILE)
-        os.remove(KEY_TMP)
-        if grid then grid:delete(); grid = nil end
-        return
-    end
+-- Catches workspace key events from Karabiner's virtual keyboard output.
+-- When a manipulator matches, it sends fn+key; when it doesn't match,
+-- the raw key passes through. Either way, we update the grid and consume.
+local wsEventTap = hs.eventtap.new(
+    {hs.eventtap.event.types.keyDown, hs.eventtap.event.types.keyUp},
+    function(event)
+        local keyCode = event:getKeyCode()
+        local wsKey = KEY_CODE_MAP[keyCode]
+        if not wsKey then return false end  -- not a workspace key, pass through
 
-    local ok = os.rename(KEY_FILE, KEY_TMP)
-    if not ok then return end
-    local f = io.open(KEY_TMP, "r")
-    if not f then return end
-    local content = f:read("*a")
-    f:close()
-    os.remove(KEY_TMP)
-
-    -- Enqueue valid keys for frame-paced draining
-    local added = false
-    for key in content:gmatch("[^\n]+") do
-        if WS_KEY_SET[key] then
-            local mon = targetMonitor()
-            if mon == 0 then mon = nil end
-            pendingKeyQueue[#pendingKeyQueue + 1] = {key = key, mon = mon}
-            added = true
+        -- Consume keyUp silently (prevents orphaned keyUp reaching apps)
+        if event:getType() == hs.eventtap.event.types.keyUp then
+            return true
         end
-    end
-    if added then startKeyDrain() end
-end
 
-local function startKeyPoll()
-    if keyPollTimer then return end
-    keyPollTimer = hs.timer.doEvery(0.016, pollKeys)  -- 60Hz (matches display)
-end
+        -- Ignore key repeat
+        if event:getProperty(hs.eventtap.event.properties.keyboardEventAutorepeat) ~= 0 then
+            return true
+        end
 
-local function stopKeyPoll()
-    if keyPollTimer then
-        keyPollTimer:stop()
-        keyPollTimer = nil
+        -- Enqueue for frame-paced drain
+        local mon = targetMonitor()
+        if mon == 0 then mon = nil end
+        pendingKeyQueue[#pendingKeyQueue + 1] = {key = wsKey, mon = mon}
+        startKeyDrain()
+
+        return true  -- consume
     end
-    stopKeyDrain()
-end
+)
 
 function M.hideGrid()
-    stopKeyPoll()
-    os.remove(KEY_FILE)
-    os.remove(KEY_TMP)
+    if wsEventTap:isEnabled() then wsEventTap:stop() end
+    stopKeyDrain()
     if pendingTask and pendingTask:isRunning() then
         pendingTask:terminate()
         pendingTask = nil
@@ -478,7 +462,7 @@ end
 local function refresh()
     if shouldShowGrid() then
         M.showGrid()
-        startKeyPoll()
+        if not wsEventTap:isEnabled() then wsEventTap:start() end
     else
         M.hideGrid()
     end
