@@ -401,7 +401,7 @@ final_post_process() {
     # Restore focus to original monitor after focus-N batch (deferred from
     # execute_op so consecutive focus-N ops don't ping-pong between monitors)
     if [[ -n "$FOCUS_N_RESTORE_MON" ]]; then
-        aerospace focus-monitor "$FOCUS_N_RESTORE_MON"
+        aerospace focus-monitor "$FOCUS_N_RESTORE_MON"; sleep 0.03
         [[ $_CACHED -eq 1 ]] && _C_FOCUSED_MON="$FOCUS_N_RESTORE_MON"
     fi
 
