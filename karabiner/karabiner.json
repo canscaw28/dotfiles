@@ -12459,6 +12459,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "6",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus 6"
                   }
                 ],
@@ -12541,6 +12547,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "7",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus 7"
                   }
@@ -12625,6 +12637,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "8",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus 8"
                   }
                 ],
@@ -12707,6 +12725,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "9",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus 9"
                   }
@@ -12791,6 +12815,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "0",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus 0"
                   }
                 ],
@@ -12873,6 +12903,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "y",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus y"
                   }
@@ -12957,6 +12993,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "u",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus u"
                   }
                 ],
@@ -13039,6 +13081,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "i",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus i"
                   }
@@ -13123,6 +13171,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "o",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus o"
                   }
                 ],
@@ -13205,6 +13259,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "p",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus p"
                   }
@@ -13289,6 +13349,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "h",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus h"
                   }
                 ],
@@ -13371,6 +13437,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "j",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus j"
                   }
@@ -13455,6 +13527,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "k",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus k"
                   }
                 ],
@@ -13537,6 +13615,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "l",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus l"
                   }
@@ -13621,6 +13705,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus \";\""
                   }
                 ],
@@ -13703,6 +13793,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "n",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus n"
                   }
@@ -13787,6 +13883,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "m",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus m"
                   }
                 ],
@@ -13869,6 +13971,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "comma",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus comma"
                   }
@@ -13953,6 +14061,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "period",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus ."
                   }
                 ],
@@ -14035,6 +14149,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "slash",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move-focus /"
                   }
@@ -14119,7 +14239,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '6\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 6"
+                    "key_code": "6",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 6"
                   }
                 ],
                 "type": "basic"
@@ -14202,7 +14328,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '7\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 7"
+                    "key_code": "7",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 7"
                   }
                 ],
                 "type": "basic"
@@ -14285,7 +14417,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '8\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 8"
+                    "key_code": "8",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 8"
                   }
                 ],
                 "type": "basic"
@@ -14368,7 +14506,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '9\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 9"
+                    "key_code": "9",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 9"
                   }
                 ],
                 "type": "basic"
@@ -14451,7 +14595,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '0\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 0"
+                    "key_code": "0",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 0"
                   }
                 ],
                 "type": "basic"
@@ -14534,7 +14684,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'y\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 y"
+                    "key_code": "y",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 y"
                   }
                 ],
                 "type": "basic"
@@ -14617,7 +14773,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'u\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 u"
+                    "key_code": "u",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 u"
                   }
                 ],
                 "type": "basic"
@@ -14700,7 +14862,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'i\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 i"
+                    "key_code": "i",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 i"
                   }
                 ],
                 "type": "basic"
@@ -14783,7 +14951,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'o\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 o"
+                    "key_code": "o",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 o"
                   }
                 ],
                 "type": "basic"
@@ -14866,7 +15040,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'p\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 p"
+                    "key_code": "p",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 p"
                   }
                 ],
                 "type": "basic"
@@ -14949,7 +15129,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'h\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 h"
+                    "key_code": "h",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 h"
                   }
                 ],
                 "type": "basic"
@@ -15032,7 +15218,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'j\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 j"
+                    "key_code": "j",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 j"
                   }
                 ],
                 "type": "basic"
@@ -15115,7 +15307,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'k\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 k"
+                    "key_code": "k",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 k"
                   }
                 ],
                 "type": "basic"
@@ -15198,7 +15396,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'l\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 l"
+                    "key_code": "l",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 l"
                   }
                 ],
                 "type": "basic"
@@ -15281,7 +15485,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf ';\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 \";\""
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 \";\""
                   }
                 ],
                 "type": "basic"
@@ -15364,7 +15574,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'n\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 n"
+                    "key_code": "n",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 n"
                   }
                 ],
                 "type": "basic"
@@ -15447,7 +15663,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'm\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 m"
+                    "key_code": "m",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 m"
                   }
                 ],
                 "type": "basic"
@@ -15530,7 +15752,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf ',\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 comma"
+                    "key_code": "comma",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 comma"
                   }
                 ],
                 "type": "basic"
@@ -15613,7 +15841,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '.\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 ."
+                    "key_code": "period",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 ."
                   }
                 ],
                 "type": "basic"
@@ -15696,7 +15930,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '/\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-1 /"
+                    "key_code": "slash",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-1 /"
                   }
                 ],
                 "type": "basic"
@@ -15779,7 +16019,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '6\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 6"
+                    "key_code": "6",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 6"
                   }
                 ],
                 "type": "basic"
@@ -15862,7 +16108,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '7\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 7"
+                    "key_code": "7",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 7"
                   }
                 ],
                 "type": "basic"
@@ -15945,7 +16197,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '8\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 8"
+                    "key_code": "8",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 8"
                   }
                 ],
                 "type": "basic"
@@ -16028,7 +16286,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '9\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 9"
+                    "key_code": "9",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 9"
                   }
                 ],
                 "type": "basic"
@@ -16111,7 +16375,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '0\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 0"
+                    "key_code": "0",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 0"
                   }
                 ],
                 "type": "basic"
@@ -16194,7 +16464,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'y\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 y"
+                    "key_code": "y",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 y"
                   }
                 ],
                 "type": "basic"
@@ -16277,7 +16553,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'u\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 u"
+                    "key_code": "u",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 u"
                   }
                 ],
                 "type": "basic"
@@ -16360,7 +16642,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'i\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 i"
+                    "key_code": "i",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 i"
                   }
                 ],
                 "type": "basic"
@@ -16443,7 +16731,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'o\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 o"
+                    "key_code": "o",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 o"
                   }
                 ],
                 "type": "basic"
@@ -16526,7 +16820,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'p\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 p"
+                    "key_code": "p",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 p"
                   }
                 ],
                 "type": "basic"
@@ -16609,7 +16909,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'h\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 h"
+                    "key_code": "h",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 h"
                   }
                 ],
                 "type": "basic"
@@ -16692,7 +16998,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'j\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 j"
+                    "key_code": "j",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 j"
                   }
                 ],
                 "type": "basic"
@@ -16775,7 +17087,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'k\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 k"
+                    "key_code": "k",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 k"
                   }
                 ],
                 "type": "basic"
@@ -16858,7 +17176,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'l\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 l"
+                    "key_code": "l",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 l"
                   }
                 ],
                 "type": "basic"
@@ -16941,7 +17265,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf ';\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 \";\""
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 \";\""
                   }
                 ],
                 "type": "basic"
@@ -17024,7 +17354,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'n\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 n"
+                    "key_code": "n",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 n"
                   }
                 ],
                 "type": "basic"
@@ -17107,7 +17443,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'm\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 m"
+                    "key_code": "m",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 m"
                   }
                 ],
                 "type": "basic"
@@ -17190,7 +17532,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf ',\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 comma"
+                    "key_code": "comma",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 comma"
                   }
                 ],
                 "type": "basic"
@@ -17273,7 +17621,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '.\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 ."
+                    "key_code": "period",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 ."
                   }
                 ],
                 "type": "basic"
@@ -17356,7 +17710,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '/\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-2 /"
+                    "key_code": "slash",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-2 /"
                   }
                 ],
                 "type": "basic"
@@ -17439,7 +17799,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '6\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 6"
+                    "key_code": "6",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 6"
                   }
                 ],
                 "type": "basic"
@@ -17522,7 +17888,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '7\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 7"
+                    "key_code": "7",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 7"
                   }
                 ],
                 "type": "basic"
@@ -17605,7 +17977,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '8\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 8"
+                    "key_code": "8",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 8"
                   }
                 ],
                 "type": "basic"
@@ -17688,7 +18066,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '9\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 9"
+                    "key_code": "9",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 9"
                   }
                 ],
                 "type": "basic"
@@ -17771,7 +18155,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '0\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 0"
+                    "key_code": "0",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 0"
                   }
                 ],
                 "type": "basic"
@@ -17854,7 +18244,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'y\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 y"
+                    "key_code": "y",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 y"
                   }
                 ],
                 "type": "basic"
@@ -17937,7 +18333,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'u\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 u"
+                    "key_code": "u",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 u"
                   }
                 ],
                 "type": "basic"
@@ -18020,7 +18422,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'i\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 i"
+                    "key_code": "i",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 i"
                   }
                 ],
                 "type": "basic"
@@ -18103,7 +18511,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'o\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 o"
+                    "key_code": "o",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 o"
                   }
                 ],
                 "type": "basic"
@@ -18186,7 +18600,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'p\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 p"
+                    "key_code": "p",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 p"
                   }
                 ],
                 "type": "basic"
@@ -18269,7 +18689,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'h\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 h"
+                    "key_code": "h",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 h"
                   }
                 ],
                 "type": "basic"
@@ -18352,7 +18778,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'j\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 j"
+                    "key_code": "j",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 j"
                   }
                 ],
                 "type": "basic"
@@ -18435,7 +18867,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'k\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 k"
+                    "key_code": "k",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 k"
                   }
                 ],
                 "type": "basic"
@@ -18518,7 +18956,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'l\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 l"
+                    "key_code": "l",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 l"
                   }
                 ],
                 "type": "basic"
@@ -18601,7 +19045,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf ';\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 \";\""
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 \";\""
                   }
                 ],
                 "type": "basic"
@@ -18684,7 +19134,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'n\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 n"
+                    "key_code": "n",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 n"
                   }
                 ],
                 "type": "basic"
@@ -18767,7 +19223,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'm\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 m"
+                    "key_code": "m",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 m"
                   }
                 ],
                 "type": "basic"
@@ -18850,7 +19312,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf ',\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 comma"
+                    "key_code": "comma",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 comma"
                   }
                 ],
                 "type": "basic"
@@ -18933,7 +19401,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '.\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 ."
+                    "key_code": "period",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 ."
                   }
                 ],
                 "type": "basic"
@@ -19016,7 +19490,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '/\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-3 /"
+                    "key_code": "slash",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-3 /"
                   }
                 ],
                 "type": "basic"
@@ -19099,7 +19579,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '6\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 6"
+                    "key_code": "6",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 6"
                   }
                 ],
                 "type": "basic"
@@ -19182,7 +19668,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '7\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 7"
+                    "key_code": "7",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 7"
                   }
                 ],
                 "type": "basic"
@@ -19265,7 +19757,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '8\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 8"
+                    "key_code": "8",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 8"
                   }
                 ],
                 "type": "basic"
@@ -19348,7 +19846,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '9\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 9"
+                    "key_code": "9",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 9"
                   }
                 ],
                 "type": "basic"
@@ -19431,7 +19935,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '0\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 0"
+                    "key_code": "0",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 0"
                   }
                 ],
                 "type": "basic"
@@ -19514,7 +20024,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'y\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 y"
+                    "key_code": "y",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 y"
                   }
                 ],
                 "type": "basic"
@@ -19597,7 +20113,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'u\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 u"
+                    "key_code": "u",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 u"
                   }
                 ],
                 "type": "basic"
@@ -19680,7 +20202,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'i\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 i"
+                    "key_code": "i",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 i"
                   }
                 ],
                 "type": "basic"
@@ -19763,7 +20291,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'o\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 o"
+                    "key_code": "o",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 o"
                   }
                 ],
                 "type": "basic"
@@ -19846,7 +20380,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'p\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 p"
+                    "key_code": "p",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 p"
                   }
                 ],
                 "type": "basic"
@@ -19929,7 +20469,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'h\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 h"
+                    "key_code": "h",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 h"
                   }
                 ],
                 "type": "basic"
@@ -20012,7 +20558,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'j\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 j"
+                    "key_code": "j",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 j"
                   }
                 ],
                 "type": "basic"
@@ -20095,7 +20647,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'k\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 k"
+                    "key_code": "k",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 k"
                   }
                 ],
                 "type": "basic"
@@ -20178,7 +20736,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'l\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 l"
+                    "key_code": "l",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 l"
                   }
                 ],
                 "type": "basic"
@@ -20261,7 +20825,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf ';\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 \";\""
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 \";\""
                   }
                 ],
                 "type": "basic"
@@ -20344,7 +20914,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'n\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 n"
+                    "key_code": "n",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 n"
                   }
                 ],
                 "type": "basic"
@@ -20427,7 +21003,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'm\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 m"
+                    "key_code": "m",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 m"
                   }
                 ],
                 "type": "basic"
@@ -20510,7 +21092,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf ',\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 comma"
+                    "key_code": "comma",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 comma"
                   }
                 ],
                 "type": "basic"
@@ -20593,7 +21181,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '.\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 ."
+                    "key_code": "period",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 ."
                   }
                 ],
                 "type": "basic"
@@ -20676,7 +21270,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '/\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus-4 /"
+                    "key_code": "slash",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus-4 /"
                   }
                 ],
                 "type": "basic"
@@ -20759,7 +21359,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '6\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus 6"
+                    "key_code": "6",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus 6"
                   }
                 ],
                 "type": "basic"
@@ -20842,7 +21448,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '7\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus 7"
+                    "key_code": "7",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus 7"
                   }
                 ],
                 "type": "basic"
@@ -20925,7 +21537,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '8\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus 8"
+                    "key_code": "8",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus 8"
                   }
                 ],
                 "type": "basic"
@@ -21008,7 +21626,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '9\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus 9"
+                    "key_code": "9",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus 9"
                   }
                 ],
                 "type": "basic"
@@ -21091,7 +21715,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '0\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus 0"
+                    "key_code": "0",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus 0"
                   }
                 ],
                 "type": "basic"
@@ -21174,7 +21804,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'y\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus y"
+                    "key_code": "y",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus y"
                   }
                 ],
                 "type": "basic"
@@ -21257,7 +21893,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'u\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus u"
+                    "key_code": "u",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus u"
                   }
                 ],
                 "type": "basic"
@@ -21340,7 +21982,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'i\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus i"
+                    "key_code": "i",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus i"
                   }
                 ],
                 "type": "basic"
@@ -21423,7 +22071,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'o\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus o"
+                    "key_code": "o",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus o"
                   }
                 ],
                 "type": "basic"
@@ -21506,7 +22160,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'p\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus p"
+                    "key_code": "p",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus p"
                   }
                 ],
                 "type": "basic"
@@ -21589,7 +22249,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'h\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus h"
+                    "key_code": "h",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus h"
                   }
                 ],
                 "type": "basic"
@@ -21672,7 +22338,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'j\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus j"
+                    "key_code": "j",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus j"
                   }
                 ],
                 "type": "basic"
@@ -21755,7 +22427,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'k\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus k"
+                    "key_code": "k",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus k"
                   }
                 ],
                 "type": "basic"
@@ -21838,7 +22516,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'l\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus l"
+                    "key_code": "l",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus l"
                   }
                 ],
                 "type": "basic"
@@ -21921,7 +22605,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf ';\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus \";\""
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus \";\""
                   }
                 ],
                 "type": "basic"
@@ -22004,7 +22694,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'n\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus n"
+                    "key_code": "n",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus n"
                   }
                 ],
                 "type": "basic"
@@ -22087,7 +22783,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf 'm\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus m"
+                    "key_code": "m",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus m"
                   }
                 ],
                 "type": "basic"
@@ -22170,7 +22872,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf ',\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus comma"
+                    "key_code": "comma",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus comma"
                   }
                 ],
                 "type": "basic"
@@ -22253,7 +22961,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '.\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus ."
+                    "key_code": "period",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus ."
                   }
                 ],
                 "type": "basic"
@@ -22336,7 +23050,13 @@
                 },
                 "to": [
                   {
-                    "shell_command": "printf '/\\n'>>/tmp/ws-grid-keys;$HOME/.local/bin/ws.sh focus /"
+                    "key_code": "slash",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/ws.sh focus /"
                   }
                 ],
                 "type": "basic"
@@ -22418,6 +23138,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "6",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move 6"
                   }
@@ -22502,6 +23228,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "7",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move 7"
                   }
                 ],
@@ -22584,6 +23316,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "8",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move 8"
                   }
@@ -22668,6 +23406,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "9",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move 9"
                   }
                 ],
@@ -22750,6 +23494,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "0",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move 0"
                   }
@@ -22834,6 +23584,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "y",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move y"
                   }
                 ],
@@ -22916,6 +23672,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "u",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move u"
                   }
@@ -23000,6 +23762,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "i",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move i"
                   }
                 ],
@@ -23082,6 +23850,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "o",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move o"
                   }
@@ -23166,6 +23940,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "p",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move p"
                   }
                 ],
@@ -23248,6 +24028,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "h",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move h"
                   }
@@ -23332,6 +24118,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "j",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move j"
                   }
                 ],
@@ -23414,6 +24206,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "k",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move k"
                   }
@@ -23498,6 +24296,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "l",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move l"
                   }
                 ],
@@ -23580,6 +24384,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move \";\""
                   }
@@ -23664,6 +24474,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "n",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move n"
                   }
                 ],
@@ -23746,6 +24562,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "m",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move m"
                   }
@@ -23830,6 +24652,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "comma",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move comma"
                   }
                 ],
@@ -23912,6 +24740,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "period",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh move ."
                   }
@@ -23996,6 +24830,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "slash",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh move /"
                   }
                 ],
@@ -24078,6 +24918,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "6",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows 6"
                   }
@@ -24162,6 +25008,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "7",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows 7"
                   }
                 ],
@@ -24244,6 +25096,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "8",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows 8"
                   }
@@ -24328,6 +25186,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "9",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows 9"
                   }
                 ],
@@ -24410,6 +25274,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "0",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows 0"
                   }
@@ -24494,6 +25364,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "y",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows y"
                   }
                 ],
@@ -24576,6 +25452,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "u",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows u"
                   }
@@ -24660,6 +25542,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "i",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows i"
                   }
                 ],
@@ -24742,6 +25630,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "o",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows o"
                   }
@@ -24826,6 +25720,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "p",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows p"
                   }
                 ],
@@ -24908,6 +25808,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "h",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows h"
                   }
@@ -24992,6 +25898,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "j",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows j"
                   }
                 ],
@@ -25074,6 +25986,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "k",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows k"
                   }
@@ -25158,6 +26076,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "l",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows l"
                   }
                 ],
@@ -25240,6 +26164,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows \";\""
                   }
@@ -25324,6 +26254,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "n",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows n"
                   }
                 ],
@@ -25406,6 +26342,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "m",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows m"
                   }
@@ -25490,6 +26432,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "comma",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows comma"
                   }
                 ],
@@ -25572,6 +26520,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "period",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows ."
                   }
@@ -25656,6 +26610,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "slash",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh push-windows /"
                   }
                 ],
@@ -25738,6 +26698,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "6",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows 6"
                   }
@@ -25822,6 +26788,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "7",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows 7"
                   }
                 ],
@@ -25904,6 +26876,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "8",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows 8"
                   }
@@ -25988,6 +26966,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "9",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows 9"
                   }
                 ],
@@ -26070,6 +27054,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "0",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows 0"
                   }
@@ -26154,6 +27144,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "y",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows y"
                   }
                 ],
@@ -26236,6 +27232,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "u",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows u"
                   }
@@ -26320,6 +27322,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "i",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows i"
                   }
                 ],
@@ -26402,6 +27410,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "o",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows o"
                   }
@@ -26486,6 +27500,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "p",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows p"
                   }
                 ],
@@ -26568,6 +27588,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "h",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows h"
                   }
@@ -26652,6 +27678,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "j",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows j"
                   }
                 ],
@@ -26734,6 +27766,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "k",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows k"
                   }
@@ -26818,6 +27856,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "l",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows l"
                   }
                 ],
@@ -26900,6 +27944,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows \";\""
                   }
@@ -26984,6 +28034,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "n",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows n"
                   }
                 ],
@@ -27066,6 +28122,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "m",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows m"
                   }
@@ -27150,6 +28212,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "comma",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows comma"
                   }
                 ],
@@ -27232,6 +28300,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "period",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows ."
                   }
@@ -27316,6 +28390,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "slash",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh pull-windows /"
                   }
                 ],
@@ -27398,6 +28478,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "6",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows 6"
                   }
@@ -27482,6 +28568,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "7",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows 7"
                   }
                 ],
@@ -27564,6 +28656,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "8",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows 8"
                   }
@@ -27648,6 +28746,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "9",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows 9"
                   }
                 ],
@@ -27730,6 +28834,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "0",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows 0"
                   }
@@ -27814,6 +28924,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "y",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows y"
                   }
                 ],
@@ -27896,6 +29012,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "u",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows u"
                   }
@@ -27980,6 +29102,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "i",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows i"
                   }
                 ],
@@ -28062,6 +29190,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "o",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows o"
                   }
@@ -28146,6 +29280,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "p",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows p"
                   }
                 ],
@@ -28228,6 +29368,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "h",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows h"
                   }
@@ -28312,6 +29458,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "j",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows j"
                   }
                 ],
@@ -28394,6 +29546,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "k",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows k"
                   }
@@ -28478,6 +29636,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "l",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows l"
                   }
                 ],
@@ -28560,6 +29724,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows \";\""
                   }
@@ -28644,6 +29814,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "n",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows n"
                   }
                 ],
@@ -28726,6 +29902,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "m",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows m"
                   }
@@ -28810,6 +29992,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "comma",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows comma"
                   }
                 ],
@@ -28893,6 +30081,12 @@
                 },
                 "to": [
                   {
+                    "key_code": "period",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows ."
                   }
                 ],
@@ -28975,6 +30169,12 @@
                   }
                 },
                 "to": [
+                  {
+                    "key_code": "slash",
+                    "modifiers": [
+                      "fn"
+                    ]
+                  },
                   {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-windows /"
                   }
