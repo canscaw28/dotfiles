@@ -435,7 +435,7 @@ final_post_process() {
 
 # --- Queue drain ---
 
-COLLAPSE_THRESHOLD=7
+COLLAPSE_KEEP=5
 
 drain_queue() {
     cache_state
@@ -443,35 +443,38 @@ drain_queue() {
     while true; do
         local files=("$QUEUE_DIR"/[0-9]*)
         [[ -e "${files[0]}" ]] || return
-        local next="${files[0]}"
 
-        local line
-        line=$(<"$next")
-        local op="${line%% *}"
-        local ws="${line#* }"
-
-        # Collapse consecutive focus ops when the queue is deep (> threshold).
-        # Small bursts execute fully so the user sees each transition.
-        # Large backlogs skip intermediate focus ops to catch up quickly.
-        if [[ "$op" == focus* ]]; then
-            local depth=${#files[@]}
-            if [[ "$depth" -gt "$COLLAPSE_THRESHOLD" ]]; then
-                local peek="${files[1]:-}"
-                if [[ -n "$peek" && -e "$peek" ]]; then
-                    local peek_line
-                    peek_line=$(<"$peek")
-                    local peek_op="${peek_line%% *}"
-                    if [[ "$peek_op" == focus* ]]; then
-                        debug "SKIP $op $ws (queue depth $depth)"
-                        rm -f "$next"
-                        continue
+        # Collapse: when queue has more than COLLAPSE_KEEP focus ops,
+        # bulk-skip excess from the front. Keeps the last N focus ops
+        # so the user lands on their intended workspace quickly.
+        # Non-focus ops (move, swap) are never skipped.
+        local depth=${#files[@]}
+        if [[ "$depth" -gt "$COLLAPSE_KEEP" ]]; then
+            local focus_count=0
+            for f in "${files[@]}"; do
+                local l=$(<"$f")
+                [[ "${l%% *}" == focus* ]] && ((focus_count++))
+            done
+            local excess=$((focus_count - COLLAPSE_KEEP))
+            if [[ "$excess" -gt 0 ]]; then
+                for f in "${files[@]}"; do
+                    [[ "$excess" -le 0 ]] && break
+                    local l=$(<"$f")
+                    if [[ "${l%% *}" == focus* ]]; then
+                        debug "COLLAPSE skip ${l%% *} ${l#* } ($focus_count focus ops, keeping $COLLAPSE_KEEP)"
+                        rm -f "$f"
+                        ((excess--))
                     fi
-                fi
+                done
+                continue  # re-enumerate after bulk skip
             fi
         fi
 
-        OP="$op"
-        WS="$ws"
+        local next="${files[0]}"
+        local line
+        line=$(<"$next")
+        OP="${line%% *}"
+        WS="${line#* }"
         debug "DRAIN $OP $WS (from $(basename "$next"))"
         execute_op
         # Non-focus ops modify state in complex ways; refresh cache fully
@@ -491,7 +494,6 @@ OP="${1:-}"
 WS="${2:-}"
 
 debug "START $OP $WS"
-[[ -f /tmp/ws-invoke.log ]] && printf '%s %s %s\n' "$_START_TS" "$OP" "$WS" >> /tmp/ws-invoke.log
 enqueue "$OP" "$WS"
 
 if acquire_lock || acquire_lock; then
