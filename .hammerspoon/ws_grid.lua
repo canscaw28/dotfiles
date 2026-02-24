@@ -262,25 +262,32 @@ function M.visitKey(key, targetMon)
         end
         lastVisibleWs[displayKey] = monId
     end
-    lastFocusedKey = displayKey
+
+    -- Move the * marker only when operating on the user's actual focused
+    -- monitor. focus-N ops on a different monitor change that monitor's
+    -- workspace without moving focus, so * should stay put.
+    local moveFocus = (targetMon == nil) or (targetMon == lastFocusedMonId)
+    if moveFocus then
+        lastFocusedKey = displayKey
+    end
 
     -- Patch only changed keys (no full canvas recreation)
     if grid and shouldShowGrid() then
-        -- Previous focused key: revert to normal state
-        if prevFocused and prevFocused ~= displayKey then
+        -- Previous focused key: revert to normal state (only if * moved)
+        if moveFocus and prevFocused and prevFocused ~= displayKey then
             local prevMonId = lastVisibleWs[prevFocused]
             local prevColor = (prevMonId and MONITOR_COLORS[prevMonId]) or TEXT_COLOR_DIM
             patchKey(prevFocused, prevMonId ~= nil, false, prevColor)
         end
 
         -- Displaced key: lost its monitor assignment
-        if displacedKey and displacedKey ~= displayKey and displacedKey ~= prevFocused then
+        if displacedKey and displacedKey ~= displayKey and displacedKey ~= lastFocusedKey then
             patchKey(displacedKey, false, false, TEXT_COLOR_DIM)
         end
 
-        -- Current focused key
+        -- Visited key: show * only if it's the focused key
         local curColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
-        patchKey(displayKey, monId ~= nil, true, curColor)
+        patchKey(displayKey, monId ~= nil, displayKey == lastFocusedKey, curColor)
     end
 end
 
