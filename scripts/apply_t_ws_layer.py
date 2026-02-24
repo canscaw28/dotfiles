@@ -192,9 +192,21 @@ def generate():
     ws_bin = "$HOME/.local/bin/ws.sh"
     actions = []
 
+    # Focus ops: prepend a file write for instant grid feedback.
+    # printf (shell builtin, ~0ms) writes the key to a file that Hammerspoon
+    # polls at 200Hz while the grid is visible. ~5ms average visual latency,
+    # no process spawning. The ws.sh queue handles the actual workspace switch.
+    key_file = "/tmp/ws-grid-keys"
+
     for op_name, mode_conds in OPERATIONS:
-        for _display, key_code, ws_arg in WORKSPACE_KEYS:
-            shell_cmd = f"{ws_bin} {op_name} {ws_arg}"
+        for display_name, key_code, ws_arg in WORKSPACE_KEYS:
+            if op_name.startswith("focus"):
+                shell_cmd = (
+                    f"printf '{display_name}\\n'>>{key_file};"
+                    f"{ws_bin} {op_name} {ws_arg}"
+                )
+            else:
+                shell_cmd = f"{ws_bin} {op_name} {ws_arg}"
             actions.append(
                 make_action_manipulator(key_code, shell_cmd, mode_conds)
             )
@@ -265,12 +277,12 @@ def is_t_ws_action(m):
     """Match T layer workspace action (t=1, has shell_command with ws.sh, workspace key)."""
     conds = m.get("conditions", [])
     kc = m.get("from", {}).get("key_code", "")
-    to = m.get("to", [{}])[0]
-    cmd = to.get("shell_command", "")
-    return (get_cond(conds, "t_is_held") == 1
-            and "to_after_key_up" not in m
-            and "ws.sh" in cmd
-            and kc in _WORKSPACE_KEY_CODES)
+    if (get_cond(conds, "t_is_held") != 1
+            or "to_after_key_up" in m
+            or kc not in _WORKSPACE_KEY_CODES):
+        return False
+    # Check ALL to events for ws.sh (shell_command may be in to[0] or to[1])
+    return any("ws.sh" in ev.get("shell_command", "") for ev in m.get("to", []))
 
 
 def is_t_ws_guard(m):
