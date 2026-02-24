@@ -491,9 +491,12 @@ drain_queue() {
         WS="${line#* }"
         debug "DRAIN $OP $WS (from $(basename "$next"))"
         # If user transitioned from focus-N to another op type (e.g. released E),
-        # cancel the pending focus restore — the new ops determine final state.
+        # restore focus to home monitor IMMEDIATELY so subsequent ops use the
+        # correct _C_FOCUSED_MON (orphaned focus-N entries corrupt it).
         if [[ "$OP" != focus-[1-4] && -n "$FOCUS_N_RESTORE_MON" ]]; then
-            debug "CLEAR focus-N restore (transitioned to $OP)"
+            debug "TRANSITION restore to $FOCUS_N_RESTORE_MON before $OP"
+            aerospace focus-monitor "$FOCUS_N_RESTORE_MON"; sleep 0.03
+            cache_state
             FOCUS_N_RESTORE_MON=""
             rm -f "$FOCUS_N_HOME_FILE"
         fi
@@ -521,9 +524,12 @@ debug "START $OP $WS"
 # the file and skip writing. This survives Karabiner killing processes mid-op.
 FOCUS_N_HOME_FILE="/tmp/ws-focus-n-home"
 if [[ -f "$FOCUS_N_HOME_FILE" ]]; then
-    # Remove stale file from a previous batch that wasn't cleaned up
+    # Remove stale file from a previous batch that wasn't cleaned up.
+    # 5s threshold: long enough to survive rapid-fire sessions where workers
+    # get killed mid-batch, short enough to not persist across manual
+    # monitor switches between sessions.
     _home_age=$(( $(date +%s) - $(stat -f %m "$FOCUS_N_HOME_FILE") ))
-    [[ $_home_age -gt 2 ]] && rm -f "$FOCUS_N_HOME_FILE"
+    [[ $_home_age -gt 5 ]] && rm -f "$FOCUS_N_HOME_FILE"
 fi
 if [[ "$OP" == focus-[1-4] && ! -f "$FOCUS_N_HOME_FILE" ]]; then
     aerospace list-monitors --focused --format '%{monitor-id}' > "$FOCUS_N_HOME_FILE"
