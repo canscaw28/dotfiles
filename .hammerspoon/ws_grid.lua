@@ -13,6 +13,8 @@ local keys = {t = false, w = false, e = false, r = false, ["3"] = false, ["4"] =
 local lastVisibleWs = {}    -- key -> monitorId for cached workspace state
 local lastFocusedKey = nil
 local lastFocusedMonId = nil
+-- (lastRefreshTargetMon removed: re-querying on mode transitions catches
+-- transient AeroSpace state during focus-N ops, corrupting grid position)
 
 -- Element index lookup for in-place canvas updates (populated by drawGrid)
 local keyFaceIdx = {}   -- key -> canvas element index for face rectangle
@@ -244,8 +246,21 @@ end
 -- Instant update for rapid key sequences.
 -- Patches only changed keys (prev focused, displaced, current) instead of
 -- recreating the entire 104-element canvas.
-function M.visitKey(key, targetMon)
+function M.visitKey(key, targetMon, swapMode)
     local displayKey = AERO_TO_KEY[key] or key
+
+    -- Q mode (swap/push/pull): highlight target key without updating
+    -- workspace state or moving focus marker. The grid refreshes from
+    -- actual AeroSpace state after the operation completes.
+    if swapMode then
+        if grid and shouldShowGrid() then
+            local monId = lastVisibleWs[displayKey]
+            local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+            patchKey(displayKey, true, false, labelColor)
+        end
+        return
+    end
+
     local monId = targetMon or lastFocusedMonId
 
     local prevFocused = lastFocusedKey
@@ -395,7 +410,7 @@ local function drainOneKey()
         return
     end
     local entry = table.remove(pendingKeyQueue, 1)
-    M.visitKey(entry.key, entry.mon)
+    M.visitKey(entry.key, entry.mon, entry.swap)
     if #pendingKeyQueue == 0 then
         if keyDrainTimer then keyDrainTimer:stop(); keyDrainTimer = nil end
     end
@@ -436,8 +451,9 @@ local wsEventTap = hs.eventtap.new(
 
         -- Enqueue for frame-paced drain
         local mon = targetMonitor()
+        local swapMode = keys.q
         if mon == 0 then mon = nil end
-        pendingKeyQueue[#pendingKeyQueue + 1] = {key = wsKey, mon = mon}
+        pendingKeyQueue[#pendingKeyQueue + 1] = {key = wsKey, mon = mon, swap = swapMode}
         startKeyDrain()
 
         return true  -- consume
@@ -463,8 +479,13 @@ local function refresh()
     if shouldShowGrid() then
         if grid then
             -- Grid already visible: just reposition to target screen.
-            -- Don't re-query AeroSpace — state may be transient during ops.
-            -- ws.sh calls showGrid() directly when ops complete with correct state.
+            -- NEVER re-query AeroSpace here — during focus-N ops, workers
+            -- may be mid-operation with focus on the wrong monitor. The
+            -- async query would capture that transient state, corrupting
+            -- lastFocusedMonId and causing the grid to jump to the wrong
+            -- screen with wrong colors. visitKey handles keycap updates
+            -- from keyboard events; ws.sh calls showGrid() directly after
+            -- ops complete with correct state.
             local monId = targetMonitor()
             local screen = screenForMonitor(monId == 0 and (lastFocusedMonId or 0) or monId)
             if screen then
