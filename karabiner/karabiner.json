@@ -6306,12 +6306,10 @@
                 },
                 "to": [
                   {
-                    "key_code": "semicolon",
-                    "modifiers": [
-                      "command",
-                      "control",
-                      "option"
-                    ]
+                    "set_variable": {
+                      "name": "guard_noop",
+                      "value": 0
+                    }
                   }
                 ],
                 "type": "basic"
@@ -7155,10 +7153,12 @@
                 },
                 "to": [
                   {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
+                    "key_code": "n",
+                    "modifiers": [
+                      "command",
+                      "option",
+                      "shift"
+                    ]
                   }
                 ],
                 "type": "basic"
@@ -7241,10 +7241,12 @@
                 },
                 "to": [
                   {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
+                    "key_code": "m",
+                    "modifiers": [
+                      "command",
+                      "option",
+                      "shift"
+                    ]
                   }
                 ],
                 "type": "basic"
@@ -7327,10 +7329,12 @@
                 },
                 "to": [
                   {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
+                    "key_code": "comma",
+                    "modifiers": [
+                      "command",
+                      "option",
+                      "shift"
+                    ]
                   }
                 ],
                 "type": "basic"
@@ -7413,10 +7417,12 @@
                 },
                 "to": [
                   {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
+                    "key_code": "period",
+                    "modifiers": [
+                      "command",
+                      "option",
+                      "shift"
+                    ]
                   }
                 ],
                 "type": "basic"

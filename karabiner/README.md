@@ -264,19 +264,20 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + T + J | ⌘ + ⌥ + ⌃ + J | Focus down |
 | ⇪ + T + K | ⌘ + ⌥ + ⌃ + K | Focus up |
 | ⇪ + T + L | ⌘ + ⌥ + ⌃ + L | Focus right |
-| ⇪ + T + ; | ⌘ + ⌥ + ⌃ + ; | Mode service (esc to reload, r to flatten, f to float) |
+| ⇪ + T + ; | *available* | |
 | ⇪ + T + ' | ⌘ + ⌥ + ⌃ + ' | Switch to previous workspace (back-and-forth) |
 | ⇪ + T + - | ⌘ + ⌥ + ⌃ + ⇧ + - | Resize smart -50 |
 | ⇪ + T + = | ⌘ + ⌥ + ⌃ + ⇧ + = | Resize smart +50 |
+| ⇪ + T + / | ⌘ + ⌥ + ⇧ + / | Toggle tiles horizontal/vertical |
+| ⇪ + T + . | ⌘ + ⌥ + ⇧ + . | Toggle accordion horizontal/vertical |
+| ⇪ + T + , | ⌘ + ⌥ + ⇧ + , | Balance window sizes |
+| ⇪ + T + N | ⌘ + ⌥ + ⇧ + N | Toggle floating/tiling |
+| ⇪ + T + M | ⌘ + ⌥ + ⇧ + M | Flatten workspace tree |
 | ⇪ + T + P | *available* | |
 | ⇪ + T + Y | *available* | |
 | ⇪ + T + U | *available* | |
 | ⇪ + T + I | *available* | |
 | ⇪ + T + O | *available* | |
-| ⇪ + T + N | *available* | |
-| ⇪ + T + M | *available* | |
-| ⇪ + T + , | *available* | |
-| ⇪ + T + . | *available* | |
 
 ### Move Mode (⇪ + R + T)
 
