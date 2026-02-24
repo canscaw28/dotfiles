@@ -273,9 +273,16 @@ execute_op() {
             focus_ws_on_monitor "$_C_FOCUSED_MON" "$WS"
             ;;
         focus-[1-4])
-            # FOCUS_N_RESTORE_MON is pre-set from home file in drain_queue.
-            # No fallback to _C_FOCUSED_MON — it may be corrupted by killed processes.
+            # FOCUS_N_RESTORE_MON is pre-set from home file in drain_queue,
+            # or captured from cache on first focus-N op in this batch.
+            local _home_mon="${FOCUS_N_RESTORE_MON:-$_C_FOCUSED_MON}"
+            [[ -z "$FOCUS_N_RESTORE_MON" ]] && FOCUS_N_RESTORE_MON="$_home_mon"
             focus_ws_on_monitor "$(resolve_monitor "${OP##focus-}")" "$WS"
+            # Restore focus to home monitor IMMEDIATELY after each op.
+            # Karabiner SIGKILL's workers at any moment — deferring restore
+            # to final_post_process means it often never runs.
+            aerospace focus-monitor "$_home_mon"
+            [[ $_CACHED -eq 1 ]] && _C_FOCUSED_MON="$_home_mon"
             ;;
         move)
             aerospace move-node-to-workspace "$WS"
@@ -398,17 +405,11 @@ per_op_post_process() {
 # Synchronous aerospace calls (move-mouse, list-monitors) go here instead of
 # per_op_post_process to avoid adding ~100-200ms latency between each queued op.
 final_post_process() {
-    # Restore focus to original monitor after focus-N batch (deferred from
-    # execute_op so consecutive focus-N ops don't ping-pong between monitors)
+    # Safety-net restore: each focus-N op already restores per-op, but if
+    # the last op's restore was interrupted, this catches it.
     if [[ -n "$FOCUS_N_RESTORE_MON" ]]; then
-        debug "RESTORE target=$FOCUS_N_RESTORE_MON before=$(aerospace list-monitors --focused --format '%{monitor-id}')"
-        aerospace focus-monitor "$FOCUS_N_RESTORE_MON"; sleep 0.05
-        local _actual_mon
-        _actual_mon=$(aerospace list-monitors --focused --format '%{monitor-id}')
-        if [[ "$_actual_mon" != "$FOCUS_N_RESTORE_MON" ]]; then
-            debug "RESTORE retry — focus didn't take (got $_actual_mon)"
-            aerospace focus-monitor "$FOCUS_N_RESTORE_MON"; sleep 0.05
-        fi
+        debug "RESTORE safety-net target=$FOCUS_N_RESTORE_MON"
+        aerospace focus-monitor "$FOCUS_N_RESTORE_MON"
         [[ $_CACHED -eq 1 ]] && _C_FOCUSED_MON="$FOCUS_N_RESTORE_MON"
         rm -f "$FOCUS_N_HOME_FILE"
     fi
