@@ -12,10 +12,10 @@ local delayTimer = nil
 local STROKE_WIDTH = 6
 local STROKE_COLOR = {red = 1, green = 0.6, blue = 0.1, alpha = 0.8}
 local CORNER_RADIUS = 12
-local DISPLAY_TIME = 0.5
+local DISPLAY_TIME = 0.25
 local FADE_STEPS = 8
 local FADE_INTERVAL = 0.02
-local FLASH_DELAY = 0.1
+local FLASH_DELAY = 0.05
 
 local function clearBorder()
     if fadeTimer then
