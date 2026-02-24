@@ -474,6 +474,30 @@ drain_queue() {
         local files=("$QUEUE_DIR"/[0-9]*)
         [[ -e "${files[0]}" ]] || return
 
+        # Transition skip: when user switches from focus-N to another op
+        # (released E and pressed a workspace key), stale focus-N entries
+        # block the queue — each worker wastes its lifespan processing them
+        # before reaching the user's actual intent. Purge all focus-N entries
+        # that come BEFORE the first non-focus-N entry.
+        local first_non_fn=-1
+        for i in "${!files[@]}"; do
+            local peek
+            peek=$(<"${files[$i]}" 2>/dev/null) || continue
+            if [[ "${peek%% *}" != focus-[1-4] ]]; then
+                first_non_fn=$i
+                break
+            fi
+        done
+        if [[ $first_non_fn -gt 0 ]]; then
+            for i in $(seq 0 $((first_non_fn - 1))); do
+                local peek
+                peek=$(<"${files[$i]}" 2>/dev/null) || continue
+                debug "TRANSITION-SKIP ${peek%% *} ${peek#* } (non-focus-N ahead)"
+                rm -f "${files[$i]}"
+            done
+            continue  # re-enumerate after purge
+        fi
+
         # Collapse: when queue has more than COLLAPSE_KEEP focus-N ops,
         # bulk-skip excess from the front. Keeps the last N so the user
         # lands on their intended workspace quickly.
@@ -505,9 +529,15 @@ drain_queue() {
         local next="${files[0]}"
         local line
         line=$(<"$next")
+        # Remove queue file IMMEDIATELY after reading. Workers get SIGKILL'd
+        # at any moment — if the file persists, the next worker re-drains the
+        # same entry, creating an infinite replay loop that blocks the queue.
+        # Losing one op in a rapid burst is imperceptible; a 10s stuck entry
+        # is catastrophic.
+        rm -f "$next"
         OP="${line%% *}"
         WS="${line#* }"
-        debug "DRAIN $OP $WS (from $(basename "$next"))"
+        debug "DRAIN $OP $WS (from $(basename "${next}"))"
         # If user transitioned from focus-N to another op type (e.g. released E),
         # restore focus to home monitor IMMEDIATELY so subsequent ops use the
         # correct _C_FOCUSED_MON (orphaned focus-N entries corrupt it).
@@ -525,7 +555,6 @@ drain_queue() {
         # Non-focus ops modify state in complex ways; refresh cache fully
         [[ "$OP" != focus* ]] && cache_state
         per_op_post_process
-        rm -f "$next"
     done
 }
 
