@@ -1,6 +1,7 @@
 -- ws_notify.lua
 -- Flash workspace name centered on screen after workspace operations.
 -- Styled as a macOS-like HUD overlay with monitor-colored border.
+-- Supports action text like "h → i" for move/swap ops.
 
 local M = {}
 
@@ -11,7 +12,8 @@ local BG_COLOR = {red = 0.1, green = 0.1, blue = 0.1, alpha = 0.75}
 local TEXT_COLOR = {red = 1, green = 1, blue = 1, alpha = 1}
 local FONT_SIZE = 28
 local FONT_NAME = "Helvetica Neue Medium"
-local SIZE = 56
+local MIN_SIZE = 56
+local PADDING = 24
 local CORNER_RADIUS = 14
 local BORDER_WIDTH = 3
 local DISPLAY_TIME = 0.7
@@ -29,6 +31,10 @@ local DEFAULT_BORDER = {red = 0.5, green = 0.5, blue = 0.5, alpha = 0.6}
 -- Map AeroSpace workspace names to display characters
 local DISPLAY_NAMES = {comma = ","}
 
+local function displayName(ws)
+    return DISPLAY_NAMES[ws] or ws
+end
+
 -- Get screen for an AeroSpace monitor ID (sorted left-to-right to match AeroSpace ordering)
 local function screenForMonitor(monitorId)
     if not monitorId or monitorId < 1 then return hs.screen.mainScreen() end
@@ -37,7 +43,13 @@ local function screenForMonitor(monitorId)
     return screens[monitorId] or hs.screen.mainScreen()
 end
 
-function M.show(workspaceName, monitorId)
+-- Measure text width
+local function measureText(text)
+    local st = hs.styledtext.new(text, {font = {name = FONT_NAME, size = FONT_SIZE}})
+    return hs.drawing.getTextDrawingSize(st).w
+end
+
+function M.show(text, monitorId)
     if fadeTimer then
         fadeTimer:stop()
         fadeTimer = nil
@@ -47,10 +59,24 @@ function M.show(workspaceName, monitorId)
         overlay = nil
     end
 
+    -- Apply display name mapping to each workspace name in action text
+    local displayText
+    local from, arrow, to = text:match("^(.+) ([→↔]) (.+)$")
+    if from then
+        displayText = displayName(from) .. " " .. arrow .. " " .. displayName(to)
+    else
+        displayText = displayName(text)
+    end
+
+    -- Auto-size canvas: use min size for single chars, measure for longer text
+    local textW = measureText(displayText)
+    local canvasW = math.max(MIN_SIZE, textW + PADDING)
+    local canvasH = MIN_SIZE
+
     local screen = screenForMonitor(monitorId)
     local sf = screen:frame()
-    local x = sf.x + (sf.w - SIZE) / 2
-    local y = sf.y + (sf.h - SIZE) / 2
+    local x = sf.x + (sf.w - canvasW) / 2
+    local y = sf.y + (sf.h - canvasH) / 2
 
     -- Position above grid overlay if it's visible on this screen
     local ok, ws_grid = pcall(require, "ws_grid")
@@ -58,14 +84,13 @@ function M.show(workspaceName, monitorId)
         local gf = ws_grid.getFrame()
         if gf then
             local GAP = 12
-            y = gf.y - SIZE - GAP
+            y = gf.y - canvasH - GAP
         end
     end
 
     local borderColor = MONITOR_COLORS[monitorId] or DEFAULT_BORDER
-    local displayName = DISPLAY_NAMES[workspaceName] or workspaceName
 
-    overlay = hs.canvas.new({x = x, y = y, w = SIZE, h = SIZE})
+    overlay = hs.canvas.new({x = x, y = y, w = canvasW, h = canvasH})
     overlay:level(hs.canvas.windowLevels.overlay + 1)
     overlay:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
     overlay:clickActivating(false)
@@ -84,13 +109,13 @@ function M.show(workspaceName, monitorId)
         roundedRectRadii = {xRadius = CORNER_RADIUS, yRadius = CORNER_RADIUS},
     }, {
         type = "text",
-        text = displayName,
+        text = displayText,
         textColor = TEXT_COLOR,
         textSize = FONT_SIZE,
         textFont = FONT_NAME,
         textAlignment = "center",
         textLineBreak = "clip",
-        frame = {x = 0, y = (SIZE - FONT_SIZE * 1.3) / 2, w = SIZE, h = FONT_SIZE * 1.5},
+        frame = {x = 0, y = (canvasH - FONT_SIZE * 1.3) / 2, w = canvasW, h = FONT_SIZE * 1.5},
     })
 
     overlay:alpha(1)
@@ -100,8 +125,8 @@ function M.show(workspaceName, monitorId)
     hs.timer.doAfter(0.15, function()
         if not overlay then return end
         local mp = hs.mouse.absolutePosition()
-        if mp.x >= x and mp.x <= x + SIZE and mp.y >= y and mp.y <= y + SIZE then
-            hs.mouse.absolutePosition({x = mp.x, y = y + SIZE + 10})
+        if mp.x >= x and mp.x <= x + canvasW and mp.y >= y and mp.y <= y + canvasH then
+            hs.mouse.absolutePosition({x = mp.x, y = y + canvasH + 10})
         end
     end)
 
