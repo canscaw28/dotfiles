@@ -307,6 +307,29 @@ function M.visitKey(key, targetMon, swapMode)
 end
 
 function M.showGrid()
+    -- Immediately reposition existing grid to follow focus before async query.
+    -- This gives instant visual feedback (e.g. monitor switch via ') while the
+    -- full AeroSpace state query runs in the background.
+    if grid then
+        local monId = targetMonitor()
+        if monId ~= nil then
+            local screen
+            if monId == 0 then
+                screen = hs.screen.mainScreen()
+            else
+                screen = screenForMonitor(monId)
+            end
+            if screen then
+                local screenFrame = screen:frame()
+                local f = grid:frame()
+                grid:topLeft({
+                    x = screenFrame.x + (screenFrame.w - f.w) / 2,
+                    y = screenFrame.y + (screenFrame.h - f.h) / 2,
+                })
+            end
+        end
+    end
+
     -- Cancel any in-flight workspace query
     if pendingTask and pendingTask:isRunning() then
         pendingTask:terminate()
