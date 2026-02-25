@@ -307,9 +307,9 @@ function M.visitKey(key, targetMon, swapMode)
 end
 
 function M.showGrid()
-    -- Immediately reposition existing grid to follow focus before async query.
-    -- This gives instant visual feedback (e.g. monitor switch via ') while the
-    -- full AeroSpace state query runs in the background.
+    -- Immediately reposition existing grid and update * marker before async
+    -- query. Gives instant visual feedback (e.g. monitor switch via ') while
+    -- the full AeroSpace state query runs in the background.
     if grid then
         local monId = targetMonitor()
         if monId ~= nil then
@@ -326,6 +326,38 @@ function M.showGrid()
                     x = screenFrame.x + (screenFrame.w - f.w) / 2,
                     y = screenFrame.y + (screenFrame.h - f.h) / 2,
                 })
+
+                -- Update * marker to the workspace visible on the focused monitor.
+                -- Reverse-lookup: screen → AeroSpace monitor ID → workspace key.
+                local focusedMonId
+                if monId == 0 then
+                    local allScreens = hs.screen.allScreens()
+                    table.sort(allScreens, function(a, b) return a:frame().x < b:frame().x end)
+                    for idx, s in ipairs(allScreens) do
+                        if s == screen then focusedMonId = idx; break end
+                    end
+                else
+                    focusedMonId = monId
+                end
+                if focusedMonId then
+                    local newFocusedKey = nil
+                    for k, m in pairs(lastVisibleWs) do
+                        if m == focusedMonId then newFocusedKey = k; break end
+                    end
+                    if newFocusedKey and newFocusedKey ~= lastFocusedKey then
+                        -- Remove * from old focused key
+                        if lastFocusedKey then
+                            local oldMonId = lastVisibleWs[lastFocusedKey]
+                            local oldColor = (oldMonId and MONITOR_COLORS[oldMonId]) or TEXT_COLOR_DIM
+                            patchKey(lastFocusedKey, oldMonId ~= nil, false, oldColor)
+                        end
+                        -- Add * to new focused key
+                        local newColor = MONITOR_COLORS[focusedMonId] or TEXT_COLOR_DIM
+                        patchKey(newFocusedKey, true, true, newColor)
+                        lastFocusedKey = newFocusedKey
+                        lastFocusedMonId = focusedMonId
+                    end
+                end
             end
         end
     end
