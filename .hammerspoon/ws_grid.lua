@@ -511,15 +511,7 @@ function M.keyDown(k)
 end
 
 function M.keyUp(k)
-    if k == "t" then
-        -- T released: clear ALL key state so stuck sub-mode keys
-        -- can't cause the grid to show on next T press
-        for key in pairs(keys) do
-            keys[key] = false
-        end
-    else
-        keys[k] = false
-    end
+    keys[k] = false
     refresh()
 end
 
