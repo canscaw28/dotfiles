@@ -461,8 +461,6 @@ final_post_process() {
 
 COLLAPSE_KEEP=5
 
-RECOVERY_FILE="/tmp/ws-recovery"
-
 drain_queue() {
     cache_state
     FOCUS_N_RESTORE_MON=""
@@ -472,34 +470,9 @@ drain_queue() {
         FOCUS_N_RESTORE_MON=$(<"$FOCUS_N_HOME_FILE")
         debug "HOME read $FOCUS_N_RESTORE_MON from file"
     fi
-    # Recover operation from a worker that was killed between rm (queue file)
-    # and execute_op. We hold the lock, so the previous holder must be dead.
-    # Focus-N ops are idempotent, so re-execution is always safe.
-    if [[ -f "$RECOVERY_FILE" ]]; then
-        local _recov
-        _recov=$(<"$RECOVERY_FILE")
-        rm -f "$RECOVERY_FILE"
-        OP="${_recov%% *}"
-        WS="${_recov#* }"
-        debug "RECOVER $OP $WS (from killed worker)"
-        if [[ "$OP" != focus-[1-4] && -n "$FOCUS_N_RESTORE_MON" ]]; then
-            debug "RECOVER-TRANSITION restore to $FOCUS_N_RESTORE_MON before $OP"
-            aerospace focus-monitor "$FOCUS_N_RESTORE_MON"; sleep 0.03
-            cache_state
-            FOCUS_N_RESTORE_MON=""
-            rm -f "$FOCUS_N_HOME_FILE"
-        fi
-        local _src_var="_C_MON_WS_${_C_FOCUSED_MON}"
-        SOURCE_WS="${!_src_var}"
-        execute_op
-        rm -f "$RECOVERY_FILE"
-        [[ "$OP" != focus* ]] && cache_state
-        per_op_post_process
-    fi
     while true; do
         local files=("$QUEUE_DIR"/[0-9]*)
         [[ -e "${files[0]}" ]] || return
-        debug "LOOP depth=${#files[@]}"
 
         # Transition skip: when user switches from focus-N to another op
         # (released E and pressed a workspace key), stale focus-N entries
@@ -556,13 +529,11 @@ drain_queue() {
         local next="${files[0]}"
         local line
         line=$(<"$next")
-        # Write recovery BEFORE rm — covers the entire vulnerability window
-        # from rm through execute_op. If this worker is killed at any point
-        # after rm, the next worker recovers the operation.
-        printf '%s\n' "$line" > "$RECOVERY_FILE"
         # Remove queue file IMMEDIATELY after reading. Workers get SIGKILL'd
         # at any moment — if the file persists, the next worker re-drains the
         # same entry, creating an infinite replay loop that blocks the queue.
+        # Losing one op in a rapid burst is imperceptible; a 10s stuck entry
+        # is catastrophic.
         rm -f "$next"
         OP="${line%% *}"
         WS="${line#* }"
