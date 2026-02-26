@@ -710,4 +710,18 @@ function M.keyUp(k)
     refresh()
 end
 
+-- Safety net: reset all mode keys when caps lock is released.
+-- Called from caps_lock setter's to_after_key_up shell command.
+-- Catches any stale state from dropped async keyUp IPC calls.
+function M.resetAllKeys()
+    local changed = false
+    for k, _ in pairs(keys) do
+        if keys[k] then
+            keys[k] = false
+            changed = true
+        end
+    end
+    if changed then refresh() end
+end
+
 return M

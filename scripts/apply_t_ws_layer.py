@@ -454,6 +454,22 @@ def main():
     add_grid_shell_commands_to_setters(manips)
     print("Added ws_grid shell commands to T, E, R, 3, 4, Q setters")
 
+    # Phase 2d: Add resetAllKeys safety net to caps_lock setters' to_after_key_up.
+    # When caps is released, reset all Hammerspoon mode key state to catch any
+    # stale state from dropped async keyUp IPC calls.
+    RESET_CMD = {"shell_command": HS_BIN + " -c \"require('ws_grid').resetAllKeys()\" &"}
+    caps_reset_count = 0
+    for m in manips:
+        if m.get("from", {}).get("key_code") != "caps_lock":
+            continue
+        up_items = m.get("to_after_key_up", [])
+        # Remove old resetAllKeys commands (idempotent)
+        up_items = [item for item in up_items if "resetAllKeys" not in item.get("shell_command", "")]
+        up_items.append(RESET_CMD)
+        m["to_after_key_up"] = up_items
+        caps_reset_count += 1
+    print(f"Added resetAllKeys to {caps_reset_count} caps_lock setters")
+
     # Phase 3: Insert T+W and T+Q setters after T+E setter
     te_idx = find_t_e_setter(manips)
     if te_idx == -1:
