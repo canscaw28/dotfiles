@@ -261,6 +261,15 @@ function M.visitKey(key, targetMon, swapMode)
         return
     end
 
+    -- Invalidate any in-flight showGrid async callback so stale AeroSpace
+    -- state doesn't overwrite this fresh visitKey update (prevents grid
+    -- marker flickering back to a previous workspace during rapid focus ops).
+    -- Only bump when grid exists — the initial showGrid must complete to
+    -- create the canvas, otherwise patchKey calls below are no-ops.
+    if grid then
+        taskGeneration = taskGeneration + 1
+    end
+
     local monId = targetMon or lastFocusedMonId
 
     local prevFocused = lastFocusedKey
