@@ -425,23 +425,6 @@ final_post_process() {
         rm -f "$FOCUS_N_HOME_FILE"
     fi
 
-    # Show workspace notification overlay
-    NOTIFY_TEXT="$WS"
-    NOTIFY_MON="$_C_FOCUSED_MON"
-    case "$OP" in
-        move|move-focus)     NOTIFY_TEXT="${SOURCE_WS} → ${WS}" ;;
-        swap-windows)        NOTIFY_TEXT="${SOURCE_WS} ↔ ${WS}" ;;
-        push-windows)        NOTIFY_TEXT="${SOURCE_WS} → ${WS}" ;;
-        pull-windows)        NOTIFY_TEXT="${WS} → ${SOURCE_WS}" ;;
-        focus-[1-4])         NOTIFY_MON="${OP##focus-}" ;;
-        swap-monitors)       NOTIFY_TEXT="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
-        move-monitor|move-monitor-focus) NOTIFY_TEXT="$NEXT_WS"; NOTIFY_MON="$NEXT_MONITOR" ;;
-        move-monitor-yank) NOTIFY_TEXT="$NEXT_WS"; NOTIFY_MON="$CURRENT_MONITOR" ;;
-    esac
-    if [[ -n "$NOTIFY_TEXT" ]]; then
-        /usr/local/bin/hs -c "require('ws_notify').show('$NOTIFY_TEXT', ${NOTIFY_MON:-0})" 2>/dev/null &
-    fi
-
     # Move mouse to focused window
     aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null || true
 

@@ -475,6 +475,8 @@ local function drainOneKey()
     end
     local entry = table.remove(pendingKeyQueue, 1)
     M.visitKey(entry.key, entry.mon, entry.swap)
+    local ws_notify = require("ws_notify")
+    ws_notify.show(entry.key, entry.mon or lastFocusedMonId)
     if #pendingKeyQueue == 0 then
         if keyDrainTimer then keyDrainTimer:stop(); keyDrainTimer = nil end
     end
