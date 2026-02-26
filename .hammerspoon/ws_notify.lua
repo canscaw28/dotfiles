@@ -17,10 +17,6 @@ local CORNER_RADIUS = 14
 local BORDER_WIDTH = 3
 local DISPLAY_TIME = 0.7
 
-local RISE_DIST = 16
-local RISE_STEPS = 3
-local RISE_INTERVAL = 0.016
-
 local FALL_DIST = 20
 local FALL_STEPS = 10
 local FALL_INTERVAL = 0.02
@@ -61,7 +57,6 @@ local function lerp(a, b, t)
 end
 
 local function removeToast(entry)
-    if entry.riseTimer then entry.riseTimer:stop(); entry.riseTimer = nil end
     if entry.fallTimer then entry.fallTimer:stop(); entry.fallTimer = nil end
     if entry.displayTimer then entry.displayTimer:stop(); entry.displayTimer = nil end
     if entry.canvas then entry.canvas:delete(); entry.canvas = nil end
@@ -87,15 +82,6 @@ local function demoteToast(entry)
     entry.borderR = GRAY[1]
     entry.borderG = GRAY[2]
     entry.borderB = GRAY[3]
-
-    -- If rising, snap to final position
-    if entry.riseTimer then
-        entry.riseTimer:stop()
-        entry.riseTimer = nil
-        if entry.canvas then
-            entry.canvas:topLeft({x = entry.targetX, y = entry.targetY})
-        end
-    end
 
     -- Cancel hold timer
     if entry.displayTimer then
@@ -167,10 +153,7 @@ function M.show(wsKey, monitorId)
 
     local borderColor = MONITOR_COLORS[monitorId] or DEFAULT_BORDER
 
-    -- Start below final position
-    local startY = targetY + RISE_DIST
-
-    local c = hs.canvas.new({x = targetX, y = startY, w = canvasW, h = canvasH})
+    local c = hs.canvas.new({x = targetX, y = targetY, w = canvasW, h = canvasH})
     c:level(hs.canvas.windowLevels.overlay + 1)
     c:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
     c:clickActivating(false)
@@ -203,7 +186,6 @@ function M.show(wsKey, monitorId)
 
     local entry = {
         canvas = c,
-        riseTimer = nil,
         fallTimer = nil,
         displayTimer = nil,
         targetX = targetX,
@@ -218,41 +200,21 @@ function M.show(wsKey, monitorId)
     -- Insert as newest (index 1) — naturally z-on-top (created last)
     table.insert(toasts, 1, entry)
 
-    -- Rise phase
-    local riseStep = 0
-    entry.riseTimer = hs.timer.doEvery(RISE_INTERVAL, function()
-        riseStep = riseStep + 1
-        if not entry.canvas then
-            if entry.riseTimer then entry.riseTimer:stop(); entry.riseTimer = nil end
-            return
+    -- Mouse nudge
+    hs.timer.doAfter(0.05, function()
+        if not entry.canvas or toasts[1] ~= entry then return end
+        local mp = hs.mouse.absolutePosition()
+        if mp.x >= targetX and mp.x <= targetX + canvasW
+           and mp.y >= targetY and mp.y <= targetY + canvasH then
+            hs.mouse.absolutePosition({x = mp.x, y = targetY + canvasH + 10})
         end
-        if riseStep >= RISE_STEPS then
-            entry.canvas:topLeft({x = targetX, y = targetY})
-            entry.riseTimer:stop()
-            entry.riseTimer = nil
+    end)
 
-            -- Mouse nudge (only for newest toast)
-            if toasts[1] == entry then
-                hs.timer.doAfter(0.05, function()
-                    if not entry.canvas then return end
-                    local mp = hs.mouse.absolutePosition()
-                    if mp.x >= targetX and mp.x <= targetX + canvasW
-                       and mp.y >= targetY and mp.y <= targetY + canvasH then
-                        hs.mouse.absolutePosition({x = mp.x, y = targetY + canvasH + 10})
-                    end
-                end)
-            end
-
-            -- Hold phase
-            entry.displayTimer = hs.timer.doAfter(DISPLAY_TIME, function()
-                entry.displayTimer = nil
-                if not entry.canvas then return end
-                startFall(entry)
-            end)
-        else
-            local t = riseStep / RISE_STEPS
-            entry.canvas:topLeft({x = targetX, y = startY + (targetY - startY) * t})
-        end
+    -- Hold phase → fall+fade
+    entry.displayTimer = hs.timer.doAfter(DISPLAY_TIME, function()
+        entry.displayTimer = nil
+        if not entry.canvas then return end
+        startFall(entry)
     end)
 end
 
