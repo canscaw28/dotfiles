@@ -119,7 +119,7 @@ startFall = function(entry)
     end)
 end
 
-function M.show(wsKey, monitorId)
+function M.show(wsKey, monitorId, sourceKey)
     -- Demote current newest toast
     if #toasts > 0 then
         demoteToast(toasts[1])
@@ -130,7 +130,12 @@ function M.show(wsKey, monitorId)
         removeToast(toasts[#toasts])
     end
 
-    local displayText = displayName(wsKey)
+    local displayText
+    if sourceKey then
+        displayText = displayName(sourceKey) .. " \u{2192} " .. displayName(wsKey)
+    else
+        displayText = displayName(wsKey)
+    end
 
     local textW = measureText(displayText)
     local canvasW = math.max(MIN_SIZE, textW + PADDING)
