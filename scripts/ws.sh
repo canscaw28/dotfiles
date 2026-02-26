@@ -450,8 +450,12 @@ final_post_process() {
         /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
     fi
 
-    # Refresh workspace grid overlay if visible
-    /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
+    # Refresh workspace grid overlay if visible (skip for focus — visitKey
+    # provides instant feedback; the async query here races with visitKey
+    # and can overwrite its state with stale AeroSpace data)
+    if [[ "$OP" != focus* ]]; then
+        /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
+    fi
 
     # Save window state after every operation (for restore on restart)
     ~/.local/bin/save-ws-state.sh &
