@@ -260,13 +260,25 @@ end
 -- Instant update for rapid key sequences.
 -- Patches only changed keys (prev focused, displaced, current) instead of
 -- recreating the entire 104-element canvas.
-function M.visitKey(key, targetMon, swapMode)
+function M.visitKey(key, targetMon, swapMode, moveMode)
     local displayKey = AERO_TO_KEY[key] or key
 
     -- Q mode (swap/push/pull): highlight target key without updating
     -- workspace state or moving focus marker. The grid refreshes from
     -- actual AeroSpace state after the operation completes.
     if swapMode then
+        if grid and shouldShowGrid() then
+            local monId = lastVisibleWs[displayKey]
+            local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+            patchKey(displayKey, true, false, labelColor)
+        end
+        return
+    end
+
+    -- Move mode (E without W): window moves but focus stays on source
+    -- workspace. Don't update lastFocusedKey or lastVisibleWs — only
+    -- briefly highlight the target keycap.
+    if moveMode then
         if grid and shouldShowGrid() then
             local monId = lastVisibleWs[displayKey]
             local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
@@ -488,7 +500,7 @@ local function drainOneKey()
         return
     end
     local entry = table.remove(pendingKeyQueue, 1)
-    M.visitKey(entry.key, entry.mon, entry.swap)
+    M.visitKey(entry.key, entry.mon, entry.swap, entry.source ~= nil)
     local ws_notify = require("ws_notify")
     ws_notify.show(entry.key, entry.mon or lastFocusedMonId, entry.source)
     if #pendingKeyQueue == 0 then
