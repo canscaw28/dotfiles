@@ -1,13 +1,11 @@
 -- ws_notify.lua
 -- Animated workspace toast triggered on keypress from ws_grid.
--- Single toast: rises into place, holds, then falls + fades with border graying out.
+-- New toast rises into place; previous toast grays out and falls behind.
 
 local M = {}
 
-local overlay = nil
-local riseTimer = nil
-local fallTimer = nil
-local displayTimer = nil
+local toasts = {}  -- array of toast entries, index 1 = newest
+local MAX_TOASTS = 4
 
 local BG_COLOR = {red = 0.1, green = 0.1, blue = 0.1, alpha = 0.75}
 local TEXT_COLOR = {red = 1, green = 1, blue = 1, alpha = 1}
@@ -62,16 +60,89 @@ local function lerp(a, b, t)
     return a + (b - a) * t
 end
 
-local function cleanup()
-    if riseTimer then riseTimer:stop(); riseTimer = nil end
-    if fallTimer then fallTimer:stop(); fallTimer = nil end
-    if displayTimer then displayTimer:stop(); displayTimer = nil end
-    if overlay then overlay:delete(); overlay = nil end
+local function removeToast(entry)
+    if entry.riseTimer then entry.riseTimer:stop(); entry.riseTimer = nil end
+    if entry.fallTimer then entry.fallTimer:stop(); entry.fallTimer = nil end
+    if entry.displayTimer then entry.displayTimer:stop(); entry.displayTimer = nil end
+    if entry.canvas then entry.canvas:delete(); entry.canvas = nil end
+    for i, e in ipairs(toasts) do
+        if e == entry then
+            table.remove(toasts, i)
+            break
+        end
+    end
+end
+
+-- Forward declare
+local startFall
+
+local function demoteToast(entry)
+    -- Gray out border immediately
+    if entry.canvas then
+        entry.canvas:elementAttribute(BORDER_IDX, "strokeColor", {
+            red = GRAY[1], green = GRAY[2], blue = GRAY[3], alpha = 1,
+        })
+    end
+    -- Update stored colors so fall interpolation stays gray
+    entry.borderR = GRAY[1]
+    entry.borderG = GRAY[2]
+    entry.borderB = GRAY[3]
+
+    -- If rising, snap to final position
+    if entry.riseTimer then
+        entry.riseTimer:stop()
+        entry.riseTimer = nil
+        if entry.canvas then
+            entry.canvas:topLeft({x = entry.targetX, y = entry.targetY})
+        end
+    end
+
+    -- Cancel hold timer
+    if entry.displayTimer then
+        entry.displayTimer:stop()
+        entry.displayTimer = nil
+    end
+
+    -- Start fall+fade if not already falling
+    if not entry.fallTimer then
+        startFall(entry)
+    end
+end
+
+startFall = function(entry)
+    local fallStep = 0
+    entry.fallTimer = hs.timer.doEvery(FALL_INTERVAL, function()
+        fallStep = fallStep + 1
+        if not entry.canvas then
+            if entry.fallTimer then entry.fallTimer:stop(); entry.fallTimer = nil end
+            return
+        end
+        if fallStep >= FALL_STEPS then
+            removeToast(entry)
+        else
+            local t = fallStep / FALL_STEPS
+            entry.canvas:topLeft({x = entry.targetX, y = entry.targetY + FALL_DIST * t})
+            entry.canvas:alpha(1 - t)
+            entry.canvas:elementAttribute(BORDER_IDX, "strokeColor", {
+                red = lerp(entry.borderR, GRAY[1], t),
+                green = lerp(entry.borderG, GRAY[2], t),
+                blue = lerp(entry.borderB, GRAY[3], t),
+                alpha = 1,
+            })
+        end
+    end)
 end
 
 function M.show(wsKey, monitorId)
-    -- Cancel any existing toast immediately — new keypress wins
-    cleanup()
+    -- Demote current newest toast
+    if #toasts > 0 then
+        demoteToast(toasts[1])
+    end
+
+    -- Trim oldest if at capacity
+    while #toasts >= MAX_TOASTS do
+        removeToast(toasts[#toasts])
+    end
 
     local displayText = displayName(wsKey)
 
@@ -95,20 +166,17 @@ function M.show(wsKey, monitorId)
     end
 
     local borderColor = MONITOR_COLORS[monitorId] or DEFAULT_BORDER
-    local borderR = borderColor.red
-    local borderG = borderColor.green
-    local borderB = borderColor.blue
 
     -- Start below final position
     local startY = targetY + RISE_DIST
 
-    overlay = hs.canvas.new({x = targetX, y = startY, w = canvasW, h = canvasH})
-    overlay:level(hs.canvas.windowLevels.overlay + 1)
-    overlay:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
-    overlay:clickActivating(false)
-    overlay:canvasMouseEvents(false)
+    local c = hs.canvas.new({x = targetX, y = startY, w = canvasW, h = canvasH})
+    c:level(hs.canvas.windowLevels.overlay + 1)
+    c:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
+    c:clickActivating(false)
+    c:canvasMouseEvents(false)
 
-    overlay:appendElements({
+    c:appendElements({
         type = "rectangle",
         action = "fill",
         fillColor = BG_COLOR,
@@ -130,69 +198,60 @@ function M.show(wsKey, monitorId)
         frame = {x = 0, y = (canvasH - FONT_SIZE * 1.3) / 2, w = canvasW, h = FONT_SIZE * 1.5},
     })
 
-    overlay:alpha(1)
-    overlay:show()
+    c:alpha(1)
+    c:show()
 
-    -- Rise phase: move upward toward targetY
+    local entry = {
+        canvas = c,
+        riseTimer = nil,
+        fallTimer = nil,
+        displayTimer = nil,
+        targetX = targetX,
+        targetY = targetY,
+        canvasW = canvasW,
+        canvasH = canvasH,
+        borderR = borderColor.red,
+        borderG = borderColor.green,
+        borderB = borderColor.blue,
+    }
+
+    -- Insert as newest (index 1) — naturally z-on-top (created last)
+    table.insert(toasts, 1, entry)
+
+    -- Rise phase
     local riseStep = 0
-    riseTimer = hs.timer.doEvery(RISE_INTERVAL, function()
+    entry.riseTimer = hs.timer.doEvery(RISE_INTERVAL, function()
         riseStep = riseStep + 1
-        if not overlay then
-            if riseTimer then riseTimer:stop(); riseTimer = nil end
+        if not entry.canvas then
+            if entry.riseTimer then entry.riseTimer:stop(); entry.riseTimer = nil end
             return
         end
         if riseStep >= RISE_STEPS then
-            -- Snap to final position
-            overlay:topLeft({x = targetX, y = targetY})
-            riseTimer:stop()
-            riseTimer = nil
+            entry.canvas:topLeft({x = targetX, y = targetY})
+            entry.riseTimer:stop()
+            entry.riseTimer = nil
 
-            -- Mouse nudge after rise completes
-            hs.timer.doAfter(0.05, function()
-                if not overlay then return end
-                local mp = hs.mouse.absolutePosition()
-                if mp.x >= targetX and mp.x <= targetX + canvasW and mp.y >= targetY and mp.y <= targetY + canvasH then
-                    hs.mouse.absolutePosition({x = mp.x, y = targetY + canvasH + 10})
-                end
-            end)
-
-            -- Hold phase
-            displayTimer = hs.timer.doAfter(DISPLAY_TIME, function()
-                displayTimer = nil
-                if not overlay then return end
-
-                -- Fall + fade + gray border phase
-                local fallStep = 0
-                fallTimer = hs.timer.doEvery(FALL_INTERVAL, function()
-                    fallStep = fallStep + 1
-                    if not overlay then
-                        if fallTimer then fallTimer:stop(); fallTimer = nil end
-                        return
-                    end
-                    if fallStep >= FALL_STEPS then
-                        cleanup()
-                    else
-                        local t = fallStep / FALL_STEPS
-                        -- Move down
-                        local curY = targetY + (FALL_DIST * t)
-                        overlay:topLeft({x = targetX, y = curY})
-                        -- Fade alpha
-                        overlay:alpha(1 - t)
-                        -- Interpolate border toward gray
-                        overlay:elementAttribute(BORDER_IDX, "strokeColor", {
-                            red = lerp(borderR, GRAY[1], t),
-                            green = lerp(borderG, GRAY[2], t),
-                            blue = lerp(borderB, GRAY[3], t),
-                            alpha = 1,
-                        })
+            -- Mouse nudge (only for newest toast)
+            if toasts[1] == entry then
+                hs.timer.doAfter(0.05, function()
+                    if not entry.canvas then return end
+                    local mp = hs.mouse.absolutePosition()
+                    if mp.x >= targetX and mp.x <= targetX + canvasW
+                       and mp.y >= targetY and mp.y <= targetY + canvasH then
+                        hs.mouse.absolutePosition({x = mp.x, y = targetY + canvasH + 10})
                     end
                 end)
+            end
+
+            -- Hold phase
+            entry.displayTimer = hs.timer.doAfter(DISPLAY_TIME, function()
+                entry.displayTimer = nil
+                if not entry.canvas then return end
+                startFall(entry)
             end)
         else
-            -- Intermediate rise step
             local t = riseStep / RISE_STEPS
-            local curY = startY + (targetY - startY) * t
-            overlay:topLeft({x = targetX, y = curY})
+            entry.canvas:topLeft({x = targetX, y = startY + (targetY - startY) * t})
         end
     end)
 end
