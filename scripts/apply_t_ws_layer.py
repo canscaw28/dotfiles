@@ -53,20 +53,22 @@ WORKSPACE_KEYS = [
     ("/", "slash", "/"),
 ]
 
-# Operations: (ws.sh_op, mode_conditions_dict)
+# Operations: (ws.sh_op, mode_conditions_dict, extra_modifiers)
 # mode_conditions_dict maps variable names to required values.
 # Each mode key that isn't part of the combo is explicitly set to 0.
+# extra_modifiers are added to the fn key event so the eventtap can decode
+# the operation mode from flags, bypassing unreliable async keyDown/keyUp IPC.
 OPERATIONS = [
-    ("move-focus",    {"e": 1, "r": 1, "w": 0, "3": 0, "4": 0, "q": 0}),   # T+R+E
-    ("focus-1",       {"w": 1, "e": 1, "r": 0, "3": 0, "4": 0, "q": 0}),   # T+W+E
-    ("focus-2",       {"w": 1, "r": 1, "e": 0, "3": 0, "4": 0, "q": 0}),   # T+W+R
-    ("focus-3",       {"w": 1, "3": 1, "e": 0, "r": 0, "4": 0, "q": 0}),   # T+W+3
-    ("focus-4",       {"w": 1, "4": 1, "e": 0, "r": 0, "3": 0, "q": 0}),   # T+W+4
-    ("focus",         {"w": 1, "e": 0, "r": 0, "3": 0, "4": 0, "q": 0}),   # T+W
-    ("move",          {"e": 1, "r": 0, "w": 0, "3": 0, "4": 0, "q": 0}),   # T+E
-    ("push-windows",  {"q": 1, "3": 1, "e": 0, "r": 0, "w": 0, "4": 0}),   # T+Q+3
-    ("pull-windows",  {"q": 1, "e": 1, "3": 0, "r": 0, "w": 0, "4": 0}),   # T+Q+E
-    ("swap-windows",  {"q": 1, "e": 0, "r": 0, "w": 0, "3": 0, "4": 0}),   # T+Q
+    ("move-focus",    {"e": 1, "r": 1, "w": 0, "3": 0, "4": 0, "q": 0}, ["control"]),                   # T+R+E
+    ("focus-1",       {"w": 1, "e": 1, "r": 0, "3": 0, "4": 0, "q": 0}, ["shift", "control"]),           # T+W+E
+    ("focus-2",       {"w": 1, "r": 1, "e": 0, "3": 0, "4": 0, "q": 0}, ["option"]),                     # T+W+R
+    ("focus-3",       {"w": 1, "3": 1, "e": 0, "r": 0, "4": 0, "q": 0}, ["shift", "option"]),            # T+W+3
+    ("focus-4",       {"w": 1, "4": 1, "e": 0, "r": 0, "3": 0, "q": 0}, ["control", "option"]),          # T+W+4
+    ("focus",         {"w": 1, "e": 0, "r": 0, "3": 0, "4": 0, "q": 0}, []),                             # T+W
+    ("move",          {"e": 1, "r": 0, "w": 0, "3": 0, "4": 0, "q": 0}, ["shift"]),                      # T+E
+    ("push-windows",  {"q": 1, "3": 1, "e": 0, "r": 0, "w": 0, "4": 0}, ["command"]),                    # T+Q+3
+    ("pull-windows",  {"q": 1, "e": 1, "3": 0, "r": 0, "w": 0, "4": 0}, ["command", "shift"]),           # T+Q+E
+    ("swap-windows",  {"q": 1, "e": 0, "r": 0, "w": 0, "3": 0, "4": 0}, ["shift", "control", "option"]),  # T+Q
 ]
 
 # Right-hand keys NOT in workspace set that need guards
@@ -90,7 +92,7 @@ def get_cond(conditions, name):
     return None
 
 
-def make_action_manipulator(key_code, shell_cmd, mode_conds):
+def make_action_manipulator(key_code, shell_cmd, mode_conds, extra_modifiers=None):
     """Create an action manipulator for T layer workspace operation."""
     conditions = [
         make_condition("caps_lock_is_held", 1),
@@ -106,6 +108,10 @@ def make_action_manipulator(key_code, shell_cmd, mode_conds):
             conditions.append(make_condition(f"{var}_is_held", mode_conds[var]))
     conditions.append(make_condition("g_is_held", 0))
 
+    # Encode operation mode in modifier flags so the eventtap can decode
+    # the mode directly from the key event, without relying on async IPC.
+    modifiers = ["fn"] + (extra_modifiers or [])
+
     return {
         "conditions": conditions,
         "from": {
@@ -113,7 +119,7 @@ def make_action_manipulator(key_code, shell_cmd, mode_conds):
             "modifiers": {"optional": ["any"]},
         },
         "to": [
-            {"key_code": key_code, "modifiers": ["fn"]},
+            {"key_code": key_code, "modifiers": modifiers},
             {"shell_command": shell_cmd},
         ],
         "type": "basic",
@@ -195,11 +201,11 @@ def generate():
     ws_bin = "$HOME/.local/bin/ws.sh"
     actions = []
 
-    for op_name, mode_conds in OPERATIONS:
+    for op_name, mode_conds, extra_mods in OPERATIONS:
         for display_name, key_code, ws_arg in WORKSPACE_KEYS:
             shell_cmd = f"{ws_bin} {op_name} {ws_arg}"
             actions.append(
-                make_action_manipulator(key_code, shell_cmd, mode_conds)
+                make_action_manipulator(key_code, shell_cmd, mode_conds, extra_mods)
             )
 
     # T+E guards: block non-workspace keys when E is held in T layer
@@ -348,7 +354,7 @@ GRID_KEY_SETTERS = [("t", "t_is_held")] + MODE_KEY_SETTERS
 
 
 def add_grid_shell_commands_to_setters(manips):
-    """Add ws_grid keyDown/keyUp shell commands to T, E, R, 3, 4 setters."""
+    """Add ws_grid keyDown/keyUp shell commands to T, E, R, 3, 4, Q setters."""
     for key_code, var_name in GRID_KEY_SETTERS:
         idx = find_setter(manips, key_code, var_name)
         if idx == -1:
@@ -356,10 +362,11 @@ def add_grid_shell_commands_to_setters(manips):
         m = manips[idx]
         for field, direction in [("to", "Down"), ("to_after_key_up", "Up")]:
             items = m.get(field, [])
-            # Remove any existing grid shell commands (idempotent)
+            # Remove any existing grid shell commands or key events (idempotent)
             items = [
                 item for item in items
                 if "ws_grid" not in item.get("shell_command", "")
+                and not (item.get("key_code") == key_code and "fn" in item.get("modifiers", []))
             ]
             # Append grid command
             items.append(make_grid_shell_command(key_code, direction))

@@ -42,6 +42,9 @@
                   },
                   {
                     "key_code": "left_control"
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').resetAllKeys()\" &"
                   }
                 ],
                 "type": "basic"
@@ -75,6 +78,9 @@
                       "name": "caps_lock_is_held",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').resetAllKeys()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -12467,7 +12473,8 @@
                   {
                     "key_code": "6",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -12556,7 +12563,8 @@
                   {
                     "key_code": "7",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -12645,7 +12653,8 @@
                   {
                     "key_code": "8",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -12734,7 +12743,8 @@
                   {
                     "key_code": "9",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -12823,7 +12833,8 @@
                   {
                     "key_code": "0",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -12912,7 +12923,8 @@
                   {
                     "key_code": "y",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -13001,7 +13013,8 @@
                   {
                     "key_code": "u",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -13090,7 +13103,8 @@
                   {
                     "key_code": "i",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -13179,7 +13193,8 @@
                   {
                     "key_code": "o",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -13268,7 +13283,8 @@
                   {
                     "key_code": "p",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -13357,7 +13373,8 @@
                   {
                     "key_code": "h",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -13446,7 +13463,8 @@
                   {
                     "key_code": "j",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -13535,7 +13553,8 @@
                   {
                     "key_code": "k",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -13624,7 +13643,8 @@
                   {
                     "key_code": "l",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -13713,7 +13733,8 @@
                   {
                     "key_code": "semicolon",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -13802,7 +13823,8 @@
                   {
                     "key_code": "n",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -13891,7 +13913,8 @@
                   {
                     "key_code": "m",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -13980,7 +14003,8 @@
                   {
                     "key_code": "comma",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -14069,7 +14093,8 @@
                   {
                     "key_code": "period",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -14158,7 +14183,8 @@
                   {
                     "key_code": "slash",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control"
                     ]
                   },
                   {
@@ -14247,7 +14273,9 @@
                   {
                     "key_code": "6",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -14336,7 +14364,9 @@
                   {
                     "key_code": "7",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -14425,7 +14455,9 @@
                   {
                     "key_code": "8",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -14514,7 +14546,9 @@
                   {
                     "key_code": "9",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -14603,7 +14637,9 @@
                   {
                     "key_code": "0",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -14692,7 +14728,9 @@
                   {
                     "key_code": "y",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -14781,7 +14819,9 @@
                   {
                     "key_code": "u",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -14870,7 +14910,9 @@
                   {
                     "key_code": "i",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -14959,7 +15001,9 @@
                   {
                     "key_code": "o",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -15048,7 +15092,9 @@
                   {
                     "key_code": "p",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -15137,7 +15183,9 @@
                   {
                     "key_code": "h",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -15226,7 +15274,9 @@
                   {
                     "key_code": "j",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -15315,7 +15365,9 @@
                   {
                     "key_code": "k",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -15404,7 +15456,9 @@
                   {
                     "key_code": "l",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -15493,7 +15547,9 @@
                   {
                     "key_code": "semicolon",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -15582,7 +15638,9 @@
                   {
                     "key_code": "n",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -15671,7 +15729,9 @@
                   {
                     "key_code": "m",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -15760,7 +15820,9 @@
                   {
                     "key_code": "comma",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -15849,7 +15911,9 @@
                   {
                     "key_code": "period",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -15938,7 +16002,9 @@
                   {
                     "key_code": "slash",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control"
                     ]
                   },
                   {
@@ -16027,7 +16093,8 @@
                   {
                     "key_code": "6",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -16116,7 +16183,8 @@
                   {
                     "key_code": "7",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -16205,7 +16273,8 @@
                   {
                     "key_code": "8",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -16294,7 +16363,8 @@
                   {
                     "key_code": "9",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -16383,7 +16453,8 @@
                   {
                     "key_code": "0",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -16472,7 +16543,8 @@
                   {
                     "key_code": "y",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -16561,7 +16633,8 @@
                   {
                     "key_code": "u",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -16650,7 +16723,8 @@
                   {
                     "key_code": "i",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -16739,7 +16813,8 @@
                   {
                     "key_code": "o",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -16828,7 +16903,8 @@
                   {
                     "key_code": "p",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -16917,7 +16993,8 @@
                   {
                     "key_code": "h",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -17006,7 +17083,8 @@
                   {
                     "key_code": "j",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -17095,7 +17173,8 @@
                   {
                     "key_code": "k",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -17184,7 +17263,8 @@
                   {
                     "key_code": "l",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -17273,7 +17353,8 @@
                   {
                     "key_code": "semicolon",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -17362,7 +17443,8 @@
                   {
                     "key_code": "n",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -17451,7 +17533,8 @@
                   {
                     "key_code": "m",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -17540,7 +17623,8 @@
                   {
                     "key_code": "comma",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -17629,7 +17713,8 @@
                   {
                     "key_code": "period",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -17718,7 +17803,8 @@
                   {
                     "key_code": "slash",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "option"
                     ]
                   },
                   {
@@ -17807,7 +17893,9 @@
                   {
                     "key_code": "6",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -17896,7 +17984,9 @@
                   {
                     "key_code": "7",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -17985,7 +18075,9 @@
                   {
                     "key_code": "8",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -18074,7 +18166,9 @@
                   {
                     "key_code": "9",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -18163,7 +18257,9 @@
                   {
                     "key_code": "0",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -18252,7 +18348,9 @@
                   {
                     "key_code": "y",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -18341,7 +18439,9 @@
                   {
                     "key_code": "u",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -18430,7 +18530,9 @@
                   {
                     "key_code": "i",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -18519,7 +18621,9 @@
                   {
                     "key_code": "o",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -18608,7 +18712,9 @@
                   {
                     "key_code": "p",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -18697,7 +18803,9 @@
                   {
                     "key_code": "h",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -18786,7 +18894,9 @@
                   {
                     "key_code": "j",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -18875,7 +18985,9 @@
                   {
                     "key_code": "k",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -18964,7 +19076,9 @@
                   {
                     "key_code": "l",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -19053,7 +19167,9 @@
                   {
                     "key_code": "semicolon",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -19142,7 +19258,9 @@
                   {
                     "key_code": "n",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -19231,7 +19349,9 @@
                   {
                     "key_code": "m",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -19320,7 +19440,9 @@
                   {
                     "key_code": "comma",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -19409,7 +19531,9 @@
                   {
                     "key_code": "period",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -19498,7 +19622,9 @@
                   {
                     "key_code": "slash",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "option"
                     ]
                   },
                   {
@@ -19587,7 +19713,9 @@
                   {
                     "key_code": "6",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -19676,7 +19804,9 @@
                   {
                     "key_code": "7",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -19765,7 +19895,9 @@
                   {
                     "key_code": "8",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -19854,7 +19986,9 @@
                   {
                     "key_code": "9",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -19943,7 +20077,9 @@
                   {
                     "key_code": "0",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -20032,7 +20168,9 @@
                   {
                     "key_code": "y",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -20121,7 +20259,9 @@
                   {
                     "key_code": "u",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -20210,7 +20350,9 @@
                   {
                     "key_code": "i",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -20299,7 +20441,9 @@
                   {
                     "key_code": "o",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -20388,7 +20532,9 @@
                   {
                     "key_code": "p",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -20477,7 +20623,9 @@
                   {
                     "key_code": "h",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -20566,7 +20714,9 @@
                   {
                     "key_code": "j",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -20655,7 +20805,9 @@
                   {
                     "key_code": "k",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -20744,7 +20896,9 @@
                   {
                     "key_code": "l",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -20833,7 +20987,9 @@
                   {
                     "key_code": "semicolon",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -20922,7 +21078,9 @@
                   {
                     "key_code": "n",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -21011,7 +21169,9 @@
                   {
                     "key_code": "m",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -21100,7 +21260,9 @@
                   {
                     "key_code": "comma",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -21189,7 +21351,9 @@
                   {
                     "key_code": "period",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -21278,7 +21442,9 @@
                   {
                     "key_code": "slash",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -23147,7 +23313,8 @@
                   {
                     "key_code": "6",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -23236,7 +23403,8 @@
                   {
                     "key_code": "7",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -23325,7 +23493,8 @@
                   {
                     "key_code": "8",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -23414,7 +23583,8 @@
                   {
                     "key_code": "9",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -23503,7 +23673,8 @@
                   {
                     "key_code": "0",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -23592,7 +23763,8 @@
                   {
                     "key_code": "y",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -23681,7 +23853,8 @@
                   {
                     "key_code": "u",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -23770,7 +23943,8 @@
                   {
                     "key_code": "i",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -23859,7 +24033,8 @@
                   {
                     "key_code": "o",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -23948,7 +24123,8 @@
                   {
                     "key_code": "p",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -24037,7 +24213,8 @@
                   {
                     "key_code": "h",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -24126,7 +24303,8 @@
                   {
                     "key_code": "j",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -24215,7 +24393,8 @@
                   {
                     "key_code": "k",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -24304,7 +24483,8 @@
                   {
                     "key_code": "l",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -24393,7 +24573,8 @@
                   {
                     "key_code": "semicolon",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -24482,7 +24663,8 @@
                   {
                     "key_code": "n",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -24571,7 +24753,8 @@
                   {
                     "key_code": "m",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -24660,7 +24843,8 @@
                   {
                     "key_code": "comma",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -24749,7 +24933,8 @@
                   {
                     "key_code": "period",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -24838,7 +25023,8 @@
                   {
                     "key_code": "slash",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift"
                     ]
                   },
                   {
@@ -24927,7 +25113,8 @@
                   {
                     "key_code": "6",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -25016,7 +25203,8 @@
                   {
                     "key_code": "7",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -25105,7 +25293,8 @@
                   {
                     "key_code": "8",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -25194,7 +25383,8 @@
                   {
                     "key_code": "9",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -25283,7 +25473,8 @@
                   {
                     "key_code": "0",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -25372,7 +25563,8 @@
                   {
                     "key_code": "y",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -25461,7 +25653,8 @@
                   {
                     "key_code": "u",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -25550,7 +25743,8 @@
                   {
                     "key_code": "i",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -25639,7 +25833,8 @@
                   {
                     "key_code": "o",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -25728,7 +25923,8 @@
                   {
                     "key_code": "p",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -25817,7 +26013,8 @@
                   {
                     "key_code": "h",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -25906,7 +26103,8 @@
                   {
                     "key_code": "j",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -25995,7 +26193,8 @@
                   {
                     "key_code": "k",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -26084,7 +26283,8 @@
                   {
                     "key_code": "l",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -26173,7 +26373,8 @@
                   {
                     "key_code": "semicolon",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -26262,7 +26463,8 @@
                   {
                     "key_code": "n",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -26351,7 +26553,8 @@
                   {
                     "key_code": "m",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -26440,7 +26643,8 @@
                   {
                     "key_code": "comma",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -26529,7 +26733,8 @@
                   {
                     "key_code": "period",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -26618,7 +26823,8 @@
                   {
                     "key_code": "slash",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command"
                     ]
                   },
                   {
@@ -26707,7 +26913,9 @@
                   {
                     "key_code": "6",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -26796,7 +27004,9 @@
                   {
                     "key_code": "7",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -26885,7 +27095,9 @@
                   {
                     "key_code": "8",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -26974,7 +27186,9 @@
                   {
                     "key_code": "9",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -27063,7 +27277,9 @@
                   {
                     "key_code": "0",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -27152,7 +27368,9 @@
                   {
                     "key_code": "y",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -27241,7 +27459,9 @@
                   {
                     "key_code": "u",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -27330,7 +27550,9 @@
                   {
                     "key_code": "i",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -27419,7 +27641,9 @@
                   {
                     "key_code": "o",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -27508,7 +27732,9 @@
                   {
                     "key_code": "p",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -27597,7 +27823,9 @@
                   {
                     "key_code": "h",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -27686,7 +27914,9 @@
                   {
                     "key_code": "j",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -27775,7 +28005,9 @@
                   {
                     "key_code": "k",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -27864,7 +28096,9 @@
                   {
                     "key_code": "l",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -27953,7 +28187,9 @@
                   {
                     "key_code": "semicolon",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -28042,7 +28278,9 @@
                   {
                     "key_code": "n",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -28131,7 +28369,9 @@
                   {
                     "key_code": "m",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -28220,7 +28460,9 @@
                   {
                     "key_code": "comma",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -28309,7 +28551,9 @@
                   {
                     "key_code": "period",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -28398,7 +28642,9 @@
                   {
                     "key_code": "slash",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "command",
+                      "shift"
                     ]
                   },
                   {
@@ -28487,7 +28733,10 @@
                   {
                     "key_code": "6",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -28576,7 +28825,10 @@
                   {
                     "key_code": "7",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -28665,7 +28917,10 @@
                   {
                     "key_code": "8",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -28754,7 +29009,10 @@
                   {
                     "key_code": "9",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -28843,7 +29101,10 @@
                   {
                     "key_code": "0",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -28932,7 +29193,10 @@
                   {
                     "key_code": "y",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -29021,7 +29285,10 @@
                   {
                     "key_code": "u",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -29110,7 +29377,10 @@
                   {
                     "key_code": "i",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -29199,7 +29469,10 @@
                   {
                     "key_code": "o",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -29288,7 +29561,10 @@
                   {
                     "key_code": "p",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -29377,7 +29653,10 @@
                   {
                     "key_code": "h",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -29466,7 +29745,10 @@
                   {
                     "key_code": "j",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -29555,7 +29837,10 @@
                   {
                     "key_code": "k",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -29644,7 +29929,10 @@
                   {
                     "key_code": "l",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -29733,7 +30021,10 @@
                   {
                     "key_code": "semicolon",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -29822,7 +30113,10 @@
                   {
                     "key_code": "n",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -29911,7 +30205,10 @@
                   {
                     "key_code": "m",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -30000,7 +30297,10 @@
                   {
                     "key_code": "comma",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -30089,7 +30389,10 @@
                   {
                     "key_code": "period",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {
@@ -30178,7 +30481,10 @@
                   {
                     "key_code": "slash",
                     "modifiers": [
-                      "fn"
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
                     ]
                   },
                   {

@@ -465,12 +465,11 @@ function M.getFrame()
     return nil
 end
 
--- Eventtap: Karabiner workspace manipulators output fn+key (instant HID event)
--- before firing shell_command. We catch these key events directly — no file I/O,
--- no polling, no race conditions. Keys are queued and drained one per display
--- frame (~16ms) so each gets its own drawRect pass.
--- (hs.canvas:elementAttribute calls setNeedsDisplay which defers to runloop;
--- multiple calls in one callback produce only one visible frame.)
+-- Eventtap: Karabiner workspace manipulators output fn+key with modifier flags
+-- encoding the operation mode. We decode the mode directly from the event,
+-- bypassing the async keyDown/keyUp IPC that can drop events and leave keys
+-- stuck. Keys are queued and drained one per display frame (~16ms) so each
+-- gets its own drawRect pass.
 
 -- macOS virtual keyCode → workspace key string
 local KEY_CODE_MAP = {
@@ -478,6 +477,44 @@ local KEY_CODE_MAP = {
     [16] = "y", [32] = "u", [34] = "i", [31] = "o", [35] = "p",
     [4]  = "h", [38] = "j", [40] = "k", [37] = "l", [41] = ";",
     [45] = "n", [46] = "m", [43] = ",", [47] = ".", [44] = "/",
+}
+
+-- Decode operation mode from modifier flags on workspace key events.
+-- Karabiner encodes the mode as extra modifiers alongside fn.
+-- Returns: op, mon, swap, moveMode
+--   op: operation name string
+--   mon: target monitor ID (nil = current, 1-4 = specific)
+--   swap: true if Q mode (swap/push/pull)
+--   moveMode: true if move (window moves, focus stays)
+local function decodeMode(flags)
+    local s, c, o, m = flags.shift or false, flags.ctrl or false, flags.alt or false, flags.cmd or false
+    -- Encoding matches apply_t_ws_layer.py OPERATIONS extra_modifiers:
+    if m then
+        if s then return "pull-windows", nil, true, false end  -- cmd+shift
+        return "push-windows", nil, true, false                -- cmd
+    end
+    if s and c and o then return "swap-windows", nil, true, false end
+    if c and o then return "focus-4", 4, false, false end
+    if s and o then return "focus-3", 3, false, false end
+    if o then return "focus-2", 2, false, false end
+    if s and c then return "focus-1", 1, false, false end
+    if c then return "move-focus", nil, false, false end
+    if s then return "move", nil, false, true end
+    return "focus", nil, false, false                          -- fn only
+end
+
+-- Map operation to expected keys state for reconciliation
+local MODE_KEYS = {
+    ["focus"]        = {t = true, w = true,  e = false, r = false, ["3"] = false, ["4"] = false, q = false},
+    ["move"]         = {t = true, w = false, e = true,  r = false, ["3"] = false, ["4"] = false, q = false},
+    ["move-focus"]   = {t = true, w = false, e = true,  r = true,  ["3"] = false, ["4"] = false, q = false},
+    ["focus-1"]      = {t = true, w = true,  e = true,  r = false, ["3"] = false, ["4"] = false, q = false},
+    ["focus-2"]      = {t = true, w = true,  e = false, r = true,  ["3"] = false, ["4"] = false, q = false},
+    ["focus-3"]      = {t = true, w = true,  e = false, r = false, ["3"] = true,  ["4"] = false, q = false},
+    ["focus-4"]      = {t = true, w = true,  e = false, r = false, ["3"] = false, ["4"] = true,  q = false},
+    ["swap-windows"] = {t = true, w = false, e = false, r = false, ["3"] = false, ["4"] = false, q = true},
+    ["push-windows"] = {t = true, w = false, e = false, r = false, ["3"] = true,  ["4"] = false, q = true},
+    ["pull-windows"] = {t = true, w = false, e = true,  r = false, ["3"] = false, ["4"] = false, q = true},
 }
 
 local pendingKeyQueue = {}
@@ -500,7 +537,7 @@ local function drainOneKey()
         return
     end
     local entry = table.remove(pendingKeyQueue, 1)
-    M.visitKey(entry.key, entry.mon, entry.swap, entry.source ~= nil)
+    M.visitKey(entry.key, entry.mon, entry.swap, entry.moveMode)
     local ws_notify = require("ws_notify")
     ws_notify.show(entry.key, entry.mon or lastFocusedMonId, entry.source)
     if #pendingKeyQueue == 0 then
@@ -522,8 +559,7 @@ startKeyDrain = function()
 end
 
 -- Catches workspace key events from Karabiner's virtual keyboard output.
--- When a manipulator matches, it sends fn+key; when it doesn't match,
--- the raw key passes through. Either way, we update the grid and consume.
+-- Mode is decoded from modifier flags — no dependency on async keyDown/keyUp.
 local wsEventTap = hs.eventtap.new(
     {hs.eventtap.event.types.keyDown, hs.eventtap.event.types.keyUp},
     function(event)
@@ -541,13 +577,28 @@ local wsEventTap = hs.eventtap.new(
             return true
         end
 
+        -- Decode mode from modifier flags (source of truth from Karabiner)
+        local flags = event:getFlags()
+        local op, mon, swapMode, moveMode = decodeMode(flags)
+
+        -- Reconcile keys table to match decoded mode — self-corrects any
+        -- stale state from dropped async keyDown/keyUp IPC calls.
+        local expected = MODE_KEYS[op]
+        if expected then
+            for k, v in pairs(expected) do
+                if keys[k] ~= v then
+                    keys[k] = v
+                end
+            end
+            refresh()
+        end
+
         -- Enqueue for frame-paced drain
-        local mon = targetMonitor()
-        local swapMode = keys.q
-        if mon == 0 then mon = nil end
-        local moveMode = keys.e and not keys.w and not keys.q
         local source = moveMode and lastFocusedKey or nil
-        pendingKeyQueue[#pendingKeyQueue + 1] = {key = wsKey, mon = mon, swap = swapMode, source = source}
+        pendingKeyQueue[#pendingKeyQueue + 1] = {
+            key = wsKey, mon = mon, swap = swapMode,
+            moveMode = moveMode, source = source,
+        }
         startKeyDrain()
 
         return true  -- consume
