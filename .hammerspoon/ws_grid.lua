@@ -23,6 +23,15 @@ local keyTextIdx = {}   -- key -> canvas element index for text element
 -- Forward declarations for key drain (referenced by showGrid callback)
 local startKeyDrain, stopKeyDrain
 
+-- Grid animation state
+local gridFallTimer = nil
+local gridTargetX = nil
+local gridTargetY = nil
+
+local GRID_FALL_DIST = 20
+local GRID_FALL_STEPS = 10
+local GRID_FALL_INTERVAL = 0.02
+
 -- Grid layout: 4 rows of 5 keys with keyboard stagger
 local ROWS = {
     {keys = {"6", "7", "8", "9", "0"}, stagger = 0},
@@ -106,6 +115,9 @@ local function patchKey(key, isActive, isFocused, labelColor)
 end
 
 local function drawGrid(visibleWs, focusedKey, focusedMonId)
+    -- Cancel any in-progress fall animation on the old grid
+    if gridFallTimer then gridFallTimer:stop(); gridFallTimer = nil end
+
     if grid then
         grid:delete()
         grid = nil
@@ -130,6 +142,8 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
 
     local x = screenFrame.x + (screenFrame.w - totalW) / 2
     local y = screenFrame.y + (screenFrame.h - totalH) / 2
+    gridTargetX = x
+    gridTargetY = y
 
     grid = hs.canvas.new({x = x, y = y, w = totalW, h = totalH})
     grid:level(hs.canvas.windowLevels.overlay + 1)
@@ -526,7 +540,41 @@ local wsEventTap = hs.eventtap.new(
     end
 )
 
+local function startGridFall()
+    if gridFallTimer then return end  -- already falling
+    if not grid then return end
+
+    -- Stop accepting new keys
+    if wsEventTap:isEnabled() then wsEventTap:stop() end
+    stopKeyDrain()
+    if pendingTask and pendingTask:isRunning() then
+        pendingTask:terminate()
+        pendingTask = nil
+    end
+    local fallStep = 0
+    gridFallTimer = hs.timer.doEvery(GRID_FALL_INTERVAL, function()
+        fallStep = fallStep + 1
+        if not grid then
+            gridFallTimer:stop(); gridFallTimer = nil
+            return
+        end
+        if fallStep >= GRID_FALL_STEPS then
+            gridFallTimer:stop()
+            gridFallTimer = nil
+            grid:delete()
+            grid = nil
+            keyFaceIdx = {}
+            keyTextIdx = {}
+        else
+            local t = fallStep / GRID_FALL_STEPS
+            grid:topLeft({x = gridTargetX, y = gridTargetY + GRID_FALL_DIST * t})
+            grid:alpha(1 - t)
+        end
+    end)
+end
+
 function M.hideGrid()
+    if gridFallTimer then gridFallTimer:stop(); gridFallTimer = nil end
     if wsEventTap:isEnabled() then wsEventTap:stop() end
     stopKeyDrain()
     if pendingTask and pendingTask:isRunning() then
@@ -543,6 +591,16 @@ end
 
 local function refresh()
     if shouldShowGrid() then
+        -- Cancel any ongoing fall animation — grid is needed again
+        if gridFallTimer then
+            gridFallTimer:stop()
+            gridFallTimer = nil
+            if grid then
+                grid:topLeft({x = gridTargetX, y = gridTargetY})
+                grid:alpha(1)
+            end
+        end
+
         if grid then
             -- Grid already visible: just reposition to target screen.
             -- NEVER re-query AeroSpace here — during focus-N ops, workers
@@ -557,17 +615,23 @@ local function refresh()
             if screen then
                 local screenFrame = screen:frame()
                 local f = grid:frame()
-                grid:topLeft({
-                    x = screenFrame.x + (screenFrame.w - f.w) / 2,
-                    y = screenFrame.y + (screenFrame.h - f.h) / 2,
-                })
+                local newX = screenFrame.x + (screenFrame.w - f.w) / 2
+                local newY = screenFrame.y + (screenFrame.h - f.h) / 2
+                grid:topLeft({x = newX, y = newY})
+                gridTargetX = newX
+                gridTargetY = newY
             end
         else
             M.showGrid()
         end
         if not wsEventTap:isEnabled() then wsEventTap:start() end
     else
-        M.hideGrid()
+        -- Start fall animation instead of instant hide
+        if grid and not gridFallTimer then
+            startGridFall()
+        elseif not grid and not gridFallTimer then
+            if wsEventTap:isEnabled() then wsEventTap:stop() end
+        end
     end
 end
 
