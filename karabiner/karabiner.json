@@ -28,6 +28,9 @@
                       "name": "caps_lock_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -44,9 +47,867 @@
                     "key_code": "left_control"
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
                   }
                 ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "a_physical",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "caps-a-physical",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "a_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start()\" &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "s_physical",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "caps-s-physical",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "s_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start()\" &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "d_physical",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "caps-d-physical",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "d_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start()\" &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "f_physical",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "caps-f-physical",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "f_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "0",
+                    "modifiers": [
+                      "control"
+                    ]
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start()\" &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "r_physical",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "caps-r-physical",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "r_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start(); require('ws_grid').keyDown('r')\" &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "e_physical",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "caps-e-physical",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "e_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start(); require('ws_grid').keyDown('e')\" &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "w_physical",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "caps-w-physical",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "w_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start(); require('ws_grid').keyDown('w')\" &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "q_physical",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "caps-q-physical",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "q_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start(); require('ws_grid').keyDown('q')\" &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "4_physical",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "caps-4-physical",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "4_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start(); require('ws_grid').keyDown('4')\" &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "3_physical",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "caps-3-physical",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "3_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start(); require('ws_grid').keyDown('3')\" &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "t_physical",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "caps-t-physical",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "t_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start(); require('ws_grid').keyDown('t')\" &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "g_physical",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "caps-g-physical",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "g_is_held",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start()\" &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                  }
+                ],
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ],
+                  "to_if_invoked": [
+                    {
+                      "set_variable": {
+                        "name": "caps_lock_pressed",
+                        "value": 0
+                      }
+                    }
+                  ]
+                },
                 "type": "basic"
               },
               {
@@ -70,6 +931,9 @@
                       "name": "caps_lock_pressed",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -80,7 +944,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -32539,6 +33403,486 @@
                       "name": "guard_noop",
                       "value": 0
                     }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "a-physical-tracker",
+                "from": {
+                  "key_code": "a",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "a_physical",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "a"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "a_physical",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "a_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop()\" &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "s-physical-tracker",
+                "from": {
+                  "key_code": "s",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "s_physical",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "s"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "s_physical",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "s_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop()\" &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "d-physical-tracker",
+                "from": {
+                  "key_code": "d",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "d_physical",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "d"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "d_physical",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "d_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop()\" &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "f-physical-tracker",
+                "from": {
+                  "key_code": "f",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "f_physical",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "f"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "f_physical",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "f_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop()\" &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "r-physical-tracker",
+                "from": {
+                  "key_code": "r",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "r_physical",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "r"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "r_physical",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "r_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').keyUp('r')\" &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "e-physical-tracker",
+                "from": {
+                  "key_code": "e",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "e_physical",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "e"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "e_physical",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "e_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').keyUp('e')\" &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "w-physical-tracker",
+                "from": {
+                  "key_code": "w",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "w_physical",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "w"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "w_physical",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "w_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').keyUp('w')\" &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "q-physical-tracker",
+                "from": {
+                  "key_code": "q",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "q_physical",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "q"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "q_physical",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "q_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').keyUp('q')\" &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "4-physical-tracker",
+                "from": {
+                  "key_code": "4",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "4_physical",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "4"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "4_physical",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "4_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').keyUp('4')\" &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "3-physical-tracker",
+                "from": {
+                  "key_code": "3",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "3_physical",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "3"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "3_physical",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "3_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').keyUp('3')\" &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "t-physical-tracker",
+                "from": {
+                  "key_code": "t",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "t_physical",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "t"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "t_physical",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "t_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').keyUp('t')\" &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "description": "g-physical-tracker",
+                "from": {
+                  "key_code": "g",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "g_physical",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "g"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "g_physical",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "g_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop()\" &"
                   }
                 ],
                 "type": "basic"
