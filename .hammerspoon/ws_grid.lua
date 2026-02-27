@@ -20,8 +20,8 @@ local lastFocusedMonId = nil
 local keyFaceIdx = {}   -- key -> canvas element index for face rectangle
 local keyTextIdx = {}   -- key -> canvas element index for text element
 
--- Forward declarations for key drain (referenced by showGrid callback)
-local startKeyDrain, stopKeyDrain
+-- Forward declarations (referenced before definition)
+local startKeyDrain, stopKeyDrain, refresh
 
 -- Grid animation state
 local gridFallTimer = nil
@@ -654,7 +654,7 @@ function M.hideGrid()
     keyTextIdx = {}
 end
 
-local function refresh()
+refresh = function()
     if shouldShowGrid() then
         -- Cancel any ongoing fall animation — grid is needed again
         if gridFallTimer then
