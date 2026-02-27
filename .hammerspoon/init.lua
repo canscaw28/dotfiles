@@ -3,6 +3,7 @@ require("line_nav")
 require("ws_notify")
 require("focus_border")
 require("ws_grid")
+require("key_suppress")
 
 screenWatcher = hs.screen.watcher.new(function()
     hs.timer.doAfter(2.0, function()
