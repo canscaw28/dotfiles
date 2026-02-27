@@ -7,11 +7,13 @@ caps_lock_is_held=1 that set *_is_held=1 and have to_after_key_up.
 For each detected layer key, generates:
   1. A physical tracker (at END of manipulators) -- unconditional fallback that
      sets *_physical=1 and passes the key through. On key_up, resets *_physical
-     and *_is_held, and stops key_suppress.
+     and *_is_held, and stops key_suppress for that specific key.
   2. A caps-*-physical setter (after re-press caps setter, before unconditional) --
-     when *_physical=1, pressing caps activates the layer and starts key_suppress.
+     when *_physical=1, pressing caps activates the layer and starts key_suppress
+     for that specific key only.
 
-Also ensures key_suppress.start() is in the re-press and unconditional caps setters.
+Suppression is targeted: only the layer key(s) physically held before caps are
+suppressed, leaving all other key repeats (e.g., caps+H arrow repeat) untouched.
 
 Idempotent: removes old generated content before inserting new.
 """
@@ -97,10 +99,10 @@ def make_physical_tracker(key_code, var_name, has_ws_grid):
     physical_var = f"{key_code}_physical"
 
     if has_ws_grid:
-        up_cmd = (f'{HS_BIN} -c "require(\'key_suppress\').stop();'
+        up_cmd = (f'{HS_BIN} -c "require(\'key_suppress\').stop(\'{key_code}\');'
                   f" require('ws_grid').keyUp('{key_code}')\" &")
     else:
-        up_cmd = f'{HS_BIN} -c "require(\'key_suppress\').stop()" &'
+        up_cmd = f'{HS_BIN} -c "require(\'key_suppress\').stop(\'{key_code}\')" &'
 
     return {
         "description": f"{key_code}-physical-tracker",
@@ -137,10 +139,10 @@ def make_caps_physical_setter(key_code, var_name, has_ws_grid, extra_to):
     to.extend(extra_to)
 
     if has_ws_grid:
-        down_cmd = (f'{HS_BIN} -c "require(\'key_suppress\').start();'
+        down_cmd = (f'{HS_BIN} -c "require(\'key_suppress\').start(\'{key_code}\');'
                     f" require('ws_grid').keyDown('{key_code}')\" &")
     else:
-        down_cmd = f'{HS_BIN} -c "require(\'key_suppress\').start()" &'
+        down_cmd = f'{HS_BIN} -c "require(\'key_suppress\').start(\'{key_code}\')" &'
     to.append({"shell_command": down_cmd})
 
     reset_cmd = (f'{HS_BIN} -c "require(\'key_suppress\').stop();'
@@ -207,15 +209,16 @@ def find_unconditional_caps_setter(manips):
     return -1
 
 
-def ensure_key_suppress_start(m):
-    """Ensure key_suppress.start() is in a caps setter's to array. Returns True if added."""
-    for ev in m.get("to", []):
-        if "key_suppress" in ev.get("shell_command", "") and "start" in ev.get("shell_command", ""):
-            return False
-    m.setdefault("to", []).append(
-        {"shell_command": f'{HS_BIN} -c "require(\'key_suppress\').start()" &'}
-    )
-    return True
+def remove_key_suppress_start(m):
+    """Remove key_suppress.start() from a caps setter's to array. Returns True if removed."""
+    to = m.get("to", [])
+    removed = False
+    for i in range(len(to) - 1, -1, -1):
+        sc = to[i].get("shell_command", "")
+        if "key_suppress" in sc and "start" in sc:
+            to.pop(i)
+            removed = True
+    return removed
 
 
 def ensure_key_suppress_stop(m):
@@ -283,18 +286,18 @@ def main():
     manips.extend(trackers)
     print(f"Appended {len(trackers)} physical trackers at end of manipulators")
 
-    # Phase 5: Ensure key_suppress.start/stop in re-press and unconditional caps setters
+    # Phase 5: Remove blanket key_suppress.start() from caps setters, ensure stop() remains
     repress_idx = find_repress_caps_setter(manips)
     if repress_idx != -1:
-        if ensure_key_suppress_start(manips[repress_idx]):
-            print("Added key_suppress.start() to re-press caps setter")
+        if remove_key_suppress_start(manips[repress_idx]):
+            print("Removed key_suppress.start() from re-press caps setter")
         if ensure_key_suppress_stop(manips[repress_idx]):
             print("Added key_suppress.stop() to re-press caps setter release")
 
     uncon_idx = find_unconditional_caps_setter(manips)
     if uncon_idx != -1:
-        if ensure_key_suppress_start(manips[uncon_idx]):
-            print("Added key_suppress.start() to unconditional caps setter")
+        if remove_key_suppress_start(manips[uncon_idx]):
+            print("Removed key_suppress.start() from unconditional caps setter")
         if ensure_key_suppress_stop(manips[uncon_idx]):
             print("Added key_suppress.stop() to unconditional caps setter release")
 

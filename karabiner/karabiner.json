@@ -28,9 +28,6 @@
                       "name": "caps_lock_is_held",
                       "value": 1
                     }
-                  },
-                  {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -89,7 +86,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('a')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -160,7 +157,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('s')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -231,7 +228,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('d')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -308,7 +305,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('f')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -379,7 +376,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start(); require('ws_grid').keyDown('r')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('r'); require('ws_grid').keyDown('r')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -450,7 +447,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start(); require('ws_grid').keyDown('e')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('e'); require('ws_grid').keyDown('e')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -521,7 +518,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start(); require('ws_grid').keyDown('w')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('w'); require('ws_grid').keyDown('w')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -592,7 +589,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start(); require('ws_grid').keyDown('q')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('q'); require('ws_grid').keyDown('q')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -663,7 +660,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start(); require('ws_grid').keyDown('4')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('4'); require('ws_grid').keyDown('4')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -734,7 +731,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start(); require('ws_grid').keyDown('3')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('3'); require('ws_grid').keyDown('3')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -805,7 +802,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start(); require('ws_grid').keyDown('t')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('t'); require('ws_grid').keyDown('t')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -876,7 +873,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('g')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -931,9 +928,6 @@
                       "name": "caps_lock_pressed",
                       "value": 1
                     }
-                  },
-                  {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -33442,7 +33436,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('a')\" &"
                   }
                 ],
                 "type": "basic"
@@ -33482,7 +33476,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('s')\" &"
                   }
                 ],
                 "type": "basic"
@@ -33522,7 +33516,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('d')\" &"
                   }
                 ],
                 "type": "basic"
@@ -33562,7 +33556,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('f')\" &"
                   }
                 ],
                 "type": "basic"
@@ -33602,7 +33596,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').keyUp('r')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('r'); require('ws_grid').keyUp('r')\" &"
                   }
                 ],
                 "type": "basic"
@@ -33642,7 +33636,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').keyUp('e')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('e'); require('ws_grid').keyUp('e')\" &"
                   }
                 ],
                 "type": "basic"
@@ -33682,7 +33676,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').keyUp('w')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('w'); require('ws_grid').keyUp('w')\" &"
                   }
                 ],
                 "type": "basic"
@@ -33722,7 +33716,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').keyUp('q')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('q'); require('ws_grid').keyUp('q')\" &"
                   }
                 ],
                 "type": "basic"
@@ -33762,7 +33756,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').keyUp('4')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('4'); require('ws_grid').keyUp('4')\" &"
                   }
                 ],
                 "type": "basic"
@@ -33802,7 +33796,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').keyUp('3')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('3'); require('ws_grid').keyUp('3')\" &"
                   }
                 ],
                 "type": "basic"
@@ -33842,7 +33836,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').keyUp('t')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('t'); require('ws_grid').keyUp('t')\" &"
                   }
                 ],
                 "type": "basic"
@@ -33882,7 +33876,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('g')\" &"
                   }
                 ],
                 "type": "basic"
