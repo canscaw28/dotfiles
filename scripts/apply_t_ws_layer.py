@@ -457,7 +457,7 @@ def main():
     # Phase 2d: Add resetAllKeys safety net to caps_lock setters' to_after_key_up.
     # When caps is released, reset all Hammerspoon mode key state to catch any
     # stale state from dropped async keyUp IPC calls.
-    RESET_CMD = {"shell_command": HS_BIN + " -c \"require('ws_grid').resetAllKeys()\" &"}
+    RESET_CMD = {"shell_command": HS_BIN + " -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"}
     caps_reset_count = 0
     for m in manips:
         if m.get("from", {}).get("key_code") != "caps_lock":
