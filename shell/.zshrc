@@ -591,6 +591,7 @@ zle -N delete-to-line-down
 
 bindkey "^[[20;2~" delete-to-line-up          # Caps+D+K (F18 -> F9+Shift sequence)
 bindkey "^[[19;2~" delete-to-line-down        # Caps+D+J (F19 -> F8+Shift sequence)
+bindkey "^[k" backward-kill-line              # Option+K (Caps+D+Y in iTerm2)
 
 # Undo/Redo (Cmd+Z and Cmd+Shift+Z via Karabiner)
 bindkey "^_" undo                             # Ctrl+_ (Cmd+Z via Karabiner)

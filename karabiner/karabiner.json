@@ -4027,9 +4027,9 @@
                 },
                 "to": [
                   {
-                    "key_code": "u",
+                    "key_code": "k",
                     "modifiers": [
-                      "control"
+                      "option"
                     ]
                   }
                 ],
