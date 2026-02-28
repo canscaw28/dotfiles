@@ -302,11 +302,19 @@ function M.visitKey(key, targetMon, swapMode, moveMode)
     local displacedKey = nil
 
     -- Update cached visible workspace state
+    local sourceMonId = lastVisibleWs[displayKey]  -- where target ws was before
     if monId then
         for k, m in pairs(lastVisibleWs) do
             if m == monId then
                 displacedKey = k
-                lastVisibleWs[k] = nil
+                if sourceMonId and sourceMonId ~= monId then
+                    -- Target ws was visible on another monitor — swap:
+                    -- displaced ws moves to where the target was.
+                    lastVisibleWs[k] = sourceMonId
+                else
+                    -- Target ws was hidden — displaced ws becomes hidden.
+                    lastVisibleWs[k] = nil
+                end
                 break
             end
         end
@@ -330,9 +338,11 @@ function M.visitKey(key, targetMon, swapMode, moveMode)
             patchKey(prevFocused, prevMonId ~= nil, false, prevColor)
         end
 
-        -- Displaced key: lost its monitor assignment
+        -- Displaced key: moved to another monitor (swap) or hidden
         if displacedKey and displacedKey ~= displayKey and displacedKey ~= lastFocusedKey then
-            patchKey(displacedKey, false, false, TEXT_COLOR_DIM)
+            local dispMonId = lastVisibleWs[displacedKey]
+            local dispColor = (dispMonId and MONITOR_COLORS[dispMonId]) or TEXT_COLOR_DIM
+            patchKey(displacedKey, dispMonId ~= nil, false, dispColor)
         end
 
         -- Visited key: show * only if it's the focused key
