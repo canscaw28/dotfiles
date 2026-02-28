@@ -24,6 +24,16 @@
 # Karabiner shell_command runs with minimal PATH; ensure homebrew is available
 export PATH="/opt/homebrew/bin:$PATH"
 
+# Detach from Karabiner's process tree on first invocation.
+# Karabiner SIGKILL's shell_command processes unpredictably (observed via
+# orphaned tmp files in the queue dir). Re-exec into a new session so the
+# original process exits in <1ms and the real work runs independently.
+if [[ -z "$_WS_DETACHED" ]]; then
+    export _WS_DETACHED=1
+    "$0" "$@" &>/dev/null &
+    exit 0
+fi
+
 trap '' PIPE  # Ignore SIGPIPE — aerospace CLI gets spurious broken pipes under rapid invocation
 
 # --- Lock and queue infrastructure ---
