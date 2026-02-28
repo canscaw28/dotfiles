@@ -539,7 +539,7 @@ local function drainOneKey()
     local entry = table.remove(pendingKeyQueue, 1)
     M.visitKey(entry.key, entry.mon, entry.swap, entry.moveMode)
     local ws_notify = require("ws_notify")
-    ws_notify.show(entry.key, entry.mon or lastFocusedMonId, entry.source)
+    ws_notify.show(entry.key, entry.mon or lastFocusedMonId, entry.source, entry.followFocus)
     if #pendingKeyQueue == 0 then
         if keyDrainTimer then keyDrainTimer:stop(); keyDrainTimer = nil end
     end
@@ -594,10 +594,11 @@ local wsEventTap = hs.eventtap.new(
         end
 
         -- Enqueue for frame-paced drain
-        local source = moveMode and lastFocusedKey or nil
+        local source = (moveMode or op == "move-focus") and lastFocusedKey or nil
+        local followFocus = (op == "move-focus")
         pendingKeyQueue[#pendingKeyQueue + 1] = {
             key = wsKey, mon = mon, swap = swapMode,
-            moveMode = moveMode, source = source,
+            moveMode = moveMode, source = source, followFocus = followFocus,
         }
         startKeyDrain()
 
