@@ -13,6 +13,7 @@ local keys = {t = false, w = false, e = false, r = false, ["3"] = false, ["4"] =
 local lastVisibleWs = {}    -- key -> monitorId for cached workspace state
 local lastFocusedKey = nil
 local lastFocusedMonId = nil
+local lastMoveTarget = nil  -- previous move-mode highlight (for revert on next move)
 -- (lastRefreshTargetMon removed: re-querying on mode transitions catches
 -- transient AeroSpace state during focus-N ops, corrupting grid position)
 
@@ -275,14 +276,21 @@ function M.visitKey(key, targetMon, swapMode, moveMode)
         return
     end
 
-    -- Move mode (E without W): window moves but focus stays on source
+    -- Move mode (E without R): window moves but focus stays on source
     -- workspace. Don't update lastFocusedKey or lastVisibleWs — only
-    -- briefly highlight the target keycap.
+    -- highlight the target keycap (reverting previous move highlight).
     if moveMode then
         if grid and shouldShowGrid() then
+            -- Revert previous move target so rapid-fire doesn't leave stale highlights
+            if lastMoveTarget and lastMoveTarget ~= displayKey then
+                local prevMonId = lastVisibleWs[lastMoveTarget]
+                local prevColor = (prevMonId and MONITOR_COLORS[prevMonId]) or TEXT_COLOR_DIM
+                patchKey(lastMoveTarget, prevMonId ~= nil, lastMoveTarget == lastFocusedKey, prevColor)
+            end
             local monId = lastVisibleWs[displayKey]
             local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
             patchKey(displayKey, true, false, labelColor)
+            lastMoveTarget = displayKey
         end
         return
     end
@@ -452,6 +460,7 @@ function M.showGrid()
         lastVisibleWs = visibleWs
         lastFocusedKey = focusedKey
         lastFocusedMonId = focusedMonId
+        lastMoveTarget = nil
 
         drawGrid(visibleWs, focusedKey, focusedMonId)
 

@@ -412,12 +412,13 @@ execute_op() {
 # --- Post-processing ---
 
 per_op_post_process() {
-    # Focus ops: instant visual feedback (visitKey) fires from Karabiner
-    # shell_command before ws.sh even starts — no action needed here.
+    # Focus/move-focus ops: instant visual feedback (visitKey) fires from
+    # Karabiner shell_command before ws.sh even starts — skip grid refresh
+    # to avoid async query overwriting visitKey's state.
     # Move ops: window moves but workspace visibility doesn't change —
     # skip grid refresh to avoid async query overwriting grid state.
     # Non-focus ops: trigger full grid refresh.
-    if [[ "$OP" != focus* && "$OP" != "move" ]]; then
+    if [[ "$OP" != focus* && "$OP" != move* ]]; then
         /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
     fi
 }
@@ -446,11 +447,11 @@ final_post_process() {
         /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
     fi
 
-    # Refresh workspace grid overlay if visible (skip for focus — visitKey
-    # provides instant feedback; the async query here races with visitKey
-    # and can overwrite its state with stale AeroSpace data.
+    # Refresh workspace grid overlay if visible (skip for focus/move-focus —
+    # visitKey provides instant feedback; the async query here races with
+    # visitKey and can overwrite its state with stale AeroSpace data.
     # Skip for move — workspace visibility doesn't change.)
-    if [[ "$OP" != focus* && "$OP" != "move" ]]; then
+    if [[ "$OP" != focus* && "$OP" != move* ]]; then
         /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
     fi
 
