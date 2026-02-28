@@ -156,26 +156,16 @@ visible_on_monitor() {
     done
 }
 
-# Place the ~ buffer workspace on a specific monitor.
-# ~ always creates on mon1; if a different monitor is needed, move it there.
 BUFFER_WS='~'
-
-place_buffer_on() {
-    local mon="$1"
-    aerospace workspace "$BUFFER_WS"; sleep 0.03
-    if [[ "$mon" != "1" ]]; then
-        aerospace move-workspace-to-monitor "$mon"; sleep 0.03
-    fi
-}
 
 # Focus a workspace on a specific monitor.
 # summon-workspace only works for hidden workspaces — for a workspace that's
 # already visible on another monitor, it just redirects focus there and picks
 # a random fallback for the source monitor. This helper detects that case and
-# yanks the workspace to the target, leaving ~ on the source monitor.
+# swaps the two workspaces between monitors (both stay visible).
 focus_ws_on_monitor() {
     local target_mon="$1" ws="$2"
-    local ws_mon buf_mon
+    local ws_mon
     ws_mon=$(visible_on_monitor "$ws")
 
     if [[ "$ws_mon" == "$target_mon" ]]; then
@@ -197,28 +187,36 @@ focus_ws_on_monitor() {
         return
     fi
 
-    # ws is visible on ws_mon, want it on target_mon, leave ~ on ws_mon.
-    # These paths are complex — refresh cache fully afterward.
-    buf_mon=$(visible_on_monitor "$BUFFER_WS")
+    # ws is visible on ws_mon, want it on target_mon — swap the two
+    # workspaces so both stay visible (old ws goes to ws_mon).
+    # Uses ~ as a temporary buffer on mon1 to avoid AeroSpace picking
+    # random fallback workspaces during the transition.
+    local current_ws
+    local var="_C_MON_WS_${target_mon}"
+    current_ws="${!var}"
 
-    if [[ "$buf_mon" == "$target_mon" ]]; then
-        # ~ occupies our target from a previous yank. Move ws there directly
-        # (replaces ~, which gets GC'd). Then put fresh ~ on ws_mon.
-        aerospace focus-monitor "$ws_mon"; sleep 0.03
-        aerospace move-workspace-to-monitor "$target_mon"; sleep 0.03
-        place_buffer_on "$ws_mon"
-        aerospace workspace "$ws"
+    # Determine which workspace is on mon1 vs the other monitor.
+    local ws_on_1 ws_on_other other_mon
+    if [[ "$target_mon" == "1" ]]; then
+        ws_on_1="$current_ws"   # current_ws is on target_mon=1
+        ws_on_other="$ws"       # ws is on ws_mon
+        other_mon="$ws_mon"
     else
-        # Reclaim stale ~ to mon1 if it's stranded on another monitor (3+ monitors).
-        if [[ -n "$buf_mon" && "$buf_mon" != "1" ]]; then
-            aerospace focus-monitor "$buf_mon"; sleep 0.03
-            aerospace move-workspace-to-monitor 1; sleep 0.03
-        fi
-        # Place ~ on ws_mon to hide ws, then summon ws to target.
-        place_buffer_on "$ws_mon"
-        aerospace focus-monitor "$target_mon"; sleep 0.03
-        aerospace summon-workspace "$ws"
+        ws_on_1="$ws"           # ws is on ws_mon=1
+        ws_on_other="$current_ws" # current_ws is on target_mon
+        other_mon="$target_mon"
     fi
+
+    # 1. Create ~ on mon1, hiding ws_on_1. ~ never leaves mon1.
+    aerospace workspace "$BUFFER_WS"; sleep 0.03
+    # 2. Summon ws_on_1 (now hidden) to the other monitor, hiding ws_on_other.
+    aerospace focus-monitor "$other_mon"; sleep 0.03
+    aerospace summon-workspace "$ws_on_1"; sleep 0.03
+    # 3. Summon ws_on_other (now hidden) to mon1, hiding ~ (GC'd).
+    aerospace focus-monitor 1; sleep 0.03
+    aerospace summon-workspace "$ws_on_other"
+    # 4. Focus the target monitor showing the requested workspace.
+    aerospace focus-monitor "$target_mon"
     [[ $_CACHED -eq 1 ]] && cache_state
 }
 
