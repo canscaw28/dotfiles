@@ -461,7 +461,24 @@ final_post_process() {
 
 # --- Queue drain ---
 
-COLLAPSE_KEEP=5
+# Weight budget for collapse: total weight of kept focus ops must not
+# exceed this. Normal focus=1, swap focus (visible on another mon)=2.
+COLLAPSE_WEIGHT=5
+
+# Operation weight for collapse. Non-focus ops return 0 (never collapsed).
+# For focus ops, check if the target workspace is visible on another monitor
+# (swap path = heavier). Uses the cached AeroSpace state.
+op_weight() {
+    local op="${1%% *}" ws="${1#* }"
+    [[ "$op" != focus* ]] && echo 0 && return
+    local ws_mon
+    ws_mon=$(visible_on_monitor "$ws")
+    if [[ -n "$ws_mon" && "$ws_mon" != "$_C_FOCUSED_MON" ]]; then
+        echo 2  # swap: 6 aerospace commands
+    else
+        echo 1  # summon or already-there: 1-2 commands
+    fi
+}
 
 drain_queue() {
     cache_state
@@ -500,27 +517,35 @@ drain_queue() {
             continue  # re-enumerate after purge
         fi
 
-        # Collapse: when queue has more than COLLAPSE_KEEP focus ops,
-        # bulk-skip excess from the front. Keeps the last N so the user
-        # lands on their intended workspace quickly.
-        # Non-focus ops (move, swap, push/pull-windows) are never skipped.
+        # Collapse: when total weight of queued focus ops exceeds the
+        # budget, bulk-skip excess from the front. Swap-focus ops count
+        # as 2 (heavier); normal focus ops count as 1. Non-focus ops
+        # (move, swap, push/pull-windows) have weight 0 and are never skipped.
         local depth=${#files[@]}
-        if [[ "$depth" -gt "$COLLAPSE_KEEP" ]]; then
-            local focus_count=0
+        if [[ "$depth" -gt 1 ]]; then
+            # Compute total weight and per-file weights
+            local total_weight=0
+            local -a weights=()
             for f in "${files[@]}"; do
                 local l=$(<"$f")
-                [[ "${l%% *}" == focus* ]] && ((focus_count++))
+                local w
+                w=$(op_weight "$l")
+                weights+=("$w")
+                ((total_weight += w))
             done
-            local excess=$((focus_count - COLLAPSE_KEEP))
-            if [[ "$excess" -gt 0 ]]; then
+            if [[ "$total_weight" -gt "$COLLAPSE_WEIGHT" ]]; then
+                local excess=$((total_weight - COLLAPSE_WEIGHT))
+                local i=0
                 for f in "${files[@]}"; do
                     [[ "$excess" -le 0 ]] && break
-                    local l=$(<"$f")
-                    if [[ "${l%% *}" == focus* ]]; then
-                        debug "COLLAPSE skip ${l%% *} ${l#* } ($focus_count focus ops, keeping $COLLAPSE_KEEP)"
+                    local w="${weights[$i]}"
+                    if [[ "$w" -gt 0 ]]; then
+                        local l=$(<"$f" 2>/dev/null)
+                        debug "COLLAPSE skip ${l%% *} ${l#* } (weight=$w total=$total_weight budget=$COLLAPSE_WEIGHT)"
                         rm -f "$f"
-                        ((excess--))
+                        ((excess -= w))
                     fi
+                    ((i++))
                 done
                 continue  # re-enumerate after bulk skip
             fi
