@@ -554,6 +554,33 @@ drain_queue() {
             fi
         fi
 
+        # Collapse consecutive move-focus: only the last COLLAPSE_WEIGHT matter
+        # (same window dragged through workspaces — intermediates are no-ops).
+        # Unlike focus collapse, must be consecutive — a non-move-focus op in
+        # between may change which window is focused.
+        local mf_run=0
+        for f in "${files[@]}"; do
+            [[ -f "$f" ]] || continue
+            local l
+            l=$(<"$f")
+            if [[ "${l%% *}" == "move-focus" ]]; then
+                ((mf_run++)) || true
+            else
+                break
+            fi
+        done
+        if [[ "$mf_run" -gt "$COLLAPSE_WEIGHT" ]]; then
+            local excess=$((mf_run - COLLAPSE_WEIGHT))
+            for i in $(seq 0 $((excess - 1))); do
+                [[ -f "${files[$i]}" ]] || continue
+                local l
+                l=$(<"${files[$i]}")
+                debug "COLLAPSE skip move-focus ${l#* } ($mf_run consecutive, keeping $COLLAPSE_WEIGHT)"
+                rm -f "${files[$i]}"
+            done
+            continue  # re-enumerate after purge
+        fi
+
         local next="${files[0]}"
         local line
         line=$(<"$next")
