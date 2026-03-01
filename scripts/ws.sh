@@ -500,8 +500,9 @@ drain_queue() {
         # that come BEFORE the first non-focus-N entry.
         local first_non_fn=-1
         for i in "${!files[@]}"; do
+            [[ -f "${files[$i]}" ]] || continue
             local peek
-            peek=$(<"${files[$i]}" 2>/dev/null) || continue
+            peek=$(<"${files[$i]}")
             if [[ "${peek%% *}" != focus-[1-4] ]]; then
                 first_non_fn=$i
                 break
@@ -509,8 +510,9 @@ drain_queue() {
         done
         if [[ $first_non_fn -gt 0 ]]; then
             for i in $(seq 0 $((first_non_fn - 1))); do
+                [[ -f "${files[$i]}" ]] || continue
                 local peek
-                peek=$(<"${files[$i]}" 2>/dev/null) || continue
+                peek=$(<"${files[$i]}")
                 debug "TRANSITION-SKIP ${peek%% *} ${peek#* } (non-focus-N ahead)"
                 rm -f "${files[$i]}"
             done
@@ -540,7 +542,8 @@ drain_queue() {
                     [[ "$excess" -le 0 ]] && break
                     local w="${weights[$i]}"
                     if [[ "$w" -gt 0 ]]; then
-                        local l=$(<"$f" 2>/dev/null)
+                        local l
+                        l=$(<"$f")
                         debug "COLLAPSE skip ${l%% *} ${l#* } (weight=$w total=$total_weight budget=$COLLAPSE_WEIGHT)"
                         rm -f "$f"
                         ((excess -= w))
