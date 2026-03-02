@@ -103,9 +103,9 @@ outer.right =      0
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 cmd-alt-shift-slash = 'layout tiles horizontal vertical'
-cmd-alt-shift-comma = 'balance-sizes'
+cmd-alt-shift-comma = 'layout floating tiling'
 cmd-alt-shift-period = 'layout accordion horizontal vertical'
-cmd-alt-shift-n = 'layout floating tiling'
+cmd-alt-shift-n = 'balance-sizes'
 cmd-alt-shift-m = 'flatten-workspace-tree'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
