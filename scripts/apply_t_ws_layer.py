@@ -425,9 +425,9 @@ def main():
     print(f"Removed: {removed['setters']} setters, {removed['actions']} actions, "
           f"{removed['guards']} guards, {removed['q_noop']} q_noop")
 
-    # Phase 2: Add 3_is_held=0, 4_is_held=0, q_is_held=0 to all T layer manipulators
-    new_mode_vars = ["3_is_held", "4_is_held", "q_is_held"]
-    search_names = {"w_is_held", "3_is_held", "4_is_held", "q_is_held"}
+    # Phase 2: Add e_is_held=0, w_is_held=0, 3_is_held=0, 4_is_held=0, q_is_held=0 to all T layer manipulators
+    new_mode_vars = ["e_is_held", "w_is_held", "3_is_held", "4_is_held", "q_is_held"]
+    search_names = {"e_is_held", "w_is_held", "3_is_held", "4_is_held", "q_is_held"}
     vars_added = {v: 0 for v in new_mode_vars}
     for m in manips:
         if is_t_layer_manipulator(m):
@@ -435,7 +435,7 @@ def main():
             for var_name in new_mode_vars:
                 if get_cond(conds, var_name) is None:
                     # Insert after the last mode variable present
-                    insert_after = "w_is_held"
+                    insert_after = "r_is_held"
                     for c in conds:
                         if c.get("name") in search_names:
                             insert_after = c.get("name")
