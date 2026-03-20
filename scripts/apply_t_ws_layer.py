@@ -66,9 +66,7 @@ OPERATIONS = [
     ("focus-4",       {"w": 1, "4": 1, "e": 0, "r": 0, "3": 0, "q": 0}, ["control", "option"]),          # T+W+4
     ("focus",         {"w": 1, "e": 0, "r": 0, "3": 0, "4": 0, "q": 0}, []),                             # T+W
     ("move",          {"e": 1, "r": 0, "w": 0, "3": 0, "4": 0, "q": 0}, ["shift"]),                      # T+E
-    ("push-windows",  {"q": 1, "3": 1, "e": 0, "r": 0, "w": 0, "4": 0}, ["command"]),                    # T+Q+3
-    ("pull-windows",  {"q": 1, "e": 1, "3": 0, "r": 0, "w": 0, "4": 0}, ["command", "shift"]),           # T+Q+E
-    ("swap-windows",  {"q": 1, "e": 0, "r": 0, "w": 0, "3": 0, "4": 0}, ["shift", "control", "option"]),  # T+Q
+    ("swap-windows",  {"3": 1, "e": 0, "r": 0, "w": 0, "4": 0, "q": 0}, ["shift", "control", "option"]),  # T+3
 ]
 
 # Right-hand keys NOT in workspace set that need guards
@@ -175,28 +173,6 @@ def make_t_w_setter():
     }
 
 
-def make_t_q_setter():
-    """Q mode setter: when caps is held, pressing q sets q_is_held=1."""
-    return {
-        "conditions": [
-            make_condition("caps_lock_is_held", 1),
-        ],
-        "from": {
-            "key_code": "q",
-            "modifiers": {"optional": ["any"]},
-        },
-        "to": [
-            {"set_variable": {"name": "q_is_held", "value": 1}},
-            make_grid_shell_command("q", "Down"),
-        ],
-        "to_after_key_up": [
-            {"set_variable": {"name": "q_is_held", "value": 0}},
-            make_grid_shell_command("q", "Up"),
-        ],
-        "type": "basic",
-    }
-
-
 def generate():
     ws_bin = "$HOME/.local/bin/ws.sh"
     actions = []
@@ -220,17 +196,10 @@ def generate():
         for kc in GUARD_KEYS
     ]
 
-    # T+Q guards: block non-workspace keys when Q is held in T layer
-    q_guards = [
-        make_guard_manipulator(kc, [("q_is_held", 1)], "t-ws-guard")
-        for kc in GUARD_KEYS
-    ]
-
     return {
         "t_w_setter": make_t_w_setter(),
-        "t_q_setter": make_t_q_setter(),
         "actions": actions,
-        "guards": e_guards + w_guards + q_guards,
+        "guards": e_guards + w_guards,
     }
 
 
@@ -317,7 +286,6 @@ MODE_KEY_SETTERS = [
     ("r", "r_is_held"),
     ("3", "3_is_held"),
     ("4", "4_is_held"),
-    ("q", "q_is_held"),
 ]
 
 
@@ -476,9 +444,8 @@ def main():
         print("ERROR: Could not find T+E setter", file=sys.stderr)
         sys.exit(1)
 
-    manips.insert(te_idx + 1, generated["t_q_setter"])
     manips.insert(te_idx + 1, generated["t_w_setter"])
-    print("Inserted T+W and T+Q setters after T+E setter")
+    print("Inserted T+W setter after T+E setter")
 
     # Phase 4: Insert actions and guards before T+4 join manipulators
     t4_first = find_first_t_4_manipulator(manips)

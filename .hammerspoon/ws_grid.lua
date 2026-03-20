@@ -1,5 +1,5 @@
 -- ws_grid.lua
--- Workspace grid overlay shown while caps+T+W, caps+T+E, or caps+T+Q is held.
+-- Workspace grid overlay shown while caps+T+W, caps+T+E, or caps+T+3 is held.
 -- Displays 4x5 grid of workspace keys styled as keyboard keycaps.
 -- Visible workspaces colored by monitor. Focused workspace gets a * prefix.
 
@@ -75,7 +75,7 @@ local MODE_TO_MONITOR = {e = 1, r = 2, ["3"] = 3, ["4"] = 4}
 -- Determine target monitor ID for grid display (nil = don't show)
 local function targetMonitor()
     if not keys.t then return nil end
-    if keys.q then return 0 end  -- 0 = current monitor
+    if keys["3"] and not keys.w then return 0 end  -- swap-windows mode (T+3)
     if keys.e and not keys.w then return 0 end  -- move/move-focus mode
     if not keys.w then return nil end
     -- W held: check if a focus-on-monitor sub-mode is active
@@ -503,15 +503,12 @@ local KEY_CODE_MAP = {
 -- Returns: op, mon, swap, moveMode
 --   op: operation name string
 --   mon: target monitor ID (nil = current, 1-4 = specific)
---   swap: true if Q mode (swap/push/pull)
+--   swap: true if swap mode (T+3)
 --   moveMode: true if move (window moves, focus stays)
 local function decodeMode(flags)
     local s, c, o, m = flags.shift or false, flags.ctrl or false, flags.alt or false, flags.cmd or false
     -- Encoding matches apply_t_ws_layer.py OPERATIONS extra_modifiers:
-    if m then
-        if s then return "pull-windows", nil, true, false end  -- cmd+shift
-        return "push-windows", nil, true, false                -- cmd
-    end
+    -- cmd and cmd+shift modifier combos are now unused (push/pull-windows removed)
     if s and c and o then return "swap-windows", nil, true, false end
     if c and o then return "focus-4", 4, false, false end
     if s and o then return "focus-3", 3, false, false end
@@ -531,9 +528,7 @@ local MODE_KEYS = {
     ["focus-2"]      = {t = true, w = true,  e = false, r = true,  ["3"] = false, ["4"] = false, q = false},
     ["focus-3"]      = {t = true, w = true,  e = false, r = false, ["3"] = true,  ["4"] = false, q = false},
     ["focus-4"]      = {t = true, w = true,  e = false, r = false, ["3"] = false, ["4"] = true,  q = false},
-    ["swap-windows"] = {t = true, w = false, e = false, r = false, ["3"] = false, ["4"] = false, q = true},
-    ["push-windows"] = {t = true, w = false, e = false, r = false, ["3"] = true,  ["4"] = false, q = true},
-    ["pull-windows"] = {t = true, w = false, e = true,  r = false, ["3"] = false, ["4"] = false, q = true},
+    ["swap-windows"] = {t = true, w = false, e = false, r = false, ["3"] = true,  ["4"] = false, q = false},
 }
 
 local pendingKeyQueue = {}
