@@ -176,25 +176,45 @@ def make_t_w_setter():
 
 
 def make_t_q_setter():
-    """Q mode setter: when caps is held, pressing q sets q_is_held=1."""
-    return {
-        "conditions": [
-            make_condition("caps_lock_is_held", 1),
-        ],
-        "from": {
-            "key_code": "q",
-            "modifiers": {"optional": ["any"]},
+    """Q mode latch/toggle: tap caps+Q to enter swap mode, tap again to exit.
+
+    Uses two manipulators (q_is_held=0 → set 1, q_is_held=1 → set 0) instead
+    of hold+to_after_key_up.  This avoids Apple MacBook keyboard matrix ghosting
+    where caps+T+Q+U/I/O/P (4 top-row keys) drops key events.  The caps setter's
+    to_after_key_up already resets q_is_held=0 when caps is released.
+    """
+    return [
+        {
+            "conditions": [
+                make_condition("caps_lock_is_held", 1),
+                make_condition("q_is_held", 0),
+            ],
+            "from": {
+                "key_code": "q",
+                "modifiers": {"optional": ["any"]},
+            },
+            "to": [
+                {"set_variable": {"name": "q_is_held", "value": 1}},
+                make_grid_shell_command("q", "Down"),
+            ],
+            "type": "basic",
         },
-        "to": [
-            {"set_variable": {"name": "q_is_held", "value": 1}},
-            make_grid_shell_command("q", "Down"),
-        ],
-        "to_after_key_up": [
-            {"set_variable": {"name": "q_is_held", "value": 0}},
-            make_grid_shell_command("q", "Up"),
-        ],
-        "type": "basic",
-    }
+        {
+            "conditions": [
+                make_condition("caps_lock_is_held", 1),
+                make_condition("q_is_held", 1),
+            ],
+            "from": {
+                "key_code": "q",
+                "modifiers": {"optional": ["any"]},
+            },
+            "to": [
+                {"set_variable": {"name": "q_is_held", "value": 0}},
+                make_grid_shell_command("q", "Up"),
+            ],
+            "type": "basic",
+        },
+    ]
 
 
 def generate():
@@ -228,7 +248,7 @@ def generate():
 
     return {
         "t_w_setter": make_t_w_setter(),
-        "t_q_setter": make_t_q_setter(),
+        "t_q_setters": make_t_q_setter(),  # list of 2 (toggle on/off)
         "actions": actions,
         "guards": e_guards + w_guards + q_guards,
     }
@@ -476,7 +496,9 @@ def main():
         print("ERROR: Could not find T+E setter", file=sys.stderr)
         sys.exit(1)
 
-    manips.insert(te_idx + 1, generated["t_q_setter"])
+    # Insert Q toggle setters (list of 2), then W setter, all after T+E
+    for q_setter in reversed(generated["t_q_setters"]):
+        manips.insert(te_idx + 1, q_setter)
     manips.insert(te_idx + 1, generated["t_w_setter"])
     print("Inserted T+W and T+Q setters after T+E setter")
 
