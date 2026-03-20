@@ -1253,11 +1253,6 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
-                  },
-                  {
-                    "name": "q_is_held",
-                    "type": "variable_if",
-                    "value": 0
                   }
                 ],
                 "from": {
@@ -1279,30 +1274,7 @@
                     "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('q')\" &"
                   }
                 ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "q_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "from": {
-                  "key_code": "q",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
+                "to_after_key_up": [
                   {
                     "set_variable": {
                       "name": "q_is_held",
@@ -7264,11 +7236,6 @@
                     "value": 0
                   },
                   {
-                    "name": "w_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -7528,11 +7495,6 @@
                     "value": 0
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -7613,11 +7575,6 @@
                   },
                   {
                     "name": "q_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   },
