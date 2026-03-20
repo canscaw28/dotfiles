@@ -175,26 +175,46 @@ def make_t_w_setter():
     }
 
 
-def make_t_q_setter():
-    """Q mode setter: when caps is held, pressing q sets q_is_held=1."""
-    return {
-        "conditions": [
-            make_condition("caps_lock_is_held", 1),
-        ],
-        "from": {
-            "key_code": "q",
-            "modifiers": {"optional": ["any"]},
+def make_t_q_setters():
+    """Q mode latch/toggle: tap caps+Q to enter swap mode, tap again to exit.
+
+    Returns two manipulators (q=0→1 and q=1→0) instead of a single hold.
+    This avoids MacBook keyboard matrix ghosting where holding caps+T+Q plus
+    a top-row target key (U/I/O/P) drops key events.  Caps release resets
+    q_is_held=0 via Phase 2d.
+    """
+    return [
+        {
+            "conditions": [
+                make_condition("caps_lock_is_held", 1),
+                make_condition("q_is_held", 0),
+            ],
+            "from": {
+                "key_code": "q",
+                "modifiers": {"optional": ["any"]},
+            },
+            "to": [
+                {"set_variable": {"name": "q_is_held", "value": 1}},
+                make_grid_shell_command("q", "Down"),
+            ],
+            "type": "basic",
         },
-        "to": [
-            {"set_variable": {"name": "q_is_held", "value": 1}},
-            make_grid_shell_command("q", "Down"),
-        ],
-        "to_after_key_up": [
-            {"set_variable": {"name": "q_is_held", "value": 0}},
-            make_grid_shell_command("q", "Up"),
-        ],
-        "type": "basic",
-    }
+        {
+            "conditions": [
+                make_condition("caps_lock_is_held", 1),
+                make_condition("q_is_held", 1),
+            ],
+            "from": {
+                "key_code": "q",
+                "modifiers": {"optional": ["any"]},
+            },
+            "to": [
+                {"set_variable": {"name": "q_is_held", "value": 0}},
+                make_grid_shell_command("q", "Up"),
+            ],
+            "type": "basic",
+        },
+    ]
 
 
 def generate():
@@ -228,7 +248,7 @@ def generate():
 
     return {
         "t_w_setter": make_t_w_setter(),
-        "t_q_setter": make_t_q_setter(),
+        "t_q_setters": make_t_q_setters(),  # list of 2 (toggle on/off)
         "actions": actions,
         "guards": e_guards + w_guards + q_guards,
     }
@@ -454,21 +474,26 @@ def main():
     add_grid_shell_commands_to_setters(manips)
     print("Added ws_grid shell commands to T, E, R, 3, 4, Q setters")
 
-    # Phase 2d: Add resetAllKeys safety net to caps_lock setters' to_after_key_up.
-    # When caps is released, reset all Hammerspoon mode key state to catch any
-    # stale state from dropped async keyUp IPC calls.
+    # Phase 2d: Add resetAllKeys safety net and q_is_held=0 to caps_lock
+    # setters' to_after_key_up.  resetAllKeys catches stale Hammerspoon state
+    # from dropped async keyUp IPC calls.  q_is_held=0 resets the Q latch so
+    # it doesn't persist across caps presses.
+    Q_RESET = {"set_variable": {"name": "q_is_held", "value": 0}}
     RESET_CMD = {"shell_command": HS_BIN + " -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"}
     caps_reset_count = 0
     for m in manips:
         if m.get("from", {}).get("key_code") != "caps_lock":
             continue
         up_items = m.get("to_after_key_up", [])
-        # Remove old resetAllKeys commands (idempotent)
-        up_items = [item for item in up_items if "resetAllKeys" not in item.get("shell_command", "")]
+        # Remove old resetAllKeys commands and old q_is_held resets (idempotent)
+        up_items = [item for item in up_items
+                    if "resetAllKeys" not in item.get("shell_command", "")
+                    and item.get("set_variable", {}).get("name") != "q_is_held"]
+        up_items.append(Q_RESET)
         up_items.append(RESET_CMD)
         m["to_after_key_up"] = up_items
         caps_reset_count += 1
-    print(f"Added resetAllKeys to {caps_reset_count} caps_lock setters")
+    print(f"Added q_is_held=0 and resetAllKeys to {caps_reset_count} caps_lock setters")
 
     # Phase 3: Insert T+W and T+Q setters after T+E setter
     te_idx = find_t_e_setter(manips)
@@ -476,7 +501,10 @@ def main():
         print("ERROR: Could not find T+E setter", file=sys.stderr)
         sys.exit(1)
 
-    manips.insert(te_idx + 1, generated["t_q_setter"])
+    # Insert Q toggle setters (list of 2) then W setter, all after T+E.
+    # Reverse-insert so order ends up: W, Q_on, Q_off
+    for q_setter in reversed(generated["t_q_setters"]):
+        manips.insert(te_idx + 1, q_setter)
     manips.insert(te_idx + 1, generated["t_w_setter"])
     print("Inserted T+W and T+Q setters after T+E setter")
 
