@@ -7176,11 +7176,6 @@
                     "value": 0
                   },
                   {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "3_is_held",
                     "type": "variable_if",
                     "value": 0
@@ -7192,11 +7187,6 @@
                   },
                   {
                     "name": "q_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "w_is_held",
                     "type": "variable_if",
                     "value": 0
                   },
