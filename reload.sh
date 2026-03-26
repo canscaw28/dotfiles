@@ -46,6 +46,12 @@ reload_iterm() {
     fi
 }
 
+reload_espanso() {
+    log_info "Reloading Espanso config..."
+    espanso restart 2>/dev/null || log_error "Espanso not running or not installed"
+    log_info "Espanso config reloaded"
+}
+
 reload_shell() {
     log_info "Shell config (.zshrc) cannot be reloaded from a script."
     log_info "Run this in your terminal: source ~/.zshrc"
@@ -56,6 +62,7 @@ reload_all() {
     reload_karabiner
     reload_hammerspoon
     reload_iterm
+    reload_espanso
     reload_shell
 }
 
@@ -71,6 +78,7 @@ show_help() {
     echo "  --karabiner    Reload Karabiner Elements config"
     echo "  --hammerspoon  Reload Hammerspoon config"
     echo "  --iterm        Reload iTerm2 config"
+    echo "  --espanso      Reload Espanso config"
     echo "  --shell        Remind to source shell config (must be done manually)"
     echo "  --help         Show this help message"
 }
@@ -99,6 +107,10 @@ else
                 ;;
             --iterm)
                 reload_iterm
+                shift
+                ;;
+            --espanso)
+                reload_espanso
                 shift
                 ;;
             --shell)
