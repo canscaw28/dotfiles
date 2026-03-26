@@ -1,0 +1,8 @@
+# espanso configuration
+# https://espanso.org/docs/configuration/
+
+# Delay between key events (ms) - lower = faster
+key_delay: 0
+
+# Double press Alt/Option to toggle espanso on/off
+toggle_key: LEFT_ALT
