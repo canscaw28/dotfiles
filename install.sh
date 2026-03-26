@@ -100,6 +100,10 @@ install_espanso() {
     # Symlink config and match directories
     create_symlink "$DOTFILES_DIR/espanso/config" "$espanso_dir/config"
     create_symlink "$DOTFILES_DIR/espanso/match" "$espanso_dir/match"
+    # Prompt for personal triggers if not already set up
+    if [[ ! -f "$DOTFILES_DIR/espanso/match/personal.yml" ]]; then
+        "$DOTFILES_DIR/espanso/setup-personal.sh"
+    fi
     "$DOTFILES_DIR/reload.sh" --espanso
 }
 
