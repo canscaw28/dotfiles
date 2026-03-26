@@ -93,6 +93,16 @@ install_hammerspoon() {
     create_symlink "$DOTFILES_DIR/.hammerspoon" "$HOME/.hammerspoon"
 }
 
+install_espanso() {
+    log_info "Installing Espanso config..."
+    local espanso_dir="$HOME/Library/Application Support/espanso"
+    mkdir -p "$espanso_dir"
+    # Symlink config and match directories
+    create_symlink "$DOTFILES_DIR/espanso/config" "$espanso_dir/config"
+    create_symlink "$DOTFILES_DIR/espanso/match" "$espanso_dir/match"
+    "$DOTFILES_DIR/reload.sh" --espanso
+}
+
 install_iterm() {
     log_info "Installing iTerm2 config..."
     if [[ -f "$DOTFILES_DIR/com.googlecode.iterm2.plist" ]]; then
@@ -117,6 +127,7 @@ install_all() {
     install_aerospace
     install_karabiner
     install_hammerspoon
+    install_espanso
     install_iterm
 }
 
@@ -131,6 +142,7 @@ show_help() {
     echo "  --aerospace    Install AeroSpace config"
     echo "  --karabiner    Install Karabiner Elements config"
     echo "  --hammerspoon  Install Hammerspoon config"
+    echo "  --espanso      Install Espanso config"
     echo "  --iterm        Install iTerm2 config"
     echo "  --help         Show this help message"
     echo ""
@@ -190,6 +202,10 @@ else
                 ;;
             --hammerspoon)
                 install_hammerspoon
+                shift
+                ;;
+            --espanso)
+                install_espanso
                 shift
                 ;;
             --iterm)
