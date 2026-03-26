@@ -25,12 +25,12 @@ matches:
           format: "%Y-%m-%d"
 
   - trigger: ";time"
-    replace: "{{time}}"
+    replace: "{{output}}"
     vars:
-      - name: time
-        type: date
+      - name: output
+        type: shell
         params:
-          format: "%I:%M %p"
+          cmd: "date +'%-l:%M%p' | tr '[:upper:]' '[:lower:]' | sed 's/^ //'"
 
   - trigger: ";now"
     replace: "{{now}}"
