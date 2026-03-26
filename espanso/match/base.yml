@@ -30,7 +30,7 @@ matches:
       - name: time
         type: date
         params:
-          format: "%H:%M"
+          format: "%I:%M %p"
 
   - trigger: ";now"
     replace: "{{now}}"
