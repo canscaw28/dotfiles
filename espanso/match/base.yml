@@ -2,16 +2,16 @@
 # https://espanso.org/docs/matches/basics/
 
 # Personal triggers (defined in personal.yml, gitignored):
-#   ;em    - personal email
-#   ;cem   - work email
-#   ;kem   - partner email
-#   ;ph    - personal phone
-#   ;kph   - partner phone
-#   ;addr  - home address
-#   ;gh    - GitHub profile
-#   ;lin   - LinkedIn profile
-#   ;inst  - Instagram profile
-#   ;x     - X/Twitter profile
+#   ;pe    - personal email
+#   ;ce    - company email
+#   ;ge    - girlfriend email
+#   ;pp    - personal phone
+#   ;gp    - girlfriend phone
+#   ;pa    - home address
+#   ;lg    - GitHub link
+#   ;ll    - LinkedIn link
+#   ;li    - Instagram link
+#   ;lx    - X/Twitter link
 #   ;zoom  - Zoom meeting link
 
 matches:
