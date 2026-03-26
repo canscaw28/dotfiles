@@ -1,6 +1,19 @@
 # espanso match file
 # https://espanso.org/docs/matches/basics/
 
+# Personal triggers (defined in personal.yml, gitignored):
+#   ;em    - personal email
+#   ;cem   - work email
+#   ;kem   - partner email
+#   ;ph    - personal phone
+#   ;kph   - partner phone
+#   ;addr  - home address
+#   ;gh    - GitHub profile
+#   ;lin   - LinkedIn profile
+#   ;inst  - Instagram profile
+#   ;x     - X/Twitter profile
+#   ;zoom  - Zoom meeting link
+
 matches:
   # Dates
   - trigger: ";date"
