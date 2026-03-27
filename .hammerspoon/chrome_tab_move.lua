@@ -11,10 +11,8 @@ end
 
 function M.positionNewWindow(direction, follow)
     -- New Chrome window is currently focused (just created by extension).
-    -- Karabiner already set aerospace split horizontal/vertical before creation,
-    -- so the new window is in the correct orientation.
-    -- For left/up: new window appeared to the right/below, swap it.
-    -- For right/down: already in correct position.
+    -- For left/up: new window was appended at the end, swap it into position.
+    -- For right/down: already appended in the correct position.
     -- If follow: stay on the new window. Otherwise refocus the source.
     if direction == "left" or direction == "up" then
         hs.task.new(AEROSPACE, function()
