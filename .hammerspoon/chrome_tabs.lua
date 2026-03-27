@@ -28,17 +28,16 @@ function M.switchTab(step, wrap)
     if not result or result == "switched" then return end
     if not wrap then return end
     local dir = result:match("boundary,(%w+)")
-    if dir then
-        require("chrome_focus").focus(dir)
-        -- Land on the near edge: moving right → first tab, moving left → last tab
-        local landTab = dir == "right" and 1 or -1
-        hs.osascript.javascript(string.format([[
-            (function() {
-                var win = Application("Google Chrome").windows[0];
-                win.activeTabIndex = %d < 0 ? win.tabs.length : %d;
-            })()
-        ]], landTab, landTab))
-    end
+    if not dir then return end
+    if not require("chrome_focus").focus(dir) then return end
+    -- Land on the near edge: moving right → first tab, moving left → last tab
+    local landTab = dir == "right" and 1 or -1
+    hs.osascript.javascript(string.format([[
+        (function() {
+            var win = Application("Google Chrome").windows[0];
+            win.activeTabIndex = %d < 0 ? win.tabs.length : %d;
+        })()
+    ]], landTab, landTab))
 end
 
 function M.onKeyDown(step)
