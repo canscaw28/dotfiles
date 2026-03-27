@@ -57,10 +57,9 @@ function M.focus(direction)
 
     if target then
         target:focus()
-        require("focus_border").flash()
-        return true
     end
-    return false
+    require("focus_border").flash()
+    return target ~= nil
 end
 
 return M
