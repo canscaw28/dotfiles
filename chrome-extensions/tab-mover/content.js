@@ -8,6 +8,11 @@ const reorderKeys = {
   KeyU: -3, KeyI: 3,
 };
 
+const followDirKeys = {
+  ArrowLeft: "left", ArrowRight: "right",
+  ArrowUp: "up", ArrowDown: "down",
+};
+
 document.addEventListener("keydown", (e) => {
   if (e.metaKey && e.ctrlKey && e.shiftKey) {
     if (e.code === "Semicolon") {
@@ -16,6 +21,14 @@ document.addEventListener("keydown", (e) => {
     } else if (e.code === "Digit0") {
       e.preventDefault();
       sendMsg({ action: "detachTab" });
+    }
+  }
+
+  if (e.ctrlKey && e.altKey && !e.metaKey) {
+    const dir = followDirKeys[e.key];
+    if (dir) {
+      e.preventDefault();
+      sendMsg({ action: "moveTabFollow", direction: dir });
     }
   }
 

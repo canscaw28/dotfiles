@@ -57,7 +57,7 @@ async function findWindowInDirection(direction) {
   return bestWindow;
 }
 
-async function moveTabInDirection(direction) {
+async function moveTabInDirection(direction, follow = false) {
   const [activeTab] = await chrome.tabs.query({
     active: true,
     currentWindow: true,
@@ -72,6 +72,10 @@ async function moveTabInDirection(direction) {
       index: -1,
     });
     await chrome.tabs.update(activeTab.id, { active: true });
+    if (follow) {
+      await chrome.windows.update(targetWindow.id, { focused: true });
+      fetch("http://localhost:27183/focus-border-flash").catch(() => {});
+    }
     return;
   }
 
@@ -81,7 +85,7 @@ async function moveTabInDirection(direction) {
 
   await chrome.windows.create({ tabId: activeTab.id });
   fetch(
-    `http://localhost:27183/chrome-tab-new-window?direction=${direction}`
+    `http://localhost:27183/chrome-tab-new-window?direction=${direction}&follow=${follow}`
   ).catch(() => {});
 }
 
@@ -142,6 +146,8 @@ chrome.runtime.onMessage.addListener((msg) => {
     chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
       if (tab) chrome.windows.create({ tabId: tab.id });
     });
+  } else if (msg.action === "moveTabFollow") {
+    moveTabInDirection(msg.direction, true);
   } else if (msg.action === "reorderTab") {
     reorderTab(msg.step, msg.wrap !== false);
   }
