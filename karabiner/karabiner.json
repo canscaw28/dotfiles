@@ -1451,10 +1451,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
-                  },
-                  {
-                    "shell_command": "sleep 0.5 && /usr/local/bin/hs -c \"require('chrome_focus').focus('left')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash(); hs.timer.doAfter(0.3, function() require('chrome_focus').focus('left') end)\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -1509,10 +1506,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
-                  },
-                  {
-                    "shell_command": "sleep 0.5 && /usr/local/bin/hs -c \"require('chrome_focus').focus('down')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash(); hs.timer.doAfter(0.3, function() require('chrome_focus').focus('down') end)\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -1567,10 +1561,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
-                  },
-                  {
-                    "shell_command": "sleep 0.5 && /usr/local/bin/hs -c \"require('chrome_focus').focus('up')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash(); hs.timer.doAfter(0.3, function() require('chrome_focus').focus('up') end)\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -1625,10 +1616,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
-                  },
-                  {
-                    "shell_command": "sleep 0.5 && /usr/local/bin/hs -c \"require('chrome_focus').focus('right')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash(); hs.timer.doAfter(0.3, function() require('chrome_focus').focus('right') end)\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
