@@ -64,6 +64,37 @@ local function showBorder(frame)
     end)
 end
 
+-- Extend the current border's display time without clearing/redrawing.
+-- If no border is showing, does a full flash instead.
+function M.extend()
+    if border then
+        if fadeTimer then
+            fadeTimer:stop()
+            fadeTimer = nil
+        end
+        border:alpha(1)
+        fadeTimer = hs.timer.doAfter(DISPLAY_TIME, function()
+            local step = 0
+            fadeTimer = hs.timer.doEvery(FADE_INTERVAL, function()
+                step = step + 1
+                if step >= FADE_STEPS then
+                    fadeTimer:stop()
+                    fadeTimer = nil
+                    if border then border:delete(); border = nil end
+                else
+                    if border then
+                        border:alpha(1 - step / FADE_STEPS)
+                    end
+                end
+            end)
+        end)
+    elseif delayTimer then
+        -- flash() is pending, let it proceed
+    else
+        M.flash()
+    end
+end
+
 -- Explicit flash from ws.sh, smart-focus.sh, smart-move.sh.
 -- Immediately clears any existing/fading border, then waits briefly
 -- for AeroSpace focus to settle before drawing the new one.
