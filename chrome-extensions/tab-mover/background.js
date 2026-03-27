@@ -75,7 +75,7 @@ async function moveTabInDirection(direction) {
   await chrome.tabs.update(activeTab.id, { active: true });
 }
 
-async function reorderTab(direction) {
+async function reorderTab(step) {
   const [activeTab] = await chrome.tabs.query({
     active: true,
     currentWindow: true,
@@ -83,20 +83,33 @@ async function reorderTab(direction) {
   if (!activeTab) return;
 
   const tabs = await chrome.tabs.query({ currentWindow: true });
-  const newIndex = direction === "left" ? activeTab.index - 1 : activeTab.index + 1;
 
-  if (newIndex >= 0 && newIndex < tabs.length) {
-    await chrome.tabs.move(activeTab.id, { index: newIndex });
+  let targetIndex;
+  let wrapDirection;
+
+  if (step === "first") {
+    targetIndex = 0;
+    wrapDirection = "left";
+  } else if (step === "last") {
+    targetIndex = tabs.length - 1;
+    wrapDirection = "right";
+  } else {
+    targetIndex = Math.max(0, Math.min(tabs.length - 1, activeTab.index + step));
+    wrapDirection = step > 0 ? "right" : "left";
+  }
+
+  if (targetIndex !== activeTab.index) {
+    await chrome.tabs.move(activeTab.id, { index: targetIndex });
     return;
   }
 
-  const targetWindow = await findWindowInDirection(direction);
+  const targetWindow = await findWindowInDirection(wrapDirection);
   if (!targetWindow) return;
 
-  const targetIndex = direction === "left" ? -1 : 0;
+  const insertIndex = wrapDirection === "left" ? -1 : 0;
   await chrome.tabs.move(activeTab.id, {
     windowId: targetWindow.id,
-    index: targetIndex,
+    index: insertIndex,
   });
   await chrome.tabs.update(activeTab.id, { active: true });
   await chrome.windows.update(targetWindow.id, { focused: true });
@@ -118,8 +131,16 @@ chrome.runtime.onMessage.addListener((msg) => {
       if (tab) chrome.windows.create({ tabId: tab.id });
     });
   } else if (msg.action === "reorderTabLeft") {
-    reorderTab("left");
+    reorderTab(-1);
   } else if (msg.action === "reorderTabRight") {
-    reorderTab("right");
+    reorderTab(1);
+  } else if (msg.action === "reorderTabToFirst") {
+    reorderTab("first");
+  } else if (msg.action === "reorderTabToLast") {
+    reorderTab("last");
+  } else if (msg.action === "reorderTab3Right") {
+    reorderTab(3);
+  } else if (msg.action === "reorderTab3Left") {
+    reorderTab(-3);
   }
 });
