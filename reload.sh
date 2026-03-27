@@ -57,6 +57,36 @@ reload_shell() {
     log_info "Run this in your terminal: source ~/.zshrc"
 }
 
+reload_chrome() {
+    DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    EXT_DIR="$DOTFILES_DIR/chrome-extensions/tab-mover"
+
+    if [[ ! -d "$EXT_DIR" ]]; then
+        log_error "Tab Mover extension not found at $EXT_DIR"
+        return 1
+    fi
+
+    # Unpacked extensions are tracked by path in Secure Preferences
+    local ext_found=false
+    SECURE_PREFS="$HOME/Library/Application Support/Google/Chrome/Default/Secure Preferences"
+    if [[ -f "$SECURE_PREFS" ]] && grep -q "chrome-extensions/tab-mover" "$SECURE_PREFS" 2>/dev/null; then
+        ext_found=true
+    fi
+
+    if [[ "$ext_found" = false ]]; then
+        log_error "Tab Mover Chrome extension is not installed."
+        log_info "To install:"
+        log_info "  1. Open chrome://extensions in Chrome"
+        log_info "  2. Enable 'Developer mode' (top-right toggle)"
+        log_info "  3. Click 'Load unpacked' → select $EXT_DIR"
+        log_info "  4. Verify shortcuts at chrome://extensions/shortcuts"
+        return 1
+    fi
+
+    log_info "Tab Mover Chrome extension is installed."
+    log_info "To reload: click the refresh icon on chrome://extensions"
+}
+
 reload_all() {
     reload_aerospace
     reload_karabiner
@@ -64,6 +94,7 @@ reload_all() {
     reload_iterm
     reload_espanso
     reload_shell
+    reload_chrome
 }
 
 show_help() {
@@ -80,6 +111,7 @@ show_help() {
     echo "  --iterm        Reload iTerm2 config"
     echo "  --espanso      Reload Espanso config"
     echo "  --shell        Remind to source shell config (must be done manually)"
+    echo "  --chrome       Check/notify Tab Mover Chrome extension status"
     echo "  --help         Show this help message"
 }
 
@@ -115,6 +147,10 @@ else
                 ;;
             --shell)
                 reload_shell
+                shift
+                ;;
+            --chrome)
+                reload_chrome
                 shift
                 ;;
             --help|-h)
