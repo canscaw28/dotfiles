@@ -9,19 +9,19 @@
   },
   "commands": {
     "move-tab-left": {
-      "suggested_key": { "mac": "Ctrl+Shift+Left" },
+      "suggested_key": { "mac": "MacCtrl+Shift+Left" },
       "description": "Move tab to window on the left"
     },
     "move-tab-right": {
-      "suggested_key": { "mac": "Ctrl+Shift+Right" },
+      "suggested_key": { "mac": "MacCtrl+Shift+Right" },
       "description": "Move tab to window on the right"
     },
     "move-tab-up": {
-      "suggested_key": { "mac": "Ctrl+Shift+Up" },
+      "suggested_key": { "mac": "MacCtrl+Shift+Up" },
       "description": "Move tab to window above"
     },
     "move-tab-down": {
-      "suggested_key": { "mac": "Ctrl+Shift+Down" },
+      "suggested_key": { "mac": "MacCtrl+Shift+Down" },
       "description": "Move tab to window below"
     }
   }
