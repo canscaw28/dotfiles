@@ -102,6 +102,7 @@ async function reorderTab(direction, wrap) {
   });
   await chrome.tabs.update(activeTab.id, { active: true });
   await chrome.windows.update(targetWindow.id, { focused: true });
+  fetch("http://localhost:27183/focus-border-flash").catch(() => {});
 }
 
 chrome.commands.onCommand.addListener(async (command) => {
