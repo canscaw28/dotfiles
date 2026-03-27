@@ -57,7 +57,7 @@ async function findWindowInDirection(direction) {
   return bestWindow;
 }
 
-async function moveTabInDirection(direction, follow = false) {
+async function moveTabInDirection(direction, { follow = false, create = false } = {}) {
   const [activeTab] = await chrome.tabs.query({
     active: true,
     currentWindow: true,
@@ -80,6 +80,8 @@ async function moveTabInDirection(direction, follow = false) {
   }
 
   // No target window — detach tab into a new window in that direction
+  if (!create) return;
+
   const tabs = await chrome.tabs.query({ currentWindow: true });
   if (tabs.length <= 1) return;
 
@@ -134,7 +136,7 @@ async function reorderTab(step, wrap = true) {
 
 chrome.commands.onCommand.addListener(async (command) => {
   const direction = command.replace("move-tab-", "");
-  await moveTabInDirection(direction);
+  await moveTabInDirection(direction, { create: true });
 });
 
 chrome.runtime.onMessage.addListener((msg) => {
@@ -147,7 +149,7 @@ chrome.runtime.onMessage.addListener((msg) => {
       if (tab) chrome.windows.create({ tabId: tab.id });
     });
   } else if (msg.action === "moveTabFollow") {
-    moveTabInDirection(msg.direction, true);
+    moveTabInDirection(msg.direction, { follow: true, create: msg.create });
   } else if (msg.action === "reorderTab") {
     reorderTab(msg.step, msg.wrap !== false);
   }

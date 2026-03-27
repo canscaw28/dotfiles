@@ -28,7 +28,7 @@ document.addEventListener("keydown", (e) => {
     const dir = followDirKeys[e.key];
     if (dir) {
       e.preventDefault();
-      sendMsg({ action: "moveTabFollow", direction: dir });
+      sendMsg({ action: "moveTabFollow", direction: dir, create: e.shiftKey });
     }
   }
 
