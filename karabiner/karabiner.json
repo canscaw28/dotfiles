@@ -11626,6 +11626,170 @@
                     "name": "g_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "description": "G+F+H: Chrome reorder tab left",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "parameters": {
+                  "basic.to_if_held_down_threshold_milliseconds": 200
+                },
+                "to": [
+                  {
+                    "key_code": "h",
+                    "modifiers": [
+                      "left_command",
+                      "left_control",
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "key_code": "h",
+                    "modifiers": [
+                      "left_command",
+                      "left_control"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "r_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "description": "G+F+L: Chrome reorder tab right",
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "parameters": {
+                  "basic.to_if_held_down_threshold_milliseconds": 200
+                },
+                "to": [
+                  {
+                    "key_code": "l",
+                    "modifiers": [
+                      "left_command",
+                      "left_control",
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "key_code": "l",
+                    "modifiers": [
+                      "left_command",
+                      "left_control"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "r_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
                   }
                 ],
                 "from": {

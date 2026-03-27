@@ -15,7 +15,7 @@ function isWindowOnScreen(w, displayBounds) {
   );
 }
 
-async function moveTabInDirection(direction) {
+async function findWindowInDirection(direction) {
   const currentWindow = await chrome.windows.getCurrent();
   const allWindows = await chrome.windows.getAll({ windowTypes: ["normal"] });
   const displayBounds = await getVisibleDisplayBounds();
@@ -24,7 +24,7 @@ async function moveTabInDirection(direction) {
     (w) => w.id !== currentWindow.id && isWindowOnScreen(w, displayBounds)
   );
 
-  if (candidates.length === 0) return;
+  if (candidates.length === 0) return null;
 
   const srcCX = currentWindow.left + currentWindow.width / 2;
   const srcCY = currentWindow.top + currentWindow.height / 2;
@@ -54,7 +54,12 @@ async function moveTabInDirection(direction) {
     }
   }
 
-  if (!bestWindow) return;
+  return bestWindow;
+}
+
+async function moveTabInDirection(direction) {
+  const targetWindow = await findWindowInDirection(direction);
+  if (!targetWindow) return;
 
   const [activeTab] = await chrome.tabs.query({
     active: true,
@@ -64,10 +69,39 @@ async function moveTabInDirection(direction) {
   if (!activeTab) return;
 
   await chrome.tabs.move(activeTab.id, {
-    windowId: bestWindow.id,
+    windowId: targetWindow.id,
     index: -1,
   });
   await chrome.tabs.update(activeTab.id, { active: true });
+}
+
+async function reorderTab(direction, wrap) {
+  const [activeTab] = await chrome.tabs.query({
+    active: true,
+    currentWindow: true,
+  });
+  if (!activeTab) return;
+
+  const tabs = await chrome.tabs.query({ currentWindow: true });
+  const newIndex = direction === "left" ? activeTab.index - 1 : activeTab.index + 1;
+
+  if (newIndex >= 0 && newIndex < tabs.length) {
+    await chrome.tabs.move(activeTab.id, { index: newIndex });
+    return;
+  }
+
+  if (!wrap) return;
+
+  const targetWindow = await findWindowInDirection(direction);
+  if (!targetWindow) return;
+
+  const targetIndex = direction === "left" ? -1 : 0;
+  await chrome.tabs.move(activeTab.id, {
+    windowId: targetWindow.id,
+    index: targetIndex,
+  });
+  await chrome.tabs.update(activeTab.id, { active: true });
+  await chrome.windows.update(targetWindow.id, { focused: true });
 }
 
 chrome.commands.onCommand.addListener(async (command) => {
@@ -84,5 +118,13 @@ chrome.runtime.onMessage.addListener((msg) => {
     chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
       if (tab) chrome.windows.create({ tabId: tab.id });
     });
+  } else if (msg.action === "reorderTabLeft") {
+    reorderTab("left", false);
+  } else if (msg.action === "reorderTabRight") {
+    reorderTab("right", false);
+  } else if (msg.action === "reorderWrapTabLeft") {
+    reorderTab("left", true);
+  } else if (msg.action === "reorderWrapTabRight") {
+    reorderTab("right", true);
   }
 });
