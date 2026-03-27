@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "Tab Mover",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Move tabs between Chrome windows directionally",
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "system.display"],
   "background": {
     "service_worker": "background.js"
   },
