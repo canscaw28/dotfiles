@@ -1441,6 +1441,9 @@
                 },
                 "to": [
                   {
+                    "shell_command": "/opt/homebrew/bin/aerospace split horizontal 2>/dev/null &"
+                  },
+                  {
                     "key_code": "left_arrow",
                     "modifiers": [
                       "left_control",
@@ -1495,6 +1498,9 @@
                   }
                 },
                 "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace split vertical 2>/dev/null &"
+                  },
                   {
                     "key_code": "down_arrow",
                     "modifiers": [
@@ -1551,6 +1557,9 @@
                 },
                 "to": [
                   {
+                    "shell_command": "/opt/homebrew/bin/aerospace split vertical 2>/dev/null &"
+                  },
+                  {
                     "key_code": "up_arrow",
                     "modifiers": [
                       "left_control",
@@ -1605,6 +1614,9 @@
                   }
                 },
                 "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace split horizontal 2>/dev/null &"
+                  },
                   {
                     "key_code": "right_arrow",
                     "modifiers": [
@@ -1661,6 +1673,9 @@
                 },
                 "to": [
                   {
+                    "shell_command": "/opt/homebrew/bin/aerospace split horizontal 2>/dev/null &"
+                  },
+                  {
                     "key_code": "left_arrow",
                     "modifiers": [
                       "left_control",
@@ -1712,6 +1727,9 @@
                   }
                 },
                 "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace split vertical 2>/dev/null &"
+                  },
                   {
                     "key_code": "down_arrow",
                     "modifiers": [
@@ -1765,6 +1783,9 @@
                 },
                 "to": [
                   {
+                    "shell_command": "/opt/homebrew/bin/aerospace split vertical 2>/dev/null &"
+                  },
+                  {
                     "key_code": "up_arrow",
                     "modifiers": [
                       "left_control",
@@ -1816,6 +1837,9 @@
                   }
                 },
                 "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace split horizontal 2>/dev/null &"
+                  },
                   {
                     "key_code": "right_arrow",
                     "modifiers": [
