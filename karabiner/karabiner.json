@@ -13177,6 +13177,7 @@
                     "value": 1
                   }
                 ],
+                "description": "G+slash: detach tab to new window",
                 "from": {
                   "key_code": "slash",
                   "modifiers": {
@@ -13705,10 +13706,10 @@
                 },
                 "to": [
                   {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
+                    "key_code": "w",
+                    "modifiers": [
+                      "command"
+                    ]
                   }
                 ],
                 "type": "basic"
