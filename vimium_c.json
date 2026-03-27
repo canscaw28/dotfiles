@@ -30,7 +30,6 @@
 		"unmap r",
 		"unmap t",
 		"unmap x",
-		"map <c-s-m-0> moveTabToNewWindow",
 		""
 	],
 	"userDefinedCss": [

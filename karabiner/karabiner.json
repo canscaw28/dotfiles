@@ -1443,7 +1443,7 @@
                   {
                     "key_code": "left_arrow",
                     "modifiers": [
-                      "left_command",
+                      "left_control",
                       "left_shift"
                     ]
                   },
@@ -1495,7 +1495,7 @@
                   {
                     "key_code": "down_arrow",
                     "modifiers": [
-                      "left_command",
+                      "left_control",
                       "left_shift"
                     ]
                   },
@@ -1547,7 +1547,7 @@
                   {
                     "key_code": "up_arrow",
                     "modifiers": [
-                      "left_command",
+                      "left_control",
                       "left_shift"
                     ]
                   },
@@ -1599,7 +1599,7 @@
                   {
                     "key_code": "right_arrow",
                     "modifiers": [
-                      "left_command",
+                      "left_control",
                       "left_shift"
                     ]
                   },
@@ -1651,7 +1651,7 @@
                   {
                     "key_code": "left_arrow",
                     "modifiers": [
-                      "left_command",
+                      "left_control",
                       "left_shift"
                     ]
                   }
@@ -1700,7 +1700,7 @@
                   {
                     "key_code": "down_arrow",
                     "modifiers": [
-                      "left_command",
+                      "left_control",
                       "left_shift"
                     ]
                   }
@@ -1749,7 +1749,7 @@
                   {
                     "key_code": "up_arrow",
                     "modifiers": [
-                      "left_command",
+                      "left_control",
                       "left_shift"
                     ]
                   }
@@ -1798,7 +1798,7 @@
                   {
                     "key_code": "right_arrow",
                     "modifiers": [
-                      "left_command",
+                      "left_control",
                       "left_shift"
                     ]
                   }
@@ -13377,16 +13377,15 @@
                 },
                 "to": [
                   {
-                    "key_code": "l",
+                    "key_code": "semicolon",
                     "modifiers": [
-                      "command"
+                      "left_command",
+                      "left_control",
+                      "left_shift"
                     ]
                   },
                   {
-                    "key_code": "return_or_enter",
-                    "modifiers": [
-                      "command"
-                    ]
+                    "shell_command": "URL=$(osascript -e 'tell application \"Google Chrome\" to URL of active tab of front window' 2>/dev/null); [[ \"$URL\" == chrome://* ]] && osascript -e 'tell application \"Google Chrome\" to tell front window to make new tab' &"
                   }
                 ],
                 "type": "basic"

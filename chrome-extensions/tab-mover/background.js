@@ -74,3 +74,15 @@ chrome.commands.onCommand.addListener(async (command) => {
   const direction = command.replace("move-tab-", "");
   await moveTabInDirection(direction);
 });
+
+chrome.runtime.onMessage.addListener((msg) => {
+  if (msg.action === "duplicateTab") {
+    chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
+      if (tab) chrome.tabs.duplicate(tab.id);
+    });
+  } else if (msg.action === "detachTab") {
+    chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
+      if (tab) chrome.windows.create({ tabId: tab.id });
+    });
+  }
+});
