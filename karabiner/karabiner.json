@@ -1448,6 +1448,9 @@
                     ]
                   },
                   {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
+                  },
+                  {
                     "shell_command": "sleep 0.3 && /usr/local/bin/hs -c \"require('chrome_focus').focus('left')\" 2>/dev/null &"
                   }
                 ],
@@ -1498,6 +1501,9 @@
                       "left_control",
                       "left_shift"
                     ]
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
                   },
                   {
                     "shell_command": "sleep 0.3 && /usr/local/bin/hs -c \"require('chrome_focus').focus('down')\" 2>/dev/null &"
@@ -1552,6 +1558,9 @@
                     ]
                   },
                   {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
+                  },
+                  {
                     "shell_command": "sleep 0.3 && /usr/local/bin/hs -c \"require('chrome_focus').focus('up')\" 2>/dev/null &"
                   }
                 ],
@@ -1604,6 +1613,9 @@
                     ]
                   },
                   {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
+                  },
+                  {
                     "shell_command": "sleep 0.3 && /usr/local/bin/hs -c \"require('chrome_focus').focus('right')\" 2>/dev/null &"
                   }
                 ],
@@ -1654,6 +1666,9 @@
                       "left_control",
                       "left_shift"
                     ]
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -1703,6 +1718,9 @@
                       "left_control",
                       "left_shift"
                     ]
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -1752,6 +1770,9 @@
                       "left_control",
                       "left_shift"
                     ]
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -1801,6 +1822,9 @@
                       "left_control",
                       "left_shift"
                     ]
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
