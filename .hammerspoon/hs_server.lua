@@ -7,6 +7,11 @@ M.server:setCallback(function(method, path)
         require("focus_border").flash()
         return "", 200, {}
     end
+    local direction = path:match("^/chrome%-tab%-new%-window%?direction=(%a+)")
+    if direction then
+        require("chrome_tab_move").positionNewWindow(direction)
+        return "", 200, {}
+    end
     return "", 404, {}
 end)
 M.server:start()

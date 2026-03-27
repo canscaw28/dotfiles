@@ -58,21 +58,31 @@ async function findWindowInDirection(direction) {
 }
 
 async function moveTabInDirection(direction) {
-  const targetWindow = await findWindowInDirection(direction);
-  if (!targetWindow) return;
-
   const [activeTab] = await chrome.tabs.query({
     active: true,
     currentWindow: true,
   });
-
   if (!activeTab) return;
 
-  await chrome.tabs.move(activeTab.id, {
-    windowId: targetWindow.id,
-    index: -1,
-  });
-  await chrome.tabs.update(activeTab.id, { active: true });
+  const targetWindow = await findWindowInDirection(direction);
+
+  if (targetWindow) {
+    await chrome.tabs.move(activeTab.id, {
+      windowId: targetWindow.id,
+      index: -1,
+    });
+    await chrome.tabs.update(activeTab.id, { active: true });
+    return;
+  }
+
+  // No target window — detach tab into a new window in that direction
+  const tabs = await chrome.tabs.query({ currentWindow: true });
+  if (tabs.length <= 1) return;
+
+  await chrome.windows.create({ tabId: activeTab.id });
+  fetch(
+    `http://localhost:27183/chrome-tab-new-window?direction=${direction}`
+  ).catch(() => {});
 }
 
 async function reorderTab(step, wrap = true) {
