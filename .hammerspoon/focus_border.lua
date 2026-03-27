@@ -79,14 +79,14 @@ function M.flash(monitorOnly)
 
     delayTimer = hs.timer.doAfter(FLASH_DELAY, function()
         delayTimer = nil
-        local screen = hs.mouse.getCurrentScreen()
         if not monitorOnly then
             local win = hs.window.focusedWindow()
-            if win and screen and win:screen() == screen then
+            if win then
                 showBorder(win:frame())
                 return
             end
         end
+        local screen = hs.mouse.getCurrentScreen()
         if screen then
             showBorder(screen:frame())
         end
