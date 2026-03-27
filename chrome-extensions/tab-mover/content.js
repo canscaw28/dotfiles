@@ -10,12 +10,6 @@ document.addEventListener("keydown", (e) => {
     } else if (e.code === "Digit0") {
       e.preventDefault();
       sendMsg({ action: "detachTab" });
-    } else if (e.code === "KeyH") {
-      e.preventDefault();
-      sendMsg({ action: "reorderWrapTabLeft" });
-    } else if (e.code === "KeyL") {
-      e.preventDefault();
-      sendMsg({ action: "reorderWrapTabRight" });
     }
   }
 

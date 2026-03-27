@@ -11651,8 +11651,7 @@
                     "key_code": "h",
                     "modifiers": [
                       "left_command",
-                      "left_control",
-                      "left_shift"
+                      "left_control"
                     ]
                   }
                 ],
@@ -11733,8 +11732,7 @@
                     "key_code": "l",
                     "modifiers": [
                       "left_command",
-                      "left_control",
-                      "left_shift"
+                      "left_control"
                     ]
                   }
                 ],
