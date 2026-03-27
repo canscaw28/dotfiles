@@ -2,6 +2,12 @@ function sendMsg(msg) {
   try { chrome.runtime.sendMessage(msg); } catch (e) {}
 }
 
+const reorderKeys = {
+  KeyH: -1, KeyL: 1,
+  KeyY: "first", KeyO: "last",
+  KeyU: -3, KeyI: 3,
+};
+
 document.addEventListener("keydown", (e) => {
   if (e.metaKey && e.ctrlKey && e.shiftKey) {
     if (e.code === "Semicolon") {
@@ -13,25 +19,11 @@ document.addEventListener("keydown", (e) => {
     }
   }
 
-  if (e.metaKey && e.ctrlKey && !e.shiftKey) {
-    if (e.code === "KeyH") {
+  if (e.metaKey && e.ctrlKey) {
+    const step = reorderKeys[e.code];
+    if (step !== undefined) {
       e.preventDefault();
-      sendMsg({ action: "reorderTabLeft" });
-    } else if (e.code === "KeyL") {
-      e.preventDefault();
-      sendMsg({ action: "reorderTabRight" });
-    } else if (e.code === "KeyY") {
-      e.preventDefault();
-      sendMsg({ action: "reorderTabToFirst" });
-    } else if (e.code === "KeyO") {
-      e.preventDefault();
-      sendMsg({ action: "reorderTabToLast" });
-    } else if (e.code === "KeyI") {
-      e.preventDefault();
-      sendMsg({ action: "reorderTab3Right" });
-    } else if (e.code === "KeyP") {
-      e.preventDefault();
-      sendMsg({ action: "reorderTab3Left" });
+      sendMsg({ action: "reorderTab", step, wrap: !e.shiftKey });
     }
   }
 });

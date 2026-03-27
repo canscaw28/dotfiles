@@ -11660,7 +11660,8 @@
                     "key_code": "h",
                     "modifiers": [
                       "left_command",
-                      "left_control"
+                      "left_control",
+                      "left_shift"
                     ]
                   }
                 ],
@@ -11741,7 +11742,8 @@
                     "key_code": "l",
                     "modifiers": [
                       "left_command",
-                      "left_control"
+                      "left_control",
+                      "left_shift"
                     ]
                   }
                 ],
@@ -11822,7 +11824,8 @@
                     "key_code": "y",
                     "modifiers": [
                       "left_command",
-                      "left_control"
+                      "left_control",
+                      "left_shift"
                     ]
                   }
                 ],
@@ -11903,7 +11906,90 @@
                     "key_code": "i",
                     "modifiers": [
                       "left_command",
+                      "left_control",
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "r_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "description": "G+F+U: Chrome reorder tab left 3",
+                "from": {
+                  "key_code": "u",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "parameters": {
+                  "basic.to_if_held_down_threshold_milliseconds": 200
+                },
+                "to": [
+                  {
+                    "key_code": "u",
+                    "modifiers": [
+                      "left_command",
                       "left_control"
+                    ]
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "key_code": "u",
+                    "modifiers": [
+                      "left_command",
+                      "left_control",
+                      "left_shift"
                     ]
                   }
                 ],
@@ -11984,88 +12070,8 @@
                     "key_code": "o",
                     "modifiers": [
                       "left_command",
-                      "left_control"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "bundle_identifiers": [
-                      "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "description": "G+F+P: Chrome reorder tab left 3",
-                "from": {
-                  "key_code": "p",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "parameters": {
-                  "basic.to_if_held_down_threshold_milliseconds": 200
-                },
-                "to": [
-                  {
-                    "key_code": "p",
-                    "modifiers": [
-                      "left_command",
-                      "left_control"
-                    ]
-                  }
-                ],
-                "to_if_held_down": [
-                  {
-                    "key_code": "p",
-                    "modifiers": [
-                      "left_command",
-                      "left_control"
+                      "left_control",
+                      "left_shift"
                     ]
                   }
                 ],
