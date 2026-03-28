@@ -2,22 +2,20 @@
 """Add T layer workspace operations to karabiner.json.
 
 Generates and inserts:
-  - T+W and T+Q mode setters
-  - Action manipulators for 10 workspace operations (20 keys each = 200 total):
+  - T+W mode setter
+  - Action manipulators for 6 workspace operations (20 keys each = 120 total):
       T+W       -> ws.sh focus          (focus workspace on current monitor)
       T+E       -> ws.sh move           (move window to workspace, stay)
       T+R+E     -> ws.sh move-focus     (move window + follow)
       T+W+E     -> ws.sh focus-1        (focus workspace on monitor 1)
       T+W+R     -> ws.sh focus-2        (focus workspace on monitor 2)
-      T+W+3     -> ws.sh focus-3        (focus workspace on monitor 3)
-      T+W+4     -> ws.sh focus-4        (focus workspace on monitor 4)
-      T+Q       -> ws.sh swap-windows   (swap all windows between workspaces)
-      T+Q+3     -> ws.sh push-windows   (push all windows to target workspace)
-      T+Q+E     -> ws.sh pull-windows   (pull all windows from target workspace)
-  - Guard manipulators for T+E, T+W, and T+Q modes
+      T+3       -> ws.sh swap-windows   (swap all windows between workspaces)
+  - Direction manipulators:
+      T+W+4+H/J/K/L -> nav mode (vim-style grid navigation via ws_grid eventtap)
+  - Guard manipulators for T+E, T+W, and T+W+4 modes
 
-Also ensures existing T layer manipulators have 3_is_held=0, 4_is_held=0,
-and q_is_held=0 conditions to prevent conflicts.
+Also ensures existing T layer manipulators have e_is_held=0, 3_is_held=0,
+4_is_held=0, and q_is_held=0 conditions to prevent conflicts.
 
 Idempotent: removes old workspace components before inserting new ones.
 """
@@ -59,14 +57,12 @@ WORKSPACE_KEYS = [
 # extra_modifiers are added to the fn key event so the eventtap can decode
 # the operation mode from flags, bypassing unreliable async keyDown/keyUp IPC.
 OPERATIONS = [
-    ("move-focus",    {"e": 1, "r": 1, "w": 0, "3": 0, "4": 0, "q": 0}, ["control"]),                   # T+R+E
+    ("move-focus",    {"e": 1, "r": 1, "w": 0, "3": 0, "4": 0, "q": 0}, ["control"]),                    # T+R+E
     ("focus-1",       {"w": 1, "e": 1, "r": 0, "3": 0, "4": 0, "q": 0}, ["shift", "control"]),           # T+W+E
     ("focus-2",       {"w": 1, "r": 1, "e": 0, "3": 0, "4": 0, "q": 0}, ["option"]),                     # T+W+R
-    ("focus-3",       {"w": 1, "3": 1, "e": 0, "r": 0, "4": 0, "q": 0}, ["shift", "option"]),            # T+W+3
-    ("focus-4",       {"w": 1, "4": 1, "e": 0, "r": 0, "3": 0, "q": 0}, ["control", "option"]),          # T+W+4
     ("focus",         {"w": 1, "e": 0, "r": 0, "3": 0, "4": 0, "q": 0}, []),                             # T+W
     ("move",          {"e": 1, "r": 0, "w": 0, "3": 0, "4": 0, "q": 0}, ["shift"]),                      # T+E
-    ("swap-windows",  {"3": 1, "e": 0, "r": 0, "w": 0, "4": 0, "q": 0}, ["shift", "control", "option"]),  # T+3
+    ("swap-windows",  {"3": 1, "e": 0, "r": 0, "w": 0, "4": 0, "q": 0}, ["shift", "control", "option"]), # T+3
 ]
 
 # Right-hand keys NOT in workspace set that need guards
@@ -77,6 +73,13 @@ GUARD_KEYS = [
 
 # Variable names for mode keys used in workspace operations
 MODE_VARS = ["e", "r", "w", "3", "4", "q"]
+
+# Direction keys for nav mode (HJKL only)
+_HJKL_SET = {"h", "j", "k", "l"}
+NAV_HJKL = ["h", "j", "k", "l"]
+
+# Non-HJKL workspace keys needing guards in nav mode
+_WS_NON_HJKL = [kc for _, kc, _ in WORKSPACE_KEYS if kc not in _HJKL_SET]
 
 
 def make_condition(name, value):
@@ -151,6 +154,32 @@ def make_grid_shell_command(key, direction):
     return {"shell_command": GRID_CMD_TEMPLATE.format(direction, key)}
 
 
+def make_nav_manipulator(key):
+    """Create T+W+4+key -> fn+cmd+key for nav mode (ws_grid eventtap)."""
+    conditions = [
+        make_condition("caps_lock_is_held", 1),
+        make_condition("a_is_held", 0),
+        make_condition("s_is_held", 0),
+        make_condition("d_is_held", 0),
+        make_condition("f_is_held", 0),
+        make_condition("t_is_held", 1),
+        make_condition("w_is_held", 1),
+        make_condition("4_is_held", 1),
+        make_condition("e_is_held", 0),
+        make_condition("r_is_held", 0),
+        make_condition("3_is_held", 0),
+        make_condition("q_is_held", 0),
+        make_condition("g_is_held", 0),
+    ]
+    return {
+        "description": "t-nav-action",
+        "conditions": conditions,
+        "from": {"key_code": key, "modifiers": {"optional": ["any"]}},
+        "to": [{"key_code": key, "modifiers": ["fn", "command"]}],
+        "type": "basic",
+    }
+
+
 def make_t_w_setter():
     """W mode setter: when caps is held, pressing w sets w_is_held=1."""
     return {
@@ -184,6 +213,9 @@ def generate():
                 make_action_manipulator(key_code, shell_cmd, mode_conds, extra_mods)
             )
 
+    # Nav direction manipulators (T+W+4+HJKL)
+    navs = [make_nav_manipulator(k) for k in NAV_HJKL]
+
     # T+E guards: block non-workspace keys when E is held in T layer
     e_guards = [
         make_guard_manipulator(kc, [("e_is_held", 1)], "t-ws-guard")
@@ -196,10 +228,17 @@ def generate():
         for kc in GUARD_KEYS
     ]
 
+    # T+W+4 guards: block non-HJKL workspace keys in nav mode
+    w4_guards = [
+        make_guard_manipulator(kc, [("w_is_held", 1), ("4_is_held", 1)], "t-ws-guard")
+        for kc in _WS_NON_HJKL
+    ]
+
     return {
         "t_w_setter": make_t_w_setter(),
         "actions": actions,
-        "guards": e_guards + w_guards,
+        "directions": navs,
+        "guards": e_guards + w_guards + w4_guards,
     }
 
 
@@ -265,6 +304,11 @@ def is_t_ws_guard(m):
             and sv.get("name") == "guard_noop")
 
 
+def is_t_direction_action(m):
+    """Match generated T layer direction actions (join, nav)."""
+    return m.get("description") in ("t-join-action", "t-nav-action")
+
+
 def is_t_layer_manipulator(m):
     """Match any T layer action or guard (t=1, not a setter, not a workspace action)."""
     conds = m.get("conditions", [])
@@ -277,6 +321,9 @@ def is_t_layer_manipulator(m):
         return False
     # Skip workspace guards
     if is_t_ws_guard(m):
+        return False
+    # Skip generated direction actions (join, nav)
+    if is_t_direction_action(m):
         return False
     return True
 
@@ -355,13 +402,10 @@ def find_t_e_setter(manips):
     return -1
 
 
-def find_first_t_4_manipulator(manips):
-    """Find the first T+4 join action/guard (t=1, 4_is_held=1)."""
+def find_first_t_direction_manipulator(manips):
+    """Find the first T layer direction manipulator (non-workspace, non-setter, non-guard)."""
     for i, m in enumerate(manips):
-        conds = m.get("conditions", [])
-        if (get_cond(conds, "t_is_held") == 1
-                and get_cond(conds, "4_is_held") == 1
-                and "to_after_key_up" not in m):
+        if is_t_layer_manipulator(m):
             return i
     return -1
 
@@ -374,7 +418,7 @@ def main():
     generated = generate()
 
     # Phase 1: Remove old T workspace components
-    removed = {"setters": 0, "actions": 0, "guards": 0, "q_noop": 0}
+    removed = {"setters": 0, "actions": 0, "directions": 0, "guards": 0, "q_noop": 0}
     for i in range(len(manips) - 1, -1, -1):
         m = manips[i]
         if is_t_w_setter(m) or is_t_q_setter(m):
@@ -383,6 +427,9 @@ def main():
         elif is_t_ws_action(m):
             manips.pop(i)
             removed["actions"] += 1
+        elif is_t_direction_action(m):
+            manips.pop(i)
+            removed["directions"] += 1
         elif is_t_ws_guard(m):
             manips.pop(i)
             removed["guards"] += 1
@@ -391,7 +438,8 @@ def main():
             removed["q_noop"] += 1
 
     print(f"Removed: {removed['setters']} setters, {removed['actions']} actions, "
-          f"{removed['guards']} guards, {removed['q_noop']} q_noop")
+          f"{removed['directions']} directions, {removed['guards']} guards, "
+          f"{removed['q_noop']} q_noop")
 
     # Phase 2: Add e_is_held=0, 3_is_held=0, 4_is_held=0, q_is_held=0 to all T layer manipulators.
     # NOTE: w_is_held is intentionally omitted — the T+' monitor switch must work
@@ -449,18 +497,24 @@ def main():
     manips.insert(te_idx + 1, generated["t_w_setter"])
     print("Inserted T+W setter after T+E setter")
 
-    # Phase 4: Insert actions and guards before T+4 join manipulators
-    t4_first = find_first_t_4_manipulator(manips)
-    if t4_first == -1:
-        print("ERROR: Could not find T+4 join manipulators", file=sys.stderr)
-        sys.exit(1)
+    # Phase 4: Insert actions, directions, and guards before first T layer direction manipulator
+    t_dir_first = find_first_t_direction_manipulator(manips)
+    if t_dir_first == -1:
+        print("WARNING: Could not find T layer direction manipulators, appending at end",
+              file=sys.stderr)
+        t_dir_first = len(manips)
 
-    insert_pos = t4_first
+    insert_pos = t_dir_first
     for j, action in enumerate(generated["actions"]):
         manips.insert(insert_pos + j, action)
     print(f"Inserted {len(generated['actions'])} action manipulators")
 
     insert_pos += len(generated["actions"])
+    for j, d in enumerate(generated["directions"]):
+        manips.insert(insert_pos + j, d)
+    print(f"Inserted {len(generated['directions'])} direction manipulators")
+
+    insert_pos += len(generated["directions"])
     for j, guard in enumerate(generated["guards"]):
         manips.insert(insert_pos + j, guard)
     print(f"Inserted {len(generated['guards'])} guard manipulators")
