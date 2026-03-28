@@ -1025,6 +1025,35 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "A+M: Toggle Sidecar",
+                "from": {
+                  "key_code": "m",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/usr/bin/swift /Users/craig/dev/dotfiles/raycast/toggle-sidecar.swift &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
                   }
                 ],
                 "from": {
