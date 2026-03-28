@@ -14,6 +14,9 @@ local lastVisibleWs = {}    -- key -> monitorId for cached workspace state
 local lastFocusedKey = nil
 local lastFocusedMonId = nil
 local lastMoveTarget = nil  -- previous move-mode highlight (for revert on next move)
+local navActive = false     -- true when T+W+R nav mode is active
+local navRow = 1            -- cursor row in grid (1-4)
+local navCol = 1            -- cursor column in grid (1-5)
 -- (lastRefreshTargetMon removed: re-querying on mode transitions catches
 -- transient AeroSpace state during focus-N ops, corrupting grid position)
 
@@ -69,8 +72,11 @@ local AERO_TO_KEY = {
     [";"] = ";", ["comma"] = ",",
 }
 
+-- Reverse map: grid display key to AeroSpace workspace name
+local KEY_TO_AERO = {[","] = "comma"}
+
 -- Map sub-mode keys to AeroSpace monitor IDs
-local MODE_TO_MONITOR = {e = 1, r = 2, ["3"] = 3, ["4"] = 4}
+local MODE_TO_MONITOR = {e = 1, r = 2}
 
 -- Determine target monitor ID for grid display (nil = don't show)
 local function targetMonitor()
@@ -97,6 +103,19 @@ local function shouldShowGrid()
     return targetMonitor() ~= nil
 end
 
+local function isNavMode()
+    return keys.t and keys.w and keys["4"] and not keys.e and not keys.r and not keys["3"]
+end
+
+local function keyToGridPos(key)
+    for rowIdx, row in ipairs(ROWS) do
+        for colIdx, k in ipairs(row.keys) do
+            if k == key then return rowIdx, colIdx end
+        end
+    end
+    return 1, 1
+end
+
 -- Lightweight in-place update of a single key's face color and text label.
 -- Uses hs.canvas:elementAttribute() to avoid full canvas recreation.
 local function patchKey(key, isActive, isFocused, labelColor)
@@ -113,6 +132,58 @@ local function patchKey(key, isActive, isFocused, labelColor)
         paragraphStyle = {alignment = "center"},
     })
     grid:elementAttribute(ti, "text", styledText)
+end
+
+-- Nav mode cursor styling (face color matches current monitor)
+local NAV_CURSOR_TEXT = {red = 1, green = 1, blue = 1, alpha = 1}
+local navFocusTimer = nil  -- debounce timer for ws.sh focus calls
+
+local function updateNavCursor(prevRow, prevCol)
+    if not grid then return end
+    -- Revert previous cursor position to normal appearance
+    if prevRow and prevCol then
+        local prevKey = ROWS[prevRow].keys[prevCol]
+        local monId = lastVisibleWs[prevKey]
+        local isActive = monId ~= nil
+        local isFocused = (prevKey == lastFocusedKey)
+        local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+        patchKey(prevKey, isActive, isFocused, labelColor)
+    end
+    -- Highlight current cursor position (color matches current monitor)
+    local curKey = ROWS[navRow].keys[navCol]
+    local fi = keyFaceIdx[curKey]
+    local ti = keyTextIdx[curKey]
+    local cursorColor = MONITOR_COLORS[lastFocusedMonId or 1] or MONITOR_COLORS[1]
+    if fi and ti then
+        grid:elementAttribute(fi, "fillColor", cursorColor)
+        local styledText = hs.styledtext.new(curKey, {
+            font = {name = "Helvetica-Bold", size = FONT_SIZE},
+            color = NAV_CURSOR_TEXT,
+            paragraphStyle = {alignment = "center"},
+        })
+        grid:elementAttribute(ti, "text", styledText)
+    end
+end
+
+local function navMove(key)
+    local prevRow, prevCol = navRow, navCol
+    if key == "h" then navCol = math.max(1, navCol - 1)
+    elseif key == "l" then navCol = math.min(5, navCol + 1)
+    elseif key == "k" then navRow = math.max(1, navRow - 1)
+    elseif key == "j" then navRow = math.min(4, navRow + 1)
+    end
+    if prevRow ~= navRow or prevCol ~= navCol then
+        updateNavCursor(prevRow, prevCol)
+        -- Debounced ws.sh focus: cancels pending call on rapid repeats to
+        -- avoid flooding Hammerspoon with IPC callbacks from ws.sh post-processing
+        if navFocusTimer then navFocusTimer:stop() end
+        local selectedKey = ROWS[navRow].keys[navCol]
+        local wsArg = KEY_TO_AERO[selectedKey] or selectedKey
+        navFocusTimer = hs.timer.doAfter(0.1, function()
+            navFocusTimer = nil
+            hs.task.new(os.getenv("HOME") .. "/.local/bin/ws.sh", function() end, {"focus", wsArg}):start()
+        end)
+    end
 end
 
 local function drawGrid(visibleWs, focusedKey, focusedMonId)
@@ -464,6 +535,11 @@ function M.showGrid()
 
         drawGrid(visibleWs, focusedKey, focusedMonId)
 
+        -- Apply nav cursor if in nav mode (position already set in refresh)
+        if navActive then
+            updateNavCursor(nil, nil)
+        end
+
         -- Drain any keys that accumulated while the async query was in flight
         startKeyDrain()
     end, {"-c", [[
@@ -508,15 +584,13 @@ local KEY_CODE_MAP = {
 local function decodeMode(flags)
     local s, c, o, m = flags.shift or false, flags.ctrl or false, flags.alt or false, flags.cmd or false
     -- Encoding matches apply_t_ws_layer.py OPERATIONS extra_modifiers:
-    -- cmd and cmd+shift modifier combos are now unused (push/pull-windows removed)
+    if m then return "nav", nil, false, false end              -- fn+cmd (T+W+4 nav)
     if s and c and o then return "swap-windows", nil, true, false end
-    if c and o then return "focus-4", 4, false, false end
-    if s and o then return "focus-3", 3, false, false end
-    if o then return "focus-2", 2, false, false end
-    if s and c then return "focus-1", 1, false, false end
-    if c then return "move-focus", nil, false, false end
-    if s then return "move", nil, false, true end
-    return "focus", nil, false, false                          -- fn only
+    if o then return "focus-2", 2, false, false end            -- T+W+R
+    if s and c then return "focus-1", 1, false, false end      -- T+W+E
+    if c then return "move-focus", nil, false, false end       -- T+R+E
+    if s then return "move", nil, false, true end              -- T+E
+    return "focus", nil, false, false                          -- fn only (T+W)
 end
 
 -- Map operation to expected keys state for reconciliation
@@ -526,9 +600,8 @@ local MODE_KEYS = {
     ["move-focus"]   = {t = true, w = false, e = true,  r = true,  ["3"] = false, ["4"] = false, q = false},
     ["focus-1"]      = {t = true, w = true,  e = true,  r = false, ["3"] = false, ["4"] = false, q = false},
     ["focus-2"]      = {t = true, w = true,  e = false, r = true,  ["3"] = false, ["4"] = false, q = false},
-    ["focus-3"]      = {t = true, w = true,  e = false, r = false, ["3"] = true,  ["4"] = false, q = false},
-    ["focus-4"]      = {t = true, w = true,  e = false, r = false, ["3"] = false, ["4"] = true,  q = false},
     ["swap-windows"] = {t = true, w = false, e = false, r = false, ["3"] = true,  ["4"] = false, q = false},
+    ["nav"]          = {t = true, w = true,  e = false, r = false, ["3"] = false, ["4"] = true,  q = false},
 }
 
 local pendingKeyQueue = {}
@@ -586,14 +659,32 @@ local wsEventTap = hs.eventtap.new(
             return true
         end
 
-        -- Ignore key repeat
-        if event:getProperty(hs.eventtap.event.properties.keyboardEventAutorepeat) ~= 0 then
-            return true
-        end
-
         -- Decode mode from modifier flags (source of truth from Karabiner)
         local flags = event:getFlags()
         local op, mon, swapMode, moveMode = decodeMode(flags)
+
+        -- Ignore key repeat (except nav mode — hold-to-repeat moves cursor)
+        if event:getProperty(hs.eventtap.event.properties.keyboardEventAutorepeat) ~= 0 then
+            if op ~= "nav" then
+                return true
+            end
+        end
+
+        -- Nav mode: HJKL moves cursor instead of operating on workspace
+        if op == "nav" then
+            -- Reconcile keys for nav mode
+            local expected = MODE_KEYS["nav"]
+            if expected then
+                for k, v in pairs(expected) do
+                    if keys[k] ~= v then keys[k] = v end
+                end
+                refresh()
+            end
+            if wsKey == "h" or wsKey == "j" or wsKey == "k" or wsKey == "l" then
+                navMove(wsKey)
+            end
+            return true  -- consume
+        end
 
         -- Reconcile keys table to match decoded mode — self-corrects any
         -- stale state from dropped async keyDown/keyUp IPC calls.
@@ -654,6 +745,8 @@ local function startGridFall()
 end
 
 function M.hideGrid()
+    navActive = false
+    if navFocusTimer then navFocusTimer:stop(); navFocusTimer = nil end
     if gridFallTimer then gridFallTimer:stop(); gridFallTimer = nil end
     if wsEventTap:isEnabled() then wsEventTap:stop() end
     stopKeyDrain()
@@ -670,6 +763,15 @@ function M.hideGrid()
 end
 
 refresh = function()
+    -- Nav mode transition tracking
+    local wasNavActive = navActive
+    navActive = isNavMode()
+
+    -- Initialize cursor when entering nav mode
+    if navActive and not wasNavActive then
+        navRow, navCol = keyToGridPos(lastFocusedKey)
+    end
+
     if shouldShowGrid() then
         -- Cancel any ongoing fall animation — grid is needed again
         if gridFallTimer then
@@ -701,6 +803,10 @@ refresh = function()
                 gridTargetX = newX
                 gridTargetY = newY
             end
+            -- Apply nav cursor if in nav mode
+            if navActive then
+                updateNavCursor(nil, nil)
+            end
         else
             M.showGrid()
         end
@@ -716,6 +822,9 @@ refresh = function()
 end
 
 function M.keyDown(k)
+    print(string.format("[ws_grid] keyDown('%s') keys={t=%s,w=%s,e=%s,r=%s,3=%s,4=%s}", k,
+        tostring(keys.t), tostring(keys.w), tostring(keys.e), tostring(keys.r),
+        tostring(keys["3"]), tostring(keys["4"])))
     keys[k] = true
     refresh()
 end
