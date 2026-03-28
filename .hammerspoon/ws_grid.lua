@@ -140,23 +140,23 @@ local navFocusTimer = nil  -- debounce timer for ws.sh focus calls
 
 local function updateNavCursor(prevRow, prevCol)
     if not grid then return end
-    -- Revert previous cursor position to normal appearance
+    -- Revert previous cursor position to normal appearance.
+    -- Never show * on reverted keys — in nav mode the cursor IS the focus indicator.
     if prevRow and prevCol then
         local prevKey = ROWS[prevRow].keys[prevCol]
         local monId = lastVisibleWs[prevKey]
         local isActive = monId ~= nil
-        local isFocused = (prevKey == lastFocusedKey)
         local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
-        patchKey(prevKey, isActive, isFocused, labelColor)
+        patchKey(prevKey, isActive, false, labelColor)
     end
-    -- Highlight current cursor position (color matches current monitor)
+    -- Highlight current cursor position (color matches current monitor, * prefix)
     local curKey = ROWS[navRow].keys[navCol]
     local fi = keyFaceIdx[curKey]
     local ti = keyTextIdx[curKey]
     local cursorColor = MONITOR_COLORS[lastFocusedMonId or 1] or MONITOR_COLORS[1]
     if fi and ti then
         grid:elementAttribute(fi, "fillColor", cursorColor)
-        local styledText = hs.styledtext.new(curKey, {
+        local styledText = hs.styledtext.new("*" .. curKey, {
             font = {name = "Helvetica-Bold", size = FONT_SIZE},
             color = NAV_CURSOR_TEXT,
             paragraphStyle = {alignment = "center"},
@@ -173,11 +173,22 @@ local function navMove(key)
     elseif key == "j" then navRow = math.min(4, navRow + 1)
     end
     if prevRow ~= navRow or prevCol ~= navCol then
+        -- Optimistically update cached workspace state to match what ws.sh focus
+        -- will do (swap visible workspaces between monitors, or summon hidden one)
+        local prevKey = ROWS[prevRow].keys[prevCol]
+        local newKey = ROWS[navRow].keys[navCol]
+        local monId = lastFocusedMonId or 1
+        local newKeyPrevMon = lastVisibleWs[newKey]
+        if lastVisibleWs[prevKey] == monId then
+            lastVisibleWs[prevKey] = newKeyPrevMon  -- swap or nil (hidden)
+        end
+        lastVisibleWs[newKey] = monId
+
         updateNavCursor(prevRow, prevCol)
         -- Debounced ws.sh focus: cancels pending call on rapid repeats to
         -- avoid flooding Hammerspoon with IPC callbacks from ws.sh post-processing
         if navFocusTimer then navFocusTimer:stop() end
-        local selectedKey = ROWS[navRow].keys[navCol]
+        local selectedKey = newKey
         local wsArg = KEY_TO_AERO[selectedKey] or selectedKey
         navFocusTimer = hs.timer.doAfter(0.1, function()
             navFocusTimer = nil
@@ -766,6 +777,23 @@ refresh = function()
     -- Nav mode transition tracking
     local wasNavActive = navActive
     navActive = isNavMode()
+
+    -- Clean up when leaving nav mode (e.g. releasing 4 while T+W still held)
+    if wasNavActive and not navActive then
+        if navFocusTimer then navFocusTimer:stop(); navFocusTimer = nil end
+        -- Execute focus on current cursor position so workspace state is up to date
+        local curKey = ROWS[navRow].keys[navCol]
+        local wsArg = KEY_TO_AERO[curKey] or curKey
+        hs.task.new(os.getenv("HOME") .. "/.local/bin/ws.sh", function() end, {"focus", wsArg}):start()
+        -- Update lastFocusedKey so re-entering nav starts from cursor position
+        lastFocusedKey = curKey
+        -- Revert cursor key to normal appearance so grid returns to focus mode cleanly
+        if grid then
+            local monId = lastVisibleWs[curKey]
+            local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+            patchKey(curKey, monId ~= nil, true, labelColor)  -- true = show * (it's now focused)
+        end
+    end
 
     -- Initialize cursor when entering nav mode
     if navActive and not wasNavActive then
