@@ -16897,43 +16897,6 @@
                 ],
                 "description": "t-ws-guard",
                 "from": {
-                  "key_code": "quote",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "description": "t-ws-guard",
-                "from": {
                   "key_code": "open_bracket",
                   "modifiers": {
                     "optional": [
@@ -17083,43 +17046,6 @@
                 "description": "t-ws-guard",
                 "from": {
                   "key_code": "backslash",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "w_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  }
-                ],
-                "description": "t-ws-guard",
-                "from": {
-                  "key_code": "quote",
                   "modifiers": {
                     "optional": [
                       "any"

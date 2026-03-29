@@ -67,7 +67,7 @@ OPERATIONS = [
 
 # Right-hand keys NOT in workspace set that need guards
 GUARD_KEYS = [
-    "quote", "open_bracket", "close_bracket",
+    "open_bracket", "close_bracket",
     "hyphen", "equal_sign", "backslash",
 ]
 
