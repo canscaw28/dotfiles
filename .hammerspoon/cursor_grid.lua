@@ -92,9 +92,9 @@ end
 -- ============================================================
 
 local LINE_STYLES = {
-    major = {color = {red = 0, green = 0.85, blue = 0.3, alpha = 0.6}, width = 2.0},
-    mid   = {color = {red = 0.4, green = 0.75, blue = 1.0, alpha = 0.5}, width = 1.5},
-    minor = {color = {red = 0.5, green = 0.6, blue = 0.8, alpha = 0.3}, width = 1.0,
+    major = {color = {red = 0.1, green = 1.0, blue = 0.3, alpha = 0.7}, width = 2.5},   -- bright green, thick
+    mid   = {color = {red = 0.3, green = 0.6, blue = 1.0, alpha = 0.55}, width = 1.5},  -- blue, medium
+    minor = {color = {red = 0.6, green = 0.5, blue = 0.7, alpha = 0.3}, width = 0.75,   -- muted purple, dashed
              dash = {6, 4}},
 }
 
@@ -160,16 +160,27 @@ local function createMoveGrid(gridSize, winFrame)
     return elements
 end
 
+local JUMP_LABELS = {
+    h = "H", l = "L", j = "J", k = "K", semicolon = ";",
+    y = "Y", o = "O", n = "N", period = ".",
+    u = "U", i = "I", m = "M", comma = ",",
+}
+
 local function createJumpGrid(winFrame)
     local elements = {}
     local DOT_SIZE = 10
     local DOT_COLOR = {red = 1, green = 0.6, blue = 0.1, alpha = 0.5}
+    local LABEL_BG = {red = 1, green = 0.85, blue = 0, alpha = 0.9}
+    local LABEL_FG = {red = 0, green = 0, blue = 0, alpha = 1}
+    local LABEL_W = 18
+    local LABEL_H = 16
 
-    for _, pos in pairs(JUMP_POSITIONS) do
+    for key, pos in pairs(JUMP_POSITIONS) do
         local px = math.floor(pos[1] * winFrame.w)
         local py = math.floor(pos[2] * winFrame.h)
         local armLen = 12
         local armW = 1.5
+        -- Crosshair
         table.insert(elements, {
             type = "rectangle",
             frame = {x = px - armLen, y = py - armW / 2, w = armLen * 2, h = armW},
@@ -187,6 +198,25 @@ local function createJumpGrid(winFrame)
             frame = {x = px - DOT_SIZE / 2, y = py - DOT_SIZE / 2, w = DOT_SIZE, h = DOT_SIZE},
             fillColor = DOT_COLOR,
             action = "fill",
+        })
+        -- Label: yellow box with black letter (vimium-style)
+        local lx = px - LABEL_W / 2
+        local ly = py - armLen - LABEL_H - 2
+        table.insert(elements, {
+            type = "rectangle",
+            frame = {x = lx, y = ly, w = LABEL_W, h = LABEL_H},
+            fillColor = LABEL_BG,
+            roundedRectRadii = {xRadius = 3, yRadius = 3},
+            action = "fill",
+        })
+        table.insert(elements, {
+            type = "text",
+            frame = {x = lx, y = ly, w = LABEL_W, h = LABEL_H},
+            text = JUMP_LABELS[key] or key,
+            textAlignment = "center",
+            textColor = LABEL_FG,
+            textFont = "Menlo-Bold",
+            textSize = 11,
         })
     end
 
