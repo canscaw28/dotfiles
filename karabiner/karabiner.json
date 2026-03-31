@@ -1028,6 +1028,9 @@
                       "name": "s_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').ensureGrid(32, 'move')\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1065,6 +1068,9 @@
                       "name": "d_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').ensureGrid(8, 'move')\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1182,6 +1188,9 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('e')\" &"
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').ensureGrid(8, 'jump')\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
@@ -2267,6 +2276,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -2314,6 +2328,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -2361,6 +2380,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -2398,6 +2422,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -2432,6 +2461,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -2651,6 +2685,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -2693,6 +2732,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
