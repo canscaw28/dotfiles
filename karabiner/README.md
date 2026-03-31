@@ -198,15 +198,15 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + F + I | ⌃ + 7 | HS: Scroll a full page up |
 | ⇪ + F + O | ⌃ + 8 | HS: Scroll to the bottom |
 | ⇪ + F + P | ⌃ + 9 | HS: scroll to the top |
-| ⇪ + F + N | ⌃ + 0 | HS: move cursor near right center of window |
+| ⇪ + F + N |  |  |
 | ⇪ + F + M |  |  |
 | ⇪ + F + , |  |  |
 | ⇪ + F + . |  |  |
 | ⇪ + F + / |  |  |
 
-### Cursor Grid Mode — ⇪ + F + D (8×8) / ⇪ + F + S (32×32)
+### Cursor Grid Movement — ⇪ + F + D (8×8) / ⇪ + F + S (32×32)
 
-Moves the mouse cursor within the focused window on a grid. D mode uses an 8×8 grid for coarse positioning, S mode uses 32×32 for fine precision. On first keypress, snaps to the nearest grid cell from the current mouse position.
+Moves the mouse cursor within the focused window on a grid. D mode uses an 8×8 grid for coarse positioning, S mode uses 32×32 for fine precision. On first keypress, snaps to the nearest grid cell from the current mouse position. An amber indicator flashes at the cursor position after each move.
 
 | Key | Action |
 | --- | --- |
@@ -222,6 +222,30 @@ Moves the mouse cursor within the focused window on a grid. D mode uses an 8×8 
 | ⇪ + F + D/S + . | Jump to top edge |
 | ⇪ + F + D/S + M | Move cursor 2 grid cells down |
 | ⇪ + F + D/S + , | Move cursor 2 grid cells up |
+
+### Cursor Fixed Positions — ⇪ + F + E
+
+Jumps the mouse cursor to fixed positions within the focused window. An amber indicator flashes at the target position.
+
+| Key | Position |
+| --- | --- |
+| ⇪ + F + E + H | Left edge, center height |
+| ⇪ + F + E + L | Right edge, center height |
+| ⇪ + F + E + J | Bottom edge, center width |
+| ⇪ + F + E + K | Top edge, center width |
+| ⇪ + F + E + ; | Window center |
+| ⇪ + F + E + Y | Top-left corner |
+| ⇪ + F + E + O | Top-right corner |
+| ⇪ + F + E + N | Bottom-left corner |
+| ⇪ + F + E + . | Bottom-right corner |
+| ⇪ + F + E + U | Top-left quadrant center |
+| ⇪ + F + E + I | Top-right quadrant center |
+| ⇪ + F + E + M | Bottom-left quadrant center |
+| ⇪ + F + E + , | Bottom-right quadrant center |
+
+### Grid Overlay — ⇪ + F + D/S/E + P
+
+Toggles a grid overlay on the focused window. Shows an 8×8 grid in D/E modes, and a hierarchical 32×32 grid in S mode with color-coded line density (green = 2×2 major, light blue = 8×8, dashed = 16×16).
 
 ---
 
