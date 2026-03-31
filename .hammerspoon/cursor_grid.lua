@@ -3,15 +3,12 @@ local M = {}
 -- ============================================================
 -- State
 -- ============================================================
-local gridCol = nil
-local gridRow = nil
-local lastGridSize = nil
 
 -- Indicator
 local indicatorCanvas = nil
 local indicatorFadeTimer = nil
 local INDICATOR_DIAMETER = 16
-local INDICATOR_COLOR = {red = 1, green = 0.6, blue = 0.1, alpha = 0.7}
+local INDICATOR_COLOR = {red = 1, green = 0.4, blue = 0.05, alpha = 0.8}
 
 -- Grid overlay
 local gridCanvas = nil
@@ -43,7 +40,7 @@ local JUMP_POSITIONS = {
 }
 
 -- ============================================================
--- Indicator (amber dot at cursor position)
+-- Indicator (red-amber dot at cursor position)
 -- ============================================================
 local function showIndicator()
     if indicatorFadeTimer then
@@ -91,13 +88,13 @@ end
 -- Grid overlay — cursor-relative for move modes, fixed for jump
 -- ============================================================
 
--- Line styles by distance from cursor
+-- Line styles by distance from cursor (orange cursor, green/blue/etc away)
 local LINE_STYLES = {
-    cursor = {color = {red = 1, green = 0.6, blue = 0.1, alpha = 0.65}, width = 2.0},    -- amber, current pos
-    major  = {color = {red = 0.1, green = 1.0, blue = 0.3, alpha = 0.6}, width = 2.0},   -- green, half screen
+    cursor = {color = {red = 1, green = 0.5, blue = 0.1, alpha = 0.6}, width = 2.0},     -- orange, current pos
+    major  = {color = {red = 0.1, green = 1.0, blue = 0.3, alpha = 0.55}, width = 2.0},  -- green, half screen
     mid    = {color = {red = 0.3, green = 0.6, blue = 1.0, alpha = 0.45}, width = 1.5},  -- blue
-    fine   = {color = {red = 0.5, green = 0.7, blue = 0.9, alpha = 0.3}, width = 1.0},   -- light blue
-    minor  = {color = {red = 0.6, green = 0.5, blue = 0.7, alpha = 0.2}, width = 0.75,   -- muted purple, dashed
+    fine   = {color = {red = 0.55, green = 0.75, blue = 1.0, alpha = 0.4}, width = 1.0}, -- brighter light blue
+    minor  = {color = {red = 0.7, green = 0.6, blue = 0.85, alpha = 0.35}, width = 0.75, -- brighter purple, dashed
               dash = {6, 4}},
 }
 
@@ -105,13 +102,11 @@ local function classifyByDistance(n, gridSize)
     if n == 0 then return "cursor" end
     local a = math.abs(n)
     if gridSize <= 8 then
-        -- 8x8: half=4, quarter=2, single=1
         if a % 4 == 0 then return "major"
         elseif a % 2 == 0 then return "mid"
         else return "fine"
         end
     else
-        -- 32x32: half=16, eighth=4, sixteenth=2
         if a % 16 == 0 then return "major"
         elseif a % 8 == 0 then return "mid"
         elseif a % 4 == 0 then return "fine"
@@ -153,31 +148,26 @@ local function addLine(elements, x, y, w, h, style)
 end
 
 local function createMoveGrid(gridSize, winFrame, cursorRelX, cursorRelY)
-    -- Grid centered on cursor — lines at cursor ± n*cellSize
     local elements = {}
     local cellW = winFrame.w / gridSize
     local cellH = winFrame.h / gridSize
 
-    -- Vertical lines
     for n = -gridSize, gridSize do
         local x = cursorRelX + n * cellW
         if x >= 0 and x <= winFrame.w then
             local cat = classifyByDistance(n, gridSize)
             if cat then
-                local style = LINE_STYLES[cat]
-                addLine(elements, math.floor(x), 0, style.width, winFrame.h, style)
+                addLine(elements, math.floor(x), 0, LINE_STYLES[cat].width, winFrame.h, LINE_STYLES[cat])
             end
         end
     end
 
-    -- Horizontal lines
     for n = -gridSize, gridSize do
         local y = cursorRelY + n * cellH
         if y >= 0 and y <= winFrame.h then
             local cat = classifyByDistance(n, gridSize)
             if cat then
-                local style = LINE_STYLES[cat]
-                addLine(elements, 0, math.floor(y), winFrame.w, style.width, style)
+                addLine(elements, 0, math.floor(y), winFrame.w, LINE_STYLES[cat].width, LINE_STYLES[cat])
             end
         end
     end
@@ -205,43 +195,33 @@ local function createJumpGrid(winFrame)
         local py = math.floor(pos[2] * winFrame.h)
         local armLen = 12
         local armW = 1.5
-        -- Crosshair
         table.insert(elements, {
             type = "rectangle",
             frame = {x = px - armLen, y = py - armW / 2, w = armLen * 2, h = armW},
-            fillColor = DOT_COLOR,
-            action = "fill",
+            fillColor = DOT_COLOR, action = "fill",
         })
         table.insert(elements, {
             type = "rectangle",
             frame = {x = px - armW / 2, y = py - armLen, w = armW, h = armLen * 2},
-            fillColor = DOT_COLOR,
-            action = "fill",
+            fillColor = DOT_COLOR, action = "fill",
         })
         table.insert(elements, {
             type = "oval",
             frame = {x = px - DOT_SIZE / 2, y = py - DOT_SIZE / 2, w = DOT_SIZE, h = DOT_SIZE},
-            fillColor = DOT_COLOR,
-            action = "fill",
+            fillColor = DOT_COLOR, action = "fill",
         })
-        -- Label: yellow box with black letter (vimium-style)
         local lx = px - LABEL_W / 2
         local ly = py - armLen - LABEL_H - 2
         table.insert(elements, {
             type = "rectangle",
             frame = {x = lx, y = ly, w = LABEL_W, h = LABEL_H},
-            fillColor = LABEL_BG,
-            roundedRectRadii = {xRadius = 3, yRadius = 3},
-            action = "fill",
+            fillColor = LABEL_BG, roundedRectRadii = {xRadius = 3, yRadius = 3}, action = "fill",
         })
         table.insert(elements, {
             type = "text",
             frame = {x = lx, y = ly, w = LABEL_W, h = LABEL_H},
             text = JUMP_LABELS[key] or key,
-            textAlignment = "center",
-            textColor = LABEL_FG,
-            textFont = "Menlo-Bold",
-            textSize = 11,
+            textAlignment = "center", textColor = LABEL_FG, textFont = "Menlo-Bold", textSize = 11,
         })
     end
 
@@ -262,11 +242,8 @@ local function refreshGrid(gridSize, mode)
     if mode == "jump" then
         elements = createJumpGrid(f)
     else
-        -- Get cursor position relative to window
         local pos = hs.mouse.absolutePosition()
-        local relX = pos.x - f.x
-        local relY = pos.y - f.y
-        elements = createMoveGrid(gridSize, f, relX, relY)
+        elements = createMoveGrid(gridSize, f, pos.x - f.x, pos.y - f.y)
     end
 
     gridCanvas = hs.canvas.new({x = f.x, y = f.y, w = f.w, h = f.h})
@@ -284,7 +261,6 @@ local function refreshGrid(gridSize, mode)
     currentGridMode = mode
 end
 
--- Refresh grid if enabled (always redraws to track cursor position)
 local function ensureGrid(gridSize, mode)
     if gridEnabled then
         refreshGrid(gridSize, mode)
@@ -310,72 +286,43 @@ function M.hideGrid()
     gridVisible = false
     currentGridSize = nil
     currentGridMode = nil
-    -- gridEnabled is NOT cleared — grid re-shows when mode re-entered
 end
 
 -- ============================================================
--- Grid-based cursor movement (F+D, F+S)
+-- Pixel-based cursor movement (F+D, F+S) — no grid snapping
 -- ============================================================
 
-local function snapToGrid(gridSize)
+function M.move(direction, amount, gridSize)
     local win = hs.window.focusedWindow()
-    if not win then return false end
+    if not win then return end
     local f = win:frame()
     local pos = hs.mouse.absolutePosition()
 
     local cellW = f.w / gridSize
     local cellH = f.h / gridSize
 
-    local relX = math.max(0, math.min(pos.x - f.x, f.w - 1))
-    local relY = math.max(0, math.min(pos.y - f.y, f.h - 1))
+    local x = pos.x
+    local y = pos.y
 
-    gridCol = math.floor(relX / cellW)
-    gridRow = math.floor(relY / cellH)
-    gridCol = math.max(0, math.min(gridCol, gridSize - 1))
-    gridRow = math.max(0, math.min(gridRow, gridSize - 1))
-    lastGridSize = gridSize
+    if direction == "left" then
+        if amount < 0 then x = f.x + cellW * 0.5
+        else x = x - amount * cellW end
+    elseif direction == "right" then
+        if amount < 0 then x = f.x + f.w - cellW * 0.5
+        else x = x + amount * cellW end
+    elseif direction == "up" then
+        if amount < 0 then y = f.y + cellH * 0.5
+        else y = y - amount * cellH end
+    elseif direction == "down" then
+        if amount < 0 then y = f.y + f.h - cellH * 0.5
+        else y = y + amount * cellH end
+    end
 
-    return true
-end
-
-local function moveToCellCenter(gridSize)
-    local win = hs.window.focusedWindow()
-    if not win then return end
-    local f = win:frame()
-
-    local cellW = f.w / gridSize
-    local cellH = f.h / gridSize
-
-    local x = f.x + (gridCol + 0.5) * cellW
-    local y = f.y + (gridRow + 0.5) * cellH
+    -- Clamp to window bounds
+    x = math.max(f.x, math.min(x, f.x + f.w))
+    y = math.max(f.y, math.min(y, f.y + f.h))
 
     hs.mouse.absolutePosition(hs.geometry.point(x, y))
-end
-
-local function doMove(direction, amount, gridSize)
-    if direction == "left" then
-        if amount < 0 then gridCol = 0
-        else gridCol = math.max(0, gridCol - amount) end
-    elseif direction == "right" then
-        if amount < 0 then gridCol = gridSize - 1
-        else gridCol = math.min(gridSize - 1, gridCol + amount) end
-    elseif direction == "up" then
-        if amount < 0 then gridRow = 0
-        else gridRow = math.max(0, gridRow - amount) end
-    elseif direction == "down" then
-        if amount < 0 then gridRow = gridSize - 1
-        else gridRow = math.min(gridSize - 1, gridRow + amount) end
-    end
-end
-
-function M.move(direction, amount, gridSize)
-    if gridCol == nil or gridRow == nil or lastGridSize ~= gridSize then
-        if not snapToGrid(gridSize) then return end
-    end
-
-    doMove(direction, amount, gridSize)
-    lastGridSize = gridSize
-    moveToCellCenter(gridSize)
     ensureGrid(gridSize, "move")
     showIndicator()
 end
@@ -416,13 +363,6 @@ function M.jump(position)
     local y = f.y + pos[2] * f.h
 
     hs.mouse.absolutePosition(hs.geometry.point(x, y))
-
-    gridCol = math.floor(pos[1] * 8)
-    gridRow = math.floor(pos[2] * 8)
-    gridCol = math.max(0, math.min(gridCol, 7))
-    gridRow = math.max(0, math.min(gridRow, 7))
-    lastGridSize = 8
-
     ensureGrid(8, "jump")
     showIndicator()
 end
@@ -432,9 +372,7 @@ end
 -- ============================================================
 
 function M.reset()
-    gridCol = nil
-    gridRow = nil
-    lastGridSize = nil
+    -- gridEnabled intentionally preserved
 end
 
 return M
