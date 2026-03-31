@@ -16,11 +16,14 @@ local INDICATOR_COLOR = {red = 1, green = 0.6, blue = 0.1, alpha = 0.7}
 -- Grid overlay
 local gridCanvas = nil
 local gridVisible = false
+local gridEnabled = false  -- toggled by P, persists until reset
 local currentGridSize = nil
 local currentGridMode = nil -- "move" or "jump"
 
 -- Hold-to-repeat
 local moveTimer = nil
+local REPEAT_DELAY = 0.3   -- initial delay before repeat (like OS key repeat)
+local REPEAT_INTERVAL = 0.065
 
 -- Fixed positions for F+E mode {xFraction, yFraction}
 local JUMP_POSITIONS = {
@@ -96,22 +99,19 @@ local LINE_STYLES = {
 }
 
 local function classifyMoveLine(cellIdx, gridSize)
-    -- Classify a cell-center line for move grid (F+D, F+S)
     if gridSize <= 8 then
-        return "mid"  -- all lines equal for 8x8
+        return "mid"
     else
-        -- 32x32 hierarchy based on cell index
-        if cellIdx % 8 == 0 then return "major"       -- 0,8,16,24 → major
-        elseif cellIdx % 4 == 0 then return "mid"      -- 4,12,20,28 → mid
-        elseif cellIdx % 2 == 0 then return "minor"     -- even → minor
-        else return nil                                  -- odd → skip
+        if cellIdx % 8 == 0 then return "major"
+        elseif cellIdx % 4 == 0 then return "mid"
+        elseif cellIdx % 2 == 0 then return "minor"
+        else return nil
         end
     end
 end
 
 local function addLine(elements, x, y, w, h, style)
     if style.dash then
-        -- Vertical or horizontal dashed line via segments
         if w < h then
             table.insert(elements, {
                 type = "segments",
@@ -142,7 +142,6 @@ local function addLine(elements, x, y, w, h, style)
 end
 
 local function createMoveGrid(gridSize, winFrame)
-    -- Grid for F+D / F+S: lines through each cell center
     local elements = {}
     local cellW = winFrame.w / gridSize
     local cellH = winFrame.h / gridSize
@@ -153,10 +152,7 @@ local function createMoveGrid(gridSize, winFrame)
             local style = LINE_STYLES[cat]
             local cx = math.floor((i + 0.5) * cellW)
             local cy = math.floor((i + 0.5) * cellH)
-
-            -- Vertical line at cell center x
             addLine(elements, cx, 0, style.width, winFrame.h, style)
-            -- Horizontal line at cell center y
             addLine(elements, 0, cy, winFrame.w, style.width, style)
         end
     end
@@ -165,7 +161,6 @@ local function createMoveGrid(gridSize, winFrame)
 end
 
 local function createJumpGrid(winFrame)
-    -- Grid for F+E: dots at the 13 fixed positions
     local elements = {}
     local DOT_SIZE = 10
     local DOT_COLOR = {red = 1, green = 0.6, blue = 0.1, alpha = 0.5}
@@ -173,24 +168,20 @@ local function createJumpGrid(winFrame)
     for _, pos in pairs(JUMP_POSITIONS) do
         local px = math.floor(pos[1] * winFrame.w)
         local py = math.floor(pos[2] * winFrame.h)
-        -- Crosshair arms
         local armLen = 12
         local armW = 1.5
-        -- Horizontal arm
         table.insert(elements, {
             type = "rectangle",
             frame = {x = px - armLen, y = py - armW / 2, w = armLen * 2, h = armW},
             fillColor = DOT_COLOR,
             action = "fill",
         })
-        -- Vertical arm
         table.insert(elements, {
             type = "rectangle",
             frame = {x = px - armW / 2, y = py - armLen, w = armW, h = armLen * 2},
             fillColor = DOT_COLOR,
             action = "fill",
         })
-        -- Center dot
         table.insert(elements, {
             type = "oval",
             frame = {x = px - DOT_SIZE / 2, y = py - DOT_SIZE / 2, w = DOT_SIZE, h = DOT_SIZE},
@@ -234,15 +225,27 @@ local function showGrid(gridSize, mode)
     currentGridMode = mode
 end
 
+-- Re-show grid if enabled and mode/size changed
+local function ensureGrid(gridSize, mode)
+    if gridEnabled then
+        if not gridVisible or currentGridSize ~= gridSize or currentGridMode ~= mode then
+            showGrid(gridSize, mode)
+        end
+    end
+end
+
 function M.toggleGrid(gridSize, mode)
     mode = mode or "move"
-    if gridVisible and currentGridSize == gridSize and currentGridMode == mode then
+    if gridEnabled then
+        gridEnabled = false
         M.hideGrid()
     else
+        gridEnabled = true
         showGrid(gridSize, mode)
     end
 end
 
+-- Hide the canvas but keep gridEnabled (grid re-shows when mode re-entered)
 function M.hideGrid()
     if gridCanvas then
         gridCanvas:delete()
@@ -319,12 +322,18 @@ function M.move(direction, amount, gridSize)
     showIndicator()
 end
 
--- Hold-to-repeat: startMove fires immediately then repeats on a timer
+-- Hold-to-repeat: first move immediate, then OS-style delay before continuous repeat
 function M.startMove(direction, amount, gridSize)
     M.stopMove()
+    ensureGrid(gridSize, "move")
     M.move(direction, amount, gridSize)
-    moveTimer = hs.timer.doEvery(0.065, function()
+    -- Initial delay (like holding a key on the keyboard)
+    moveTimer = hs.timer.doAfter(REPEAT_DELAY, function()
+        -- Delay expired — start continuous repeat
         M.move(direction, amount, gridSize)
+        moveTimer = hs.timer.doEvery(REPEAT_INTERVAL, function()
+            M.move(direction, amount, gridSize)
+        end)
     end)
 end
 
@@ -358,17 +367,19 @@ function M.jump(position)
     gridRow = math.max(0, math.min(gridRow, 7))
     lastGridSize = 8
 
+    ensureGrid(8, "jump")
     showIndicator()
 end
 
 -- ============================================================
--- Reset
+-- Reset — clears all state including gridEnabled
 -- ============================================================
 
 function M.reset()
     gridCol = nil
     gridRow = nil
     lastGridSize = nil
+    gridEnabled = false
 end
 
 return M
