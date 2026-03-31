@@ -87,6 +87,10 @@ local function showIndicator()
     end
 end
 
+function M.flashIndicator()
+    showIndicator()
+end
+
 -- ============================================================
 -- Grid overlay — cursor-relative for move modes, fixed for jump
 -- ============================================================
