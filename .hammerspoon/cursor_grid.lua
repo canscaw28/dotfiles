@@ -69,19 +69,22 @@ local function showIndicator()
     indicatorCanvas:alpha(1)
     indicatorCanvas:show()
 
-    local fadeSteps = 10
-    local fadeInterval = 0.05
-    local step = 0
-    indicatorFadeTimer = hs.timer.doEvery(fadeInterval, function()
-        step = step + 1
-        if step >= fadeSteps then
-            indicatorCanvas:hide()
-            indicatorFadeTimer:stop()
-            indicatorFadeTimer = nil
-        else
-            indicatorCanvas:alpha(1 - step / fadeSteps)
-        end
-    end)
+    -- Only start fade if not in active repeat (moveTimer running)
+    if not moveTimer then
+        local fadeSteps = 10
+        local fadeInterval = 0.05
+        local step = 0
+        indicatorFadeTimer = hs.timer.doEvery(fadeInterval, function()
+            step = step + 1
+            if step >= fadeSteps then
+                indicatorCanvas:hide()
+                indicatorFadeTimer:stop()
+                indicatorFadeTimer = nil
+            else
+                indicatorCanvas:alpha(1 - step / fadeSteps)
+            end
+        end)
+    end
 end
 
 -- ============================================================
@@ -233,11 +236,6 @@ local function refreshGrid(gridSize, mode)
     if not win then return end
     local f = win:frame()
 
-    if gridCanvas then
-        gridCanvas:delete()
-        gridCanvas = nil
-    end
-
     local elements
     if mode == "jump" then
         elements = createJumpGrid(f)
@@ -246,13 +244,23 @@ local function refreshGrid(gridSize, mode)
         elements = createMoveGrid(gridSize, f, pos.x - f.x, pos.y - f.y)
     end
 
-    gridCanvas = hs.canvas.new({x = f.x, y = f.y, w = f.w, h = f.h})
-    gridCanvas:level(hs.canvas.windowLevels.overlay)
-    gridCanvas:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.stationary)
-    gridCanvas:canvasMouseEvents(false)
+    -- Reuse canvas if it exists and window frame matches, otherwise recreate
+    if gridCanvas then
+        -- Remove old elements (iterate in reverse to avoid index shift)
+        local count = gridCanvas:elementCount()
+        for i = count, 1, -1 do
+            gridCanvas:removeElement(i)
+        end
+        gridCanvas:frame({x = f.x, y = f.y, w = f.w, h = f.h})
+    else
+        gridCanvas = hs.canvas.new({x = f.x, y = f.y, w = f.w, h = f.h})
+        gridCanvas:level(hs.canvas.windowLevels.overlay)
+        gridCanvas:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.stationary)
+        gridCanvas:canvasMouseEvents(false)
+    end
 
     for idx, elem in ipairs(elements) do
-        gridCanvas[idx] = elem
+        gridCanvas:insertElement(elem, idx)
     end
 
     gridCanvas:show()
@@ -265,6 +273,11 @@ local function ensureGrid(gridSize, mode)
     if gridEnabled then
         refreshGrid(gridSize, mode)
     end
+end
+
+-- Exported for Karabiner setter calls on mode entry
+function M.ensureGrid(gridSize, mode)
+    ensureGrid(gridSize, mode or "move")
 end
 
 function M.toggleGrid(gridSize, mode)
@@ -344,6 +357,8 @@ function M.stopMove()
     if moveTimer then
         moveTimer:stop()
         moveTimer = nil
+        -- Trigger indicator fade now that repeat stopped
+        showIndicator()
     end
 end
 
