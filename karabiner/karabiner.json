@@ -305,7 +305,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('f'); require('cursor_grid').activate()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('f')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1108,9 +1108,6 @@
                       "name": "f_is_held",
                       "value": 1
                     }
-                  },
-                  {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').activate()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1191,9 +1188,6 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('e')\" &"
-                  },
-                  {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').ensureGrid(8, 'jump'); require('cursor_grid').flashIndicator()\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1204,7 +1198,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('e'); require('cursor_grid').hideGrid(); require('cursor_grid').stopMove()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('e')\" &"
                   }
                 ],
                 "type": "basic"
@@ -5013,6 +5007,11 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "f-cursor-grid: F+D+h left 1",
@@ -5060,6 +5059,11 @@
                   },
                   {
                     "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5111,6 +5115,11 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "f-cursor-grid: F+D+k up 1",
@@ -5158,6 +5167,11 @@
                   },
                   {
                     "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5209,6 +5223,11 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "f-cursor-grid: F+D+y left -1",
@@ -5256,6 +5275,11 @@
                   },
                   {
                     "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5307,6 +5331,11 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "f-cursor-grid: F+D+u left 2",
@@ -5354,6 +5383,11 @@
                   },
                   {
                     "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5405,6 +5439,11 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "f-cursor-grid: F+D+n down -1",
@@ -5452,6 +5491,11 @@
                   },
                   {
                     "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5503,6 +5547,11 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "f-cursor-grid: F+D+m down 2",
@@ -5550,6 +5599,11 @@
                   },
                   {
                     "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5601,6 +5655,11 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "f-cursor-grid: F+S+h left 1",
@@ -5648,6 +5707,11 @@
                   },
                   {
                     "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5699,6 +5763,11 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "f-cursor-grid: F+S+k up 1",
@@ -5746,6 +5815,11 @@
                   },
                   {
                     "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5797,6 +5871,11 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "f-cursor-grid: F+S+y left -1",
@@ -5844,6 +5923,11 @@
                   },
                   {
                     "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5895,6 +5979,11 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "f-cursor-grid: F+S+u left 2",
@@ -5942,6 +6031,11 @@
                   },
                   {
                     "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -5993,6 +6087,11 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "f-cursor-grid: F+S+n down -1",
@@ -6040,6 +6139,11 @@
                   },
                   {
                     "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6091,6 +6195,11 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "f-cursor-grid: F+S+m down 2",
@@ -6138,6 +6247,11 @@
                   },
                   {
                     "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6189,9 +6303,176 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$"
+                    ],
+                    "type": "frontmost_application_if"
                   }
                 ],
-                "description": "f-cursor-grid: F+E+h jump",
+                "description": "f-vimium: F+E+J link hints (Chrome/Vimium)",
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "f",
+                    "modifiers": [
+                      "control",
+                      "shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$"
+                    ],
+                    "type": "frontmost_application_unless"
+                  }
+                ],
+                "description": "f-homerow: F+E+J link hints (Homerow)",
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "spacebar",
+                    "modifiers": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "description": "f-vimium: F+E+semicolon toggle Vimium",
+                "from": {
+                  "key_code": "semicolon",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "control",
+                      "shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "f-cursor-grid: F+D+S+h jump",
                 "from": {
                   "key_code": "h",
                   "modifiers": {
@@ -6220,7 +6501,12 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -6235,7 +6521,7 @@
                     "value": 0
                   }
                 ],
-                "description": "f-cursor-grid: F+E+j jump",
+                "description": "f-cursor-grid: F+D+S+j jump",
                 "from": {
                   "key_code": "j",
                   "modifiers": {
@@ -6264,7 +6550,12 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -6279,7 +6570,7 @@
                     "value": 0
                   }
                 ],
-                "description": "f-cursor-grid: F+E+k jump",
+                "description": "f-cursor-grid: F+D+S+k jump",
                 "from": {
                   "key_code": "k",
                   "modifiers": {
@@ -6308,7 +6599,12 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -6323,7 +6619,7 @@
                     "value": 0
                   }
                 ],
-                "description": "f-cursor-grid: F+E+l jump",
+                "description": "f-cursor-grid: F+D+S+l jump",
                 "from": {
                   "key_code": "l",
                   "modifiers": {
@@ -6352,7 +6648,12 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -6367,7 +6668,7 @@
                     "value": 0
                   }
                 ],
-                "description": "f-cursor-grid: F+E+semicolon jump",
+                "description": "f-cursor-grid: F+D+S+semicolon jump",
                 "from": {
                   "key_code": "semicolon",
                   "modifiers": {
@@ -6396,7 +6697,12 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -6411,7 +6717,7 @@
                     "value": 0
                   }
                 ],
-                "description": "f-cursor-grid: F+E+y jump",
+                "description": "f-cursor-grid: F+D+S+y jump",
                 "from": {
                   "key_code": "y",
                   "modifiers": {
@@ -6440,7 +6746,12 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -6455,7 +6766,7 @@
                     "value": 0
                   }
                 ],
-                "description": "f-cursor-grid: F+E+o jump",
+                "description": "f-cursor-grid: F+D+S+o jump",
                 "from": {
                   "key_code": "o",
                   "modifiers": {
@@ -6484,7 +6795,12 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -6499,7 +6815,7 @@
                     "value": 0
                   }
                 ],
-                "description": "f-cursor-grid: F+E+n jump",
+                "description": "f-cursor-grid: F+D+S+n jump",
                 "from": {
                   "key_code": "n",
                   "modifiers": {
@@ -6528,7 +6844,12 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -6543,7 +6864,7 @@
                     "value": 0
                   }
                 ],
-                "description": "f-cursor-grid: F+E+period jump",
+                "description": "f-cursor-grid: F+D+S+period jump",
                 "from": {
                   "key_code": "period",
                   "modifiers": {
@@ -6572,7 +6893,12 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -6587,7 +6913,7 @@
                     "value": 0
                   }
                 ],
-                "description": "f-cursor-grid: F+E+u jump",
+                "description": "f-cursor-grid: F+D+S+u jump",
                 "from": {
                   "key_code": "u",
                   "modifiers": {
@@ -6616,7 +6942,12 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -6631,7 +6962,7 @@
                     "value": 0
                   }
                 ],
-                "description": "f-cursor-grid: F+E+i jump",
+                "description": "f-cursor-grid: F+D+S+i jump",
                 "from": {
                   "key_code": "i",
                   "modifiers": {
@@ -6660,7 +6991,12 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -6675,7 +7011,7 @@
                     "value": 0
                   }
                 ],
-                "description": "f-cursor-grid: F+E+m jump",
+                "description": "f-cursor-grid: F+D+S+m jump",
                 "from": {
                   "key_code": "m",
                   "modifiers": {
@@ -6704,7 +7040,12 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -6719,7 +7060,7 @@
                     "value": 0
                   }
                 ],
-                "description": "f-cursor-grid: F+E+comma jump",
+                "description": "f-cursor-grid: F+D+S+comma jump",
                 "from": {
                   "key_code": "comma",
                   "modifiers": {
@@ -6923,6 +7264,11 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "f-cursor-grid: F+D+P toggle grid",
@@ -6967,6 +7313,11 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "f-cursor-grid: F+S+P toggle grid",
@@ -6998,7 +7349,12 @@
                     "value": 1
                   },
                   {
-                    "name": "e_is_held",
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
                   },
@@ -7013,7 +7369,7 @@
                     "value": 0
                   }
                 ],
-                "description": "f-cursor-grid: F+E+P toggle grid",
+                "description": "f-cursor-grid: F+D+S+P toggle grid",
                 "from": {
                   "key_code": "p",
                   "modifiers": {
