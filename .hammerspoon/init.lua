@@ -6,6 +6,7 @@ require("ws_grid")
 require("key_suppress")
 require("hs_server")
 require("chrome_tabs")
+require("cursor_grid")
 
 screenWatcher = hs.screen.watcher.new(function()
     hs.timer.doAfter(2.0, function()
