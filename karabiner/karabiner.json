@@ -305,7 +305,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('f'); require('cursor_grid').flashIndicator()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('f'); require('cursor_grid').activate()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1030,7 +1030,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').ensureGrid(32, 'move')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').ensureGrid(32, 'move'); require('cursor_grid').flashIndicator()\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1070,7 +1070,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').ensureGrid(8, 'move')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').ensureGrid(8, 'move'); require('cursor_grid').flashIndicator()\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1110,7 +1110,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').flashIndicator()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').activate()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1193,7 +1193,7 @@
                     "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('e')\" &"
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').ensureGrid(8, 'jump')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').ensureGrid(8, 'jump'); require('cursor_grid').flashIndicator()\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
