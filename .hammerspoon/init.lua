@@ -121,38 +121,28 @@ scrollHandler = hs.eventtap.new(
 
         if isDown then
             keyStates[keyCode] = true
-            if modifiers.ctrl then
-                if keyCode == hs.keycodes.map["`"] then
+            if modifiers.ctrl and modifiers.shift then
+                if keyCode == hs.keycodes.map["k"] then
                     startScrolling(-10, false, keyCode)
-                elseif keyCode == hs.keycodes.map["1"] then
+                elseif keyCode == hs.keycodes.map["j"] then
                     startScrolling(10, false, keyCode)
-                elseif keyCode == hs.keycodes.map["2"] then
+                elseif keyCode == hs.keycodes.map["h"] then
                     startScrolling(10, true, keyCode)
-                elseif keyCode == hs.keycodes.map["3"] then
+                elseif keyCode == hs.keycodes.map["l"] then
                     startScrolling(-10, true, keyCode)
-                elseif keyCode == hs.keycodes.map["4"] then
+                elseif keyCode == hs.keycodes.map["u"] then
                     if not lastKeyPressed then
                         smoothScroll(-getVisibleContentHeight() * 0.55, false, 0.15)
                     end
                     startScrolling(-25, false, keyCode)
-                elseif keyCode == hs.keycodes.map["5"] then
+                elseif keyCode == hs.keycodes.map["i"] then
                     if not lastKeyPressed then
                         smoothScroll(getVisibleContentHeight() * 0.55, false, 0.15)
                     end
                     startScrolling(25, false, keyCode)
-                elseif keyCode == hs.keycodes.map["6"] then
-                    if not lastKeyPressed then
-                        smoothScroll(-getVisibleContentHeight() * 0.9, false, 0.3)
-                    end
-                    startScrolling(-50, false, keyCode)
-                elseif keyCode == hs.keycodes.map["7"] then
-                    if not lastKeyPressed then
-                        smoothScroll(getVisibleContentHeight() * 0.9, false, 0.3)
-                    end
-                    startScrolling(50, false, keyCode)
-                elseif keyCode == hs.keycodes.map["8"] then
+                elseif keyCode == hs.keycodes.map["y"] then
                     scrollToTop()
-                elseif keyCode == hs.keycodes.map["9"] then
+                elseif keyCode == hs.keycodes.map["o"] then
                     scrollToBottom()
                 end
             end
