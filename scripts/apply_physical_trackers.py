@@ -89,6 +89,10 @@ def detect_layer_keys(manips):
     return layer_keys
 
 
+# Keys whose physical tracker key_up should also clean up cursor_grid
+CURSOR_GRID_KEYS = {"d", "s", "e"}
+
+
 def make_physical_tracker(key_code, var_name, has_ws_grid):
     """Create a physical tracker manipulator for a layer key.
 
@@ -98,11 +102,13 @@ def make_physical_tracker(key_code, var_name, has_ws_grid):
     """
     physical_var = f"{key_code}_physical"
 
+    parts = [f"require('key_suppress').stop('{key_code}')"]
     if has_ws_grid:
-        up_cmd = (f'{HS_BIN} -c "require(\'key_suppress\').stop(\'{key_code}\');'
-                  f" require('ws_grid').keyUp('{key_code}')\" &")
-    else:
-        up_cmd = f'{HS_BIN} -c "require(\'key_suppress\').stop(\'{key_code}\')" &'
+        parts.append(f"require('ws_grid').keyUp('{key_code}')")
+    if key_code in CURSOR_GRID_KEYS:
+        parts.append("require('cursor_grid').hideGrid()")
+        parts.append("require('cursor_grid').stopMove()")
+    up_cmd = f'{HS_BIN} -c "{"; ".join(parts)}" &'
 
     return {
         "description": f"{key_code}-physical-tracker",
