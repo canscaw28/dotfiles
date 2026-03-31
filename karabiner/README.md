@@ -204,6 +204,25 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | ⇪ + F + . |  |  |
 | ⇪ + F + / |  |  |
 
+### Cursor Grid Mode — ⇪ + F + D (8×8) / ⇪ + F + S (32×32)
+
+Moves the mouse cursor within the focused window on a grid. D mode uses an 8×8 grid for coarse positioning, S mode uses 32×32 for fine precision. On first keypress, snaps to the nearest grid cell from the current mouse position.
+
+| Key | Action |
+| --- | --- |
+| ⇪ + F + D/S + H | Move cursor 1 grid cell left |
+| ⇪ + F + D/S + J | Move cursor 1 grid cell down |
+| ⇪ + F + D/S + K | Move cursor 1 grid cell up |
+| ⇪ + F + D/S + L | Move cursor 1 grid cell right |
+| ⇪ + F + D/S + Y | Jump to left edge |
+| ⇪ + F + D/S + O | Jump to right edge |
+| ⇪ + F + D/S + U | Move cursor 2 grid cells left |
+| ⇪ + F + D/S + I | Move cursor 2 grid cells right |
+| ⇪ + F + D/S + N | Jump to bottom edge |
+| ⇪ + F + D/S + . | Jump to top edge |
+| ⇪ + F + D/S + M | Move cursor 2 grid cells down |
+| ⇪ + F + D/S + , | Move cursor 2 grid cells up |
+
 ---
 
 ## Chrome Layer (⇪ + G)
