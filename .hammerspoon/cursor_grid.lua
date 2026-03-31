@@ -17,6 +17,10 @@ local INDICATOR_COLOR = {red = 1, green = 0.6, blue = 0.1, alpha = 0.7}
 local gridCanvas = nil
 local gridVisible = false
 local currentGridSize = nil
+local currentGridMode = nil -- "move" or "jump"
+
+-- Hold-to-repeat
+local moveTimer = nil
 
 -- Fixed positions for F+E mode {xFraction, yFraction}
 local JUMP_POSITIONS = {
@@ -81,31 +85,124 @@ local function showIndicator()
 end
 
 -- ============================================================
--- Grid overlay
+-- Grid overlay — lines through cell CENTERS (intersections = landing positions)
 -- ============================================================
 
 local LINE_STYLES = {
-    major = {color = {red = 0, green = 0.8, blue = 0.2, alpha = 0.45}, width = 1.5},
-    mid   = {color = {red = 0.4, green = 0.7, blue = 1.0, alpha = 0.35}, width = 1.0},
-    minor = {color = {red = 0.5, green = 0.6, blue = 0.8, alpha = 0.2}, width = 0.5,
-             dash = {4, 4}},
+    major = {color = {red = 0, green = 0.85, blue = 0.3, alpha = 0.6}, width = 2.0},
+    mid   = {color = {red = 0.4, green = 0.75, blue = 1.0, alpha = 0.5}, width = 1.5},
+    minor = {color = {red = 0.5, green = 0.6, blue = 0.8, alpha = 0.3}, width = 1.0,
+             dash = {6, 4}},
 }
 
-local function classifyLine(pos, gridSize)
+local function classifyMoveLine(cellIdx, gridSize)
+    -- Classify a cell-center line for move grid (F+D, F+S)
     if gridSize <= 8 then
-        if pos == gridSize / 2 then return "major" end
-        return "mid"
+        return "mid"  -- all lines equal for 8x8
     else
-        -- 32x32: hierarchical classification
-        if pos == gridSize / 2 then return "major"          -- 16 → 2x2 midline
-        elseif pos % (gridSize / 8) == 0 then return "mid"  -- 4,8,12,20,24,28 → 8x8
-        elseif pos % (gridSize / 16) == 0 then return "minor" -- 2,6,10,... → 16x16
-        else return nil
+        -- 32x32 hierarchy based on cell index
+        if cellIdx % 8 == 0 then return "major"       -- 0,8,16,24 → major
+        elseif cellIdx % 4 == 0 then return "mid"      -- 4,12,20,28 → mid
+        elseif cellIdx % 2 == 0 then return "minor"     -- even → minor
+        else return nil                                  -- odd → skip
         end
     end
 end
 
-local function createGridCanvas(gridSize)
+local function addLine(elements, x, y, w, h, style)
+    if style.dash then
+        -- Vertical or horizontal dashed line via segments
+        if w < h then
+            table.insert(elements, {
+                type = "segments",
+                coordinates = {{x = x, y = y}, {x = x, y = y + h}},
+                strokeColor = style.color,
+                strokeWidth = style.width,
+                strokeDashPattern = style.dash,
+                action = "stroke",
+            })
+        else
+            table.insert(elements, {
+                type = "segments",
+                coordinates = {{x = x, y = y}, {x = x + w, y = y}},
+                strokeColor = style.color,
+                strokeWidth = style.width,
+                strokeDashPattern = style.dash,
+                action = "stroke",
+            })
+        end
+    else
+        table.insert(elements, {
+            type = "rectangle",
+            frame = {x = x, y = y, w = math.max(w, style.width), h = math.max(h, style.width)},
+            fillColor = style.color,
+            action = "fill",
+        })
+    end
+end
+
+local function createMoveGrid(gridSize, winFrame)
+    -- Grid for F+D / F+S: lines through each cell center
+    local elements = {}
+    local cellW = winFrame.w / gridSize
+    local cellH = winFrame.h / gridSize
+
+    for i = 0, gridSize - 1 do
+        local cat = classifyMoveLine(i, gridSize)
+        if cat then
+            local style = LINE_STYLES[cat]
+            local cx = math.floor((i + 0.5) * cellW)
+            local cy = math.floor((i + 0.5) * cellH)
+
+            -- Vertical line at cell center x
+            addLine(elements, cx, 0, style.width, winFrame.h, style)
+            -- Horizontal line at cell center y
+            addLine(elements, 0, cy, winFrame.w, style.width, style)
+        end
+    end
+
+    return elements
+end
+
+local function createJumpGrid(winFrame)
+    -- Grid for F+E: dots at the 13 fixed positions
+    local elements = {}
+    local DOT_SIZE = 10
+    local DOT_COLOR = {red = 1, green = 0.6, blue = 0.1, alpha = 0.5}
+
+    for _, pos in pairs(JUMP_POSITIONS) do
+        local px = math.floor(pos[1] * winFrame.w)
+        local py = math.floor(pos[2] * winFrame.h)
+        -- Crosshair arms
+        local armLen = 12
+        local armW = 1.5
+        -- Horizontal arm
+        table.insert(elements, {
+            type = "rectangle",
+            frame = {x = px - armLen, y = py - armW / 2, w = armLen * 2, h = armW},
+            fillColor = DOT_COLOR,
+            action = "fill",
+        })
+        -- Vertical arm
+        table.insert(elements, {
+            type = "rectangle",
+            frame = {x = px - armW / 2, y = py - armLen, w = armW, h = armLen * 2},
+            fillColor = DOT_COLOR,
+            action = "fill",
+        })
+        -- Center dot
+        table.insert(elements, {
+            type = "oval",
+            frame = {x = px - DOT_SIZE / 2, y = py - DOT_SIZE / 2, w = DOT_SIZE, h = DOT_SIZE},
+            fillColor = DOT_COLOR,
+            action = "fill",
+        })
+    end
+
+    return elements
+end
+
+local function showGrid(gridSize, mode)
     local win = hs.window.focusedWindow()
     if not win then return end
     local f = win:frame()
@@ -115,55 +212,16 @@ local function createGridCanvas(gridSize)
         gridCanvas = nil
     end
 
-    local elements = {}
-    local cellW = f.w / gridSize
-    local cellH = f.h / gridSize
-
-    for i = 1, gridSize - 1 do
-        local cat = classifyLine(i, gridSize)
-        if cat then
-            local style = LINE_STYLES[cat]
-            local vx = math.floor(i * cellW)
-            local hy = math.floor(i * cellH)
-
-            if style.dash then
-                table.insert(elements, {
-                    type = "segments",
-                    coordinates = {{x = vx, y = 0}, {x = vx, y = f.h}},
-                    strokeColor = style.color,
-                    strokeWidth = style.width,
-                    strokeDashPattern = style.dash,
-                    action = "stroke",
-                })
-                table.insert(elements, {
-                    type = "segments",
-                    coordinates = {{x = 0, y = hy}, {x = f.w, y = hy}},
-                    strokeColor = style.color,
-                    strokeWidth = style.width,
-                    strokeDashPattern = style.dash,
-                    action = "stroke",
-                })
-            else
-                table.insert(elements, {
-                    type = "rectangle",
-                    frame = {x = vx, y = 0, w = style.width, h = f.h},
-                    fillColor = style.color,
-                    action = "fill",
-                })
-                table.insert(elements, {
-                    type = "rectangle",
-                    frame = {x = 0, y = hy, w = f.w, h = style.width},
-                    fillColor = style.color,
-                    action = "fill",
-                })
-            end
-        end
+    local elements
+    if mode == "jump" then
+        elements = createJumpGrid(f)
+    else
+        elements = createMoveGrid(gridSize, f)
     end
 
     gridCanvas = hs.canvas.new({x = f.x, y = f.y, w = f.w, h = f.h})
     gridCanvas:level(hs.canvas.windowLevels.overlay)
     gridCanvas:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.stationary)
-    gridCanvas:mouseCallback(function() return true end)
     gridCanvas:canvasMouseEvents(false)
 
     for idx, elem in ipairs(elements) do
@@ -173,13 +231,15 @@ local function createGridCanvas(gridSize)
     gridCanvas:show()
     gridVisible = true
     currentGridSize = gridSize
+    currentGridMode = mode
 end
 
-function M.toggleGrid(gridSize)
-    if gridVisible and currentGridSize == gridSize then
+function M.toggleGrid(gridSize, mode)
+    mode = mode or "move"
+    if gridVisible and currentGridSize == gridSize and currentGridMode == mode then
         M.hideGrid()
     else
-        createGridCanvas(gridSize)
+        showGrid(gridSize, mode)
     end
 end
 
@@ -190,6 +250,7 @@ function M.hideGrid()
     end
     gridVisible = false
     currentGridSize = nil
+    currentGridMode = nil
 end
 
 -- ============================================================
@@ -231,11 +292,7 @@ local function moveToCellCenter(gridSize)
     hs.mouse.absolutePosition(hs.geometry.point(x, y))
 end
 
-function M.move(direction, amount, gridSize)
-    if gridCol == nil or gridRow == nil or lastGridSize ~= gridSize then
-        if not snapToGrid(gridSize) then return end
-    end
-
+local function doMove(direction, amount, gridSize)
     if direction == "left" then
         if amount < 0 then gridCol = 0
         else gridCol = math.max(0, gridCol - amount) end
@@ -249,10 +306,33 @@ function M.move(direction, amount, gridSize)
         if amount < 0 then gridRow = gridSize - 1
         else gridRow = math.min(gridSize - 1, gridRow + amount) end
     end
+end
 
+function M.move(direction, amount, gridSize)
+    if gridCol == nil or gridRow == nil or lastGridSize ~= gridSize then
+        if not snapToGrid(gridSize) then return end
+    end
+
+    doMove(direction, amount, gridSize)
     lastGridSize = gridSize
     moveToCellCenter(gridSize)
     showIndicator()
+end
+
+-- Hold-to-repeat: startMove fires immediately then repeats on a timer
+function M.startMove(direction, amount, gridSize)
+    M.stopMove()
+    M.move(direction, amount, gridSize)
+    moveTimer = hs.timer.doEvery(0.065, function()
+        M.move(direction, amount, gridSize)
+    end)
+end
+
+function M.stopMove()
+    if moveTimer then
+        moveTimer:stop()
+        moveTimer = nil
+    end
 end
 
 -- ============================================================
@@ -272,7 +352,6 @@ function M.jump(position)
 
     hs.mouse.absolutePosition(hs.geometry.point(x, y))
 
-    -- Update grid tracking to match new position (snap to 8x8)
     gridCol = math.floor(pos[1] * 8)
     gridRow = math.floor(pos[2] * 8)
     gridCol = math.max(0, math.min(gridCol, 7))
