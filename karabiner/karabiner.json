@@ -44,7 +44,7 @@
                     "key_code": "left_control"
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
                 "type": "basic"
@@ -97,7 +97,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -168,7 +168,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -239,7 +239,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -316,7 +316,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -387,7 +387,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -458,7 +458,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -529,7 +529,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -600,7 +600,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -671,7 +671,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -742,7 +742,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -813,7 +813,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -867,7 +867,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -1036,6 +1036,9 @@
                       "name": "s_is_held",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').hideGrid(); require('cursor_grid').stopMove()\" &"
                   }
                 ],
                 "type": "basic"
@@ -1070,6 +1073,9 @@
                       "name": "d_is_held",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').hideGrid(); require('cursor_grid').stopMove()\" &"
                   }
                 ],
                 "type": "basic"
@@ -1096,12 +1102,6 @@
                       "name": "f_is_held",
                       "value": 1
                     }
-                  },
-                  {
-                    "key_code": "0",
-                    "modifiers": [
-                      "control"
-                    ]
                   }
                 ],
                 "to_after_key_up": [
@@ -1110,6 +1110,9 @@
                       "name": "f_is_held",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
                 "type": "basic"
@@ -1189,7 +1192,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('e')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('e'); require('cursor_grid').hideGrid(); require('cursor_grid').stopMove()\" &"
                   }
                 ],
                 "type": "basic"
