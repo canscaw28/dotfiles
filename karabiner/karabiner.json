@@ -305,7 +305,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('f')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('f'); require('cursor_grid').flashIndicator()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -731,7 +731,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('t'); require('ws_grid').keyDown('t')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('t'); require('ws_grid').keyDown('t'); require('focus_border').flash()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -802,7 +802,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('g')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('g'); require('focus_border').flash()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1108,6 +1108,9 @@
                       "name": "f_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').flashIndicator()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1350,7 +1353,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('t')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('t'); require('focus_border').flash()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1388,6 +1391,9 @@
                       "name": "g_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "to_after_key_up": [
