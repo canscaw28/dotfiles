@@ -3400,6 +3400,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -3498,6 +3503,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -3535,6 +3545,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -3573,6 +3588,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -3611,6 +3631,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -3649,6 +3674,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -3687,6 +3717,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -4378,6 +4413,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -4412,6 +4452,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -4568,6 +4613,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -4605,6 +4655,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -4642,6 +4697,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -4679,6 +4739,11 @@
                       "^com\\.googlecode\\.iterm2$"
                     ],
                     "type": "frontmost_application_if"
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -6900,6 +6965,60 @@
                 "to": [
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('comma')\" 2>/dev/null &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "f-cursor-grid: F+P toggle grid",
+                "from": {
+                  "key_code": "p",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').toggleGrid(8, 'move')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
