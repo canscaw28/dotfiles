@@ -30,7 +30,7 @@
 		"unmap r",
 		"unmap t",
 		"unmap x",
-		"map <c-s-f> LinkHints.activate",
+		"map <c-s-k> LinkHints.activateHover",
 		"map <c-s-;> openUrl url=\"vimium://status toggle\"",
 		""
 	],
