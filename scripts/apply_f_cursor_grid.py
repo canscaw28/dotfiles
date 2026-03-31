@@ -112,6 +112,31 @@ def make_grid_toggle(mode_key, grid_size, mode="move"):
     }
 
 
+def make_standalone_f_p_toggle():
+    """Create F+P toggle (no D/S/E required) — defaults to 8x8 move grid."""
+    desc = f"{DESCRIPTION_PREFIX}: F+P toggle grid"
+    hs_cmd = (
+        '/usr/local/bin/hs -c "'
+        "require('cursor_grid').toggleGrid(8, 'move')"
+        '" 2>/dev/null &'
+    )
+    return {
+        "conditions": [
+            {"name": "caps_lock_is_held", "type": "variable_if", "value": 1},
+            {"name": "f_is_held", "type": "variable_if", "value": 1},
+            {"name": "d_is_held", "type": "variable_if", "value": 0},
+            {"name": "s_is_held", "type": "variable_if", "value": 0},
+            {"name": "e_is_held", "type": "variable_if", "value": 0},
+            {"name": "g_is_held", "type": "variable_if", "value": 0},
+            {"name": "t_is_held", "type": "variable_if", "value": 0},
+        ],
+        "description": desc,
+        "from": {"key_code": "p", "modifiers": {"optional": ["any"]}},
+        "to": [{"shell_command": hs_cmd}],
+        "type": "basic",
+    }
+
+
 def generate_all_manipulators():
     """Generate all cursor grid manipulators."""
     ms = []
@@ -129,6 +154,7 @@ def generate_all_manipulators():
         ms.append(make_jump_manipulator(key_code))
 
     # Grid overlay toggles
+    ms.append(make_standalone_f_p_toggle())
     ms.append(make_grid_toggle("d", 8))
     ms.append(make_grid_toggle("s", 32))
     ms.append(make_grid_toggle("e", 8, "jump"))
