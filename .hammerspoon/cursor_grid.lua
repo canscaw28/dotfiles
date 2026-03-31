@@ -16,13 +16,13 @@ local INDICATOR_COLOR = {red = 1, green = 0.6, blue = 0.1, alpha = 0.7}
 -- Grid overlay
 local gridCanvas = nil
 local gridVisible = false
-local gridEnabled = false  -- toggled by P, persists until reset
+local gridEnabled = false  -- toggled by P, persists across key releases
 local currentGridSize = nil
 local currentGridMode = nil -- "move" or "jump"
 
 -- Hold-to-repeat
 local moveTimer = nil
-local REPEAT_DELAY = 0.3   -- initial delay before repeat (like OS key repeat)
+local REPEAT_DELAY = 0.3
 local REPEAT_INTERVAL = 0.065
 
 -- Fixed positions for F+E mode {xFraction, yFraction}
@@ -88,23 +88,34 @@ local function showIndicator()
 end
 
 -- ============================================================
--- Grid overlay — lines through cell CENTERS (intersections = landing positions)
+-- Grid overlay — cursor-relative for move modes, fixed for jump
 -- ============================================================
 
+-- Line styles by distance from cursor
 local LINE_STYLES = {
-    major = {color = {red = 0.1, green = 1.0, blue = 0.3, alpha = 0.7}, width = 2.5},   -- bright green, thick
-    mid   = {color = {red = 0.3, green = 0.6, blue = 1.0, alpha = 0.55}, width = 1.5},  -- blue, medium
-    minor = {color = {red = 0.6, green = 0.5, blue = 0.7, alpha = 0.3}, width = 0.75,   -- muted purple, dashed
-             dash = {6, 4}},
+    cursor = {color = {red = 1, green = 0.6, blue = 0.1, alpha = 0.65}, width = 2.0},    -- amber, current pos
+    major  = {color = {red = 0.1, green = 1.0, blue = 0.3, alpha = 0.6}, width = 2.0},   -- green, half screen
+    mid    = {color = {red = 0.3, green = 0.6, blue = 1.0, alpha = 0.45}, width = 1.5},  -- blue
+    fine   = {color = {red = 0.5, green = 0.7, blue = 0.9, alpha = 0.3}, width = 1.0},   -- light blue
+    minor  = {color = {red = 0.6, green = 0.5, blue = 0.7, alpha = 0.2}, width = 0.75,   -- muted purple, dashed
+              dash = {6, 4}},
 }
 
-local function classifyMoveLine(cellIdx, gridSize)
+local function classifyByDistance(n, gridSize)
+    if n == 0 then return "cursor" end
+    local a = math.abs(n)
     if gridSize <= 8 then
-        return "mid"
+        -- 8x8: half=4, quarter=2, single=1
+        if a % 4 == 0 then return "major"
+        elseif a % 2 == 0 then return "mid"
+        else return "fine"
+        end
     else
-        if cellIdx % 8 == 0 then return "major"
-        elseif cellIdx % 4 == 0 then return "mid"
-        elseif cellIdx % 2 == 0 then return "minor"
+        -- 32x32: half=16, eighth=4, sixteenth=2
+        if a % 16 == 0 then return "major"
+        elseif a % 8 == 0 then return "mid"
+        elseif a % 4 == 0 then return "fine"
+        elseif a % 2 == 0 then return "minor"
         else return nil
         end
     end
@@ -141,19 +152,33 @@ local function addLine(elements, x, y, w, h, style)
     end
 end
 
-local function createMoveGrid(gridSize, winFrame)
+local function createMoveGrid(gridSize, winFrame, cursorRelX, cursorRelY)
+    -- Grid centered on cursor — lines at cursor ± n*cellSize
     local elements = {}
     local cellW = winFrame.w / gridSize
     local cellH = winFrame.h / gridSize
 
-    for i = 0, gridSize - 1 do
-        local cat = classifyMoveLine(i, gridSize)
-        if cat then
-            local style = LINE_STYLES[cat]
-            local cx = math.floor((i + 0.5) * cellW)
-            local cy = math.floor((i + 0.5) * cellH)
-            addLine(elements, cx, 0, style.width, winFrame.h, style)
-            addLine(elements, 0, cy, winFrame.w, style.width, style)
+    -- Vertical lines
+    for n = -gridSize, gridSize do
+        local x = cursorRelX + n * cellW
+        if x >= 0 and x <= winFrame.w then
+            local cat = classifyByDistance(n, gridSize)
+            if cat then
+                local style = LINE_STYLES[cat]
+                addLine(elements, math.floor(x), 0, style.width, winFrame.h, style)
+            end
+        end
+    end
+
+    -- Horizontal lines
+    for n = -gridSize, gridSize do
+        local y = cursorRelY + n * cellH
+        if y >= 0 and y <= winFrame.h then
+            local cat = classifyByDistance(n, gridSize)
+            if cat then
+                local style = LINE_STYLES[cat]
+                addLine(elements, 0, math.floor(y), winFrame.w, style.width, style)
+            end
         end
     end
 
@@ -223,7 +248,7 @@ local function createJumpGrid(winFrame)
     return elements
 end
 
-local function showGrid(gridSize, mode)
+local function refreshGrid(gridSize, mode)
     local win = hs.window.focusedWindow()
     if not win then return end
     local f = win:frame()
@@ -237,7 +262,11 @@ local function showGrid(gridSize, mode)
     if mode == "jump" then
         elements = createJumpGrid(f)
     else
-        elements = createMoveGrid(gridSize, f)
+        -- Get cursor position relative to window
+        local pos = hs.mouse.absolutePosition()
+        local relX = pos.x - f.x
+        local relY = pos.y - f.y
+        elements = createMoveGrid(gridSize, f, relX, relY)
     end
 
     gridCanvas = hs.canvas.new({x = f.x, y = f.y, w = f.w, h = f.h})
@@ -255,12 +284,10 @@ local function showGrid(gridSize, mode)
     currentGridMode = mode
 end
 
--- Re-show grid if enabled and mode/size changed
+-- Refresh grid if enabled (always redraws to track cursor position)
 local function ensureGrid(gridSize, mode)
     if gridEnabled then
-        if not gridVisible or currentGridSize ~= gridSize or currentGridMode ~= mode then
-            showGrid(gridSize, mode)
-        end
+        refreshGrid(gridSize, mode)
     end
 end
 
@@ -271,11 +298,10 @@ function M.toggleGrid(gridSize, mode)
         M.hideGrid()
     else
         gridEnabled = true
-        showGrid(gridSize, mode)
+        refreshGrid(gridSize, mode)
     end
 end
 
--- Hide the canvas but keep gridEnabled (grid re-shows when mode re-entered)
 function M.hideGrid()
     if gridCanvas then
         gridCanvas:delete()
@@ -284,6 +310,7 @@ function M.hideGrid()
     gridVisible = false
     currentGridSize = nil
     currentGridMode = nil
+    -- gridEnabled is NOT cleared — grid re-shows when mode re-entered
 end
 
 -- ============================================================
@@ -349,6 +376,7 @@ function M.move(direction, amount, gridSize)
     doMove(direction, amount, gridSize)
     lastGridSize = gridSize
     moveToCellCenter(gridSize)
+    ensureGrid(gridSize, "move")
     showIndicator()
 end
 
@@ -357,9 +385,7 @@ function M.startMove(direction, amount, gridSize)
     M.stopMove()
     ensureGrid(gridSize, "move")
     M.move(direction, amount, gridSize)
-    -- Initial delay (like holding a key on the keyboard)
     moveTimer = hs.timer.doAfter(REPEAT_DELAY, function()
-        -- Delay expired — start continuous repeat
         M.move(direction, amount, gridSize)
         moveTimer = hs.timer.doEvery(REPEAT_INTERVAL, function()
             M.move(direction, amount, gridSize)
@@ -402,14 +428,13 @@ function M.jump(position)
 end
 
 -- ============================================================
--- Reset — clears all state including gridEnabled
+-- Reset — clears movement state, NOT gridEnabled
 -- ============================================================
 
 function M.reset()
     gridCol = nil
     gridRow = nil
     lastGridSize = nil
-    gridEnabled = false
 end
 
 return M
