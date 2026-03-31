@@ -2255,6 +2255,11 @@
                     "value": 0
                   },
                   {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "bundle_identifiers": [
                       "^com\\.googlecode\\.iterm2$"
                     ],
@@ -23758,6 +23763,7 @@
                     "type": "frontmost_application_if"
                   }
                 ],
+                "description": "G+H: iTerm tmux pane left",
                 "from": {
                   "key_code": "h",
                   "modifiers": {
@@ -23768,13 +23774,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "b",
-                    "modifiers": [
-                      "control"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
+                    "shell_command": "~/.local/bin/g-focus-tmux.sh left &"
                   }
                 ],
                 "type": "basic"
@@ -23798,6 +23798,7 @@
                     "type": "frontmost_application_if"
                   }
                 ],
+                "description": "G+J: iTerm tmux pane down",
                 "from": {
                   "key_code": "j",
                   "modifiers": {
@@ -23808,13 +23809,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "b",
-                    "modifiers": [
-                      "control"
-                    ]
-                  },
-                  {
-                    "key_code": "down_arrow"
+                    "shell_command": "~/.local/bin/g-focus-tmux.sh down &"
                   }
                 ],
                 "type": "basic"
@@ -23838,6 +23833,7 @@
                     "type": "frontmost_application_if"
                   }
                 ],
+                "description": "G+K: iTerm tmux pane up",
                 "from": {
                   "key_code": "k",
                   "modifiers": {
@@ -23848,13 +23844,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "b",
-                    "modifiers": [
-                      "control"
-                    ]
-                  },
-                  {
-                    "key_code": "up_arrow"
+                    "shell_command": "~/.local/bin/g-focus-tmux.sh up &"
                   }
                 ],
                 "type": "basic"
@@ -23878,6 +23868,7 @@
                     "type": "frontmost_application_if"
                   }
                 ],
+                "description": "G+L: iTerm tmux pane right",
                 "from": {
                   "key_code": "l",
                   "modifiers": {
@@ -23888,13 +23879,77 @@
                 },
                 "to": [
                   {
-                    "key_code": "b",
-                    "modifiers": [
-                      "control"
-                    ]
+                    "shell_command": "~/.local/bin/g-focus-tmux.sh right &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
                   },
                   {
-                    "key_code": "right_arrow"
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.googlecode\\.iterm2$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "description": "G+Y: iTerm tmux leftmost pane",
+                "from": {
+                  "key_code": "y",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "~/.local/bin/g-focus-tmux-edge.sh left &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.googlecode\\.iterm2$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "description": "G+O: iTerm tmux rightmost pane",
+                "from": {
+                  "key_code": "o",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "~/.local/bin/g-focus-tmux-edge.sh right &"
                   }
                 ],
                 "type": "basic"
@@ -24121,7 +24176,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('chrome_focus').focus('down')\" 2>/dev/null &"
+                    "key_code": "j",
+                    "modifiers": [
+                      "left_command",
+                      "left_control",
+                      "left_option"
+                    ]
                   }
                 ],
                 "type": "basic"
@@ -24186,7 +24246,268 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('chrome_focus').focus('up')\" 2>/dev/null &"
+                    "key_code": "k",
+                    "modifiers": [
+                      "left_command",
+                      "left_control",
+                      "left_option"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "r_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "G+H: focus window left",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "h",
+                    "modifiers": [
+                      "left_command",
+                      "left_control",
+                      "left_option"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "r_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "G+J: focus window down",
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "j",
+                    "modifiers": [
+                      "left_command",
+                      "left_control",
+                      "left_option"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "r_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "G+K: focus window up",
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "k",
+                    "modifiers": [
+                      "left_command",
+                      "left_control",
+                      "left_option"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "r_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "G+L: focus window right",
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "l",
+                    "modifiers": [
+                      "left_command",
+                      "left_control",
+                      "left_option"
+                    ]
                   }
                 ],
                 "type": "basic"
