@@ -124,4 +124,24 @@ function M.flash(monitorOnly)
     end)
 end
 
+-- Flash border on a specific window by AeroSpace window ID.
+-- No delay needed — the caller already knows which window to highlight.
+function M.flashWindowId(wid)
+    if delayTimer then
+        delayTimer:stop()
+        delayTimer = nil
+    end
+    clearBorder()
+
+    local win = hs.window.get(wid)
+    if win then
+        showBorder(win:frame())
+    else
+        local screen = hs.mouse.getCurrentScreen()
+        if screen then
+            showBorder(screen:frame())
+        end
+    end
+end
+
 return M
