@@ -7,7 +7,7 @@ Certain key combinations are dropped (ghosted) on MacBook's built-in keyboard du
 | Keys held     | Dropped keys         | Notes                        |
 |---------------|----------------------|------------------------------|
 | Caps + T + Q  | U, I, O, P, ;       | Led to Q removal as ws mode  |
-| Caps + A      | J, K, L, ;          | Blocks A layer right homerow |
+| Caps + A      | J, K, L, ;          | A+N used for toggle, A+H for English |
 
 ## Impact
 
