@@ -6667,7 +6667,7 @@
                     "key_code": "k",
                     "modifiers": [
                       "control",
-                      "command"
+                      "shift"
                     ]
                   }
                 ],
@@ -7720,10 +7720,9 @@
                 },
                 "to": [
                   {
-                    "key_code": "h",
+                    "key_code": "2",
                     "modifiers": [
-                      "control",
-                      "shift"
+                      "control"
                     ]
                   }
                 ],
@@ -7782,10 +7781,9 @@
                 },
                 "to": [
                   {
-                    "key_code": "j",
+                    "key_code": "grave_accent_and_tilde",
                     "modifiers": [
-                      "control",
-                      "shift"
+                      "control"
                     ]
                   }
                 ],
@@ -7844,10 +7842,9 @@
                 },
                 "to": [
                   {
-                    "key_code": "k",
+                    "key_code": "1",
                     "modifiers": [
-                      "control",
-                      "shift"
+                      "control"
                     ]
                   }
                 ],
@@ -7906,10 +7903,9 @@
                 },
                 "to": [
                   {
-                    "key_code": "l",
+                    "key_code": "3",
                     "modifiers": [
-                      "control",
-                      "shift"
+                      "control"
                     ]
                   }
                 ],
@@ -7968,10 +7964,9 @@
                 },
                 "to": [
                   {
-                    "key_code": "y",
+                    "key_code": "8",
                     "modifiers": [
-                      "control",
-                      "shift"
+                      "control"
                     ]
                   }
                 ],
@@ -8030,10 +8025,9 @@
                 },
                 "to": [
                   {
-                    "key_code": "u",
+                    "key_code": "4",
                     "modifiers": [
-                      "control",
-                      "shift"
+                      "control"
                     ]
                   }
                 ],
@@ -8092,10 +8086,9 @@
                 },
                 "to": [
                   {
-                    "key_code": "i",
+                    "key_code": "5",
                     "modifiers": [
-                      "control",
-                      "shift"
+                      "control"
                     ]
                   }
                 ],
@@ -8154,10 +8147,9 @@
                 },
                 "to": [
                   {
-                    "key_code": "o",
+                    "key_code": "9",
                     "modifiers": [
-                      "control",
-                      "shift"
+                      "control"
                     ]
                   }
                 ],
