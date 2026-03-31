@@ -22,6 +22,10 @@ local moveTimer = nil
 local REPEAT_DELAY = 0.3
 local REPEAT_INTERVAL = 0.065
 
+-- Track whether mouse has been intentionally moved in current window
+local movedInWindow = false
+local lastWindowId = nil
+
 -- Fixed positions for F+E mode {xFraction, yFraction}
 local JUMP_POSITIONS = {
     h         = {0.0625, 0.5},     -- left center
@@ -89,6 +93,24 @@ end
 
 function M.flashIndicator()
     showIndicator()
+end
+
+-- Called on caps+F activation: move mouse to right center if not yet moved in this window
+function M.activate()
+    local win = hs.window.focusedWindow()
+    if not win then return end
+    local wid = win:id()
+    if wid ~= lastWindowId then
+        lastWindowId = wid
+        movedInWindow = false
+    end
+    if not movedInWindow then
+        local f = win:frame()
+        local x = f.x + 0.9375 * f.w
+        local y = f.y + 0.5 * f.h
+        hs.mouse.absolutePosition(hs.geometry.point(x, y))
+        showIndicator()
+    end
 end
 
 -- ============================================================
@@ -346,6 +368,7 @@ end
 
 -- Hold-to-repeat: first move immediate, then OS-style delay before continuous repeat
 function M.startMove(direction, amount, gridSize)
+    movedInWindow = true
     M.stopMove()
     ensureGrid(gridSize, "move")
     M.move(direction, amount, gridSize)
@@ -371,6 +394,7 @@ end
 -- ============================================================
 
 function M.jump(position)
+    movedInWindow = true
     local pos = JUMP_POSITIONS[position]
     if not pos then return end
 
