@@ -112,6 +112,32 @@ def make_grid_toggle(mode_key, grid_size, mode="move"):
     }
 
 
+def make_click(key_code, button):
+    """Create a mouse click manipulator (vanilla F layer)."""
+    desc = f"{DESCRIPTION_PREFIX}: F+{key_code} {button} click"
+    hs_fn = "leftClick" if button == "left" else "rightClick"
+    hs_cmd = (
+        f'/usr/local/bin/hs -c "'
+        f"hs.eventtap.{hs_fn}(hs.mouse.absolutePosition())"
+        f'" 2>/dev/null &'
+    )
+    return {
+        "conditions": [
+            {"name": "caps_lock_is_held", "type": "variable_if", "value": 1},
+            {"name": "f_is_held", "type": "variable_if", "value": 1},
+            {"name": "d_is_held", "type": "variable_if", "value": 0},
+            {"name": "s_is_held", "type": "variable_if", "value": 0},
+            {"name": "e_is_held", "type": "variable_if", "value": 0},
+            {"name": "g_is_held", "type": "variable_if", "value": 0},
+            {"name": "t_is_held", "type": "variable_if", "value": 0},
+        ],
+        "description": desc,
+        "from": {"key_code": key_code, "modifiers": {"optional": ["any"]}},
+        "to": [{"shell_command": hs_cmd}],
+        "type": "basic",
+    }
+
+
 def make_standalone_f_p_toggle():
     """Create F+P toggle (no D/S/E required) — defaults to 8x8 move grid."""
     desc = f"{DESCRIPTION_PREFIX}: F+P toggle grid"
@@ -152,6 +178,10 @@ def generate_all_manipulators():
     # E mode fixed-position jumps
     for key_code in JUMP_KEYS:
         ms.append(make_jump_manipulator(key_code))
+
+    # Mouse clicks (vanilla F layer)
+    ms.append(make_click("semicolon", "left"))
+    ms.append(make_click("quote", "right"))
 
     # Grid overlay toggles
     ms.append(make_standalone_f_p_toggle())
