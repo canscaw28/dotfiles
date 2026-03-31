@@ -15,7 +15,7 @@
                   }
                 ],
                 "from": {
-                  "key_code": "caps_lock",
+                  "key_code": "non_us_backslash",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -59,7 +59,7 @@
                 ],
                 "description": "caps-a-physical",
                 "from": {
-                  "key_code": "caps_lock",
+                  "key_code": "non_us_backslash",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -130,7 +130,7 @@
                 ],
                 "description": "caps-s-physical",
                 "from": {
-                  "key_code": "caps_lock",
+                  "key_code": "non_us_backslash",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -201,7 +201,7 @@
                 ],
                 "description": "caps-d-physical",
                 "from": {
-                  "key_code": "caps_lock",
+                  "key_code": "non_us_backslash",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -272,7 +272,7 @@
                 ],
                 "description": "caps-f-physical",
                 "from": {
-                  "key_code": "caps_lock",
+                  "key_code": "non_us_backslash",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -349,7 +349,7 @@
                 ],
                 "description": "caps-r-physical",
                 "from": {
-                  "key_code": "caps_lock",
+                  "key_code": "non_us_backslash",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -420,7 +420,7 @@
                 ],
                 "description": "caps-e-physical",
                 "from": {
-                  "key_code": "caps_lock",
+                  "key_code": "non_us_backslash",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -491,7 +491,7 @@
                 ],
                 "description": "caps-w-physical",
                 "from": {
-                  "key_code": "caps_lock",
+                  "key_code": "non_us_backslash",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -562,7 +562,7 @@
                 ],
                 "description": "caps-4-physical",
                 "from": {
-                  "key_code": "caps_lock",
+                  "key_code": "non_us_backslash",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -633,7 +633,7 @@
                 ],
                 "description": "caps-3-physical",
                 "from": {
-                  "key_code": "caps_lock",
+                  "key_code": "non_us_backslash",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -704,7 +704,7 @@
                 ],
                 "description": "caps-t-physical",
                 "from": {
-                  "key_code": "caps_lock",
+                  "key_code": "non_us_backslash",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -775,7 +775,7 @@
                 ],
                 "description": "caps-g-physical",
                 "from": {
-                  "key_code": "caps_lock",
+                  "key_code": "non_us_backslash",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -838,7 +838,7 @@
               },
               {
                 "from": {
-                  "key_code": "caps_lock",
+                  "key_code": "non_us_backslash",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -35814,8 +35814,21 @@
       "name": "Default profile",
       "selected": true,
       "virtual_hid_keyboard": {
+        "caps_lock_delay_milliseconds": 0,
         "keyboard_type_v2": "ansi"
-      }
+      },
+      "simple_modifications": [
+        {
+          "from": {
+            "key_code": "caps_lock"
+          },
+          "to": [
+            {
+              "key_code": "non_us_backslash"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
