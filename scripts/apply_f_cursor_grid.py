@@ -56,18 +56,24 @@ def make_conditions(mode_key):
 
 
 def make_move_manipulator(key_code, direction, amount, mode_key, grid_size):
-    """Create a grid movement manipulator (F+D or F+S)."""
+    """Create a grid movement manipulator (F+D or F+S) with hold-to-repeat."""
     desc = f"{DESCRIPTION_PREFIX}: F+{mode_key.upper()}+{key_code} {direction} {amount}"
-    hs_cmd = (
+    start_cmd = (
         f'/usr/local/bin/hs -c "'
-        f"require('cursor_grid').move('{direction}', {amount}, {grid_size})"
+        f"require('cursor_grid').startMove('{direction}', {amount}, {grid_size})"
         f'" 2>/dev/null &'
+    )
+    stop_cmd = (
+        '/usr/local/bin/hs -c "'
+        "require('cursor_grid').stopMove()"
+        '" 2>/dev/null &'
     )
     return {
         "conditions": make_conditions(mode_key),
         "description": desc,
         "from": {"key_code": key_code, "modifiers": {"optional": ["any"]}},
-        "to": [{"shell_command": hs_cmd}],
+        "to": [{"shell_command": start_cmd}],
+        "to_after_key_up": [{"shell_command": stop_cmd}],
         "type": "basic",
     }
 
@@ -89,12 +95,12 @@ def make_jump_manipulator(key_code):
     }
 
 
-def make_grid_toggle(mode_key, grid_size):
+def make_grid_toggle(mode_key, grid_size, mode="move"):
     """Create a grid overlay toggle manipulator (F+mode+P)."""
     desc = f"{DESCRIPTION_PREFIX}: F+{mode_key.upper()}+P toggle grid"
     hs_cmd = (
         f'/usr/local/bin/hs -c "'
-        f"require('cursor_grid').toggleGrid({grid_size})"
+        f"require('cursor_grid').toggleGrid({grid_size}, \'{mode}\')"
         f'" 2>/dev/null &'
     )
     return {
@@ -125,7 +131,7 @@ def generate_all_manipulators():
     # Grid overlay toggles
     ms.append(make_grid_toggle("d", 8))
     ms.append(make_grid_toggle("s", 32))
-    ms.append(make_grid_toggle("e", 8))
+    ms.append(make_grid_toggle("e", 8, "jump"))
 
     return ms
 

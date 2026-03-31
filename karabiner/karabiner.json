@@ -299,6 +299,12 @@
                     }
                   },
                   {
+                    "key_code": "0",
+                    "modifiers": [
+                      "control"
+                    ]
+                  },
+                  {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('f')\" &"
                   }
                 ],
@@ -310,7 +316,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -5142,7 +5148,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('left', 1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('left', 1, 8)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5186,7 +5197,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('down', 1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('down', 1, 8)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5230,7 +5246,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('up', 1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('up', 1, 8)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5274,7 +5295,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('right', 1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('right', 1, 8)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5318,7 +5344,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('left', -1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('left', -1, 8)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5362,7 +5393,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('right', -1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('right', -1, 8)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5406,7 +5442,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('left', 2, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('left', 2, 8)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5450,7 +5491,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('right', 2, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('right', 2, 8)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5494,7 +5540,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('down', -1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('down', -1, 8)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5538,7 +5589,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('up', -1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('up', -1, 8)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5582,7 +5638,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('down', 2, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('down', 2, 8)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5626,7 +5687,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('up', 2, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('up', 2, 8)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5670,7 +5736,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('left', 1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('left', 1, 32)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5714,7 +5785,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('down', 1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('down', 1, 32)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5758,7 +5834,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('up', 1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('up', 1, 32)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5802,7 +5883,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('right', 1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('right', 1, 32)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5846,7 +5932,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('left', -1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('left', -1, 32)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5890,7 +5981,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('right', -1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('right', -1, 32)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5934,7 +6030,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('left', 2, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('left', 2, 32)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -5978,7 +6079,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('right', 2, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('right', 2, 32)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -6022,7 +6128,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('down', -1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('down', -1, 32)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -6066,7 +6177,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('up', -1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('up', -1, 32)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -6110,7 +6226,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('down', 2, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('down', 2, 32)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -6154,7 +6275,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').move('up', 2, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('up', 2, 32)\" 2>/dev/null &"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -6770,7 +6896,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').toggleGrid(8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').toggleGrid(8, 'move')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -6814,7 +6940,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').toggleGrid(32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').toggleGrid(32, 'move')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -6858,7 +6984,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').toggleGrid(8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').toggleGrid(8, 'jump')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -34567,7 +34693,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('s')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('s'); require('cursor_grid').hideGrid(); require('cursor_grid').stopMove()\" &"
                   }
                 ],
                 "type": "basic"
@@ -34607,7 +34733,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('d')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('d'); require('cursor_grid').hideGrid(); require('cursor_grid').stopMove()\" &"
                   }
                 ],
                 "type": "basic"
@@ -34727,7 +34853,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('e'); require('ws_grid').keyUp('e')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('e'); require('ws_grid').keyUp('e'); require('cursor_grid').hideGrid(); require('cursor_grid').stopMove()\" &"
                   }
                 ],
                 "type": "basic"
