@@ -3,6 +3,7 @@
 # After crossing, navigates to the spatially correct edge of the new
 # workspace (e.g., moving right → leftmost window on the new monitor).
 set -euo pipefail
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
 
 # Prevent concurrent aerospace operations (shared with ws.sh, smart-move.sh)
 LOCKFILE="/tmp/aerospace-lock.pid"
@@ -17,18 +18,24 @@ trap 'rm -f "$LOCKFILE"' EXIT
 
 direction="$1"
 
-# DFS index for edge navigation after crossing monitors:
+# Edge index for navigation after crossing monitors:
 # moving right/down → want first (leftmost/topmost) window → index 0
-# moving left/up    → want last (rightmost/bottommost) window → index -1
+# moving left/up    → want last (rightmost/bottommost) window → computed after crossing
+edge_first=0
 case "$direction" in
-    right|down) edge_index=0  ;;
-    left|up)    edge_index=-1 ;;
+    right|down) edge_want="first" ;;
+    left|up)    edge_want="last"  ;;
 esac
 
 # Try to focus within the current workspace (fail at boundary instead of wrapping)
 if aerospace focus --boundaries-action fail "$direction" 2>/dev/null; then
     aerospace move-mouse window-lazy-center 2>/dev/null || true
-    /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    WID=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || WID=""
+    if [ -n "$WID" ]; then
+        /usr/local/bin/hs -c "require('focus_border').flashWindowId($WID)" 2>/dev/null &
+    else
+        /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    fi
     exit 0
 fi
 
@@ -40,9 +47,22 @@ if ! aerospace focus-monitor "$direction" 2>/dev/null; then
 fi
 
 # Jump directly to the edge window closest to where we came from
-aerospace focus --dfs-index "$edge_index" 2>/dev/null || true
+if [ "$edge_want" = "first" ]; then
+    aerospace focus --dfs-index 0 2>/dev/null || true
+else
+    # --dfs-index only accepts UInt32, so compute the last index
+    ws=$(aerospace list-workspaces --focused 2>/dev/null) || ws=""
+    if [ -n "$ws" ]; then
+        count=$(aerospace list-windows --workspace "$ws" --format '%{window-id}' 2>/dev/null | wc -l | tr -d ' ')
+        if [ "$count" -gt 0 ] 2>/dev/null; then
+            aerospace focus --dfs-index $((count - 1)) 2>/dev/null || true
+        fi
+    fi
+fi
 aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null
-FOCUSED_WIN=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || FOCUSED_WIN=""
-FLASH_MON=""
-[ -z "$FOCUSED_WIN" ] && FLASH_MON="true"
-/usr/local/bin/hs -c "require('focus_border').flash($FLASH_MON)" 2>/dev/null &
+WID=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || WID=""
+if [ -n "$WID" ]; then
+    /usr/local/bin/hs -c "require('focus_border').flashWindowId($WID)" 2>/dev/null &
+else
+    /usr/local/bin/hs -c "require('focus_border').flash(true)" 2>/dev/null &
+fi
