@@ -1019,6 +1019,37 @@
                     "value": 1
                   }
                 ],
+                "description": "A+H: Switch to English (U.S.)",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "select_input_source": {
+                      "language": "en"
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
                 "description": "A+N: Toggle Input Source",
                 "from": {
                   "key_code": "n",
