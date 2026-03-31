@@ -6303,6 +6303,66 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "description": "f-vimium: F+E+J link hints (Chrome/Vimium)",
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "f",
+                    "modifiers": [
+                      "control",
+                      "shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "e_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "t_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$"
+                    ],
+                    "type": "frontmost_application_unless"
                   }
                 ],
                 "description": "f-homerow: F+E+J link hints (Homerow)",
@@ -6459,12 +6519,6 @@
                     "name": "t_is_held",
                     "type": "variable_if",
                     "value": 0
-                  },
-                  {
-                    "bundle_identifiers": [
-                      "^com\\.google\\.Chrome$"
-                    ],
-                    "type": "frontmost_application_unless"
                   }
                 ],
                 "description": "f-homerow: F+E+H scroll mode (Homerow)",
