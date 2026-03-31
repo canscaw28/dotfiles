@@ -34773,7 +34773,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('f')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('f'); require('cursor_grid').hideGrid(); require('cursor_grid').stopMove()\" &"
                   }
                 ],
                 "type": "basic"

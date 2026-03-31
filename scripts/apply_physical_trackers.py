@@ -90,7 +90,7 @@ def detect_layer_keys(manips):
 
 
 # Keys whose physical tracker key_up should also clean up cursor_grid
-CURSOR_GRID_KEYS = {"d", "s", "e"}
+CURSOR_GRID_KEYS = {"d", "s", "e", "f"}
 
 
 def make_physical_tracker(key_code, var_name, has_ws_grid):
