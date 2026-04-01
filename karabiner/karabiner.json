@@ -93,6 +93,9 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('a')\" &"
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/dock-toggle show &"
                   }
                 ],
                 "to_after_key_up": [
@@ -110,6 +113,9 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/dock-toggle hide &"
                   }
                 ],
                 "to_delayed_action": {
@@ -1008,6 +1014,9 @@
                       "name": "a_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/dock-toggle show &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1016,6 +1025,9 @@
                       "name": "a_is_held",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/dock-toggle hide &"
                   }
                 ],
                 "type": "basic"
@@ -35455,6 +35467,9 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('a')\" &"
+                  },
+                  {
+                    "shell_command": "$HOME/.local/bin/dock-toggle hide &"
                   }
                 ],
                 "type": "basic"

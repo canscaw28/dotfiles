@@ -72,6 +72,10 @@ install_scripts() {
         [[ -e "$script" ]] || continue
         create_symlink "$script" "$HOME/.local/bin/$(basename "$script")"
     done
+    # Compiled binaries
+    if [[ -f "$DOTFILES_DIR/scripts/dock-toggle" ]]; then
+        create_symlink "$DOTFILES_DIR/scripts/dock-toggle" "$HOME/.local/bin/dock-toggle"
+    fi
 }
 
 install_aerospace() {
