@@ -103,6 +103,12 @@
                     }
                   },
                   {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 0
+                    }
+                  },
+                  {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
@@ -174,6 +180,12 @@
                     }
                   },
                   {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 0
+                    }
+                  },
+                  {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
@@ -241,6 +253,12 @@
                   {
                     "set_variable": {
                       "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
                       "value": 0
                     }
                   },
@@ -322,6 +340,12 @@
                     }
                   },
                   {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 0
+                    }
+                  },
+                  {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
@@ -389,6 +413,12 @@
                   {
                     "set_variable": {
                       "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
                       "value": 0
                     }
                   },
@@ -464,6 +494,12 @@
                     }
                   },
                   {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 0
+                    }
+                  },
+                  {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
@@ -531,6 +567,12 @@
                   {
                     "set_variable": {
                       "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
                       "value": 0
                     }
                   },
@@ -606,6 +648,12 @@
                     }
                   },
                   {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 0
+                    }
+                  },
+                  {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
@@ -673,6 +721,12 @@
                   {
                     "set_variable": {
                       "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
                       "value": 0
                     }
                   },
@@ -748,6 +802,12 @@
                     }
                   },
                   {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 0
+                    }
+                  },
+                  {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
                   }
                 ],
@@ -815,6 +875,12 @@
                   {
                     "set_variable": {
                       "name": "caps_lock_is_held",
+                      "value": 0
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
                       "value": 0
                     }
                   },
