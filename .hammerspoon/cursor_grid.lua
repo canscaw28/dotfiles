@@ -49,7 +49,9 @@ local JUMP_POSITIONS = {
 -- ============================================================
 -- Indicator (red-amber dot at cursor position)
 -- ============================================================
-local function showIndicator()
+local CLICK_COLOR = {red = 0.1, green = 0.9, blue = 0.3, alpha = 0.9}
+
+local function showIndicator(color)
     if indicatorFadeTimer then
         indicatorFadeTimer:stop()
         indicatorFadeTimer = nil
@@ -66,11 +68,12 @@ local function showIndicator()
         indicatorCanvas[1] = {
             type = "oval",
             frame = {x = 0, y = 0, w = INDICATOR_DIAMETER, h = INDICATOR_DIAMETER},
-            fillColor = INDICATOR_COLOR,
+            fillColor = color or INDICATOR_COLOR,
             action = "fill",
         }
     else
         indicatorCanvas:frame({x = x, y = y, w = INDICATOR_DIAMETER, h = INDICATOR_DIAMETER})
+        indicatorCanvas:elementAttribute(1, "fillColor", color or INDICATOR_COLOR)
     end
 
     indicatorCanvas:alpha(1)
@@ -96,6 +99,10 @@ end
 
 function M.flashIndicator()
     showIndicator()
+end
+
+function M.flashClick()
+    showIndicator(CLICK_COLOR)
 end
 
 -- Called on caps+F activation: move mouse to right center if not yet moved in this window

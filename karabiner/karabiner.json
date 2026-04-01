@@ -7542,7 +7542,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"hs.eventtap.leftClick(hs.mouse.absolutePosition())\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"hs.eventtap.leftClick(hs.mouse.absolutePosition()); require('cursor_grid').flashClick()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -7596,7 +7596,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"hs.eventtap.rightClick(hs.mouse.absolutePosition())\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"hs.eventtap.rightClick(hs.mouse.absolutePosition()); require('cursor_grid').flashClick()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
