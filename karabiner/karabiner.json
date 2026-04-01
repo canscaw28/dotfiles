@@ -38,10 +38,16 @@
                     }
                   },
                   {
-                    "key_code": "left_control"
+                    "set_variable": {
+                      "name": "caps_lock_pressed",
+                      "value": 0
+                    }
                   },
                   {
-                    "key_code": "left_control"
+                    "key_code": "right_shift"
+                  },
+                  {
+                    "key_code": "right_shift"
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').hideGrid(); require('cursor_grid').reset()\" &"
