@@ -17,6 +17,9 @@ local gridEnabled = false  -- toggled by P, persists across key releases
 local currentGridSize = nil
 local currentGridMode = nil -- "move" or "jump"
 
+-- Mode key tracking for smooth transitions between FD/FS/FDS
+local modeKeys = {} -- tracks which mode keys are held: {d=true, s=true}
+
 -- Hold-to-repeat
 local moveTimer = nil
 local REPEAT_DELAY = 0.3
@@ -351,6 +354,34 @@ function M.hideGrid()
     gridVisible = false
     currentGridSize = nil
     currentGridMode = nil
+end
+
+-- ============================================================
+-- Mode key tracking — smooth transitions between FD/FS/FDS
+-- ============================================================
+
+function M.modeKeyDown(key, gridSize, mode)
+    modeKeys[key] = true
+    ensureGrid(gridSize, mode or "move")
+end
+
+function M.modeKeyUp(key)
+    modeKeys[key] = nil
+    M.stopMove()
+    -- Fall back to remaining mode if another key is still held
+    if modeKeys.d and not modeKeys.s then
+        ensureGrid(8, "move")
+    elseif modeKeys.s and not modeKeys.d then
+        ensureGrid(32, "move")
+    else
+        M.hideGrid()
+    end
+end
+
+function M.modeReset()
+    modeKeys = {}
+    M.hideGrid()
+    M.reset()
 end
 
 -- ============================================================
