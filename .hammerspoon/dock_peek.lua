@@ -1,6 +1,7 @@
 local M = {}
 
 local active = false
+local savedPos = nil
 local DOCK_TOGGLE = os.getenv("HOME") .. "/.local/bin/dock-toggle"
 local AEROSPACE = "/opt/homebrew/bin/aerospace"
 
@@ -8,30 +9,45 @@ function M.show()
     if active then return end
     active = true
 
-    -- Disable AeroSpace to prevent retiling
-    hs.task.new(AEROSPACE, nil, {"enable", "off"}):start()
-
-    -- Warp cursor to bottom of focused monitor so dock appears there
-    local savedPos = hs.mouse.absolutePosition()
-    local screen = hs.mouse.getCurrentScreen()
-    if screen then
+    -- Disable AeroSpace first
+    hs.task.new(AEROSPACE, function()
+        -- Determine focused monitor
+        local screen = nil
+        local win = hs.window.focusedWindow()
+        if win then screen = win:screen() end
+        if not screen then
+            screen = hs.mouse.getCurrentScreen() or hs.screen.mainScreen()
+        end
         local frame = screen:fullFrame()
         local bottomCenter = hs.geometry.point(frame.x + frame.w / 2, frame.y + frame.h - 1)
-        hs.mouse.absolutePosition(bottomCenter)
-    end
 
-    -- Show dock
-    hs.task.new(DOCK_TOGGLE, function()
-        -- Restore cursor after dock-toggle completes
-        hs.mouse.absolutePosition(savedPos)
-    end, {"show"}):start()
+        -- Warp cursor to dock edge so macOS targets this monitor
+        savedPos = hs.mouse.absolutePosition()
+        hs.mouse.absolutePosition(bottomCenter)
+        hs.eventtap.event.newMouseEvent(hs.eventtap.event.types.mouseMoved, bottomCenter):post()
+
+        -- Brief pause for dock to register this monitor, then lock visible and restore cursor
+        hs.timer.doAfter(0.05, function()
+            hs.task.new(DOCK_TOGGLE, function()
+                if savedPos then
+                    hs.mouse.absolutePosition(savedPos)
+                    savedPos = nil
+                end
+            end, {"show"}):start()
+        end)
+    end, {"enable", "off"}):start()
 end
 
 function M.hide()
     if not active then return end
     active = false
 
-    -- Hide dock, then re-enable AeroSpace after dock starts hiding
+    -- Restore cursor if still warped
+    if savedPos then
+        hs.mouse.absolutePosition(savedPos)
+        savedPos = nil
+    end
+
     hs.task.new(DOCK_TOGGLE, function()
         hs.timer.doAfter(0.3, function()
             hs.task.new(AEROSPACE, nil, {"enable", "on"}):start()
