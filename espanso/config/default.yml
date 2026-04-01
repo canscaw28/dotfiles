@@ -7,8 +7,6 @@ key_delay: 0
 # Double press Alt/Option to toggle espanso on/off
 toggle_key: LEFT_ALT
 
-# Clipboard backend works more reliably across terminals and GUI apps
-backend: clipboard
-pre_paste_delay: 10
-restore_clipboard_delay: 10
-paste_shortcut_event_delay: 1
+# Inject backend avoids clipboard race conditions with Maccy
+backend: inject
+key_delay: 0
