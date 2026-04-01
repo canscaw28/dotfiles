@@ -123,9 +123,9 @@ scrollHandler = hs.eventtap.new(
             keyStates[keyCode] = true
             if modifiers.ctrl and modifiers.shift then
                 if keyCode == hs.keycodes.map["k"] then
-                    startScrolling(-10, false, keyCode)
-                elseif keyCode == hs.keycodes.map["j"] then
                     startScrolling(10, false, keyCode)
+                elseif keyCode == hs.keycodes.map["j"] then
+                    startScrolling(-10, false, keyCode)
                 elseif keyCode == hs.keycodes.map["h"] then
                     startScrolling(10, true, keyCode)
                 elseif keyCode == hs.keycodes.map["l"] then
