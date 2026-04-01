@@ -1,42 +1,42 @@
 local M = {}
-local cursor = require("cursor_hide")
 
-local savedPos = nil
 local active = false
+local DOCK_TOGGLE = os.getenv("HOME") .. "/.local/bin/dock-toggle"
+local AEROSPACE = "/opt/homebrew/bin/aerospace"
 
 function M.show()
     if active then return end
     active = true
 
-    -- Save current cursor position
-    savedPos = hs.mouse.absolutePosition()
+    -- Disable AeroSpace to prevent retiling
+    hs.task.new(AEROSPACE, nil, {"enable", "off"}):start()
 
-    -- Find the bottom edge of the focused monitor
+    -- Warp cursor to bottom of focused monitor so dock appears there
+    local savedPos = hs.mouse.absolutePosition()
     local screen = hs.mouse.getCurrentScreen()
-    if not screen then
-        active = false
-        return
+    if screen then
+        local frame = screen:fullFrame()
+        local bottomCenter = hs.geometry.point(frame.x + frame.w / 2, frame.y + frame.h - 1)
+        hs.mouse.absolutePosition(bottomCenter)
     end
-    local frame = screen:fullFrame()
-    local target = hs.geometry.point(frame.x + frame.w / 2, frame.y + frame.h - 1)
 
-    -- Hide cursor, then warp to dock edge
-    cursor.hide()
-    hs.mouse.absolutePosition(target)
-    -- Post a mouse-moved event so the Dock sees the cursor at the edge
-    hs.eventtap.event.newMouseEvent(hs.eventtap.event.types.mouseMoved, target):post()
+    -- Show dock
+    hs.task.new(DOCK_TOGGLE, function()
+        -- Restore cursor after dock-toggle completes
+        hs.mouse.absolutePosition(savedPos)
+    end, {"show"}):start()
 end
 
 function M.hide()
     if not active then return end
     active = false
 
-    -- Restore cursor position and show cursor
-    if savedPos then
-        hs.mouse.absolutePosition(savedPos)
-        savedPos = nil
-    end
-    cursor.show()
+    -- Hide dock, then re-enable AeroSpace after dock starts hiding
+    hs.task.new(DOCK_TOGGLE, function()
+        hs.timer.doAfter(0.3, function()
+            hs.task.new(AEROSPACE, nil, {"enable", "on"}):start()
+        end)
+    end, {"hide"}):start()
 end
 
 function M.isActive()
