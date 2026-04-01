@@ -40,3 +40,11 @@ matches:
         type: date
         params:
           format: "%Y-%m-%d %H:%M"
+
+  # Emoji
+  - trigger: ";er"
+    replace: "❌"
+  - trigger: ";ey"
+    replace: "⚠️"
+  - trigger: ";eg"
+    replace: "✅"
