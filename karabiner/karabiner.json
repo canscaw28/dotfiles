@@ -7085,9 +7085,9 @@
                     "value": 0
                   }
                 ],
-                "description": "f-cursor-grid: F+D+S+semicolon jump",
+                "description": "f-cursor-grid: F+D+S+slash jump center",
                 "from": {
-                  "key_code": "semicolon",
+                  "key_code": "slash",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -7096,7 +7096,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('semicolon')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('slash')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"

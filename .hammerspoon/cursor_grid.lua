@@ -35,7 +35,7 @@ local JUMP_POSITIONS = {
     l         = {0.9375, 0.5},     -- right center
     j         = {0.5, 0.9375},     -- bottom center
     k         = {0.5, 0.0625},     -- top center
-    semicolon = {0.5, 0.5},        -- window center
+    slash     = {0.5, 0.5},         -- window center
     y         = {0.0625, 0.0625},  -- top-left corner
     o         = {0.9375, 0.0625},  -- top-right corner
     n         = {0.0625, 0.9375},  -- bottom-left corner
@@ -241,7 +241,7 @@ local function createMoveGrid(gridSize, winFrame, cursorRelX, cursorRelY)
 end
 
 local JUMP_LABELS = {
-    h = "H", l = "L", j = "J", k = "K", semicolon = ";",
+    h = "H", l = "L", j = "J", k = "K", slash = "/",
     y = "Y", o = "O", n = "N", period = ".",
     u = "U", i = "I", m = "M", comma = ",",
 }
