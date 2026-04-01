@@ -2,10 +2,17 @@ local M = {}
 
 local active = false
 local savedPos = nil
+local hideTimer = nil
 local DOCK_TOGGLE = os.getenv("HOME") .. "/.local/bin/dock-toggle"
 local AEROSPACE = "/opt/homebrew/bin/aerospace"
 
 function M.show()
+    -- Cancel any pending hide sequence
+    if hideTimer then
+        hideTimer:stop()
+        hideTimer = nil
+    end
+
     if active then return end
     active = true
 
@@ -48,11 +55,12 @@ function M.hide()
         savedPos = nil
     end
 
-    hs.task.new(DOCK_TOGGLE, function()
-        hs.timer.doAfter(0.3, function()
-            hs.task.new(AEROSPACE, nil, {"enable", "on"}):start()
-        end)
-    end, {"hide"}):start()
+    -- Hide dock, then re-enable AeroSpace after delay
+    hs.task.new(DOCK_TOGGLE, nil, {"hide"}):start()
+    hideTimer = hs.timer.doAfter(0.3, function()
+        hideTimer = nil
+        hs.task.new(AEROSPACE, nil, {"enable", "on"}):start()
+    end)
 end
 
 function M.isActive()
