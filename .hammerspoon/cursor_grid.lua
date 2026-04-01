@@ -176,6 +176,28 @@ local function addLine(elements, x, y, w, h, style)
     end
 end
 
+-- Axis fade: lines on the cursor's row/column stay bright, lines further from
+-- the cursor's axis fade out (vertical lines by horizontal distance, horizontal
+-- lines by vertical distance)
+local FADE_MIN = 0.15  -- minimum alpha multiplier at max distance
+local FADE_RADIUS = 0.2 -- fraction of window dimension where fade reaches minimum
+
+local function axisFade(dist, winDim)
+    local maxDist = winDim * FADE_RADIUS
+    if maxDist <= 0 then return 1 end
+    local t = math.min(dist / maxDist, 1)
+    return FADE_MIN + (1 - FADE_MIN) * math.exp(-3.5 * t)
+end
+
+local function fadedStyle(style, fadeFactor)
+    local c = style.color
+    return {
+        color = {red = c.red, green = c.green, blue = c.blue, alpha = c.alpha * fadeFactor},
+        width = style.width,
+        dash = style.dash,
+    }
+end
+
 local function createMoveGrid(gridSize, winFrame, cursorRelX, cursorRelY)
     local elements = {}
     local cellW = winFrame.w / gridSize
@@ -186,7 +208,9 @@ local function createMoveGrid(gridSize, winFrame, cursorRelX, cursorRelY)
         if x >= 0 and x <= winFrame.w then
             local cat = classifyByDistance(n, gridSize)
             if cat then
-                addLine(elements, math.floor(x), 0, LINE_STYLES[cat].width, winFrame.h, LINE_STYLES[cat])
+                local dist = math.abs(x - cursorRelX)
+                local fade = axisFade(dist, winFrame.w)
+                addLine(elements, math.floor(x), 0, LINE_STYLES[cat].width, winFrame.h, fadedStyle(LINE_STYLES[cat], fade))
             end
         end
     end
@@ -196,7 +220,9 @@ local function createMoveGrid(gridSize, winFrame, cursorRelX, cursorRelY)
         if y >= 0 and y <= winFrame.h then
             local cat = classifyByDistance(n, gridSize)
             if cat then
-                addLine(elements, 0, math.floor(y), winFrame.w, LINE_STYLES[cat].width, LINE_STYLES[cat])
+                local dist = math.abs(y - cursorRelY)
+                local fade = axisFade(dist, winFrame.h)
+                addLine(elements, 0, math.floor(y), winFrame.w, LINE_STYLES[cat].width, fadedStyle(LINE_STYLES[cat], fade))
             end
         end
     end
