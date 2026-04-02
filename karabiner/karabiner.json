@@ -1154,6 +1154,35 @@
                     "value": 1
                   }
                 ],
+                "description": "A+U: Toggle Notification Center",
+                "from": {
+                  "key_code": "u",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/usr/bin/osascript -e 'tell application \"System Events\" to tell application process \"ControlCenter\" to click (first menu bar item of menu bar 1 whose description is \"Clock\")' &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
                 "description": "A+Y: Toggle Dock",
                 "from": {
                   "key_code": "y",
