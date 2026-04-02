@@ -10,5 +10,7 @@ int main(int argc, char *argv[]) {
         CoreDockSetAutoHideEnabled(false);
     else if (strcmp(argv[1], "hide") == 0)
         CoreDockSetAutoHideEnabled(true);
+    else if (strcmp(argv[1], "toggle") == 0)
+        CoreDockSetAutoHideEnabled(!CoreDockGetAutoHideEnabled());
     return 0;
 }
