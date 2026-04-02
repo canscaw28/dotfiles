@@ -93,9 +93,6 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('a')\" &"
-                  },
-                  {
-                    "shell_command": "/usr/local/bin/hs -c \"require('dock_peek').show()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -113,9 +110,6 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
-                  },
-                  {
-                    "shell_command": "/usr/local/bin/hs -c \"require('dock_peek').hide()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -1014,9 +1008,6 @@
                       "name": "a_is_held",
                       "value": 1
                     }
-                  },
-                  {
-                    "shell_command": "/usr/local/bin/hs -c \"require('dock_peek').show()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1025,9 +1016,6 @@
                       "name": "a_is_held",
                       "value": 0
                     }
-                  },
-                  {
-                    "shell_command": "/usr/local/bin/hs -c \"require('dock_peek').hide()\" &"
                   }
                 ],
                 "type": "basic"
@@ -1149,6 +1137,35 @@
                     "modifiers": [
                       "left_control"
                     ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "A+Y: Toggle Dock",
+                "from": {
+                  "key_code": "y",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('dock_peek').toggle()\" &"
                   }
                 ],
                 "type": "basic"
@@ -35467,9 +35484,6 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('a')\" &"
-                  },
-                  {
-                    "shell_command": "/usr/local/bin/hs -c \"require('dock_peek').hide()\" &"
                   }
                 ],
                 "type": "basic"

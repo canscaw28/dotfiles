@@ -63,6 +63,14 @@ function M.hide()
     end)
 end
 
+function M.toggle()
+    if active then
+        M.hide()
+    else
+        M.show()
+    end
+end
+
 function M.isActive()
     return active
 end
