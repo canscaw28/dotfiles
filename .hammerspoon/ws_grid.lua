@@ -23,6 +23,8 @@ local navCol = 1            -- cursor column in grid (1-5)
 -- Element index lookup for in-place canvas updates (populated by drawGrid)
 local keyFaceIdx = {}   -- key -> canvas element index for face rectangle
 local keyTextIdx = {}   -- key -> canvas element index for text element
+local keyDotIdx = {}    -- key -> canvas element index for window count dot
+local lastWindowCounts = {}  -- key -> number of windows on that workspace
 
 -- Forward declarations (referenced before definition)
 local startKeyDrain, stopKeyDrain, refresh
@@ -66,6 +68,10 @@ local FONT_SIZE = 17
 local SHADOW_OFFSET = 3
 local EDGE_HEIGHT = 4     -- visible "thickness" of keycap bottom edge
 local PADDING = 14
+local DOT_SIZE = 4
+local DOT_GAP = 3
+local DOT_ALPHA = 0.45
+local MAX_DOTS = 4
 
 -- Map AeroSpace workspace names to grid display keys
 local AERO_TO_KEY = {
@@ -118,7 +124,7 @@ end
 
 -- Lightweight in-place update of a single key's face color and text label.
 -- Uses hs.canvas:elementAttribute() to avoid full canvas recreation.
-local function patchKey(key, isActive, isFocused, labelColor)
+local function patchKey(key, isActive, isFocused, labelColor, windowCount)
     if not grid then return end
     local fi = keyFaceIdx[key]
     local ti = keyTextIdx[key]
@@ -132,6 +138,17 @@ local function patchKey(key, isActive, isFocused, labelColor)
         paragraphStyle = {alignment = "center"},
     })
     grid:elementAttribute(ti, "text", styledText)
+    -- Update window count dots if provided
+    if windowCount ~= nil then
+        local dots = keyDotIdx[key]
+        if dots then
+            local n = math.min(windowCount, MAX_DOTS)
+            for d = 1, MAX_DOTS do
+                grid:elementAttribute(dots[d], "fillColor",
+                    {red = 0, green = 0, blue = 0, alpha = d <= n and DOT_ALPHA or 0})
+            end
+        end
+    end
 end
 
 -- Nav mode cursor styling (face color matches current monitor)
@@ -197,7 +214,7 @@ local function navMove(key)
     end
 end
 
-local function drawGrid(visibleWs, focusedKey, focusedMonId)
+local function drawGrid(visibleWs, focusedKey, focusedMonId, windowCounts)
     -- Cancel any in-progress fall animation on the old grid
     if gridFallTimer then gridFallTimer:stop(); gridFallTimer = nil end
 
@@ -207,6 +224,7 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
     end
     keyFaceIdx = {}
     keyTextIdx = {}
+    keyDotIdx = {}
 
     local monId = targetMonitor()
     if monId == nil then return end
@@ -258,7 +276,7 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
         })
     end
 
-    -- Draw keycaps (5 elements per key: shadow, edge, face, border, text)
+    -- Draw keycaps (5 + MAX_DOTS elements per key: shadow, edge, face, border, text, dots)
     -- Track element count to record face/text indices for patchKey
     local elementCount = #ROWS  -- plates already added
     for rowIdx, row in ipairs(ROWS) do
@@ -333,6 +351,25 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId)
             })
             elementCount = elementCount + 1
             keyTextIdx[key] = elementCount
+
+            -- Layers 6+: Window count dots (bottom-left, up to MAX_DOTS)
+            local wc = windowCounts and windowCounts[key] or 0
+            local dots = math.min(wc, MAX_DOTS)
+            keyDotIdx[key] = {}
+            for d = 1, MAX_DOTS do
+                local dAlpha = d <= dots and DOT_ALPHA or 0
+                grid:appendElements({
+                    type = "rectangle",
+                    action = "fill",
+                    fillColor = {red = 0, green = 0, blue = 0, alpha = dAlpha},
+                    roundedRectRadii = {xRadius = DOT_SIZE / 2, yRadius = DOT_SIZE / 2},
+                    frame = {x = cellX + 5 + (d - 1) * (DOT_SIZE + DOT_GAP),
+                             y = cellY + CELL_SIZE - 9,
+                             w = DOT_SIZE, h = DOT_SIZE},
+                })
+                elementCount = elementCount + 1
+                keyDotIdx[key][d] = elementCount
+            end
         end
     end
 
@@ -517,6 +554,7 @@ function M.showGrid()
         local visibleWs = {}
         local focusedKey = nil
         local focusedMonId = nil
+        local windowCounts = {}
         for line in stdout:gmatch("[^\n]+") do
             local focused = line:match("^F:(.+)")
             if focused then
@@ -537,14 +575,21 @@ function M.showGrid()
                     visibleWs[displayKey] = tonumber(monIdStr)
                 end
             end
+            local wc_ws, wc_count = line:match("^W:(.+):(%d+)$")
+            if wc_ws and wc_count then
+                wc_ws = wc_ws:match("^%s*(.-)%s*$")
+                local displayKey = AERO_TO_KEY[wc_ws] or wc_ws
+                windowCounts[displayKey] = tonumber(wc_count)
+            end
         end
 
         lastVisibleWs = visibleWs
         lastFocusedKey = focusedKey
         lastFocusedMonId = focusedMonId
+        lastWindowCounts = windowCounts
         lastMoveTarget = nil
 
-        drawGrid(visibleWs, focusedKey, focusedMonId)
+        drawGrid(visibleWs, focusedKey, focusedMonId, windowCounts)
 
         -- Apply nav cursor if in nav mode (position already set in refresh)
         if navActive then
@@ -562,6 +607,7 @@ function M.showGrid()
             ws=$(/opt/homebrew/bin/aerospace list-workspaces --monitor "$m" --visible)
             echo "M:$m:$ws"
         done
+        /opt/homebrew/bin/aerospace list-windows --all --format '%{workspace}' | sort | uniq -c | while read count ws; do echo "W:$ws:$count"; done
     ]]})
     pendingTask:start()
 end
@@ -747,7 +793,8 @@ local function startGridFall()
             grid = nil
             keyFaceIdx = {}
             keyTextIdx = {}
-        else
+            keyDotIdx = {}
+                else
             local t = fallStep / GRID_FALL_STEPS
             grid:topLeft({x = gridTargetX, y = gridTargetY + GRID_FALL_DIST * t})
             grid:alpha(1 - t)
