@@ -155,8 +155,8 @@ local function patchKey(key, isActive, isFocused, labelColor, windowCount)
         if ci then
             local overflow = windowCount > MAX_DOTS
             grid:elementAttribute(ci, "text", hs.styledtext.new(tostring(windowCount), {
-                font = {name = "Helvetica", size = COUNT_FONT_SIZE},
-                color = {red = 0, green = 0, blue = 0, alpha = overflow and DOT_ALPHA or 0},
+                font = {name = "Helvetica-Bold", size = COUNT_FONT_SIZE},
+                color = {red = 0, green = 0, blue = 0, alpha = overflow and 0.75 or 0},
             }))
         end
     end
@@ -386,8 +386,8 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId, windowCounts)
             end
             -- Overflow count label (shown when >MAX_DOTS)
             local countStyledText = hs.styledtext.new(tostring(wc), {
-                font = {name = "Helvetica", size = COUNT_FONT_SIZE},
-                color = {red = 0, green = 0, blue = 0, alpha = overflow and DOT_ALPHA or 0},
+                font = {name = "Helvetica-Bold", size = COUNT_FONT_SIZE},
+                color = {red = 0, green = 0, blue = 0, alpha = overflow and 0.75 or 0},
             })
             grid:appendElements({
                 type = "text",
