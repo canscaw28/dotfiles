@@ -1,0 +1,159 @@
+diff --git a/Sources/AppBundle/command/cmdManifest.swift b/Sources/AppBundle/command/cmdManifest.swift
+index af7c3e3..bd4e5a1 100644
+--- a/Sources/AppBundle/command/cmdManifest.swift
++++ b/Sources/AppBundle/command/cmdManifest.swift
+@@ -22,6 +22,8 @@ extension CmdArgs {
+                 command = FlattenWorkspaceTreeCommand(args: self as! FlattenWorkspaceTreeCmdArgs)
+             case .focus:
+                 command = FocusCommand(args: self as! FocusCmdArgs)
++            case .freezeTiling:
++                command = FreezeTilingCommand(args: self as! FreezeTilingCmdArgs)
+             case .focusBackAndForth:
+                 command = FocusBackAndForthCommand(args: self as! FocusBackAndForthCmdArgs)
+             case .focusMonitor:
+diff --git a/Sources/AppBundle/command/impl/FreezeTilingCommand.swift b/Sources/AppBundle/command/impl/FreezeTilingCommand.swift
+new file mode 100644
+index 0000000..954b644
+--- /dev/null
++++ b/Sources/AppBundle/command/impl/FreezeTilingCommand.swift
+@@ -0,0 +1,16 @@
++import Common
++
++struct FreezeTilingCommand: Command {
++    let args: FreezeTilingCmdArgs
++    /*conforms*/ var shouldResetClosedWindowsCache = false
++
++    func run(_ env: CmdEnv, _ io: CmdIo) async throws -> Bool {
++        let newState: Bool = switch args.targetState.val {
++            case .on: true
++            case .off: false
++            case .toggle: !TrayMenuModel.shared.isTilingFrozen
++        }
++        TrayMenuModel.shared.isTilingFrozen = newState
++        return true
++    }
++}
+diff --git a/Sources/AppBundle/layout/refresh.swift b/Sources/AppBundle/layout/refresh.swift
+index 7054bd8..d34992d 100644
+--- a/Sources/AppBundle/layout/refresh.swift
++++ b/Sources/AppBundle/layout/refresh.swift
+@@ -31,7 +31,8 @@ func runRefreshSessionBlocking(
+             if let nativeFocused { try await debugWindowsIfRecording(nativeFocused) }
+             updateFocusCache(nativeFocused)
+ 
+-            if shouldLayoutWorkspaces && optimisticallyPreLayoutWorkspaces { try await layoutWorkspaces() }
++            let frozenTiling = TrayMenuModel.shared.isTilingFrozen
++            if shouldLayoutWorkspaces && optimisticallyPreLayoutWorkspaces && !frozenTiling { try await layoutWorkspaces() }
+ 
+             refreshModel()
+             try await refresh()
+@@ -40,7 +41,7 @@ func runRefreshSessionBlocking(
+             updateTrayText()
+             SecureInputPanel.shared.refresh()
+             try await normalizeLayoutReason()
+-            if shouldLayoutWorkspaces { try await layoutWorkspaces() }
++            if shouldLayoutWorkspaces && !frozenTiling { try await layoutWorkspaces() }
+         }
+     }
+ }
+@@ -70,8 +71,9 @@ func runLightSession<T>(
+ 
+             updateTrayText()
+             SecureInputPanel.shared.refresh()
+-            try await layoutWorkspaces()
+-            if focusBefore != focusAfter {
++            let isFrozen = TrayMenuModel.shared.isTilingFrozen
++            if !isFrozen { try await layoutWorkspaces() }
++            if focusBefore != focusAfter && !isFrozen {
+                 focusAfter?.nativeFocus() // syncFocusToMacOs
+             }
+             lastCommandTime = Date()
+@@ -87,7 +89,7 @@ struct RunSessionGuard: Sendable {
+     static var isServerEnabled: RunSessionGuard? { TrayMenuModel.shared.isEnabled ? forceRun : nil }
+     @MainActor
+     static func isServerEnabled(orIsEnableCommand command: (any Command)?) -> RunSessionGuard? {
+-        command is EnableCommand ? .forceRun : .isServerEnabled
++        command is EnableCommand || command is FreezeTilingCommand ? .forceRun : .isServerEnabled
+     }
+     @MainActor
+     static func checkServerIsEnabledOrDie(
+diff --git a/Sources/AppBundle/ui/TrayMenuModel.swift b/Sources/AppBundle/ui/TrayMenuModel.swift
+index 367ccb4..d6da73c 100644
+--- a/Sources/AppBundle/ui/TrayMenuModel.swift
++++ b/Sources/AppBundle/ui/TrayMenuModel.swift
+@@ -10,6 +10,8 @@ public final class TrayMenuModel: ObservableObject {
+     @Published var trayItems: [TrayItem] = []
+     /// Is "layouting" enabled
+     @Published var isEnabled: Bool = true
++    /// When true, automatic retiling (screen changes) is suppressed but commands still work
++    @Published var isTilingFrozen: Bool = false
+     @Published var workspaces: [WorkspaceViewModel] = []
+     @Published var experimentalUISettings: ExperimentalUISettings = ExperimentalUISettings()
+     @Published var sponsorshipMessage: String = sponsorshipPrompts.randomElement().orDie()
+diff --git a/Sources/Common/cmdArgs/cmdArgsManifest.swift b/Sources/Common/cmdArgs/cmdArgsManifest.swift
+index ddacd83..43533c7 100644
+--- a/Sources/Common/cmdArgs/cmdArgsManifest.swift
++++ b/Sources/Common/cmdArgs/cmdArgsManifest.swift
+@@ -11,6 +11,7 @@ public enum CmdKind: String, CaseIterable, Equatable, Sendable {
+     case flattenWorkspaceTree = "flatten-workspace-tree"
+     case focus
+     case focusBackAndForth = "focus-back-and-forth"
++    case freezeTiling = "freeze-tiling"
+     case focusMonitor = "focus-monitor"
+     case fullscreen
+     case joinWith = "join-with"
+@@ -64,6 +65,8 @@ func initSubcommands() -> [String: any SubCommandParserProtocol] {
+                 result[kind.rawValue] = SubCommandParser(parseFocusCmdArgs)
+             case .focusBackAndForth:
+                 result[kind.rawValue] = SubCommandParser(FocusBackAndForthCmdArgs.init)
++            case .freezeTiling:
++                result[kind.rawValue] = SubCommandParser(parseFreezeTilingCmdArgs)
+             case .focusMonitor:
+                 result[kind.rawValue] = SubCommandParser(parseFocusMonitorCmdArgs)
+             case .fullscreen:
+diff --git a/Sources/Common/cmdArgs/impl/FreezeTilingCmdArgs.swift b/Sources/Common/cmdArgs/impl/FreezeTilingCmdArgs.swift
+new file mode 100644
+index 0000000..4d05fdc
+--- /dev/null
++++ b/Sources/Common/cmdArgs/impl/FreezeTilingCmdArgs.swift
+@@ -0,0 +1,26 @@
++public struct FreezeTilingCmdArgs: CmdArgs {
++    public let rawArgsForStrRepr: EquatableNoop<StrArrSlice>
++    fileprivate init(rawArgs: StrArrSlice) { self.rawArgsForStrRepr = .init(rawArgs) }
++    public static let parser: CmdParser<Self> = cmdParser(
++        kind: .freezeTiling,
++        allowInConfig: true,
++        help: freeze_tiling_help_generated,
++        flags: [:],
++        posArgs: [newArgParser(\.targetState, parseFreezeTilingState, mandatoryArgPlaceholder: FreezeTilingCmdArgs.State.unionLiteral)],
++    )
++    /*conforms*/ public var windowId: UInt32?
++    /*conforms*/ public var workspaceName: WorkspaceName?
++    public var targetState: Lateinit<State> = .uninitialized
++
++    public enum State: String, CaseIterable, Sendable {
++        case on, off, toggle
++    }
++}
++
++public func parseFreezeTilingCmdArgs(_ args: StrArrSlice) -> ParsedCmd<FreezeTilingCmdArgs> {
++    return parseSpecificCmdArgs(FreezeTilingCmdArgs(rawArgs: args), args)
++}
++
++private func parseFreezeTilingState(i: ArgParserInput) -> ParsedCliArgs<FreezeTilingCmdArgs.State> {
++    .init(parseEnum(i.arg, FreezeTilingCmdArgs.State.self), advanceBy: 1)
++}
+diff --git a/Sources/Common/cmdHelpGenerated.swift b/Sources/Common/cmdHelpGenerated.swift
+index 106caad..ff82c76 100644
+--- a/Sources/Common/cmdHelpGenerated.swift
++++ b/Sources/Common/cmdHelpGenerated.swift
+@@ -27,6 +27,9 @@ let enable_help_generated = """
+ let exec_and_forget_help_generated = """
+     USAGE: exec-and-forget <bash-script>
+     """
++let freeze_tiling_help_generated = """
++    USAGE: freeze-tiling [-h|--help] (on|off|toggle)
++    """
+ let flatten_workspace_tree_help_generated = """
+     USAGE: flatten-workspace-tree [-h|--help] [--workspace <workspace>]
+     """

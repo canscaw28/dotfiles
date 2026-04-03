@@ -1,8 +1,7 @@
 #!/bin/bash
 # Build a patched AeroSpace from source and install it.
 #
-# Applies the focus-guard patch (prevents Chrome's makeKeyAndOrderFront from
-# triggering unwanted workspace switches) and builds a signed .app bundle.
+# Applies patches (focus-guard, freeze-tiling) and builds a signed .app bundle.
 #
 # Prerequisites: Xcode (with command-line tools)
 #
@@ -13,7 +12,8 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PATCH_FILE="$SCRIPT_DIR/focus-guard.patch"
+FOCUS_GUARD_PATCH="$SCRIPT_DIR/focus-guard.patch"
+FREEZE_TILING_PATCH="$SCRIPT_DIR/freeze-tiling.patch"
 BUILD_DIR="/tmp/aerospace-build"
 AEROSPACE_REPO="https://github.com/nikitabobko/AeroSpace.git"
 DEFAULT_VERSION="v0.20.2-Beta"
@@ -40,9 +40,11 @@ echo "==> Cloning AeroSpace $VERSION..."
 git clone --depth 1 --branch "$VERSION" "$AEROSPACE_REPO" "$BUILD_DIR/AeroSpace"
 cd "$BUILD_DIR/AeroSpace"
 
-# Apply patch
+# Apply patches
 echo "==> Applying focus-guard patch..."
-git apply "$PATCH_FILE"
+git apply "$FOCUS_GUARD_PATCH"
+echo "==> Applying freeze-tiling patch..."
+git apply "$FREEZE_TILING_PATCH"
 
 # Generate build files (skip docs — not needed for .app)
 echo "==> Running generate.sh..."
