@@ -18,6 +18,12 @@ trap 'rm -f "$LOCKFILE"' EXIT
 
 direction="$1"
 
+# When dock is visible, use Hammerspoon for focus to avoid macOS resizing windows
+if /usr/local/bin/hs -c "return require('dock_peek').isActive()" 2>/dev/null | grep -q "true"; then
+    /usr/local/bin/hs -c "require('dock_peek').hide()" 2>/dev/null
+    sleep 0.4  # Wait for dock to hide and tiling to unfreeze
+fi
+
 # Edge index for navigation after crossing monitors:
 # moving right/down → want first (leftmost/topmost) window → index 0
 # moving left/up    → want last (rightmost/bottommost) window → computed after crossing
