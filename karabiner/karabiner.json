@@ -1227,6 +1227,9 @@
                     "modifiers": [
                       "fn"
                     ]
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('show_desktop').toggle()\" &"
                   }
                 ],
                 "type": "basic"

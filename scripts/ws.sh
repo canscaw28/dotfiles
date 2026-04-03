@@ -455,8 +455,8 @@ final_post_process() {
         /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
     fi
 
-    # Hide dock if it was visible (user switched monitors/workspaces)
-    /usr/local/bin/hs -c "require('dock_peek').hide()" 2>/dev/null &
+    # Dismiss dock/show-desktop if active (user switched monitors/workspaces)
+    /usr/local/bin/hs -c "require('dock_peek').hide(); require('show_desktop').dismiss()" 2>/dev/null &
 
     # Save window state after every operation (for restore on restart)
     ~/.local/bin/save-ws-state.sh &

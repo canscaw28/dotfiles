@@ -18,7 +18,10 @@ trap 'rm -f "$LOCKFILE"' EXIT
 
 direction="$1"
 
-# When dock is visible, use Hammerspoon for focus to avoid macOS resizing windows
+# Dismiss Show Desktop if active
+/usr/local/bin/hs -c "require('show_desktop').dismiss()" 2>/dev/null &
+
+# When dock is visible, hide it first to avoid macOS resizing windows
 if /usr/local/bin/hs -c "return require('dock_peek').isActive()" 2>/dev/null | grep -q "true"; then
     /usr/local/bin/hs -c "require('dock_peek').hide()" 2>/dev/null
     sleep 0.4  # Wait for dock to hide and tiling to unfreeze
