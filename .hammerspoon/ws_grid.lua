@@ -23,7 +23,8 @@ local navCol = 1            -- cursor column in grid (1-5)
 -- Element index lookup for in-place canvas updates (populated by drawGrid)
 local keyFaceIdx = {}   -- key -> canvas element index for face rectangle
 local keyTextIdx = {}   -- key -> canvas element index for text element
-local keyDotIdx = {}    -- key -> canvas element index for window count dot
+local keyDotIdx = {}    -- key -> canvas element indices for window count dots
+local keyCountIdx = {}  -- key -> canvas element index for overflow count text
 local lastWindowCounts = {}  -- key -> number of windows on that workspace
 
 -- Forward declarations (referenced before definition)
@@ -71,7 +72,8 @@ local PADDING = 14
 local DOT_SIZE = 4
 local DOT_GAP = 3
 local DOT_ALPHA = 0.45
-local MAX_DOTS = 4
+local MAX_DOTS = 5
+local COUNT_FONT_SIZE = 7
 
 -- Map AeroSpace workspace names to grid display keys
 local AERO_TO_KEY = {
@@ -142,11 +144,20 @@ local function patchKey(key, isActive, isFocused, labelColor, windowCount)
     if windowCount ~= nil then
         local dots = keyDotIdx[key]
         if dots then
-            local n = math.min(windowCount, MAX_DOTS)
+            local overflow = windowCount > MAX_DOTS
+            local n = overflow and 1 or windowCount
             for d = 1, MAX_DOTS do
                 grid:elementAttribute(dots[d], "fillColor",
                     {red = 0, green = 0, blue = 0, alpha = d <= n and DOT_ALPHA or 0})
             end
+        end
+        local ci = keyCountIdx[key]
+        if ci then
+            local overflow = windowCount > MAX_DOTS
+            grid:elementAttribute(ci, "text", hs.styledtext.new(tostring(windowCount), {
+                font = {name = "Helvetica", size = COUNT_FONT_SIZE},
+                color = {red = 0, green = 0, blue = 0, alpha = overflow and DOT_ALPHA or 0},
+            }))
         end
     end
 end
@@ -225,6 +236,7 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId, windowCounts)
     keyFaceIdx = {}
     keyTextIdx = {}
     keyDotIdx = {}
+    keyCountIdx = {}
 
     local monId = targetMonitor()
     if monId == nil then return end
@@ -353,8 +365,10 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId, windowCounts)
             keyTextIdx[key] = elementCount
 
             -- Layers 6+: Window count dots (bottom-left, up to MAX_DOTS)
+            -- >MAX_DOTS: show 1 dot + number instead
             local wc = windowCounts and windowCounts[key] or 0
-            local dots = math.min(wc, MAX_DOTS)
+            local overflow = wc > MAX_DOTS
+            local dots = overflow and 1 or wc
             keyDotIdx[key] = {}
             for d = 1, MAX_DOTS do
                 local dAlpha = d <= dots and DOT_ALPHA or 0
@@ -370,6 +384,20 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId, windowCounts)
                 elementCount = elementCount + 1
                 keyDotIdx[key][d] = elementCount
             end
+            -- Overflow count label (shown when >MAX_DOTS)
+            local countStyledText = hs.styledtext.new(tostring(wc), {
+                font = {name = "Helvetica", size = COUNT_FONT_SIZE},
+                color = {red = 0, green = 0, blue = 0, alpha = overflow and DOT_ALPHA or 0},
+            })
+            grid:appendElements({
+                type = "text",
+                text = countStyledText,
+                frame = {x = cellX + 5 + DOT_SIZE + DOT_GAP,
+                         y = cellY + CELL_SIZE - 11,
+                         w = 14, h = 10},
+            })
+            elementCount = elementCount + 1
+            keyCountIdx[key] = elementCount
         end
     end
 
@@ -794,6 +822,7 @@ local function startGridFall()
             keyFaceIdx = {}
             keyTextIdx = {}
             keyDotIdx = {}
+            keyCountIdx = {}
                 else
             local t = fallStep / GRID_FALL_STEPS
             grid:topLeft({x = gridTargetX, y = gridTargetY + GRID_FALL_DIST * t})
