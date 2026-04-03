@@ -4,7 +4,7 @@ local active = false
 local savedPos = nil
 local hideTimer = nil
 local DOCK_TOGGLE = os.getenv("HOME") .. "/.local/bin/dock-toggle"
-local AEROSPACE = "/opt/homebrew/bin/aerospace"
+local AEROSPACE = os.getenv("HOME") .. "/.local/bin/aerospace"
 
 function M.show()
     -- Cancel any pending hide sequence
@@ -16,7 +16,7 @@ function M.show()
     if active then return end
     active = true
 
-    -- Disable AeroSpace first
+    -- Freeze tiling so AeroSpace never calls setFrame while dock is visible
     hs.task.new(AEROSPACE, function()
         -- Determine focused monitor
         local screen = nil
@@ -33,7 +33,7 @@ function M.show()
         hs.mouse.absolutePosition(bottomCenter)
         hs.eventtap.event.newMouseEvent(hs.eventtap.event.types.mouseMoved, bottomCenter):post()
 
-        -- Brief pause for dock to register this monitor, then lock visible and restore cursor
+        -- Brief pause for dock to register this monitor, then show and restore cursor
         hs.timer.doAfter(0.05, function()
             hs.task.new(DOCK_TOGGLE, function()
                 if savedPos then
@@ -42,7 +42,7 @@ function M.show()
                 end
             end, {"show"}):start()
         end)
-    end, {"enable", "off"}):start()
+    end, {"freeze-tiling", "on"}):start()
 end
 
 function M.hide()
@@ -55,11 +55,11 @@ function M.hide()
         savedPos = nil
     end
 
-    -- Hide dock, then re-enable AeroSpace after delay
+    -- Hide dock, then unfreeze tiling after dock finishes hiding
     hs.task.new(DOCK_TOGGLE, nil, {"hide"}):start()
     hideTimer = hs.timer.doAfter(0.3, function()
         hideTimer = nil
-        hs.task.new(AEROSPACE, nil, {"enable", "on"}):start()
+        hs.task.new(AEROSPACE, nil, {"freeze-tiling", "off"}):start()
     end)
 end
 
