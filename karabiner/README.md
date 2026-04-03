@@ -106,8 +106,8 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | | ⇪ + T | W+R | Focus Mon 2 | Focus workspace on monitor 2 |
 | | ⇪ + T | W+3 | Focus Mon 3 | Focus workspace on monitor 3 |
 | | ⇪ + T | W+4 | Focus Mon 4 | Focus workspace on monitor 4 |
+| System | ⇪ + A | — | System Toggles | Dock, Notification Center, Mission Control, etc. |
 | *(unassigned)* | ⇪ + R | | | |
-| *(unassigned)* | ⇪ + A | | | |
 
 *Available layer keys: R, Z, X, C, V, B*
 
@@ -424,6 +424,30 @@ A shared PID-based lock (`/tmp/aerospace-lock.pid`) prevents concurrent aerospac
 ### Window State Preservation
 
 Window-to-workspace assignments are automatically saved after every workspace operation. On AeroSpace restart, windows are restored to their previous workspaces by matching on app name and window title.
+
+---
+
+## System Layer (⇪ + A)
+
+macOS system toggles and input source management. Unlike other layers, A does not follow the right-hand directional layout — these are standalone utility shortcuts.
+
+### System Toggles
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + A + Y | Toggle Dock | Shows/hides the macOS Dock on the focused monitor. Uses AeroSpace `freeze-tiling` to prevent window resizing. Auto-hides when changing window focus or switching workspaces. |
+| ⇪ + A + U | Toggle Notification Center | Opens/closes the Notification Center via AppleScript |
+| ⇪ + A + I | Mission Control | Shows Mission Control |
+| ⇪ + A + O | Show Desktop | Shows the desktop (fn+F11) |
+| ⇪ + A + M | Toggle Sidecar | Toggles iPad Sidecar display |
+| ⇪ + A + / | Clean Dock | Removes recent apps from Dock |
+
+### Input Source
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + A + H | English (U.S.) | Switch to English input source |
+| ⇪ + A + N | Toggle Input | Toggle between input sources (⌃+Space) |
 
 ---
 

@@ -19,6 +19,7 @@ macOS configuration files and settings.
 
 ### Window Management
 - `.aerospace.toml` - [AeroSpace](https://github.com/nikitabobko/AeroSpace) tiling window manager
+- `aerospace/` - Custom AeroSpace build with patches (focus-guard, freeze-tiling)
 
 ### Keyboard
 - `karabiner/` - [Karabiner Elements](https://karabiner-elements.pqrs.org/) key remapping (see [karabiner/README.md](karabiner/README.md))
