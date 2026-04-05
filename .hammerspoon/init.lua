@@ -6,6 +6,7 @@ require("ws_grid")
 require("key_suppress")
 require("hs_server")
 require("chrome_tabs")
+require("chrome_warmup")
 require("cursor_grid")
 require("dock_peek")
 
