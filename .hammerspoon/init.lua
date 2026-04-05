@@ -8,6 +8,7 @@ require("hs_server")
 require("chrome_tabs")
 require("cursor_grid")
 require("dock_peek")
+require("surround_pair")
 
 screenWatcher = hs.screen.watcher.new(function()
     hs.timer.doAfter(2.0, function()
