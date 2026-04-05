@@ -104,38 +104,22 @@ def make_condition(name, value):
     return {"name": name, "type": "variable_if", "value": value}
 
 
-def char_to_key_event(char):
-    """Convert a character to a Karabiner key event dict."""
-    if char.isalpha() and len(char) == 1:
-        return {"key_code": char.lower()}
-    if char.isdigit():
-        return {"key_code": char}
-
-    # Shifted digits
-    digit_for_symbol = {v: k for k, v in SHIFTED_DIGIT_MAP.items()}
-    if char in digit_for_symbol:
-        return {"key_code": digit_for_symbol[char], "modifiers": ["shift"]}
-
-    # Unshifted symbols
-    for key_code, ch in SYMBOL_KEY_MAP.items():
-        if ch == char:
-            return {"key_code": key_code}
-
-    # Shifted symbols
-    for key_code, (ch, _) in SHIFTED_SYMBOL_MAP.items():
-        if ch == char:
-            return {"key_code": key_code, "modifiers": ["shift"]}
-
-    raise ValueError(f"Unknown character: {char!r}")
+HS_BIN = "/usr/local/bin/hs"
 
 
-def get_pair(char):
-    """Get (open_event, close_event) for a character."""
-    if char in PAIR_MAP:
-        open_char, close_char = PAIR_MAP[char]
-    else:
-        open_char, close_char = char, char
-    return char_to_key_event(open_char), char_to_key_event(close_char)
+def escape_lua_char(char):
+    """Escape a character for embedding in a Lua single-quoted string."""
+    if char == "'":
+        return "\\'"
+    if char == "\\":
+        return "\\\\"
+    return char
+
+
+def make_shell_command(char):
+    """Create shell_command to call Hammerspoon surround_pair.fire()."""
+    escaped = escape_lua_char(char)
+    return {"shell_command": f"{HS_BIN} -c \"require('surround_pair').fire('{escaped}')\" &"}
 
 
 def make_hold_manipulator(key_code, shift_required, char):
@@ -151,17 +135,13 @@ def make_hold_manipulator(key_code, shift_required, char):
     else:
         from_event["modifiers"] = {"optional": ["any"]}
 
-    open_event, close_event = get_pair(char)
-
     return {
         "conditions": conditions,
         "description": f"{DESCRIPTION_PREFIX}: {char} (hold)",
         "from": from_event,
         "to": [
-            open_event,
-            close_event,
-            {"key_code": "left_arrow"},
             {"set_variable": {"name": "surround_oneshot", "value": 0}},
+            make_shell_command(char),
         ],
         "type": "basic",
     }
@@ -181,17 +161,13 @@ def make_oneshot_manipulator(key_code, shift_required, char):
     else:
         from_event["modifiers"] = {"optional": ["any"]}
 
-    open_event, close_event = get_pair(char)
-
     return {
         "conditions": conditions,
         "description": f"{DESCRIPTION_PREFIX}: {char} (oneshot)",
         "from": from_event,
         "to": [
-            open_event,
-            close_event,
-            {"key_code": "left_arrow"},
             {"set_variable": {"name": "surround_oneshot", "value": 0}},
+            make_shell_command(char),
         ],
         "type": "basic",
     }
