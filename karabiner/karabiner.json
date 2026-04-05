@@ -1449,25 +1449,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "1",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "1",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('!')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1499,25 +1487,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "2",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "2",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('@')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1549,25 +1525,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "3",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "3",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('#')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1599,25 +1563,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "4",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "4",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('$')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1649,25 +1601,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "5",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "5",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('%')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1699,25 +1639,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "6",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "6",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('^')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1749,25 +1677,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "7",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "7",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('&')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1799,25 +1715,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "8",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "8",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('*')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1849,25 +1753,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "9",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "0",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('(')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1899,25 +1791,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "9",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "0",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire(')')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1949,25 +1829,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "hyphen",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "hyphen",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('_')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1996,19 +1864,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "hyphen"
-                  },
-                  {
-                    "key_code": "hyphen"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('-')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2040,25 +1902,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "equal_sign",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "equal_sign",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('+')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2087,19 +1937,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "equal_sign"
-                  },
-                  {
-                    "key_code": "equal_sign"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('=')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2131,25 +1975,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "open_bracket",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "close_bracket",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('{')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2178,19 +2010,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "open_bracket"
-                  },
-                  {
-                    "key_code": "close_bracket"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('[')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2222,25 +2048,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "open_bracket",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "close_bracket",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('}')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2269,19 +2083,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "open_bracket"
-                  },
-                  {
-                    "key_code": "close_bracket"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire(']')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2313,25 +2121,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "backslash",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "backslash",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('|')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2360,19 +2156,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "backslash"
-                  },
-                  {
-                    "key_code": "backslash"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('\\\\')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2404,25 +2194,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "semicolon",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "semicolon",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire(':')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2451,19 +2229,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "semicolon"
-                  },
-                  {
-                    "key_code": "semicolon"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire(';')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2495,25 +2267,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "quote",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "quote",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('\"')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2542,19 +2302,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "quote"
-                  },
-                  {
-                    "key_code": "quote"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('\\'')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2586,25 +2340,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "comma",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "period",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('<')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2633,19 +2375,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "comma"
-                  },
-                  {
-                    "key_code": "comma"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire(',')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2677,25 +2413,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "comma",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "period",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('>')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2724,19 +2448,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "period"
-                  },
-                  {
-                    "key_code": "period"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('.')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2768,25 +2486,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "slash",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "slash",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('?')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2815,19 +2521,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "slash"
-                  },
-                  {
-                    "key_code": "slash"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('/')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2859,25 +2559,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "grave_accent_and_tilde",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "grave_accent_and_tilde",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('~')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2906,19 +2594,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "grave_accent_and_tilde"
-                  },
-                  {
-                    "key_code": "grave_accent_and_tilde"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('`')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2955,25 +2637,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "1",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "1",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('!')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3010,25 +2680,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "2",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "2",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('@')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3065,25 +2723,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "3",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "3",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('#')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3120,25 +2766,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "4",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "4",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('$')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3175,25 +2809,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "5",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "5",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('%')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3230,25 +2852,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "6",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "6",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('^')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3285,25 +2895,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "7",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "7",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('&')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3340,25 +2938,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "8",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "8",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('*')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3395,25 +2981,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "9",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "0",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('(')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3450,25 +3024,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "9",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "0",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire(')')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3505,25 +3067,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "hyphen",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "hyphen",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('_')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3557,19 +3107,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "hyphen"
-                  },
-                  {
-                    "key_code": "hyphen"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('-')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3606,25 +3150,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "equal_sign",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "equal_sign",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('+')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3658,19 +3190,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "equal_sign"
-                  },
-                  {
-                    "key_code": "equal_sign"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('=')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3707,25 +3233,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "open_bracket",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "close_bracket",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('{')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3759,19 +3273,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "open_bracket"
-                  },
-                  {
-                    "key_code": "close_bracket"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('[')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3808,25 +3316,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "open_bracket",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "close_bracket",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('}')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3860,19 +3356,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "open_bracket"
-                  },
-                  {
-                    "key_code": "close_bracket"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire(']')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3909,25 +3399,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "backslash",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "backslash",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('|')\" &"
                   }
                 ],
                 "type": "basic"
@@ -3961,19 +3439,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "backslash"
-                  },
-                  {
-                    "key_code": "backslash"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('\\\\')\" &"
                   }
                 ],
                 "type": "basic"
@@ -4010,25 +3482,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "semicolon",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "semicolon",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire(':')\" &"
                   }
                 ],
                 "type": "basic"
@@ -4062,19 +3522,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "semicolon"
-                  },
-                  {
-                    "key_code": "semicolon"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire(';')\" &"
                   }
                 ],
                 "type": "basic"
@@ -4111,25 +3565,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "quote",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "quote",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('\"')\" &"
                   }
                 ],
                 "type": "basic"
@@ -4163,19 +3605,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "quote"
-                  },
-                  {
-                    "key_code": "quote"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('\\'')\" &"
                   }
                 ],
                 "type": "basic"
@@ -4212,25 +3648,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "comma",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "period",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('<')\" &"
                   }
                 ],
                 "type": "basic"
@@ -4264,19 +3688,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "comma"
-                  },
-                  {
-                    "key_code": "comma"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire(',')\" &"
                   }
                 ],
                 "type": "basic"
@@ -4313,25 +3731,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "comma",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "period",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('>')\" &"
                   }
                 ],
                 "type": "basic"
@@ -4365,19 +3771,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "period"
-                  },
-                  {
-                    "key_code": "period"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('.')\" &"
                   }
                 ],
                 "type": "basic"
@@ -4414,25 +3814,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "slash",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "slash",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('?')\" &"
                   }
                 ],
                 "type": "basic"
@@ -4466,19 +3854,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "slash"
-                  },
-                  {
-                    "key_code": "slash"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('/')\" &"
                   }
                 ],
                 "type": "basic"
@@ -4515,25 +3897,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "grave_accent_and_tilde",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "grave_accent_and_tilde",
-                    "modifiers": [
-                      "shift"
-                    ]
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('~')\" &"
                   }
                 ],
                 "type": "basic"
@@ -4567,19 +3937,13 @@
                 },
                 "to": [
                   {
-                    "key_code": "grave_accent_and_tilde"
-                  },
-                  {
-                    "key_code": "grave_accent_and_tilde"
-                  },
-                  {
-                    "key_code": "left_arrow"
-                  },
-                  {
                     "set_variable": {
                       "name": "surround_oneshot",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround_pair').fire('`')\" &"
                   }
                 ],
                 "type": "basic"
