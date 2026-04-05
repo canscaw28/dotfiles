@@ -260,6 +260,42 @@ def find_a_layer_end(manips):
     return last_a_idx
 
 
+def is_a_layer_action(m):
+    """Match A layer actions (caps=1, a=1, no other layer, not a setter, not surround)."""
+    if is_surround_manipulator(m):
+        return False
+    conds = m.get("conditions", [])
+    has_caps = any(c.get("name") == "caps_lock_is_held" and c.get("value") == 1 for c in conds)
+    has_a = any(c.get("name") == "a_is_held" and c.get("value") == 1 for c in conds)
+    has_other_layer = any(
+        c.get("name") in ("f_is_held", "d_is_held", "t_is_held") and c.get("value") == 1
+        for c in conds
+    )
+    if not (has_caps and has_a and not has_other_layer):
+        return False
+    # Exclude setters (they have to_after_key_up with set_variable)
+    if "to_after_key_up" in m:
+        up = m["to_after_key_up"]
+        if any(item.get("set_variable", {}).get("name", "").endswith("_is_held") for item in up):
+            return False
+    return True
+
+
+def add_surround_exclusion_to_a_layer(manips):
+    """Add surround_mode=0 condition to A layer actions to prevent mode bleed."""
+    count = 0
+    for m in manips:
+        if not is_a_layer_action(m):
+            continue
+        conds = m["conditions"]
+        # Skip if already has surround_mode condition
+        if any(c.get("name") == "surround_mode" for c in conds):
+            continue
+        conds.append(make_condition("surround_mode", 0))
+        count += 1
+    return count
+
+
 def add_surround_reset_to_caps_release(manips):
     """Add surround_mode=0 reset to caps_lock release handlers."""
     count = 0
@@ -322,7 +358,11 @@ def main():
         manips.insert(insert_pos + j, action)
     print(f"Inserted {len(generated['oneshot_actions'])} oneshot manipulators")
 
-    # Phase 5: Add surround_mode=0 to caps release (hold mode cleanup)
+    # Phase 5: Add surround_mode=0 exclusion to A layer actions
+    a_count = add_surround_exclusion_to_a_layer(manips)
+    print(f"Added surround_mode=0 to {a_count} A layer actions")
+
+    # Phase 6: Add surround_mode=0 to caps release (hold mode cleanup)
     caps_count = add_surround_reset_to_caps_release(manips)
     print(f"Added surround_mode=0 reset to {caps_count} caps release handlers")
 

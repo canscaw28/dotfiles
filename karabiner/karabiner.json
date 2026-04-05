@@ -1109,6 +1109,11 @@
                     "name": "a_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "A+M: Toggle Sidecar",
@@ -1138,6 +1143,11 @@
                     "name": "a_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "A+/: Clean Dock",
@@ -1167,6 +1177,11 @@
                     "name": "a_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "A+H: Switch to English (U.S.)",
@@ -1198,6 +1213,11 @@
                     "name": "a_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "A+N: Toggle Input Source",
@@ -1230,6 +1250,11 @@
                     "name": "a_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "A+U: Toggle Notification Center",
@@ -1259,6 +1284,11 @@
                     "name": "a_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "A+I: Mission Control",
@@ -1288,6 +1318,11 @@
                     "name": "a_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "A+O: Show Desktop",
@@ -1323,6 +1358,11 @@
                     "name": "a_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "description": "A+Y: Toggle Dock",
