@@ -51,6 +51,12 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_mode",
+                      "value": 0
+                    }
                   }
                 ],
                 "type": "basic"
@@ -110,6 +116,12 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_mode",
+                      "value": 0
+                    }
                   }
                 ],
                 "to_delayed_action": {
@@ -187,6 +199,12 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_mode",
+                      "value": 0
+                    }
                   }
                 ],
                 "to_delayed_action": {
@@ -264,6 +282,12 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_mode",
+                      "value": 0
+                    }
                   }
                 ],
                 "to_delayed_action": {
@@ -347,6 +371,12 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_mode",
+                      "value": 0
+                    }
                   }
                 ],
                 "to_delayed_action": {
@@ -424,6 +454,12 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_mode",
+                      "value": 0
+                    }
                   }
                 ],
                 "to_delayed_action": {
@@ -501,6 +537,12 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_mode",
+                      "value": 0
+                    }
                   }
                 ],
                 "to_delayed_action": {
@@ -578,6 +620,12 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_mode",
+                      "value": 0
+                    }
                   }
                 ],
                 "to_delayed_action": {
@@ -655,6 +703,12 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_mode",
+                      "value": 0
+                    }
                   }
                 ],
                 "to_delayed_action": {
@@ -732,6 +786,12 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_mode",
+                      "value": 0
+                    }
                   }
                 ],
                 "to_delayed_action": {
@@ -809,6 +869,12 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_mode",
+                      "value": 0
+                    }
                   }
                 ],
                 "to_delayed_action": {
@@ -886,6 +952,12 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_mode",
+                      "value": 0
+                    }
                   }
                 ],
                 "to_delayed_action": {
@@ -940,6 +1012,12 @@
                   },
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_mode",
+                      "value": 0
+                    }
                   }
                 ],
                 "to_delayed_action": {
@@ -1259,6 +1337,3209 @@
                 "to": [
                   {
                     "shell_command": "/usr/local/bin/hs -c \"require('dock_peek').toggle()\" &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair-setter",
+                "from": {
+                  "key_code": "s",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "surround_mode",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "shell_command": "(sleep 5 && \"/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli\" --set-variables '{\"surround_oneshot\":0}') &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: ! (hold)",
+                "from": {
+                  "key_code": "1",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "1",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "1",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: @ (hold)",
+                "from": {
+                  "key_code": "2",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "2",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "2",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: # (hold)",
+                "from": {
+                  "key_code": "3",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "3",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "3",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: $ (hold)",
+                "from": {
+                  "key_code": "4",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "4",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "4",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: % (hold)",
+                "from": {
+                  "key_code": "5",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "5",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "5",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: ^ (hold)",
+                "from": {
+                  "key_code": "6",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "6",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "6",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: & (hold)",
+                "from": {
+                  "key_code": "7",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "7",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "7",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: * (hold)",
+                "from": {
+                  "key_code": "8",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "8",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "8",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: ( (hold)",
+                "from": {
+                  "key_code": "9",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "9",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "0",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: ) (hold)",
+                "from": {
+                  "key_code": "0",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "9",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "0",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: _ (hold)",
+                "from": {
+                  "key_code": "hyphen",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "hyphen",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "hyphen",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: - (hold)",
+                "from": {
+                  "key_code": "hyphen",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "hyphen"
+                  },
+                  {
+                    "key_code": "hyphen"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: + (hold)",
+                "from": {
+                  "key_code": "equal_sign",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "equal_sign",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "equal_sign",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: = (hold)",
+                "from": {
+                  "key_code": "equal_sign",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "equal_sign"
+                  },
+                  {
+                    "key_code": "equal_sign"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: { (hold)",
+                "from": {
+                  "key_code": "open_bracket",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "open_bracket",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "close_bracket",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: [ (hold)",
+                "from": {
+                  "key_code": "open_bracket",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "open_bracket"
+                  },
+                  {
+                    "key_code": "close_bracket"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: } (hold)",
+                "from": {
+                  "key_code": "close_bracket",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "open_bracket",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "close_bracket",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: ] (hold)",
+                "from": {
+                  "key_code": "close_bracket",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "open_bracket"
+                  },
+                  {
+                    "key_code": "close_bracket"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: | (hold)",
+                "from": {
+                  "key_code": "backslash",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "backslash",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "backslash",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: \\ (hold)",
+                "from": {
+                  "key_code": "backslash",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "backslash"
+                  },
+                  {
+                    "key_code": "backslash"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: : (hold)",
+                "from": {
+                  "key_code": "semicolon",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: ; (hold)",
+                "from": {
+                  "key_code": "semicolon",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "semicolon"
+                  },
+                  {
+                    "key_code": "semicolon"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: \" (hold)",
+                "from": {
+                  "key_code": "quote",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "quote",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "quote",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: ' (hold)",
+                "from": {
+                  "key_code": "quote",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "quote"
+                  },
+                  {
+                    "key_code": "quote"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: < (hold)",
+                "from": {
+                  "key_code": "comma",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "comma",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "period",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: , (hold)",
+                "from": {
+                  "key_code": "comma",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "comma"
+                  },
+                  {
+                    "key_code": "comma"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: > (hold)",
+                "from": {
+                  "key_code": "period",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "comma",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "period",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: . (hold)",
+                "from": {
+                  "key_code": "period",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "period"
+                  },
+                  {
+                    "key_code": "period"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: ? (hold)",
+                "from": {
+                  "key_code": "slash",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "slash",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "slash",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: / (hold)",
+                "from": {
+                  "key_code": "slash",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "slash"
+                  },
+                  {
+                    "key_code": "slash"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: ~ (hold)",
+                "from": {
+                  "key_code": "grave_accent_and_tilde",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "grave_accent_and_tilde",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "grave_accent_and_tilde",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "surround-pair: ` (hold)",
+                "from": {
+                  "key_code": "grave_accent_and_tilde",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "grave_accent_and_tilde"
+                  },
+                  {
+                    "key_code": "grave_accent_and_tilde"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: ! (oneshot)",
+                "from": {
+                  "key_code": "1",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "1",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "1",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: @ (oneshot)",
+                "from": {
+                  "key_code": "2",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "2",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "2",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: # (oneshot)",
+                "from": {
+                  "key_code": "3",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "3",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "3",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: $ (oneshot)",
+                "from": {
+                  "key_code": "4",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "4",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "4",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: % (oneshot)",
+                "from": {
+                  "key_code": "5",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "5",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "5",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: ^ (oneshot)",
+                "from": {
+                  "key_code": "6",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "6",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "6",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: & (oneshot)",
+                "from": {
+                  "key_code": "7",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "7",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "7",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: * (oneshot)",
+                "from": {
+                  "key_code": "8",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "8",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "8",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: ( (oneshot)",
+                "from": {
+                  "key_code": "9",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "9",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "0",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: ) (oneshot)",
+                "from": {
+                  "key_code": "0",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "9",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "0",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: _ (oneshot)",
+                "from": {
+                  "key_code": "hyphen",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "hyphen",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "hyphen",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: - (oneshot)",
+                "from": {
+                  "key_code": "hyphen",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "hyphen"
+                  },
+                  {
+                    "key_code": "hyphen"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: + (oneshot)",
+                "from": {
+                  "key_code": "equal_sign",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "equal_sign",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "equal_sign",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: = (oneshot)",
+                "from": {
+                  "key_code": "equal_sign",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "equal_sign"
+                  },
+                  {
+                    "key_code": "equal_sign"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: { (oneshot)",
+                "from": {
+                  "key_code": "open_bracket",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "open_bracket",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "close_bracket",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: [ (oneshot)",
+                "from": {
+                  "key_code": "open_bracket",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "open_bracket"
+                  },
+                  {
+                    "key_code": "close_bracket"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: } (oneshot)",
+                "from": {
+                  "key_code": "close_bracket",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "open_bracket",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "close_bracket",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: ] (oneshot)",
+                "from": {
+                  "key_code": "close_bracket",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "open_bracket"
+                  },
+                  {
+                    "key_code": "close_bracket"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: | (oneshot)",
+                "from": {
+                  "key_code": "backslash",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "backslash",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "backslash",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: \\ (oneshot)",
+                "from": {
+                  "key_code": "backslash",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "backslash"
+                  },
+                  {
+                    "key_code": "backslash"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: : (oneshot)",
+                "from": {
+                  "key_code": "semicolon",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "semicolon",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: ; (oneshot)",
+                "from": {
+                  "key_code": "semicolon",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "semicolon"
+                  },
+                  {
+                    "key_code": "semicolon"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: \" (oneshot)",
+                "from": {
+                  "key_code": "quote",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "quote",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "quote",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: ' (oneshot)",
+                "from": {
+                  "key_code": "quote",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "quote"
+                  },
+                  {
+                    "key_code": "quote"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: < (oneshot)",
+                "from": {
+                  "key_code": "comma",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "comma",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "period",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: , (oneshot)",
+                "from": {
+                  "key_code": "comma",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "comma"
+                  },
+                  {
+                    "key_code": "comma"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: > (oneshot)",
+                "from": {
+                  "key_code": "period",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "comma",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "period",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: . (oneshot)",
+                "from": {
+                  "key_code": "period",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "period"
+                  },
+                  {
+                    "key_code": "period"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: ? (oneshot)",
+                "from": {
+                  "key_code": "slash",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "slash",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "slash",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: / (oneshot)",
+                "from": {
+                  "key_code": "slash",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "slash"
+                  },
+                  {
+                    "key_code": "slash"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: ~ (oneshot)",
+                "from": {
+                  "key_code": "grave_accent_and_tilde",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ],
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "grave_accent_and_tilde",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "grave_accent_and_tilde",
+                    "modifiers": [
+                      "shift"
+                    ]
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "surround_oneshot",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
+                    "name": "surround_mode",
+                    "type": "variable_if",
+                    "value": 0
+                  }
+                ],
+                "description": "surround-pair: ` (oneshot)",
+                "from": {
+                  "key_code": "grave_accent_and_tilde",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "grave_accent_and_tilde"
+                  },
+                  {
+                    "key_code": "grave_accent_and_tilde"
+                  },
+                  {
+                    "key_code": "left_arrow"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "surround_oneshot",
+                      "value": 0
+                    }
                   }
                 ],
                 "type": "basic"
