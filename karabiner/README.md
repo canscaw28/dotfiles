@@ -8,7 +8,7 @@ Caps Lock becomes a modifier system where the **left hand picks context** and th
 | --- | --- | --- |
 | ⇪ | Default | Cursor movement, text selection, deletion |
 | ⇪ + F | Scroll / Cursor Grid | Page scrolling, mouse cursor control, link hints |
-| ⇪ + G | Chrome | Tab/window navigation and management |
+| ⇪ + G | Application | App-specific behavior (Chrome tabs, iTerm tmux, etc.) |
 | ⇪ + T | Aerospace | Window tiling and workspace operations |
 | ⇪ + A | System | Dock, Notification Center, input source, etc. |
 
@@ -37,9 +37,9 @@ Right hand layout is always the same — vim directions that stay consistent acr
 | | D | Coarse Grid | 8x8 mouse cursor grid |
 | | S | Fine Grid | 32x32 mouse cursor grid |
 | | E | Link Hints / Jump | Fixed cursor positions, Vimium/Homerow hints |
-| Chrome (G) | — | Navigation | Switch between tabs and windows |
-| | F | Reorder | Reorder tabs within a window |
-| | D | Tab Move | Move tab to another Chrome window |
+| Application (G) | — | Navigation | App-specific (Chrome: tabs, iTerm: tmux, other: window focus) |
+| | F | Reorder | Chrome: reorder tabs within a window |
+| | D | Tab Move | Chrome: move tab to another window |
 | Aerospace (T) | — | Focus | Window focus management |
 | | R | Move | Move windows directionally |
 | | 4 | Join | Join windows directionally |
@@ -206,11 +206,13 @@ Toggles a grid overlay on the focused window. Shows an 8×8 grid in D/E modes, a
 
 ---
 
-## Chrome Layer (⇪ + G)
+## Application Layer (⇪ + G)
 
-In Chrome, the G layer controls tabs and windows. In iTerm2, it controls tmux panes. In other apps, it provides generic directional window focus.
+The G layer provides app-specific behavior. In Chrome it controls tabs and windows, in iTerm2 it controls tmux panes, and in other apps it provides generic directional window focus.
 
-### Tab Navigation (Chrome)
+### Chrome
+
+#### Tab Navigation
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -235,7 +237,7 @@ In Chrome, the G layer controls tabs and windows. In iTerm2, it controls tmux pa
 
 Tab switching (H/L/Y/O/U/I) uses Hammerspoon JXA for reliability, with hold-to-repeat (0.2s delay, 70ms interval) and cross-window wrapping via AeroSpace.
 
-### Tab Reorder Mode (⇪ + F + G)
+#### Tab Reorder Mode (⇪ + F + G)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -248,7 +250,7 @@ Tab switching (H/L/Y/O/U/I) uses Hammerspoon JXA for reliability, with hold-to-r
 | ⇪ + F + G + J | Move tab + focus ↓ | Move tab to window below and follow |
 | ⇪ + F + G + K | Move tab + focus ↑ | Move tab to window above and follow |
 
-### Tab Move Mode (⇪ + D + G)
+#### Tab Move Mode (⇪ + D + G)
 
 Moves the current tab to another Chrome window in the specified direction, using the tab-mover Chrome extension:
 
@@ -259,7 +261,88 @@ Moves the current tab to another Chrome window in the specified direction, using
 | ⇪ + D + G + K | Move tab to Chrome window above |
 | ⇪ + D + G + L | Move tab to Chrome window on the right |
 
-### Generic Window Focus (non-Chrome, non-iTerm)
+### iTerm2
+
+When iTerm2 is frontmost, several default layer keys are overridden with terminal-compatible sequences, and the G layer switches to tmux pane navigation.
+
+#### Cursor Movement
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + Y | ⌃ + A | Jump to start of line |
+| ⇪ + U | ⌥ + ← | Jump back one word |
+| ⇪ + I | ⌥ + → | Jump forward one word |
+| ⇪ + O | ⌃ + E | Jump to end of line |
+
+*⇪+J/K use smart navigation: on single-line commands they navigate history with prefix search. On multi-line commands they move the cursor, with double-tap at boundaries to switch to history navigation.*
+
+#### History Navigation
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + , | ⌃ + P | Search history backward with prefix matching |
+| ⇪ + M | ⌃ + N | Search history forward with prefix matching |
+
+*Type a partial command, then use these keys to find matching history entries (e.g., type "git" then ⇪+, to find commands starting with "git").*
+
+#### Text Deletion
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + D + Y | ⌃ + U | Delete from cursor to start of line |
+| ⇪ + D + U | ⌃ + W | Delete word to the left |
+| ⇪ + D + I | ⌥ + D | Delete word to the right |
+| ⇪ + D + O | ⌃ + K | Delete from cursor to end of line |
+| ⇪ + D + J | F18 | Delete to line below |
+| ⇪ + D + K | F19 | Delete to line above |
+
+#### Undo/Redo
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⌘ + Z | ⌃ + _ | Undo last text change |
+| ⌘ + ⇧ + Z | Esc + _ | Redo last undo |
+
+#### Text Selection
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + S + H | ⇧ + ← | Select character to the left |
+| ⇪ + S + J | ⌃ + ⇧ + ↓ | Select line down (to end of buffer on last line) |
+| ⇪ + S + K | ⌃ + ⇧ + ↑ | Select line up (to start of buffer on first line) |
+| ⇪ + S + L | ⇧ + → | Select character to the right |
+| ⇪ + S + Y | ⇧ + Home | Select to start of line |
+| ⇪ + S + U | ⌃ + ⇧ + ← | Select word to the left |
+| ⇪ + S + I | ⌃ + ⇧ + → | Select word to the right |
+| ⇪ + S + O | ⇧ + End | Select to end of line |
+| ⇪ + S + ; | ⌥ + A | Select entire command buffer |
+
+#### Standard Commands
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⌘ + A | ⌥ + A | Select entire command buffer (not terminal output) |
+| ⌘ + C | ⌥ + C | Copy selection if active, else Ctrl+C interrupt |
+
+#### Clipboard Operations
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + ⌘ + C | F15 | Copy selection to system clipboard |
+| ⇪ + ⌘ + X | F16 | Cut selection to system clipboard |
+
+#### G Layer — Tmux Pane Navigation
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⇪ + G + H | ⌃ + B, ← | Select tmux pane left |
+| ⇪ + G + J | ⌃ + B, ↓ | Select tmux pane down |
+| ⇪ + G + K | ⌃ + B, ↑ | Select tmux pane up |
+| ⇪ + G + L | ⌃ + B, → | Select tmux pane right |
+| ⇪ + G + Y | Edge pane left | Jump to leftmost tmux pane |
+| ⇪ + G + O | Edge pane right | Jump to rightmost tmux pane |
+
+### Other Apps
 
 | Key / Shortcut | Description |
 | --- | --- |
@@ -406,85 +489,3 @@ macOS system toggles and input source management. Unlike other layers, A does no
 | ⇪ + A + H | English (U.S.) | Switch to English input source |
 | ⇪ + A + N | Toggle Input | Toggle between input sources (⌃+Space) |
 
----
-
-## iTerm2-Specific Overrides
-
-*These bindings override the standard behavior when iTerm2 is the frontmost application, using terminal-compatible key sequences.*
-
-### Cursor Movement (iTerm2)
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| ⇪ + Y | ⌃ + A | Jump to start of line |
-| ⇪ + U | ⌥ + ← | Jump back one word |
-| ⇪ + I | ⌥ + → | Jump forward one word |
-| ⇪ + O | ⌃ + E | Jump to end of line |
-
-*⇪+J/K use smart navigation: on single-line commands they navigate history with prefix search. On multi-line commands they move the cursor, with double-tap at boundaries to switch to history navigation.*
-
-### History Navigation (iTerm2)
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| ⇪ + , | ⌃ + P | Search history backward with prefix matching |
-| ⇪ + M | ⌃ + N | Search history forward with prefix matching |
-
-*Type a partial command, then use these keys to find matching history entries (e.g., type "git" then ⇪+, to find commands starting with "git").*
-
-### Text Deletion (iTerm2)
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| ⇪ + D + Y | ⌃ + U | Delete from cursor to start of line |
-| ⇪ + D + U | ⌃ + W | Delete word to the left |
-| ⇪ + D + I | ⌥ + D | Delete word to the right |
-| ⇪ + D + O | ⌃ + K | Delete from cursor to end of line |
-| ⇪ + D + J | F18 | Delete to line below |
-| ⇪ + D + K | F19 | Delete to line above |
-
-### Undo/Redo (iTerm2)
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| ⌘ + Z | ⌃ + _ | Undo last text change |
-| ⌘ + ⇧ + Z | Esc + _ | Redo last undo |
-
-### Text Selection (iTerm2)
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| ⇪ + S + H | ⇧ + ← | Select character to the left |
-| ⇪ + S + J | ⌃ + ⇧ + ↓ | Select line down (to end of buffer on last line) |
-| ⇪ + S + K | ⌃ + ⇧ + ↑ | Select line up (to start of buffer on first line) |
-| ⇪ + S + L | ⇧ + → | Select character to the right |
-| ⇪ + S + Y | ⇧ + Home | Select to start of line |
-| ⇪ + S + U | ⌃ + ⇧ + ← | Select word to the left |
-| ⇪ + S + I | ⌃ + ⇧ + → | Select word to the right |
-| ⇪ + S + O | ⇧ + End | Select to end of line |
-| ⇪ + S + ; | ⌥ + A | Select entire command buffer |
-
-### Standard Commands (iTerm2)
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| ⌘ + A | ⌥ + A | Select entire command buffer (not terminal output) |
-| ⌘ + C | ⌥ + C | Copy selection if active, else Ctrl+C interrupt |
-
-### Clipboard Operations (iTerm2)
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| ⇪ + ⌘ + C | F15 | Copy selection to system clipboard |
-| ⇪ + ⌘ + X | F16 | Cut selection to system clipboard |
-
-### G Layer - Tmux Pane Navigation (iTerm2)
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| ⇪ + G + H | ⌃ + B, ← | Select tmux pane left |
-| ⇪ + G + J | ⌃ + B, ↓ | Select tmux pane down |
-| ⇪ + G + K | ⌃ + B, ↑ | Select tmux pane up |
-| ⇪ + G + L | ⌃ + B, → | Select tmux pane right |
-| ⇪ + G + Y | Edge pane left | Jump to leftmost tmux pane |
-| ⇪ + G + O | Edge pane right | Jump to rightmost tmux pane |
