@@ -56,12 +56,12 @@ Right hand layout is always the same — vim directions that stay consistent acr
 
 | Shortcut | Behavior | Description |
 | --- | --- | --- |
-| [⇪] + [⇪] | LanguageTool | Double-tap Caps Lock to trigger LanguageTool tooltip |
+| [⇪+⇪] | LanguageTool | Double-tap Caps Lock to trigger LanguageTool tooltip |
 | [⇪] + R⇧ | ⇪ | Trigger Caps-Lock |
 
 ---
 
-## Default Layer ([⇪])
+## Default Layer (⇪)
 
 ### Cursor Movement
 
@@ -83,49 +83,49 @@ Right hand layout is always the same — vim directions that stay consistent acr
 | [⇪] + . |  |  |
 | [⇪] + / |  |  |
 
-### Selection Mode ([⇪] + S)
+### Selection Mode (⇪ + S)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| [⇪] + S + H | ⇧ + ← | Select text left one character |
-| [⇪] + S + J | ⇧ + ↓ | Select text downwards |
-| [⇪] + S + K | ⇧ + ↑ | Select text upwards |
-| [⇪] + S + L | ⇧ + →  | Select text right one character |
-| [⇪] + S + ; | ⌘ + A | Select the entire text field |
-| [⇪] + S + Y | ⌘ + ⇧ + ← | Select text to the start of the line |
-| [⇪] + S + U | ⌥ + ⇧ + ← | Select the word to the left |
-| [⇪] + S + I | ⌥ + ⇧ + → | Select the word to the right |
-| [⇪] + S + O | ⌘ + ⇧ + → | Select text to the end of the line |
-| [⇪] + S + P | ⌘ + ←, ⌘ + ⇧ + → | Select the entire line |
-| [⇪] + S + N |  |  |
-| [⇪] + S + M | ⌥ + ⇧ + ↓ | Moves cursor to the bottom of an input field |
-| [⇪] + S + , | ⌥ + ⇧ + ↑ | Moves cursor to the top of an input field |
-| [⇪] + S + . |  |  |
-| [⇪] + S + / |  |  |
+| [⇪+S] + H | ⇧ + ← | Select text left one character |
+| [⇪+S] + J | ⇧ + ↓ | Select text downwards |
+| [⇪+S] + K | ⇧ + ↑ | Select text upwards |
+| [⇪+S] + L | ⇧ + →  | Select text right one character |
+| [⇪+S] + ; | ⌘ + A | Select the entire text field |
+| [⇪+S] + Y | ⌘ + ⇧ + ← | Select text to the start of the line |
+| [⇪+S] + U | ⌥ + ⇧ + ← | Select the word to the left |
+| [⇪+S] + I | ⌥ + ⇧ + → | Select the word to the right |
+| [⇪+S] + O | ⌘ + ⇧ + → | Select text to the end of the line |
+| [⇪+S] + P | ⌘ + ←, ⌘ + ⇧ + → | Select the entire line |
+| [⇪+S] + N |  |  |
+| [⇪+S] + M | ⌥ + ⇧ + ↓ | Moves cursor to the bottom of an input field |
+| [⇪+S] + , | ⌥ + ⇧ + ↑ | Moves cursor to the top of an input field |
+| [⇪+S] + . |  |  |
+| [⇪+S] + / |  |  |
 
-### Deletion Mode ([⇪] + D)
+### Deletion Mode (⇪ + D)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| [⇪] + D + H | ⌫ | Delete one character to the left |
-| [⇪] + D + J | ⇧ + ↓, ⌫ | Delete the line down from the cursor |
-| [⇪] + D + K | ⇧ + ↑, ⌫ | Delete the line up from the cursor |
-| [⇪] + D + L | ⌦ | Delete one character to the right |
-| [⇪] + D + ; | ⌘ + A, ⌫ | Delete whole text area |
-| [⇪] + D + Y | ⌘ + ⌫ | Delete the line to the left |
-| [⇪] + D + U | ⌥ + ⌫ | Delete the word to the left |
-| [⇪] + D + I | ⌥ + ⌦ | Delete the word to the right |
-| [⇪] + D + O | ⌘ + ⇧ + →, ⌫ | Delete the line to the right |
-| [⇪] + D + P | ⌘ + →, ⌘ + ⌫ | Delete the whole line |
-| [⇪] + D + N |  |  |
-| [⇪] + D + M | ⌃ + K | Delete the paragraph down from the cursor |
-| [⇪] + D + , | ⌥ + ⇧ + ↑, ⌫ | Delete the paragraph up from the cursor |
-| [⇪] + D + . |  |  |
-| [⇪] + D + / |  |  |
+| [⇪+D] + H | ⌫ | Delete one character to the left |
+| [⇪+D] + J | ⇧ + ↓, ⌫ | Delete the line down from the cursor |
+| [⇪+D] + K | ⇧ + ↑, ⌫ | Delete the line up from the cursor |
+| [⇪+D] + L | ⌦ | Delete one character to the right |
+| [⇪+D] + ; | ⌘ + A, ⌫ | Delete whole text area |
+| [⇪+D] + Y | ⌘ + ⌫ | Delete the line to the left |
+| [⇪+D] + U | ⌥ + ⌫ | Delete the word to the left |
+| [⇪+D] + I | ⌥ + ⌦ | Delete the word to the right |
+| [⇪+D] + O | ⌘ + ⇧ + →, ⌫ | Delete the line to the right |
+| [⇪+D] + P | ⌘ + →, ⌘ + ⌫ | Delete the whole line |
+| [⇪+D] + N |  |  |
+| [⇪+D] + M | ⌃ + K | Delete the paragraph down from the cursor |
+| [⇪+D] + , | ⌥ + ⇧ + ↑, ⌫ | Delete the paragraph up from the cursor |
+| [⇪+D] + . |  |  |
+| [⇪+D] + / |  |  |
 
 ---
 
-## Scroll / Cursor Grid Layer ([⇪+F])
+## Scroll / Cursor Grid Layer (⇪+F)
 
 ### Scrolling
 
@@ -150,24 +150,24 @@ Karabiner sends ⌃+⇧+key which Hammerspoon's eventtap intercepts to perform s
 | [⇪+F] + / |  |  |
 | [⇪+F] + P | Toggle grid | Toggle grid overlay on focused window |
 
-### Cursor Grid Movement — [⇪+F] + D (8×8) / [⇪+F] + S (32×32)
+### Cursor Grid Movement — ⇪+F + D (8×8) / ⇪+F + S (32×32)
 
 Moves the mouse cursor within the focused window on a grid. D mode uses an 8×8 grid for coarse positioning, S mode uses 32×32 for fine precision. On first keypress, snaps to the nearest grid cell from the current mouse position. An amber indicator flashes at the cursor position after each move.
 
 | Key | Action |
 | --- | --- |
-| [⇪+F] + D/S + H | Move cursor 1 grid cell left |
-| [⇪+F] + D/S + J | Move cursor 1 grid cell down |
-| [⇪+F] + D/S + K | Move cursor 1 grid cell up |
-| [⇪+F] + D/S + L | Move cursor 1 grid cell right |
-| [⇪+F] + D/S + Y | Jump to left edge |
-| [⇪+F] + D/S + O | Jump to right edge |
-| [⇪+F] + D/S + U | Move cursor 2 grid cells left |
-| [⇪+F] + D/S + I | Move cursor 2 grid cells right |
-| [⇪+F] + D/S + N | Jump to bottom edge |
-| [⇪+F] + D/S + . | Jump to top edge |
-| [⇪+F] + D/S + M | Move cursor 2 grid cells down |
-| [⇪+F] + D/S + , | Move cursor 2 grid cells up |
+| [⇪+F+D/S] + H | Move cursor 1 grid cell left |
+| [⇪+F+D/S] + J | Move cursor 1 grid cell down |
+| [⇪+F+D/S] + K | Move cursor 1 grid cell up |
+| [⇪+F+D/S] + L | Move cursor 1 grid cell right |
+| [⇪+F+D/S] + Y | Jump to left edge |
+| [⇪+F+D/S] + O | Jump to right edge |
+| [⇪+F+D/S] + U | Move cursor 2 grid cells left |
+| [⇪+F+D/S] + I | Move cursor 2 grid cells right |
+| [⇪+F+D/S] + N | Jump to bottom edge |
+| [⇪+F+D/S] + . | Jump to top edge |
+| [⇪+F+D/S] + M | Move cursor 2 grid cells down |
+| [⇪+F+D/S] + , | Move cursor 2 grid cells up |
 
 ### Cursor Fixed Positions — ⇪ + F + E
 
@@ -175,30 +175,30 @@ Jumps the mouse cursor to fixed positions within the focused window. An amber in
 
 | Key | Position |
 | --- | --- |
-| [⇪+F] + E + H | Left edge, center height |
-| [⇪+F] + E + L | Right edge, center height |
-| [⇪+F] + E + J | Bottom edge, center width |
-| [⇪+F] + E + K | Top edge, center width |
-| [⇪+F] + E + ; | Window center |
-| [⇪+F] + E + Y | Top-left corner |
-| [⇪+F] + E + O | Top-right corner |
-| [⇪+F] + E + N | Bottom-left corner |
-| [⇪+F] + E + . | Bottom-right corner |
-| [⇪+F] + E + U | Top-left quadrant center |
-| [⇪+F] + E + I | Top-right quadrant center |
-| [⇪+F] + E + M | Bottom-left quadrant center |
-| [⇪+F] + E + , | Bottom-right quadrant center |
+| [⇪+F+E] + H | Left edge, center height |
+| [⇪+F+E] + L | Right edge, center height |
+| [⇪+F+E] + J | Bottom edge, center width |
+| [⇪+F+E] + K | Top edge, center width |
+| [⇪+F+E] + ; | Window center |
+| [⇪+F+E] + Y | Top-left corner |
+| [⇪+F+E] + O | Top-right corner |
+| [⇪+F+E] + N | Bottom-left corner |
+| [⇪+F+E] + . | Bottom-right corner |
+| [⇪+F+E] + U | Top-left quadrant center |
+| [⇪+F+E] + I | Top-right quadrant center |
+| [⇪+F+E] + M | Bottom-left quadrant center |
+| [⇪+F+E] + , | Bottom-right quadrant center |
 
-### Link Hints ([⇪+F] + E, Chrome/Homerow)
+### Link Hints (⇪+F + E, Chrome/Homerow)
 
 In Chrome, F+E also provides Vimium and Homerow integration:
 
 | Key | Action |
 | --- | --- |
-| [⇪+F] + E + J | Vimium link hints (Chrome) |
-| [⇪+F] + E + K | Vimium hover hints (Chrome) |
-| [⇪+F] + E + ; | Toggle Vimium (Chrome) |
-| [⇪+F] + E + H | Homerow scroll mode |
+| [⇪+F+E] + J | Vimium link hints (Chrome) |
+| [⇪+F+E] + K | Vimium hover hints (Chrome) |
+| [⇪+F+E] + ; | Toggle Vimium (Chrome) |
+| [⇪+F+E] + H | Homerow scroll mode |
 
 ### Grid Overlay — ⇪ + F + D/S/E + P
 
@@ -206,7 +206,7 @@ Toggles a grid overlay on the focused window. Shows an 8×8 grid in D/E modes, a
 
 ---
 
-## Application Layer ([⇪+G])
+## Application Layer (⇪+G)
 
 The G layer provides app-specific behavior. In Chrome it controls tabs and windows, in iTerm2 it controls tmux panes, and in other apps it provides generic directional window focus.
 
@@ -237,7 +237,7 @@ The G layer provides app-specific behavior. In Chrome it controls tabs and windo
 
 Tab switching (H/L/Y/O/U/I) uses Hammerspoon JXA for reliability, with hold-to-repeat (0.2s delay, 70ms interval) and cross-window wrapping via AeroSpace.
 
-#### Tab Reorder Mode ([⇪+F+G])
+#### Tab Reorder Mode (⇪+F+G)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -250,7 +250,7 @@ Tab switching (H/L/Y/O/U/I) uses Hammerspoon JXA for reliability, with hold-to-r
 | [⇪+F+G] + J | Move tab + focus ↓ | Move tab to window below and follow |
 | [⇪+F+G] + K | Move tab + focus ↑ | Move tab to window above and follow |
 
-#### Tab Move Mode ([⇪+D+G])
+#### Tab Move Mode (⇪+D+G)
 
 Moves the current tab to another Chrome window in the specified direction, using the tab-mover Chrome extension:
 
@@ -289,12 +289,12 @@ When iTerm2 is frontmost, several default layer keys are overridden with termina
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| [⇪] + D + Y | ⌃ + U | Delete from cursor to start of line |
-| [⇪] + D + U | ⌃ + W | Delete word to the left |
-| [⇪] + D + I | ⌥ + D | Delete word to the right |
-| [⇪] + D + O | ⌃ + K | Delete from cursor to end of line |
-| [⇪] + D + J | F18 | Delete to line below |
-| [⇪] + D + K | F19 | Delete to line above |
+| [⇪+D] + Y | ⌃ + U | Delete from cursor to start of line |
+| [⇪+D] + U | ⌃ + W | Delete word to the left |
+| [⇪+D] + I | ⌥ + D | Delete word to the right |
+| [⇪+D] + O | ⌃ + K | Delete from cursor to end of line |
+| [⇪+D] + J | F18 | Delete to line below |
+| [⇪+D] + K | F19 | Delete to line above |
 
 #### Undo/Redo
 
@@ -307,15 +307,15 @@ When iTerm2 is frontmost, several default layer keys are overridden with termina
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| [⇪] + S + H | ⇧ + ← | Select character to the left |
-| [⇪] + S + J | ⌃ + ⇧ + ↓ | Select line down (to end of buffer on last line) |
-| [⇪] + S + K | ⌃ + ⇧ + ↑ | Select line up (to start of buffer on first line) |
-| [⇪] + S + L | ⇧ + → | Select character to the right |
-| [⇪] + S + Y | ⇧ + Home | Select to start of line |
-| [⇪] + S + U | ⌃ + ⇧ + ← | Select word to the left |
-| [⇪] + S + I | ⌃ + ⇧ + → | Select word to the right |
-| [⇪] + S + O | ⇧ + End | Select to end of line |
-| [⇪] + S + ; | ⌥ + A | Select entire command buffer |
+| [⇪+S] + H | ⇧ + ← | Select character to the left |
+| [⇪+S] + J | ⌃ + ⇧ + ↓ | Select line down (to end of buffer on last line) |
+| [⇪+S] + K | ⌃ + ⇧ + ↑ | Select line up (to start of buffer on first line) |
+| [⇪+S] + L | ⇧ + → | Select character to the right |
+| [⇪+S] + Y | ⇧ + Home | Select to start of line |
+| [⇪+S] + U | ⌃ + ⇧ + ← | Select word to the left |
+| [⇪+S] + I | ⌃ + ⇧ + → | Select word to the right |
+| [⇪+S] + O | ⇧ + End | Select to end of line |
+| [⇪+S] + ; | ⌥ + A | Select entire command buffer |
 
 #### Standard Commands
 
@@ -328,8 +328,8 @@ When iTerm2 is frontmost, several default layer keys are overridden with termina
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| [⇪] + ⌘ + C | F15 | Copy selection to system clipboard |
-| [⇪] + ⌘ + X | F16 | Cut selection to system clipboard |
+| [⇪+⌘] + C | F15 | Copy selection to system clipboard |
+| [⇪+⌘] + X | F16 | Cut selection to system clipboard |
 
 #### G Layer — Tmux Pane Navigation
 
@@ -353,7 +353,7 @@ When iTerm2 is frontmost, several default layer keys are overridden with termina
 
 ---
 
-## Aerospace Layer ([⇪+T])
+## Aerospace Layer (⇪+T)
 
 ### Focus
 
@@ -378,24 +378,24 @@ When iTerm2 is frontmost, several default layer keys are overridden with termina
 | [⇪+T] + I | *available* | |
 | [⇪+T] + O | *available* | |
 
-### Move Mode ([⇪+T] + R)
+### Move Mode (⇪+T + R)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| [⇪+T] + R + H | ⌘ + ⌥ + ⌃ + Y | Move window left (crosses to adjacent monitor at edge) |
-| [⇪+T] + R + J | ⌘ + ⌥ + ⌃ + U | Move window down (crosses to adjacent monitor at edge) |
-| [⇪+T] + R + K | ⌘ + ⌥ + ⌃ + I | Move window up (crosses to adjacent monitor at edge) |
-| [⇪+T] + R + L | ⌘ + ⌥ + ⌃ + O | Move window right (crosses to adjacent monitor at edge) |
-| [⇪+T] + R + ' | `ws.sh move-monitor-focus` | Move window to next monitor and follow |
+| [⇪+T+R] + H | ⌘ + ⌥ + ⌃ + Y | Move window left (crosses to adjacent monitor at edge) |
+| [⇪+T+R] + J | ⌘ + ⌥ + ⌃ + U | Move window down (crosses to adjacent monitor at edge) |
+| [⇪+T+R] + K | ⌘ + ⌥ + ⌃ + I | Move window up (crosses to adjacent monitor at edge) |
+| [⇪+T+R] + L | ⌘ + ⌥ + ⌃ + O | Move window right (crosses to adjacent monitor at edge) |
+| [⇪+T+R] + ' | `ws.sh move-monitor-focus` | Move window to next monitor and follow |
 
-### Join Mode ([⇪+T] + 4)
+### Join Mode (⇪+T + 4)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| [⇪+T] + 4 + H | ⌘ + ⌥ + ⌃ + N | Join with left |
-| [⇪+T] + 4 + J | ⌘ + ⌥ + ⌃ + M | Join with down |
-| [⇪+T] + 4 + K | ⌘ + ⌥ + ⌃ + , | Join with up |
-| [⇪+T] + 4 + L | ⌘ + ⌥ + ⌃ + . | Join with right |
+| [⇪+T+4] + H | ⌘ + ⌥ + ⌃ + N | Join with left |
+| [⇪+T+4] + J | ⌘ + ⌥ + ⌃ + M | Join with down |
+| [⇪+T+4] + K | ⌘ + ⌥ + ⌃ + , | Join with up |
+| [⇪+T+4] + L | ⌘ + ⌥ + ⌃ + . | Join with right |
 
 ### Workspace Operations
 
@@ -410,46 +410,46 @@ h  j  k  l  ;
 n  m  ,  .  /
 ```
 
-### Focus Workspace ([⇪+T] + W)
+### Focus Workspace (⇪+T + W)
 
 | Key / Shortcut | Description |
 | --- | --- |
-| [⇪+T] + W + *key* | Focus workspace on current monitor (swaps if visible on another) |
+| [⇪+T+W] + *key* | Focus workspace on current monitor (swaps if visible on another) |
 
-### Move to Workspace ([⇪+T] + E)
-
-| Key / Shortcut | Description |
-| --- | --- |
-| [⇪+T] + E + *key* | Move focused window to workspace (stay on current) |
-| [⇪+T] + E + ' | Move focused window to next monitor (stay on current) |
-
-### Move + Follow to Workspace ([⇪+T] + R + E)
+### Move to Workspace (⇪+T + E)
 
 | Key / Shortcut | Description |
 | --- | --- |
-| [⇪+T] + R + E + *key* | Move window to workspace and follow on current monitor |
-| [⇪+T] + R + E + ' | Move window to next monitor and yank that workspace back |
+| [⇪+T+E] + *key* | Move focused window to workspace (stay on current) |
+| [⇪+T+E] + ' | Move focused window to next monitor (stay on current) |
 
-### Focus Monitor 1 ([⇪+T] + W + E)
-
-| Key / Shortcut | Description |
-| --- | --- |
-| [⇪+T] + W + E + *key* | Focus workspace on monitor 1 |
-
-### Focus Monitor 2 ([⇪+T] + W + R)
+### Move + Follow to Workspace (⇪+T + R + E)
 
 | Key / Shortcut | Description |
 | --- | --- |
-| [⇪+T] + W + R + *key* | Focus workspace on monitor 2 (falls back to monitor 1) |
+| [⇪+T+R+E] + *key* | Move window to workspace and follow on current monitor |
+| [⇪+T+R+E] + ' | Move window to next monitor and yank that workspace back |
 
-### Swap Windows ([⇪+T] + 3)
+### Focus Monitor 1 (⇪+T + W + E)
 
 | Key / Shortcut | Description |
 | --- | --- |
-| [⇪+T] + 3 + *key* | Swap all windows between focused workspace and target workspace |
-| [⇪+T] + 3 + ' | Swap workspaces between current and next monitor |
+| [⇪+T+W+E] + *key* | Focus workspace on monitor 1 |
 
-### Nav Grid ([⇪+T] + W + 4)
+### Focus Monitor 2 (⇪+T + W + R)
+
+| Key / Shortcut | Description |
+| --- | --- |
+| [⇪+T+W+R] + *key* | Focus workspace on monitor 2 (falls back to monitor 1) |
+
+### Swap Windows (⇪+T + 3)
+
+| Key / Shortcut | Description |
+| --- | --- |
+| [⇪+T+3] + *key* | Swap all windows between focused workspace and target workspace |
+| [⇪+T+3] + ' | Swap workspaces between current and next monitor |
+
+### Nav Grid (⇪+T + W + 4)
 
 Activates a navigation cursor on the workspace grid overlay. Use HJKL to move the cursor across the 4x5 grid. When exiting the mode (releasing keys), `ws.sh focus` runs on the selected workspace.
 
@@ -467,7 +467,7 @@ Window-to-workspace assignments are automatically saved after every workspace op
 
 ---
 
-## System Layer ([⇪+A])
+## System Layer (⇪+A)
 
 macOS system toggles and input source management. Unlike other layers, A does not follow the right-hand directional layout — these are standalone utility shortcuts.
 
