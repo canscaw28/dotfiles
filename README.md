@@ -29,7 +29,7 @@ macOS configuration files and settings.
 - `keyboard-layouts/` - Custom keyboard layouts (Mongolian QWERTY)
 
 ### Automation
-- `.hammerspoon/` - [Hammerspoon](https://www.hammerspoon.org/) automation scripts
+- `.hammerspoon/` - [Hammerspoon](https://www.hammerspoon.org/) automation scripts (see [.hammerspoon/README.md](.hammerspoon/README.md))
   - Scroll layer, cursor grid, line navigation hold-to-repeat
   - Workspace grid overlay, focus border flash, workspace notifications
   - Key repeat suppression for Caps Lock layers
