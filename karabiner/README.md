@@ -489,3 +489,16 @@ macOS system toggles and input source management. Unlike other layers, A does no
 | ⇪ + A + H | English (U.S.) | Switch to English input source |
 | ⇪ + A + N | Toggle Input | Toggle between input sources (⌃+Space) |
 
+---
+
+## MacBook Keyboard Ghosting
+
+Certain key combinations are silently dropped on the MacBook's built-in keyboard due to the keyboard matrix design. The key event never reaches Karabiner at all. This does not affect external keyboards.
+
+| Keys held | Dropped keys | Impact |
+| --- | --- | --- |
+| Caps + T + Q | U, I, O, P, ; | Q was removed as a workspace mode key because of this |
+| Caps + A | J, K, L, ; | A layer avoids right-hand home row; uses Y/U/I/O and H/N instead |
+
+Always verify new multi-key combos in Karabiner EventViewer before committing to a binding.
+
