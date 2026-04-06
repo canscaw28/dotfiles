@@ -1,123 +1,56 @@
 # Karabiner Elements Configuration
 
-## Design Philosophy
+Caps Lock becomes a modifier system where the **left hand picks context** and the **right hand picks action**.
 
-This configuration turns **Caps Lock** into an ergonomic command system built around two core ideas: the left hand selects *what* to do (context), the right hand selects *where* to do it (action) — and both hands require minimal unique muscle memory.
+## Layers
 
-### Left Hand: Layers and Modes
+| Layer Key | Layer | Domain |
+| --- | --- | --- |
+| ⇪ | Default | Cursor movement, text selection, deletion |
+| ⇪ + F | Scroll / Cursor Grid | Page scrolling, mouse cursor control, link hints |
+| ⇪ + G | Chrome | Tab/window navigation and management |
+| ⇪ + T | Aerospace | Window tiling and workspace operations |
+| ⇪ + A | System | Dock, Notification Center, input source, etc. |
 
-The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
+## Design
 
-1. **Pinky → Caps Lock (always held)** activates the entire system. Every shortcut starts here.
-2. **Pointer finger → Layer selection.** A layer is a top-level domain — a completely different context for the right hand's actions. Each layer key is held by the pointer finger:
+Left hand has three tiers: **pinky** holds Caps Lock, **pointer** selects the layer, **middle/ring** select a mode within that layer. Mode keys sit adjacent to the pointer's layer key, so each layer+mode is a single hand shape. Keys can be pressed in any order — only what's held when the action key fires matters.
 
-   | Pointer Position | Layer | Domain |
-   | --- | --- | --- |
-   | *(home / absent)* | Default | Cursor movement |
-   | F | Scroll / Cursor Grid | Page scrolling, mouse cursor control, link hints |
-   | G | Chrome | Browser tab/window control |
-   | T | Aerospace | Window management and workspace switching |
-
-3. **Middle and ring fingers → Mode selection.** A mode is a *variation within a layer* — it changes how the right hand's actions are interpreted without changing the domain. Mode keys are ergonomically adjacent to the pointer finger's layer key, so they fall naturally under the middle or ring finger:
-
-   | Layer | Mode Key | Mode | Description |
-   | --- | --- | --- | --- |
-   | Default | *(none)* | Cursor | Move the cursor |
-   | Default | S (ring) | Selection | Select text instead of moving |
-   | Default | D (middle) | Deletion | Delete text instead of moving |
-   | Chrome (G) | *(none)* | Tab Navigation | Switch between tabs/windows |
-   | Chrome (G) | F (middle) | Tab Reorder | Reorder tabs within a window |
-   | Chrome (G) | D (ring) | Tab Move | Move tab to another window directionally |
-   | Aerospace (T) | *(none)* | Focus | Focus windows directionally |
-   | Aerospace (T) | R (ring) | Move | Move windows directionally |
-   | Aerospace (T) | 4 (number row) | Join | Join windows directionally |
-   | Aerospace (T) | W | Focus WS | Focus workspace on current monitor |
-   | Aerospace (T) | E | Move to WS | Move window to workspace (stay) |
-   | Aerospace (T) | R+E | Move+Follow | Move window to workspace and follow |
-   | Aerospace (T) | W+E | Focus Mon 1 | Focus workspace on monitor 1 |
-   | Aerospace (T) | W+R | Focus Mon 2 | Focus workspace on monitor 2 |
-   | Aerospace (T) | 3 | Swap Windows | Swap all windows between workspaces |
-   | Aerospace (T) | W+4 | Nav Grid | HJKL cursor over 4x5 workspace grid |
-
-   Notice that S and D are not separate layers — they are **modes of the Default layer**. The pointer finger is absent (no layer key held), so the middle and ring fingers are free to select a mode on the home row. Similarly, F is not a mode of Chrome — it's a mode key for the G layer, pressed by the middle finger while the pointer holds G.
-
-   Mode keys are always relative to the pointer finger's position:
-   - **Default layer** (pointer absent): modes use home-row neighbors **S**, **D**
-   - **G layer** (pointer on G): modes use **F**, **D**
-   - **T layer** (pointer on T): modes use **R**, **E**, **W**, **3**, **4**
-
-   This means learning a new layer doesn't require memorizing arbitrary modifier keys — the mode keys are always "the fingers next to the layer key."
-
-   **Order-independent**: Mode key setters activate on `caps_lock_is_held` alone (not `caps + layer_key`), so keys can be pressed in any order. For example, `⇪ + W + R + T + m` works identically whether you press T before W and R or after — as long as all keys are held simultaneously when the workspace key is pressed.
-
-### Right Hand: Consistent Action Layout
-
-Regardless of which layer or mode the left hand selects, the right hand uses the **same spatial layout**:
+Right hand layout is always the same — vim directions that stay consistent across every layer:
 
 ```
-     Y  U  I  O              ← extreme actions (amplified h/j/k/l)
-       H  J  K  L            ← directional core (←↓↑→)
-         N  M  ,  .          ← contextual extensions
+     Y  U  I  O              ← extreme (boundary jumps)
+       H  J  K  L            ← core (←↓↑→)
+         N  M  ,  .          ← extensions
 ```
 
-The directional keys mirror vim:
-- **H / L** — left / right (single step)
-- **J / K** — down / up (or the closest conceptual equivalent)
-- **Y / O** — far left / far right (jump to boundary)
-- **U / I** — big step left / big step right (intermediate jump)
+**Available layer keys:** R, Z, X, C, V, B
 
-This mapping is consistent across layers and modes:
+## Modes
 
-| Layer | Mode | H / L | U / I | Y / O |
-| --- | --- | --- | --- | --- |
-| Default | Cursor | ← / → | word left / right | line start / end |
-| Default | Selection (S) | select ← / → | select word left / right | select to line start / end |
-| Default | Deletion (D) | delete ← / → | delete word left / right | delete to line start / end |
-| Chrome | Navigation (G) | prev / next tab | jump 3 tabs | first / last tab |
-| Chrome | Reorder (F+G) | move tab ← / → | move tab 3 positions | move to start / end |
-| Chrome | Tab Move (D+G) | move tab to window ← / → | | move tab to window ↑ / ↓ |
-| Aerospace | Focus (T) | focus ← / → | | |
-| Aerospace | Move (R+T) | move window ← / → | | |
-| Aerospace | Join (4+T) | join ← / → | | |
-
-Because the right hand layout never changes, you only learn it once. Switching layers and modes is entirely a left-hand concern.
-
-### Why This Works
-
-- **Right hand** — near-zero unique muscle memory. The same finger movements mean analogous actions in every context. "H always goes left. Y always goes to the far left."
-- **Left hand** — layers have unique keys, but modes cluster naturally around the pointer finger. Selecting a layer and its mode is a single comfortable hand shape, not a sequence to memorize.
-- **Scalability** — new layers and modes slot in without disrupting existing muscle memory. A new mode on the G layer just means one more adjacent finger; a new layer means a new pointer position. The right hand actions carry over automatically.
-
----
-
-## Layers and Modes
-
-| Layer | Layer Key | Mode Key | Mode | Description |
-| --- | --- | --- | --- | --- |
-| Default | ⇪ | — | Cursor | Move the cursor |
-| | ⇪ | S | Selection | Select text instead of moving |
-| | ⇪ | D | Deletion | Delete text instead of moving |
-| Scroll / Cursor Grid | ⇪ + F | — | Scroll | Page scrolling via Hammerspoon |
-| | ⇪ + F | D | Coarse Grid | 8x8 mouse cursor grid |
-| | ⇪ + F | S | Fine Grid | 32x32 mouse cursor grid |
-| | ⇪ + F | E | Link Hints / Jump | Fixed cursor positions, Vimium/Homerow hints |
-| Chrome | ⇪ + G | — | Navigation | Switch between tabs and windows |
-| | ⇪ + G | F | Reorder | Reorder tabs within a window |
-| | ⇪ + G | D | Tab Move | Move tab to another Chrome window |
-| Aerospace | ⇪ + T | — | Focus | Window focus management |
-| | ⇪ + T | R | Move | Move windows directionally |
-| | ⇪ + T | 4 | Join | Join windows directionally |
-| | ⇪ + T | W | Focus WS | Focus workspace on current monitor |
-| | ⇪ + T | E | Move to WS | Move window to workspace (stay) |
-| | ⇪ + T | R+E | Move+Follow | Move window to workspace and follow |
-| | ⇪ + T | W+E | Focus Mon 1 | Focus workspace on monitor 1 |
-| | ⇪ + T | W+R | Focus Mon 2 | Focus workspace on monitor 2 |
-| | ⇪ + T | 3 | Swap Windows | Swap all windows between workspaces |
-| | ⇪ + T | W+4 | Nav Grid | HJKL cursor over workspace grid |
-| System | ⇪ + A | — | System Toggles | Dock, Notification Center, Mission Control, etc. |
-| *(unassigned)* | ⇪ + R | | | |
-
-*Available layer keys: R, Z, X, C, V, B*
+| Layer | Mode Key | Mode | Description |
+| --- | --- | --- | --- |
+| Default | — | Cursor | Move the cursor |
+| | S | Selection | Select text instead of moving |
+| | D | Deletion | Delete text instead of moving |
+| Scroll (F) | — | Scroll | Page scrolling via Hammerspoon |
+| | D | Coarse Grid | 8x8 mouse cursor grid |
+| | S | Fine Grid | 32x32 mouse cursor grid |
+| | E | Link Hints / Jump | Fixed cursor positions, Vimium/Homerow hints |
+| Chrome (G) | — | Navigation | Switch between tabs and windows |
+| | F | Reorder | Reorder tabs within a window |
+| | D | Tab Move | Move tab to another Chrome window |
+| Aerospace (T) | — | Focus | Window focus management |
+| | R | Move | Move windows directionally |
+| | 4 | Join | Join windows directionally |
+| | W | Focus WS | Focus workspace on current monitor |
+| | E | Move to WS | Move window to workspace (stay) |
+| | R+E | Move+Follow | Move window to workspace and follow |
+| | W+E | Focus Mon 1 | Focus workspace on monitor 1 |
+| | W+R | Focus Mon 2 | Focus workspace on monitor 2 |
+| | 3 | Swap Windows | Swap all windows between workspaces |
+| | W+4 | Nav Grid | HJKL cursor over workspace grid |
+| System (A) | — | System Toggles | Dock, Notification Center, Mission Control, etc. |
 
 ## Misc Shortcuts
 
