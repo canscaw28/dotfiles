@@ -1,249 +1,166 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
-Idempotent script to add/update F layer cursor grid manipulators to karabiner.json.
+Generate F layer cursor grid YAML source file.
 
 Modes:
   F+D (8x8)  — grid-based cursor movement
   F+S (32x32) — fine grid-based cursor movement
-  F+E         — fixed-position jumps (edges, corners, quadrant centers)
-  F+D/S/E+P   — toggle grid overlay
+  F+D+S      — fixed-position jumps (edges, corners, quadrant centers)
+               Activated by holding F+D+S together (D and S setters in
+               05-f-grid-setters.yaml swap modes when both held).
+  F+P        — toggle 8x8 move grid overlay (no D/S/E)
+  F+D+P      — toggle 8x8 move grid overlay
+  F+S+P      — toggle 32x32 move grid overlay
+  F+D+S+P    — toggle 8x8 jump grid overlay
+  F+;        — left mouse click (vanilla F layer)
+  F+'        — right mouse click (vanilla F layer)
 
-Inserts before the first F-layer scroll manipulator for correct priority.
+Output: karabiner/src/layers/45-f-cursor-grid.yaml
+
+This script writes YAML source files only. It does NOT modify
+karabiner.json directly. Run `./reload.sh --karabiner` after
+running this script to rebuild the JSON config.
 """
 
-import json
+import os
 import sys
-from pathlib import Path
 
-KARABINER_PATH = Path(__file__).resolve().parent.parent / "karabiner" / "karabiner.json"
+import yaml
 
-DESCRIPTION_PREFIX = "f-cursor-grid"
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUTPUT_FILE = os.path.join(REPO_ROOT, "karabiner", "src", "layers", "45-f-cursor-grid.yaml")
 
-# Grid movement keys: (key_code, direction, amount)
-# amount < 0 means "jump to edge"
+# (key_code, direction, amount). amount<0 means "jump to edge"
 MOVE_KEYS = [
     ("h", "left", 1),
     ("j", "down", 1),
     ("k", "up", 1),
     ("l", "right", 1),
-    ("y", "left", -1),     # jump to left edge
-    ("o", "right", -1),    # jump to right edge
+    ("y", "left", -1),
+    ("o", "right", -1),
     ("u", "left", 2),
     ("i", "right", 2),
-    ("n", "down", -1),     # jump to bottom edge
-    ("period", "up", -1),  # jump to top edge
+    ("n", "down", -1),
+    ("period", "up", -1),
     ("m", "down", 2),
     ("comma", "up", 2),
 ]
 
-# Fixed-position jump keys for F+E mode
+# Fixed-position jump keys for F+D+S mode
 JUMP_KEYS = [
-    "h", "j", "k", "l", "semicolon",
+    "h", "j", "k", "l", "slash",  # slash is window center
     "y", "o", "n", "period",
     "u", "i", "m", "comma",
 ]
 
 
-def make_conditions(mode_key):
-    """Base conditions for an F+mode manipulator."""
-    return [
-        {"name": "caps_lock_is_held", "type": "variable_if", "value": 1},
-        {"name": "f_is_held", "type": "variable_if", "value": 1},
-        {"name": f"{mode_key}_is_held", "type": "variable_if", "value": 1},
-        {"name": "g_is_held", "type": "variable_if", "value": 0},
-        {"name": "t_is_held", "type": "variable_if", "value": 0},
-    ]
+def hs(snippet):
+    return f'/usr/local/bin/hs -c "{snippet}" 2>/dev/null &'
 
 
-def make_move_manipulator(key_code, direction, amount, mode_key, grid_size):
-    """Create a grid movement manipulator (F+D or F+S) with hold-to-repeat."""
-    desc = f"{DESCRIPTION_PREFIX}: F+{mode_key.upper()}+{key_code} {direction} {amount}"
-    start_cmd = (
-        f'/usr/local/bin/hs -c "'
-        f"require('cursor_grid').startMove('{direction}', {amount}, {grid_size})"
-        f'" 2>/dev/null &'
-    )
-    stop_cmd = (
-        '/usr/local/bin/hs -c "'
-        "require('cursor_grid').stopMove()"
-        '" 2>/dev/null &'
-    )
+def move_manipulator(key, direction, amount, mode_key, grid_size):
     return {
-        "conditions": make_conditions(mode_key),
-        "description": desc,
-        "from": {"key_code": key_code, "modifiers": {"optional": ["any"]}},
-        "to": [{"shell_command": start_cmd}],
-        "to_after_key_up": [{"shell_command": stop_cmd}],
-        "type": "basic",
+        "from": key,
+        "description": f"f-cursor-grid: F+{mode_key.upper()}+{key} {direction} {amount}",
+        "to": {"shell": hs(f"require('cursor_grid').startMove('{direction}', {amount}, {grid_size})")},
+        "to_after_key_up": {"shell": hs("require('cursor_grid').stopMove()")},
     }
 
 
-def make_jump_manipulator(key_code):
-    """Create a fixed-position jump manipulator (F+E)."""
-    desc = f"{DESCRIPTION_PREFIX}: F+E+{key_code} jump"
-    hs_cmd = (
-        f'/usr/local/bin/hs -c "'
-        f"require('cursor_grid').jump('{key_code}')"
-        f'" 2>/dev/null &'
-    )
+def jump_manipulator(key):
+    label = "jump center" if key == "slash" else "jump"
     return {
-        "conditions": make_conditions("e"),
-        "description": desc,
-        "from": {"key_code": key_code, "modifiers": {"optional": ["any"]}},
-        "to": [{"shell_command": hs_cmd}],
-        "type": "basic",
+        "from": key,
+        "description": f"f-cursor-grid: F+D+S+{key} {label}",
+        "to": {"shell": hs(f"require('cursor_grid').jump('{key}')")},
     }
-
-
-def make_grid_toggle(mode_key, grid_size, mode="move"):
-    """Create a grid overlay toggle manipulator (F+mode+P)."""
-    desc = f"{DESCRIPTION_PREFIX}: F+{mode_key.upper()}+P toggle grid"
-    hs_cmd = (
-        f'/usr/local/bin/hs -c "'
-        f"require('cursor_grid').toggleGrid({grid_size}, \'{mode}\')"
-        f'" 2>/dev/null &'
-    )
-    return {
-        "conditions": make_conditions(mode_key),
-        "description": desc,
-        "from": {"key_code": "p", "modifiers": {"optional": ["any"]}},
-        "to": [{"shell_command": hs_cmd}],
-        "type": "basic",
-    }
-
-
-def make_click(key_code, button):
-    """Create a mouse click manipulator (vanilla F layer)."""
-    desc = f"{DESCRIPTION_PREFIX}: F+{key_code} {button} click"
-    hs_fn = "leftClick" if button == "left" else "rightClick"
-    hs_cmd = (
-        f'/usr/local/bin/hs -c "'
-        f"hs.eventtap.{hs_fn}(hs.mouse.absolutePosition())"
-        f'" 2>/dev/null &'
-    )
-    return {
-        "conditions": [
-            {"name": "caps_lock_is_held", "type": "variable_if", "value": 1},
-            {"name": "f_is_held", "type": "variable_if", "value": 1},
-            {"name": "d_is_held", "type": "variable_if", "value": 0},
-            {"name": "s_is_held", "type": "variable_if", "value": 0},
-            {"name": "e_is_held", "type": "variable_if", "value": 0},
-            {"name": "g_is_held", "type": "variable_if", "value": 0},
-            {"name": "t_is_held", "type": "variable_if", "value": 0},
-        ],
-        "description": desc,
-        "from": {"key_code": key_code, "modifiers": {"optional": ["any"]}},
-        "to": [{"shell_command": hs_cmd}],
-        "type": "basic",
-    }
-
-
-def make_standalone_f_p_toggle():
-    """Create F+P toggle (no D/S/E required) — defaults to 8x8 move grid."""
-    desc = f"{DESCRIPTION_PREFIX}: F+P toggle grid"
-    hs_cmd = (
-        '/usr/local/bin/hs -c "'
-        "require('cursor_grid').toggleGrid(8, 'move')"
-        '" 2>/dev/null &'
-    )
-    return {
-        "conditions": [
-            {"name": "caps_lock_is_held", "type": "variable_if", "value": 1},
-            {"name": "f_is_held", "type": "variable_if", "value": 1},
-            {"name": "d_is_held", "type": "variable_if", "value": 0},
-            {"name": "s_is_held", "type": "variable_if", "value": 0},
-            {"name": "e_is_held", "type": "variable_if", "value": 0},
-            {"name": "g_is_held", "type": "variable_if", "value": 0},
-            {"name": "t_is_held", "type": "variable_if", "value": 0},
-        ],
-        "description": desc,
-        "from": {"key_code": "p", "modifiers": {"optional": ["any"]}},
-        "to": [{"shell_command": hs_cmd}],
-        "type": "basic",
-    }
-
-
-def generate_all_manipulators():
-    """Generate all cursor grid manipulators."""
-    ms = []
-
-    # D mode (8x8) movement
-    for key_code, direction, amount in MOVE_KEYS:
-        ms.append(make_move_manipulator(key_code, direction, amount, "d", 8))
-
-    # S mode (32x32) movement
-    for key_code, direction, amount in MOVE_KEYS:
-        ms.append(make_move_manipulator(key_code, direction, amount, "s", 32))
-
-    # E mode fixed-position jumps
-    for key_code in JUMP_KEYS:
-        ms.append(make_jump_manipulator(key_code))
-
-    # Mouse clicks (vanilla F layer)
-    ms.append(make_click("semicolon", "left"))
-    ms.append(make_click("quote", "right"))
-
-    # Grid overlay toggles
-    ms.append(make_standalone_f_p_toggle())
-    ms.append(make_grid_toggle("d", 8))
-    ms.append(make_grid_toggle("s", 32))
-    ms.append(make_grid_toggle("e", 8, "jump"))
-
-    return ms
-
-
-def find_first_f_scroll_index(manipulators):
-    """Find the index of the first F-layer scroll manipulator."""
-    for i, m in enumerate(manipulators):
-        conditions = m.get("conditions", [])
-        cond_map = {}
-        for c in conditions:
-            if c.get("type") == "variable_if":
-                cond_map[c["name"]] = c["value"]
-
-        if (
-            cond_map.get("f_is_held") == 1
-            and cond_map.get("s_is_held") == 0
-            and cond_map.get("d_is_held") == 0
-            and cond_map.get("caps_lock_is_held") == 1
-            and cond_map.get("g_is_held") == 0
-        ):
-            desc = m.get("description", "")
-            if not desc.startswith(DESCRIPTION_PREFIX):
-                return i
-    return None
-
-
-def remove_existing(manipulators):
-    """Remove any existing cursor grid manipulators."""
-    return [m for m in manipulators if not m.get("description", "").startswith(DESCRIPTION_PREFIX)]
 
 
 def main():
-    with open(KARABINER_PATH) as f:
-        config = json.load(f)
+    # Build the structure
+    output = {
+        "_generated_by": "scripts/apply_f_cursor_grid.py",
+        "_warning": "Auto-generated. Do not edit directly. Run scripts/apply_f_cursor_grid.py to regenerate.",
+    }
 
-    rule = config["profiles"][0]["complex_modifications"]["rules"][0]
-    manipulators = rule["manipulators"]
+    # The file has multiple sections with different layer requirements.
+    # Use a list of "blocks" — each block has its own layer/negatives + manipulators.
+    blocks = []
 
-    manipulators = remove_existing(manipulators)
+    # Block 1: F+D movement
+    d_manips = [move_manipulator(k, d, a, "d", 8) for k, d, a in MOVE_KEYS]
+    # Block 2: F+S movement
+    s_manips = [move_manipulator(k, d, a, "s", 32) for k, d, a in MOVE_KEYS]
+    # Block 3: F+D+S jumps (the file-level layer)
+    jump_manips = [jump_manipulator(k) for k in JUMP_KEYS]
 
-    insert_idx = find_first_f_scroll_index(manipulators)
-    if insert_idx is None:
-        print("ERROR: Could not find F-layer scroll manipulators to insert before", file=sys.stderr)
-        sys.exit(1)
+    # Click manipulators (F+; and F+')
+    click_manips = [
+        {
+            "from": "semicolon",
+            "description": "f-cursor-grid: F+semicolon left click",
+            "layer": ["caps", "f"],
+            "negative_conditions": ["e", "g", "t"],
+            "to": {"shell": hs("hs.eventtap.leftClick(hs.mouse.absolutePosition()); require('cursor_grid').flashClick()")},
+        },
+        {
+            "from": "quote",
+            "description": "f-cursor-grid: F+quote right click",
+            "layer": ["caps", "f"],
+            "negative_conditions": ["e", "g", "t"],
+            "to": {"shell": hs("hs.eventtap.rightClick(hs.mouse.absolutePosition()); require('cursor_grid').flashClick()")},
+        },
+    ]
 
-    new_manipulators = generate_all_manipulators()
-    for i, m in enumerate(new_manipulators):
-        manipulators.insert(insert_idx + i, m)
+    # Toggle manipulators
+    toggle_manips = [
+        {
+            "from": "p",
+            "description": "f-cursor-grid: F+P toggle grid",
+            "layer": ["caps", "f"],
+            "negative_conditions": ["d", "s", "e", "g", "t"],
+            "to": {"shell": hs("require('cursor_grid').toggleGrid(8, 'move')")},
+        },
+        {
+            "from": "p",
+            "description": "f-cursor-grid: F+D+P toggle grid",
+            "layer": ["caps", "f", "d"],
+            "negative_conditions": ["g", "t", "s"],
+            "to": {"shell": hs("require('cursor_grid').toggleGrid(8, 'move')")},
+        },
+        {
+            "from": "p",
+            "description": "f-cursor-grid: F+S+P toggle grid",
+            "layer": ["caps", "f", "s"],
+            "negative_conditions": ["g", "t", "d"],
+            "to": {"shell": hs("require('cursor_grid').toggleGrid(32, 'move')")},
+        },
+        {
+            "from": "p",
+            "description": "f-cursor-grid: F+D+S+P toggle grid",
+            "to": {"shell": hs("require('cursor_grid').toggleGrid(8, 'jump')")},
+        },
+    ]
 
-    rule["manipulators"] = manipulators
+    # All movement (F+D and F+S) uses per-manipulator layer overrides
+    # The file-level layer is F+D+S (the jumps)
+    # Movement manipulators need their own layer specs
+    for m in d_manips:
+        m["layer"] = ["caps", "f", "d"]
+        m["negative_conditions"] = ["g", "t"]
+    for m in s_manips:
+        m["layer"] = ["caps", "f", "s"]
+        m["negative_conditions"] = ["g", "t"]
 
-    with open(KARABINER_PATH, "w") as f:
-        json.dump(config, f, indent=2, ensure_ascii=False)
-        f.write("\n")
+    output["layer"] = ["caps", "f", "d", "s"]
+    output["negative_conditions"] = ["g", "t"]
+    output["manipulators"] = d_manips + s_manips + jump_manips + click_manips + toggle_manips
 
-    print(f"Inserted {len(new_manipulators)} cursor grid manipulators at index {insert_idx}")
+    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+    with open(OUTPUT_FILE, "w") as f:
+        yaml.dump(output, f, default_flow_style=False, allow_unicode=True, sort_keys=False, width=200)
+
+    print(f"Wrote {len(output['manipulators'])} cursor grid manipulators to {OUTPUT_FILE}")
 
 
 if __name__ == "__main__":

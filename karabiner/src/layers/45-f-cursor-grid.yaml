@@ -1,11 +1,13 @@
+_generated_by: scripts/apply_f_cursor_grid.py
+_warning: Auto-generated. Do not edit directly. Run scripts/apply_f_cursor_grid.py to regenerate.
 layer:
 - caps
 - f
 - d
+- s
 negative_conditions:
 - g
 - t
-- s
 manipulators:
 - from: h
   description: 'f-cursor-grid: F+D+h left 1'
@@ -13,88 +15,162 @@ manipulators:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('left', 1, 8)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+  layer:
+  - caps
+  - f
+  - d
+  negative_conditions:
+  - g
+  - t
 - from: j
   description: 'f-cursor-grid: F+D+j down 1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('down', 1, 8)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+  layer:
+  - caps
+  - f
+  - d
+  negative_conditions:
+  - g
+  - t
 - from: k
   description: 'f-cursor-grid: F+D+k up 1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('up', 1, 8)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+  layer:
+  - caps
+  - f
+  - d
+  negative_conditions:
+  - g
+  - t
 - from: l
   description: 'f-cursor-grid: F+D+l right 1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('right', 1, 8)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+  layer:
+  - caps
+  - f
+  - d
+  negative_conditions:
+  - g
+  - t
 - from: y
   description: 'f-cursor-grid: F+D+y left -1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('left', -1, 8)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+  layer:
+  - caps
+  - f
+  - d
+  negative_conditions:
+  - g
+  - t
 - from: o
   description: 'f-cursor-grid: F+D+o right -1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('right', -1, 8)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+  layer:
+  - caps
+  - f
+  - d
+  negative_conditions:
+  - g
+  - t
 - from: u
   description: 'f-cursor-grid: F+D+u left 2'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('left', 2, 8)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+  layer:
+  - caps
+  - f
+  - d
+  negative_conditions:
+  - g
+  - t
 - from: i
   description: 'f-cursor-grid: F+D+i right 2'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('right', 2, 8)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+  layer:
+  - caps
+  - f
+  - d
+  negative_conditions:
+  - g
+  - t
 - from: n
   description: 'f-cursor-grid: F+D+n down -1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('down', -1, 8)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+  layer:
+  - caps
+  - f
+  - d
+  negative_conditions:
+  - g
+  - t
 - from: period
   description: 'f-cursor-grid: F+D+period up -1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('up', -1, 8)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+  layer:
+  - caps
+  - f
+  - d
+  negative_conditions:
+  - g
+  - t
 - from: m
   description: 'f-cursor-grid: F+D+m down 2'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('down', 2, 8)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+  layer:
+  - caps
+  - f
+  - d
+  negative_conditions:
+  - g
+  - t
 - from: comma
   description: 'f-cursor-grid: F+D+comma up 2'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('up', 2, 8)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
-- from: h
-  description: 'f-cursor-grid: F+S+h left 1'
   layer:
   - caps
   - f
-  - s
+  - d
   negative_conditions:
   - g
   - t
-  - d
+- from: h
+  description: 'f-cursor-grid: F+S+h left 1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('left', 1, 32)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
-- from: j
-  description: 'f-cursor-grid: F+S+j down 1'
   layer:
   - caps
   - f
@@ -102,13 +178,12 @@ manipulators:
   negative_conditions:
   - g
   - t
-  - d
+- from: j
+  description: 'f-cursor-grid: F+S+j down 1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('down', 1, 32)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
-- from: k
-  description: 'f-cursor-grid: F+S+k up 1'
   layer:
   - caps
   - f
@@ -116,13 +191,12 @@ manipulators:
   negative_conditions:
   - g
   - t
-  - d
+- from: k
+  description: 'f-cursor-grid: F+S+k up 1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('up', 1, 32)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
-- from: l
-  description: 'f-cursor-grid: F+S+l right 1'
   layer:
   - caps
   - f
@@ -130,13 +204,12 @@ manipulators:
   negative_conditions:
   - g
   - t
-  - d
+- from: l
+  description: 'f-cursor-grid: F+S+l right 1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('right', 1, 32)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
-- from: y
-  description: 'f-cursor-grid: F+S+y left -1'
   layer:
   - caps
   - f
@@ -144,13 +217,12 @@ manipulators:
   negative_conditions:
   - g
   - t
-  - d
+- from: y
+  description: 'f-cursor-grid: F+S+y left -1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('left', -1, 32)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
-- from: o
-  description: 'f-cursor-grid: F+S+o right -1'
   layer:
   - caps
   - f
@@ -158,13 +230,12 @@ manipulators:
   negative_conditions:
   - g
   - t
-  - d
+- from: o
+  description: 'f-cursor-grid: F+S+o right -1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('right', -1, 32)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
-- from: u
-  description: 'f-cursor-grid: F+S+u left 2'
   layer:
   - caps
   - f
@@ -172,13 +243,12 @@ manipulators:
   negative_conditions:
   - g
   - t
-  - d
+- from: u
+  description: 'f-cursor-grid: F+S+u left 2'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('left', 2, 32)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
-- from: i
-  description: 'f-cursor-grid: F+S+i right 2'
   layer:
   - caps
   - f
@@ -186,13 +256,12 @@ manipulators:
   negative_conditions:
   - g
   - t
-  - d
+- from: i
+  description: 'f-cursor-grid: F+S+i right 2'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('right', 2, 32)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
-- from: n
-  description: 'f-cursor-grid: F+S+n down -1'
   layer:
   - caps
   - f
@@ -200,13 +269,12 @@ manipulators:
   negative_conditions:
   - g
   - t
-  - d
+- from: n
+  description: 'f-cursor-grid: F+S+n down -1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('down', -1, 32)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
-- from: period
-  description: 'f-cursor-grid: F+S+period up -1'
   layer:
   - caps
   - f
@@ -214,13 +282,12 @@ manipulators:
   negative_conditions:
   - g
   - t
-  - d
+- from: period
+  description: 'f-cursor-grid: F+S+period up -1'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('up', -1, 32)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
-- from: m
-  description: 'f-cursor-grid: F+S+m down 2'
   layer:
   - caps
   - f
@@ -228,13 +295,133 @@ manipulators:
   negative_conditions:
   - g
   - t
-  - d
+- from: m
+  description: 'f-cursor-grid: F+S+m down 2'
   to:
     shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('down', 2, 32)" 2>/dev/null &
   to_after_key_up:
     shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+  layer:
+  - caps
+  - f
+  - s
+  negative_conditions:
+  - g
+  - t
 - from: comma
   description: 'f-cursor-grid: F+S+comma up 2'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('up', 2, 32)" 2>/dev/null &
+  to_after_key_up:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+  layer:
+  - caps
+  - f
+  - s
+  negative_conditions:
+  - g
+  - t
+- from: h
+  description: 'f-cursor-grid: F+D+S+h jump'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').jump('h')" 2>/dev/null &
+- from: j
+  description: 'f-cursor-grid: F+D+S+j jump'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').jump('j')" 2>/dev/null &
+- from: k
+  description: 'f-cursor-grid: F+D+S+k jump'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').jump('k')" 2>/dev/null &
+- from: l
+  description: 'f-cursor-grid: F+D+S+l jump'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').jump('l')" 2>/dev/null &
+- from: slash
+  description: 'f-cursor-grid: F+D+S+slash jump center'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').jump('slash')" 2>/dev/null &
+- from: y
+  description: 'f-cursor-grid: F+D+S+y jump'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').jump('y')" 2>/dev/null &
+- from: o
+  description: 'f-cursor-grid: F+D+S+o jump'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').jump('o')" 2>/dev/null &
+- from: n
+  description: 'f-cursor-grid: F+D+S+n jump'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').jump('n')" 2>/dev/null &
+- from: period
+  description: 'f-cursor-grid: F+D+S+period jump'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').jump('period')" 2>/dev/null &
+- from: u
+  description: 'f-cursor-grid: F+D+S+u jump'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').jump('u')" 2>/dev/null &
+- from: i
+  description: 'f-cursor-grid: F+D+S+i jump'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').jump('i')" 2>/dev/null &
+- from: m
+  description: 'f-cursor-grid: F+D+S+m jump'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').jump('m')" 2>/dev/null &
+- from: comma
+  description: 'f-cursor-grid: F+D+S+comma jump'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').jump('comma')" 2>/dev/null &
+- from: semicolon
+  description: 'f-cursor-grid: F+semicolon left click'
+  layer:
+  - caps
+  - f
+  negative_conditions:
+  - e
+  - g
+  - t
+  to:
+    shell: /usr/local/bin/hs -c "hs.eventtap.leftClick(hs.mouse.absolutePosition()); require('cursor_grid').flashClick()" 2>/dev/null &
+- from: quote
+  description: 'f-cursor-grid: F+quote right click'
+  layer:
+  - caps
+  - f
+  negative_conditions:
+  - e
+  - g
+  - t
+  to:
+    shell: /usr/local/bin/hs -c "hs.eventtap.rightClick(hs.mouse.absolutePosition()); require('cursor_grid').flashClick()" 2>/dev/null &
+- from: p
+  description: 'f-cursor-grid: F+P toggle grid'
+  layer:
+  - caps
+  - f
+  negative_conditions:
+  - d
+  - s
+  - e
+  - g
+  - t
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').toggleGrid(8, 'move')" 2>/dev/null &
+- from: p
+  description: 'f-cursor-grid: F+D+P toggle grid'
+  layer:
+  - caps
+  - f
+  - d
+  negative_conditions:
+  - g
+  - t
+  - s
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').toggleGrid(8, 'move')" 2>/dev/null &
+- from: p
+  description: 'f-cursor-grid: F+S+P toggle grid'
   layer:
   - caps
   - f
@@ -244,6 +431,8 @@ manipulators:
   - t
   - d
   to:
-    shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('up', 2, 32)" 2>/dev/null &
-  to_after_key_up:
-    shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+    shell: /usr/local/bin/hs -c "require('cursor_grid').toggleGrid(32, 'move')" 2>/dev/null &
+- from: p
+  description: 'f-cursor-grid: F+D+S+P toggle grid'
+  to:
+    shell: /usr/local/bin/hs -c "require('cursor_grid').toggleGrid(8, 'jump')" 2>/dev/null &

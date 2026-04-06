@@ -1,3 +1,5 @@
+_generated_by: scripts/apply_physical_trackers.py
+_warning: Auto-generated. Do not edit directly.
 raw: true
 manipulators:
 - description: a-physical-tracker
