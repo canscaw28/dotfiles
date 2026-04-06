@@ -1,38 +1,15 @@
-raw: true
+layer:
+- caps
+- g
+negative_conditions:
+- a
+- s
+- d
+- f
+- r
+- t
 manipulators:
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
+- from: h
   to:
-  - key_code: left_arrow
-    modifiers:
-    - command
-    - option
-  type: basic
+  - left_arrow
+  - command+option

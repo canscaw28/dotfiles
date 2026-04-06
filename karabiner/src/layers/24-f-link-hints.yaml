@@ -1,154 +1,37 @@
-raw: true
+layer:
+- caps
+- f
+- e
+negative_conditions:
+- g
+- t
+app: ^com\.google\.Chrome$
 manipulators:
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - bundle_identifiers:
-    - ^com\.google\.Chrome$
-    type: frontmost_application_if
+- from: j
   description: 'f-vimium: F+E+J link hints (Chrome/Vimium)'
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
   to:
-  - key_code: f
-    modifiers:
-    - control
-    - shift
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - bundle_identifiers:
-    - ^com\.google\.Chrome$
-    type: frontmost_application_unless
+  - f
+  - control+shift
+- from: j
   description: 'f-homerow: F+E+J link hints (Homerow)'
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
+  app: null
+  app_unless: ^com\.google\.Chrome$
   to:
-  - key_code: spacebar
-    modifiers:
-    - command
-    - shift
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - bundle_identifiers:
-    - ^com\.google\.Chrome$
-    type: frontmost_application_if
+  - spacebar
+  - command+shift
+- from: semicolon
   description: 'f-vimium: F+E+semicolon toggle Vimium'
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
   to:
-  - key_code: semicolon
-    modifiers:
-    - control
-    - shift
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - bundle_identifiers:
-    - ^com\.google\.Chrome$
-    type: frontmost_application_if
+  - semicolon
+  - control+shift
+- from: k
   description: 'f-vimium: F+E+K hover hints (Chrome/Vimium)'
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
   to:
-  - key_code: k
-    modifiers:
-    - control
-    - command
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
+  - k
+  - control+command
+- from: h
   description: 'f-homerow: F+E+H scroll mode (Homerow)'
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
+  app: null
   to:
-  - key_code: j
-    modifiers:
-    - command
-    - shift
-  type: basic
+  - j
+  - command+shift

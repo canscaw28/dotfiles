@@ -1,116 +1,30 @@
-raw: true
+layer:
+- caps
+- g
+negative_conditions: []
+app: ^com\.googlecode\.iterm2$
 manipulators:
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  - bundle_identifiers:
-    - ^com\.googlecode\.iterm2$
-    type: frontmost_application_if
+- from: h
   description: 'G+H: iTerm tmux pane left'
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
   to:
-  - shell_command: ~/.local/bin/g-focus-tmux.sh left &
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  - bundle_identifiers:
-    - ^com\.googlecode\.iterm2$
-    type: frontmost_application_if
+    shell: ~/.local/bin/g-focus-tmux.sh left &
+- from: j
   description: 'G+J: iTerm tmux pane down'
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
   to:
-  - shell_command: ~/.local/bin/g-focus-tmux.sh down &
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  - bundle_identifiers:
-    - ^com\.googlecode\.iterm2$
-    type: frontmost_application_if
+    shell: ~/.local/bin/g-focus-tmux.sh down &
+- from: k
   description: 'G+K: iTerm tmux pane up'
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
   to:
-  - shell_command: ~/.local/bin/g-focus-tmux.sh up &
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  - bundle_identifiers:
-    - ^com\.googlecode\.iterm2$
-    type: frontmost_application_if
+    shell: ~/.local/bin/g-focus-tmux.sh up &
+- from: l
   description: 'G+L: iTerm tmux pane right'
-  from:
-    key_code: l
-    modifiers:
-      optional:
-      - any
   to:
-  - shell_command: ~/.local/bin/g-focus-tmux.sh right &
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  - bundle_identifiers:
-    - ^com\.googlecode\.iterm2$
-    type: frontmost_application_if
+    shell: ~/.local/bin/g-focus-tmux.sh right &
+- from: y
   description: 'G+Y: iTerm tmux leftmost pane'
-  from:
-    key_code: y
-    modifiers:
-      optional:
-      - any
   to:
-  - shell_command: ~/.local/bin/g-focus-tmux-edge.sh left &
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  - bundle_identifiers:
-    - ^com\.googlecode\.iterm2$
-    type: frontmost_application_if
+    shell: ~/.local/bin/g-focus-tmux-edge.sh left &
+- from: o
   description: 'G+O: iTerm tmux rightmost pane'
-  from:
-    key_code: o
-    modifiers:
-      optional:
-      - any
   to:
-  - shell_command: ~/.local/bin/g-focus-tmux-edge.sh right &
-  type: basic
+    shell: ~/.local/bin/g-focus-tmux-edge.sh right &

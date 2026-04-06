@@ -1,71 +1,18 @@
-raw: true
+layer:
+- caps
+- d
+negative_conditions:
+- a
+- s
+- f
+- r
+- t
+- g
 manipulators:
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 1
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: l
-    modifiers:
-      optional:
-      - any
+- from: l
+  to: delete_forward
+- from: semicolon
   to:
-  - key_code: delete_forward
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 1
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: a
-    modifiers:
+  - - a
     - command
-  - key_code: delete_or_backspace
-  type: basic
+  - delete_or_backspace

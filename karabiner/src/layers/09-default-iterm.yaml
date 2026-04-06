@@ -1,134 +1,41 @@
-raw: true
+layer:
+- caps
+negative_conditions:
+- t
+- s
+- d
+- f
+app: ^com\.googlecode\.iterm2$
 manipulators:
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  - bundle_identifiers:
-    - ^com\.googlecode\.iterm2$
-    type: frontmost_application_if
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: y
-    modifiers:
-      optional:
-      - any
+- from: y
+  negative_conditions:
+  - t
+  - s
+  - d
+  - g
+  - f
   to:
-  - key_code: a
-    modifiers:
-    - control
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - bundle_identifiers:
-    - ^com\.googlecode\.iterm2$
-    type: frontmost_application_if
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: u
-    modifiers:
-      optional:
-      - any
+  - a
+  - control
+- from: u
   to:
-  - key_code: left_arrow
-    modifiers:
-    - option
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - bundle_identifiers:
-    - ^com\.googlecode\.iterm2$
-    type: frontmost_application_if
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: i
-    modifiers:
-      optional:
-      - any
+  - left_arrow
+  - option
+- from: i
   to:
-  - key_code: right_arrow
-    modifiers:
-    - option
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - bundle_identifiers:
-    - ^com\.googlecode\.iterm2$
-    type: frontmost_application_if
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: c
-    modifiers:
-      mandatory:
-      - command
-  to:
-  - key_code: f15
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - bundle_identifiers:
-    - ^com\.googlecode\.iterm2$
-    type: frontmost_application_if
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: x
-    modifiers:
-      mandatory:
-      - command
-  to:
-  - key_code: f16
-  type: basic
+  - right_arrow
+  - option
+- from: c
+  from_modifiers:
+  - command
+  negative_conditions:
+  - t
+  - f
+  to: f15
+- from: x
+  from_modifiers:
+  - command
+  negative_conditions:
+  - t
+  - f
+  to: f16

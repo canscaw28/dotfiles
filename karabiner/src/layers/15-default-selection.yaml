@@ -1,37 +1,15 @@
-raw: true
+layer:
+- caps
+- s
+negative_conditions:
+- a
+- d
+- f
+- r
+- t
+- g
 manipulators:
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 1
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
+- from: semicolon
   to:
-  - key_code: a
-    modifiers:
-    - command
-  type: basic
+  - a
+  - command

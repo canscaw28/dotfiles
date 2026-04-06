@@ -1,210 +1,36 @@
-raw: true
+layer:
+- caps
+- t
+- w
+- '4'
+negative_conditions:
+- a
+- s
+- d
+- f
+- e
+- r
+- '3'
+- q
+- g
 manipulators:
-- description: t-nav-action
-  conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
+- from: h
+  description: t-nav-action
   to:
-  - key_code: h
-    modifiers:
-    - fn
-    - command
-  type: basic
-- description: t-nav-action
-  conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
+  - h
+  - fn+command
+- from: j
+  description: t-nav-action
   to:
-  - key_code: j
-    modifiers:
-    - fn
-    - command
-  type: basic
-- description: t-nav-action
-  conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
+  - j
+  - fn+command
+- from: k
+  description: t-nav-action
   to:
-  - key_code: k
-    modifiers:
-    - fn
-    - command
-  type: basic
-- description: t-nav-action
-  conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: l
-    modifiers:
-      optional:
-      - any
+  - k
+  - fn+command
+- from: l
+  description: t-nav-action
   to:
-  - key_code: l
-    modifiers:
-    - fn
-    - command
-  type: basic
+  - l
+  - fn+command

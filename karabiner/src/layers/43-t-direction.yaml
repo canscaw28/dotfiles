@@ -1,2930 +1,796 @@
-raw: true
+layer:
+- caps
+- t
+- q
+negative_conditions:
+- a
+- s
+- d
+- f
+- e
+- r
+- w
+- '3'
+- '4'
+- g
 manipulators:
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '6'
-    modifiers:
-      optional:
-      - any
+- from: '6'
   to:
-  - key_code: '6'
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "6" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '7'
-    modifiers:
-      optional:
-      - any
+  - - '6'
+    - fn+shift+control+option
+  - shell: echo "6" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: '7'
   to:
-  - key_code: '7'
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "7" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '8'
-    modifiers:
-      optional:
-      - any
+  - - '7'
+    - fn+shift+control+option
+  - shell: echo "7" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: '8'
   to:
-  - key_code: '8'
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "8" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '9'
-    modifiers:
-      optional:
-      - any
+  - - '8'
+    - fn+shift+control+option
+  - shell: echo "8" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: '9'
   to:
-  - key_code: '9'
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "9" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '0'
-    modifiers:
-      optional:
-      - any
+  - - '9'
+    - fn+shift+control+option
+  - shell: echo "9" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: '0'
   to:
-  - key_code: '0'
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "0" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: y
-    modifiers:
-      optional:
-      - any
+  - - '0'
+    - fn+shift+control+option
+  - shell: echo "0" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: y
   to:
-  - key_code: y
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "y" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: u
-    modifiers:
-      optional:
-      - any
+  - - y
+    - fn+shift+control+option
+  - shell: echo "y" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: u
   to:
-  - key_code: u
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "u" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: i
-    modifiers:
-      optional:
-      - any
+  - - u
+    - fn+shift+control+option
+  - shell: echo "u" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: i
   to:
-  - key_code: i
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "i" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: o
-    modifiers:
-      optional:
-      - any
+  - - i
+    - fn+shift+control+option
+  - shell: echo "i" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: o
   to:
-  - key_code: o
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "o" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: p
-    modifiers:
-      optional:
-      - any
+  - - o
+    - fn+shift+control+option
+  - shell: echo "o" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: p
   to:
-  - key_code: p
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "p" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
+  - - p
+    - fn+shift+control+option
+  - shell: echo "p" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: h
   to:
-  - key_code: h
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "h" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
+  - - h
+    - fn+shift+control+option
+  - shell: echo "h" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: j
   to:
-  - key_code: j
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "j" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
+  - - j
+    - fn+shift+control+option
+  - shell: echo "j" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: k
   to:
-  - key_code: k
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "k" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: l
-    modifiers:
-      optional:
-      - any
+  - - k
+    - fn+shift+control+option
+  - shell: echo "k" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: l
   to:
-  - key_code: l
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "l" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
+  - - l
+    - fn+shift+control+option
+  - shell: echo "l" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: semicolon
   to:
-  - key_code: semicolon
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "";"" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: n
-    modifiers:
-      optional:
-      - any
+  - - semicolon
+    - fn+shift+control+option
+  - shell: echo "";"" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: n
   to:
-  - key_code: n
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "n" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: m
-    modifiers:
-      optional:
-      - any
+  - - n
+    - fn+shift+control+option
+  - shell: echo "n" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: m
   to:
-  - key_code: m
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "m" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: comma
-    modifiers:
-      optional:
-      - any
+  - - m
+    - fn+shift+control+option
+  - shell: echo "m" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: comma
   to:
-  - key_code: comma
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "comma" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: period
-    modifiers:
-      optional:
-      - any
+  - - comma
+    - fn+shift+control+option
+  - shell: echo "comma" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: period
   to:
-  - key_code: period
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "." >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: slash
-    modifiers:
-      optional:
-      - any
+  - - period
+    - fn+shift+control+option
+  - shell: echo "." >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: slash
   to:
-  - key_code: slash
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: echo "/" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '6'
-    modifiers:
-      optional:
-      - any
+  - - slash
+    - fn+shift+control+option
+  - shell: echo "/" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+- from: '6'
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: '6'
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "6" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '7'
-    modifiers:
-      optional:
-      - any
+  - - '6'
+    - fn+command
+  - shell: echo "6" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: '7'
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: '7'
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "7" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '8'
-    modifiers:
-      optional:
-      - any
+  - - '7'
+    - fn+command
+  - shell: echo "7" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: '8'
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: '8'
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "8" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '9'
-    modifiers:
-      optional:
-      - any
+  - - '8'
+    - fn+command
+  - shell: echo "8" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: '9'
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: '9'
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "9" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '0'
-    modifiers:
-      optional:
-      - any
+  - - '9'
+    - fn+command
+  - shell: echo "9" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: '0'
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: '0'
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "0" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: y
-    modifiers:
-      optional:
-      - any
+  - - '0'
+    - fn+command
+  - shell: echo "0" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: y
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: y
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "y" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: u
-    modifiers:
-      optional:
-      - any
+  - - y
+    - fn+command
+  - shell: echo "y" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: u
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: u
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "u" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: i
-    modifiers:
-      optional:
-      - any
+  - - u
+    - fn+command
+  - shell: echo "u" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: i
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: i
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "i" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: o
-    modifiers:
-      optional:
-      - any
+  - - i
+    - fn+command
+  - shell: echo "i" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: o
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: o
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "o" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: p
-    modifiers:
-      optional:
-      - any
+  - - o
+    - fn+command
+  - shell: echo "o" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: p
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: p
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "p" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
+  - - p
+    - fn+command
+  - shell: echo "p" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: h
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: h
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "h" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
+  - - h
+    - fn+command
+  - shell: echo "h" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: j
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: j
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "j" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
+  - - j
+    - fn+command
+  - shell: echo "j" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: k
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: k
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "k" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: l
-    modifiers:
-      optional:
-      - any
+  - - k
+    - fn+command
+  - shell: echo "k" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: l
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: l
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "l" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
+  - - l
+    - fn+command
+  - shell: echo "l" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: semicolon
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: semicolon
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "";"" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: n
-    modifiers:
-      optional:
-      - any
+  - - semicolon
+    - fn+command
+  - shell: echo "";"" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: n
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: n
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "n" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: m
-    modifiers:
-      optional:
-      - any
+  - - n
+    - fn+command
+  - shell: echo "n" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: m
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: m
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "m" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: comma
-    modifiers:
-      optional:
-      - any
+  - - m
+    - fn+command
+  - shell: echo "m" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: comma
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: comma
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "comma" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: period
-    modifiers:
-      optional:
-      - any
+  - - comma
+    - fn+command
+  - shell: echo "comma" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: period
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: period
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "." >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: slash
-    modifiers:
-      optional:
-      - any
+  - - period
+    - fn+command
+  - shell: echo "." >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: slash
+  layer:
+  - caps
+  - t
+  - '3'
+  - q
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - g
   to:
-  - key_code: slash
-    modifiers:
-    - fn
-    - command
-  - shell_command: echo "/" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
+  - - slash
+    - fn+command
+  - shell: echo "/" >> /tmp/ghost_test_3.log; echo ghost_test > /dev/null
+- from: h
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
   to:
-  - key_code: n
-    modifiers:
-    - command
-    - control
-    - option
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
+  - n
+  - command+control+option
+- from: j
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
   to:
-  - key_code: m
-    modifiers:
-    - command
-    - control
-    - option
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
+  - m
+  - command+control+option
+- from: k
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
   to:
-  - key_code: comma
-    modifiers:
-    - command
-    - control
-    - option
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: l
-    modifiers:
-      optional:
-      - any
+  - comma
+  - command+control+option
+- from: l
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
   to:
-  - key_code: period
-    modifiers:
-    - command
-    - control
-    - option
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: y
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: u
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: i
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: o
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: p
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: quote
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: n
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: m
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: comma
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: period
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: slash
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
+  - period
+  - command+control+option
+- from: y
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
+  to: noop
+- from: u
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
+  to: noop
+- from: i
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
+  to: noop
+- from: o
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
+  to: noop
+- from: p
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
+  to: noop
+- from: semicolon
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
+  to: noop
+- from: quote
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
+  to: noop
+- from: n
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
+  to: noop
+- from: m
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
+  to: noop
+- from: comma
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
+  to: noop
+- from: period
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
+  to: noop
+- from: slash
+  layer:
+  - caps
+  - '4'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - q
+  - g
+  to: noop

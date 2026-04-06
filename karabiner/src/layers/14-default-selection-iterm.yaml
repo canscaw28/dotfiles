@@ -1,25 +1,11 @@
-raw: true
+layer:
+- caps
+- s
+negative_conditions:
+- f
+app: ^com\.googlecode\.iterm2$
 manipulators:
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: s_is_held
-    type: variable_if
-    value: 1
-  - bundle_identifiers:
-    - ^com\.googlecode\.iterm2$
-    type: frontmost_application_if
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
+- from: semicolon
   to:
-  - key_code: a
-    modifiers:
-    - option
-  type: basic
+  - a
+  - option

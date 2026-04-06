@@ -1,113 +1,25 @@
-raw: true
+layer:
+- caps
+- d
+negative_conditions:
+- a
+- s
+- f
+- r
+- t
+- g
+app_unless: ^com\.googlecode\.iterm2$
 manipulators:
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 1
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
+- from: h
+  app_unless: null
+  to: delete_or_backspace
+- from: j
   to:
-  - key_code: delete_or_backspace
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 1
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  - bundle_identifiers:
-    - ^com\.googlecode\.iterm2$
-    type: frontmost_application_unless
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: down_arrow
-    modifiers:
+  - - down_arrow
     - shift
-  - key_code: delete_or_backspace
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 1
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  - bundle_identifiers:
-    - ^com\.googlecode\.iterm2$
-    type: frontmost_application_unless
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
+  - delete_or_backspace
+- from: k
   to:
-  - key_code: up_arrow
-    modifiers:
+  - - up_arrow
     - shift
-  - key_code: delete_or_backspace
-  type: basic
+  - delete_or_backspace

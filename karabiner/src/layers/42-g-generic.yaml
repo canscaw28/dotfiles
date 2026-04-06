@@ -1,1325 +1,328 @@
-raw: true
+layer:
+- caps
+- g
+negative_conditions:
+- a
+- s
+- d
+- f
+- r
+- t
 manipulators:
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
+- from: h
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
   to:
-  - key_code: escape
-  - key_code: comma
-    modifiers:
+  - escape
+  - - comma
     - shift
-  - key_code: comma
-    modifiers:
+  - - comma
     - shift
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: l
-    modifiers:
-      optional:
-      - any
+- from: l
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
   to:
-  - key_code: escape
-  - key_code: period
-    modifiers:
+  - escape
+  - - period
     - shift
-  - key_code: period
-    modifiers:
+  - - period
     - shift
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: y
-    modifiers:
-      optional:
-      - any
+- from: y
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
   to:
-  - key_code: escape
-  - key_code: '1'
-  - key_code: '0'
-  - key_code: '0'
-  - key_code: comma
-    modifiers:
+  - escape
+  - '1'
+  - '0'
+  - '0'
+  - - comma
     - shift
-  - key_code: comma
-    modifiers:
+  - - comma
     - shift
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: o
-    modifiers:
-      optional:
-      - any
+- from: o
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
   to:
-  - key_code: escape
-  - key_code: '1'
-  - key_code: '0'
-  - key_code: '0'
-  - key_code: period
-    modifiers:
+  - escape
+  - '1'
+  - '0'
+  - '0'
+  - - period
     - shift
-  - key_code: period
-    modifiers:
+  - - period
     - shift
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: u
-    modifiers:
-      optional:
-      - any
+- from: u
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
   to:
-  - key_code: escape
-  - key_code: '3'
-  - key_code: comma
-    modifiers:
+  - escape
+  - '3'
+  - - comma
     - shift
-  - key_code: comma
-    modifiers:
+  - - comma
     - shift
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: i
-    modifiers:
-      optional:
-      - any
+- from: i
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
   to:
-  - key_code: escape
-  - key_code: '3'
-  - key_code: period
-    modifiers:
+  - escape
+  - '3'
+  - - period
     - shift
-  - key_code: period
-    modifiers:
+  - - period
     - shift
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: p
-    modifiers:
-      optional:
-      - any
+- from: p
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
+  to: noop
+- from: j
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
+  to: noop
+- from: k
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
+  to: noop
+- from: semicolon
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
+  to: noop
+- from: quote
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
+  to: noop
+- from: n
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
+  to: noop
+- from: m
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
+  to: noop
+- from: comma
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
+  to: noop
+- from: period
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
+  to: noop
+- from: slash
+  layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
+  to: noop
+- from: l
   to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
+  - right_arrow
+  - command+option
+- from: semicolon
   to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: quote
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: n
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: m
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: comma
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: period
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: slash
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: l
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: right_arrow
-    modifiers:
-    - command
-    - option
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: escape
-  - key_code: t
-    modifiers:
+  - escape
+  - - t
     - shift
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: quote
-    modifiers:
-      optional:
-      - any
+- from: quote
   to:
-  - key_code: escape
-  - key_code: o
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: y
-    modifiers:
-      optional:
-      - any
+  - escape
+  - o
+- from: y
   to:
-  - key_code: '1'
-    modifiers:
-    - command
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: o
-    modifiers:
-      optional:
-      - any
+  - '1'
+  - command
+- from: o
   to:
-  - key_code: '9'
-    modifiers:
-    - command
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: p
-    modifiers:
-      optional:
-      - any
+  - '9'
+  - command
+- from: p
   to:
-  - key_code: escape
-  - key_code: y
-  - key_code: t
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: open_bracket
-    modifiers:
-      optional:
-      - any
+  - escape
+  - y
+  - t
+- from: open_bracket
   to:
-  - key_code: open_bracket
-    modifiers:
-    - command
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: close_bracket
-    modifiers:
-      optional:
-      - any
+  - open_bracket
+  - command
+- from: close_bracket
   to:
-  - key_code: close_bracket
-    modifiers:
-    - command
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
+  - close_bracket
+  - command
+- from: slash
   description: 'G+slash: detach tab to new window'
-  from:
-    key_code: slash
-    modifiers:
-      optional:
-      - any
   to:
-  - key_code: '0'
-    modifiers:
-    - left_command
-    - left_control
-    - left_shift
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
+  - '0'
+  - left_command+left_control+left_shift
+- from: comma
   description: 'G+comma: reopen closed tab'
-  from:
-    key_code: comma
-    modifiers:
-      optional:
-      - any
   to:
-  - key_code: t
-    modifiers:
-    - command
-    - shift
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
+  - t
+  - command+shift
+- from: n
   description: 'G+N: new tab'
-  from:
-    key_code: n
-    modifiers:
-      optional:
-      - any
   to:
-  - key_code: t
-    modifiers:
-    - command
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
+  - t
+  - command
+- from: m
   description: 'G+M: duplicate tab'
-  from:
-    key_code: m
-    modifiers:
-      optional:
-      - any
   to:
-  - key_code: semicolon
-    modifiers:
-    - left_command
-    - left_control
-    - left_shift
-  - shell_command: URL=$(osascript -e 'tell application "Google Chrome" to URL of active tab of front window' 2>/dev/null); [[ "$URL" == chrome://* ]] && osascript -e 'tell application "Google Chrome" to
-      tell front window to make new tab' &
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: u
-    modifiers:
-      optional:
-      - any
+  - - semicolon
+    - left_command+left_control+left_shift
+  - shell: URL=$(osascript -e 'tell application "Google Chrome" to URL of active tab of front window' 2>/dev/null); [[ "$URL" == chrome://* ]] && osascript -e 'tell application "Google Chrome" to tell front
+      window to make new tab' &
+- from: u
   to:
-  - key_code: left_arrow
-    modifiers:
-    - command
-    - option
-  - key_code: left_arrow
-    modifiers:
-    - command
-    - option
-  - key_code: left_arrow
-    modifiers:
-    - command
-    - option
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: i
-    modifiers:
-      optional:
-      - any
+  - - left_arrow
+    - command+option
+  - - left_arrow
+    - command+option
+  - - left_arrow
+    - command+option
+- from: i
   to:
-  - key_code: right_arrow
-    modifiers:
-    - command
-    - option
-  - key_code: right_arrow
-    modifiers:
-    - command
-    - option
-  - key_code: right_arrow
-    modifiers:
-    - command
-    - option
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: n
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: m
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: comma
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: guard_noop
-      value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 1
+  - - right_arrow
+    - command+option
+  - - right_arrow
+    - command+option
+  - - right_arrow
+    - command+option
+- from: j
+  to: noop
+- from: k
+  to: noop
+- from: n
+  to: noop
+- from: m
+  to: noop
+- from: comma
+  to: noop
+- from: period
   description: 'G+period: close tab'
-  from:
-    key_code: period
-    modifiers:
-      optional:
-      - any
   to:
-  - key_code: w
-    modifiers:
-    - command
-  type: basic
+  - w
+  - command

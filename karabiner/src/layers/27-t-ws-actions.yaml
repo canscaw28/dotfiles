@@ -1,6282 +1,2116 @@
-raw: true
+layer:
+- caps
+- t
+- e
+- r
+negative_conditions:
+- a
+- s
+- d
+- f
+- w
+- '3'
+- '4'
+- q
+- g
 manipulators:
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '6'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '6'
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus 6
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '7'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '7'
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus 7
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '8'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '8'
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus 8
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '9'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '9'
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus 9
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '0'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '0'
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: y
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: y
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus y
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: u
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: u
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus u
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: i
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: i
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus i
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: o
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: o
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus o
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: p
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: p
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus p
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: h
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus h
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: j
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus j
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: k
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus k
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: l
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: l
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus l
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: semicolon
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus ";"
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: n
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: n
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus n
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: m
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: m
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus m
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: comma
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: comma
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus comma
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: period
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: period
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus .
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: slash
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: slash
-    modifiers:
-    - fn
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh move-focus /
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '6'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '6'
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 6
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '7'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '7'
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 7
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '8'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '8'
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 8
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '9'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '9'
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 9
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '0'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '0'
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: y
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: y
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 y
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: u
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: u
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 u
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: i
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: i
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 i
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: o
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: o
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 o
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: p
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: p
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 p
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: h
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 h
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: j
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 j
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: k
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 k
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: l
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: l
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 l
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: semicolon
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 ";"
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: n
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: n
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 n
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: m
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: m
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 m
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: comma
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: comma
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 comma
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: period
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: period
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 .
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: slash
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: slash
-    modifiers:
-    - fn
-    - shift
-    - control
-  - shell_command: $HOME/.local/bin/ws.sh focus-1 /
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '6'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '6'
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 6
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '7'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '7'
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 7
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '8'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '8'
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 8
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '9'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '9'
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 9
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '0'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '0'
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: y
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: y
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 y
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: u
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: u
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 u
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: i
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: i
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 i
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: o
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: o
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 o
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: p
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: p
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 p
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: h
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 h
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: j
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 j
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: k
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 k
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: l
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: l
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 l
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: semicolon
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 ";"
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: n
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: n
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 n
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: m
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: m
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 m
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: comma
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: comma
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 comma
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: period
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: period
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 .
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 1
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: slash
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: slash
-    modifiers:
-    - fn
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh focus-2 /
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '6'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '6'
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus 6
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '7'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '7'
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus 7
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '8'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '8'
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus 8
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '9'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '9'
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus 9
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '0'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '0'
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: y
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: y
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus y
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: u
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: u
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus u
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: i
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: i
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus i
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: o
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: o
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus o
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: p
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: p
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus p
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: h
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus h
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: j
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus j
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: k
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus k
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: l
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: l
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus l
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: semicolon
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus ";"
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: n
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: n
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus n
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: m
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: m
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus m
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: comma
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: comma
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus comma
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: period
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: period
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus .
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 1
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: slash
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: slash
-    modifiers:
-    - fn
-  - shell_command: $HOME/.local/bin/ws.sh focus /
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '6'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '6'
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move 6
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '7'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '7'
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move 7
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '8'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '8'
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move 8
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '9'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '9'
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move 9
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '0'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '0'
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: y
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: y
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move y
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: u
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: u
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move u
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: i
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: i
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move i
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: o
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: o
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move o
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: p
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: p
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move p
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: h
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move h
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: j
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move j
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: k
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move k
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: l
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: l
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move l
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: semicolon
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move ";"
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: n
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: n
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move n
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: m
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: m
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move m
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: comma
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: comma
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move comma
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: period
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: period
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move .
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 1
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 0
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: slash
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: slash
-    modifiers:
-    - fn
-    - shift
-  - shell_command: $HOME/.local/bin/ws.sh move /
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '6'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '6'
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows 6
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '7'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '7'
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows 7
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '8'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '8'
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows 8
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '9'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '9'
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows 9
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: '0'
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: '0'
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: y
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: y
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows y
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: u
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: u
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows u
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: i
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: i
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows i
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: o
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: o
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows o
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: p
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: p
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows p
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: h
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: h
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows h
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: j
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: j
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows j
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: k
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: k
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows k
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: l
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: l
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows l
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: semicolon
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: semicolon
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows ";"
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: n
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: n
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows n
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: m
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: m
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows m
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: comma
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: comma
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows comma
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: period
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: period
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows .
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  - name: a_is_held
-    type: variable_if
-    value: 0
-  - name: s_is_held
-    type: variable_if
-    value: 0
-  - name: d_is_held
-    type: variable_if
-    value: 0
-  - name: f_is_held
-    type: variable_if
-    value: 0
-  - name: t_is_held
-    type: variable_if
-    value: 1
-  - name: e_is_held
-    type: variable_if
-    value: 0
-  - name: r_is_held
-    type: variable_if
-    value: 0
-  - name: w_is_held
-    type: variable_if
-    value: 0
-  - name: 3_is_held
-    type: variable_if
-    value: 1
-  - name: 4_is_held
-    type: variable_if
-    value: 0
-  - name: q_is_held
-    type: variable_if
-    value: 0
-  - name: g_is_held
-    type: variable_if
-    value: 0
-  from:
-    key_code: slash
-    modifiers:
-      optional:
-      - any
-  to:
-  - key_code: slash
-    modifiers:
-    - fn
-    - shift
-    - control
-    - option
-  - shell_command: $HOME/.local/bin/ws.sh swap-windows /
-  type: basic
+- from: '6'
+  to:
+  - - '6'
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus 6
+- from: '7'
+  to:
+  - - '7'
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus 7
+- from: '8'
+  to:
+  - - '8'
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus 8
+- from: '9'
+  to:
+  - - '9'
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus 9
+- from: '0'
+  to:
+  - - '0'
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus 0
+- from: y
+  to:
+  - - y
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus y
+- from: u
+  to:
+  - - u
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus u
+- from: i
+  to:
+  - - i
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus i
+- from: o
+  to:
+  - - o
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus o
+- from: p
+  to:
+  - - p
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus p
+- from: h
+  to:
+  - - h
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus h
+- from: j
+  to:
+  - - j
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus j
+- from: k
+  to:
+  - - k
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus k
+- from: l
+  to:
+  - - l
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus l
+- from: semicolon
+  to:
+  - - semicolon
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus ";"
+- from: n
+  to:
+  - - n
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus n
+- from: m
+  to:
+  - - m
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus m
+- from: comma
+  to:
+  - - comma
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus comma
+- from: period
+  to:
+  - - period
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus .
+- from: slash
+  to:
+  - - slash
+    - fn+control
+  - shell: $HOME/.local/bin/ws.sh move-focus /
+- from: '6'
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '6'
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 6
+- from: '7'
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '7'
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 7
+- from: '8'
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '8'
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 8
+- from: '9'
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '9'
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 9
+- from: '0'
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '0'
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 0
+- from: y
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - y
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 y
+- from: u
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - u
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 u
+- from: i
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - i
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 i
+- from: o
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - o
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 o
+- from: p
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - p
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 p
+- from: h
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - h
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 h
+- from: j
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - j
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 j
+- from: k
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - k
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 k
+- from: l
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - l
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 l
+- from: semicolon
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - semicolon
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 ";"
+- from: n
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - n
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 n
+- from: m
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - m
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 m
+- from: comma
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - comma
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 comma
+- from: period
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - period
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 .
+- from: slash
+  layer:
+  - caps
+  - t
+  - e
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - slash
+    - fn+shift+control
+  - shell: $HOME/.local/bin/ws.sh focus-1 /
+- from: '6'
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '6'
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 6
+- from: '7'
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '7'
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 7
+- from: '8'
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '8'
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 8
+- from: '9'
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '9'
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 9
+- from: '0'
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '0'
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 0
+- from: y
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - y
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 y
+- from: u
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - u
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 u
+- from: i
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - i
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 i
+- from: o
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - o
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 o
+- from: p
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - p
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 p
+- from: h
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - h
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 h
+- from: j
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - j
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 j
+- from: k
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - k
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 k
+- from: l
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - l
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 l
+- from: semicolon
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - semicolon
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 ";"
+- from: n
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - n
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 n
+- from: m
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - m
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 m
+- from: comma
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - comma
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 comma
+- from: period
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - period
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 .
+- from: slash
+  layer:
+  - caps
+  - t
+  - r
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - slash
+    - fn+option
+  - shell: $HOME/.local/bin/ws.sh focus-2 /
+- from: '6'
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '6'
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus 6
+- from: '7'
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '7'
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus 7
+- from: '8'
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '8'
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus 8
+- from: '9'
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '9'
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus 9
+- from: '0'
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '0'
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus 0
+- from: y
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - y
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus y
+- from: u
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - u
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus u
+- from: i
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - i
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus i
+- from: o
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - o
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus o
+- from: p
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - p
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus p
+- from: h
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - h
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus h
+- from: j
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - j
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus j
+- from: k
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - k
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus k
+- from: l
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - l
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus l
+- from: semicolon
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - semicolon
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus ";"
+- from: n
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - n
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus n
+- from: m
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - m
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus m
+- from: comma
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - comma
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus comma
+- from: period
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - period
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus .
+- from: slash
+  layer:
+  - caps
+  - t
+  - w
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - slash
+    - fn
+  - shell: $HOME/.local/bin/ws.sh focus /
+- from: '6'
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '6'
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move 6
+- from: '7'
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '7'
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move 7
+- from: '8'
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '8'
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move 8
+- from: '9'
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '9'
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move 9
+- from: '0'
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - '0'
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move 0
+- from: y
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - y
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move y
+- from: u
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - u
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move u
+- from: i
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - i
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move i
+- from: o
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - o
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move o
+- from: p
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - p
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move p
+- from: h
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - h
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move h
+- from: j
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - j
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move j
+- from: k
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - k
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move k
+- from: l
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - l
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move l
+- from: semicolon
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - semicolon
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move ";"
+- from: n
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - n
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move n
+- from: m
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - m
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move m
+- from: comma
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - comma
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move comma
+- from: period
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - period
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move .
+- from: slash
+  layer:
+  - caps
+  - t
+  - e
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - - slash
+    - fn+shift
+  - shell: $HOME/.local/bin/ws.sh move /
+- from: '6'
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - '6'
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows 6
+- from: '7'
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - '7'
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows 7
+- from: '8'
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - '8'
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows 8
+- from: '9'
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - '9'
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows 9
+- from: '0'
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - '0'
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows 0
+- from: y
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - y
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows y
+- from: u
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - u
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows u
+- from: i
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - i
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows i
+- from: o
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - o
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows o
+- from: p
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - p
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows p
+- from: h
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - h
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows h
+- from: j
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - j
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows j
+- from: k
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - k
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows k
+- from: l
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - l
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows l
+- from: semicolon
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - semicolon
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows ";"
+- from: n
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - n
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows n
+- from: m
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - m
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows m
+- from: comma
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - comma
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows comma
+- from: period
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - period
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows .
+- from: slash
+  layer:
+  - caps
+  - t
+  - '3'
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '4'
+  - q
+  - g
+  to:
+  - - slash
+    - fn+shift+control+option
+  - shell: $HOME/.local/bin/ws.sh swap-windows /

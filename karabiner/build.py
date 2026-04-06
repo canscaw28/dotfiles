@@ -74,7 +74,21 @@ def build_conditions(file_ctx, manip):
 
     layer = manip.get("layer", file_ctx.get("layer"))
     if layer is None:
-        return []
+        # No layer — but might still have app conditions
+        conditions = []
+        app = manip.get("app", file_ctx.get("app"))
+        if app:
+            conditions.append({
+                "bundle_identifiers": [app],
+                "type": "frontmost_application_if",
+            })
+        app_unless = manip.get("app_unless", file_ctx.get("app_unless"))
+        if app_unless:
+            conditions.append({
+                "bundle_identifiers": [app_unless],
+                "type": "frontmost_application_unless",
+            })
+        return conditions
 
     # Collect which variables are explicitly positive
     positive = {}
@@ -99,13 +113,23 @@ def build_conditions(file_ctx, manip):
     if "caps_lock_is_held" in positive:
         conditions.append({"name": "caps_lock_is_held", "type": "variable_if", "value": 1})
 
-    # Walk ALL_LAYER_VARS in order, emitting each as positive or negative
-    # This preserves the interleaved ordering of the original config
-    for var in ALL_LAYER_VARS:
-        if var in positive:
-            conditions.append({"name": var, "type": "variable_if", "value": 1})
-        elif var in negate_set:
-            conditions.append({"name": var, "type": "variable_if", "value": 0})
+    # Positives in the order declared in the layer: [...] list
+    positive_vars = [VAR_MAP[name] for name in layer
+                     if VAR_MAP.get(name) and VAR_MAP[name] != "caps_lock_is_held"]
+    positive_set = set(positive_vars)
+
+    if not negate_set:
+        # No negatives — just emit positives in layer-list order
+        for pv in positive_vars:
+            conditions.append({"name": pv, "type": "variable_if", "value": 1})
+    else:
+        # Interleave: walk ALL_LAYER_VARS, emit negatives and positives
+        # at their natural position
+        for var in ALL_LAYER_VARS:
+            if var in negate_set:
+                conditions.append({"name": var, "type": "variable_if", "value": 0})
+            elif var in positive_set:
+                conditions.append({"name": var, "type": "variable_if", "value": 1})
 
     # App conditions
     app = manip.get("app", file_ctx.get("app"))
@@ -174,6 +198,18 @@ def expand_key(val):
     return val
 
 
+MODIFIER_NAMES = {
+    "command", "shift", "option", "control", "fn",
+    "left_command", "left_shift", "left_option", "left_control",
+    "right_command", "right_shift", "right_option", "right_control",
+}
+
+
+def looks_like_modifier(s):
+    """Check if a string looks like a modifier spec (e.g. 'shift', 'command+shift')."""
+    return all(part in MODIFIER_NAMES for part in s.split("+"))
+
+
 def expand_to(val):
     """Expand a 'to' field which can be a single item or list."""
     if val is None:
@@ -181,8 +217,11 @@ def expand_to(val):
     if isinstance(val, list):
         # Could be a single [key, modifier] pair or a list of events
         if len(val) == 2 and isinstance(val[0], str) and isinstance(val[1], str):
-            # Single key+modifier pair
-            return [expand_key(val)]
+            if looks_like_modifier(val[1]):
+                # Single key+modifier pair like [h, shift] or [h, command+shift]
+                return [expand_key(val)]
+            # Two separate key events like [escape, o]
+            return [expand_key(item) for item in val]
         return [expand_key(item) for item in val]
     return [expand_key(val)]
 

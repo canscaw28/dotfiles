@@ -1,22 +1,15 @@
-raw: true
+negative_conditions: []
 manipulators:
-- from:
-    key_code: non_us_backslash
-    modifiers:
-      optional:
-      - any
+- from: non_us_backslash
   to:
-  - set_variable:
-      name: caps_lock_is_held
-      value: 1
-  - set_variable:
-      name: caps_lock_pressed
-      value: 1
+  - set:
+      caps_lock_is_held: 1
+  - set:
+      caps_lock_pressed: 1
   to_after_key_up:
-  - set_variable:
-      name: caps_lock_is_held
-      value: 0
-  - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+  - set:
+      caps_lock_is_held: 0
+  - shell: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
   to_delayed_action:
     to_if_canceled:
     - set_variable:
@@ -26,17 +19,9 @@ manipulators:
     - set_variable:
         name: caps_lock_pressed
         value: 0
-  type: basic
-- conditions:
-  - name: caps_lock_is_held
-    type: variable_if
-    value: 1
-  from:
-    key_code: right_shift
-    modifiers:
-      optional:
-      - any
+- from: right_shift
+  layer:
+  - caps
   to:
-  - key_code: caps_lock
+    key: caps_lock
     hold_down_milliseconds: 100
-  type: basic
