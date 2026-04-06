@@ -1,0 +1,580 @@
+sections:
+- layer:
+  - caps
+  - g
+  - d
+  negative_conditions: []
+  app: ^com\.google\.Chrome$
+  manipulators:
+  - from: h
+    description: 'G+D+H: Chrome move tab + focus left'
+    to:
+    - shell: /opt/homebrew/bin/aerospace split horizontal 2>/dev/null &
+    - - left_arrow
+      - left_control+left_option+left_shift
+    - shell: /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+  - from: j
+    description: 'G+D+J: Chrome move tab + focus down'
+    to:
+    - shell: /opt/homebrew/bin/aerospace split vertical 2>/dev/null &
+    - - down_arrow
+      - left_control+left_option+left_shift
+    - shell: /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+  - from: k
+    description: 'G+D+K: Chrome move tab + focus up'
+    to:
+    - shell: /opt/homebrew/bin/aerospace split vertical 2>/dev/null &
+    - - up_arrow
+      - left_control+left_option+left_shift
+    - shell: /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+  - from: l
+    description: 'G+D+L: Chrome move tab + focus right'
+    to:
+    - shell: /opt/homebrew/bin/aerospace split horizontal 2>/dev/null &
+    - - right_arrow
+      - left_control+left_option+left_shift
+    - shell: /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+  - from: j
+    description: 'G+F+J: Chrome move tab + focus down'
+    layer:
+    - caps
+    - g
+    - f
+    negative_conditions:
+    - d
+    to:
+    - shell: /opt/homebrew/bin/aerospace split vertical 2>/dev/null &
+    - - down_arrow
+      - left_control+left_option
+    - shell: /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+  - from: k
+    description: 'G+F+K: Chrome move tab + focus up'
+    layer:
+    - caps
+    - g
+    - f
+    negative_conditions:
+    - d
+    to:
+    - shell: /opt/homebrew/bin/aerospace split vertical 2>/dev/null &
+    - - up_arrow
+      - left_control+left_option
+    - shell: /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+- layer:
+  - caps
+  - g
+  negative_conditions: []
+  app: ^com\.googlecode\.iterm2$
+  manipulators:
+  - from: h
+    description: 'G+H: iTerm tmux pane left'
+    to:
+      shell: ~/.local/bin/g-focus-tmux.sh left &
+  - from: j
+    description: 'G+J: iTerm tmux pane down'
+    to:
+      shell: ~/.local/bin/g-focus-tmux.sh down &
+  - from: k
+    description: 'G+K: iTerm tmux pane up'
+    to:
+      shell: ~/.local/bin/g-focus-tmux.sh up &
+  - from: l
+    description: 'G+L: iTerm tmux pane right'
+    to:
+      shell: ~/.local/bin/g-focus-tmux.sh right &
+  - from: y
+    description: 'G+Y: iTerm tmux leftmost pane'
+    to:
+      shell: ~/.local/bin/g-focus-tmux-edge.sh left &
+  - from: o
+    description: 'G+O: iTerm tmux rightmost pane'
+    to:
+      shell: ~/.local/bin/g-focus-tmux-edge.sh right &
+- layer:
+  - caps
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - t
+  app: ^com\.google\.Chrome$
+  manipulators:
+  - from: h
+    description: 'G+H: Chrome switch tab left'
+    to:
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyDown(-1)" &
+    to_if_held_down: noop
+    hold_threshold: 200
+    to_after_key_up:
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyUp()" &
+  - from: l
+    description: 'G+L: Chrome switch tab right'
+    to:
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyDown(1)" &
+    to_if_held_down: noop
+    hold_threshold: 200
+    to_after_key_up:
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyUp()" &
+  - from: j
+    description: 'G+J: Chrome focus window down'
+    to:
+    - j
+    - left_command+left_control+left_option
+  - from: k
+    description: 'G+K: Chrome focus window up'
+    to:
+    - k
+    - left_command+left_control+left_option
+  - from: y
+    description: 'G+Y: Chrome switch to first tab'
+    to:
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyDown('first')" &
+    to_if_held_down: noop
+    hold_threshold: 200
+    to_after_key_up:
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyUp()" &
+  - from: o
+    description: 'G+O: Chrome switch to last tab'
+    to:
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyDown('last')" &
+    to_if_held_down: noop
+    hold_threshold: 200
+    to_after_key_up:
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyUp()" &
+  - from: u
+    description: 'G+U: Chrome switch tab left 3'
+    to:
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyDown(-3)" &
+    to_if_held_down: noop
+    hold_threshold: 200
+    to_after_key_up:
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyUp()" &
+  - from: i
+    description: 'G+I: Chrome switch tab right 3'
+    to:
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyDown(3)" &
+    to_if_held_down: noop
+    hold_threshold: 200
+    to_after_key_up:
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyUp()" &
+- layer:
+  - caps
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - t
+  manipulators:
+  - from: h
+    description: 'G+H: focus window left'
+    to:
+    - h
+    - left_command+left_control+left_option
+  - from: j
+    description: 'G+J: focus window down'
+    to:
+    - j
+    - left_command+left_control+left_option
+  - from: k
+    description: 'G+K: focus window up'
+    to:
+    - k
+    - left_command+left_control+left_option
+  - from: l
+    description: 'G+L: focus window right'
+    to:
+    - l
+    - left_command+left_control+left_option
+  - from: h
+    to:
+    - left_arrow
+    - command+option
+  - from: h
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to:
+    - escape
+    - - comma
+      - shift
+    - - comma
+      - shift
+  - from: l
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to:
+    - escape
+    - - period
+      - shift
+    - - period
+      - shift
+  - from: y
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to:
+    - escape
+    - '1'
+    - '0'
+    - '0'
+    - - comma
+      - shift
+    - - comma
+      - shift
+  - from: o
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to:
+    - escape
+    - '1'
+    - '0'
+    - '0'
+    - - period
+      - shift
+    - - period
+      - shift
+  - from: u
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to:
+    - escape
+    - '3'
+    - - comma
+      - shift
+    - - comma
+      - shift
+  - from: i
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to:
+    - escape
+    - '3'
+    - - period
+      - shift
+    - - period
+      - shift
+  - from: p
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: j
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: k
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: semicolon
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: quote
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: n
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: m
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: comma
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: period
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: slash
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: l
+    to:
+    - right_arrow
+    - command+option
+  - from: semicolon
+    to:
+    - escape
+    - - t
+      - shift
+  - from: quote
+    to:
+    - escape
+    - o
+  - from: y
+    to:
+    - '1'
+    - command
+  - from: o
+    to:
+    - '9'
+    - command
+  - from: p
+    to:
+    - escape
+    - y
+    - t
+  - from: open_bracket
+    to:
+    - open_bracket
+    - command
+  - from: close_bracket
+    to:
+    - close_bracket
+    - command
+  - from: slash
+    description: 'G+slash: detach tab to new window'
+    to:
+    - '0'
+    - left_command+left_control+left_shift
+  - from: comma
+    description: 'G+comma: reopen closed tab'
+    to:
+    - t
+    - command+shift
+  - from: n
+    description: 'G+N: new tab'
+    to:
+    - t
+    - command
+  - from: m
+    description: 'G+M: duplicate tab'
+    to:
+    - - semicolon
+      - left_command+left_control+left_shift
+    - shell: URL=$(osascript -e 'tell application "Google Chrome" to URL of active tab of front window' 2>/dev/null); [[ "$URL" == chrome://* ]] && osascript -e 'tell application "Google Chrome" to tell
+        front window to make new tab' &
+  - from: u
+    to:
+    - - left_arrow
+      - command+option
+    - - left_arrow
+      - command+option
+    - - left_arrow
+      - command+option
+  - from: i
+    to:
+    - - right_arrow
+      - command+option
+    - - right_arrow
+      - command+option
+    - - right_arrow
+      - command+option
+  - from: j
+    to: noop
+  - from: k
+    to: noop
+  - from: n
+    to: noop
+  - from: m
+    to: noop
+  - from: comma
+    to: noop
+  - from: period
+    description: 'G+period: close tab'
+    to:
+    - w
+    - command
+- layer:
+  - caps
+  - f
+  - g
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
+  app: ^com\.google\.Chrome$
+  manipulators:
+  - from: h
+    description: 'G+F+H: Chrome reorder tab left'
+    hold_threshold: 200
+    to:
+    - h
+    - left_command+left_control
+    to_if_held_down:
+    - h
+    - left_command+left_control+left_shift
+  - from: l
+    description: 'G+F+L: Chrome reorder tab right'
+    hold_threshold: 200
+    to:
+    - l
+    - left_command+left_control
+    to_if_held_down:
+    - l
+    - left_command+left_control+left_shift
+  - from: y
+    description: 'G+F+Y: Chrome reorder tab to first'
+    hold_threshold: 200
+    to:
+    - y
+    - left_command+left_control
+    to_if_held_down:
+    - y
+    - left_command+left_control+left_shift
+  - from: i
+    description: 'G+F+I: Chrome reorder tab right 3'
+    hold_threshold: 200
+    to:
+    - i
+    - left_command+left_control
+    to_if_held_down:
+    - i
+    - left_command+left_control+left_shift
+  - from: u
+    description: 'G+F+U: Chrome reorder tab left 3'
+    hold_threshold: 200
+    to:
+    - u
+    - left_command+left_control
+    to_if_held_down:
+    - u
+    - left_command+left_control+left_shift
+  - from: o
+    description: 'G+F+O: Chrome reorder tab to last'
+    hold_threshold: 200
+    to:
+    - o
+    - left_command+left_control
+    to_if_held_down:
+    - o
+    - left_command+left_control+left_shift

@@ -1,0 +1,89 @@
+sections:
+- layer:
+  - caps
+  - f
+  - e
+  negative_conditions:
+  - g
+  - t
+  app: ^com\.google\.Chrome$
+  manipulators:
+  - from: j
+    description: 'f-vimium: F+E+J link hints (Chrome/Vimium)'
+    to:
+    - f
+    - control+shift
+  - from: j
+    description: 'f-homerow: F+E+J link hints (Homerow)'
+    app: null
+    app_unless: ^com\.google\.Chrome$
+    to:
+    - spacebar
+    - command+shift
+  - from: semicolon
+    description: 'f-vimium: F+E+semicolon toggle Vimium'
+    to:
+    - semicolon
+    - control+shift
+  - from: k
+    description: 'f-vimium: F+E+K hover hints (Chrome/Vimium)'
+    to:
+    - k
+    - control+command
+  - from: h
+    description: 'f-homerow: F+E+H scroll mode (Homerow)'
+    app: null
+    to:
+    - j
+    - command+shift
+- layer:
+  - caps
+  - f
+  negative_conditions:
+  - a
+  - s
+  - d
+  - r
+  - t
+  - g
+  manipulators:
+  - from: h
+    to:
+    - h
+    - control+shift
+  - from: j
+    to:
+    - j
+    - control+shift
+  - from: k
+    to:
+    - k
+    - control+shift
+  - from: l
+    to:
+    - l
+    - control+shift
+  - from: y
+    to:
+    - y
+    - control+shift
+  - from: u
+    to:
+    - u
+    - control+shift
+  - from: i
+    to:
+    - i
+    - control+shift
+  - from: o
+    to:
+    - o
+    - control+shift
+  - from: m
+    to:
+    - '6'
+    - control
+  - from: comma
+    to:
+    - '7'
+    - control

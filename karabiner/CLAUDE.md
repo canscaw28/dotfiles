@@ -134,6 +134,26 @@ Current ordering:
 10. G layer (iTerm tmux, Chrome, generic, reorder)
 11. Physical trackers (at end)
 
+## Multi-section files
+
+Layer files can contain multiple sections, each with its own conditions:
+
+```yaml
+sections:
+  - layer: [caps]
+    app: "^com\\.googlecode\\.iterm2$"
+    manipulators:
+      - from: y
+        to: [a, control]   # iTerm cursor override (Ctrl+A)
+
+  - layer: [caps]
+    manipulators:
+      - from: y
+        to: [left_arrow, command]   # default cursor (Cmd+Left)
+```
+
+Sections are processed in order — earlier sections take first-match priority. For overlapping keys, more-specific (app-conditional) sections must come first.
+
 ## Build pipeline
 
 ```
@@ -141,8 +161,6 @@ src/layers/*.yaml  →  build.py  →  karabiner.json  →  reload Karabiner
 ```
 
 - `build.py` — assembles YAML sources into the final `karabiner.json`
-- `decompose.py` — one-time migration script (JSON → YAML); not needed in normal use
-- `compact.py` — converts raw YAML to compact YAML; useful when adding new raw sections
 
 ## Files
 
@@ -150,8 +168,6 @@ src/layers/*.yaml  →  build.py  →  karabiner.json  →  reload Karabiner
 |------|---------|
 | `karabiner.json` | **Generated** — Karabiner Elements reads this file |
 | `build.py` | YAML → JSON builder |
-| `decompose.py` | One-time JSON → YAML migration |
-| `compact.py` | Convert raw YAML files to compact shorthand |
 | `src/profile.yaml` | Profile metadata (name, virtual_hid_keyboard, simple_modifications) |
 | `src/build_order.yaml` | Controls manipulator priority ordering |
 | `src/layers/*.yaml` | Per-layer source files (the actual content) |

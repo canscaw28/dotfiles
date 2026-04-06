@@ -294,20 +294,47 @@ def expand_manipulator(file_ctx, manip):
 # ── File loading ──────────────────────────────────────────────────────
 
 def load_layer_file(filepath):
-    """Load a YAML layer file and expand all manipulators."""
+    """Load a YAML layer file and expand all manipulators.
+
+    Supports two structures:
+    1. Single section: file has top-level `manipulators:` plus optional
+       `layer:`, `app:`, etc.
+    2. Multiple sections: file has top-level `sections:` list, each with
+       its own `layer:`/`app:`/`manipulators:`. Sections are processed in
+       order, preserving first-match priority.
+    """
     with open(filepath) as f:
         data = yaml.safe_load(f)
 
-    if data is None or "manipulators" not in data:
+    if data is None:
         return []
 
     is_raw = data.get("raw", False)
 
     if is_raw:
         # Raw mode: manipulators are already full Karabiner JSON
-        return data["manipulators"]
+        return data.get("manipulators", [])
 
-    # Build file-level context for condition inference
+    # Multi-section file
+    if "sections" in data:
+        result = []
+        for section in data["sections"]:
+            if section.get("raw"):
+                # Raw section: manipulators are full Karabiner JSON
+                result.extend(section.get("manipulators", []))
+                continue
+            file_ctx = {}
+            for key in ("layer", "app", "app_unless", "negative_conditions"):
+                if key in section:
+                    file_ctx[key] = section[key]
+            for manip in section.get("manipulators", []):
+                result.append(expand_manipulator(file_ctx, manip))
+        return result
+
+    # Single section file (legacy / simple)
+    if "manipulators" not in data:
+        return []
+
     file_ctx = {}
     for key in ("layer", "app", "app_unless", "negative_conditions"):
         if key in data:

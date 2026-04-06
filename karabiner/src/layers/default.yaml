@@ -1,0 +1,433 @@
+sections:
+- negative_conditions: []
+  app: ^com\.googlecode\.iterm2$
+  manipulators:
+  - from: z
+    from_modifiers:
+    - command
+    to:
+    - hyphen
+    - control+shift
+  - from: z
+    from_modifiers:
+    - command
+    - shift
+    to:
+    - escape
+    - - hyphen
+      - shift
+  - from: a
+    from_modifiers:
+    - command
+    to:
+    - a
+    - option
+  - from: c
+    from_modifiers:
+    - command
+    to:
+    - c
+    - option
+- layer:
+  - caps
+  negative_conditions:
+  - t
+  - s
+  - d
+  - f
+  app: ^com\.googlecode\.iterm2$
+  manipulators:
+  - from: y
+    negative_conditions:
+    - t
+    - s
+    - d
+    - g
+    - f
+    to:
+    - a
+    - control
+  - from: u
+    to:
+    - left_arrow
+    - option
+  - from: i
+    to:
+    - right_arrow
+    - option
+  - from: c
+    from_modifiers:
+    - command
+    negative_conditions:
+    - t
+    - f
+    to: f15
+  - from: x
+    from_modifiers:
+    - command
+    negative_conditions:
+    - t
+    - f
+    to: f16
+  - from: o
+    negative_conditions:
+    - a
+    - s
+    - d
+    - f
+    - r
+    - t
+    - g
+    to:
+    - e
+    - control
+  - from: comma
+    to:
+    - p
+    - control
+    negative_conditions:
+    - t
+    - d
+    - f
+  - from: m
+    to:
+    - n
+    - control
+    negative_conditions:
+    - t
+    - d
+    - f
+- layer:
+  - caps
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - t
+  - g
+  manipulators:
+  - from: h
+    to: left_arrow
+  - from: j
+    to: down_arrow
+  - from: k
+    to: up_arrow
+  - from: l
+    to: right_arrow
+  - from: semicolon
+    to: escape
+  - from: y
+    hold_threshold: 500
+    to:
+    - left_arrow
+    - command
+    to_if_held_down: f13
+  - from: u
+    to:
+    - left_arrow
+    - option
+  - from: i
+    to:
+    - right_arrow
+    - option
+  - from: o
+    hold_threshold: 500
+    to:
+    - right_arrow
+    - command
+    to_if_held_down: f14
+  - from: m
+    to:
+    - down_arrow
+    - command
+  - from: comma
+    to:
+    - up_arrow
+    - command
+  - from: grave_accent_and_tilde
+    to: vk_none
+  - from: '1'
+    to: vk_none
+  - from: '2'
+    to: vk_none
+  - from: '3'
+    to: vk_none
+  - from: '4'
+    to: vk_none
+  - from: '5'
+    to: vk_none
+  - from: '6'
+    to: vk_none
+  - from: '7'
+    to: vk_none
+  - from: '8'
+    to: vk_none
+  - from: '9'
+    to: vk_none
+  - from: '0'
+    to: vk_none
+  - from: hyphen
+    to: vk_none
+  - from: equal_sign
+    to: vk_none
+  - from: w
+    to: vk_none
+  - from: e
+    to: vk_none
+  - from: t
+    to: vk_none
+  - from: y
+    to: vk_none
+  - from: u
+    to: vk_none
+  - from: i
+    to: vk_none
+  - from: o
+    to: vk_none
+  - from: p
+    to: vk_none
+  - from: open_bracket
+    to: vk_none
+  - from: close_bracket
+    to: vk_none
+  - from: backslash
+    to: vk_none
+  - from: a
+    to: vk_none
+  - from: s
+    to: vk_none
+  - from: d
+    to: vk_none
+  - from: f
+    to: vk_none
+  - from: g
+    to: vk_none
+  - from: h
+    to: vk_none
+  - from: j
+    to: vk_none
+  - from: k
+    to: vk_none
+  - from: l
+    to: vk_none
+  - from: semicolon
+    to: vk_none
+  - from: quote
+    to: vk_none
+  - from: z
+    to: vk_none
+  - from: x
+    to: vk_none
+  - from: c
+    to: vk_none
+  - from: v
+    to: vk_none
+  - from: b
+    to: vk_none
+  - from: n
+    to: vk_none
+  - from: n
+    to: vk_none
+  - from: comma
+    to: vk_none
+  - from: period
+    to: vk_none
+  - from: slash
+    to: vk_none
+- layer:
+  - caps
+  - s
+  negative_conditions:
+  - f
+  app: ^com\.googlecode\.iterm2$
+  manipulators:
+  - from: semicolon
+    to:
+    - a
+    - option
+  - from: y
+    to:
+    - home
+    - shift
+  - from: u
+    to:
+    - left_arrow
+    - control+shift
+  - from: i
+    to:
+    - right_arrow
+    - control+shift
+  - from: j
+    to:
+    - down_arrow
+    - control+shift
+  - from: k
+    to:
+    - up_arrow
+    - control+shift
+  - from: o
+    to:
+    - end
+    - shift
+- layer:
+  - caps
+  - s
+  negative_conditions:
+  - a
+  - d
+  - f
+  - r
+  - t
+  - g
+  manipulators:
+  - from: h
+    to:
+    - left_arrow
+    - shift
+  - from: j
+    to:
+    - down_arrow
+    - shift
+  - from: k
+    to:
+    - up_arrow
+    - shift
+  - from: l
+    to:
+    - right_arrow
+    - shift
+  - from: semicolon
+    to:
+    - a
+    - command
+  - from: y
+    hold_threshold: 500
+    to:
+    - left_arrow
+    - command+shift
+    to_if_held_down: f17
+  - from: u
+    to:
+    - left_arrow
+    - option+shift
+  - from: i
+    to:
+    - right_arrow
+    - option+shift
+  - from: o
+    hold_threshold: 500
+    to:
+    - right_arrow
+    - command+shift
+    to_if_held_down: f20
+  - from: p
+    to:
+    - - left_arrow
+      - command
+    - - right_arrow
+      - command+shift
+  - from: m
+    to:
+    - down_arrow
+    - option+shift
+  - from: comma
+    to:
+    - up_arrow
+    - option+shift
+- layer:
+  - caps
+  - d
+  negative_conditions:
+  - f
+  app: ^com\.googlecode\.iterm2$
+  manipulators:
+  - from: j
+    to: f18
+  - from: k
+    to: f19
+  - from: y
+    to:
+    - k
+    - option
+  - from: u
+    to:
+    - w
+    - control
+  - from: i
+    to:
+    - d
+    - option
+  - from: o
+    to:
+    - k
+    - control
+- layer:
+  - caps
+  - d
+  negative_conditions:
+  - a
+  - s
+  - f
+  - r
+  - t
+  - g
+  manipulators:
+  - from: h
+    to: delete_or_backspace
+  - from: j
+    to:
+    - - down_arrow
+      - shift
+    - delete_or_backspace
+    app_unless: ^com\.googlecode\.iterm2$
+  - from: k
+    to:
+    - - up_arrow
+      - shift
+    - delete_or_backspace
+    app_unless: ^com\.googlecode\.iterm2$
+  - from: l
+    to: delete_forward
+  - from: semicolon
+    to:
+    - - a
+      - command
+    - delete_or_backspace
+  - from: y
+    hold_threshold: 500
+    to:
+    - delete_or_backspace
+    - command
+    to_if_held_down: f6
+  - from: u
+    to:
+    - delete_or_backspace
+    - option
+  - from: i
+    to:
+    - delete_forward
+    - option
+  - from: o
+    hold_threshold: 500
+    to:
+    - - right_arrow
+      - command+shift
+    - delete_forward
+    to_if_held_down: f5
+  - from: p
+    to:
+    - - right_arrow
+      - command
+    - - delete_or_backspace
+      - command
+  - from: m
+    to:
+    - k
+    - control
+  - from: comma
+    to:
+    - - up_arrow
+      - option+shift
+    - delete_or_backspace
