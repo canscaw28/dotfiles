@@ -1,0 +1,222 @@
+raw: true
+manipulators:
+- description: a-physical-tracker
+  from:
+    key_code: a
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: a_physical
+      value: 1
+  - key_code: a
+  to_after_key_up:
+  - set_variable:
+      name: a_physical
+      value: 0
+  - set_variable:
+      name: a_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('a')" &
+  type: basic
+- description: s-physical-tracker
+  from:
+    key_code: s
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: s_physical
+      value: 1
+  - key_code: s
+  to_after_key_up:
+  - set_variable:
+      name: s_physical
+      value: 0
+  - set_variable:
+      name: s_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('s'); require('cursor_grid').modeKeyUp('s')" &
+  type: basic
+- description: d-physical-tracker
+  from:
+    key_code: d
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: d_physical
+      value: 1
+  - key_code: d
+  to_after_key_up:
+  - set_variable:
+      name: d_physical
+      value: 0
+  - set_variable:
+      name: d_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('d'); require('cursor_grid').modeKeyUp('d')" &
+  type: basic
+- description: f-physical-tracker
+  from:
+    key_code: f
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: f_physical
+      value: 1
+  - key_code: f
+  to_after_key_up:
+  - set_variable:
+      name: f_physical
+      value: 0
+  - set_variable:
+      name: f_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('f'); require('cursor_grid').modeReset()" &
+  type: basic
+- description: r-physical-tracker
+  from:
+    key_code: r
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: r_physical
+      value: 1
+  - key_code: r
+  to_after_key_up:
+  - set_variable:
+      name: r_physical
+      value: 0
+  - set_variable:
+      name: r_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('r'); require('ws_grid').keyUp('r')" &
+  type: basic
+- description: e-physical-tracker
+  from:
+    key_code: e
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: e_physical
+      value: 1
+  - key_code: e
+  to_after_key_up:
+  - set_variable:
+      name: e_physical
+      value: 0
+  - set_variable:
+      name: e_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('e'); require('ws_grid').keyUp('e'); require('cursor_grid').modeReset()" &
+  type: basic
+- description: w-physical-tracker
+  from:
+    key_code: w
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: w_physical
+      value: 1
+  - key_code: w
+  to_after_key_up:
+  - set_variable:
+      name: w_physical
+      value: 0
+  - set_variable:
+      name: w_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('w'); require('ws_grid').keyUp('w')" &
+  type: basic
+- description: 4-physical-tracker
+  from:
+    key_code: '4'
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: 4_physical
+      value: 1
+  - key_code: '4'
+  to_after_key_up:
+  - set_variable:
+      name: 4_physical
+      value: 0
+  - set_variable:
+      name: 4_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('4'); require('ws_grid').keyUp('4')" &
+  type: basic
+- description: 3-physical-tracker
+  from:
+    key_code: '3'
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: 3_physical
+      value: 1
+  - key_code: '3'
+  to_after_key_up:
+  - set_variable:
+      name: 3_physical
+      value: 0
+  - set_variable:
+      name: 3_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('3'); require('ws_grid').keyUp('3')" &
+  type: basic
+- description: t-physical-tracker
+  from:
+    key_code: t
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: t_physical
+      value: 1
+  - key_code: t
+  to_after_key_up:
+  - set_variable:
+      name: t_physical
+      value: 0
+  - set_variable:
+      name: t_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('t'); require('ws_grid').keyUp('t')" &
+  type: basic
+- description: g-physical-tracker
+  from:
+    key_code: g
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: g_physical
+      value: 1
+  - key_code: g
+  to_after_key_up:
+  - set_variable:
+      name: g_physical
+      value: 0
+  - set_variable:
+      name: g_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('g')" &
+  type: basic

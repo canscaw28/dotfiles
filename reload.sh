@@ -20,6 +20,12 @@ reload_aerospace() {
 }
 
 reload_karabiner() {
+    DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    log_info "Building Karabiner config from source..."
+    /usr/bin/python3 "$DOTFILES_DIR/karabiner/build.py" || {
+        log_error "Karabiner build failed"
+        return 1
+    }
     log_info "Reloading Karabiner Elements config..."
     launchctl kickstart -k "gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server" 2>/dev/null || log_error "Karabiner Elements not running or not installed"
     touch "$HOME/.config/karabiner/karabiner.json" 2>/dev/null || true

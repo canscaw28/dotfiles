@@ -1,0 +1,56 @@
+raw: true
+manipulators:
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  - name: f_is_held
+    type: variable_if
+    value: 1
+  - name: d_is_held
+    type: variable_if
+    value: 1
+  description: 'F+D+S setter: switch to jump grid'
+  from:
+    key_code: s
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: s_is_held
+      value: 1
+  - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('s', 8, 'jump'); require('cursor_grid').flashIndicator()" 2>/dev/null &
+  to_after_key_up:
+  - set_variable:
+      name: s_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('s')" &
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  - name: f_is_held
+    type: variable_if
+    value: 1
+  - name: s_is_held
+    type: variable_if
+    value: 1
+  description: 'F+S+D setter: switch to jump grid'
+  from:
+    key_code: d
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: d_is_held
+      value: 1
+  - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('d', 8, 'jump'); require('cursor_grid').flashIndicator()" 2>/dev/null &
+  to_after_key_up:
+  - set_variable:
+      name: d_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('d')" &
+  type: basic

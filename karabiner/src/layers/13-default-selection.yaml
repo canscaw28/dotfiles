@@ -1,0 +1,142 @@
+raw: true
+manipulators:
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  - name: a_is_held
+    type: variable_if
+    value: 0
+  - name: s_is_held
+    type: variable_if
+    value: 1
+  - name: d_is_held
+    type: variable_if
+    value: 0
+  - name: f_is_held
+    type: variable_if
+    value: 0
+  - name: r_is_held
+    type: variable_if
+    value: 0
+  - name: t_is_held
+    type: variable_if
+    value: 0
+  - name: g_is_held
+    type: variable_if
+    value: 0
+  from:
+    key_code: h
+    modifiers:
+      optional:
+      - any
+  to:
+  - key_code: left_arrow
+    modifiers:
+    - shift
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  - name: a_is_held
+    type: variable_if
+    value: 0
+  - name: s_is_held
+    type: variable_if
+    value: 1
+  - name: d_is_held
+    type: variable_if
+    value: 0
+  - name: f_is_held
+    type: variable_if
+    value: 0
+  - name: r_is_held
+    type: variable_if
+    value: 0
+  - name: t_is_held
+    type: variable_if
+    value: 0
+  - name: g_is_held
+    type: variable_if
+    value: 0
+  from:
+    key_code: j
+    modifiers:
+      optional:
+      - any
+  to:
+  - key_code: down_arrow
+    modifiers:
+    - shift
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  - name: a_is_held
+    type: variable_if
+    value: 0
+  - name: s_is_held
+    type: variable_if
+    value: 1
+  - name: d_is_held
+    type: variable_if
+    value: 0
+  - name: f_is_held
+    type: variable_if
+    value: 0
+  - name: r_is_held
+    type: variable_if
+    value: 0
+  - name: t_is_held
+    type: variable_if
+    value: 0
+  - name: g_is_held
+    type: variable_if
+    value: 0
+  from:
+    key_code: k
+    modifiers:
+      optional:
+      - any
+  to:
+  - key_code: up_arrow
+    modifiers:
+    - shift
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  - name: a_is_held
+    type: variable_if
+    value: 0
+  - name: s_is_held
+    type: variable_if
+    value: 1
+  - name: d_is_held
+    type: variable_if
+    value: 0
+  - name: f_is_held
+    type: variable_if
+    value: 0
+  - name: r_is_held
+    type: variable_if
+    value: 0
+  - name: t_is_held
+    type: variable_if
+    value: 0
+  - name: g_is_held
+    type: variable_if
+    value: 0
+  from:
+    key_code: l
+    modifiers:
+      optional:
+      - any
+  to:
+  - key_code: right_arrow
+    modifiers:
+    - shift
+  type: basic

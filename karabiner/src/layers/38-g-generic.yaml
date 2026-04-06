@@ -1,0 +1,154 @@
+raw: true
+manipulators:
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  - name: a_is_held
+    type: variable_if
+    value: 0
+  - name: s_is_held
+    type: variable_if
+    value: 0
+  - name: d_is_held
+    type: variable_if
+    value: 0
+  - name: f_is_held
+    type: variable_if
+    value: 0
+  - name: r_is_held
+    type: variable_if
+    value: 0
+  - name: t_is_held
+    type: variable_if
+    value: 0
+  - name: g_is_held
+    type: variable_if
+    value: 1
+  description: 'G+H: focus window left'
+  from:
+    key_code: h
+    modifiers:
+      optional:
+      - any
+  to:
+  - key_code: h
+    modifiers:
+    - left_command
+    - left_control
+    - left_option
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  - name: a_is_held
+    type: variable_if
+    value: 0
+  - name: s_is_held
+    type: variable_if
+    value: 0
+  - name: d_is_held
+    type: variable_if
+    value: 0
+  - name: f_is_held
+    type: variable_if
+    value: 0
+  - name: r_is_held
+    type: variable_if
+    value: 0
+  - name: t_is_held
+    type: variable_if
+    value: 0
+  - name: g_is_held
+    type: variable_if
+    value: 1
+  description: 'G+J: focus window down'
+  from:
+    key_code: j
+    modifiers:
+      optional:
+      - any
+  to:
+  - key_code: j
+    modifiers:
+    - left_command
+    - left_control
+    - left_option
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  - name: a_is_held
+    type: variable_if
+    value: 0
+  - name: s_is_held
+    type: variable_if
+    value: 0
+  - name: d_is_held
+    type: variable_if
+    value: 0
+  - name: f_is_held
+    type: variable_if
+    value: 0
+  - name: r_is_held
+    type: variable_if
+    value: 0
+  - name: t_is_held
+    type: variable_if
+    value: 0
+  - name: g_is_held
+    type: variable_if
+    value: 1
+  description: 'G+K: focus window up'
+  from:
+    key_code: k
+    modifiers:
+      optional:
+      - any
+  to:
+  - key_code: k
+    modifiers:
+    - left_command
+    - left_control
+    - left_option
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  - name: a_is_held
+    type: variable_if
+    value: 0
+  - name: s_is_held
+    type: variable_if
+    value: 0
+  - name: d_is_held
+    type: variable_if
+    value: 0
+  - name: f_is_held
+    type: variable_if
+    value: 0
+  - name: r_is_held
+    type: variable_if
+    value: 0
+  - name: t_is_held
+    type: variable_if
+    value: 0
+  - name: g_is_held
+    type: variable_if
+    value: 1
+  description: 'G+L: focus window right'
+  from:
+    key_code: l
+    modifiers:
+      optional:
+      - any
+  to:
+  - key_code: l
+    modifiers:
+    - left_command
+    - left_control
+    - left_option
+  type: basic

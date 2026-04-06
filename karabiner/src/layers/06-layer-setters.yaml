@@ -1,0 +1,242 @@
+raw: true
+manipulators:
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  - name: f_is_held
+    type: variable_if
+    value: 1
+  from:
+    key_code: s
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: s_is_held
+      value: 1
+  - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('s', 32, 'move'); require('cursor_grid').flashIndicator()" 2>/dev/null &
+  to_after_key_up:
+  - set_variable:
+      name: s_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('s')" &
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  from:
+    key_code: s
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: s_is_held
+      value: 1
+  to_after_key_up:
+  - set_variable:
+      name: s_is_held
+      value: 0
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  - name: f_is_held
+    type: variable_if
+    value: 1
+  from:
+    key_code: d
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: d_is_held
+      value: 1
+  - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('d', 8, 'move'); require('cursor_grid').flashIndicator()" 2>/dev/null &
+  to_after_key_up:
+  - set_variable:
+      name: d_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('d')" &
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  from:
+    key_code: d
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: d_is_held
+      value: 1
+  to_after_key_up:
+  - set_variable:
+      name: d_is_held
+      value: 0
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  from:
+    key_code: f
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: f_is_held
+      value: 1
+  to_after_key_up:
+  - set_variable:
+      name: f_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeReset()" &
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  from:
+    key_code: r
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: r_is_held
+      value: 1
+  - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('r')" &
+  to_after_key_up:
+  - set_variable:
+      name: r_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('r')" &
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  from:
+    key_code: e
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: e_is_held
+      value: 1
+  - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('e')" &
+  to_after_key_up:
+  - set_variable:
+      name: e_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('e')" &
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  from:
+    key_code: w
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: w_is_held
+      value: 1
+  - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('w')" &
+  to_after_key_up:
+  - set_variable:
+      name: w_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('w')" &
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  from:
+    key_code: '4'
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: 4_is_held
+      value: 1
+  - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('4')" &
+  to_after_key_up:
+  - set_variable:
+      name: 4_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('4')" &
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  from:
+    key_code: '3'
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: 3_is_held
+      value: 1
+  - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('3')" &
+  to_after_key_up:
+  - set_variable:
+      name: 3_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('3')" &
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  from:
+    key_code: t
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: t_is_held
+      value: 1
+  - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('t'); require('focus_border').flash()" &
+  to_after_key_up:
+  - set_variable:
+      name: t_is_held
+      value: 0
+  - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('t')" &
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  from:
+    key_code: g
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: g_is_held
+      value: 1
+  - shell_command: /usr/local/bin/hs -c "require('focus_border').flash()" &
+  to_after_key_up:
+  - set_variable:
+      name: g_is_held
+      value: 0
+  type: basic

@@ -1,0 +1,44 @@
+raw: true
+manipulators:
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  - name: d_is_held
+    type: variable_if
+    value: 1
+  - bundle_identifiers:
+    - ^com\.googlecode\.iterm2$
+    type: frontmost_application_if
+  - name: f_is_held
+    type: variable_if
+    value: 0
+  from:
+    key_code: j
+    modifiers:
+      optional:
+      - any
+  to:
+  - key_code: f18
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
+  - name: d_is_held
+    type: variable_if
+    value: 1
+  - bundle_identifiers:
+    - ^com\.googlecode\.iterm2$
+    type: frontmost_application_if
+  - name: f_is_held
+    type: variable_if
+    value: 0
+  from:
+    key_code: k
+    modifiers:
+      optional:
+      - any
+  to:
+  - key_code: f19
+  type: basic

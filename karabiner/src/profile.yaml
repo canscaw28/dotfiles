@@ -1,0 +1,11 @@
+name: Default profile
+selected: true
+rule_description: Hold Caps Lock as a modifier for navigation and editing
+virtual_hid_keyboard:
+  caps_lock_delay_milliseconds: 0
+  keyboard_type_v2: ansi
+simple_modifications:
+- from:
+    key_code: caps_lock
+  to:
+  - key_code: non_us_backslash
