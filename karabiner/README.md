@@ -14,8 +14,8 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    | Pointer Position | Layer | Domain |
    | --- | --- | --- |
    | *(home / absent)* | Default | Cursor movement |
-   | F | Scroll | Page scrolling via HammerSpoon |
-   | G | Chrome | Browser tab control |
+   | F | Scroll / Cursor Grid | Page scrolling, mouse cursor control, link hints |
+   | G | Chrome | Browser tab/window control |
    | T | Aerospace | Window management and workspace switching |
 
 3. **Middle and ring fingers → Mode selection.** A mode is a *variation within a layer* — it changes how the right hand's actions are interpreted without changing the domain. Mode keys are ergonomically adjacent to the pointer finger's layer key, so they fall naturally under the middle or ring finger:
@@ -25,23 +25,25 @@ The left hand operates on a three-tier hierarchy, mapped to finger anatomy:
    | Default | *(none)* | Cursor | Move the cursor |
    | Default | S (ring) | Selection | Select text instead of moving |
    | Default | D (middle) | Deletion | Delete text instead of moving |
-   | Chrome (G) | *(none)* | Tab Navigation | Switch between tabs |
-   | Chrome (G) | F (middle) | Tab Movement | Physically reorder tabs |
+   | Chrome (G) | *(none)* | Tab Navigation | Switch between tabs/windows |
+   | Chrome (G) | F (middle) | Tab Reorder | Reorder tabs within a window |
+   | Chrome (G) | D (ring) | Tab Move | Move tab to another window directionally |
    | Aerospace (T) | *(none)* | Focus | Focus windows directionally |
    | Aerospace (T) | R (ring) | Move | Move windows directionally |
    | Aerospace (T) | 4 (number row) | Join | Join windows directionally |
-   | Aerospace (T) | E (middle) | Move to WS | Move window to workspace (stay) |
-   | Aerospace (T) | R+E (ring+middle) | Move+Follow | Move window to workspace and follow |
+   | Aerospace (T) | W | Focus WS | Focus workspace on current monitor |
+   | Aerospace (T) | E | Move to WS | Move window to workspace (stay) |
+   | Aerospace (T) | R+E | Move+Follow | Move window to workspace and follow |
    | Aerospace (T) | W+E | Focus Mon 1 | Focus workspace on monitor 1 |
    | Aerospace (T) | W+R | Focus Mon 2 | Focus workspace on monitor 2 |
-   | Aerospace (T) | W+3 | Focus Mon 3 | Focus workspace on monitor 3 |
-   | Aerospace (T) | W+4 | Focus Mon 4 | Focus workspace on monitor 4 |
+   | Aerospace (T) | 3 | Swap Windows | Swap all windows between workspaces |
+   | Aerospace (T) | W+4 | Nav Grid | HJKL cursor over 4x5 workspace grid |
 
    Notice that S and D are not separate layers — they are **modes of the Default layer**. The pointer finger is absent (no layer key held), so the middle and ring fingers are free to select a mode on the home row. Similarly, F is not a mode of Chrome — it's a mode key for the G layer, pressed by the middle finger while the pointer holds G.
 
    Mode keys are always relative to the pointer finger's position:
    - **Default layer** (pointer absent): modes use home-row neighbors **S**, **D**
-   - **G layer** (pointer on G): modes use **F**, and potentially **D**, **V**, **B**
+   - **G layer** (pointer on G): modes use **F**, **D**
    - **T layer** (pointer on T): modes use **R**, **E**, **W**, **3**, **4**
 
    This means learning a new layer doesn't require memorizing arbitrary modifier keys — the mode keys are always "the fingers next to the layer key."
@@ -72,7 +74,8 @@ This mapping is consistent across layers and modes:
 | Default | Selection (S) | select ← / → | select word left / right | select to line start / end |
 | Default | Deletion (D) | delete ← / → | delete word left / right | delete to line start / end |
 | Chrome | Navigation (G) | prev / next tab | jump 3 tabs | first / last tab |
-| Chrome | Movement (F+G) | move tab ← / → | move tab 3 positions | move to start / end |
+| Chrome | Reorder (F+G) | move tab ← / → | move tab 3 positions | move to start / end |
+| Chrome | Tab Move (D+G) | move tab to window ← / → | | move tab to window ↑ / ↓ |
 | Aerospace | Focus (T) | focus ← / → | | |
 | Aerospace | Move (R+T) | move window ← / → | | |
 | Aerospace | Join (4+T) | join ← / → | | |
@@ -94,18 +97,23 @@ Because the right hand layout never changes, you only learn it once. Switching l
 | Default | ⇪ | — | Cursor | Move the cursor |
 | | ⇪ | S | Selection | Select text instead of moving |
 | | ⇪ | D | Deletion | Delete text instead of moving |
-| Scroll | ⇪ + F | — | — | Page scrolling via HammerSpoon |
-| Chrome | ⇪ + G | — | Navigation | Switch between tabs |
-| | ⇪ + G | F | Movement | Physically reorder tabs |
+| Scroll / Cursor Grid | ⇪ + F | — | Scroll | Page scrolling via Hammerspoon |
+| | ⇪ + F | D | Coarse Grid | 8x8 mouse cursor grid |
+| | ⇪ + F | S | Fine Grid | 32x32 mouse cursor grid |
+| | ⇪ + F | E | Link Hints / Jump | Fixed cursor positions, Vimium/Homerow hints |
+| Chrome | ⇪ + G | — | Navigation | Switch between tabs and windows |
+| | ⇪ + G | F | Reorder | Reorder tabs within a window |
+| | ⇪ + G | D | Tab Move | Move tab to another Chrome window |
 | Aerospace | ⇪ + T | — | Focus | Window focus management |
 | | ⇪ + T | R | Move | Move windows directionally |
 | | ⇪ + T | 4 | Join | Join windows directionally |
+| | ⇪ + T | W | Focus WS | Focus workspace on current monitor |
 | | ⇪ + T | E | Move to WS | Move window to workspace (stay) |
 | | ⇪ + T | R+E | Move+Follow | Move window to workspace and follow |
 | | ⇪ + T | W+E | Focus Mon 1 | Focus workspace on monitor 1 |
 | | ⇪ + T | W+R | Focus Mon 2 | Focus workspace on monitor 2 |
-| | ⇪ + T | W+3 | Focus Mon 3 | Focus workspace on monitor 3 |
-| | ⇪ + T | W+4 | Focus Mon 4 | Focus workspace on monitor 4 |
+| | ⇪ + T | 3 | Swap Windows | Swap all windows between workspaces |
+| | ⇪ + T | W+4 | Nav Grid | HJKL cursor over workspace grid |
 | System | ⇪ + A | — | System Toggles | Dock, Notification Center, Mission Control, etc. |
 | *(unassigned)* | ⇪ + R | | | |
 
@@ -115,7 +123,7 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 | Shortcut | Behavior | Description |
 | --- | --- | --- |
-| ⇪ + ⇪ | ⌃ + ⌃ | Trigger LanguageTool tooltip |
+| ⇪ + ⇪ | LanguageTool | Double-tap Caps Lock to trigger LanguageTool tooltip |
 | ⇪ + R⇧ | ⇪ | Trigger Caps-Lock |
 
 ---
@@ -184,25 +192,30 @@ Because the right hand layout never changes, you only learn it once. Switching l
 
 ---
 
-## Scroll Layer (⇪ + F)
+## Scroll / Cursor Grid Layer (⇪ + F)
 
-| Key / Shortcut | Behavior | Description |
+### Scrolling
+
+Karabiner sends ⌃+⇧+key which Hammerspoon's eventtap intercepts to perform smooth scrolling:
+
+| Key / Shortcut | Action | Description |
 | --- | --- | --- |
-| ⇪ + F + H | ⌃ + ` | HS: Scroll down |
-| ⇪ + F + J | ⌃ + 1 | HS: Scroll up |
-| ⇪ + F + K | ⌃ + 2 | HS: Scroll left |
-| ⇪ + F + L | ⌃ + 3 | HS: Scroll right |
-| ⇪ + F + ; | ⌃ + 4 | HS: Scroll half a page down |
-| ⇪ + F + Y | ⌃ + 5 | HS: Scroll half a page up |
-| ⇪ + F + U | ⌃ + 6 | HS: Scroll a full page down |
-| ⇪ + F + I | ⌃ + 7 | HS: Scroll a full page up |
-| ⇪ + F + O | ⌃ + 8 | HS: Scroll to the bottom |
-| ⇪ + F + P | ⌃ + 9 | HS: scroll to the top |
+| ⇪ + F + H | Scroll left | Continuous scroll left |
+| ⇪ + F + J | Scroll down | Continuous scroll down |
+| ⇪ + F + K | Scroll up | Continuous scroll up |
+| ⇪ + F + L | Scroll right | Continuous scroll right |
+| ⇪ + F + Y | Scroll to top | Jump to top (animated, 0.3s) |
+| ⇪ + F + O | Scroll to bottom | Jump to bottom (animated, 0.3s) |
+| ⇪ + F + U | Half-page up | Smooth half-page scroll up |
+| ⇪ + F + I | Half-page down | Smooth half-page scroll down |
+| ⇪ + F + ; | Left click | Click at current cursor position |
+| ⇪ + F + ' | Right click | Right-click at current cursor position |
 | ⇪ + F + N |  |  |
 | ⇪ + F + M |  |  |
 | ⇪ + F + , |  |  |
 | ⇪ + F + . |  |  |
 | ⇪ + F + / |  |  |
+| ⇪ + F + P | Toggle grid | Toggle grid overlay on focused window |
 
 ### Cursor Grid Movement — ⇪ + F + D (8×8) / ⇪ + F + S (32×32)
 
@@ -243,6 +256,17 @@ Jumps the mouse cursor to fixed positions within the focused window. An amber in
 | ⇪ + F + E + M | Bottom-left quadrant center |
 | ⇪ + F + E + , | Bottom-right quadrant center |
 
+### Link Hints (⇪ + F + E, Chrome/Homerow)
+
+In Chrome, F+E also provides Vimium and Homerow integration:
+
+| Key | Action |
+| --- | --- |
+| ⇪ + F + E + J | Vimium link hints (Chrome) |
+| ⇪ + F + E + K | Vimium hover hints (Chrome) |
+| ⇪ + F + E + ; | Toggle Vimium (Chrome) |
+| ⇪ + F + E + H | Homerow scroll mode |
+
 ### Grid Overlay — ⇪ + F + D/S/E + P
 
 Toggles a grid overlay on the focused window. Shows an 8×8 grid in D/E modes, and a hierarchical 32×32 grid in S mode with color-coded line density (green = 2×2 major, light blue = 8×8, dashed = 16×16).
@@ -251,30 +275,34 @@ Toggles a grid overlay on the focused window. Shows an 8×8 grid in D/E modes, a
 
 ## Chrome Layer (⇪ + G)
 
-### Tab Navigation
+In Chrome, the G layer controls tabs and windows. In iTerm2, it controls tmux panes. In other apps, it provides generic directional window focus.
+
+### Tab Navigation (Chrome)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| ⇪ + G + H | ⌘ + ⌥ + ← | Previous tab |
-| ⇪ + G + L | ⌘ + ⌥ + → | Next tab |
-| ⇪ + G + Y | ⌘ + 1 | First tab |
-| ⇪ + G + O | ⌘ + 9 | Last tab |
+| ⇪ + G + H | Prev tab | Previous tab (wraps to previous window at boundary) |
+| ⇪ + G + L | Next tab | Next tab (wraps to next window at boundary) |
+| ⇪ + G + Y | First tab | First tab in current window |
+| ⇪ + G + O | Last tab | Last tab in current window |
+| ⇪ + G + U | Jump 3 left | Jump 3 tabs to the left |
+| ⇪ + G + I | Jump 3 right | Jump 3 tabs to the right |
+| ⇪ + G + J | Focus window ↓ | Focus nearest Chrome window below |
+| ⇪ + G + K | Focus window ↑ | Focus nearest Chrome window above |
 | ⇪ + G + ; | Esc; T | Trigger Vimium Tab search |
 | ⇪ + G + ' | Esc; o | Trigger Vimium history search |
 | ⇪ + G + P | Esc; yt | Trigger Vimium Duplicate tab |
-| ⇪ + G + [ | ⌘ + ← | Move back in history |
-| ⇪ + G + ] | ⌘ + → | Move forward in history |
-| ⇪ + G + / | ⌘ + W | Close current tab |
-| ⇪ + G + J | *available* | |
-| ⇪ + G + K | *available* | |
-| ⇪ + G + U | ⌘ + ⌥ + ← ×3 | Jump 3 tabs left |
-| ⇪ + G + I | ⌘ + ⌥ + → ×3 | Jump 3 tabs right |
-| ⇪ + G + N | *available* | |
-| ⇪ + G + M | *available* | |
-| ⇪ + G + , | *available* | |
-| ⇪ + G + . | *available* | |
+| ⇪ + G + [ | ⌘ + [ | Navigate back in history |
+| ⇪ + G + ] | ⌘ + ] | Navigate forward in history |
+| ⇪ + G + N | ⌘ + T | New tab |
+| ⇪ + G + M | Duplicate tab | Duplicate current tab |
+| ⇪ + G + , | ⌘ + ⇧ + T | Reopen last closed tab |
+| ⇪ + G + . | ⌘ + W | Close current tab |
+| ⇪ + G + / | Detach tab | Detach tab to new window |
 
-### Tab Movement Mode (⇪ + F + G)
+Tab switching (H/L/Y/O/U/I) uses Hammerspoon JXA for reliability, with hold-to-repeat (0.2s delay, 70ms interval) and cross-window wrapping via AeroSpace.
+
+### Tab Reorder Mode (⇪ + F + G)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -282,18 +310,30 @@ Toggles a grid overlay on the focused window. Shows an 8×8 grid in D/E modes, a
 | ⇪ + F + G + L | Esc; >> | Move tab one position to the right |
 | ⇪ + F + G + Y | Esc; 100<< | Move tab to the beginning |
 | ⇪ + F + G + O | Esc; 100>> | Move tab to the end |
-| ⇪ + F + G + J | *available* | |
-| ⇪ + F + G + K | *available* | |
 | ⇪ + F + G + U | Esc; 3<< | Move tab 3 positions to the left |
 | ⇪ + F + G + I | Esc; 3>> | Move tab 3 positions to the right |
-| ⇪ + F + G + P | *available* | |
-| ⇪ + F + G + ; | *available* | |
-| ⇪ + F + G + ' | *available* | |
-| ⇪ + F + G + N | *available* | |
-| ⇪ + F + G + M | *available* | |
-| ⇪ + F + G + , | *available* | |
-| ⇪ + F + G + . | *available* | |
-| ⇪ + F + G + / | *available* | |
+| ⇪ + F + G + J | Move tab + focus ↓ | Move tab to window below and follow |
+| ⇪ + F + G + K | Move tab + focus ↑ | Move tab to window above and follow |
+
+### Tab Move Mode (⇪ + D + G)
+
+Moves the current tab to another Chrome window in the specified direction, using the tab-mover Chrome extension:
+
+| Key / Shortcut | Description |
+| --- | --- |
+| ⇪ + D + G + H | Move tab to Chrome window on the left |
+| ⇪ + D + G + J | Move tab to Chrome window below |
+| ⇪ + D + G + K | Move tab to Chrome window above |
+| ⇪ + D + G + L | Move tab to Chrome window on the right |
+
+### Generic Window Focus (non-Chrome, non-iTerm)
+
+| Key / Shortcut | Description |
+| --- | --- |
+| ⇪ + G + H | Focus window left |
+| ⇪ + G + J | Focus window down |
+| ⇪ + G + K | Focus window up |
+| ⇪ + G + L | Focus window right |
 
 ---
 
@@ -330,18 +370,6 @@ Toggles a grid overlay on the focused window. Shows an 8×8 grid in D/E modes, a
 | ⇪ + R + T + J | ⌘ + ⌥ + ⌃ + U | Move window down (crosses to adjacent monitor at edge) |
 | ⇪ + R + T + K | ⌘ + ⌥ + ⌃ + I | Move window up (crosses to adjacent monitor at edge) |
 | ⇪ + R + T + L | ⌘ + ⌥ + ⌃ + O | Move window right (crosses to adjacent monitor at edge) |
-| ⇪ + R + T + Y | *available* | |
-| ⇪ + R + T + U | *available* | |
-| ⇪ + R + T + I | *available* | |
-| ⇪ + R + T + O | *available* | |
-| ⇪ + R + T + P | *available* | |
-| ⇪ + R + T + ; | *available* | |
-| ⇪ + R + T + ' | *available* | |
-| ⇪ + R + T + N | *available* | |
-| ⇪ + R + T + M | *available* | |
-| ⇪ + R + T + , | *available* | |
-| ⇪ + R + T + . | *available* | |
-| ⇪ + R + T + / | *available* | |
 
 ### Join Mode (⇪ + 4 + T)
 
@@ -351,18 +379,6 @@ Toggles a grid overlay on the focused window. Shows an 8×8 grid in D/E modes, a
 | ⇪ + 4 + T + J | ⌘ + ⌥ + ⌃ + M | Join with down |
 | ⇪ + 4 + T + K | ⌘ + ⌥ + ⌃ + , | Join with up |
 | ⇪ + 4 + T + L | ⌘ + ⌥ + ⌃ + . | Join with right |
-| ⇪ + 4 + T + Y | *available* | |
-| ⇪ + 4 + T + U | *available* | |
-| ⇪ + 4 + T + I | *available* | |
-| ⇪ + 4 + T + O | *available* | |
-| ⇪ + 4 + T + P | *available* | |
-| ⇪ + 4 + T + ; | *available* | |
-| ⇪ + 4 + T + ' | *available* | |
-| ⇪ + 4 + T + N | *available* | |
-| ⇪ + 4 + T + M | *available* | |
-| ⇪ + 4 + T + , | *available* | |
-| ⇪ + 4 + T + . | *available* | |
-| ⇪ + 4 + T + / | *available* | |
 
 ### Workspace Operations
 
@@ -376,6 +392,12 @@ y  u  i  o  p
 h  j  k  l  ;
 n  m  ,  .  /
 ```
+
+### Focus Workspace (⇪ + W + T)
+
+| Key / Shortcut | Description |
+| --- | --- |
+| ⇪ + W + T + *key* | Focus workspace on current monitor (swaps if visible on another) |
 
 ### Move to Workspace (⇪ + E + T)
 
@@ -401,17 +423,15 @@ n  m  ,  .  /
 | --- | --- |
 | ⇪ + W + R + T + *key* | Focus workspace on monitor 2 (falls back to monitor 1) |
 
-### Focus Monitor 3 (⇪ + W + 3 + T)
+### Swap Windows (⇪ + 3 + T)
 
 | Key / Shortcut | Description |
 | --- | --- |
-| ⇪ + W + 3 + T + *key* | Focus workspace on monitor 3 (falls back to monitor 1) |
+| ⇪ + 3 + T + *key* | Swap all windows between focused workspace and target workspace |
 
-### Focus Monitor 4 (⇪ + W + 4 + T)
+### Nav Grid (⇪ + W + 4 + T)
 
-| Key / Shortcut | Description |
-| --- | --- |
-| ⇪ + W + 4 + T + *key* | Focus workspace on monitor 4 (falls back to monitor 1) |
+Activates a navigation cursor on the workspace grid overlay. Use HJKL to move the cursor across the 4x5 grid. When exiting the mode (releasing keys), `ws.sh focus` runs on the selected workspace.
 
 ### Swap Implementation
 
@@ -459,10 +479,6 @@ macOS system toggles and input source management. Unlike other layers, A does no
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| ⇪ + H | ← | Move cursor left |
-| ⇪ + J | ↓ | Smart down: history for single-line, cursor for multi-line |
-| ⇪ + K | ↑ | Smart up: history for single-line, cursor for multi-line |
-| ⇪ + L | → | Move cursor right |
 | ⇪ + Y | ⌃ + A | Jump to start of line |
 | ⇪ + U | ⌥ + ← | Jump back one word |
 | ⇪ + I | ⌥ + → | Jump forward one word |
@@ -485,7 +501,7 @@ macOS system toggles and input source management. Unlike other layers, A does no
 | --- | --- | --- |
 | ⇪ + D + Y | ⌃ + U | Delete from cursor to start of line |
 | ⇪ + D + U | ⌃ + W | Delete word to the left |
-| ⇪ + D + I | Esc, d | Delete word to the right |
+| ⇪ + D + I | ⌥ + D | Delete word to the right |
 | ⇪ + D + O | ⌃ + K | Delete from cursor to end of line |
 | ⇪ + D + J | F18 | Delete to line below |
 | ⇪ + D + K | F19 | Delete to line above |
@@ -533,32 +549,5 @@ macOS system toggles and input source management. Unlike other layers, A does no
 | ⇪ + G + J | ⌃ + B, ↓ | Select tmux pane down |
 | ⇪ + G + K | ⌃ + B, ↑ | Select tmux pane up |
 | ⇪ + G + L | ⌃ + B, → | Select tmux pane right |
-
----
-
-## HammerSpoon
-
-*These keys are widely available for remapping*
-
-| Key / Shortcut | Description |
-| --- | --- |
-| ⌃ + ` | Scroll down |
-| ⌃ + 1 | Scroll up |
-| ⌃ + 2 | Scroll left |
-| ⌃ + 3 | Scroll right |
-| ⌃ + 4 | Scroll half a page down |
-| ⌃ + 5 | Scroll half a page up |
-| ⌃ + 6 | Scroll a full page down |
-| ⌃ + 7 | Scroll a full page up |
-| ⌃ + 8 | Scroll to the bottom |
-| ⌃ + 9 | scroll to the top |
-| ⌃ + 0 | move cursor near right center of window |
-| ⌃ + - |  |
-| ⌃ + = |  |
-| ⌃ + [ |  |
-| ⌃ + ] |  |
-| ⌃ + ; |  |
-| ⌃ + ‘ |  |
-| ⌃ + , |  |
-| ⌃ + . |  |
-| ⌃ + / |  |
+| ⇪ + G + Y | Edge pane left | Jump to leftmost tmux pane |
+| ⇪ + G + O | Edge pane right | Jump to rightmost tmux pane |
