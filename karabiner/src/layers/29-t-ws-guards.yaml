@@ -1,9 +1,5 @@
-layer:
-- caps
-- t
-- w
-- '4'
-negative_conditions: []
+_generated_by: scripts/apply_t_ws_layer.py
+_warning: Auto-generated. Do not edit directly.
 manipulators:
 - from: open_bracket
   description: t-ws-guard
@@ -11,6 +7,7 @@ manipulators:
   - caps
   - t
   - e
+  negative_conditions: []
   to: noop
 - from: close_bracket
   description: t-ws-guard
@@ -18,6 +15,7 @@ manipulators:
   - caps
   - t
   - e
+  negative_conditions: []
   to: noop
 - from: hyphen
   description: t-ws-guard
@@ -25,6 +23,7 @@ manipulators:
   - caps
   - t
   - e
+  negative_conditions: []
   to: noop
 - from: equal_sign
   description: t-ws-guard
@@ -32,6 +31,7 @@ manipulators:
   - caps
   - t
   - e
+  negative_conditions: []
   to: noop
 - from: backslash
   description: t-ws-guard
@@ -39,6 +39,7 @@ manipulators:
   - caps
   - t
   - e
+  negative_conditions: []
   to: noop
 - from: open_bracket
   description: t-ws-guard
@@ -46,6 +47,7 @@ manipulators:
   - caps
   - t
   - w
+  negative_conditions: []
   to: noop
 - from: close_bracket
   description: t-ws-guard
@@ -53,6 +55,7 @@ manipulators:
   - caps
   - t
   - w
+  negative_conditions: []
   to: noop
 - from: hyphen
   description: t-ws-guard
@@ -60,6 +63,7 @@ manipulators:
   - caps
   - t
   - w
+  negative_conditions: []
   to: noop
 - from: equal_sign
   description: t-ws-guard
@@ -67,6 +71,7 @@ manipulators:
   - caps
   - t
   - w
+  negative_conditions: []
   to: noop
 - from: backslash
   description: t-ws-guard
@@ -74,52 +79,149 @@ manipulators:
   - caps
   - t
   - w
+  negative_conditions: []
   to: noop
 - from: '6'
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: '7'
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: '8'
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: '9'
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: '0'
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: y
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: u
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: i
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: o
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: p
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: semicolon
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: n
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: m
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: comma
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: period
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop
 - from: slash
   description: t-ws-guard
+  layer:
+  - caps
+  - t
+  - w
+  - '4'
+  negative_conditions: []
   to: noop

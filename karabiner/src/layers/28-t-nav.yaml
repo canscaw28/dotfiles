@@ -1,3 +1,5 @@
+_generated_by: scripts/apply_t_ws_layer.py
+_warning: Auto-generated. Do not edit directly.
 layer:
 - caps
 - t
