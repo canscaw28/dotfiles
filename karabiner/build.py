@@ -87,29 +87,25 @@ def build_conditions(file_ctx, manip):
     # unless negatives are explicitly listed
     negatives = manip.get("negative_conditions", file_ctx.get("negative_conditions"))
 
+    # Determine which vars to negate
+    if negatives is not None:
+        negate_set = {VAR_MAP.get(v, v) for v in negatives} - set(positive)
+    else:
+        negate_set = set(ALL_LAYER_VARS) - set(positive)
+
     conditions = []
 
     # Always put caps_lock_is_held first if present
     if "caps_lock_is_held" in positive:
         conditions.append({"name": "caps_lock_is_held", "type": "variable_if", "value": 1})
 
-    # Add negative conditions
-    if negatives is not None:
-        # Explicit list of variables to negate
-        for var_short in negatives:
-            var = VAR_MAP.get(var_short, var_short)
-            if var not in positive:
-                conditions.append({"name": var, "type": "variable_if", "value": 0})
-    else:
-        # Default: negate all layer vars not in positive
-        for var in ALL_LAYER_VARS:
-            if var not in positive:
-                conditions.append({"name": var, "type": "variable_if", "value": 0})
-
-    # Add positive layer vars (except caps which is already added)
-    for var, val in positive.items():
-        if var != "caps_lock_is_held":
-            conditions.append({"name": var, "type": "variable_if", "value": val})
+    # Walk ALL_LAYER_VARS in order, emitting each as positive or negative
+    # This preserves the interleaved ordering of the original config
+    for var in ALL_LAYER_VARS:
+        if var in positive:
+            conditions.append({"name": var, "type": "variable_if", "value": 1})
+        elif var in negate_set:
+            conditions.append({"name": var, "type": "variable_if", "value": 0})
 
     # App conditions
     app = manip.get("app", file_ctx.get("app"))
