@@ -90,7 +90,18 @@ install_karabiner() {
     log_info "Installing Karabiner Elements config..."
     mkdir -p "$HOME/.config/karabiner"
     create_symlink "$DOTFILES_DIR/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
+    install_git_hooks
     "$DOTFILES_DIR/reload.sh" --karabiner
+}
+
+install_git_hooks() {
+    log_info "Installing git hooks..."
+    if [[ -d "$DOTFILES_DIR/.git/hooks" ]]; then
+        ln -sf "$DOTFILES_DIR/hooks/pre-commit" "$DOTFILES_DIR/.git/hooks/pre-commit"
+        log_info "Linked pre-commit hook"
+    else
+        log_warn "Not in a git repo, skipping hook installation"
+    fi
 }
 
 install_hammerspoon() {

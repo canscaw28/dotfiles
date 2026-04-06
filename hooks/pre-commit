@@ -1,0 +1,36 @@
+#!/bin/bash
+# Pre-commit hook: verify karabiner.json matches YAML sources.
+#
+# Runs when karabiner/ files are staged. Fails the commit if karabiner.json
+# is out of sync with karabiner/src/ — catches direct edits to the generated
+# JSON file.
+#
+# Install: ln -sf ../../hooks/pre-commit .git/hooks/pre-commit
+
+set -e
+
+# Only check if karabiner files are staged
+if ! git diff --cached --name-only | grep -qE "^karabiner/"; then
+    exit 0
+fi
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+
+# Run build --check; the script returns non-zero on mismatch
+if ! /usr/bin/python3 "$REPO_ROOT/karabiner/build.py" --check 2>&1; then
+    echo ""
+    echo "ERROR: karabiner.json does not match YAML sources."
+    echo ""
+    echo "This usually means karabiner.json was edited directly instead of"
+    echo "editing the YAML source files in karabiner/src/layers/."
+    echo ""
+    echo "To fix:"
+    echo "  1. Find the YAML source file for the change you want to make"
+    echo "  2. Edit it instead of karabiner.json"
+    echo "  3. Run: ./reload.sh --karabiner"
+    echo ""
+    echo "Or, if you intentionally regenerated karabiner.json:"
+    echo "  git add karabiner/karabiner.json karabiner/src/"
+    echo ""
+    exit 1
+fi

@@ -38,6 +38,85 @@ A few files use **`raw: true`** and contain full Karabiner JSON in YAML form. Th
 
 `raw: true` files should not be converted unless you understand exactly what they do.
 
+## Compact format reference
+
+### File-level fields
+
+```yaml
+layer: [caps, g]               # Layer keys held; build.py infers conditions
+negative_conditions: [a, s, d] # Optional: explicit list of vars to set =0
+                               # Default: all layer vars not in `layer` are negated
+app: "^com\\.google\\.Chrome$" # Optional: frontmost_application_if condition
+app_unless: "^com\\..*"        # Optional: frontmost_application_unless
+
+manipulators:
+  - ...
+```
+
+### Per-manipulator fields
+
+Each manipulator can override file-level defaults. All fields except `from` are optional.
+
+```yaml
+- from: h                        # Trigger key (default modifiers: optional any)
+  from_modifiers: [command]      # Optional: mandatory modifiers (Cmd+H)
+  description: "G+H: prev tab"   # Optional: shown in karabiner config UI
+  layer: [caps, g]               # Optional: override file-level layer
+  negative_conditions: [a, s]    # Optional: override file-level negatives
+  app: "..."                     # Optional: override file-level app
+  conditions: [...]              # Optional: full manual control over conditions
+  to: ...                        # Output events (see "to value forms" below)
+  to_after_key_up: ...           # Events on key release
+  to_if_held_down: noop          # Events when held past threshold
+  hold_threshold: 200            # Milliseconds before to_if_held_down fires
+  parameters: {...}              # Other Karabiner parameters
+```
+
+### `to` value forms
+
+| YAML | Expands to |
+|------|-----------|
+| `to: left_arrow` | `{key_code: left_arrow}` |
+| `to: [h, shift]` | `{key_code: h, modifiers: [shift]}` (single key+mod) |
+| `to: [h, command+shift]` | `{key_code: h, modifiers: [command, shift]}` |
+| `to: [escape, o]` | Two key events: escape, then o (modifier names rejected) |
+| `to: noop` | `{set_variable: {name: guard_noop, value: 0}}` |
+| `to: {shell: "cmd"}` | `{shell_command: "cmd"}` |
+| `to: {set: {name: 1}}` | `{set_variable: {name: name, value: 1}}` |
+| `to: {key: x, modifiers: [...]}` | Full key spec |
+
+For multiple events, use a list:
+```yaml
+to:
+  - [escape, command]    # First: Cmd+Escape
+  - {shell: "echo hi"}   # Then: shell command
+  - h                    # Then: H
+```
+
+### Modifier disambiguation
+
+A two-string list `[a, b]` is interpreted as `[key, modifier]` when `b` looks like a modifier (`shift`, `command`, `option`, `control`, `fn`, or `+`-separated combinations). Otherwise it's two key events.
+
+```yaml
+to: [h, shift]      # Shift+H (single event)
+to: [escape, o]     # Escape, then O (two events)
+```
+
+### Generated files
+
+These files are produced by scripts and should not be edited directly:
+
+| File | Generator script |
+|------|-----------------|
+| `01-caps-physical.yaml` | `scripts/apply_physical_trackers.py` |
+| `27-t-ws-actions.yaml` | `scripts/apply_t_ws_layer.py` |
+| `28-t-nav.yaml` | `scripts/apply_t_ws_layer.py` |
+| `29-t-ws-guards.yaml` | `scripts/apply_t_ws_layer.py` |
+| `44-physical-trackers.yaml` | `scripts/apply_physical_trackers.py` |
+| `45-f-cursor-grid.yaml` | `scripts/apply_f_cursor_grid.py` |
+
+To change generated content, edit the generator script and re-run it.
+
 ## Build pipeline
 
 ```

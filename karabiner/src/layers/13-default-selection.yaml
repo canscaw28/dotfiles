@@ -25,3 +25,41 @@ manipulators:
   to:
   - right_arrow
   - shift
+- from: semicolon
+  to:
+  - a
+  - command
+- from: y
+  hold_threshold: 500
+  to:
+  - left_arrow
+  - command+shift
+  to_if_held_down: f17
+- from: u
+  to:
+  - left_arrow
+  - option+shift
+- from: i
+  to:
+  - right_arrow
+  - option+shift
+- from: o
+  hold_threshold: 500
+  to:
+  - right_arrow
+  - command+shift
+  to_if_held_down: f20
+- from: p
+  to:
+  - - left_arrow
+    - command
+  - - right_arrow
+    - command+shift
+- from: m
+  to:
+  - down_arrow
+  - option+shift
+- from: comma
+  to:
+  - up_arrow
+  - option+shift
