@@ -2,7 +2,7 @@
 
 **NEVER edit `karabiner.json` directly — it is a generated build artifact.**
 
-The source of truth is `src/layers/*.yaml` (45 files, ~6k lines vs the 36k-line generated JSON).
+The source of truth is `src/layers/*.yaml` (6 files, ~6k lines vs the 36k-line generated JSON). One file per layer.
 
 ## Workflow
 
@@ -11,6 +11,20 @@ The source of truth is `src/layers/*.yaml` (45 files, ~6k lines vs the 36k-line 
 3. Verify with `python3 build.py --check` (exits 0 if `karabiner.json` matches what would be built from sources)
 
 If you find yourself wanting to edit `karabiner.json` directly, stop and find the corresponding YAML source file.
+
+## File structure
+
+```
+karabiner/src/layers/
+├── infrastructure.yaml   # Caps lock setup, layer setters, physical trackers
+├── a-system.yaml         # A layer (Dock, Notification Center, etc.)
+├── default.yaml          # Default layer (cursor, selection, deletion, iTerm overrides)
+├── f.yaml                # F layer (scroll, cursor grid, link hints)
+├── t.yaml                # T layer (focus/move/join, workspace operations, nav)
+└── g.yaml                # G layer (Chrome, iTerm tmux, generic, tab move/reorder)
+```
+
+That's it. Six files. `build_order.yaml` controls the ordering.
 
 ## Source format
 
@@ -30,17 +44,29 @@ manipulators:
     hold_threshold: 200
 ```
 
-A few files use **`raw: true`** and contain full Karabiner JSON in YAML form. These are:
-- Infrastructure (caps lock setters, re-press handlers)
-- Layer setters (S, D, F, R, E, W, etc.)
-- Physical key trackers
-- Anything with non-standard condition patterns
+Files with mixed conditions use the **sections format**:
 
-`raw: true` files should not be converted unless you understand exactly what they do.
+```yaml
+sections:
+  - layer: [caps]
+    app: "^com\\.googlecode\\.iterm2$"
+    manipulators:
+      - from: y
+        to: [a, control]   # iTerm override
+
+  - layer: [caps]
+    manipulators:
+      - from: y
+        to: [left_arrow, command]   # default behavior
+```
+
+Sections are processed in order — earlier sections take first-match priority. For overlapping keys, more-specific (app-conditional) sections must come first.
+
+A few sections use **`raw: true`** with full Karabiner JSON for things that don't fit the standard pattern (caps lock setters, physical trackers).
 
 ## Compact format reference
 
-### File-level fields
+### File-level fields (or section-level)
 
 ```yaml
 layer: [caps, g]               # Layer keys held; build.py infers conditions
@@ -102,58 +128,6 @@ to: [h, shift]      # Shift+H (single event)
 to: [escape, o]     # Escape, then O (two events)
 ```
 
-### Generated files
-
-These files are produced by scripts and should not be edited directly:
-
-| File | Generator script |
-|------|-----------------|
-| `caps-physical.yaml` | `scripts/apply_physical_trackers.py` |
-| `t-ws-actions.yaml` | `scripts/apply_t_ws_layer.py` |
-| `t-nav.yaml` | `scripts/apply_t_ws_layer.py` |
-| `t-ws-guards.yaml` | `scripts/apply_t_ws_layer.py` |
-| `physical-trackers.yaml` | `scripts/apply_physical_trackers.py` |
-| `f-cursor-grid.yaml` | `scripts/apply_f_cursor_grid.py` |
-
-To change generated content, edit the generator script and re-run it.
-
-### Build order
-
-`build_order.yaml` controls the order manipulators are assembled into karabiner.json. Karabiner uses first-match priority, so files with more specific conditions (e.g. `frontmost_application_if`) must come BEFORE files with less specific conditions.
-
-Current ordering:
-1. Infrastructure (caps lock setup, physical trackers)
-2. Layer setters (S, D, F, R, E, etc.)
-3. A layer (system toggles)
-4. F grid setters
-5. G+D Chrome tab move
-6. iTerm-specific (non-caps + caps overrides) — must come BEFORE default layer
-7. Default layer (cursor, selection, deletion)
-8. F layer (link hints, cursor grid, scroll)
-9. T layer (workspace actions, nav, guards, direction)
-10. G layer (iTerm tmux, Chrome, generic, reorder)
-11. Physical trackers (at end)
-
-## Multi-section files
-
-Layer files can contain multiple sections, each with its own conditions:
-
-```yaml
-sections:
-  - layer: [caps]
-    app: "^com\\.googlecode\\.iterm2$"
-    manipulators:
-      - from: y
-        to: [a, control]   # iTerm cursor override (Ctrl+A)
-
-  - layer: [caps]
-    manipulators:
-      - from: y
-        to: [left_arrow, command]   # default cursor (Cmd+Left)
-```
-
-Sections are processed in order — earlier sections take first-match priority. For overlapping keys, more-specific (app-conditional) sections must come first.
-
 ## Build pipeline
 
 ```
@@ -170,5 +144,5 @@ src/layers/*.yaml  →  build.py  →  karabiner.json  →  reload Karabiner
 | `build.py` | YAML → JSON builder |
 | `src/profile.yaml` | Profile metadata (name, virtual_hid_keyboard, simple_modifications) |
 | `src/build_order.yaml` | Controls manipulator priority ordering |
-| `src/layers/*.yaml` | Per-layer source files (the actual content) |
+| `src/layers/*.yaml` | Per-layer source files (6 files, one per layer) |
 | `README.md` | User-facing documentation of all keyboard shortcuts |

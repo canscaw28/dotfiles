@@ -1,53 +1,1000 @@
-negative_conditions: []
-manipulators:
-- conditions:
-  - name: caps_lock_pressed
-    type: variable_if
-    value: 1
-  from:
-    key_code: non_us_backslash
-    modifiers:
-      optional:
-      - any
-  to:
-  - set_variable:
-      name: caps_lock_is_held
+sections:
+- negative_conditions: []
+  manipulators:
+  - conditions:
+    - name: caps_lock_pressed
+      type: variable_if
       value: 1
-  to_after_key_up:
-  - set_variable:
-      name: caps_lock_is_held
-      value: 0
-  - set_variable:
-      name: caps_lock_pressed
-      value: 0
-  - key_code: right_shift
-  - key_code: right_shift
-  - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
-  type: basic
-- from: non_us_backslash
-  to:
-  - set:
-      caps_lock_is_held: 1
-  - set:
-      caps_lock_pressed: 1
-  to_after_key_up:
-  - set:
-      caps_lock_is_held: 0
-  - shell: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
-  to_delayed_action:
-    to_if_canceled:
+    from:
+      key_code: non_us_backslash
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 0
     - set_variable:
         name: caps_lock_pressed
         value: 0
-    to_if_invoked:
+    - key_code: right_shift
+    - key_code: right_shift
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    type: basic
+  - from: non_us_backslash
+    to:
+    - set:
+        caps_lock_is_held: 1
+    - set:
+        caps_lock_pressed: 1
+    to_after_key_up:
+    - set:
+        caps_lock_is_held: 0
+    - shell: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    to_delayed_action:
+      to_if_canceled:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+      to_if_invoked:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+    negative_conditions: []
+  - from: right_shift
+    layer:
+    - caps
+    to:
+      key: caps_lock
+      hold_down_milliseconds: 100
+    negative_conditions: []
+- raw: true
+  manipulators:
+  - conditions:
+    - name: a_physical
+      type: variable_if
+      value: 1
+    description: caps-a-physical
+    from:
+      key_code: non_us_backslash
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 1
+    - set_variable:
+        name: caps_lock_pressed
+        value: 1
+    - set_variable:
+        name: a_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('a')" &
+    to_after_key_up:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 0
     - set_variable:
         name: caps_lock_pressed
         value: 0
-  negative_conditions: &id001 []
-- from: right_shift
-  layer:
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    to_delayed_action:
+      to_if_canceled:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+      to_if_invoked:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+    type: basic
+  - conditions:
+    - name: s_physical
+      type: variable_if
+      value: 1
+    description: caps-s-physical
+    from:
+      key_code: non_us_backslash
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 1
+    - set_variable:
+        name: caps_lock_pressed
+        value: 1
+    - set_variable:
+        name: s_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('s')" &
+    to_after_key_up:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 0
+    - set_variable:
+        name: caps_lock_pressed
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    to_delayed_action:
+      to_if_canceled:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+      to_if_invoked:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+    type: basic
+  - conditions:
+    - name: d_physical
+      type: variable_if
+      value: 1
+    description: caps-d-physical
+    from:
+      key_code: non_us_backslash
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 1
+    - set_variable:
+        name: caps_lock_pressed
+        value: 1
+    - set_variable:
+        name: d_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('d')" &
+    to_after_key_up:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 0
+    - set_variable:
+        name: caps_lock_pressed
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    to_delayed_action:
+      to_if_canceled:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+      to_if_invoked:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+    type: basic
+  - conditions:
+    - name: f_physical
+      type: variable_if
+      value: 1
+    description: caps-f-physical
+    from:
+      key_code: non_us_backslash
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 1
+    - set_variable:
+        name: caps_lock_pressed
+        value: 1
+    - set_variable:
+        name: f_is_held
+        value: 1
+    - key_code: '0'
+      modifiers:
+      - control
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('f')" &
+    to_after_key_up:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 0
+    - set_variable:
+        name: caps_lock_pressed
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    to_delayed_action:
+      to_if_canceled:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+      to_if_invoked:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+    type: basic
+  - conditions:
+    - name: r_physical
+      type: variable_if
+      value: 1
+    description: caps-r-physical
+    from:
+      key_code: non_us_backslash
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 1
+    - set_variable:
+        name: caps_lock_pressed
+        value: 1
+    - set_variable:
+        name: r_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('r'); require('ws_grid').keyDown('r')" &
+    to_after_key_up:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 0
+    - set_variable:
+        name: caps_lock_pressed
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    to_delayed_action:
+      to_if_canceled:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+      to_if_invoked:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+    type: basic
+  - conditions:
+    - name: e_physical
+      type: variable_if
+      value: 1
+    description: caps-e-physical
+    from:
+      key_code: non_us_backslash
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 1
+    - set_variable:
+        name: caps_lock_pressed
+        value: 1
+    - set_variable:
+        name: e_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('e'); require('ws_grid').keyDown('e')" &
+    to_after_key_up:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 0
+    - set_variable:
+        name: caps_lock_pressed
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    to_delayed_action:
+      to_if_canceled:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+      to_if_invoked:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+    type: basic
+  - conditions:
+    - name: w_physical
+      type: variable_if
+      value: 1
+    description: caps-w-physical
+    from:
+      key_code: non_us_backslash
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 1
+    - set_variable:
+        name: caps_lock_pressed
+        value: 1
+    - set_variable:
+        name: w_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('w'); require('ws_grid').keyDown('w')" &
+    to_after_key_up:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 0
+    - set_variable:
+        name: caps_lock_pressed
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    to_delayed_action:
+      to_if_canceled:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+      to_if_invoked:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+    type: basic
+  - conditions:
+    - name: 4_physical
+      type: variable_if
+      value: 1
+    description: caps-4-physical
+    from:
+      key_code: non_us_backslash
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 1
+    - set_variable:
+        name: caps_lock_pressed
+        value: 1
+    - set_variable:
+        name: 4_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('4'); require('ws_grid').keyDown('4')" &
+    to_after_key_up:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 0
+    - set_variable:
+        name: caps_lock_pressed
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    to_delayed_action:
+      to_if_canceled:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+      to_if_invoked:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+    type: basic
+  - conditions:
+    - name: 3_physical
+      type: variable_if
+      value: 1
+    description: caps-3-physical
+    from:
+      key_code: non_us_backslash
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 1
+    - set_variable:
+        name: caps_lock_pressed
+        value: 1
+    - set_variable:
+        name: 3_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('3'); require('ws_grid').keyDown('3')" &
+    to_after_key_up:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 0
+    - set_variable:
+        name: caps_lock_pressed
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    to_delayed_action:
+      to_if_canceled:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+      to_if_invoked:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+    type: basic
+  - conditions:
+    - name: t_physical
+      type: variable_if
+      value: 1
+    description: caps-t-physical
+    from:
+      key_code: non_us_backslash
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 1
+    - set_variable:
+        name: caps_lock_pressed
+        value: 1
+    - set_variable:
+        name: t_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('t'); require('ws_grid').keyDown('t'); require('focus_border').flash()" &
+    to_after_key_up:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 0
+    - set_variable:
+        name: caps_lock_pressed
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    to_delayed_action:
+      to_if_canceled:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+      to_if_invoked:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+    type: basic
+  - conditions:
+    - name: g_physical
+      type: variable_if
+      value: 1
+    description: caps-g-physical
+    from:
+      key_code: non_us_backslash
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 1
+    - set_variable:
+        name: caps_lock_pressed
+        value: 1
+    - set_variable:
+        name: g_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('g'); require('focus_border').flash()" &
+    to_after_key_up:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 0
+    - set_variable:
+        name: caps_lock_pressed
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    to_delayed_action:
+      to_if_canceled:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+      to_if_invoked:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+    type: basic
+- raw: true
+  manipulators:
+  - conditions:
+    - name: caps_lock_is_held
+      type: variable_if
+      value: 1
+    from:
+      key_code: a
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: a_is_held
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: a_is_held
+        value: 0
+    type: basic
+  - conditions:
+    - name: caps_lock_is_held
+      type: variable_if
+      value: 1
+    - name: f_is_held
+      type: variable_if
+      value: 1
+    from:
+      key_code: s
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: s_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('s', 32, 'move'); require('cursor_grid').flashIndicator()" 2>/dev/null &
+    to_after_key_up:
+    - set_variable:
+        name: s_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('s')" &
+    type: basic
+  - conditions:
+    - name: caps_lock_is_held
+      type: variable_if
+      value: 1
+    from:
+      key_code: s
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: s_is_held
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: s_is_held
+        value: 0
+    type: basic
+  - conditions:
+    - name: caps_lock_is_held
+      type: variable_if
+      value: 1
+    - name: f_is_held
+      type: variable_if
+      value: 1
+    from:
+      key_code: d
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: d_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('d', 8, 'move'); require('cursor_grid').flashIndicator()" 2>/dev/null &
+    to_after_key_up:
+    - set_variable:
+        name: d_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('d')" &
+    type: basic
+  - conditions:
+    - name: caps_lock_is_held
+      type: variable_if
+      value: 1
+    from:
+      key_code: d
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: d_is_held
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: d_is_held
+        value: 0
+    type: basic
+  - conditions:
+    - name: caps_lock_is_held
+      type: variable_if
+      value: 1
+    from:
+      key_code: f
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: f_is_held
+        value: 1
+    to_after_key_up:
+    - set_variable:
+        name: f_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeReset()" &
+    type: basic
+  - conditions:
+    - name: caps_lock_is_held
+      type: variable_if
+      value: 1
+    from:
+      key_code: r
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: r_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('r')" &
+    to_after_key_up:
+    - set_variable:
+        name: r_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('r')" &
+    type: basic
+  - conditions:
+    - name: caps_lock_is_held
+      type: variable_if
+      value: 1
+    from:
+      key_code: e
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: e_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('e')" &
+    to_after_key_up:
+    - set_variable:
+        name: e_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('e')" &
+    type: basic
+  - conditions:
+    - name: caps_lock_is_held
+      type: variable_if
+      value: 1
+    from:
+      key_code: w
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: w_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('w')" &
+    to_after_key_up:
+    - set_variable:
+        name: w_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('w')" &
+    type: basic
+  - conditions:
+    - name: caps_lock_is_held
+      type: variable_if
+      value: 1
+    from:
+      key_code: '4'
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: 4_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('4')" &
+    to_after_key_up:
+    - set_variable:
+        name: 4_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('4')" &
+    type: basic
+  - conditions:
+    - name: caps_lock_is_held
+      type: variable_if
+      value: 1
+    from:
+      key_code: '3'
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: 3_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('3')" &
+    to_after_key_up:
+    - set_variable:
+        name: 3_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('3')" &
+    type: basic
+  - conditions:
+    - name: caps_lock_is_held
+      type: variable_if
+      value: 1
+    from:
+      key_code: t
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: t_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('t'); require('focus_border').flash()" &
+    to_after_key_up:
+    - set_variable:
+        name: t_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('t')" &
+    type: basic
+  - conditions:
+    - name: caps_lock_is_held
+      type: variable_if
+      value: 1
+    from:
+      key_code: g
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: g_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('focus_border').flash()" &
+    to_after_key_up:
+    - set_variable:
+        name: g_is_held
+        value: 0
+    type: basic
+- layer:
   - caps
-  to:
-    key: caps_lock
-    hold_down_milliseconds: 100
-  negative_conditions: *id001
+  - f
+  - d
+  negative_conditions: []
+  manipulators:
+  - from: s
+    description: 'F+D+S setter: switch to jump grid'
+    to:
+    - set:
+        s_is_held: 1
+    - shell: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('s', 8, 'jump'); require('cursor_grid').flashIndicator()" 2>/dev/null &
+    to_after_key_up:
+    - set:
+        s_is_held: 0
+    - shell: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('s')" &
+  - from: d
+    description: 'F+S+D setter: switch to jump grid'
+    layer:
+    - caps
+    - f
+    - s
+    to:
+    - set:
+        d_is_held: 1
+    - shell: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('d', 8, 'jump'); require('cursor_grid').flashIndicator()" 2>/dev/null &
+    to_after_key_up:
+    - set:
+        d_is_held: 0
+    - shell: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('d')" &
+- raw: true
+  manipulators:
+  - description: a-physical-tracker
+    from:
+      key_code: a
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: a_physical
+        value: 1
+    - key_code: a
+    to_after_key_up:
+    - set_variable:
+        name: a_physical
+        value: 0
+    - set_variable:
+        name: a_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('a')" &
+    type: basic
+  - description: s-physical-tracker
+    from:
+      key_code: s
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: s_physical
+        value: 1
+    - key_code: s
+    to_after_key_up:
+    - set_variable:
+        name: s_physical
+        value: 0
+    - set_variable:
+        name: s_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('s'); require('cursor_grid').modeKeyUp('s')" &
+    type: basic
+  - description: d-physical-tracker
+    from:
+      key_code: d
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: d_physical
+        value: 1
+    - key_code: d
+    to_after_key_up:
+    - set_variable:
+        name: d_physical
+        value: 0
+    - set_variable:
+        name: d_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('d'); require('cursor_grid').modeKeyUp('d')" &
+    type: basic
+  - description: f-physical-tracker
+    from:
+      key_code: f
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: f_physical
+        value: 1
+    - key_code: f
+    to_after_key_up:
+    - set_variable:
+        name: f_physical
+        value: 0
+    - set_variable:
+        name: f_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('f'); require('cursor_grid').modeReset()" &
+    type: basic
+  - description: r-physical-tracker
+    from:
+      key_code: r
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: r_physical
+        value: 1
+    - key_code: r
+    to_after_key_up:
+    - set_variable:
+        name: r_physical
+        value: 0
+    - set_variable:
+        name: r_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('r'); require('ws_grid').keyUp('r')" &
+    type: basic
+  - description: e-physical-tracker
+    from:
+      key_code: e
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: e_physical
+        value: 1
+    - key_code: e
+    to_after_key_up:
+    - set_variable:
+        name: e_physical
+        value: 0
+    - set_variable:
+        name: e_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('e'); require('ws_grid').keyUp('e'); require('cursor_grid').modeReset()" &
+    type: basic
+  - description: w-physical-tracker
+    from:
+      key_code: w
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: w_physical
+        value: 1
+    - key_code: w
+    to_after_key_up:
+    - set_variable:
+        name: w_physical
+        value: 0
+    - set_variable:
+        name: w_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('w'); require('ws_grid').keyUp('w')" &
+    type: basic
+  - description: 4-physical-tracker
+    from:
+      key_code: '4'
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: 4_physical
+        value: 1
+    - key_code: '4'
+    to_after_key_up:
+    - set_variable:
+        name: 4_physical
+        value: 0
+    - set_variable:
+        name: 4_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('4'); require('ws_grid').keyUp('4')" &
+    type: basic
+  - description: 3-physical-tracker
+    from:
+      key_code: '3'
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: 3_physical
+        value: 1
+    - key_code: '3'
+    to_after_key_up:
+    - set_variable:
+        name: 3_physical
+        value: 0
+    - set_variable:
+        name: 3_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('3'); require('ws_grid').keyUp('3')" &
+    type: basic
+  - description: t-physical-tracker
+    from:
+      key_code: t
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: t_physical
+        value: 1
+    - key_code: t
+    to_after_key_up:
+    - set_variable:
+        name: t_physical
+        value: 0
+    - set_variable:
+        name: t_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('t'); require('ws_grid').keyUp('t')" &
+    type: basic
+  - description: g-physical-tracker
+    from:
+      key_code: g
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: g_physical
+        value: 1
+    - key_code: g
+    to_after_key_up:
+    - set_variable:
+        name: g_physical
+        value: 0
+    - set_variable:
+        name: g_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('g')" &
+    type: basic
