@@ -150,24 +150,43 @@ Karabiner sends ⌃+⇧+key which Hammerspoon's eventtap intercepts to perform s
 | [⇪+F] + / |  |  |
 | [⇪+F] + P | Toggle grid | Toggle grid overlay on focused window |
 
-### Cursor Grid Movement — ⇪+F + D (8×8) / ⇪+F + S (32×32)
+### Coarse Cursor Grid (⇪+F + D) — 8×8
 
-Moves the mouse cursor within the focused window on a grid. D mode uses an 8×8 grid for coarse positioning, S mode uses 32×32 for fine precision. On first keypress, snaps to the nearest grid cell from the current mouse position. An amber indicator flashes at the cursor position after each move.
+Moves the mouse cursor within the focused window on an 8×8 grid. On first keypress, snaps to the nearest grid cell from the current mouse position. An amber indicator flashes at the cursor position after each move.
 
 | Key | Action |
 | --- | --- |
-| [⇪+F+D/S] + H | Move cursor 1 grid cell left |
-| [⇪+F+D/S] + J | Move cursor 1 grid cell down |
-| [⇪+F+D/S] + K | Move cursor 1 grid cell up |
-| [⇪+F+D/S] + L | Move cursor 1 grid cell right |
-| [⇪+F+D/S] + Y | Jump to left edge |
-| [⇪+F+D/S] + O | Jump to right edge |
-| [⇪+F+D/S] + U | Move cursor 2 grid cells left |
-| [⇪+F+D/S] + I | Move cursor 2 grid cells right |
-| [⇪+F+D/S] + N | Jump to bottom edge |
-| [⇪+F+D/S] + . | Jump to top edge |
-| [⇪+F+D/S] + M | Move cursor 2 grid cells down |
-| [⇪+F+D/S] + , | Move cursor 2 grid cells up |
+| [⇪+F+D] + H | Move cursor 1 grid cell left |
+| [⇪+F+D] + J | Move cursor 1 grid cell down |
+| [⇪+F+D] + K | Move cursor 1 grid cell up |
+| [⇪+F+D] + L | Move cursor 1 grid cell right |
+| [⇪+F+D] + Y | Jump to left edge |
+| [⇪+F+D] + O | Jump to right edge |
+| [⇪+F+D] + U | Move cursor 2 grid cells left |
+| [⇪+F+D] + I | Move cursor 2 grid cells right |
+| [⇪+F+D] + N | Jump to bottom edge |
+| [⇪+F+D] + . | Jump to top edge |
+| [⇪+F+D] + M | Move cursor 2 grid cells down |
+| [⇪+F+D] + , | Move cursor 2 grid cells up |
+
+### Fine Cursor Grid (⇪+F + S) — 32×32
+
+Same keys as the coarse grid but on a 32×32 grid for fine precision.
+
+| Key | Action |
+| --- | --- |
+| [⇪+F+S] + H | Move cursor 1 grid cell left |
+| [⇪+F+S] + J | Move cursor 1 grid cell down |
+| [⇪+F+S] + K | Move cursor 1 grid cell up |
+| [⇪+F+S] + L | Move cursor 1 grid cell right |
+| [⇪+F+S] + Y | Jump to left edge |
+| [⇪+F+S] + O | Jump to right edge |
+| [⇪+F+S] + U | Move cursor 2 grid cells left |
+| [⇪+F+S] + I | Move cursor 2 grid cells right |
+| [⇪+F+S] + N | Jump to bottom edge |
+| [⇪+F+S] + . | Jump to top edge |
+| [⇪+F+S] + M | Move cursor 2 grid cells down |
+| [⇪+F+S] + , | Move cursor 2 grid cells up |
 
 ### Cursor Fixed Positions — ⇪ + F + E
 
@@ -200,7 +219,7 @@ In Chrome, F+E also provides Vimium and Homerow integration:
 | [⇪+F+E] + ; | Toggle Vimium (Chrome) |
 | [⇪+F+E] + H | Homerow scroll mode |
 
-### Grid Overlay — ⇪ + F + D/S/E + P
+### Grid Overlay (⇪+F + D/S/E + P)
 
 Toggles a grid overlay on the focused window. Shows an 8×8 grid in D/E modes, and a hierarchical 32×32 grid in S mode with color-coded line density (green = 2×2 major, light blue = 8×8, dashed = 16×16).
 
