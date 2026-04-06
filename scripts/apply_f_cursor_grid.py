@@ -28,7 +28,7 @@ import sys
 import yaml
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUTPUT_FILE = os.path.join(REPO_ROOT, "karabiner", "src", "layers", "45-f-cursor-grid.yaml")
+OUTPUT_FILE = os.path.join(REPO_ROOT, "karabiner", "src", "layers", "f-cursor-grid.yaml")
 
 # (key_code, direction, amount). amount<0 means "jump to edge"
 MOVE_KEYS = [

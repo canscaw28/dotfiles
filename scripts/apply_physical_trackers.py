@@ -20,8 +20,8 @@ import os
 import yaml
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TRACKERS_FILE = os.path.join(REPO_ROOT, "karabiner", "src", "layers", "44-physical-trackers.yaml")
-CAPS_PHYSICAL_FILE = os.path.join(REPO_ROOT, "karabiner", "src", "layers", "01-caps-physical.yaml")
+TRACKERS_FILE = os.path.join(REPO_ROOT, "karabiner", "src", "layers", "physical-trackers.yaml")
+CAPS_PHYSICAL_FILE = os.path.join(REPO_ROOT, "karabiner", "src", "layers", "caps-physical.yaml")
 
 HS = "/usr/local/bin/hs"
 

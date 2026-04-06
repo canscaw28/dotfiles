@@ -108,14 +108,31 @@ These files are produced by scripts and should not be edited directly:
 
 | File | Generator script |
 |------|-----------------|
-| `01-caps-physical.yaml` | `scripts/apply_physical_trackers.py` |
-| `27-t-ws-actions.yaml` | `scripts/apply_t_ws_layer.py` |
-| `28-t-nav.yaml` | `scripts/apply_t_ws_layer.py` |
-| `29-t-ws-guards.yaml` | `scripts/apply_t_ws_layer.py` |
-| `44-physical-trackers.yaml` | `scripts/apply_physical_trackers.py` |
-| `45-f-cursor-grid.yaml` | `scripts/apply_f_cursor_grid.py` |
+| `caps-physical.yaml` | `scripts/apply_physical_trackers.py` |
+| `t-ws-actions.yaml` | `scripts/apply_t_ws_layer.py` |
+| `t-nav.yaml` | `scripts/apply_t_ws_layer.py` |
+| `t-ws-guards.yaml` | `scripts/apply_t_ws_layer.py` |
+| `physical-trackers.yaml` | `scripts/apply_physical_trackers.py` |
+| `f-cursor-grid.yaml` | `scripts/apply_f_cursor_grid.py` |
 
 To change generated content, edit the generator script and re-run it.
+
+### Build order
+
+`build_order.yaml` controls the order manipulators are assembled into karabiner.json. Karabiner uses first-match priority, so files with more specific conditions (e.g. `frontmost_application_if`) must come BEFORE files with less specific conditions.
+
+Current ordering:
+1. Infrastructure (caps lock setup, physical trackers)
+2. Layer setters (S, D, F, R, E, etc.)
+3. A layer (system toggles)
+4. F grid setters
+5. G+D Chrome tab move
+6. iTerm-specific (non-caps + caps overrides) — must come BEFORE default layer
+7. Default layer (cursor, selection, deletion)
+8. F layer (link hints, cursor grid, scroll)
+9. T layer (workspace actions, nav, guards, direction)
+10. G layer (iTerm tmux, Chrome, generic, reorder)
+11. Physical trackers (at end)
 
 ## Build pipeline
 

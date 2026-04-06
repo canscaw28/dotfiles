@@ -4,6 +4,24 @@ manipulators:
   - name: caps_lock_is_held
     type: variable_if
     value: 1
+  from:
+    key_code: a
+    modifiers:
+      optional:
+      - any
+  to:
+  - set_variable:
+      name: a_is_held
+      value: 1
+  to_after_key_up:
+  - set_variable:
+      name: a_is_held
+      value: 0
+  type: basic
+- conditions:
+  - name: caps_lock_is_held
+    type: variable_if
+    value: 1
   - name: f_is_held
     type: variable_if
     value: 1

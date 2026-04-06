@@ -1,0 +1,55 @@
+layer:
+- caps
+- s
+negative_conditions:
+- f
+app: ^com\.googlecode\.iterm2$
+manipulators:
+- from: semicolon
+  to:
+  - a
+  - option
+  layer:
+  - caps
+  - s
+  negative_conditions:
+  - f
+- from: y
+  to:
+  - home
+  - shift
+  layer: &id001
+  - caps
+  - s
+  negative_conditions: &id002
+  - f
+- from: u
+  to:
+  - left_arrow
+  - control+shift
+  layer: *id001
+  negative_conditions: *id002
+- from: i
+  to:
+  - right_arrow
+  - control+shift
+  layer: *id001
+  negative_conditions: *id002
+- from: j
+  to:
+  - down_arrow
+  - control+shift
+  layer: *id001
+  negative_conditions: *id002
+- from: k
+  to:
+  - up_arrow
+  - control+shift
+  layer: *id001
+  negative_conditions: *id002
+- from: o
+  to:
+  - end
+  - shift
+  layer: *id001
+  negative_conditions: *id002

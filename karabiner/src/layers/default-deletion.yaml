@@ -1,0 +1,116 @@
+layer:
+- caps
+- d
+negative_conditions:
+- a
+- s
+- f
+- r
+- t
+- g
+manipulators:
+- from: h
+  to: delete_or_backspace
+  layer: &id001
+  - caps
+  - d
+  negative_conditions: &id002
+  - a
+  - s
+  - f
+  - r
+  - t
+  - g
+- from: j
+  to:
+  - - down_arrow
+    - shift
+  - delete_or_backspace
+  layer: *id001
+  negative_conditions: *id002
+  app_unless: ^com\.googlecode\.iterm2$
+- from: k
+  to:
+  - - up_arrow
+    - shift
+  - delete_or_backspace
+  layer: *id001
+  negative_conditions: *id002
+  app_unless: ^com\.googlecode\.iterm2$
+- from: l
+  to: delete_forward
+  layer: &id003
+  - caps
+  - d
+  negative_conditions: &id004
+  - a
+  - s
+  - f
+  - r
+  - t
+  - g
+- from: semicolon
+  to:
+  - - a
+    - command
+  - delete_or_backspace
+  layer: *id003
+  negative_conditions: *id004
+- from: y
+  hold_threshold: 500
+  to:
+  - delete_or_backspace
+  - command
+  to_if_held_down: f6
+  layer: &id005
+  - caps
+  - d
+  negative_conditions: &id006
+  - a
+  - s
+  - f
+  - r
+  - t
+  - g
+- from: u
+  to:
+  - delete_or_backspace
+  - option
+  layer: *id005
+  negative_conditions: *id006
+- from: i
+  to:
+  - delete_forward
+  - option
+  layer: *id005
+  negative_conditions: *id006
+- from: o
+  hold_threshold: 500
+  to:
+  - - right_arrow
+    - command+shift
+  - delete_forward
+  to_if_held_down: f5
+  layer: *id005
+  negative_conditions: *id006
+- from: p
+  to:
+  - - right_arrow
+    - command
+  - - delete_or_backspace
+    - command
+  layer: *id005
+  negative_conditions: *id006
+- from: m
+  to:
+  - k
+  - control
+  layer: *id005
+  negative_conditions: *id006
+- from: comma
+  to:
+  - - up_arrow
+    - option+shift
+  - delete_or_backspace
+  layer: *id005
+  negative_conditions: *id006

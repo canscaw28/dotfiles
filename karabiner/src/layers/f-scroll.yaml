@@ -1,0 +1,51 @@
+layer:
+- caps
+- f
+negative_conditions:
+- a
+- s
+- d
+- r
+- t
+- g
+manipulators:
+- from: h
+  to:
+  - h
+  - control+shift
+- from: j
+  to:
+  - j
+  - control+shift
+- from: k
+  to:
+  - k
+  - control+shift
+- from: l
+  to:
+  - l
+  - control+shift
+- from: y
+  to:
+  - y
+  - control+shift
+- from: u
+  to:
+  - u
+  - control+shift
+- from: i
+  to:
+  - i
+  - control+shift
+- from: o
+  to:
+  - o
+  - control+shift
+- from: m
+  to:
+  - '6'
+  - control
+- from: comma
+  to:
+  - '7'
+  - control

@@ -1,0 +1,40 @@
+layer:
+- caps
+- a
+negative_conditions: []
+manipulators:
+- from: m
+  description: 'A+M: Toggle Sidecar'
+  to:
+  - shell: /usr/bin/swift /Users/craig/dev/dotfiles/raycast/toggle-sidecar.swift &
+- from: slash
+  description: 'A+/: Clean Dock'
+  to:
+  - shell: /bin/bash /Users/craig/dev/dotfiles/scripts/clean-dock.sh &
+- from: h
+  description: 'A+H: Switch to English (U.S.)'
+  to:
+  - select_input_source:
+      language: en
+- from: n
+  description: 'A+N: Toggle Input Source'
+  to:
+  - - spacebar
+    - left_control
+- from: u
+  description: 'A+U: Toggle Notification Center'
+  to:
+  - shell: /usr/bin/osascript -e 'tell application "System Events" to tell application process "ControlCenter" to click (first menu bar item of menu bar 1 whose description is "Clock")' &
+- from: i
+  description: 'A+I: Mission Control'
+  to: mission_control
+- from: o
+  description: 'A+O: Show Desktop'
+  to:
+  - - f11
+    - fn
+  - shell: /usr/local/bin/hs -c "require('show_desktop').toggle()" &
+- from: y
+  description: 'A+Y: Toggle Dock'
+  to:
+  - shell: /usr/local/bin/hs -c "require('dock_peek').toggle()" &

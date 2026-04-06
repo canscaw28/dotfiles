@@ -14,106 +14,529 @@ negative_conditions:
 - '4'
 - g
 manipulators:
+- from: h
+  to:
+  - y
+  - command+control+option
+  layer: &id001
+  - caps
+  - r
+  - t
+  negative_conditions: &id002
+  - a
+  - s
+  - d
+  - f
+  - e
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+- from: j
+  to:
+  - u
+  - command+control+option
+  layer: *id001
+  negative_conditions: *id002
+- from: k
+  to:
+  - i
+  - command+control+option
+  layer: *id001
+  negative_conditions: *id002
+- from: l
+  to:
+  - o
+  - command+control+option
+  layer: *id001
+  negative_conditions: *id002
+- from: y
+  to: noop
+  layer: *id001
+  negative_conditions: *id002
+- from: u
+  to: noop
+  layer: *id001
+  negative_conditions: *id002
+- from: i
+  to: noop
+  layer: *id001
+  negative_conditions: *id002
+- from: o
+  to: noop
+  layer: *id001
+  negative_conditions: *id002
+- from: p
+  to: noop
+  layer: *id001
+  negative_conditions: *id002
+- from: semicolon
+  to: noop
+  layer: *id001
+  negative_conditions: *id002
+- from: quote
+  to:
+    shell: $HOME/.local/bin/ws.sh move-monitor-yank
+  layer:
+  - caps
+  - r
+  - e
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - w
+  - '3'
+  - '4'
+  - g
+- from: quote
+  layer:
+  - caps
+  - r
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - e
+  - w
+  - '3'
+  - '4'
+  - g
+  to:
+    shell: $HOME/.local/bin/ws.sh move-monitor-focus
+- from: quote
+  layer:
+  - caps
+  - e
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - g
+  to:
+    shell: $HOME/.local/bin/ws.sh move-monitor
+- from: n
+  to: noop
+  layer: &id003
+  - caps
+  - r
+  - t
+  negative_conditions: &id004
+  - a
+  - s
+  - d
+  - f
+  - e
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+- from: m
+  to: noop
+  layer: *id003
+  negative_conditions: *id004
+- from: comma
+  to: noop
+  layer: *id003
+  negative_conditions: *id004
+- from: period
+  to: noop
+  layer: *id003
+  negative_conditions: *id004
+- from: slash
+  to: noop
+  layer: *id003
+  negative_conditions: *id004
+- from: h
+  layer:
+  - caps
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - h
+  - command+control+option
+- from: j
+  layer:
+  - caps
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - j
+  - command+control+option
+- from: k
+  layer:
+  - caps
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - k
+  - command+control+option
+- from: l
+  layer:
+  - caps
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to:
+  - l
+  - command+control+option
+- from: semicolon
+  layer:
+  - caps
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+  to: noop
+- from: quote
+  to:
+    shell: $HOME/.local/bin/ws.sh swap-monitors
+  layer:
+  - caps
+  - '3'
+  - t
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - '4'
+  - q
+  - g
+- from: quote
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - '3'
+  - '4'
+  - q
+  - e
+  - g
+  to:
+  - quote
+  - command+control+option
+  layer: &id005
+  - caps
+  - t
+- from: p
+  to:
+  - p
+  - command+option+shift
+  layer: *id005
+  negative_conditions: &id006
+  - a
+  - s
+  - d
+  - f
+  - r
+  - e
+  - w
+  - '3'
+  - '4'
+  - q
+  - g
+- from: slash
+  to:
+  - slash
+  - command+option+shift
+  layer: *id005
+  negative_conditions: *id006
+- from: hyphen
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - e
+  - g
+  to:
+  - hyphen
+  - command+control+option+shift
+  layer: *id005
+- from: equal_sign
+  negative_conditions:
+  - a
+  - s
+  - d
+  - f
+  - r
+  - w
+  - '3'
+  - '4'
+  - q
+  - e
+  - g
+  to:
+  - equal_sign
+  - command+control+option+shift
+  layer: *id005
+- from: y
+  to: noop
+  layer: *id005
+  negative_conditions: *id006
+- from: u
+  to: noop
+  layer: *id005
+  negative_conditions: *id006
+- from: i
+  to: noop
+  layer: *id005
+  negative_conditions: *id006
+- from: o
+  to: noop
+  layer: *id005
+  negative_conditions: *id006
+- from: n
+  to:
+  - n
+  - command+option+shift
+  layer: *id005
+  negative_conditions: *id006
+- from: m
+  to:
+  - m
+  - command+option+shift
+  layer: *id005
+  negative_conditions: *id006
+- from: comma
+  to:
+  - comma
+  - command+option+shift
+  layer: *id005
+  negative_conditions: *id006
+- from: period
+  to:
+  - period
+  - command+option+shift
+  layer: *id005
+  negative_conditions: *id006
 - from: '6'
   to:
   - - '6'
     - fn+shift+control+option
   - shell: echo "6" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: &id007
+  - caps
+  - t
+  - q
+  negative_conditions: &id008
+  - a
+  - s
+  - d
+  - f
+  - e
+  - r
+  - w
+  - '3'
+  - '4'
+  - g
 - from: '7'
   to:
   - - '7'
     - fn+shift+control+option
   - shell: echo "7" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: '8'
   to:
   - - '8'
     - fn+shift+control+option
   - shell: echo "8" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: '9'
   to:
   - - '9'
     - fn+shift+control+option
   - shell: echo "9" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: '0'
   to:
   - - '0'
     - fn+shift+control+option
   - shell: echo "0" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: y
   to:
   - - y
     - fn+shift+control+option
   - shell: echo "y" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: u
   to:
   - - u
     - fn+shift+control+option
   - shell: echo "u" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: i
   to:
   - - i
     - fn+shift+control+option
   - shell: echo "i" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: o
   to:
   - - o
     - fn+shift+control+option
   - shell: echo "o" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: p
   to:
   - - p
     - fn+shift+control+option
   - shell: echo "p" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: h
   to:
   - - h
     - fn+shift+control+option
   - shell: echo "h" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: j
   to:
   - - j
     - fn+shift+control+option
   - shell: echo "j" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: k
   to:
   - - k
     - fn+shift+control+option
   - shell: echo "k" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: l
   to:
   - - l
     - fn+shift+control+option
   - shell: echo "l" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: semicolon
   to:
   - - semicolon
     - fn+shift+control+option
   - shell: echo "";"" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: n
   to:
   - - n
     - fn+shift+control+option
   - shell: echo "n" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: m
   to:
   - - m
     - fn+shift+control+option
   - shell: echo "m" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: comma
   to:
   - - comma
     - fn+shift+control+option
   - shell: echo "comma" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: period
   to:
   - - period
     - fn+shift+control+option
   - shell: echo "." >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: slash
   to:
   - - slash
     - fn+shift+control+option
   - shell: echo "/" >> /tmp/ghost_test.log; echo ghost_test > /dev/null
+  layer: *id007
+  negative_conditions: *id008
 - from: '6'
   layer:
   - caps

@@ -28,9 +28,9 @@ import yaml
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LAYERS_DIR = os.path.join(REPO_ROOT, "karabiner", "src", "layers")
 
-ACTIONS_FILE = os.path.join(LAYERS_DIR, "27-t-ws-actions.yaml")
-NAV_FILE = os.path.join(LAYERS_DIR, "28-t-nav.yaml")
-GUARDS_FILE = os.path.join(LAYERS_DIR, "29-t-ws-guards.yaml")
+ACTIONS_FILE = os.path.join(LAYERS_DIR, "t-ws-actions.yaml")
+NAV_FILE = os.path.join(LAYERS_DIR, "t-nav.yaml")
+GUARDS_FILE = os.path.join(LAYERS_DIR, "t-ws-guards.yaml")
 
 WS_BIN = "$HOME/.local/bin/ws.sh"
 
