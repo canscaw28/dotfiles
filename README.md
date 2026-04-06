@@ -65,3 +65,14 @@ macOS configuration files and settings.
 ```
 
 See `install.sh --help` and `reload.sh --help` for selective installation and reloading.
+
+### Manual steps
+
+These require manual installation and can't be automated by `install.sh`:
+
+- **AeroSpace custom build** — Run `aerospace/build.sh` to compile and install the patched binary
+- **Chrome extensions** — Load `chrome-extensions/tab-mover/` as an unpacked extension in `chrome://extensions`
+- **Vimium C** — Import settings from `vimium_c.json`
+- **Stylus** — Import styles from `stylus/`
+- **Keyboard layouts** — Copy from `keyboard-layouts/` to `~/Library/Keyboard Layouts/`
+- **Raycast scripts** — Import scripts from `raycast/` in Raycast preferences
