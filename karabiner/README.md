@@ -56,8 +56,8 @@ Right hand layout is always the same — vim directions that stay consistent acr
 
 | Shortcut | Behavior | Description |
 | --- | --- | --- |
-| [⇪+⇪] | LanguageTool | Double-tap Caps Lock to trigger LanguageTool tooltip |
-| [⇪] + R⇧ | ⇪ | Trigger Caps-Lock |
+| ⇪ + ⇪ | LanguageTool | Double-tap Caps Lock to trigger LanguageTool tooltip |
+| ⇪ + R⇧ | ⇪ | Trigger Caps-Lock |
 
 ---
 
