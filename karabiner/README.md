@@ -516,8 +516,8 @@ Certain key combinations are silently dropped on the MacBook's built-in keyboard
 
 | Keys held | Dropped keys | Impact |
 | --- | --- | --- |
-| Caps + T + Q | U, I, O, P, ; | Q was removed as a workspace mode key because of this |
-| Caps + A | J, K, L, ; | A layer avoids right-hand home row; uses Y/U/I/O and H/N instead |
+| ⇪ + T + Q | U, I, O, P, ; | Q was removed as a workspace mode key because of this |
+| ⇪ + A | J, K, L, ; | A layer avoids right-hand home row; uses Y/U/I/O and H/N instead |
 
 Always verify new multi-key combos in Karabiner EventViewer before committing to a binding.
 
