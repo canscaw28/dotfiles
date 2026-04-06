@@ -7,10 +7,10 @@ Caps Lock becomes a modifier system where the **left hand picks context** and th
 | Layer Key | Layer | Domain |
 | --- | --- | --- |
 | ⇪ | Default | Cursor movement, text selection, deletion |
-| [⇪] + F | Scroll / Cursor Grid | Page scrolling, mouse cursor control, link hints |
-| [⇪] + G | Application | App-specific behavior (Chrome tabs, iTerm tmux, etc.) |
-| [⇪] + T | Aerospace | Window tiling and workspace operations |
-| [⇪] + A | System | Dock, Notification Center, input source, etc. |
+| ⇪ + F | Scroll / Cursor Grid | Page scrolling, mouse cursor control, link hints |
+| ⇪ + G | Application | App-specific behavior (Chrome tabs, iTerm tmux, etc.) |
+| ⇪ + T | Aerospace | Window tiling and workspace operations |
+| ⇪ + A | System | Dock, Notification Center, input source, etc. |
 
 ## Design
 
