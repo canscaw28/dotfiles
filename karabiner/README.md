@@ -370,6 +370,7 @@ Moves the current tab to another Chrome window in the specified direction, using
 | ⇪ + R + T + J | ⌘ + ⌥ + ⌃ + U | Move window down (crosses to adjacent monitor at edge) |
 | ⇪ + R + T + K | ⌘ + ⌥ + ⌃ + I | Move window up (crosses to adjacent monitor at edge) |
 | ⇪ + R + T + L | ⌘ + ⌥ + ⌃ + O | Move window right (crosses to adjacent monitor at edge) |
+| ⇪ + R + T + ' | `ws.sh move-monitor-focus` | Move window to next monitor and follow |
 
 ### Join Mode (⇪ + 4 + T)
 
@@ -404,12 +405,14 @@ n  m  ,  .  /
 | Key / Shortcut | Description |
 | --- | --- |
 | ⇪ + E + T + *key* | Move focused window to workspace (stay on current) |
+| ⇪ + E + T + ' | Move focused window to next monitor (stay on current) |
 
 ### Move + Follow to Workspace (⇪ + R + E + T)
 
 | Key / Shortcut | Description |
 | --- | --- |
 | ⇪ + R + E + T + *key* | Move window to workspace and follow on current monitor |
+| ⇪ + R + E + T + ' | Move window to next monitor and yank that workspace back |
 
 ### Focus Monitor 1 (⇪ + W + E + T)
 
@@ -428,6 +431,7 @@ n  m  ,  .  /
 | Key / Shortcut | Description |
 | --- | --- |
 | ⇪ + 3 + T + *key* | Swap all windows between focused workspace and target workspace |
+| ⇪ + 3 + T + ' | Swap workspaces between current and next monitor |
 
 ### Nav Grid (⇪ + W + 4 + T)
 
