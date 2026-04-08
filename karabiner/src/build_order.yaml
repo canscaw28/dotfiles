@@ -4,4 +4,5 @@ steps:
 - file: default.yaml
 - file: f.yaml
 - file: t.yaml
+- file: r.yaml
 - file: g.yaml

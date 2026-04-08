@@ -1,0 +1,12 @@
+layer: [caps, r]
+app: "^com\\.google\\.Chrome$"
+
+manipulators:
+  - from: h
+    description: "R+H: Superhuman previous split inbox (shift+tab)"
+    to:
+      - [tab, shift]
+  - from: l
+    description: "R+L: Superhuman next split inbox (tab)"
+    to:
+      - tab
