@@ -73,7 +73,7 @@ local DOT_SIZE = 4
 local DOT_GAP = 3
 local DOT_ALPHA = 0.45
 local MAX_DOTS = 5
-local COUNT_FONT_SIZE = 7
+local COUNT_FONT_SIZE = 11
 
 -- Map AeroSpace workspace names to grid display keys
 local AERO_TO_KEY = {
@@ -145,7 +145,7 @@ local function patchKey(key, isActive, isFocused, labelColor, windowCount)
         local dots = keyDotIdx[key]
         if dots then
             local overflow = windowCount > MAX_DOTS
-            local n = overflow and 1 or windowCount
+            local n = overflow and 0 or windowCount
             for d = 1, MAX_DOTS do
                 grid:elementAttribute(dots[d], "fillColor",
                     {red = 0, green = 0, blue = 0, alpha = d <= n and DOT_ALPHA or 0})
@@ -154,9 +154,9 @@ local function patchKey(key, isActive, isFocused, labelColor, windowCount)
         local ci = keyCountIdx[key]
         if ci then
             local overflow = windowCount > MAX_DOTS
-            grid:elementAttribute(ci, "text", hs.styledtext.new(tostring(windowCount), {
-                font = {name = "Helvetica-Bold", size = COUNT_FONT_SIZE},
-                color = {red = 0, green = 0, blue = 0, alpha = overflow and 0.75 or 0},
+            grid:elementAttribute(ci, "text", hs.styledtext.new(overflow and tostring(windowCount) or "", {
+                font = {name = "Helvetica", size = COUNT_FONT_SIZE},
+                color = {red = 0, green = 0, blue = 0, alpha = DOT_ALPHA},
             }))
         end
     end
@@ -368,7 +368,7 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId, windowCounts)
             -- >MAX_DOTS: show 1 dot + number instead
             local wc = windowCounts and windowCounts[key] or 0
             local overflow = wc > MAX_DOTS
-            local dots = overflow and 1 or wc
+            local dots = overflow and 0 or wc
             keyDotIdx[key] = {}
             for d = 1, MAX_DOTS do
                 local dAlpha = d <= dots and DOT_ALPHA or 0
@@ -385,16 +385,16 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId, windowCounts)
                 keyDotIdx[key][d] = elementCount
             end
             -- Overflow count label (shown when >MAX_DOTS)
-            local countStyledText = hs.styledtext.new(tostring(wc), {
-                font = {name = "Helvetica-Bold", size = COUNT_FONT_SIZE},
-                color = {red = 0, green = 0, blue = 0, alpha = overflow and 0.75 or 0},
+            local countStyledText = hs.styledtext.new(overflow and tostring(wc) or "", {
+                font = {name = "Helvetica", size = COUNT_FONT_SIZE},
+                color = {red = 0, green = 0, blue = 0, alpha = DOT_ALPHA},
             })
             grid:appendElements({
                 type = "text",
                 text = countStyledText,
-                frame = {x = cellX + 5 + DOT_SIZE + DOT_GAP,
-                         y = cellY + CELL_SIZE - 11,
-                         w = 14, h = 10},
+                frame = {x = cellX + 4,
+                         y = cellY + CELL_SIZE - COUNT_FONT_SIZE - 3,
+                         w = 18, h = COUNT_FONT_SIZE + 4},
             })
             elementCount = elementCount + 1
             keyCountIdx[key] = elementCount
