@@ -2,6 +2,46 @@
 
 Caps Lock becomes a modifier system where the **left hand picks context** and the **right hand picks action**.
 
+## Contents
+
+- [Layers](#layers)
+- [Design](#design)
+- [Modes](#modes)
+- [Misc Shortcuts](#misc-shortcuts)
+- [Default Layer (⇪)](#default-layer-)
+  - [Cursor Movement](#cursor-movement)
+  - [Selection Mode (⇪ + S)](#selection-mode--s)
+  - [Deletion Mode (⇪ + D)](#deletion-mode--d)
+- [Scroll / Cursor Grid Layer (⇪+F)](#scroll--cursor-grid-layer-f)
+  - [Scrolling](#scrolling)
+  - [Coarse Cursor Grid (⇪+F + D) — 8×8](#coarse-cursor-grid-f--d--88)
+  - [Fine Cursor Grid (⇪+F + S) — 32×32](#fine-cursor-grid-f--s--3232)
+  - [Cursor Fixed Positions — ⇪ + F + E](#cursor-fixed-positions---f--e)
+  - [Link Hints (⇪+F + E, Chrome/Homerow)](#link-hints-f--e-chromehomerow)
+  - [Grid Overlay (⇪+F + D/S/E + P)](#grid-overlay-f--dse--p)
+- [Application Layer (⇪+G)](#application-layer-g)
+  - [Chrome](#chrome)
+    - [Tab Navigation](#tab-navigation)
+    - [Tab Reorder Mode (⇪+F+G)](#tab-reorder-mode-fg)
+    - [Superhuman Split Inbox (⇪+R, in Chrome)](#superhuman-split-inbox-r-in-chrome)
+    - [Tab Move Mode (⇪+D+G)](#tab-move-mode-dg)
+  - [iTerm2](#iterm2)
+  - [Other Apps](#other-apps)
+- [Aerospace Layer (⇪+T)](#aerospace-layer-t)
+  - [Focus](#focus)
+  - [Move Mode (⇪+T + R)](#move-mode-t--r)
+  - [Join Mode (⇪+T + 4)](#join-mode-t--4)
+  - [Workspace Operations](#workspace-operations)
+  - [Focus Workspace (⇪+T + W)](#focus-workspace-t--w)
+  - [Move to Workspace (⇪+T + E)](#move-to-workspace-t--e)
+  - [Move + Follow to Workspace (⇪+T + R + E)](#move--follow-to-workspace-t--r--e)
+  - [Focus Monitor 1 (⇪+T + W + E)](#focus-monitor-1-t--w--e)
+  - [Focus Monitor 2 (⇪+T + W + R)](#focus-monitor-2-t--w--r)
+  - [Swap Windows (⇪+T + 3)](#swap-windows-t--3)
+  - [Nav Grid (⇪+T + W + 4)](#nav-grid-t--w--4)
+- [System Layer (⇪+A)](#system-layer-a)
+- [MacBook Keyboard Ghosting](#macbook-keyboard-ghosting)
+
 ## Layers
 
 | Layer Key | Layer | Domain |
