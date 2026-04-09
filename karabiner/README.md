@@ -52,6 +52,7 @@ Right hand layout is always the same — vim directions that stay consistent acr
 | | 3 | Swap Windows | Swap all windows between workspaces |
 | | W+4 | Nav Grid | HJKL cursor over workspace grid |
 | System (A) | — | System Toggles | Dock, Notification Center, Mission Control, etc. |
+| App (R) | — | App-specific | Superhuman: navigate split inboxes (Chrome) |
 
 ## Misc Shortcuts
 
