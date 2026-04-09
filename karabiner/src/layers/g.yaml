@@ -447,10 +447,10 @@ sections:
     - '9'
     - command
   - from: p
+    description: 'G+P: toggle Gemini side panel (Chrome)'
+    app: ^com\.google\.Chrome$
     to:
-    - escape
-    - y
-    - t
+    - [g, control]
   - from: open_bracket
     to:
     - open_bracket

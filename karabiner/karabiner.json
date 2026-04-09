@@ -34632,8 +34632,15 @@
                     "name": "g_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$"
+                    ],
+                    "type": "frontmost_application_if"
                   }
                 ],
+                "description": "G+P: toggle Gemini side panel (Chrome)",
                 "from": {
                   "key_code": "p",
                   "modifiers": {
@@ -34644,13 +34651,10 @@
                 },
                 "to": [
                   {
-                    "key_code": "escape"
-                  },
-                  {
-                    "key_code": "y"
-                  },
-                  {
-                    "key_code": "t"
+                    "key_code": "g",
+                    "modifiers": [
+                      "control"
+                    ]
                   }
                 ],
                 "type": "basic"
