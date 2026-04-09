@@ -11,6 +11,7 @@ Caps Lock becomes a modifier system where the **left hand picks context** and th
 | ⇪ + G | Application | App-specific behavior (Chrome tabs, iTerm tmux, etc.) |
 | ⇪ + T | Aerospace | Window tiling and workspace operations |
 | ⇪ + A | System | Dock, Notification Center, input source, etc. |
+| ⇪ + R | App-specific | Superhuman split inbox navigation |
 
 ## Design
 
@@ -268,6 +269,13 @@ Tab switching (H/L/Y/O/U/I) uses Hammerspoon JXA for reliability, with hold-to-r
 | [⇪+F+G] + I | Esc; 3>> | Move tab 3 positions to the right |
 | [⇪+F+G] + J | Move tab + focus ↓ | Move tab to window below and follow |
 | [⇪+F+G] + K | Move tab + focus ↑ | Move tab to window above and follow |
+
+#### Superhuman Split Inbox (⇪+R, in Chrome)
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| [⇪+R] + H | ⇧ + ⇥ | Previous split inbox |
+| [⇪+R] + L | ⇥ | Next split inbox |
 
 #### Tab Move Mode (⇪+D+G)
 
