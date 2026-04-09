@@ -245,7 +245,7 @@ The G layer provides app-specific behavior. In Chrome it controls tabs and windo
 | [⇪+G] + K | Focus window ↑ | Focus nearest Chrome window above |
 | [⇪+G] + ; | Esc; T | Trigger Vimium Tab search |
 | [⇪+G] + ' | Esc; o | Trigger Vimium history search |
-| [⇪+G] + P | Esc; yt | Trigger Vimium Duplicate tab |
+| [⇪+G] + P | ⌃ + G | Toggle Gemini side panel |
 | [⇪+G] + [ | ⌘ + [ | Navigate back in history |
 | [⇪+G] + ] | ⌘ + ] | Navigate forward in history |
 | [⇪+G] + N | ⌘ + T | New tab |
