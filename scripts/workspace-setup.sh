@@ -4,6 +4,18 @@
 
 set -uo pipefail
 
+# Karabiner shell_command runs with minimal PATH; ensure homebrew is available
+export PATH="/opt/homebrew/bin:/Users/craig/.local/bin:$PATH"
+
+# Detach from Karabiner's process tree on first invocation.
+# Karabiner SIGKILL's shell_command processes unpredictably; re-exec into a new
+# session so the original process exits immediately and the real work runs independently.
+if [[ -z "${_WS_SETUP_DETACHED:-}" ]]; then
+    export _WS_SETUP_DETACHED=1
+    "$0" "$@" &>/dev/null &
+    exit 0
+fi
+
 # Prevent concurrent runs
 LOCK="/tmp/workspace-setup.lock"
 if ! mkdir "$LOCK" 2>/dev/null; then
@@ -22,7 +34,7 @@ APPS=(
 # Open/activate all apps in parallel
 for entry in "${APPS[@]}"; do
     IFS='|' read -r bundle_id _ <<< "$entry"
-    open -b "$bundle_id" &
+    open -gb "$bundle_id" &
 done
 wait
 
@@ -44,6 +56,10 @@ while (( elapsed < MAX_WAIT )); do
     (( elapsed++ )) || true
 done
 
+# Save focused workspace — moving the focused window off the current workspace
+# causes AeroSpace to follow focus to the target; restore afterward.
+ORIGINAL_WS=$(aerospace list-workspaces --focused 2>/dev/null)
+
 # Move windows to correct workspaces
 for entry in "${APPS[@]}"; do
     IFS='|' read -r bundle_id target_ws <<< "$entry"
@@ -54,3 +70,8 @@ for entry in "${APPS[@]}"; do
         fi
     done < <(aerospace list-windows --monitor all --format $'%{window-id}\t%{workspace}' --app-bundle-id "$bundle_id" 2>/dev/null)
 done
+
+# Restore focus to original workspace
+if [[ -n "${ORIGINAL_WS:-}" ]]; then
+    aerospace workspace "$ORIGINAL_WS" 2>/dev/null || true
+fi
