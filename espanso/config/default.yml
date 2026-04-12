@@ -4,6 +4,9 @@
 # Double press Alt/Option to toggle espanso on/off
 toggle_key: LEFT_ALT
 
+# Ctrl+Space to open Espanso search bar (default was Alt+Space)
+search_shortcut: CTRL+SPACE
+
 # Inject backend avoids clipboard race conditions with Maccy
 backend: inject
 # Small delay prevents keystroke interleaving with fast typing
