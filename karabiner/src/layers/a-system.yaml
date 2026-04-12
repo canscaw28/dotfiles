@@ -20,7 +20,7 @@ manipulators:
   description: 'A+N: Toggle Input Source'
   to:
   - - spacebar
-    - left_control
+    - left_control+left_option
 - from: u
   description: 'A+U: Toggle Notification Center'
   to:
