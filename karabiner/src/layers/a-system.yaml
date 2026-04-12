@@ -6,11 +6,11 @@ manipulators:
 - from: m
   description: 'A+M: Toggle Sidecar'
   to:
-  - shell: /usr/bin/swift /Users/craig/dev/dotfiles/raycast/toggle-sidecar.swift &
+  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+M")'; /usr/bin/swift /Users/craig/dev/dotfiles/raycast/toggle-sidecar.swift &
 - from: slash
   description: 'A+/: Clean Dock'
   to:
-  - shell: /bin/bash /Users/craig/dev/dotfiles/scripts/clean-dock.sh &
+  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+/")'; /bin/bash /Users/craig/dev/dotfiles/scripts/clean-dock.sh &
 - from: h
   description: 'A+H: Switch to English (U.S.)'
   to:
@@ -24,17 +24,23 @@ manipulators:
 - from: u
   description: 'A+U: Toggle Notification Center'
   to:
-  - shell: /usr/bin/osascript -e 'tell application "System Events" to tell application process "ControlCenter" to click (first menu bar item of menu bar 1 whose description is "Clock")' &
+  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+U")'; /usr/bin/osascript -e 'tell application "System Events" to tell application process "ControlCenter" to click (first menu bar item of menu bar 1 whose description is "Clock")' &
 - from: i
   description: 'A+I: Mission Control'
-  to: mission_control
+  to:
+  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+I")' &
+  - mission_control
 - from: o
   description: 'A+O: Show Desktop'
   to:
+  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+O"); require("show_desktop").toggle()' &
   - - f11
     - fn
-  - shell: /usr/local/bin/hs -c "require('show_desktop').toggle()" &
+- from: period
+  description: 'A+period: Workspace setup (open & place apps)'
+  to:
+  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+.")'; /bin/bash /Users/craig/.local/bin/workspace-setup.sh &
 - from: y
   description: 'A+Y: Toggle Dock'
   to:
-  - shell: /usr/local/bin/hs -c "require('dock_peek').toggle()" &
+  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+Y"); require("dock_peek").toggle()' &

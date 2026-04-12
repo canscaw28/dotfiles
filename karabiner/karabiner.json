@@ -2058,7 +2058,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/bin/swift /Users/craig/dev/dotfiles/raycast/toggle-sidecar.swift &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+M\")'; /usr/bin/swift /Users/craig/dev/dotfiles/raycast/toggle-sidecar.swift &"
                   }
                 ],
                 "type": "basic"
@@ -2087,7 +2087,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/bin/bash /Users/craig/dev/dotfiles/scripts/clean-dock.sh &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+/\")'; /bin/bash /Users/craig/dev/dotfiles/scripts/clean-dock.sh &"
                   }
                 ],
                 "type": "basic"
@@ -2179,7 +2179,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/bin/osascript -e 'tell application \"System Events\" to tell application process \"ControlCenter\" to click (first menu bar item of menu bar 1 whose description is \"Clock\")' &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+U\")'; /usr/bin/osascript -e 'tell application \"System Events\" to tell application process \"ControlCenter\" to click (first menu bar item of menu bar 1 whose description is \"Clock\")' &"
                   }
                 ],
                 "type": "basic"
@@ -2207,6 +2207,9 @@
                   }
                 },
                 "to": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+I\")' &"
+                  },
                   {
                     "key_code": "mission_control"
                   }
@@ -2237,13 +2240,42 @@
                 },
                 "to": [
                   {
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+O\"); require(\"show_desktop\").toggle()' &"
+                  },
+                  {
                     "key_code": "f11",
                     "modifiers": [
                       "fn"
                     ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('show_desktop').toggle()\" &"
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "A+period: Workspace setup (open & place apps)",
+                "from": {
+                  "key_code": "period",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+.\")'; /bin/bash /Users/craig/.local/bin/workspace-setup.sh &"
                   }
                 ],
                 "type": "basic"
@@ -2272,7 +2304,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('dock_peek').toggle()\" &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+Y\"); require(\"dock_peek\").toggle()' &"
                   }
                 ],
                 "type": "basic"
