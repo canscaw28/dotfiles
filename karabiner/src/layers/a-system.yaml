@@ -36,10 +36,10 @@ manipulators:
   - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+O"); require("show_desktop").toggle()' &
   - - f11
     - fn
-- from: period
-  description: 'A+period: Workspace setup (open & place apps)'
+- from: comma
+  description: 'A+comma: Workspace setup (open & place apps)'
   to:
-  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+.")'; /bin/bash /Users/craig/.local/bin/workspace-setup.sh &
+  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+,")'; /bin/bash /Users/craig/.local/bin/workspace-setup.sh &
 - from: y
   description: 'A+Y: Toggle Dock'
   to:

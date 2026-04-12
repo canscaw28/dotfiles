@@ -2264,9 +2264,9 @@
                     "value": 1
                   }
                 ],
-                "description": "A+period: Workspace setup (open & place apps)",
+                "description": "A+comma: Workspace setup (open & place apps)",
                 "from": {
-                  "key_code": "period",
+                  "key_code": "comma",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -2275,7 +2275,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+.\")'; /bin/bash /Users/craig/.local/bin/workspace-setup.sh &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+,\")'; /bin/bash /Users/craig/.local/bin/workspace-setup.sh &"
                   }
                 ],
                 "type": "basic"

@@ -527,7 +527,7 @@ macOS system toggles and input source management. Unlike other layers, A does no
 | [⇪+A] + O | Show Desktop | Shows the desktop (fn+F11) |
 | [⇪+A] + M | Toggle Sidecar | Toggles iPad Sidecar display |
 | [⇪+A] + / | Clean Dock | Removes recent apps from Dock |
-| [⇪+A] + . | Workspace Setup | Opens apps (iTerm2→k, Messages→n, Rize→n, Slack→m) and moves windows to assigned workspaces |
+| [⇪+A] + , | Workspace Setup | Opens apps (iTerm2→k, Messages→n, Rize→n, Slack→m) and moves windows to assigned workspaces |
 
 ### Input Source
 
