@@ -599,6 +599,9 @@ bindkey "\e_" redo                            # Meta+_ (Cmd+Shift+Z via Karabine
 
 export PATH="$HOME/.local/bin:$PATH"
 
+# 1Password-secured CLI wrappers (secrets injected per-invocation, never on disk)
+alias claude='op run --env-file="$HOME/dev/dotfiles/shell/op-secrets.env" -- claude'
+
 # Track when .zshrc was sourced (for stale config indicator in prompt)
 # Resolve symlink to get actual file path for reliable mtime checking
 export ZSHRC_REAL_PATH=$(readlink ~/.zshrc || echo ~/.zshrc)
