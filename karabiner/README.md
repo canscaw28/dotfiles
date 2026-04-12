@@ -527,6 +527,7 @@ macOS system toggles and input source management. Unlike other layers, A does no
 | [⇪+A] + O | Show Desktop | Shows the desktop (fn+F11) |
 | [⇪+A] + M | Toggle Sidecar | Toggles iPad Sidecar display |
 | [⇪+A] + / | Clean Dock | Removes recent apps from Dock |
+| [⇪+A] + . | Workspace Setup | Opens apps (iTerm2→k, Messages→n, Rize→n, Slack→m) and moves windows to assigned workspaces |
 
 ### Input Source
 
@@ -544,7 +545,7 @@ Certain key combinations are silently dropped on the MacBook's built-in keyboard
 | Keys held | Dropped keys | Impact |
 | --- | --- | --- |
 | ⇪ + T + Q | U, I, O, P, ; | Q was removed as a workspace mode key because of this |
-| ⇪ + A | J, K, L, ; | A layer avoids right-hand home row; uses Y/U/I/O and H/N instead |
+| ⇪ + A | J, K, L, ;, , | A layer avoids right-hand home row and comma; uses Y/U/I/O and H/N instead |
 
 Always verify new multi-key combos in Karabiner EventViewer before committing to a binding.
 
