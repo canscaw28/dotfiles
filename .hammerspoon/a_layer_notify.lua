@@ -7,6 +7,7 @@ local canvas = nil
 local displayTimer = nil
 local fallTimer = nil
 local spinnerTimer = nil
+local completionTimer = nil
 local targetX = nil
 local targetY = nil
 
@@ -28,6 +29,7 @@ local FALL_INTERVAL = 0.02
 local GRAY = {0.4, 0.4, 0.4}
 
 local function cleanup()
+    if completionTimer then completionTimer:stop(); completionTimer = nil end
     if spinnerTimer then spinnerTimer:stop(); spinnerTimer = nil end
     if fallTimer then fallTimer:stop(); fallTimer = nil end
     if displayTimer then displayTimer:stop(); displayTimer = nil end
@@ -170,7 +172,19 @@ function M.showSpinner(label)
         canvas:elementAttribute(3, "text", frames[frameIdx])
     end)
 
-    -- Safety net: force-dismiss after MAX_SPINNER_TIME if nothing else clears it
+    -- Poll for the flag file written by reload.sh at the very end. This handles
+    -- the case where Hammerspoon does NOT restart (so init.lua never re-runs).
+    completionTimer = hs.timer.doEvery(0.5, function()
+        local f = io.open("/tmp/hs_reload_done", "r")
+        if f then
+            io.close(f)
+            os.remove("/tmp/hs_reload_done")
+            if completionTimer then completionTimer:stop(); completionTimer = nil end
+            M.show("✓ Reloaded")
+        end
+    end)
+
+    -- Safety net: force-dismiss after MAX_SPINNER_TIME if the flag never arrives
     displayTimer = hs.timer.doAfter(MAX_SPINNER_TIME, function()
         displayTimer = nil
         cleanup()
