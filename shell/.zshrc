@@ -146,18 +146,6 @@ alias l='p && ls'
 alias la='p && ls -a'
 alias lh='p && ls -lah'
 
-# git aliases
-alias gm='git checkout master'
-alias gn='git checkout -b '
-alias gh='git checkout '
-alias gb='git branch '
-alias gd='git branch -D '
-alias gl='git log'
-alias gc='git commit -am "diff"'
-alias gcm='git commit -am '
-alias gp='git pull origin master'
-alias gs='git stash'
-alias gsa='git stash apply'
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
