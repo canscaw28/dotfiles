@@ -31,10 +31,13 @@ APPS=(
     "com.tinyspeck.slackmacgap|m"
 )
 
-# Open/activate all apps in parallel
+# Open apps that don't already have windows (skip already-running apps)
 for entry in "${APPS[@]}"; do
     IFS='|' read -r bundle_id _ <<< "$entry"
-    open -gb "$bundle_id" &
+    count=$(aerospace list-windows --monitor all --app-bundle-id "$bundle_id" --count 2>/dev/null || echo 0)
+    if [[ "$count" == "0" ]]; then
+        open -gb "$bundle_id" &
+    fi
 done
 wait
 
@@ -56,9 +59,10 @@ while (( elapsed < MAX_WAIT )); do
     (( elapsed++ )) || true
 done
 
-# Save focused workspace — moving the focused window off the current workspace
-# causes AeroSpace to follow focus to the target; restore afterward.
-ORIGINAL_WS=$(aerospace list-workspaces --focused 2>/dev/null)
+# Save focused window — moving the focused window off the current workspace
+# causes AeroSpace to follow focus to the target; restoring by window ID is
+# more reliable than by workspace (which can redirect to another monitor).
+ORIGINAL_WIN=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null)
 
 # Move windows to correct workspaces
 for entry in "${APPS[@]}"; do
@@ -71,7 +75,7 @@ for entry in "${APPS[@]}"; do
     done < <(aerospace list-windows --monitor all --format $'%{window-id}\t%{workspace}' --app-bundle-id "$bundle_id" 2>/dev/null)
 done
 
-# Restore focus to original workspace
-if [[ -n "${ORIGINAL_WS:-}" ]]; then
-    aerospace workspace "$ORIGINAL_WS" 2>/dev/null || true
+# Restore focus to original window
+if [[ -n "${ORIGINAL_WIN:-}" ]]; then
+    aerospace focus --window-id "$ORIGINAL_WIN" 2>/dev/null || true
 fi
