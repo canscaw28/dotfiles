@@ -35,7 +35,8 @@ reload_karabiner() {
     }
     log_info "Reloading Karabiner Elements config..."
     launchctl kickstart -k "gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server" 2>/dev/null || log_error "Karabiner Elements not running or not installed"
-    touch "$HOME/.config/karabiner/karabiner.json" 2>/dev/null || true
+    # No touch after kickstart: the fresh process reads the config on startup.
+    # A touch would trigger a second file-watcher reload with unpredictable timing.
     log_info "Karabiner Elements config reloaded"
 }
 
