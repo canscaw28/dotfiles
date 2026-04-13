@@ -10,6 +10,21 @@ require("chrome_warmup")
 require("cursor_grid")
 require("dock_peek")
 
+-- Show "✓ Reloaded" toast when reload.sh --all finishes. reload.sh writes a
+-- flag file at the very end; we poll for it here so the signal survives the
+-- Hammerspoon restart that happens mid-reload.
+reloadCheckTimer = hs.timer.doEvery(0.5, function()
+    if hs.fs.attributes("/tmp/hs_reload_done") then
+        reloadCheckTimer:stop()
+        reloadCheckTimer = nil
+        os.remove("/tmp/hs_reload_done")
+        require("a_layer_notify").show("✓ Reloaded")
+    end
+end)
+hs.timer.doAfter(60, function()
+    if reloadCheckTimer then reloadCheckTimer:stop(); reloadCheckTimer = nil end
+end)
+
 screenWatcher = hs.screen.watcher.new(function()
     hs.timer.doAfter(2.0, function()
         hs.task.new("/Users/craig/.local/bin/cleanup-ws.sh", nil):start()
