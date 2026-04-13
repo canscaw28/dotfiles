@@ -404,8 +404,8 @@ When iTerm2 is frontmost, several default layer keys are overridden with termina
 | [⇪+T] + = | ⌘ + ⌥ + ⌃ + ⇧ + = | Resize smart +50 |
 | [⇪+T] + / | ⌘ + ⌥ + ⇧ + / | Toggle tiles horizontal/vertical |
 | [⇪+T] + . | ⌘ + ⌥ + ⇧ + . | Toggle accordion horizontal/vertical |
-| [⇪+T] + , | ⌘ + ⌥ + ⇧ + , | Balance window sizes |
-| [⇪+T] + N | ⌘ + ⌥ + ⇧ + N | Toggle floating/tiling |
+| [⇪+T] + , | ⌘ + ⌥ + ⇧ + , | Toggle floating/tiling |
+| [⇪+T] + N | ⌘ + ⌥ + ⇧ + N | Balance window sizes |
 | [⇪+T] + M | ⌘ + ⌥ + ⇧ + M | Flatten workspace tree |
 | [⇪+T] + P | *available* | |
 | [⇪+T] + Y | *available* | |
