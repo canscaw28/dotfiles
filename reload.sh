@@ -33,11 +33,12 @@ reload_karabiner() {
         log_error "Karabiner build failed"
         return 1
     }
-    log_info "Reloading Karabiner Elements config..."
-    launchctl kickstart -k "gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server" 2>/dev/null || log_error "Karabiner Elements not running or not installed"
-    # No touch after kickstart: the fresh process reads the config on startup.
-    # A touch would trigger a second file-watcher reload with unpredictable timing.
-    log_info "Karabiner Elements config reloaded"
+    # build.py writes karabiner.json (symlinked into ~/.config/karabiner/),
+    # which Karabiner's file watcher detects and hot-reloads automatically.
+    # No launchctl kickstart: a process restart kills the grabber connection,
+    # causing all key remapping to drop until the grabber reconnects — and that
+    # reconnection has variable timing that can outlast the reload wait.
+    log_info "Karabiner Elements config reloaded (via file watcher)"
 }
 
 reload_hammerspoon() {
@@ -108,13 +109,14 @@ reload_all() {
     reload_espanso
     reload_shell
     reload_chrome || true  # informational check; don't abort --all if Chrome ext missing
-    # launchctl kickstart returns immediately but Karabiner takes a few seconds to
-    # fully restart. Wait before reloading Hammerspoon so everything is up by the
-    # time the "✓ Reloaded" toast appears.
-    sleep 4
-    # Hammerspoon last: its restart kills the spinner; init.lua then detects the
-    # flag (written by the EXIT trap as this function returns) and shows "✓ Reloaded".
-    reload_hammerspoon
+    # Karabiner's file-watcher hot reload takes ~1s (no process restart), but give
+    # it a brief margin so everything is settled by the time the toast appears.
+    sleep 1
+    # No reload_hammerspoon here: the hs CLI IPC call is unreliable from
+    # Karabiner-spawned shells. Instead, the showSpinner in the current HS
+    # instance polls for the flag file (written by the EXIT trap) and shows
+    # "✓ Reloaded" directly. HS config changes are picked up by a pathwatcher
+    # on configdir in init.lua.
 }
 
 show_help() {

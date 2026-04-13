@@ -10,28 +10,12 @@ require("chrome_warmup")
 require("cursor_grid")
 require("dock_peek")
 
--- Show "✓ Reloaded" toast when reload.sh --all finishes (flag file written at
--- the end of reload.sh). Check immediately in case the flag was written before
--- HS finished restarting, then poll every 0.5s for up to 5 minutes.
-local function consumeReloadFlag()
-    local f = io.open("/tmp/hs_reload_done", "r")
-    if not f then return false end
-    io.close(f)
-    os.remove("/tmp/hs_reload_done")
-    require("a_layer_notify").show("✓ Reloaded")
-    return true
-end
-if not consumeReloadFlag() then
-    reloadCheckTimer = hs.timer.doEvery(0.5, function()
-        if consumeReloadFlag() then
-            reloadCheckTimer:stop()
-            reloadCheckTimer = nil
-        end
-    end)
-    hs.timer.doAfter(300, function()
-        if reloadCheckTimer then reloadCheckTimer:stop(); reloadCheckTimer = nil end
-    end)
-end
+-- Auto-reload when config files change (e.g. after git pull + reload.sh --all,
+-- or when editing HS files directly). This replaces the unreliable hs CLI IPC
+-- call that reload.sh used to make.
+configWatcher = hs.pathwatcher.new(hs.configdir, function(files)
+    hs.reload()
+end):start()
 
 screenWatcher = hs.screen.watcher.new(function()
     hs.timer.doAfter(2.0, function()

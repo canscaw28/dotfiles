@@ -54,8 +54,10 @@ local function startFall()
     end)
 end
 
-function M.show(label)
+function M.show(label, duration)
     cleanup()
+
+    local hold = duration or DISPLAY_TIME
 
     local st = hs.styledtext.new(label, {font = {name = FONT_NAME, size = FONT_SIZE}})
     local textW = hs.drawing.getTextDrawingSize(st).w
@@ -99,7 +101,7 @@ function M.show(label)
     c:show()
     canvas = c
 
-    displayTimer = hs.timer.doAfter(DISPLAY_TIME, function()
+    displayTimer = hs.timer.doAfter(hold, function()
         displayTimer = nil
         if not canvas then return end
         startFall()
@@ -108,7 +110,7 @@ end
 
 function M.showSpinner(label)
     cleanup()
-    os.remove("/tmp/hs_reload_done")  -- clear any stale flag before we start polling
+    os.remove("/tmp/hs_reload_done")  -- clear any stale flag from a previous reload
 
     -- Use '.' (baseline) not '·' (mid-height). Canvas is fixed to widest frame
     -- so the toast doesn't resize; left-align so "label" stays anchored and
@@ -173,19 +175,21 @@ function M.showSpinner(label)
         canvas:elementAttribute(3, "text", frames[frameIdx])
     end)
 
-    -- Poll for the flag file written by reload.sh at the very end. This handles
-    -- the case where Hammerspoon does NOT restart (so init.lua never re-runs).
+    -- Poll for the flag file written by reload.sh's EXIT trap.  The spinner
+    -- runs in the CURRENT Hammerspoon instance — no hs.reload() is needed just
+    -- to show the toast.  HS config changes are picked up separately via a
+    -- pathwatcher on configdir (see init.lua).
     completionTimer = hs.timer.doEvery(0.5, function()
         local f = io.open("/tmp/hs_reload_done", "r")
         if f then
             io.close(f)
             os.remove("/tmp/hs_reload_done")
             if completionTimer then completionTimer:stop(); completionTimer = nil end
-            M.show("✓ Reloaded")
+            M.show("✓ Reloaded", 1.5)
         end
     end)
 
-    -- Safety net: force-dismiss after MAX_SPINNER_TIME if the flag never arrives
+    -- Safety net: force-dismiss after MAX_SPINNER_TIME if the flag never arrives.
     displayTimer = hs.timer.doAfter(MAX_SPINNER_TIME, function()
         displayTimer = nil
         cleanup()
