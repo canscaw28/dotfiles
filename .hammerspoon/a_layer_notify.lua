@@ -6,6 +6,7 @@ local M = {}
 local canvas = nil
 local displayTimer = nil
 local fallTimer = nil
+local spinnerTimer = nil
 local targetX = nil
 local targetY = nil
 
@@ -27,6 +28,7 @@ local FALL_INTERVAL = 0.02
 local GRAY = {0.4, 0.4, 0.4}
 
 local function cleanup()
+    if spinnerTimer then spinnerTimer:stop(); spinnerTimer = nil end
     if fallTimer then fallTimer:stop(); fallTimer = nil end
     if displayTimer then displayTimer:stop(); displayTimer = nil end
     if canvas then canvas:delete(); canvas = nil end
@@ -99,6 +101,69 @@ function M.show(label)
         displayTimer = nil
         if not canvas then return end
         startFall()
+    end)
+end
+
+function M.showSpinner(label)
+    cleanup()
+
+    local frames = {label .. " ·", label .. " ··", label .. " ···", label .. " ··"}
+    local SPINNER_INTERVAL = 0.35
+    local frameIdx = 1
+
+    -- Size canvas to the widest frame so it doesn't shift as dots animate
+    local canvasW = MIN_SIZE
+    for _, frame in ipairs(frames) do
+        local st = hs.styledtext.new(frame, {font = {name = FONT_NAME, size = FONT_SIZE}})
+        local w = hs.drawing.getTextDrawingSize(st).w
+        if w + PADDING > canvasW then canvasW = w + PADDING end
+    end
+    local canvasH = MIN_SIZE
+
+    local screen = hs.mouse.getCurrentScreen() or hs.screen.mainScreen()
+    local sf = screen:fullFrame()
+    targetX = sf.x + (sf.w - canvasW) / 2
+    targetY = sf.y + (sf.h - canvasH) / 2
+
+    local c = hs.canvas.new({x = targetX, y = targetY, w = canvasW, h = canvasH})
+    c:level(hs.canvas.windowLevels.overlay + 1)
+    c:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
+    c:clickActivating(false)
+    c:canvasMouseEvents(false)
+
+    c:appendElements({
+        type = "rectangle",
+        action = "fill",
+        fillColor = BG_COLOR,
+        roundedRectRadii = {xRadius = CORNER_RADIUS, yRadius = CORNER_RADIUS},
+    }, {
+        type = "rectangle",
+        action = "stroke",
+        strokeWidth = BORDER_WIDTH,
+        strokeColor = BORDER_COLOR,
+        roundedRectRadii = {xRadius = CORNER_RADIUS, yRadius = CORNER_RADIUS},
+    }, {
+        type = "text",
+        text = frames[1],
+        textColor = TEXT_COLOR,
+        textSize = FONT_SIZE,
+        textFont = FONT_NAME,
+        textAlignment = "center",
+        textLineBreak = "clip",
+        frame = {x = 0, y = (canvasH - FONT_SIZE * 1.3) / 2, w = canvasW, h = FONT_SIZE * 1.5},
+    })
+
+    c:alpha(1)
+    c:show()
+    canvas = c
+
+    spinnerTimer = hs.timer.doEvery(SPINNER_INTERVAL, function()
+        if not canvas then
+            if spinnerTimer then spinnerTimer:stop(); spinnerTimer = nil end
+            return
+        end
+        frameIdx = (frameIdx % #frames) + 1
+        canvas:elementAttribute(3, "text", frames[frameIdx])
     end)
 end
 
