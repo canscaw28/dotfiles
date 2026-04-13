@@ -408,7 +408,7 @@ end
 -- Instant update for rapid key sequences.
 -- Patches only changed keys (prev focused, displaced, current) instead of
 -- recreating the entire 104-element canvas.
-function M.visitKey(key, targetMon, swapMode, moveMode)
+function M.visitKey(key, targetMon, swapMode, moveMode, followFocus)
     local displayKey = AERO_TO_KEY[key] or key
 
     -- Q mode (swap/push/pull): highlight target key without updating
@@ -432,11 +432,24 @@ function M.visitKey(key, targetMon, swapMode, moveMode)
             if lastMoveTarget and lastMoveTarget ~= displayKey then
                 local prevMonId = lastVisibleWs[lastMoveTarget]
                 local prevColor = (prevMonId and MONITOR_COLORS[prevMonId]) or TEXT_COLOR_DIM
-                patchKey(lastMoveTarget, prevMonId ~= nil, lastMoveTarget == lastFocusedKey, prevColor)
+                patchKey(lastMoveTarget, prevMonId ~= nil, lastMoveTarget == lastFocusedKey, prevColor,
+                    lastWindowCounts[lastMoveTarget])
+            end
+            -- Optimistically update window counts: one window moves from source to
+            -- target. lastFocusedKey is the source (focus stays there); displayKey
+            -- is the target. Only update if source actually has windows to give.
+            local sourceKey = lastFocusedKey
+            local srcCount = sourceKey and (lastWindowCounts[sourceKey] or 0) or 0
+            if sourceKey and sourceKey ~= displayKey and srcCount > 0 then
+                lastWindowCounts[sourceKey] = srcCount - 1
+                local srcMonId = lastVisibleWs[sourceKey]
+                local srcColor = (srcMonId and MONITOR_COLORS[srcMonId]) or TEXT_COLOR_DIM
+                patchKey(sourceKey, srcMonId ~= nil, true, srcColor, lastWindowCounts[sourceKey])
+                lastWindowCounts[displayKey] = (lastWindowCounts[displayKey] or 0) + 1
             end
             local monId = lastVisibleWs[displayKey]
             local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
-            patchKey(displayKey, true, false, labelColor)
+            patchKey(displayKey, true, false, labelColor, lastWindowCounts[displayKey])
             lastMoveTarget = displayKey
         end
         return
@@ -486,11 +499,21 @@ function M.visitKey(key, targetMon, swapMode, moveMode)
 
     -- Patch only changed keys (no full canvas recreation)
     if grid and shouldShowGrid() then
+        -- Move-focus mode: window travels with focus, so update dot counts
+        -- optimistically (source loses one window, target gains one).
+        -- Only update if source actually has windows to give.
+        if followFocus and prevFocused and prevFocused ~= displayKey
+            and (lastWindowCounts[prevFocused] or 0) > 0 then
+            lastWindowCounts[prevFocused] = lastWindowCounts[prevFocused] - 1
+            lastWindowCounts[displayKey] = (lastWindowCounts[displayKey] or 0) + 1
+        end
+
         -- Previous focused key: revert to normal state (only if * moved)
         if moveFocus and prevFocused and prevFocused ~= displayKey then
             local prevMonId = lastVisibleWs[prevFocused]
             local prevColor = (prevMonId and MONITOR_COLORS[prevMonId]) or TEXT_COLOR_DIM
-            patchKey(prevFocused, prevMonId ~= nil, false, prevColor)
+            patchKey(prevFocused, prevMonId ~= nil, false, prevColor,
+                followFocus and lastWindowCounts[prevFocused] or nil)
         end
 
         -- Displaced key: moved to another monitor (swap) or hidden
@@ -502,7 +525,8 @@ function M.visitKey(key, targetMon, swapMode, moveMode)
 
         -- Visited key: show * only if it's the focused key
         local curColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
-        patchKey(displayKey, monId ~= nil, displayKey == lastFocusedKey, curColor)
+        patchKey(displayKey, monId ~= nil, displayKey == lastFocusedKey, curColor,
+            followFocus and lastWindowCounts[displayKey] or nil)
     end
 end
 
@@ -709,7 +733,7 @@ local function drainOneKey()
         return
     end
     local entry = table.remove(pendingKeyQueue, 1)
-    M.visitKey(entry.key, entry.mon, entry.swap, entry.moveMode)
+    M.visitKey(entry.key, entry.mon, entry.swap, entry.moveMode, entry.followFocus)
     local ws_notify = require("ws_notify")
     ws_notify.show(entry.key, entry.mon or lastFocusedMonId, entry.source, entry.followFocus)
     if #pendingKeyQueue == 0 then
