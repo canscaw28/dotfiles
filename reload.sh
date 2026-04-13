@@ -5,6 +5,13 @@
 
 set -e
 
+# When --all is invoked, write a flag file on exit (success or failure) so the
+# Hammerspoon reload spinner always gets dismissed. The flag must be written via
+# EXIT trap rather than at the end of reload_all(), because set -e will exit the
+# script early if any reload step fails (e.g. reload_chrome returning 1).
+_hs_reload_flag=false
+trap 'if $_hs_reload_flag; then touch /tmp/hs_reload_done; fi' EXIT
+
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -100,10 +107,7 @@ reload_all() {
     reload_iterm
     reload_espanso
     reload_shell
-    reload_chrome
-    # Signal completion for the a_layer_notify spinner. Hammerspoon polls for
-    # this file on startup (init.lua) and shows "✓ Reloaded" when it appears.
-    touch /tmp/hs_reload_done
+    reload_chrome || true  # informational check; don't abort --all if Chrome ext missing
 }
 
 show_help() {
@@ -126,11 +130,13 @@ show_help() {
 
 # Parse arguments
 if [[ $# -eq 0 ]]; then
+    _hs_reload_flag=true
     reload_all
 else
     while [[ $# -gt 0 ]]; do
         case $1 in
             --all)
+                _hs_reload_flag=true
                 reload_all
                 shift
                 ;;

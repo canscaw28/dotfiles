@@ -108,6 +108,7 @@ end
 
 function M.showSpinner(label)
     cleanup()
+    os.remove("/tmp/hs_reload_done")  -- clear any stale flag before we start polling
 
     -- Use '.' (baseline) not '·' (mid-height). Canvas is fixed to widest frame
     -- so the toast doesn't resize; left-align so "label" stays anchored and
