@@ -10,7 +10,6 @@ Zsh and Bash shell configuration files.
 | `.bash_profile` | Bash profile for login shells |
 | `.p10k.zsh` | [Powerlevel10k](https://github.com/romkatv/powerlevel10k) prompt theme configuration |
 | `.git-completion.bash` | Git command autocompletion |
-| `op-secrets.env` | 1Password secret references for CLI tools (contains `op://` URIs, not actual secrets) |
 
 ## Zsh Features
 
@@ -82,17 +81,6 @@ Enhanced delete commands via Caps Lock layer (requires Karabiner):
 | Caps+D+O | Delete to end of line |
 | Caps+D+J | Delete to line below |
 | Caps+D+K | Delete to line above |
-
-## 1Password Secret Injection
-
-CLI tools that need API keys are wrapped with `op run`, which resolves `op://` references from `op-secrets.env` via biometric auth. To add a new secret:
-
-1. Add an `op://` reference to `op-secrets.env`
-2. Add an alias in `.zshrc`:
-
-```bash
-alias mytool='op run --env-file="$HOME/dev/dotfiles/shell/op-secrets.env" -- mytool'
-```
 
 ## Powerlevel10k Prompt
 
