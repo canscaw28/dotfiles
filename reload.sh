@@ -108,6 +108,10 @@ reload_all() {
     reload_espanso
     reload_shell
     reload_chrome || true  # informational check; don't abort --all if Chrome ext missing
+    # launchctl kickstart and hs.reload return immediately but the services take a
+    # few seconds to fully come back up. Wait here so the "✓ Reloaded" toast doesn't
+    # appear while Karabiner or Hammerspoon are still mid-restart.
+    sleep 4
 }
 
 show_help() {
