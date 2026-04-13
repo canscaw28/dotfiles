@@ -107,11 +107,15 @@ end
 function M.showSpinner(label)
     cleanup()
 
-    local frames = {label .. " ·", label .. " ··", label .. " ···", label .. " ··"}
+    -- Use '.' (baseline) not '·' (mid-height). Canvas is fixed to widest frame
+    -- so the toast doesn't resize; left-align so "label" stays anchored and
+    -- dots grow rightward rather than the whole text shifting on each tick.
+    local frames = {label .. ".", label .. "..", label .. "...", label .. ".."}
     local SPINNER_INTERVAL = 0.35
+    local MAX_SPINNER_TIME = 30
     local frameIdx = 1
 
-    -- Size canvas to the widest frame so it doesn't shift as dots animate
+    -- Size canvas to the widest frame
     local canvasW = MIN_SIZE
     for _, frame in ipairs(frames) do
         local st = hs.styledtext.new(frame, {font = {name = FONT_NAME, size = FONT_SIZE}})
@@ -148,9 +152,9 @@ function M.showSpinner(label)
         textColor = TEXT_COLOR,
         textSize = FONT_SIZE,
         textFont = FONT_NAME,
-        textAlignment = "center",
+        textAlignment = "left",
         textLineBreak = "clip",
-        frame = {x = 0, y = (canvasH - FONT_SIZE * 1.3) / 2, w = canvasW, h = FONT_SIZE * 1.5},
+        frame = {x = PADDING/2, y = (canvasH - FONT_SIZE * 1.3) / 2, w = canvasW - PADDING/2, h = FONT_SIZE * 1.5},
     })
 
     c:alpha(1)
@@ -164,6 +168,12 @@ function M.showSpinner(label)
         end
         frameIdx = (frameIdx % #frames) + 1
         canvas:elementAttribute(3, "text", frames[frameIdx])
+    end)
+
+    -- Safety net: force-dismiss after MAX_SPINNER_TIME if nothing else clears it
+    displayTimer = hs.timer.doAfter(MAX_SPINNER_TIME, function()
+        displayTimer = nil
+        cleanup()
     end)
 end
 
