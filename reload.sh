@@ -103,15 +103,17 @@ reload_chrome() {
 reload_all() {
     reload_aerospace
     reload_karabiner
-    reload_hammerspoon
     reload_iterm
     reload_espanso
     reload_shell
     reload_chrome || true  # informational check; don't abort --all if Chrome ext missing
-    # launchctl kickstart and hs.reload return immediately but the services take a
-    # few seconds to fully come back up. Wait here so the "✓ Reloaded" toast doesn't
-    # appear while Karabiner or Hammerspoon are still mid-restart.
+    # launchctl kickstart returns immediately but Karabiner takes a few seconds to
+    # fully restart. Wait before reloading Hammerspoon so everything is up by the
+    # time the "✓ Reloaded" toast appears.
     sleep 4
+    # Hammerspoon last: its restart kills the spinner; init.lua then detects the
+    # flag (written by the EXIT trap as this function returns) and shows "✓ Reloaded".
+    reload_hammerspoon
 }
 
 show_help() {
