@@ -13474,6 +13474,9 @@
                       "option",
                       "shift"
                     ]
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "type": "basic"
@@ -13563,6 +13566,9 @@
                       "option",
                       "shift"
                     ]
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "type": "basic"
@@ -13652,6 +13658,9 @@
                       "option",
                       "shift"
                     ]
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "type": "basic"
@@ -14084,6 +14093,9 @@
                       "option",
                       "shift"
                     ]
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "type": "basic"
@@ -14172,6 +14184,9 @@
                       "option",
                       "shift"
                     ]
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "type": "basic"
@@ -14260,6 +14275,9 @@
                       "option",
                       "shift"
                     ]
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "type": "basic"
@@ -14348,6 +14366,9 @@
                       "option",
                       "shift"
                     ]
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "type": "basic"
