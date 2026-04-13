@@ -599,8 +599,11 @@ bindkey "\e_" redo                            # Meta+_ (Cmd+Shift+Z via Karabine
 
 export PATH="$HOME/.local/bin:$PATH"
 
-# 1Password-secured CLI wrappers (secrets injected per-invocation, never on disk)
-alias claude='op run --env-file="$HOME/dev/dotfiles/shell/op-secrets.env" -- claude'
+# Run claude with API key from 1Password instead of subscription
+claude-api() {
+  ANTHROPIC_API_KEY=$(op read "op://Personal/Anthropic API Key/credential" --no-newline) command claude --bare "$@"
+  security delete-generic-password -s "Claude Code" &>/dev/null
+}
 
 # Track when .zshrc was sourced (for stale config indicator in prompt)
 # Resolve symlink to get actual file path for reliable mtime checking
