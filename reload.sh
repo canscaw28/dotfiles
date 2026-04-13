@@ -101,6 +101,14 @@ reload_all() {
     reload_espanso
     reload_shell
     reload_chrome
+    # Show completion toast once Hammerspoon is back up after its restart.
+    # Retry up to 6 times (1s apart) since HS takes a moment to become responsive.
+    for _i in 1 2 3 4 5 6; do
+        sleep 1
+        if /usr/local/bin/hs -c 'require("a_layer_notify").show("✓ Reloaded")' 2>/dev/null; then
+            break
+        fi
+    done
 }
 
 show_help() {
