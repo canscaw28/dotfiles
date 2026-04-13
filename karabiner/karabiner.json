@@ -2294,6 +2294,35 @@
                     "value": 1
                   }
                 ],
+                "description": "A+.: Reload all configs",
+                "from": {
+                  "key_code": "period",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+.\")'; /bin/bash /Users/craig/dev/dotfiles/reload.sh --all &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "a_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
                 "description": "A+Y: Toggle Dock",
                 "from": {
                   "key_code": "y",

@@ -40,6 +40,10 @@ manipulators:
   description: 'A+comma: Workspace setup (open & place apps)'
   to:
   - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+,")'; /bin/bash /Users/craig/.local/bin/workspace-setup.sh &
+- from: period
+  description: 'A+.: Reload all configs'
+  to:
+  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+.")'; /bin/bash /Users/craig/dev/dotfiles/reload.sh --all &
 - from: y
   description: 'A+Y: Toggle Dock'
   to:
