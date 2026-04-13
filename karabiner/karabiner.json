@@ -2305,7 +2305,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+.\")'; /bin/bash /Users/craig/dev/dotfiles/reload.sh --all &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").showSpinner(\"Reloading\")'; /bin/bash /Users/craig/dev/dotfiles/reload.sh --all &"
                   }
                 ],
                 "type": "basic"
