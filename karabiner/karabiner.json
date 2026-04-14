@@ -13243,6 +13243,15 @@
                 },
                 "to": [
                   {
+                    "key_code": "quote",
+                    "modifiers": [
+                      "fn",
+                      "shift",
+                      "control",
+                      "option"
+                    ]
+                  },
+                  {
                     "shell_command": "$HOME/.local/bin/ws.sh swap-monitors"
                   }
                 ],

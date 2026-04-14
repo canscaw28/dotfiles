@@ -411,14 +411,37 @@ end
 function M.visitKey(key, targetMon, swapMode, moveMode, followFocus)
     local displayKey = AERO_TO_KEY[key] or key
 
-    -- Q mode (swap/push/pull): highlight target key without updating
-    -- workspace state or moving focus marker. The grid refreshes from
-    -- actual AeroSpace state after the operation completes.
+    -- Swap mode (T+3): highlight target and show bidirectional arrow in toast.
     if swapMode then
-        if grid and shouldShowGrid() then
-            local monId = lastVisibleWs[displayKey]
-            local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
-            patchKey(displayKey, true, displayKey == lastFocusedKey, labelColor)
+        if displayKey == "'" then
+            -- swap-monitors: swap workspace assignments between monitors in grid
+            if grid and shouldShowGrid() then
+                local focusedMon = lastFocusedMonId
+                local otherKey = nil
+                local otherMon = nil
+                for k, m in pairs(lastVisibleWs) do
+                    if m and m ~= focusedMon then
+                        otherKey = k
+                        otherMon = m
+                        break
+                    end
+                end
+                if otherKey and lastFocusedKey then
+                    lastVisibleWs[lastFocusedKey] = otherMon
+                    lastVisibleWs[otherKey] = focusedMon
+                    local c1 = MONITOR_COLORS[otherMon] or TEXT_COLOR_DIM
+                    patchKey(lastFocusedKey, true, true, c1)
+                    local c2 = MONITOR_COLORS[focusedMon] or TEXT_COLOR_DIM
+                    patchKey(otherKey, true, false, c2)
+                end
+            end
+        else
+            -- swap-windows: highlight target key
+            if grid and shouldShowGrid() then
+                local monId = lastVisibleWs[displayKey]
+                local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+                patchKey(displayKey, true, displayKey == lastFocusedKey, labelColor)
+            end
         end
         return
     end
@@ -681,6 +704,7 @@ local KEY_CODE_MAP = {
     [16] = "y", [32] = "u", [34] = "i", [31] = "o", [35] = "p",
     [4]  = "h", [38] = "j", [40] = "k", [37] = "l", [41] = ";",
     [45] = "n", [46] = "m", [43] = ",", [47] = ".", [44] = "/",
+    [39] = "'",
 }
 
 -- Decode operation mode from modifier flags on workspace key events.
@@ -735,7 +759,8 @@ local function drainOneKey()
     local entry = table.remove(pendingKeyQueue, 1)
     M.visitKey(entry.key, entry.mon, entry.swap, entry.moveMode, entry.followFocus)
     local ws_notify = require("ws_notify")
-    ws_notify.show(entry.key, entry.mon or lastFocusedMonId, entry.source, entry.followFocus)
+    local notifyKey = entry.monitorSwap and entry.swapTarget or entry.key
+    ws_notify.show(notifyKey, entry.mon or lastFocusedMonId, entry.source, entry.followFocus, entry.swap)
     if #pendingKeyQueue == 0 then
         if keyDrainTimer then keyDrainTimer:stop(); keyDrainTimer = nil end
     end
@@ -808,11 +833,24 @@ local wsEventTap = hs.eventtap.new(
         end
 
         -- Enqueue for frame-paced drain
-        local source = (moveMode or op == "move-focus") and lastFocusedKey or nil
+        local source = (moveMode or op == "move-focus" or swapMode) and lastFocusedKey or nil
         local followFocus = (op == "move-focus")
+        local isMonitorSwap = swapMode and wsKey == "'"
+        -- For swap-monitors, resolve the other monitor's workspace now
+        -- (before visitKey mutates lastVisibleWs)
+        local swapTarget = nil
+        if isMonitorSwap then
+            for k, m in pairs(lastVisibleWs) do
+                if m and m ~= lastFocusedMonId then
+                    swapTarget = k
+                    break
+                end
+            end
+        end
         pendingKeyQueue[#pendingKeyQueue + 1] = {
             key = wsKey, mon = mon, swap = swapMode,
             moveMode = moveMode, source = source, followFocus = followFocus,
+            monitorSwap = isMonitorSwap, swapTarget = swapTarget,
         }
         startKeyDrain()
 

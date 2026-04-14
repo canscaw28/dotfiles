@@ -424,7 +424,9 @@ sections:
     to: noop
   - from: quote
     to:
-      shell: $HOME/.local/bin/ws.sh swap-monitors
+    - - quote
+      - fn+shift+control+option
+    - shell: $HOME/.local/bin/ws.sh swap-monitors
     layer:
     - caps
     - '3'

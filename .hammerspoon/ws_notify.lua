@@ -119,7 +119,7 @@ startFall = function(entry)
     end)
 end
 
-function M.show(wsKey, monitorId, sourceKey, followFocus)
+function M.show(wsKey, monitorId, sourceKey, followFocus, swapMode)
     -- Demote current newest toast
     if #toasts > 0 then
         demoteToast(toasts[1])
@@ -131,7 +131,9 @@ function M.show(wsKey, monitorId, sourceKey, followFocus)
     end
 
     local displayText
-    if sourceKey then
+    if sourceKey and swapMode then
+        displayText = "*" .. displayName(sourceKey) .. " \u{2194} " .. displayName(wsKey)
+    elseif sourceKey then
         if followFocus then
             displayText = displayName(sourceKey) .. " \u{2192} *" .. displayName(wsKey)
         else
