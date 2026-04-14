@@ -468,6 +468,10 @@ final_post_process() {
 # exceed this. Normal focus=1, swap focus (visible on another mon)=2.
 COLLAPSE_WEIGHT=5
 
+# Separate limit for move-focus collapse. move-focus is heavier per op
+# (move node + summon workspace) so the queue backs up faster.
+MOVE_FOCUS_COLLAPSE=3
+
 # Operation weight for collapse. Non-focus ops return 0 (never collapsed).
 # For focus ops, check if the target workspace is visible on another monitor
 # (swap path = heavier). Uses the cached AeroSpace state.
@@ -557,7 +561,7 @@ drain_queue() {
             fi
         fi
 
-        # Collapse consecutive move-focus: only the last COLLAPSE_WEIGHT matter
+        # Collapse consecutive move-focus: only the last MOVE_FOCUS_COLLAPSE matter
         # (same window dragged through workspaces — intermediates are no-ops).
         # Unlike focus collapse, must be consecutive — a non-move-focus op in
         # between may change which window is focused.
@@ -572,13 +576,13 @@ drain_queue() {
                 break
             fi
         done
-        if [[ "$mf_run" -gt "$COLLAPSE_WEIGHT" ]]; then
-            local excess=$((mf_run - COLLAPSE_WEIGHT))
+        if [[ "$mf_run" -gt "$MOVE_FOCUS_COLLAPSE" ]]; then
+            local excess=$((mf_run - MOVE_FOCUS_COLLAPSE))
             for i in $(seq 0 $((excess - 1))); do
                 [[ -f "${files[$i]}" ]] || continue
                 local l
                 l=$(<"${files[$i]}")
-                debug "COLLAPSE skip move-focus ${l#* } ($mf_run consecutive, keeping $COLLAPSE_WEIGHT)"
+                debug "COLLAPSE skip move-focus ${l#* } ($mf_run consecutive, keeping $MOVE_FOCUS_COLLAPSE)"
                 rm -f "${files[$i]}"
             done
             continue  # re-enumerate after purge
