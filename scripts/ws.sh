@@ -469,9 +469,15 @@ final_post_process() {
 # exceed this. Normal focus=1, swap focus (visible on another mon)=2.
 COLLAPSE_WEIGHT=5
 
-# Separate limit for move-focus collapse. move-focus is heavier per op
+# Separate limit for move-focus and move collapse. These are heavier per op
 # (move node + summon workspace) so the queue backs up faster.
+# Only the final destination matters — intermediates are wasted work.
 MOVE_FOCUS_COLLAPSE=3
+MOVE_COLLAPSE=3
+
+# swap-windows is the heaviest op (queries + moves all windows both ways).
+# More than 2 consecutive swaps is almost never intentional.
+SWAP_COLLAPSE=2
 
 # Operation weight for collapse. Non-focus ops return 0 (never collapsed).
 # For focus ops, check if the target workspace is visible on another monitor
@@ -562,31 +568,43 @@ drain_queue() {
             fi
         fi
 
-        # Collapse consecutive move-focus: only the last MOVE_FOCUS_COLLAPSE matter
-        # (same window dragged through workspaces — intermediates are no-ops).
-        # Unlike focus collapse, must be consecutive — a non-move-focus op in
-        # between may change which window is focused.
-        local mf_run=0
-        for f in "${files[@]}"; do
-            [[ -f "$f" ]] || continue
-            local l
-            l=$(<"$f")
-            if [[ "${l%% *}" == "move-focus" ]]; then
-                ((mf_run++)) || true
-            else
-                break
-            fi
-        done
-        if [[ "$mf_run" -gt "$MOVE_FOCUS_COLLAPSE" ]]; then
-            local excess=$((mf_run - MOVE_FOCUS_COLLAPSE))
-            for i in $(seq 0 $((excess - 1))); do
-                [[ -f "${files[$i]}" ]] || continue
+        # Collapse consecutive heavy ops: only the last N matter.
+        # Must be consecutive — a different op in between may change state.
+        # Pattern: count leading run of matching ops, skip excess from front.
+        local _collapse_op="" _collapse_limit=0
+        local _lead_op=""
+        if [[ -f "${files[0]}" ]]; then
+            _lead_op="$(<"${files[0]}")"
+            _lead_op="${_lead_op%% *}"
+        fi
+        case "$_lead_op" in
+            move-focus)   _collapse_op="move-focus";   _collapse_limit=$MOVE_FOCUS_COLLAPSE ;;
+            move)         _collapse_op="move";         _collapse_limit=$MOVE_COLLAPSE ;;
+            swap-windows) _collapse_op="swap-windows"; _collapse_limit=$SWAP_COLLAPSE ;;
+        esac
+        if [[ -n "$_collapse_op" ]]; then
+            local _run=0
+            for f in "${files[@]}"; do
+                [[ -f "$f" ]] || continue
                 local l
-                l=$(<"${files[$i]}")
-                debug "COLLAPSE skip move-focus ${l#* } ($mf_run consecutive, keeping $MOVE_FOCUS_COLLAPSE)"
-                rm -f "${files[$i]}"
+                l=$(<"$f")
+                if [[ "${l%% *}" == "$_collapse_op" ]]; then
+                    ((_run++)) || true
+                else
+                    break
+                fi
             done
-            continue  # re-enumerate after purge
+            if [[ "$_run" -gt "$_collapse_limit" ]]; then
+                local excess=$((_run - _collapse_limit))
+                for i in $(seq 0 $((excess - 1))); do
+                    [[ -f "${files[$i]}" ]] || continue
+                    local l
+                    l=$(<"${files[$i]}")
+                    debug "COLLAPSE skip $_collapse_op ${l#* } ($_run consecutive, keeping $_collapse_limit)"
+                    rm -f "${files[$i]}"
+                done
+                continue  # re-enumerate after purge
+            fi
         fi
 
         local next="${files[0]}"
