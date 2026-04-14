@@ -418,7 +418,7 @@ function M.visitKey(key, targetMon, swapMode, moveMode, followFocus)
         if grid and shouldShowGrid() then
             local monId = lastVisibleWs[displayKey]
             local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
-            patchKey(displayKey, true, false, labelColor)
+            patchKey(displayKey, true, displayKey == lastFocusedKey, labelColor)
         end
         return
     end
@@ -449,7 +449,7 @@ function M.visitKey(key, targetMon, swapMode, moveMode, followFocus)
             end
             local monId = lastVisibleWs[displayKey]
             local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
-            patchKey(displayKey, true, false, labelColor, lastWindowCounts[displayKey])
+            patchKey(displayKey, true, displayKey == lastFocusedKey, labelColor, lastWindowCounts[displayKey])
             lastMoveTarget = displayKey
         end
         return
