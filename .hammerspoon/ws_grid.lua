@@ -560,9 +560,18 @@ function M.showGrid()
     if grid then
         local monId = targetMonitor()
         if monId ~= nil then
+            -- Use cached focused monitor for monId==0 to avoid jitter from
+            -- transient macOS focus state (e.g. during swap-windows).
+            -- Matches refresh() which already uses lastFocusedMonId.
+            -- Falls back to hs.screen.mainScreen() only on first show
+            -- (lastFocusedMonId not yet set).
             local screen
             if monId == 0 then
-                screen = hs.screen.mainScreen()
+                if lastFocusedMonId then
+                    screen = screenForMonitor(lastFocusedMonId)
+                else
+                    screen = hs.screen.mainScreen()
+                end
             else
                 screen = screenForMonitor(monId)
             end
@@ -575,14 +584,9 @@ function M.showGrid()
                 })
 
                 -- Update * marker to the workspace visible on the focused monitor.
-                -- Reverse-lookup: screen → AeroSpace monitor ID → workspace key.
                 local focusedMonId
                 if monId == 0 then
-                    local allScreens = hs.screen.allScreens()
-                    table.sort(allScreens, function(a, b) return a:frame().x < b:frame().x end)
-                    for idx, s in ipairs(allScreens) do
-                        if s == screen then focusedMonId = idx; break end
-                    end
+                    focusedMonId = lastFocusedMonId
                 else
                     focusedMonId = monId
                 end

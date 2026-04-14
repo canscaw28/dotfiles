@@ -442,8 +442,9 @@ final_post_process() {
         aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null || true
     fi
 
-    # Flash border around focused window (skip for focus — grid provides feedback)
-    if [[ "$OP" != "focus" ]]; then
+    # Flash border around focused window (skip for focus — grid provides feedback;
+    # skip for swap-windows — focus races with AeroSpace settling, grid suffices)
+    if [[ "$OP" != "focus" && "$OP" != "swap-windows" ]]; then
         /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
     fi
 
