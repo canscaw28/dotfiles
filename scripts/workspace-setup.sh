@@ -16,12 +16,19 @@ if [[ -z "${_WS_SETUP_DETACHED:-}" ]]; then
     exit 0
 fi
 
-# Prevent concurrent runs
+# Prevent concurrent runs (PID-based lock with stale detection)
 LOCK="/tmp/workspace-setup.lock"
 if ! mkdir "$LOCK" 2>/dev/null; then
-    exit 0
+    # Check if holder is still alive
+    if [[ -f "$LOCK/pid" ]] && ! kill -0 "$(cat "$LOCK/pid")" 2>/dev/null; then
+        rm -rf "$LOCK"
+        mkdir "$LOCK" 2>/dev/null || exit 0
+    else
+        exit 0
+    fi
 fi
-trap 'rmdir "$LOCK" 2>/dev/null' EXIT
+echo $$ > "$LOCK/pid"
+trap 'rm -rf "$LOCK"' EXIT
 
 # App definitions: "BundleID|TargetWorkspace"
 APPS=(
@@ -59,10 +66,10 @@ while (( elapsed < MAX_WAIT )); do
     (( elapsed++ )) || true
 done
 
-# Save focused window — moving the focused window off the current workspace
-# causes AeroSpace to follow focus to the target; restoring by window ID is
-# more reliable than by workspace (which can redirect to another monitor).
-ORIGINAL_WIN=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null)
+# Save focused workspace — restore by workspace rather than window ID since
+# the focused window might be one of the apps being moved.
+ORIGINAL_WS=$(aerospace list-workspaces --focused 2>/dev/null)
+ORIGINAL_MON=$(aerospace list-monitors --focused --format '%{monitor-id}' 2>/dev/null)
 
 # Move windows to correct workspaces
 for entry in "${APPS[@]}"; do
@@ -75,7 +82,11 @@ for entry in "${APPS[@]}"; do
     done < <(aerospace list-windows --monitor all --format $'%{window-id}\t%{workspace}' --app-bundle-id "$bundle_id" 2>/dev/null)
 done
 
-# Restore focus to original window
-if [[ -n "${ORIGINAL_WIN:-}" ]]; then
-    aerospace focus --window-id "$ORIGINAL_WIN" 2>/dev/null || true
+# Restore focus — use focus-monitor + workspace to ensure we land back on the
+# original monitor even if the workspace moved.
+if [[ -n "${ORIGINAL_MON:-}" ]]; then
+    aerospace focus-monitor "$ORIGINAL_MON" 2>/dev/null || true
+fi
+if [[ -n "${ORIGINAL_WS:-}" ]]; then
+    aerospace workspace "$ORIGINAL_WS" 2>/dev/null || true
 fi
