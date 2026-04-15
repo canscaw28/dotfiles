@@ -44,6 +44,11 @@ manipulators:
   description: 'A+.: Reload all configs'
   to:
   - shell: /usr/local/bin/hs -c 'require("a_layer_notify").showSpinner("Reloading")'; /bin/bash /Users/craig/dev/dotfiles/reload.sh --all &
+- from: right_shift
+  description: 'A+right_shift: Toggle input source (caps_lock)'
+  to:
+    key: caps_lock
+    hold_down_milliseconds: 100
 - from: y
   description: 'A+Y: Toggle Dock'
   to:
