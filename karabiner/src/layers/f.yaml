@@ -109,6 +109,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - s
   - from: j
     description: 'f-cursor-grid: F+D+j down 1'
     to:
@@ -122,6 +123,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - s
   - from: k
     description: 'f-cursor-grid: F+D+k up 1'
     to:
@@ -135,6 +137,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - s
   - from: l
     description: 'f-cursor-grid: F+D+l right 1'
     to:
@@ -148,6 +151,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - s
   - from: y
     description: 'f-cursor-grid: F+D+y left -1'
     to:
@@ -161,6 +165,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - s
   - from: o
     description: 'f-cursor-grid: F+D+o right -1'
     to:
@@ -174,6 +179,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - s
   - from: u
     description: 'f-cursor-grid: F+D+u left 2'
     to:
@@ -187,6 +193,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - s
   - from: i
     description: 'f-cursor-grid: F+D+i right 2'
     to:
@@ -200,6 +207,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - s
   - from: n
     description: 'f-cursor-grid: F+D+n down -1'
     to:
@@ -213,6 +221,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - s
   - from: period
     description: 'f-cursor-grid: F+D+period up -1'
     to:
@@ -226,6 +235,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - s
   - from: m
     description: 'f-cursor-grid: F+D+m down 2'
     to:
@@ -239,6 +249,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - s
   - from: comma
     description: 'f-cursor-grid: F+D+comma up 2'
     to:
@@ -252,6 +263,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - s
   - from: h
     description: 'f-cursor-grid: F+S+h left 1'
     to:
@@ -265,6 +277,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - d
   - from: j
     description: 'f-cursor-grid: F+S+j down 1'
     to:
@@ -278,6 +291,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - d
   - from: k
     description: 'f-cursor-grid: F+S+k up 1'
     to:
@@ -291,6 +305,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - d
   - from: l
     description: 'f-cursor-grid: F+S+l right 1'
     to:
@@ -304,6 +319,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - d
   - from: y
     description: 'f-cursor-grid: F+S+y left -1'
     to:
@@ -317,6 +333,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - d
   - from: o
     description: 'f-cursor-grid: F+S+o right -1'
     to:
@@ -330,6 +347,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - d
   - from: u
     description: 'f-cursor-grid: F+S+u left 2'
     to:
@@ -343,6 +361,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - d
   - from: i
     description: 'f-cursor-grid: F+S+i right 2'
     to:
@@ -356,6 +375,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - d
   - from: n
     description: 'f-cursor-grid: F+S+n down -1'
     to:
@@ -369,6 +389,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - d
   - from: period
     description: 'f-cursor-grid: F+S+period up -1'
     to:
@@ -382,6 +403,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - d
   - from: m
     description: 'f-cursor-grid: F+S+m down 2'
     to:
@@ -395,6 +417,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - d
   - from: comma
     description: 'f-cursor-grid: F+S+comma up 2'
     to:
@@ -408,6 +431,7 @@ sections:
     negative_conditions:
     - g
     - t
+    - d
   - from: h
     description: 'f-cursor-grid: F+D+S+h jump'
     to:

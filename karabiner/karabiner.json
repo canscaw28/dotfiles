@@ -383,7 +383,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('f')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('f'); require('cursor_grid').activate()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1253,6 +1253,9 @@
                       "name": "f_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').activate()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -9407,6 +9410,11 @@
                     "value": 1
                   },
                   {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "name": "d_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -9454,6 +9462,11 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   },
                   {
                     "name": "d_is_held",
@@ -9505,6 +9518,11 @@
                     "value": 1
                   },
                   {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "name": "d_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -9552,6 +9570,11 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   },
                   {
                     "name": "d_is_held",
@@ -9603,6 +9626,11 @@
                     "value": 1
                   },
                   {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "name": "d_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -9650,6 +9678,11 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   },
                   {
                     "name": "d_is_held",
@@ -9701,6 +9734,11 @@
                     "value": 1
                   },
                   {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "name": "d_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -9748,6 +9786,11 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   },
                   {
                     "name": "d_is_held",
@@ -9799,6 +9842,11 @@
                     "value": 1
                   },
                   {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "name": "d_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -9846,6 +9894,11 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   },
                   {
                     "name": "d_is_held",
@@ -9897,6 +9950,11 @@
                     "value": 1
                   },
                   {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "name": "d_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -9944,6 +10002,11 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   },
                   {
                     "name": "d_is_held",
@@ -10000,6 +10063,11 @@
                     "value": 1
                   },
                   {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "name": "f_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -10047,6 +10115,11 @@
                     "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   },
                   {
                     "name": "f_is_held",
@@ -10098,6 +10171,11 @@
                     "value": 1
                   },
                   {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "name": "f_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -10145,6 +10223,11 @@
                     "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   },
                   {
                     "name": "f_is_held",
@@ -10196,6 +10279,11 @@
                     "value": 1
                   },
                   {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "name": "f_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -10243,6 +10331,11 @@
                     "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   },
                   {
                     "name": "f_is_held",
@@ -10294,6 +10387,11 @@
                     "value": 1
                   },
                   {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "name": "f_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -10341,6 +10439,11 @@
                     "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   },
                   {
                     "name": "f_is_held",
@@ -10392,6 +10495,11 @@
                     "value": 1
                   },
                   {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "name": "f_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -10439,6 +10547,11 @@
                     "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   },
                   {
                     "name": "f_is_held",
@@ -10490,6 +10603,11 @@
                     "value": 1
                   },
                   {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
+                  },
+                  {
                     "name": "f_is_held",
                     "type": "variable_if",
                     "value": 1
@@ -10537,6 +10655,11 @@
                     "name": "s_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   },
                   {
                     "name": "f_is_held",
