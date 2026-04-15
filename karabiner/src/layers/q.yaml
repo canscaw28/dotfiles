@@ -1,0 +1,123 @@
+sections:
+# Q layer: surround/encapsulate symbols
+# caps+Q+symbol → hyper+key (Hammerspoon eventtap catches and performs surround)
+# Shifted variants must come first for keys where shift produces a different pair.
+
+# Shifted variants (different pair from unshifted)
+- layer: [caps, q]
+  negative_conditions: [a, s, d, f, r, t, g]
+  manipulators:
+  - from: {key_code: open_bracket, modifiers: {mandatory: [shift], optional: [any]}}
+    description: 'Q+shift+[: surround {}'
+    to:
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('{', '}')" &
+  - from: {key_code: close_bracket, modifiers: {mandatory: [shift], optional: [any]}}
+    description: 'Q+shift+]: surround {}'
+    to:
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('{', '}')" &
+  - from: {key_code: quote, modifiers: {mandatory: [shift], optional: [any]}}
+    description: 'Q+shift+quote: surround ""'
+    to:
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('\"', '\"')" &
+  - from: {key_code: grave_accent_and_tilde, modifiers: {mandatory: [shift], optional: [any]}}
+    description: 'Q+shift+`: surround ~~'
+    to:
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('~', '~')" &
+  - from: {key_code: hyphen, modifiers: {mandatory: [shift], optional: [any]}}
+    description: 'Q+shift+-: surround __'
+    to:
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('_', '_')" &
+  - from: {key_code: equal_sign, modifiers: {mandatory: [shift], optional: [any]}}
+    description: 'Q+shift+=: surround ++'
+    to:
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('+', '+')" &
+  - from: {key_code: semicolon, modifiers: {mandatory: [shift], optional: [any]}}
+    description: 'Q+shift+;: surround ::'
+    to:
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround(':', ':')" &
+  - from: {key_code: comma, modifiers: {mandatory: [shift], optional: [any]}}
+    description: 'Q+shift+,: surround <>'
+    to:
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('<', '>')" &
+  - from: {key_code: period, modifiers: {mandatory: [shift], optional: [any]}}
+    description: 'Q+shift+.: surround <>'
+    to:
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('<', '>')" &
+  - from: {key_code: slash, modifiers: {mandatory: [shift], optional: [any]}}
+    description: 'Q+shift+/: surround ??'
+    to:
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('?', '?')" &
+  - from: {key_code: backslash, modifiers: {mandatory: [shift], optional: [any]}}
+    description: 'Q+shift+\: surround ||'
+    to:
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('|', '|')" &
+
+# Default (unshifted) symbol mappings
+- layer: [caps, q]
+  negative_conditions: [a, s, d, f, r, t, g]
+  manipulators:
+  # Number row
+  - from: '1'
+    description: 'Q+1: surround !!'
+    to: ['1', control+command+option]
+  - from: '2'
+    description: 'Q+2: surround @@'
+    to: ['2', control+command+option]
+  - from: '3'
+    description: 'Q+3: surround ##'
+    to: ['3', control+command+option]
+  - from: '4'
+    description: 'Q+4: surround $$'
+    to: ['4', control+command+option]
+  - from: '5'
+    description: 'Q+5: surround %%'
+    to: ['5', control+command+option]
+  - from: '6'
+    description: 'Q+6: surround ^^'
+    to: ['6', control+command+option]
+  - from: '7'
+    description: 'Q+7: surround &&'
+    to: ['7', control+command+option]
+  - from: '8'
+    description: 'Q+8: surround **'
+    to: ['8', control+command+option]
+  - from: '9'
+    description: 'Q+9: surround ()'
+    to: ['9', control+command+option]
+  - from: '0'
+    description: 'Q+0: surround ()'
+    to: ['0', control+command+option]
+  # Symbol keys
+  - from: open_bracket
+    description: 'Q+[: surround []'
+    to: [open_bracket, control+command+option]
+  - from: close_bracket
+    description: 'Q+]: surround []'
+    to: [close_bracket, control+command+option]
+  - from: quote
+    description: "Q+': surround ''"
+    to: [quote, control+command+option]
+  - from: grave_accent_and_tilde
+    description: 'Q+`: surround ``'
+    to: [grave_accent_and_tilde, control+command+option]
+  - from: hyphen
+    description: 'Q+-: surround --'
+    to: [hyphen, control+command+option]
+  - from: equal_sign
+    description: 'Q+=: surround =='
+    to: [equal_sign, control+command+option]
+  - from: semicolon
+    description: 'Q+;: surround ;;'
+    to: [semicolon, control+command+option]
+  - from: comma
+    description: 'Q+,: surround ,,'
+    to: [comma, control+command+option]
+  - from: period
+    description: 'Q+.: surround ..'
+    to: [period, control+command+option]
+  - from: slash
+    description: 'Q+/: surround //'
+    to: [slash, control+command+option]
+  - from: backslash
+    description: 'Q+\: surround \\\\'
+    to: [backslash, control+command+option]

@@ -45,13 +45,6 @@ sections:
           name: caps_lock_pressed
           value: 0
     negative_conditions: []
-  - from: right_shift
-    layer:
-    - caps
-    to:
-      key: caps_lock
-      hold_down_milliseconds: 100
-    negative_conditions: []
 - raw: true
   manipulators:
   - conditions:
@@ -486,6 +479,45 @@ sections:
           name: caps_lock_pressed
           value: 0
     type: basic
+  - conditions:
+    - name: q_physical
+      type: variable_if
+      value: 1
+    description: caps-q-physical
+    from:
+      key_code: non_us_backslash
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 1
+    - set_variable:
+        name: caps_lock_pressed
+        value: 1
+    - set_variable:
+        name: q_is_held
+        value: 1
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('q')" &
+    to_after_key_up:
+    - set_variable:
+        name: caps_lock_is_held
+        value: 0
+    - set_variable:
+        name: caps_lock_pressed
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    to_delayed_action:
+      to_if_canceled:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+      to_if_invoked:
+      - set_variable:
+          name: caps_lock_pressed
+          value: 0
+    type: basic
 - raw: true
   manipulators:
   - conditions:
@@ -671,6 +703,9 @@ sections:
     - name: caps_lock_is_held
       type: variable_if
       value: 1
+    - name: q_is_held
+      type: variable_if
+      value: 0
     from:
       key_code: '4'
       modifiers:
@@ -691,6 +726,9 @@ sections:
     - name: caps_lock_is_held
       type: variable_if
       value: 1
+    - name: q_is_held
+      type: variable_if
+      value: 0
     from:
       key_code: '3'
       modifiers:
@@ -745,6 +783,22 @@ sections:
     - set_variable:
         name: g_is_held
         value: 0
+    type: basic
+  - conditions:
+    - name: caps_lock_is_held
+      type: variable_if
+      value: 1
+    from:
+      key_code: q
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: q_is_held
+        value: 1
+    to_after_key_up:
+    - shell_command: (sleep 0.5 && /usr/local/bin/karabiner_cli --set-variables '{"q_is_held":0}') &
     type: basic
 - layer:
   - caps
@@ -919,6 +973,10 @@ sections:
     - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('w'); require('ws_grid').keyUp('w')" &
     type: basic
   - description: 4-physical-tracker
+    conditions:
+    - name: q_is_held
+      type: variable_if
+      value: 0
     from:
       key_code: '4'
       modifiers:
@@ -939,6 +997,10 @@ sections:
     - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('4'); require('ws_grid').keyUp('4')" &
     type: basic
   - description: 3-physical-tracker
+    conditions:
+    - name: q_is_held
+      type: variable_if
+      value: 0
     from:
       key_code: '3'
       modifiers:
@@ -997,4 +1059,24 @@ sections:
         name: g_is_held
         value: 0
     - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('g')" &
+    type: basic
+  - description: q-physical-tracker
+    from:
+      key_code: q
+      modifiers:
+        optional:
+        - any
+    to:
+    - set_variable:
+        name: q_physical
+        value: 1
+    - key_code: q
+    to_after_key_up:
+    - set_variable:
+        name: q_physical
+        value: 0
+    - set_variable:
+        name: q_is_held
+        value: 0
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('q')" &
     type: basic
