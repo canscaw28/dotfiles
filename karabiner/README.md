@@ -13,6 +13,7 @@ Caps Lock becomes a modifier system where the **left hand picks context** and th
 - [Application Layer (⇪+G)](#application-layer-g)
 - [Aerospace Layer (⇪+T)](#aerospace-layer-t)
 - [App Layer (⇪+R)](#app-layer-r)
+- [Surround Layer (⇪+Q)](#surround-layer-q)
 - [System Layer (⇪+A)](#system-layer-a)
 - [MacBook Keyboard Ghosting](#macbook-keyboard-ghosting)
 
@@ -24,6 +25,7 @@ Caps Lock becomes a modifier system where the **left hand picks context** and th
 | ⇪ + F | Scroll / Cursor Grid | Page scrolling, mouse cursor control, link hints |
 | ⇪ + G | Application | App-specific behavior (Chrome tabs, iTerm tmux, etc.) |
 | ⇪ + T | Aerospace | Window tiling and workspace operations |
+| ⇪ + Q | Surround | Encapsulate text with symbol pairs |
 | ⇪ + A | System | Dock, Notification Center, input source, etc. |
 | ⇪ + R | App-specific | Superhuman split inbox navigation |
 
@@ -39,7 +41,7 @@ Right hand layout is always the same — vim directions that stay consistent acr
          N  M  ,  .          ← extensions
 ```
 
-**Available layer keys:** R, Z, X, C, V, B
+**Available layer keys:** Z, X, C, V, B
 
 ## Modes
 
@@ -65,6 +67,7 @@ Right hand layout is always the same — vim directions that stay consistent acr
 | | W+R | Focus Mon 2 | Focus workspace on monitor 2 |
 | | 3 | Swap Windows | Swap all windows between workspaces |
 | | W+4 | Nav Grid | HJKL cursor over workspace grid |
+| Surround (Q) | — | Surround | Insert/wrap symbol pairs via Hammerspoon |
 | System (A) | — | System Toggles | Dock, Notification Center, Mission Control, etc. |
 | App (R) | — | App-specific | Superhuman: navigate split inboxes (Chrome) |
 
@@ -73,7 +76,6 @@ Right hand layout is always the same — vim directions that stay consistent acr
 | Shortcut | Behavior | Description |
 | --- | --- | --- |
 | ⇪ + ⇪ | LanguageTool | Double-tap Caps Lock to trigger LanguageTool tooltip |
-| ⇪ + R⇧ | ⇪ | Trigger Caps-Lock |
 
 ---
 
@@ -513,6 +515,43 @@ App-specific bindings. Currently only Superhuman in Chrome.
 | [⇪+R] + H | ⇧ + ⇥ | Previous split inbox |
 | [⇪+R] + L | ⇥ | Next split inbox |
 
+## Surround Layer (⇪+Q)
+
+Encapsulate text with symbol pairs. Karabiner sends hyper+key (⌃+⌘+⌥) to Hammerspoon's `surround.lua` eventtap, which checks for selected text via the accessibility API (no clipboard).
+
+- **No selection**: inserts the pair and places cursor between
+- **Selection**: wraps the selected text and re-selects it
+
+Cursor navigation (H/J/K/L/Y/U/I/O/M) still works while Q is held.
+
+### Symbol Pairs
+
+| Key | Pair | Shift+Key | Pair |
+| --- | --- | --- | --- |
+| [⇪+Q] + ` | ` `` ` | [⇪+Q] + ~ | `~~` |
+| [⇪+Q] + 1 | `!!` | | |
+| [⇪+Q] + 2 | `@@` | | |
+| [⇪+Q] + 3 | `##` | | |
+| [⇪+Q] + 4 | `$$` | | |
+| [⇪+Q] + 5 | `%%` | | |
+| [⇪+Q] + 6 | `^^` | | |
+| [⇪+Q] + 7 | `&&` | | |
+| [⇪+Q] + 8 | `**` | | |
+| [⇪+Q] + 9 | `()` | | |
+| [⇪+Q] + 0 | `()` | | |
+| [⇪+Q] + - | `--` | [⇪+Q] + _ | `__` |
+| [⇪+Q] + = | `==` | [⇪+Q] + + | `++` |
+| [⇪+Q] + [ | `[]` | [⇪+Q] + { | `{}` |
+| [⇪+Q] + ] | `[]` | [⇪+Q] + } | `{}` |
+| [⇪+Q] + \ | `\\` | [⇪+Q] + \| | `\|\|` |
+| [⇪+Q] + ; | `;;` | [⇪+Q] + : | `::` |
+| [⇪+Q] + ' | `''` | [⇪+Q] + " | `""` |
+| [⇪+Q] + , | `,,` | [⇪+Q] + < | `<>` |
+| [⇪+Q] + . | `..` | [⇪+Q] + > | `<>` |
+| [⇪+Q] + / | `//` | [⇪+Q] + ? | `??` |
+
+---
+
 ## System Layer (⇪+A)
 
 macOS system toggles and input source management. Unlike other layers, A does not follow the right-hand directional layout — these are standalone utility shortcuts.
@@ -536,6 +575,7 @@ macOS system toggles and input source management. Unlike other layers, A does no
 | --- | --- | --- |
 | [⇪+A] + H | English (U.S.) | Switch to English input source |
 | [⇪+A] + N | Toggle Input | Toggle between input sources (⌃+⌥+Space) |
+| [⇪+A] + P | Toggle Input Source | Send caps_lock to toggle input source |
 
 ---
 
@@ -545,7 +585,7 @@ Certain key combinations are silently dropped on the MacBook's built-in keyboard
 
 | Keys held | Dropped keys | Impact |
 | --- | --- | --- |
-| ⇪ + T + Q | U, I, O, P, ; | Q was removed as a workspace mode key because of this |
+| ⇪ + T + Q | U, I, O, P, ; | Q was removed as a T-layer workspace mode key; now used as standalone surround layer (⇪+Q) which is unaffected |
 | ⇪ + A | J, K, L, ; | A layer avoids right-hand home row; uses Y/U/I/O and H/N instead |
 
 Always verify new multi-key combos in Karabiner EventViewer before committing to a binding.
