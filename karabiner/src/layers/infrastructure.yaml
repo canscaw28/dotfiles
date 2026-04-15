@@ -187,7 +187,7 @@ sections:
     - key_code: '0'
       modifiers:
       - control
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('f')" &
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('f'); require('cursor_grid').activate()" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -633,6 +633,7 @@ sections:
     - set_variable:
         name: f_is_held
         value: 1
+    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').activate()" &
     to_after_key_up:
     - set_variable:
         name: f_is_held

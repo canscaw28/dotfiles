@@ -115,6 +115,7 @@ function M.activate()
         movedInWindow = false
     end
     if not movedInWindow then
+        movedInWindow = true
         local f = win:frame()
         local x = f.x + 0.9375 * f.w
         local y = f.y + 0.5 * f.h
