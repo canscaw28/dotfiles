@@ -575,7 +575,7 @@ macOS system toggles and input source management. Unlike other layers, A does no
 | --- | --- | --- |
 | [⇪+A] + H | English (U.S.) | Switch to English input source |
 | [⇪+A] + N | Toggle Input | Toggle between input sources (⌃+⌥+Space) |
-| [⇪+A] + P | Toggle Input Source | Send caps_lock to toggle input source |
+| [⇪+A] + R⇧ | Toggle Input Source | Send caps_lock to toggle input source |
 
 ---
 
