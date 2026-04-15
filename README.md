@@ -57,6 +57,9 @@ macOS configuration files and settings.
 ### Git
 - `.gitconfig` - Git configuration
 
+### Claude Code
+- `claude/CLAUDE.md` - Global Claude Code instructions (symlinked to `~/.claude/CLAUDE.md`, loaded for every project on top of any project-local `CLAUDE.md`)
+
 ## Setup
 
 ```bash

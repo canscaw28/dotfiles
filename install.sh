@@ -60,6 +60,11 @@ install_git() {
     create_symlink "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
 }
 
+install_claude() {
+    log_info "Installing global Claude Code config..."
+    create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+}
+
 install_editor() {
     log_info "Installing editor/terminal configs..."
     create_symlink "$DOTFILES_DIR/.vimrc" "$HOME/.vimrc"
@@ -143,6 +148,7 @@ install_iterm() {
 install_all() {
     install_shell
     install_git
+    install_claude
     install_editor
     install_aerospace
     install_karabiner
@@ -158,6 +164,7 @@ show_help() {
     echo "  --all          Install all configs (default if no option specified)"
     echo "  --shell        Install shell configs (zshrc, bash_profile, p10k)"
     echo "  --git          Install git configs"
+    echo "  --claude       Install global Claude Code config (~/.claude/CLAUDE.md)"
     echo "  --editor       Install editor configs (vim, tmux)"
     echo "  --aerospace    Install AeroSpace config"
     echo "  --karabiner    Install Karabiner Elements config"
@@ -206,6 +213,10 @@ else
                 ;;
             --git)
                 install_git
+                shift
+                ;;
+            --claude)
+                install_claude
                 shift
                 ;;
             --editor)

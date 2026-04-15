@@ -1,13 +1,6 @@
 # Claude Code Instructions
 
-## Commit Guidelines
-
-- Do NOT include `Co-Authored-By` lines referencing Claude or Anthropic in commit messages
-- Do NOT mention Claude, AI, or Anthropic anywhere in commits, PR descriptions, or code comments
-- Make small, atomic commits - each commit should represent a single logical change or feature
-- Avoid bulk commits that bundle unrelated changes together
-- A commit should be easy for any engineer to understand at a glance
-- When multiple features are implemented, split them into separate commits
+Global instructions live in `claude/CLAUDE.md` (symlinked to `~/.claude/CLAUDE.md`). This file adds project-specific rules on top.
 
 ## Config Reload Policy
 
