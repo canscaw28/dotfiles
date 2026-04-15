@@ -87,6 +87,13 @@ M.handler = hs.eventtap.new(
 )
 
 initPairMap()
-M.handler:start()
+
+function M.start()
+    M.handler:start()
+end
+
+function M.stop()
+    M.handler:stop()
+end
 
 return M

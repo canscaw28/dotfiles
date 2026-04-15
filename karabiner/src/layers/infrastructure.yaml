@@ -499,7 +499,7 @@ sections:
     - set_variable:
         name: q_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('q')" &
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('q'); require('surround').start()" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -507,7 +507,7 @@ sections:
     - set_variable:
         name: caps_lock_pressed
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('surround').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     to_delayed_action:
       to_if_canceled:
       - set_variable:
@@ -797,8 +797,9 @@ sections:
     - set_variable:
         name: q_is_held
         value: 1
+    - shell_command: /usr/local/bin/hs -c "require('surround').start()" &
     to_after_key_up:
-    - shell_command: (sleep 0.5 && /usr/local/bin/karabiner_cli --set-variables '{"q_is_held":0}') &
+    - shell_command: (sleep 0.5 && /usr/local/bin/karabiner_cli --set-variables '{"q_is_held":0}' && /usr/local/bin/hs -c "require('surround').stop()") &
     type: basic
 - layer:
   - caps
@@ -1078,5 +1079,5 @@ sections:
     - set_variable:
         name: q_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('q')" &
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('q'); require('surround').stop()" &
     type: basic
