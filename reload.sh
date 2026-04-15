@@ -33,11 +33,13 @@ reload_karabiner() {
         log_error "Karabiner build failed"
         return 1
     }
-    # build.py writes karabiner.json (symlinked into ~/.config/karabiner/),
-    # which Karabiner's file watcher detects and hot-reloads automatically.
-    # No launchctl kickstart: a process restart kills the grabber connection,
-    # causing all key remapping to drop until the grabber reconnects — and that
-    # reconnection has variable timing that can outlast the reload wait.
+    # build.py writes karabiner.json in the repo. Karabiner's file watcher
+    # monitors ~/.config/karabiner/ but does NOT detect content changes to
+    # symlink targets. Remove any symlink and copy the file so Karabiner
+    # sees a real file-change event in its watched directory.
+    local dst="$HOME/.config/karabiner/karabiner.json"
+    rm -f "$dst"
+    cp "$DOTFILES_DIR/karabiner/karabiner.json" "$dst"
     log_info "Karabiner Elements config reloaded (via file watcher)"
 }
 
