@@ -1,10 +1,8 @@
 -- surround.lua
--- Encapsulate/surround text with symbol pairs.
+-- Insert symbol pairs with cursor between.
 --
--- Karabiner sends hyper+key (Ctrl+Cmd+Opt+key) when caps+Q+symbol is pressed.
--- This eventtap catches those events, checks for selected text via the
--- accessibility API (no clipboard), and either wraps the selection or
--- inserts a pair with the cursor between.
+-- Karabiner sends hyper+key (Ctrl+Cmd+Opt+key) for unshifted variants.
+-- Shifted variants call M.doSurround() directly via shell_command.
 
 local M = {}
 
@@ -50,90 +48,20 @@ local function getPair(keyCode, shifted)
     return entry[1]
 end
 
--- ── Key event helpers ───────────────────────────────────────────────────
-
-local function postKey(mods, keyCode)
-    hs.eventtap.event.newKeyEvent(mods, keyCode, true):post()
-    hs.eventtap.event.newKeyEvent(mods, keyCode, false):post()
-end
-
--- ── AX helpers ──────────────────────────────────────────────────────────
-
-local function getFocusedElement()
-    local sys = hs.axuielement.systemWideElement()
-    if not sys then return nil end
-    return sys:attributeValue("AXFocusedUIElement")
-end
-
-local function getSelectedText(el)
-    if not el then return nil end
-    local ok, text = pcall(function() return el:attributeValue("AXSelectedText") end)
-    if ok and text and #text > 0 then return text end
-    return nil
-end
-
-local function getSelectedRange(el)
-    if not el then return nil end
-    local ok, range = pcall(function() return el:attributeValue("AXSelectedTextRange") end)
-    if ok and range then return range end
-    return nil
-end
-
--- ── Surround logic ─────────────────────────────────────────────────────
-
-local function wrapSelection(open, close, selected, el)
-    local wrapped = open .. selected .. close
-    local range = getSelectedRange(el)
-
-    -- Try AX write: replace selection via accessibility
-    local writeOk = pcall(function()
-        el:setAttributeValue("AXSelectedText", wrapped)
-    end)
-
-    if writeOk then
-        -- Re-select the original text (skip the opening symbol)
-        if range then
-            pcall(function()
-                el:setAttributeValue("AXSelectedTextRange", {
-                    location = range.loc + #open,
-                    length = range.len,
-                })
-            end)
-        end
-        return
-    end
-
-    -- Fallback: type the wrapped text (replaces selection via keystroke)
-    hs.eventtap.keyStrokes(wrapped)
-    -- Re-select with arrow keys
-    hs.timer.doAfter(0.02, function()
-        local leftCode = hs.keycodes.map["left"]
-        for _ = 1, #close do
-            postKey({}, leftCode)
-        end
-        for _ = 1, #selected do
-            postKey({"shift"}, leftCode)
-        end
-    end)
-end
+-- ── Insert pair with cursor between ─────────────────────────────────────
 
 local function insertPair(open, close)
     hs.eventtap.keyStrokes(open .. close)
     hs.timer.doAfter(0.02, function()
-        postKey({}, hs.keycodes.map["left"])
+        hs.eventtap.event.newKeyEvent({}, hs.keycodes.map["left"], true):post()
+        hs.eventtap.event.newKeyEvent({}, hs.keycodes.map["left"], false):post()
     end)
 end
 
 -- ── Direct surround (called via shell_command for shifted variants) ─────
 
 function M.doSurround(open, close)
-    local el = getFocusedElement()
-    local selected = getSelectedText(el)
-    if selected then
-        wrapSelection(open, close, selected, el)
-    else
-        insertPair(open, close)
-    end
+    insertPair(open, close)
 end
 
 -- ── Eventtap ────────────────────────────────────────────────────────────
@@ -153,18 +81,7 @@ M.handler = hs.eventtap.new(
         local pair = getPair(keyCode, shifted)
         if not pair then return false end
 
-        local open, close = pair[1], pair[2]
-
-        -- Check for selection via accessibility (no clipboard)
-        local el = getFocusedElement()
-        local selected = getSelectedText(el)
-
-        if selected then
-            wrapSelection(open, close, selected, el)
-        else
-            insertPair(open, close)
-        end
-
+        insertPair(pair[1], pair[2])
         return true -- consume the event
     end
 )
