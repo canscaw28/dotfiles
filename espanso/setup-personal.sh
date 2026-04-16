@@ -85,4 +85,9 @@ prompt_trigger ";lx"   "X/Twitter URL"      ""
 prompt_trigger ";zoom" "Zoom meeting link"  "Meeting"
 
 echo ""
+
+# Sync to macOS text replacements (iCloud → iOS)
+"$SCRIPT_DIR/sync-macos-replacements.sh"
+
+echo ""
 log_info "Done! Run './reload.sh --espanso' to apply."

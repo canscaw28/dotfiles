@@ -39,7 +39,7 @@ Not a typical dotfiles repo — it's a keyboard-driven utility layer on top of m
   - Scroll layer, cursor grid, line navigation hold-to-repeat
   - Workspace grid overlay, focus border flash, workspace notifications
   - Key repeat suppression for Caps Lock layers
-- `espanso/` - [Espanso](https://espanso.org/) text expansion snippets
+- `espanso/` - [Espanso](https://espanso.org/) text expansion snippets (auto-synced to macOS text replacements for iOS via iCloud)
 
 ### Scripts
 - `scripts/` - Utility scripts (auto-symlinked to `~/.local/bin/` by `install.sh`)
@@ -84,4 +84,5 @@ These require manual installation and can't be automated by `install.sh`:
 - **Vimium C** — Import settings from `vimium_c.json`
 - **Stylus** — Import styles from `stylus/`
 - **Keyboard layouts** — Copy from `keyboard-layouts/` to `~/Library/Keyboard Layouts/`
+- **Espanso personal triggers** — Run `espanso/setup-personal.sh` to set up personal text expansions (email, phone, etc.). Automatically syncs to macOS text replacements (iCloud → iOS)
 - **Raycast scripts** — Import scripts from `raycast/` in Raycast preferences

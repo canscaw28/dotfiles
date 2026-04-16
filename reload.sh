@@ -69,6 +69,9 @@ reload_espanso() {
     log_info "Reloading Espanso config..."
     espanso restart 2>/dev/null || log_error "Espanso not running or not installed"
     log_info "Espanso config reloaded"
+
+    DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    "$DOTFILES_DIR/espanso/sync-macos-replacements.sh"
 }
 
 reload_shell() {
