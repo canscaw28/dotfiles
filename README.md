@@ -1,14 +1,15 @@
 # dotfiles
 
-This isn't a typical dotfiles repo. It's more of a utility layer on top of macOS — a tightly integrated system of keyboard layers, window management, automation scripts, and visual feedback that turns the Mac into a keyboard-driven environment.
+Not a typical dotfiles repo. This is a keyboard-driven utility layer on top of macOS — Caps Lock activates modal layers for window management, navigation, text editing, and automation, all wired together through Karabiner, Hammerspoon, and a custom AeroSpace build.
 
 ## Contents
 
 ### Shell
-- `shell/` - Zsh/Bash configuration (see [shell/README.md](shell/README.md))
-  - `.zshrc` - Zsh config with visual selection, undo/redo, stale config indicator
+- `shell/` - Zsh configuration with custom widgets (see [shell/README.md](shell/README.md))
+  - `zsh/` - Modular plugins: visual selection, smart history/cursor nav, keybindings, shell functions
+  - `.zshrc` - Main config (sources `zsh/*.zsh`, Powerlevel10k, stale-config indicator)
   - `.p10k.zsh` - Powerlevel10k prompt theme
-  - `.bash_profile` - Bash profile
+  - `.bash_profile` - Bash login shell
   - `.git-completion.bash` - Git autocompletion
 
 ### Editor & Terminal
