@@ -1,6 +1,6 @@
 # dotfiles
 
-macOS configuration files and settings.
+This isn't a typical dotfiles repo. It's more of a utility layer on top of macOS — a tightly integrated system of keyboard layers, window management, automation scripts, and visual feedback that turns the Mac into a keyboard-driven environment.
 
 ## Contents
 
