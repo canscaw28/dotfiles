@@ -1,6 +1,11 @@
 # dotfiles
 
-Not a typical dotfiles repo. This is a keyboard-driven utility layer on top of macOS — Caps Lock activates modal layers for window management, navigation, text editing, and automation, all wired together through Karabiner, Hammerspoon, and a custom AeroSpace build.
+Not a typical dotfiles repo — it's a keyboard-driven utility layer on top of macOS:
+
+- **Modal keyboard layers** via Caps Lock (window management, navigation, text editing, cursor control)
+- **Tiling window manager** with a custom AeroSpace build (focus-guard + freeze-tiling patches)
+- **Visual feedback** — workspace grid overlay, focus border flash, HUD notifications
+- **Automation glue** tying Karabiner, Hammerspoon, and shell scripts into one system
 
 ## Contents
 
