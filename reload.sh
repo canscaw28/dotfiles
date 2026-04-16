@@ -5,6 +5,8 @@
 
 set -e
 
+export PATH="/opt/homebrew/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+
 # When --all is invoked, write a flag file on exit (success or failure) so the
 # Hammerspoon reload spinner always gets dismissed. The flag must be written via
 # EXIT trap rather than at the end of reload_all(), because set -e will exit the
