@@ -3,8 +3,11 @@
 # Sync espanso personal.yml triggers to macOS text replacements
 # (System Settings > Keyboard > Text Replacements)
 #
+# Writes to ~/Library/KeyboardServices/TextReplacements.db, which is
+# the CloudKit-synced store. Entries appear in System Settings and
+# sync to iOS via iCloud.
+#
 # Preserves any existing macOS replacements not managed by espanso.
-# Syncs to iCloud automatically, so replacements appear on iOS too.
 
 set -e
 
@@ -17,7 +20,7 @@ if [[ ! -f "$PERSONAL_FILE" ]]; then
 fi
 
 /usr/bin/python3 - "$PERSONAL_FILE" <<'PYEOF'
-import sys, re, subprocess, plistlib
+import sys, re, sqlite3, uuid, time, os
 
 personal_file = sys.argv[1]
 
@@ -36,38 +39,59 @@ if not triggers:
     print("[SKIP] No triggers found in personal.yml")
     sys.exit(0)
 
-# Read existing macOS text replacements
-try:
-    out = subprocess.check_output(
-        ["defaults", "read", "-g", "NSUserDictionaryReplacementItems"],
-        stderr=subprocess.DEVNULL
+db_path = os.path.expanduser("~/Library/KeyboardServices/TextReplacements.db")
+conn = sqlite3.connect(db_path)
+c = conn.cursor()
+
+# CoreData timestamp: seconds since 2001-01-01
+now = time.time() - 978307200
+
+# Get current max Z_PK
+c.execute("SELECT MAX(Z_PK) FROM ZTEXTREPLACEMENTENTRY")
+max_pk = c.fetchone()[0] or 0
+
+added = 0
+updated = 0
+
+for shortcut, phrase in triggers.items():
+    c.execute(
+        "SELECT Z_PK, ZPHRASE FROM ZTEXTREPLACEMENTENTRY WHERE ZSHORTCUT = ? AND ZWASDELETED = 0",
+        (shortcut,)
     )
-    raw = out.decode()
-    existing = []
-    for m in re.finditer(r'replace\s*=\s*"?([^";]+)"?\s*;\s*with\s*=\s*"?([^";]+)"?', raw):
-        existing.append((m.group(1).strip(), m.group(2).strip()))
-except subprocess.CalledProcessError:
-    existing = []
+    row = c.fetchone()
 
-# Merge: keep non-espanso entries, replace/add espanso ones
-espanso_shortcuts = set(triggers.keys())
-merged = [(k, v) for k, v in existing if k not in espanso_shortcuts]
-merged.extend(triggers.items())
+    if row:
+        pk, existing_phrase = row
+        if existing_phrase != phrase:
+            c.execute(
+                "UPDATE ZTEXTREPLACEMENTENTRY SET ZPHRASE = ?, ZTIMESTAMP = ?, ZNEEDSSAVETOCLOUD = 1 WHERE Z_PK = ?",
+                (phrase, now, pk)
+            )
+            updated += 1
+    else:
+        max_pk += 1
+        unique_name = str(uuid.uuid4()).upper()
+        c.execute(
+            "INSERT INTO ZTEXTREPLACEMENTENTRY (Z_PK, Z_ENT, Z_OPT, ZNEEDSSAVETOCLOUD, ZWASDELETED, ZTIMESTAMP, ZPHRASE, ZSHORTCUT, ZUNIQUENAME) VALUES (?, 1, 1, 1, 0, ?, ?, ?, ?)",
+            (max_pk, now, phrase, shortcut, unique_name)
+        )
+        added += 1
 
-# Build plist array and write
-plist_dicts = [{"on": 1, "replace": k, "with": v} for k, v in merged]
-plist_data = plistlib.dumps(plist_dicts, fmt=plistlib.FMT_XML).decode()
+# Update Z_PRIMARYKEY max counter
+c.execute(
+    "UPDATE Z_PRIMARYKEY SET Z_MAX = ? WHERE Z_NAME = 'TextReplacementEntry'",
+    (max_pk,)
+)
 
-# defaults write expects the value as a plist fragment
-subprocess.check_call([
-    "defaults", "write", "-g", "NSUserDictionaryReplacementItems",
-    "-array"
-] + [
-    f'{{"on" = 1; "replace" = "{k}"; "with" = "{v}";}}'
-    for k, v in merged
-])
+conn.commit()
+conn.close()
 
-print(f"[INFO] Synced {len(triggers)} espanso triggers to macOS text replacements")
-if len(merged) > len(triggers):
-    print(f"[INFO] Preserved {len(merged) - len(triggers)} non-espanso replacements")
+parts = []
+if added:
+    parts.append(f"{added} added")
+if updated:
+    parts.append(f"{updated} updated")
+if not parts:
+    parts.append("all up to date")
+print(f"[INFO] macOS text replacements: {', '.join(parts)} ({len(triggers)} total espanso triggers)")
 PYEOF
