@@ -74,6 +74,9 @@ negative_conditions: [a, s, d] # Optional: explicit list of vars to set =0
                                # Default: all layer vars not in `layer` are negated
 app: "^com\\.google\\.Chrome$" # Optional: frontmost_application_if condition
 app_unless: "^com\\..*"        # Optional: frontmost_application_unless
+always_negative: [raycast_active] # Optional: non-layer vars to set =0 on every
+                                  # manipulator in the section, ignored by
+                                  # per-manipulator negative_conditions overrides
 
 manipulators:
   - ...

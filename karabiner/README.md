@@ -302,6 +302,8 @@ Moves the current tab to another Chrome window in the specified direction, using
 
 When iTerm2 is frontmost, several default layer keys are overridden with terminal-compatible sequences, and the G layer switches to tmux pane navigation.
 
+These overrides are gated on a `raycast_active` variable set by Hammerspoon's `raycast_watcher.lua`. When the Raycast command bar is open over iTerm2, the overrides disable so keys fall through to their standard (non-iTerm) mappings — Raycast's text input then behaves like any other macOS text field. Implemented via an `always_negative: [raycast_active]` field on each iTerm-scoped section in `src/layers/default.yaml`.
+
 #### Cursor Movement
 
 | Key / Shortcut | Behavior | Description |

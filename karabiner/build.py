@@ -88,6 +88,8 @@ def build_conditions(file_ctx, manip):
                 "bundle_identifiers": [app_unless],
                 "type": "frontmost_application_unless",
             })
+        for var in manip.get("always_negative") or file_ctx.get("always_negative") or []:
+            conditions.append({"name": var, "type": "variable_if", "value": 0})
         return conditions
 
     # Collect which variables are explicitly positive
@@ -145,6 +147,9 @@ def build_conditions(file_ctx, manip):
             "bundle_identifiers": [app_unless],
             "type": "frontmost_application_unless",
         })
+
+    for var in manip.get("always_negative") or file_ctx.get("always_negative") or []:
+        conditions.append({"name": var, "type": "variable_if", "value": 0})
 
     return conditions
 
@@ -324,7 +329,7 @@ def load_layer_file(filepath):
                 result.extend(section.get("manipulators", []))
                 continue
             file_ctx = {}
-            for key in ("layer", "app", "app_unless", "negative_conditions"):
+            for key in ("layer", "app", "app_unless", "negative_conditions", "always_negative"):
                 if key in section:
                     file_ctx[key] = section[key]
             for manip in section.get("manipulators", []):

@@ -1,6 +1,7 @@
 sections:
 - negative_conditions: []
   app: ^com\.googlecode\.iterm2$
+  always_negative: [raycast_active]
   manipulators:
   - from: z
     from_modifiers:
@@ -36,6 +37,7 @@ sections:
   - d
   - f
   app: ^com\.googlecode\.iterm2$
+  always_negative: [raycast_active]
   manipulators:
   - from: y
     negative_conditions:
@@ -266,6 +268,7 @@ sections:
   negative_conditions:
   - f
   app: ^com\.googlecode\.iterm2$
+  always_negative: [raycast_active]
   manipulators:
   - from: semicolon
     to:
@@ -366,6 +369,7 @@ sections:
   negative_conditions:
   - f
   app: ^com\.googlecode\.iterm2$
+  always_negative: [raycast_active]
   manipulators:
   - from: j
     to: f18
@@ -405,13 +409,11 @@ sections:
     - - down_arrow
       - shift
     - delete_or_backspace
-    app_unless: ^com\.googlecode\.iterm2$
   - from: k
     to:
     - - up_arrow
       - shift
     - delete_or_backspace
-    app_unless: ^com\.googlecode\.iterm2$
   - from: l
     to: delete_forward
   - from: semicolon
