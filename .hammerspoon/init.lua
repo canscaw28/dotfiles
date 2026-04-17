@@ -10,6 +10,7 @@ require("chrome_warmup")
 require("cursor_grid")
 require("dock_peek")
 require("surround")
+require("raycast_watcher")
 
 -- Auto-reload when config files change (e.g. after git pull + reload.sh --all,
 -- or when editing HS files directly). This replaces the unreliable hs CLI IPC

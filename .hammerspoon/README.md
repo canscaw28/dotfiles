@@ -187,6 +187,14 @@ State tracker for macOS Show Desktop mode (triggered by Caps+A+O → fn+F11). Tr
 
 Eventtap that suppresses OS key auto-repeat for all keys while any Caps Lock layer is active. Started by Karabiner's caps-lock setters, stopped on caps release. This allows Hammerspoon and Karabiner to handle repeat behavior themselves.
 
+### Raycast Watcher (`raycast_watcher.lua`)
+
+Mirrors Raycast's command-bar visibility into the `raycast_active` Karabiner variable. Raycast's panel is a nonactivating `NSPanel`, so it doesn't change the frontmost app — which means Karabiner's `frontmost_application_if` conditions would otherwise still apply iTerm2 (or other app) overrides to keys typed into Raycast.
+
+Uses `hs.window.filter` scoped to Raycast with `allowRoles = "*"` to catch the panel window. Sets `raycast_active=1` on `windowCreated`/`windowVisible`, `0` on `windowDestroyed`/`windowNotVisible`, and resets to `0` on module load for safety.
+
+Consumed in `karabiner/src/layers/default.yaml` via `always_negative: [raycast_active]` on every iTerm-scoped section, so those overrides disable when Raycast is open.
+
 ---
 
 ### HTTP Server (`hs_server.lua`)
