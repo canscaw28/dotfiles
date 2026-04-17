@@ -2532,7 +2532,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2565,7 +2565,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2601,7 +2601,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2633,7 +2633,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2695,7 +2695,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2752,7 +2752,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2809,7 +2809,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2856,7 +2856,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2900,7 +2900,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -2969,7 +2969,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -3026,7 +3026,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -3078,7 +3078,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6522,7 +6522,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6569,7 +6569,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6616,7 +6616,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6664,7 +6664,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6712,7 +6712,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6760,7 +6760,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -6808,7 +6808,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7616,7 +7616,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7660,7 +7660,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7704,7 +7704,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7751,7 +7751,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7798,7 +7798,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }
@@ -7845,7 +7845,7 @@
                     "type": "frontmost_application_if"
                   },
                   {
-                    "name": "raycast_active",
+                    "name": "panel_active",
                     "type": "variable_if",
                     "value": 0
                   }

@@ -187,13 +187,15 @@ State tracker for macOS Show Desktop mode (triggered by Caps+A+O → fn+F11). Tr
 
 Eventtap that suppresses OS key auto-repeat for all keys while any Caps Lock layer is active. Started by Karabiner's caps-lock setters, stopped on caps release. This allows Hammerspoon and Karabiner to handle repeat behavior themselves.
 
-### Raycast Watcher (`raycast_watcher.lua`)
+### Panel Watcher (`panel_watcher.lua`)
 
-Mirrors Raycast's command-bar visibility into the `raycast_active` Karabiner variable. Raycast's panel is a nonactivating `NSPanel`, so it doesn't change the frontmost app — which means Karabiner's `frontmost_application_if` conditions would otherwise still apply iTerm2 (or other app) overrides to keys typed into Raycast.
+Detects when a nonactivating panel (NSPanel) has grabbed key focus without activating its app — Raycast, Alfred, Spotlight, 1Password quick access, etc. Without this signal, Karabiner's `frontmost_application_if` conditions would apply the underlying app's overrides (e.g. iTerm2's terminal sequences) to keys typed into the panel, since macOS still reports the underlying app as frontmost.
 
-Uses `hs.window.filter` scoped to Raycast with `allowRoles = "*"` to catch the panel window. Sets `raycast_active=1` on `windowCreated`/`windowVisible`, `0` on `windowDestroyed`/`windowNotVisible`, and resets to `0` on module load for safety.
+**Detection signal:** `hs.window.focusedWindow():application():bundleID() != hs.application.frontmostApplication():bundleID()`. The divergence is the defining property of a nonactivating panel — regular windows activate their app on focus, so the focused window's app matches frontmost. No whitelist or app-specific config needed.
 
-Consumed in `karabiner/src/layers/default.yaml` via `always_negative: [raycast_active]` on every iTerm-scoped section, so those overrides disable when Raycast is open.
+Subscribes to window focus/visibility events (with `allowRoles = "*"` so NSPanels aren't excluded) and app activation events; each signal re-evaluates the divergence. State is deduped before shelling out to `karabiner_cli` so the CLI isn't spammed on every redundant event.
+
+Consumed in `karabiner/src/layers/default.yaml` via `always_negative: [panel_active]` on every iTerm-scoped section.
 
 ---
 
