@@ -10,6 +10,7 @@ require("chrome_warmup")
 require("cursor_grid")
 require("dock_peek")
 require("surround")
+require("expander")
 require("panel_watcher")
 
 -- Auto-reload when config files change (e.g. after git pull + reload.sh --all,

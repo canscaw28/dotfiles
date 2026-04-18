@@ -1,2 +1,2 @@
-# Espanso private matches (PII - emails, phone, address, etc.)
-espanso/match/personal.yml
+# Personal PII triggers (emails, phone, address, etc.)
+text-expander/personal.yml

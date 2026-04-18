@@ -65,13 +65,13 @@ reload_iterm() {
     fi
 }
 
-reload_espanso() {
-    log_info "Reloading Espanso config..."
-    espanso restart 2>/dev/null || log_error "Espanso not running or not installed"
-    log_info "Espanso config reloaded"
-
+reload_text_expander() {
+    log_info "Reloading text-expander config..."
+    # Hammerspoon's expander.lua pathwatches text-expander/, so YAML edits
+    # apply automatically. This step just re-runs the macOS TR sync for iOS.
     DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-    "$DOTFILES_DIR/espanso/sync-macos-replacements.sh"
+    "$DOTFILES_DIR/text-expander/sync-macos-replacements.sh"
+    log_info "text-expander config reloaded"
 }
 
 reload_shell() {
@@ -113,7 +113,7 @@ reload_all() {
     reload_aerospace
     reload_karabiner
     reload_iterm
-    reload_espanso
+    reload_text_expander
     reload_shell
     reload_chrome || true  # informational check; don't abort --all if Chrome ext missing
     # Karabiner's file-watcher hot reload takes ~1s (no process restart), but give
@@ -138,7 +138,7 @@ show_help() {
     echo "  --karabiner    Reload Karabiner Elements config"
     echo "  --hammerspoon  Reload Hammerspoon config"
     echo "  --iterm        Reload iTerm2 config"
-    echo "  --espanso      Reload Espanso config"
+    echo "  --text-expander  Reload text-expander config (syncs personal triggers to macOS TR)"
     echo "  --shell        Remind to source shell config (must be done manually)"
     echo "  --chrome       Check/notify Tab Mover Chrome extension status"
     echo "  --help         Show this help message"
@@ -172,8 +172,8 @@ else
                 reload_iterm
                 shift
                 ;;
-            --espanso)
-                reload_espanso
+            --text-expander)
+                reload_text_expander
                 shift
                 ;;
             --shell)

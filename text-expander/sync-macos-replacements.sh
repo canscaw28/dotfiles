@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# Sync espanso personal.yml triggers to macOS text replacements
+# Sync personal.yml triggers to macOS text replacements
 # (System Settings > Keyboard > Text Replacements)
 #
 # Writes to ~/Library/KeyboardServices/TextReplacements.db, which is
 # the CloudKit-synced store. Entries appear in System Settings and
 # sync to iOS via iCloud.
 #
-# Preserves any existing macOS replacements not managed by espanso.
+# Preserves any existing macOS replacements not managed by this script.
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PERSONAL_FILE="$SCRIPT_DIR/match/personal.yml"
+PERSONAL_FILE="$SCRIPT_DIR/personal.yml"
 
 if [[ ! -f "$PERSONAL_FILE" ]]; then
     echo "[SKIP] $PERSONAL_FILE not found — run setup-personal.sh first"
@@ -93,5 +93,5 @@ if updated:
     parts.append(f"{updated} updated")
 if not parts:
     parts.append("all up to date")
-print(f"[INFO] macOS text replacements: {', '.join(parts)} ({len(triggers)} total espanso triggers)")
+print(f"[INFO] macOS text replacements: {', '.join(parts)} ({len(triggers)} total triggers)")
 PYEOF

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Interactive setup for espanso personal.yml (PII - gitignored)
+# Interactive setup for personal.yml (PII - gitignored)
 # Run this on a new machine to populate your personal triggers.
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PERSONAL_FILE="$SCRIPT_DIR/match/personal.yml"
+PERSONAL_FILE="$SCRIPT_DIR/personal.yml"
 
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -66,7 +66,7 @@ fi
 
 echo ""
 echo "========================================="
-echo "Espanso Personal Triggers Setup"
+echo "Personal Triggers Setup"
 echo "========================================="
 echo ""
 echo "Press Enter to skip any field."
@@ -90,4 +90,4 @@ echo ""
 "$SCRIPT_DIR/sync-macos-replacements.sh"
 
 echo ""
-log_info "Done! Run './reload.sh --espanso' to apply."
+log_info "Done! Run './reload.sh --text-expander' to apply."

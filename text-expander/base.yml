@@ -1,0 +1,28 @@
+# Public text-expander triggers.
+# Personal triggers (PII) live in personal.yml (gitignored).
+#
+# Supported placeholders in `replace`:
+#   {{date}}  → YYYY-MM-DD
+#   {{time}}  → h:mma lowercase (e.g. 3:42pm)
+#   {{now}}   → YYYY-MM-DD HH:MM
+
+matches:
+  # Dates
+  - trigger: ";date"
+    replace: "{{date}}"
+
+  - trigger: ";time"
+    replace: "{{time}}"
+
+  - trigger: ";now"
+    replace: "{{now}}"
+
+  # Emoji
+  - trigger: ";er"
+    replace: "❌"
+
+  - trigger: ";ey"
+    replace: "⚠️"
+
+  - trigger: ";eg"
+    replace: "✅"

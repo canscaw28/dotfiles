@@ -114,18 +114,14 @@ install_hammerspoon() {
     create_symlink "$DOTFILES_DIR/.hammerspoon" "$HOME/.hammerspoon"
 }
 
-install_espanso() {
-    log_info "Installing Espanso config..."
-    local espanso_dir="$HOME/Library/Application Support/espanso"
-    mkdir -p "$espanso_dir"
-    # Symlink config and match directories
-    create_symlink "$DOTFILES_DIR/espanso/config" "$espanso_dir/config"
-    create_symlink "$DOTFILES_DIR/espanso/match" "$espanso_dir/match"
-    # Prompt for personal triggers if not already set up
-    if [[ ! -f "$DOTFILES_DIR/espanso/match/personal.yml" ]]; then
-        "$DOTFILES_DIR/espanso/setup-personal.sh"
+install_text_expander() {
+    log_info "Installing text-expander config..."
+    # Expander runs inside Hammerspoon (no app to install, no symlinks needed).
+    # YAML files are read directly from $DOTFILES_DIR/text-expander/.
+    if [[ ! -f "$DOTFILES_DIR/text-expander/personal.yml" ]]; then
+        "$DOTFILES_DIR/text-expander/setup-personal.sh"
     fi
-    "$DOTFILES_DIR/reload.sh" --espanso
+    "$DOTFILES_DIR/reload.sh" --text-expander
 }
 
 install_iterm() {
@@ -153,7 +149,7 @@ install_all() {
     install_aerospace
     install_karabiner
     install_hammerspoon
-    install_espanso
+    install_text_expander
     install_iterm
 }
 
@@ -169,7 +165,7 @@ show_help() {
     echo "  --aerospace    Install AeroSpace config"
     echo "  --karabiner    Install Karabiner Elements config"
     echo "  --hammerspoon  Install Hammerspoon config"
-    echo "  --espanso      Install Espanso config"
+    echo "  --text-expander  Install text-expander config"
     echo "  --iterm        Install iTerm2 config"
     echo "  --help         Show this help message"
     echo ""
@@ -235,8 +231,8 @@ else
                 install_hammerspoon
                 shift
                 ;;
-            --espanso)
-                install_espanso
+            --text-expander)
+                install_text_expander
                 shift
                 ;;
             --iterm)
