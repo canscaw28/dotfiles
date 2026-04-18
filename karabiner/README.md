@@ -566,7 +566,7 @@ macOS system toggles and input source management. Unlike other layers, A does no
 | [⇪+A] + U | Toggle Notification Center | Opens/closes the Notification Center via AppleScript |
 | [⇪+A] + I | Mission Control | Shows Mission Control |
 | [⇪+A] + O | Show Desktop | Shows the desktop (fn+F11) |
-| [⇪+A] + . | Reload All Configs | Runs `reload.sh --all` (AeroSpace, Karabiner, Hammerspoon, iTerm2, Espanso, shell, Chrome) |
+| [⇪+A] + . | Reload All Configs | Runs `reload.sh --all` (AeroSpace, Karabiner, Hammerspoon, iTerm2, text-expander, shell, Chrome) |
 | [⇪+A] + M | Toggle Sidecar | Toggles iPad Sidecar display |
 | [⇪+A] + / | Clean Dock | Removes recent apps from Dock |
 | [⇪+A] + , | Workspace Setup | Opens apps (iTerm2→k, Messages→n, Rize→n, Slack→m) and moves windows to assigned workspaces |

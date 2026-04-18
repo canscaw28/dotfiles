@@ -12,7 +12,7 @@ After editing any config files, ALWAYS reload them so changes take effect immedi
 | AeroSpace (`.aerospace.toml`) | `./reload.sh --aerospace` |
 | Hammerspoon (`.hammerspoon/`) | `./reload.sh --hammerspoon` |
 | iTerm2 (`com.googlecode.iterm2.plist`) | `./reload.sh --iterm` |
-| Espanso (`espanso/`) | `./reload.sh --espanso` |
+| Text Expander (`text-expander/*.yml`) | `./reload.sh --text-expander` (syncs personal triggers to macOS TR; HS picks up YAML changes automatically) |
 | Shell (`.zshrc`, `.bash_profile`) | `./reload.sh --shell` (prints reminder; user must run `source ~/.zshrc`) |
 
 Or reload all configs at once: `./reload.sh --all`
