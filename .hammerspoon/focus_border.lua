@@ -160,13 +160,19 @@ end
 -- Called from layer-key setters (e.g. caps+T press) as input feedback.
 -- Defers briefly; if any action flash lands in the interim, this one skips
 -- so we never clobber an action's correct border or draw on a stale window.
+-- On repeated presses with the border still showing on the same window,
+-- pulses via alpha dip so each press reads as input feedback.
 function M.flashOnLayerActivate()
     local pressTime = hs.timer.secondsSinceEpoch()
     hs.timer.doAfter(LAYER_FLASH_DELAY, function()
         if lastActionFlashAt >= pressTime then return end
         local win = hs.window.focusedWindow()
-        if win then
-            showBorder(win:frame(), win:id())
+        if not win then return end
+        local wid = win:id()
+        if border and wid and wid == lastWid then
+            blinkBorder()
+        else
+            showBorder(win:frame(), wid)
         end
     end)
 end
