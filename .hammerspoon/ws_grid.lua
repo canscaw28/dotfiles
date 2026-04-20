@@ -51,8 +51,8 @@ local ROWS = {
 -- positional fallback when we can't identify the display.
 local MONITOR_COLORS = {
     [1] = {red = 0.1, green = 0.3, blue = 0.7, alpha = 1},      -- blue
-    [2] = {red = 0.7, green = 0.25, blue = 0.1, alpha = 1},     -- orange
-    [3] = {red = 0.1, green = 0.5, blue = 0.25, alpha = 1},     -- green
+    [2] = {red = 0.64, green = 0.22, blue = 0.09, alpha = 1},   -- orange
+    [3] = {red = 0.09, green = 0.44, blue = 0.22, alpha = 1},   -- green
     [4] = {red = 0.4, green = 0.15, blue = 0.6, alpha = 1},     -- purple
 }
 

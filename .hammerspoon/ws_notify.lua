@@ -25,8 +25,8 @@ local GRAY = {0.4, 0.4, 0.4}
 
 local MONITOR_COLORS = {
     [1] = {red = 0.2, green = 0.5, blue = 1, alpha = 1},
-    [2] = {red = 1, green = 0.45, blue = 0.15, alpha = 1},
-    [3] = {red = 0.2, green = 0.75, blue = 0.4, alpha = 1},
+    [2] = {red = 0.92, green = 0.4, blue = 0.13, alpha = 1},
+    [3] = {red = 0.17, green = 0.65, blue = 0.34, alpha = 1},
     [4] = {red = 0.6, green = 0.3, blue = 0.85, alpha = 1},
 }
 local DEFAULT_BORDER = {red = 0.5, green = 0.5, blue = 0.5, alpha = 0.6}
