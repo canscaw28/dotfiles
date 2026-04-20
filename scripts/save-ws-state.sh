@@ -12,6 +12,21 @@ export PATH="/opt/homebrew/bin:$PATH"
 STATE_FILE="$HOME/.aerospace-ws-state"
 TMP_FILE="${STATE_FILE}.tmp.$$"
 
+# Valid workspace set (matches cleanup-ws.sh, minus ~ buffer).
+# Monitor mappings to invalid workspaces (e.g. numbered defaults when a new
+# monitor attaches) must not be persisted — cleanup-ws.sh reads this file to
+# pick replacements, and a tainted entry causes it to "replace" invalid with
+# invalid (no-op), leaving the monitor stuck on the default workspace.
+VALID_WS="6 7 8 9 0 y u i o p h j k l ; n m comma . /"
+
+is_valid_ws() {
+    local ws="$1"
+    for v in ${=VALID_WS}; do
+        [[ "$v" == "$ws" ]] && return 0
+    done
+    return 1
+}
+
 focused=$(aerospace list-workspaces --focused 2>/dev/null) || exit 0
 monitors=(${(f)"$(aerospace list-monitors --format '%{monitor-id}' 2>/dev/null)"}) || exit 0
 
@@ -48,10 +63,11 @@ done < <(osascript -e '
     printf '# %s\n' "$(date '+%Y-%m-%d %H:%M:%S')"
     printf 'focused=%s\n' "$focused"
 
-    # Monitor-workspace mapping in monitor-id order (skip ~ buffer)
+    # Monitor-workspace mapping in monitor-id order. Skip invalid workspaces
+    # (~ buffer, numbered defaults) — see VALID_WS comment above.
     for mid in $monitors; do
         ws=$(aerospace list-workspaces --monitor "$mid" --visible 2>/dev/null)
-        [[ -z "$ws" || "$ws" == "~" ]] && continue
+        is_valid_ws "$ws" || continue
         printf 'monitor\t%s\t%s\n' "$mid" "$ws"
     done
 
