@@ -14,6 +14,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 FOCUS_GUARD_PATCH="$SCRIPT_DIR/focus-guard.patch"
 FREEZE_TILING_PATCH="$SCRIPT_DIR/freeze-tiling.patch"
+DIAGONAL_MONITOR_PATCH="$SCRIPT_DIR/diagonal-monitor.patch"
 BUILD_DIR="/tmp/aerospace-build"
 AEROSPACE_REPO="https://github.com/nikitabobko/AeroSpace.git"
 DEFAULT_VERSION="v0.20.2-Beta"
@@ -45,6 +46,8 @@ echo "==> Applying focus-guard patch..."
 git apply "$FOCUS_GUARD_PATCH"
 echo "==> Applying freeze-tiling patch..."
 git apply "$FREEZE_TILING_PATCH"
+echo "==> Applying diagonal-monitor patch..."
+git apply "$DIAGONAL_MONITOR_PATCH"
 
 # Generate build files (skip docs — not needed for .app)
 echo "==> Running generate.sh..."

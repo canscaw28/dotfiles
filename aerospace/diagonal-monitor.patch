@@ -1,0 +1,31 @@
+diff --git a/Sources/AppBundle/command/impl/FocusMonitorCommand.swift b/Sources/AppBundle/command/impl/FocusMonitorCommand.swift
+index 0b0d6be..3532768 100644
+--- a/Sources/AppBundle/command/impl/FocusMonitorCommand.swift
++++ b/Sources/AppBundle/command/impl/FocusMonitorCommand.swift
+@@ -56,10 +56,23 @@ extension Monitor {
+ 
+     func findRelativeMonitor(inDirection direction: CardinalDirection) -> (monitorsInDirection: [Monitor], index: Int)? {
+         let currentMonitor = self
+-        let monitors = sortedMonitors.filter {
+-            currentMonitor.rect.topLeftCorner == $0.rect.topLeftCorner ||
+-                $0.relation(to: currentMonitor) == direction.orientation
++        // For vertical (up/down) we additionally require X-axis overlap so a monitor
++        // that is diagonally offset (e.g. layout `A B / C` where C sits above B) is
++        // not treated as "above/below" A. Not needed for horizontal: `relation == .h`
++        // already implies Y overlap.
++        let filtered = sortedMonitors.filter { other in
++            if currentMonitor.rect.topLeftCorner == other.rect.topLeftCorner { return true }
++            guard other.relation(to: currentMonitor) == direction.orientation else { return false }
++            if direction.orientation == .v {
++                guard let myXRange = currentMonitor.rect.minX.until(excl: currentMonitor.rect.maxX),
++                      let otherXRange = other.rect.minX.until(excl: other.rect.maxX) else { return false }
++                return myXRange.overlaps(otherXRange)
++            }
++            return true
+         }
++        let monitors = direction.orientation == .v
++            ? filtered.sortedBy([\.rect.minY, \.rect.minX])
++            : filtered.sortedBy([\.rect.minX, \.rect.minY])
+         guard let index = monitors.firstIndex(where: { $0.rect.topLeftCorner == currentMonitor.rect.topLeftCorner }) else { return nil }
+         return (monitors, index + direction.focusOffset)
+     }
