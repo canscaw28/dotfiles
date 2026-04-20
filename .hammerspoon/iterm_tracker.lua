@@ -2,10 +2,10 @@
 -- (e.g. Karabiner-triggered g-focus-tmux.sh) can target the correct
 -- tmux client without paying AppleScript latency on every keypress.
 --
--- Design: maintain a {windowID -> tty} map refreshed on window
--- creation/destruction via one osascript call. Focus changes are a
--- synchronous O(1) lookup that writes /tmp/iterm-front-tty immediately,
--- avoiding the race between focus and async AppleScript completion.
+-- A {windowID -> tty} map is refreshed via one osascript call on
+-- window creation/destruction. Focus changes are a synchronous O(1)
+-- lookup that writes /tmp/iterm-front-tty immediately, avoiding the
+-- race between focus and async AppleScript completion.
 
 local M = {}
 
@@ -30,8 +30,6 @@ local function writeFromFocused()
     if tty then writeFront(tty) end
 end
 
--- One AppleScript dump of all iTerm2 windows → their active session's TTY.
--- Called only on window creation/destruction/app launch, never on focus change.
 local SCAN_SCRIPT = [[
 set out to ""
 tell application "iTerm2"
@@ -71,7 +69,6 @@ local function onFocus()
 end
 
 M.rescan = rescan
-M.onFocus = onFocus
 
 itermFilter = hs.window.filter.new("iTerm2")
 itermFilter:subscribe({hs.window.filter.windowFocused}, onFocus)
@@ -81,10 +78,12 @@ itermFilter:subscribe({
 }, rescan)
 
 itermAppWatcher = hs.application.watcher.new(function(_, event, app)
-    if app and app:bundleID() == ITERM_BUNDLE
-       and (event == hs.application.watcher.launched
-         or event == hs.application.watcher.activated) then
-        rescan()
+    if app and app:bundleID() == ITERM_BUNDLE then
+        if event == hs.application.watcher.launched then
+            rescan()
+        elseif event == hs.application.watcher.activated then
+            onFocus()
+        end
     end
 end)
 itermAppWatcher:start()
