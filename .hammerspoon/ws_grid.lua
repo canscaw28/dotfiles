@@ -553,10 +553,14 @@ function M.visitKey(key, targetMon, swapMode, moveMode, followFocus)
     end
 end
 
-function M.showGrid()
-    -- Immediately reposition existing grid and update * marker before async
-    -- query. Gives instant visual feedback (e.g. monitor switch via ') while
-    -- the full AeroSpace state query runs in the background.
+-- focusedMonHint (optional): fresh focused-monitor ID from caller (e.g.
+-- switch-monitor.sh). Primes lastFocusedMonId so the sync reposition
+-- jumps to the correct monitor without waiting on the async AeroSpace
+-- query (which otherwise lags the mouse by 30-100ms).
+function M.showGrid(focusedMonHint)
+    if focusedMonHint then
+        lastFocusedMonId = focusedMonHint
+    end
     if grid then
         local monId = targetMonitor()
         if monId ~= nil then
