@@ -403,7 +403,7 @@ These overrides are gated on a `panel_active` variable set by Hammerspoon's `pan
 | [⇪+T] + K | ⌘ + ⌥ + ⌃ + K | Focus up |
 | [⇪+T] + L | ⌘ + ⌥ + ⌃ + L | Focus right |
 | [⇪+T] + ; | *available* | |
-| [⇪+T] + ' | ⌘ + ⌥ + ⌃ + ' | Switch to previous workspace (back-and-forth) |
+| [⇪+T] + ' | `switch-monitor.sh` | Focus next monitor (wrap-around) |
 | [⇪+T] + - | ⌘ + ⌥ + ⌃ + ⇧ + - | Resize smart -50 |
 | [⇪+T] + = | ⌘ + ⌥ + ⌃ + ⇧ + = | Resize smart +50 |
 | [⇪+T] + / | ⌘ + ⌥ + ⇧ + / | Toggle tiles horizontal/vertical |
@@ -454,6 +454,7 @@ n  m  ,  .  /
 | Key / Shortcut | Description |
 | --- | --- |
 | [⇪+T+W] + *key* | Focus workspace on current monitor (swaps if visible on another) |
+| [⇪+T+W] + ' | Focus next monitor (wrap-around); grid stays visible |
 
 ### Move to Workspace (⇪+T + E)
 

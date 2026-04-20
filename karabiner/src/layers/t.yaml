@@ -454,6 +454,25 @@ sections:
     - e
     - g
     to:
+      shell: $HOME/.local/bin/switch-monitor.sh
+    layer:
+    - caps
+    - t
+    - w
+  - from: quote
+    negative_conditions:
+    - a
+    - s
+    - d
+    - f
+    - r
+    - '3'
+    - '4'
+    - q
+    - e
+    - w
+    - g
+    to:
     - quote
     - command+control+option
     layer:
