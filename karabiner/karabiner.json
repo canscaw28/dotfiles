@@ -845,7 +845,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('t'); require('ws_grid').keyDown('t'); require('focus_border').flash()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('t'); require('ws_grid').keyDown('t')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1505,7 +1505,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('t'); require('focus_border').flash()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('t')\" &"
                   }
                 ],
                 "to_after_key_up": [
