@@ -31,6 +31,27 @@ local MONITOR_COLORS = {
 }
 local DEFAULT_BORDER = {red = 0.5, green = 0.5, blue = 0.5, alpha = 0.6}
 
+-- Map AeroSpace monitor ID → color slot by display identity, not position.
+-- MacBook always blue, Duet always green, other externals (Sidecar, Dell) orange.
+-- Falls back to positional slot when the screen can't be resolved.
+local function colorForMonitor(monId)
+    if not monId then return nil end
+    local screens = hs.screen.allScreens()
+    table.sort(screens, function(a, b)
+        local fa, fb = a:frame(), b:frame()
+        if fa.x ~= fb.x then return fa.x < fb.x end
+        return fa.y < fb.y
+    end)
+    local screen = screens[monId]
+    if screen then
+        local name = (screen:name() or ""):lower()
+        if name:find("built%-in") then return MONITOR_COLORS[1] end
+        if name:find("duet") then return MONITOR_COLORS[3] end
+        return MONITOR_COLORS[2]
+    end
+    return MONITOR_COLORS[monId]
+end
+
 local DISPLAY_NAMES = {comma = ","}
 
 -- Border element is always index 2 in the canvas (bg=1, border=2, text=3)
@@ -168,7 +189,7 @@ function M.show(wsKey, monitorId, sourceKey, followFocus, swapMode)
         end
     end
 
-    local borderColor = MONITOR_COLORS[monitorId] or DEFAULT_BORDER
+    local borderColor = colorForMonitor(monitorId) or DEFAULT_BORDER
 
     local c = hs.canvas.new({x = targetX, y = targetY, w = canvasW, h = canvasH})
     c:level(hs.canvas.windowLevels.overlay + 1)

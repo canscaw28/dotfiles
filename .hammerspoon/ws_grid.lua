@@ -47,7 +47,8 @@ local ROWS = {
     {keys = {"n", "m", ",", ".", "/"}, stagger = 0.75},
 }
 
--- Monitor colors
+-- Color slots. Semantic device mapping below; numeric indices preserved as
+-- positional fallback when we can't identify the display.
 local MONITOR_COLORS = {
     [1] = {red = 0.1, green = 0.3, blue = 0.7, alpha = 1},      -- blue
     [2] = {red = 0.7, green = 0.25, blue = 0.1, alpha = 1},     -- orange
@@ -112,6 +113,21 @@ local function screenForMonitor(monitorId)
         return fa.y < fb.y
     end)
     return screens[monitorId]  -- nil if monitor doesn't exist
+end
+
+-- Map AeroSpace monitor ID → color slot by display identity, not position.
+-- MacBook always blue, Duet always green, other externals (Sidecar, Dell) orange.
+-- Falls back to positional slot when the screen can't be resolved.
+local function colorForMonitor(monId)
+    if not monId then return nil end
+    local screen = screenForMonitor(monId)
+    if screen then
+        local name = (screen:name() or ""):lower()
+        if name:find("built%-in") then return MONITOR_COLORS[1] end
+        if name:find("duet") then return MONITOR_COLORS[3] end
+        return MONITOR_COLORS[2]
+    end
+    return MONITOR_COLORS[monId]
 end
 
 local function shouldShowGrid()
@@ -181,14 +197,14 @@ local function updateNavCursor(prevRow, prevCol)
         local prevKey = ROWS[prevRow].keys[prevCol]
         local monId = lastVisibleWs[prevKey]
         local isActive = monId ~= nil
-        local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+        local labelColor = colorForMonitor(monId) or TEXT_COLOR_DIM
         patchKey(prevKey, isActive, false, labelColor)
     end
     -- Highlight current cursor position (color matches current monitor, * prefix)
     local curKey = ROWS[navRow].keys[navCol]
     local fi = keyFaceIdx[curKey]
     local ti = keyTextIdx[curKey]
-    local cursorColor = MONITOR_COLORS[lastFocusedMonId or 1] or MONITOR_COLORS[1]
+    local cursorColor = colorForMonitor(lastFocusedMonId or 1) or MONITOR_COLORS[1]
     if fi and ti then
         grid:elementAttribute(fi, "fillColor", cursorColor)
         local styledText = hs.styledtext.new("*" .. curKey, {
@@ -354,7 +370,7 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId, windowCounts)
             elementCount = elementCount + 1
 
             -- Key label
-            local labelColor = (keyMonId and MONITOR_COLORS[keyMonId]) or TEXT_COLOR_DIM
+            local labelColor = colorForMonitor(keyMonId) or TEXT_COLOR_DIM
             local displayText = isFocused and ("*" .. key) or key
             local fontName = isActive and "Helvetica-Bold" or "Helvetica"
             local styledText = hs.styledtext.new(displayText, {
@@ -436,9 +452,9 @@ function M.visitKey(key, targetMon, swapMode, moveMode, followFocus)
                 if otherKey and lastFocusedKey then
                     lastVisibleWs[lastFocusedKey] = otherMon
                     lastVisibleWs[otherKey] = focusedMon
-                    local c1 = MONITOR_COLORS[otherMon] or TEXT_COLOR_DIM
+                    local c1 = colorForMonitor(otherMon) or TEXT_COLOR_DIM
                     patchKey(lastFocusedKey, true, true, c1)
-                    local c2 = MONITOR_COLORS[focusedMon] or TEXT_COLOR_DIM
+                    local c2 = colorForMonitor(focusedMon) or TEXT_COLOR_DIM
                     patchKey(otherKey, true, false, c2)
                 end
             end
@@ -446,7 +462,7 @@ function M.visitKey(key, targetMon, swapMode, moveMode, followFocus)
             -- swap-windows: highlight target key
             if grid and shouldShowGrid() then
                 local monId = lastVisibleWs[displayKey]
-                local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+                local labelColor = colorForMonitor(monId) or TEXT_COLOR_DIM
                 patchKey(displayKey, true, displayKey == lastFocusedKey, labelColor)
             end
         end
@@ -461,7 +477,7 @@ function M.visitKey(key, targetMon, swapMode, moveMode, followFocus)
             -- Revert previous move target so rapid-fire doesn't leave stale highlights
             if lastMoveTarget and lastMoveTarget ~= displayKey then
                 local prevMonId = lastVisibleWs[lastMoveTarget]
-                local prevColor = (prevMonId and MONITOR_COLORS[prevMonId]) or TEXT_COLOR_DIM
+                local prevColor = colorForMonitor(prevMonId) or TEXT_COLOR_DIM
                 patchKey(lastMoveTarget, prevMonId ~= nil, lastMoveTarget == lastFocusedKey, prevColor,
                     lastWindowCounts[lastMoveTarget])
             end
@@ -473,12 +489,12 @@ function M.visitKey(key, targetMon, swapMode, moveMode, followFocus)
             if sourceKey and sourceKey ~= displayKey and srcCount > 0 then
                 lastWindowCounts[sourceKey] = srcCount - 1
                 local srcMonId = lastVisibleWs[sourceKey]
-                local srcColor = (srcMonId and MONITOR_COLORS[srcMonId]) or TEXT_COLOR_DIM
+                local srcColor = colorForMonitor(srcMonId) or TEXT_COLOR_DIM
                 patchKey(sourceKey, srcMonId ~= nil, true, srcColor, lastWindowCounts[sourceKey])
                 lastWindowCounts[displayKey] = (lastWindowCounts[displayKey] or 0) + 1
             end
             local monId = lastVisibleWs[displayKey]
-            local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+            local labelColor = colorForMonitor(monId) or TEXT_COLOR_DIM
             patchKey(displayKey, true, displayKey == lastFocusedKey, labelColor, lastWindowCounts[displayKey])
             lastMoveTarget = displayKey
         end
@@ -541,7 +557,7 @@ function M.visitKey(key, targetMon, swapMode, moveMode, followFocus)
         -- Previous focused key: revert to normal state (only if * moved)
         if moveFocus and prevFocused and prevFocused ~= displayKey then
             local prevMonId = lastVisibleWs[prevFocused]
-            local prevColor = (prevMonId and MONITOR_COLORS[prevMonId]) or TEXT_COLOR_DIM
+            local prevColor = colorForMonitor(prevMonId) or TEXT_COLOR_DIM
             patchKey(prevFocused, prevMonId ~= nil, false, prevColor,
                 followFocus and lastWindowCounts[prevFocused] or nil)
         end
@@ -549,12 +565,12 @@ function M.visitKey(key, targetMon, swapMode, moveMode, followFocus)
         -- Displaced key: moved to another monitor (swap) or hidden
         if displacedKey and displacedKey ~= displayKey and displacedKey ~= lastFocusedKey then
             local dispMonId = lastVisibleWs[displacedKey]
-            local dispColor = (dispMonId and MONITOR_COLORS[dispMonId]) or TEXT_COLOR_DIM
+            local dispColor = colorForMonitor(dispMonId) or TEXT_COLOR_DIM
             patchKey(displacedKey, dispMonId ~= nil, false, dispColor)
         end
 
         -- Visited key: show * only if it's the focused key
-        local curColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+        local curColor = colorForMonitor(monId) or TEXT_COLOR_DIM
         patchKey(displayKey, monId ~= nil, displayKey == lastFocusedKey, curColor,
             followFocus and lastWindowCounts[displayKey] or nil)
     end
@@ -610,11 +626,11 @@ function M.showGrid(focusedMonHint)
                         -- Remove * from old focused key
                         if lastFocusedKey then
                             local oldMonId = lastVisibleWs[lastFocusedKey]
-                            local oldColor = (oldMonId and MONITOR_COLORS[oldMonId]) or TEXT_COLOR_DIM
+                            local oldColor = colorForMonitor(oldMonId) or TEXT_COLOR_DIM
                             patchKey(lastFocusedKey, oldMonId ~= nil, false, oldColor)
                         end
                         -- Add * to new focused key
-                        local newColor = MONITOR_COLORS[focusedMonId] or TEXT_COLOR_DIM
+                        local newColor = colorForMonitor(focusedMonId) or TEXT_COLOR_DIM
                         patchKey(newFocusedKey, true, true, newColor)
                         lastFocusedKey = newFocusedKey
                         lastFocusedMonId = focusedMonId
@@ -943,7 +959,7 @@ refresh = function()
         -- Revert cursor key to normal appearance so grid returns to focus mode cleanly
         if grid then
             local monId = lastVisibleWs[curKey]
-            local labelColor = (monId and MONITOR_COLORS[monId]) or TEXT_COLOR_DIM
+            local labelColor = colorForMonitor(monId) or TEXT_COLOR_DIM
             patchKey(curKey, monId ~= nil, true, labelColor)  -- true = show * (it's now focused)
         end
     end
