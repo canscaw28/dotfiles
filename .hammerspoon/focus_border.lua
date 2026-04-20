@@ -8,6 +8,7 @@ local M = {}
 local border = nil
 local fadeTimer = nil
 local delayTimer = nil
+local lastWid = nil
 
 local STROKE_WIDTH = 6
 local STROKE_COLOR = {red = 1, green = 0.6, blue = 0.1, alpha = 0.8}
@@ -16,6 +17,7 @@ local DISPLAY_TIME = 0.25
 local FADE_STEPS = 8
 local FADE_INTERVAL = 0.02
 local FLASH_DELAY = 0.05
+local BLINK_GAP = 0.04
 
 local function clearBorder()
     if fadeTimer then
@@ -28,25 +30,8 @@ local function clearBorder()
     end
 end
 
-local function showBorder(frame)
-    clearBorder()
-
-    border = hs.canvas.new(frame)
-    border:level(hs.canvas.windowLevels.overlay)
-    border:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
-    border:clickActivating(false)
-    border:canvasMouseEvents(false)
-    border:appendElements({
-        type = "rectangle",
-        action = "stroke",
-        strokeWidth = STROKE_WIDTH,
-        strokeColor = STROKE_COLOR,
-        roundedRectRadii = {xRadius = CORNER_RADIUS, yRadius = CORNER_RADIUS},
-    })
-
-    border:alpha(1)
-    border:show()
-
+local function scheduleFade()
+    if fadeTimer then fadeTimer:stop() end
     fadeTimer = hs.timer.doAfter(DISPLAY_TIME, function()
         local step = 0
         fadeTimer = hs.timer.doEvery(FADE_INTERVAL, function()
@@ -64,30 +49,47 @@ local function showBorder(frame)
     end)
 end
 
+local function showBorder(frame, wid)
+    clearBorder()
+    lastWid = wid
+
+    border = hs.canvas.new(frame)
+    border:level(hs.canvas.windowLevels.overlay)
+    border:behavior(hs.canvas.windowBehaviors.canJoinAllSpaces + hs.canvas.windowBehaviors.transient)
+    border:clickActivating(false)
+    border:canvasMouseEvents(false)
+    border:appendElements({
+        type = "rectangle",
+        action = "stroke",
+        strokeWidth = STROKE_WIDTH,
+        strokeColor = STROKE_COLOR,
+        roundedRectRadii = {xRadius = CORNER_RADIUS, yRadius = CORNER_RADIUS},
+    })
+
+    border:alpha(1)
+    border:show()
+
+    scheduleFade()
+end
+
+-- Brief alpha dip so a re-flash on the same window reads as input feedback.
+local function blinkBorder()
+    if fadeTimer then fadeTimer:stop(); fadeTimer = nil end
+    border:alpha(0)
+    hs.timer.doAfter(BLINK_GAP, function()
+        if border then
+            border:alpha(1)
+            scheduleFade()
+        end
+    end)
+end
+
 -- Extend the current border's display time without clearing/redrawing.
 -- If no border is showing, does a full flash instead.
 function M.extend()
     if border then
-        if fadeTimer then
-            fadeTimer:stop()
-            fadeTimer = nil
-        end
         border:alpha(1)
-        fadeTimer = hs.timer.doAfter(DISPLAY_TIME, function()
-            local step = 0
-            fadeTimer = hs.timer.doEvery(FADE_INTERVAL, function()
-                step = step + 1
-                if step >= FADE_STEPS then
-                    fadeTimer:stop()
-                    fadeTimer = nil
-                    if border then border:delete(); border = nil end
-                else
-                    if border then
-                        border:alpha(1 - step / FADE_STEPS)
-                    end
-                end
-            end)
-        end)
+        scheduleFade()
     elseif delayTimer then
         -- flash() is pending, let it proceed
     else
@@ -126,21 +128,28 @@ end
 
 -- Flash border on a specific window by AeroSpace window ID.
 -- No delay needed — the caller already knows which window to highlight.
+-- If a border is already showing (e.g. boundary re-flash on the same
+-- window), pulse via a brief alpha dip so the keypress is visible.
 function M.flashWindowId(wid)
     if delayTimer then
         delayTimer:stop()
         delayTimer = nil
     end
-    clearBorder()
 
     local win = hs.window.get(wid)
+    local frame
     if win then
-        showBorder(win:frame())
+        frame = win:frame()
     else
         local screen = hs.mouse.getCurrentScreen()
-        if screen then
-            showBorder(screen:frame())
-        end
+        if screen then frame = screen:frame() end
+    end
+    if not frame then return end
+
+    if border and wid and wid == lastWid then
+        blinkBorder()
+    else
+        showBorder(frame, wid)
     end
 end
 
