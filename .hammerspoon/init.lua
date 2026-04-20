@@ -12,6 +12,7 @@ require("dock_peek")
 require("surround")
 require("expander")
 require("panel_watcher")
+require("iterm_tracker")
 
 -- Auto-reload when config files change (e.g. after git pull + reload.sh --all,
 -- or when editing HS files directly). This replaces the unreliable hs CLI IPC
