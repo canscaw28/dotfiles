@@ -40,10 +40,16 @@ local function displayName(ws)
     return DISPLAY_NAMES[ws] or ws
 end
 
+-- Sort must match AeroSpace's sortedMonitors (Monitor.swift): [rect.minX, rect.minY].
+-- Y is the tiebreaker for vertically stacked displays at the same x.
 local function screenForMonitor(monitorId)
     if not monitorId or monitorId < 1 then return hs.screen.mainScreen() end
     local screens = hs.screen.allScreens()
-    table.sort(screens, function(a, b) return a:frame().x < b:frame().x end)
+    table.sort(screens, function(a, b)
+        local fa, fb = a:frame(), b:frame()
+        if fa.x ~= fb.x then return fa.x < fb.x end
+        return fa.y < fb.y
+    end)
     return screens[monitorId] or hs.screen.mainScreen()
 end
 

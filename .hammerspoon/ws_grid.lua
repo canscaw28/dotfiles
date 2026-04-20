@@ -99,11 +99,18 @@ local function targetMonitor()
     return 0  -- W only = current monitor
 end
 
--- Get screen for an AeroSpace monitor ID (sorted left-to-right to match AeroSpace ordering)
+-- Get screen for an AeroSpace monitor ID. Sort must match AeroSpace's
+-- sortedMonitors (Monitor.swift): [rect.minX, rect.minY]. Y is the tiebreaker
+-- for vertically stacked displays at the same x (e.g. Sidecar + Duet both at
+-- x=1728 on this setup) — without it, ordering leaks through from allScreens().
 local function screenForMonitor(monitorId)
     if not monitorId or monitorId < 1 then return hs.mouse.getCurrentScreen() or hs.screen.mainScreen() end
     local screens = hs.screen.allScreens()
-    table.sort(screens, function(a, b) return a:frame().x < b:frame().x end)
+    table.sort(screens, function(a, b)
+        local fa, fb = a:frame(), b:frame()
+        if fa.x ~= fb.x then return fa.x < fb.x end
+        return fa.y < fb.y
+    end)
     return screens[monitorId]  -- nil if monitor doesn't exist
 end
 
