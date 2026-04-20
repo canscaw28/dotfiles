@@ -2201,7 +2201,7 @@
                     "value": 1
                   }
                 ],
-                "description": "A+M: Toggle Sidecar",
+                "description": "A+M: Connect Displays",
                 "from": {
                   "key_code": "m",
                   "modifiers": {
@@ -2212,7 +2212,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+M\")'; /usr/bin/swift /Users/craig/dev/dotfiles/raycast/toggle-sidecar.swift &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+M\")'; /usr/bin/swift /Users/craig/dev/dotfiles/raycast/connect-displays.swift &"
                   }
                 ],
                 "type": "basic"

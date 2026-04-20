@@ -4,9 +4,9 @@ layer:
 negative_conditions: []
 manipulators:
 - from: m
-  description: 'A+M: Toggle Sidecar'
+  description: 'A+M: Connect Displays'
   to:
-  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+M")'; /usr/bin/swift /Users/craig/dev/dotfiles/raycast/toggle-sidecar.swift &
+  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+M")'; /usr/bin/swift /Users/craig/dev/dotfiles/raycast/connect-displays.swift &
 - from: slash
   description: 'A+/: Clean Dock'
   to:
