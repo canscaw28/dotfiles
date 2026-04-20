@@ -25,7 +25,7 @@ fi
 
 tmux_q() {
     if [ -n "$session" ]; then
-        $tmux display-message -t "$session" -p "$1" 2>/dev/null
+        $tmux display-message -t "$session:" -p "$1" 2>/dev/null
     else
         $tmux display-message -p "$1" 2>/dev/null
     fi
@@ -33,7 +33,7 @@ tmux_q() {
 
 tmux_select() {
     if [ -n "$session" ]; then
-        $tmux select-pane -t "$session" "$1" 2>/dev/null
+        $tmux select-pane -t "$session:" "$1" 2>/dev/null
     else
         $tmux select-pane "$1" 2>/dev/null
     fi
