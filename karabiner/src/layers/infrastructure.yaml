@@ -421,7 +421,7 @@ sections:
     - set_variable:
         name: t_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('t'); require('ws_grid').keyDown('t')" &
+    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('t'); require('ws_grid').keyDown('t'); require('focus_border').flashOnLayerActivate()" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -759,7 +759,7 @@ sections:
     - set_variable:
         name: t_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('t')" &
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('t'); require('focus_border').flashOnLayerActivate()" &
     to_after_key_up:
     - set_variable:
         name: t_is_held
