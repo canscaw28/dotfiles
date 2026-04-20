@@ -31,6 +31,24 @@ visible_on_monitor() {
     done
 }
 
+# Pick a valid workspace that's not currently visible on any monitor.
+# Used as a fallback when the saved monitor mapping is missing or invalid —
+# e.g. a newly-attached monitor with no prior state, or a state file poisoned
+# before save-ws-state.sh learned to filter invalid entries.
+pick_hidden_valid_ws() {
+    local visible=" "
+    local monitors v mon
+    monitors=$(aerospace list-monitors --format '%{monitor-id}' 2>/dev/null)
+    for mon in ${=monitors}; do
+        v=$(aerospace list-workspaces --monitor "$mon" --visible 2>/dev/null)
+        [[ -n "$v" ]] && visible="$visible$v "
+    done
+    for v in ${=VALID_WS}; do
+        [[ "$v" == "~" ]] && continue
+        [[ "$visible" == *" $v "* ]] || { echo "$v"; return; }
+    done
+}
+
 # Summon a workspace to a monitor, using ~ buffer yank if it's visible elsewhere
 summon_to_monitor() {
     local target_mon="$1" ws="$2"
@@ -80,10 +98,15 @@ for ws in "${invalid[@]}"; do
         aerospace move-node-to-workspace --window-id "$wid" 0 2>/dev/null || true
     done
 
-    # If visible on a monitor, replace it with a valid workspace
+    # If visible on a monitor, replace it with a valid workspace.
+    # Validate the saved mapping — a tainted entry (same invalid ws as what
+    # we're cleaning up) would make summon_to_monitor a no-op.
     inv_mon=$(visible_on_monitor "$ws")
     if [[ -n "$inv_mon" ]]; then
-        replacement="${SAVED_MON[$inv_mon]:-0}"
-        summon_to_monitor "$inv_mon" "$replacement"
+        replacement="${SAVED_MON[$inv_mon]:-}"
+        if ! is_valid "$replacement" || [[ "$replacement" == "~" ]]; then
+            replacement=$(pick_hidden_valid_ws)
+        fi
+        [[ -n "$replacement" ]] && summon_to_monitor "$inv_mon" "$replacement"
     fi
 done
