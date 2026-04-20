@@ -51,7 +51,13 @@ fi
 # At boundary — cross to adjacent monitor (no --wrap-around, so
 # nothing happens if no monitor exists in this direction)
 if ! aerospace focus-monitor "$direction" 2>/dev/null; then
-    /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null
+    WID=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || WID=""
+    if [ -n "$WID" ]; then
+        /usr/local/bin/hs -c "require('focus_border').flashWindowId($WID)" 2>/dev/null &
+    else
+        /usr/local/bin/hs -c "require('focus_border').flash(true)" 2>/dev/null &
+    fi
     exit 0
 fi
 
