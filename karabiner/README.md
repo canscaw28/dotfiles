@@ -565,7 +565,7 @@ macOS system toggles and input source management. Unlike other layers, A does no
 | [⇪+A] + I | Mission Control | Shows Mission Control |
 | [⇪+A] + O | Show Desktop | Shows the desktop (fn+F11) |
 | [⇪+A] + . | Reload All Configs | Runs `reload.sh --all` (AeroSpace, Karabiner, Hammerspoon, iTerm2, text-expander, shell, Chrome) |
-| [⇪+A] + M | Connect Displays | Connects Sidecar to `CW iPad`; launches Duet so its Air Auto-Connect attaches `CW iPad 2`. Idempotent — never disconnects. Disconnect manually from the iPad. |
+| [⇪+A] + M | Connect Displays | Connects Sidecar to `CW iPad`. Idempotent — never disconnects. Disconnect manually from the iPad. |
 | [⇪+A] + / | Clean Dock | Removes recent apps from Dock |
 | [⇪+A] + , | Workspace Setup | Opens apps (iTerm2→k, Messages→n, Rize→n, Slack→m) and moves windows to assigned workspaces |
 

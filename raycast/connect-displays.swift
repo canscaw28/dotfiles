@@ -11,8 +11,6 @@
 
 import Foundation
 
-// Sidecar supports only one simultaneous connection, so target a specific iPad.
-// The other iPad is handled by Duet's Air Auto-Connect.
 let sidecarTarget = "CW iPad"
 
 if let bundle = Bundle(path: "/System/Library/PrivateFrameworks/SidecarCore.framework"), bundle.load(),
@@ -48,10 +46,3 @@ if let bundle = Bundle(path: "/System/Library/PrivateFrameworks/SidecarCore.fram
 } else {
     print("Sidecar: framework load failed")
 }
-
-// Duet: ensure app is running; Air Auto-Connect pref handles the link itself.
-let open = Process()
-open.launchPath = "/usr/bin/open"
-open.arguments = ["-ga", "duet"]
-try? open.run()
-open.waitUntilExit()
