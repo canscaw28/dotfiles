@@ -1,0 +1,20 @@
+diff --git a/Sources/AppBundle/tree/MacApp.swift b/Sources/AppBundle/tree/MacApp.swift
+index 0000000..1111111 100644
+--- a/Sources/AppBundle/tree/MacApp.swift
++++ b/Sources/AppBundle/tree/MacApp.swift
+@@ -123,7 +123,15 @@
+                 // Raise firstly to make sure that by the time we activate the app, the window would be already on top
+                 window.set(Ax.isMainAttr, true)
+                 AXUIElementPerformAction(window, kAXRaiseAction as CFString)
+                 nsApp.activate(options: .activateIgnoringOtherApps)
++                // Cross-app activation can let the target app pick its own key window
++                // after .activate() runs (e.g. iTerm2 raising its most-recently-used
++                // window from a different monitor), overriding the isMain/raise above.
++                // Re-assert once the app's DidBecomeActive handler has had a chance to run.
++                Thread.sleep(forTimeInterval: 0.05)
++                if job.isCancelled { return }
++                window.set(Ax.isMainAttr, true)
++                AXUIElementPerformAction(window, kAXRaiseAction as CFString)
+             }
+         }
+     }
