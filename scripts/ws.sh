@@ -5,10 +5,8 @@
 # Usage: ws.sh <operation> [workspace]
 # Operations:
 #   focus       Switch to workspace on the currently focused monitor
-#   focus-1     Focus workspace on monitor 1
-#   focus-2     Focus workspace on monitor 2 (falls back to monitor 1)
-#   focus-3     Focus workspace on monitor 3 (falls back to monitor 1)
-#   focus-4     Focus workspace on monitor 4 (falls back to monitor 1)
+#   focus-1     Focus workspace on E-key target (MacBook; Duet if on MacBook; else no-op)
+#   focus-2     Focus workspace on R-key target (external; Duet if on external; else no-op)
 #   move        Move focused window to workspace (stay on current)
 #   move-focus  Move focused window to workspace, follow it on current monitor
 #   swap        Swap current workspace with selected workspace between monitors
@@ -99,20 +97,53 @@ cache_state() {
 # --- AeroSpace helpers ---
 
 resolve_monitor() {
-    local target=$1
-    local monitors
+    # Translate semantic slot (1=E-key target, 2=R-key target) to a live
+    # AeroSpace monitor ID by display name, relative to the currently
+    # focused monitor. Slot 1 prefers MacBook, slot 2 prefers external
+    # (Sidecar/Dell) — whichever they'd be if not already current; otherwise
+    # fall back to Duet. Returns current monitor when no valid target exists
+    # (keypress becomes a no-op).
+    local slot=$1
+    local builtin_id="" duet_id="" other_id=""
+    while IFS= read -r line; do
+        local id name
+        id=${line%% *}
+        name=${line#* }
+        case "$name" in
+            *Built-in*) builtin_id="$id" ;;
+            *Duet*)     duet_id="$id" ;;
+            *)          [[ -z "$other_id" ]] && other_id="$id" ;;
+        esac
+    done < <(aerospace list-monitors --format '%{monitor-id} %{monitor-name}')
+
+    local current
     if [[ $_CACHED -eq 1 ]]; then
-        monitors=("${_C_MONITORS[@]}")
+        current="$_C_FOCUSED_MON"
     else
-        monitors=($(aerospace list-monitors --format '%{monitor-id}'))
+        current=$(aerospace list-monitors --focused --format '%{monitor-id}')
     fi
-    for mon in "${monitors[@]}"; do
-        if [[ "$mon" == "$target" ]]; then
-            echo "$target"
-            return
-        fi
-    done
-    echo "1"
+
+    case "$slot" in
+        1)
+            if [[ -n "$builtin_id" && "$builtin_id" != "$current" ]]; then
+                echo "$builtin_id"
+            elif [[ -n "$duet_id" && "$duet_id" != "$current" ]]; then
+                echo "$duet_id"
+            else
+                echo "$current"
+            fi
+            ;;
+        2)
+            if [[ -n "$other_id" && "$other_id" != "$current" ]]; then
+                echo "$other_id"
+            elif [[ -n "$duet_id" && "$duet_id" != "$current" ]]; then
+                echo "$duet_id"
+            else
+                echo "$current"
+            fi
+            ;;
+        *) echo "${current:-1}" ;;
+    esac
 }
 
 next_monitor() {

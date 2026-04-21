@@ -84,22 +84,6 @@ local AERO_TO_KEY = {
 -- Reverse map: grid display key to AeroSpace workspace name
 local KEY_TO_AERO = {[","] = "comma"}
 
--- Map sub-mode keys to AeroSpace monitor IDs
-local MODE_TO_MONITOR = {e = 1, r = 2}
-
--- Determine target monitor ID for grid display (nil = don't show)
-local function targetMonitor()
-    if not keys.t then return nil end
-    if keys["3"] and not keys.w then return 0 end  -- swap-windows mode (T+3)
-    if keys.e and not keys.w then return 0 end  -- move/move-focus mode
-    if not keys.w then return nil end
-    -- W held: check if a focus-on-monitor sub-mode is active
-    for k, monId in pairs(MODE_TO_MONITOR) do
-        if keys[k] then return monId end
-    end
-    return 0  -- W only = current monitor
-end
-
 -- Get screen for an AeroSpace monitor ID. Sort must match AeroSpace's
 -- sortedMonitors (Monitor.swift): [rect.minX, rect.minY]. Y is the tiebreaker
 -- for vertically stacked displays at the same x (e.g. Sidecar + Duet both at
@@ -113,6 +97,52 @@ local function screenForMonitor(monitorId)
         return fa.y < fb.y
     end)
     return screens[monitorId]  -- nil if monitor doesn't exist
+end
+
+-- Resolve a semantic slot (1=E target, 2=R target) to a live AeroSpace
+-- monitor ID, relative to the currently focused monitor. Mirrors
+-- ws.sh's resolve_monitor: slot 1 prefers MacBook, slot 2 prefers
+-- external, both fall back to Duet when their preferred target is
+-- current. Returns current monitor when no valid target exists.
+local function physicalMonitorForSlot(slot)
+    local screens = hs.screen.allScreens()
+    table.sort(screens, function(a, b)
+        local fa, fb = a:frame(), b:frame()
+        if fa.x ~= fb.x then return fa.x < fb.x end
+        return fa.y < fb.y
+    end)
+    local builtin, duet, other
+    for i, s in ipairs(screens) do
+        local name = (s:name() or ""):lower()
+        if name:find("built%-in") then builtin = builtin or i
+        elseif name:find("duet") then duet = duet or i
+        else other = other or i end
+    end
+    local current = lastFocusedMonId
+    if slot == 1 then
+        if builtin and builtin ~= current then return builtin end
+        if duet and duet ~= current then return duet end
+        return current or builtin or 1
+    end
+    if slot == 2 then
+        if other and other ~= current then return other end
+        if duet and duet ~= current then return duet end
+        return current or other or builtin or 1
+    end
+    return current or 1
+end
+
+-- Determine target physical AeroSpace monitor ID for grid display
+-- (nil = don't show, 0 = current monitor).
+local function targetMonitor()
+    if not keys.t then return nil end
+    if keys["3"] and not keys.w then return 0 end  -- swap-windows mode (T+3)
+    if keys.e and not keys.w then return 0 end  -- move/move-focus mode
+    if not keys.w then return nil end
+    -- W held: map sub-mode combinations through semantic slot → physical
+    if keys.e then return physicalMonitorForSlot(1) end
+    if keys.r then return physicalMonitorForSlot(2) end
+    return 0  -- W only = current monitor
 end
 
 -- Map AeroSpace monitor ID → color slot by display identity, not position.
@@ -750,8 +780,8 @@ local function decodeMode(flags)
     -- Encoding matches apply_t_ws_layer.py OPERATIONS extra_modifiers:
     if m then return "nav", nil, false, false end              -- fn+cmd (T+W+4 nav)
     if s and c and o then return "swap-windows", nil, true, false end
-    if o then return "focus-2", 2, false, false end            -- T+W+R
-    if s and c then return "focus-1", 1, false, false end      -- T+W+E
+    if o then return "focus-2", physicalMonitorForSlot(2), false, false end        -- T+W+R
+    if s and c then return "focus-1", physicalMonitorForSlot(1), false, false end  -- T+W+E
     if c then return "move-focus", nil, false, false end       -- T+R+E
     if s then return "move", nil, false, true end              -- T+E
     return "focus", nil, false, false                          -- fn only (T+W)

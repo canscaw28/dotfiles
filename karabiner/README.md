@@ -470,17 +470,14 @@ n  m  ,  .  /
 | [⇪+T+R+E] + *key* | Move window to workspace and follow on current monitor |
 | [⇪+T+R+E] + ' | Move window to next monitor and yank that workspace back |
 
-### Focus Monitor 1 (⇪+T + W + E)
+### Focus Other Monitor (⇪+T + W + E / R)
+
+E and R target the two "other" monitors relative to where you currently are. E prefers MacBook, R prefers external (Sidecar / Dell); when that preferred target is the current monitor, it falls back to Duet. On 2-monitor setups this collapses to the obvious meaning: E → MacBook, R → external (and pressing the key for the current monitor is a no-op).
 
 | Key / Shortcut | Description |
 | --- | --- |
-| [⇪+T+W+E] + *key* | Focus workspace on monitor 1 |
-
-### Focus Monitor 2 (⇪+T + W + R)
-
-| Key / Shortcut | Description |
-| --- | --- |
-| [⇪+T+W+R] + *key* | Focus workspace on monitor 2 (falls back to monitor 1) |
+| [⇪+T+W+E] + *key* | Focus workspace on MacBook (or Duet if already on MacBook) |
+| [⇪+T+W+R] + *key* | Focus workspace on external — Sidecar or Dell (or Duet if already on external) |
 
 ### Swap Windows (⇪+T + 3)
 
