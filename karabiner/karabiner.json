@@ -1084,6 +1084,11 @@
                     "name": "f_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "d_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -1124,6 +1129,11 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -1163,6 +1173,11 @@
                     "name": "f_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "s_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
@@ -1203,6 +1218,11 @@
                     "name": "caps_lock_is_held",
                     "type": "variable_if",
                     "value": 1
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 0
                   }
                 ],
                 "from": {
