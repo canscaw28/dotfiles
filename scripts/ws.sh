@@ -240,7 +240,17 @@ focus_ws_on_monitor() {
     _swap_visible_workspaces "$ws" "$target_mon" "$current_ws" "$ws_mon" 0.03
 
     aerospace focus-monitor "$target_mon"
-    [[ $_CACHED -eq 1 ]] && cache_state
+    # Update cache explicitly from the known post-swap state instead of
+    # re-querying via cache_state. summon-workspace can leave AeroSpace's
+    # focused-monitor state momentarily stale, so a fresh query here races
+    # with the focus-monitor call above and can propagate a wrong
+    # _C_FOCUSED_MON to the next queued op (causing rapid keypresses to
+    # target the wrong monitor).
+    if [[ $_CACHED -eq 1 ]]; then
+        printf -v "_C_MON_WS_${target_mon}" '%s' "$ws"
+        printf -v "_C_MON_WS_${ws_mon}" '%s' "$current_ws"
+        _C_FOCUSED_MON="$target_mon"
+    fi
 }
 
 # Swap two workspaces between monitors, verifying and retrying on failure.
