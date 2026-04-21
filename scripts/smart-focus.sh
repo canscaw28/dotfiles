@@ -36,32 +36,28 @@ case "$direction" in
     left|up)    edge_want="last"  ;;
 esac
 
-# Spawn border flash as soon as the target WID is known, then do move-mouse.
-# hs -c is backgrounded so move-mouse runs concurrently with the flash.
-flash_and_move_mouse() {
-    local monitor_only="$1"
-    local wid
-    wid=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || wid=""
-    if [ -n "$wid" ]; then
-        /usr/local/bin/hs -c "require('focus_border').flashWindowId($wid)" 2>/dev/null &
-    elif [ "$monitor_only" = "true" ]; then
-        /usr/local/bin/hs -c "require('focus_border').flash(true)" 2>/dev/null &
+# Try to focus within the current workspace (fail at boundary instead of wrapping)
+if aerospace focus --boundaries-action fail "$direction" 2>/dev/null; then
+    aerospace move-mouse window-lazy-center 2>/dev/null || true
+    WID=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || WID=""
+    if [ -n "$WID" ]; then
+        /usr/local/bin/hs -c "require('focus_border').flashWindowId($WID)" 2>/dev/null &
     else
         /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
     fi
-    aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null
-}
-
-# Try to focus within the current workspace (fail at boundary instead of wrapping)
-if aerospace focus --boundaries-action fail "$direction" 2>/dev/null; then
-    flash_and_move_mouse false
     exit 0
 fi
 
 # At boundary — cross to adjacent monitor (no --wrap-around, so
 # nothing happens if no monitor exists in this direction)
 if ! aerospace focus-monitor "$direction" 2>/dev/null; then
-    flash_and_move_mouse true
+    aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null
+    WID=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || WID=""
+    if [ -n "$WID" ]; then
+        /usr/local/bin/hs -c "require('focus_border').flashWindowId($WID)" 2>/dev/null &
+    else
+        /usr/local/bin/hs -c "require('focus_border').flash(true)" 2>/dev/null &
+    fi
     exit 0
 fi
 
@@ -78,4 +74,10 @@ else
         fi
     fi
 fi
-flash_and_move_mouse true
+aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null
+WID=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || WID=""
+if [ -n "$WID" ]; then
+    /usr/local/bin/hs -c "require('focus_border').flashWindowId($WID)" 2>/dev/null &
+else
+    /usr/local/bin/hs -c "require('focus_border').flash(true)" 2>/dev/null &
+fi
