@@ -187,7 +187,21 @@ visible_on_monitor() {
     done
 }
 
-BUFFER_WS='~'
+# Swap two workspaces visible on different monitors.
+# Args: $1=ws_a $2=mon_a $3=ws_b $4=mon_b $5=delay (default 0.03)
+# Preconditions: ws_a visible on mon_b, ws_b visible on mon_a, mon_a != mon_b.
+# Postcondition: ws_a on mon_a, ws_b on mon_b. Uninvolved monitors untouched.
+#
+# move-workspace-to-monitor --workspace relocates ws_a from mon_b to mon_a.
+# AeroSpace displaces ws_b (was on mon_a) to hidden state; mon_b briefly
+# shows a fallback workspace. summon-workspace then pulls ws_b back to mon_b,
+# replacing the fallback. Final focus is on mon_b — caller adjusts if needed.
+_swap_visible_workspaces() {
+    local ws_a="$1" mon_a="$2" ws_b="$3" mon_b="$4" D="${5:-0.03}"
+    aerospace move-workspace-to-monitor --workspace "$ws_a" "$mon_a"; sleep "$D"
+    aerospace focus-monitor "$mon_b"; sleep "$D"
+    aerospace summon-workspace "$ws_b"
+}
 
 # Focus a workspace on a specific monitor.
 # summon-workspace only works for hidden workspaces — for a workspace that's
@@ -218,88 +232,38 @@ focus_ws_on_monitor() {
         return
     fi
 
-    # ws is visible on ws_mon, want it on target_mon — swap the two
-    # workspaces so both stay visible (old ws goes to ws_mon).
-    # Uses ~ as a temporary buffer on mon1 to avoid AeroSpace picking
-    # random fallback workspaces during the transition.
+    # ws visible on ws_mon, want it on target_mon. Swap so both stay visible.
     local current_ws
     local var="_C_MON_WS_${target_mon}"
     current_ws="${!var}"
 
-    # Determine which workspace is on mon1 vs the other monitor.
-    local ws_on_1 ws_on_other other_mon
-    if [[ "$target_mon" == "1" ]]; then
-        ws_on_1="$current_ws"   # current_ws is on target_mon=1
-        ws_on_other="$ws"       # ws is on ws_mon
-        other_mon="$ws_mon"
-    else
-        ws_on_1="$ws"           # ws is on ws_mon=1
-        ws_on_other="$current_ws" # current_ws is on target_mon
-        other_mon="$target_mon"
-    fi
+    _swap_visible_workspaces "$ws" "$target_mon" "$current_ws" "$ws_mon" 0.03
 
-    # 1. Create ~ on mon1, hiding ws_on_1. ~ never leaves mon1.
-    aerospace workspace "$BUFFER_WS"; sleep 0.03
-    # 2. Summon ws_on_1 (now hidden) to the other monitor, hiding ws_on_other.
-    aerospace focus-monitor "$other_mon"; sleep 0.03
-    aerospace summon-workspace "$ws_on_1"; sleep 0.03
-    # 3. Summon ws_on_other (now hidden) to mon1, hiding ~ (GC'd).
-    aerospace focus-monitor 1; sleep 0.03
-    aerospace summon-workspace "$ws_on_other"
-    # 4. Focus the target monitor showing the requested workspace.
     aerospace focus-monitor "$target_mon"
     [[ $_CACHED -eq 1 ]] && cache_state
 }
 
-# Swap two workspaces between monitors using summon-workspace.
-# Args: $1=workspace_a $2=dest_monitor_a $3=workspace_b $4=dest_monitor_b
-# ws_a starts on mon_b (the focused monitor), ws_b starts on mon_a.
-#
-# Uses ~ as an empty buffer workspace to avoid flashing existing workspaces
-# during the swap. AeroSpace creates new workspaces on monitor 1, so ~ always
-# lands there. summon-workspace pulls hidden workspaces to the focused monitor
-# without disrupting the source monitor's visible workspace.
-#
-# AeroSpace occasionally drops commands in rapid succession, so swaps are
-# verified and retried with a longer delay if needed.
+# Swap two workspaces between monitors, verifying and retrying on failure.
+# Args: $1=ws_a $2=mon_a $3=ws_b $4=mon_b
+# ws_a starts on mon_b (focused monitor), ws_b starts on mon_a.
+# AeroSpace occasionally drops commands in rapid succession.
 swap_workspaces() {
     local ws_a="$1" mon_a="$2" ws_b="$3" mon_b="$4"
-
-    # ~ buffer always lands on mon1, hiding whatever is visible there.
-    # Determine which workspace is on mon1 vs the other monitor.
-    local ws_on_1 ws_on_other other_mon
-    if [[ "$mon_a" == "1" ]]; then
-        ws_on_1="$ws_b"       # ws_b is on mon_a=1
-        ws_on_other="$ws_a"   # ws_a is on mon_b
-        other_mon="$mon_b"
-    else
-        ws_on_1="$ws_a"       # ws_a is on mon_b=1
-        ws_on_other="$ws_b"   # ws_b is on mon_a
-        other_mon="$mon_a"
-    fi
-
     local D=0.05
     local attempt
     for attempt in 1 2; do
-        # 1. Create ~ on mon1, hiding ws_on_1. Focus moves to mon1.
-        aerospace workspace "$BUFFER_WS";  sleep "$D"
-        # 2. Focus the other monitor, then summon ws_on_1 (hidden on mon1) there.
-        aerospace focus-monitor "$other_mon";  sleep "$D"
-        aerospace summon-workspace "$ws_on_1"; sleep "$D"
-        # 3. Focus mon1 (showing ~), then summon ws_on_other (hidden on other mon).
-        aerospace focus-monitor 1;             sleep "$D"
-        aerospace summon-workspace "$ws_on_other"
-        # 4. Focus back to the original monitor showing ws_b.
+        _swap_visible_workspaces "$ws_a" "$mon_a" "$ws_b" "$mon_b" "$D"
+        # Focus back to mon_b showing ws_b (the original focused monitor).
         aerospace workspace "$ws_b"
 
-        # Verify: check both monitors show the expected workspaces
         local actual_a actual_b
         actual_a=$(aerospace list-workspaces --monitor "$mon_a" --visible)
         actual_b=$(aerospace list-workspaces --monitor "$mon_b" --visible)
         if [[ "$actual_a" == "$ws_a" && "$actual_b" == "$ws_b" ]]; then
             return 0
         fi
-        # Failed — increase delay and retry
+        # Failed — refresh cache (ws1p may have moved) and retry with longer delay
+        cache_state
         D=0.1
     done
 }
