@@ -3,7 +3,7 @@
 Not a typical dotfiles repo — it's a keyboard-driven utility layer on top of macOS:
 
 - **Modal keyboard layers** via Caps Lock (window management, navigation, text editing, cursor control)
-- **Tiling window manager** with a custom AeroSpace build (focus-guard + freeze-tiling + diagonal-monitor patches)
+- **Tiling window manager** with a custom AeroSpace build (focus-guard + freeze-tiling + diagonal-monitor + activate-race patches)
 - **Visual feedback** — workspace grid overlay, focus border flash, HUD notifications
 - **Automation glue** tying Karabiner, Hammerspoon, and shell scripts into one system
 
@@ -25,10 +25,11 @@ Not a typical dotfiles repo — it's a keyboard-driven utility layer on top of m
 
 ### Window Management
 - `.aerospace.toml` - [AeroSpace](https://github.com/nikitabobko/AeroSpace) tiling window manager
-- `aerospace/` - Custom AeroSpace build with three patches:
+- `aerospace/` - Custom AeroSpace build with four patches:
   - **focus-guard** - Suppresses unwanted app-initiated focus changes (e.g. Chrome reasserting focus) that fire within 250ms of an AeroSpace command
   - **freeze-tiling** - Adds a `freeze-tiling` command to pause automatic retiling without disabling AeroSpace (useful for Dock toggling)
   - **diagonal-monitor** - Fixes `focus-monitor`/`move-node-to-monitor` directional resolution so diagonally offset displays (e.g. layout `A B / C` where C sits above B) aren't treated as vertical neighbours of A
+  - **activate-race** - Re-asserts AX focus 50ms after cross-app `nsApp.activate()`, so the target app (e.g. iTerm2) can't override the raise by promoting its own most-recently-used window
   - Built via `aerospace/build.sh` against a pinned AeroSpace version
 
 ### Keyboard
