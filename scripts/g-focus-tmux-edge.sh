@@ -41,10 +41,6 @@ tmux_select() {
 at_edge=$(tmux_q "#{$edge_var}")
 if [ "$at_edge" = "1" ]; then
     smart-focus.sh "$direction"
-    app=$(aerospace list-windows --focused --format '%{app-name}' 2>/dev/null || true)
-    if [ "$app" = "Google Chrome" ]; then
-        /usr/local/bin/hs -c "require('chrome_tabs').landNearEdge('$direction')" 2>/dev/null &
-    fi
     exit 0
 fi
 

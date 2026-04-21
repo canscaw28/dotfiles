@@ -91,14 +91,4 @@ function M.stopRepeat()
     end
 end
 
--- Land on the tab closest to where the user came from.
--- Called after focusing a Chrome window from another app (e.g. tmux).
--- going left/up → land on last tab (rightmost, closest to origin)
--- going right/down → land on first tab (leftmost, closest to origin)
-function M.landNearEdge(direction)
-    raiseChrome()
-    local step = (direction == "right" or direction == "down") and "first" or "last"
-    asyncJxa(buildTabScript(step), nil)
-end
-
 return M

@@ -47,9 +47,3 @@ fi
 
 # At edge or no tmux — fall back to AeroSpace window focus
 smart-focus.sh "$direction"
-
-# If we landed on a Chrome window, jump to the near-edge tab
-app=$(aerospace list-windows --focused --format '%{app-name}' 2>/dev/null || true)
-if [ "$app" = "Google Chrome" ]; then
-    /usr/local/bin/hs -c "require('chrome_tabs').landNearEdge('$direction')" 2>/dev/null &
-fi
