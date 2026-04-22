@@ -47,9 +47,6 @@ Not a typical dotfiles repo — it's a keyboard-driven utility layer on top of m
 - `scripts/` - Utility scripts (auto-symlinked to `~/.local/bin/` by `install.sh`)
   - `ws.sh` - Workspace operations (focus, move, swap) with command queuing
   - `smart-focus.sh` / `smart-move.sh` - Cross-monitor window focus and movement
-  - `apply_t_ws_layer.py` - Generates T layer workspace manipulators in karabiner.json
-  - `apply_physical_trackers.py` - Generates physical key tracker manipulators
-  - `apply_f_cursor_grid.py` - Generates F layer cursor grid manipulators
   - `save-ws-state.sh` / `restore-ws-state.sh` - Window-to-workspace state preservation across AeroSpace restarts
   - `dock-peek.sh` / `clean-dock.sh` / `dock-toggle` - Dock management utilities
   - `toggle-input-source.sh` - Input source switching
