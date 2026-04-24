@@ -317,7 +317,8 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId, windowCounts)
     grid:clickActivating(false)
     grid:canvasMouseEvents(false)
 
-    -- Plate: one opaque rounded rect per row, overlapping vertically.
+    -- Plate: one rounded rect per row, merged into a single path so
+    -- overlapping regions fill once (no alpha accumulation/darkening).
     local PLATE_PAD = 12
     local PLATE_RADIUS = 10
     local PLATE_COLOR = {red = 0.1, green = 0.1, blue = 0.12, alpha = 0.85}
@@ -334,7 +335,7 @@ local function drawGrid(visibleWs, focusedKey, focusedMonId, windowCounts)
         end
         grid:appendElements({
             type = "rectangle",
-            action = "fill",
+            action = rowIdx == numRows and "fill" or "build",
             fillColor = PLATE_COLOR,
             roundedRectRadii = {xRadius = PLATE_RADIUS, yRadius = PLATE_RADIUS},
             frame = {x = rLeft, y = rTop, w = rW, h = rH},
