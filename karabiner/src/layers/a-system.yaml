@@ -6,11 +6,11 @@ manipulators:
 - from: m
   description: 'A+M: Connect Displays'
   to:
-  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+M")'; /usr/bin/swift /Users/craig/dev/dotfiles/raycast/connect-displays.swift &
+  - shell: /opt/homebrew/bin/hs -c 'require("a_layer_notify").show("⇪+A+M")'; /usr/bin/swift /Users/craig/dev/dotfiles/raycast/connect-displays.swift &
 - from: slash
   description: 'A+/: Clean Dock'
   to:
-  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+/")'; /bin/bash /Users/craig/dev/dotfiles/scripts/clean-dock.sh &
+  - shell: /opt/homebrew/bin/hs -c 'require("a_layer_notify").show("⇪+A+/")'; /bin/bash /Users/craig/dev/dotfiles/scripts/clean-dock.sh &
 - from: h
   description: 'A+H: Switch to English (U.S.)'
   to:
@@ -24,26 +24,26 @@ manipulators:
 - from: u
   description: 'A+U: Toggle Notification Center'
   to:
-  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+U")'; /usr/bin/osascript -e 'tell application "System Events" to tell application process "ControlCenter" to click (first menu bar item of menu bar 1 whose description is "Clock")' &
+  - shell: /opt/homebrew/bin/hs -c 'require("a_layer_notify").show("⇪+A+U")'; /usr/bin/osascript -e 'tell application "System Events" to tell application process "ControlCenter" to click (first menu bar item of menu bar 1 whose description is "Clock")' &
 - from: i
   description: 'A+I: Mission Control'
   to:
-  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+I")' &
+  - shell: /opt/homebrew/bin/hs -c 'require("a_layer_notify").show("⇪+A+I")' &
   - mission_control
 - from: o
   description: 'A+O: Show Desktop'
   to:
-  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+O"); require("show_desktop").toggle()' &
+  - shell: /opt/homebrew/bin/hs -c 'require("a_layer_notify").show("⇪+A+O"); require("show_desktop").toggle()' &
   - - f11
     - fn
 - from: comma
   description: 'A+comma: Workspace setup (open & place apps)'
   to:
-  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+,")'; /bin/bash /Users/craig/.local/bin/workspace-setup.sh &
+  - shell: /opt/homebrew/bin/hs -c 'require("a_layer_notify").show("⇪+A+,")'; /bin/bash /Users/craig/.local/bin/workspace-setup.sh &
 - from: period
   description: 'A+.: Reload all configs'
   to:
-  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").showSpinner("Reloading")'; /bin/bash /Users/craig/dev/dotfiles/reload.sh --all &
+  - shell: /opt/homebrew/bin/hs -c 'require("a_layer_notify").showSpinner("Reloading")'; /bin/bash /Users/craig/dev/dotfiles/reload.sh --all &
 - from: right_shift
   description: 'A+right_shift: Toggle input source (caps_lock)'
   to:
@@ -52,4 +52,4 @@ manipulators:
 - from: y
   description: 'A+Y: Toggle Dock'
   to:
-  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+Y"); require("dock_peek").toggle()' &
+  - shell: /opt/homebrew/bin/hs -c 'require("a_layer_notify").show("⇪+A+Y"); require("dock_peek").toggle()' &

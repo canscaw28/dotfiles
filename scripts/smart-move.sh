@@ -22,7 +22,7 @@ esac
 # Try to move within the current workspace
 if aerospace move --boundaries-action fail "$direction" 2>/dev/null; then
     sleep 0.01 && aerospace move-mouse window-force-center
-    /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    /opt/homebrew/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
     exit 0
 fi
 
@@ -41,17 +41,17 @@ esac
 if $is_cross_axis; then
     aerospace move "$direction"
     sleep 0.01 && aerospace move-mouse window-force-center
-    /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    /opt/homebrew/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
     exit 0
 fi
 
 # At boundary in the same axis — cross to adjacent monitor
 if ! aerospace move-node-to-monitor "$direction" --focus-follows-window 2>/dev/null; then
-    /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    /opt/homebrew/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
     exit 0
 fi
 
 # Position window at the entering edge (moving right → leftmost position, etc.)
 while aerospace move --boundaries-action fail "$opposite" 2>/dev/null; do :; done
 aerospace move-mouse window-force-center
-/usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+/opt/homebrew/bin/hs -c "require('focus_border').flash()" 2>/dev/null &

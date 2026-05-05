@@ -23,7 +23,7 @@ sections:
         value: 0
     - key_code: right_shift
     - key_code: right_shift
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     type: basic
   - from: non_us_backslash
     to:
@@ -34,7 +34,7 @@ sections:
     to_after_key_up:
     - set:
         caps_lock_is_held: 0
-    - shell: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell: /opt/homebrew/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     to_delayed_action:
       to_if_canceled:
       - set_variable:
@@ -67,7 +67,7 @@ sections:
     - set_variable:
         name: a_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('a')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').start('a')" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -75,7 +75,7 @@ sections:
     - set_variable:
         name: caps_lock_pressed
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     to_delayed_action:
       to_if_canceled:
       - set_variable:
@@ -106,7 +106,7 @@ sections:
     - set_variable:
         name: s_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('s')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').start('s')" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -114,7 +114,7 @@ sections:
     - set_variable:
         name: caps_lock_pressed
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     to_delayed_action:
       to_if_canceled:
       - set_variable:
@@ -145,7 +145,7 @@ sections:
     - set_variable:
         name: d_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('d')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').start('d')" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -153,7 +153,7 @@ sections:
     - set_variable:
         name: caps_lock_pressed
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     to_delayed_action:
       to_if_canceled:
       - set_variable:
@@ -187,7 +187,7 @@ sections:
     - key_code: '0'
       modifiers:
       - control
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('f'); require('cursor_grid').activate()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').start('f'); require('cursor_grid').activate()" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -195,7 +195,7 @@ sections:
     - set_variable:
         name: caps_lock_pressed
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     to_delayed_action:
       to_if_canceled:
       - set_variable:
@@ -226,7 +226,7 @@ sections:
     - set_variable:
         name: r_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('r'); require('ws_grid').keyDown('r')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').start('r'); require('ws_grid').keyDown('r')" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -234,7 +234,7 @@ sections:
     - set_variable:
         name: caps_lock_pressed
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     to_delayed_action:
       to_if_canceled:
       - set_variable:
@@ -265,7 +265,7 @@ sections:
     - set_variable:
         name: e_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('e'); require('ws_grid').keyDown('e')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').start('e'); require('ws_grid').keyDown('e')" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -273,7 +273,7 @@ sections:
     - set_variable:
         name: caps_lock_pressed
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     to_delayed_action:
       to_if_canceled:
       - set_variable:
@@ -304,7 +304,7 @@ sections:
     - set_variable:
         name: w_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('w'); require('ws_grid').keyDown('w')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').start('w'); require('ws_grid').keyDown('w')" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -312,7 +312,7 @@ sections:
     - set_variable:
         name: caps_lock_pressed
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     to_delayed_action:
       to_if_canceled:
       - set_variable:
@@ -343,7 +343,7 @@ sections:
     - set_variable:
         name: 4_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('4'); require('ws_grid').keyDown('4')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').start('4'); require('ws_grid').keyDown('4')" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -351,7 +351,7 @@ sections:
     - set_variable:
         name: caps_lock_pressed
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     to_delayed_action:
       to_if_canceled:
       - set_variable:
@@ -382,7 +382,7 @@ sections:
     - set_variable:
         name: 3_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('3'); require('ws_grid').keyDown('3')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').start('3'); require('ws_grid').keyDown('3')" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -390,7 +390,7 @@ sections:
     - set_variable:
         name: caps_lock_pressed
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     to_delayed_action:
       to_if_canceled:
       - set_variable:
@@ -421,7 +421,7 @@ sections:
     - set_variable:
         name: t_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('t'); require('ws_grid').keyDown('t'); require('focus_border').flashOnLayerActivate()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').start('t'); require('ws_grid').keyDown('t'); require('focus_border').flashOnLayerActivate()" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -429,7 +429,7 @@ sections:
     - set_variable:
         name: caps_lock_pressed
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     to_delayed_action:
       to_if_canceled:
       - set_variable:
@@ -460,7 +460,7 @@ sections:
     - set_variable:
         name: g_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('g'); require('focus_border').flash()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').start('g'); require('focus_border').flash()" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -468,7 +468,7 @@ sections:
     - set_variable:
         name: caps_lock_pressed
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     to_delayed_action:
       to_if_canceled:
       - set_variable:
@@ -499,7 +499,7 @@ sections:
     - set_variable:
         name: q_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').start('q'); require('surround').start()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').start('q'); require('surround').start()" &
     to_after_key_up:
     - set_variable:
         name: caps_lock_is_held
@@ -507,7 +507,7 @@ sections:
     - set_variable:
         name: caps_lock_pressed
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop(); require('surround').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop(); require('surround').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()" &
     to_delayed_action:
       to_if_canceled:
       - set_variable:
@@ -557,12 +557,12 @@ sections:
     - set_variable:
         name: s_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('s', 32, 'move'); require('cursor_grid').flashIndicator()" 2>/dev/null &
+    - shell_command: /opt/homebrew/bin/hs -c "require('cursor_grid').modeKeyDown('s', 32, 'move'); require('cursor_grid').flashIndicator()" 2>/dev/null &
     to_after_key_up:
     - set_variable:
         name: s_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('s')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('cursor_grid').modeKeyUp('s')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -604,12 +604,12 @@ sections:
     - set_variable:
         name: d_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('d', 8, 'move'); require('cursor_grid').flashIndicator()" 2>/dev/null &
+    - shell_command: /opt/homebrew/bin/hs -c "require('cursor_grid').modeKeyDown('d', 8, 'move'); require('cursor_grid').flashIndicator()" 2>/dev/null &
     to_after_key_up:
     - set_variable:
         name: d_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('d')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('cursor_grid').modeKeyUp('d')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -645,12 +645,12 @@ sections:
     - set_variable:
         name: f_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').activate()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('cursor_grid').activate()" &
     to_after_key_up:
     - set_variable:
         name: f_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('cursor_grid').modeReset()" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -665,12 +665,12 @@ sections:
     - set_variable:
         name: r_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('r')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('ws_grid').keyDown('r')" &
     to_after_key_up:
     - set_variable:
         name: r_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('r')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('ws_grid').keyUp('r')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -685,12 +685,12 @@ sections:
     - set_variable:
         name: e_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('e')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('ws_grid').keyDown('e')" &
     to_after_key_up:
     - set_variable:
         name: e_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('e')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('ws_grid').keyUp('e')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -705,12 +705,12 @@ sections:
     - set_variable:
         name: w_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('w')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('ws_grid').keyDown('w')" &
     to_after_key_up:
     - set_variable:
         name: w_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('w')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('ws_grid').keyUp('w')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -728,12 +728,12 @@ sections:
     - set_variable:
         name: 4_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('4')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('ws_grid').keyDown('4')" &
     to_after_key_up:
     - set_variable:
         name: 4_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('4')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('ws_grid').keyUp('4')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -751,12 +751,12 @@ sections:
     - set_variable:
         name: 3_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('3')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('ws_grid').keyDown('3')" &
     to_after_key_up:
     - set_variable:
         name: 3_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('3')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('ws_grid').keyUp('3')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -771,12 +771,12 @@ sections:
     - set_variable:
         name: t_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('t'); require('focus_border').flashOnLayerActivate()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('ws_grid').keyDown('t'); require('focus_border').flashOnLayerActivate()" &
     to_after_key_up:
     - set_variable:
         name: t_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('t')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('ws_grid').keyUp('t')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -791,7 +791,7 @@ sections:
     - set_variable:
         name: g_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('focus_border').flash()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('focus_border').flash()" &
     to_after_key_up:
     - set_variable:
         name: g_is_held
@@ -810,9 +810,9 @@ sections:
     - set_variable:
         name: q_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('surround').start()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('surround').start()" &
     to_after_key_up:
-    - shell_command: (sleep 0.5 && /usr/local/bin/karabiner_cli --set-variables '{"q_is_held":0}' && /usr/local/bin/hs -c "require('surround').stop()") &
+    - shell_command: (sleep 0.5 && /opt/homebrew/bin/karabiner_cli --set-variables '{"q_is_held":0}' && /opt/homebrew/bin/hs -c "require('surround').stop()") &
     type: basic
 - layer:
   - caps
@@ -825,11 +825,11 @@ sections:
     to:
     - set:
         s_is_held: 1
-    - shell: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('s', 8, 'jump'); require('cursor_grid').flashIndicator()" 2>/dev/null &
+    - shell: /opt/homebrew/bin/hs -c "require('cursor_grid').modeKeyDown('s', 8, 'jump'); require('cursor_grid').flashIndicator()" 2>/dev/null &
     to_after_key_up:
     - set:
         s_is_held: 0
-    - shell: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('s')" &
+    - shell: /opt/homebrew/bin/hs -c "require('cursor_grid').modeKeyUp('s')" &
   - from: d
     description: 'F+S+D setter: switch to jump grid'
     layer:
@@ -839,11 +839,11 @@ sections:
     to:
     - set:
         d_is_held: 1
-    - shell: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('d', 8, 'jump'); require('cursor_grid').flashIndicator()" 2>/dev/null &
+    - shell: /opt/homebrew/bin/hs -c "require('cursor_grid').modeKeyDown('d', 8, 'jump'); require('cursor_grid').flashIndicator()" 2>/dev/null &
     to_after_key_up:
     - set:
         d_is_held: 0
-    - shell: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('d')" &
+    - shell: /opt/homebrew/bin/hs -c "require('cursor_grid').modeKeyUp('d')" &
 - raw: true
   manipulators:
   - description: a-physical-tracker
@@ -864,7 +864,7 @@ sections:
     - set_variable:
         name: a_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('a')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop('a')" &
     type: basic
   - description: s-physical-tracker
     from:
@@ -884,7 +884,7 @@ sections:
     - set_variable:
         name: s_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('s'); require('cursor_grid').modeKeyUp('s')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop('s'); require('cursor_grid').modeKeyUp('s')" &
     type: basic
   - description: d-physical-tracker
     from:
@@ -904,7 +904,7 @@ sections:
     - set_variable:
         name: d_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('d'); require('cursor_grid').modeKeyUp('d')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop('d'); require('cursor_grid').modeKeyUp('d')" &
     type: basic
   - description: f-physical-tracker
     from:
@@ -924,7 +924,7 @@ sections:
     - set_variable:
         name: f_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('f'); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop('f'); require('cursor_grid').modeReset()" &
     type: basic
   - description: r-physical-tracker
     from:
@@ -944,7 +944,7 @@ sections:
     - set_variable:
         name: r_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('r'); require('ws_grid').keyUp('r')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop('r'); require('ws_grid').keyUp('r')" &
     type: basic
   - description: e-physical-tracker
     from:
@@ -964,7 +964,7 @@ sections:
     - set_variable:
         name: e_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('e'); require('ws_grid').keyUp('e'); require('cursor_grid').modeReset()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop('e'); require('ws_grid').keyUp('e'); require('cursor_grid').modeReset()" &
     type: basic
   - description: w-physical-tracker
     from:
@@ -984,7 +984,7 @@ sections:
     - set_variable:
         name: w_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('w'); require('ws_grid').keyUp('w')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop('w'); require('ws_grid').keyUp('w')" &
     type: basic
   - description: 4-physical-tracker
     conditions:
@@ -1008,7 +1008,7 @@ sections:
     - set_variable:
         name: 4_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('4'); require('ws_grid').keyUp('4')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop('4'); require('ws_grid').keyUp('4')" &
     type: basic
   - description: 3-physical-tracker
     conditions:
@@ -1032,7 +1032,7 @@ sections:
     - set_variable:
         name: 3_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('3'); require('ws_grid').keyUp('3')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop('3'); require('ws_grid').keyUp('3')" &
     type: basic
   - description: t-physical-tracker
     from:
@@ -1052,7 +1052,7 @@ sections:
     - set_variable:
         name: t_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('t'); require('ws_grid').keyUp('t')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop('t'); require('ws_grid').keyUp('t')" &
     type: basic
   - description: g-physical-tracker
     from:
@@ -1072,7 +1072,7 @@ sections:
     - set_variable:
         name: g_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('g')" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop('g')" &
     type: basic
   - description: q-physical-tracker
     from:
@@ -1092,5 +1092,5 @@ sections:
     - set_variable:
         name: q_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('key_suppress').stop('q'); require('surround').stop()" &
+    - shell_command: /opt/homebrew/bin/hs -c "require('key_suppress').stop('q'); require('surround').stop()" &
     type: basic

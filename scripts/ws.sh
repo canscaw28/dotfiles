@@ -424,7 +424,7 @@ per_op_post_process() {
     # skip grid refresh to avoid async query overwriting grid state.
     # Non-focus ops: trigger full grid refresh.
     if [[ "$OP" != focus* && "$OP" != move* ]]; then
-        /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
+        /opt/homebrew/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
     fi
 }
 
@@ -450,7 +450,7 @@ final_post_process() {
     # Flash border around focused window (skip for focus — grid provides feedback;
     # skip for swap-windows — focus races with AeroSpace settling, grid suffices)
     if [[ "$OP" != "focus" && "$OP" != "swap-windows" ]]; then
-        /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+        /opt/homebrew/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
     fi
 
     # Refresh workspace grid overlay if visible (skip for focus/move-focus —
@@ -458,11 +458,11 @@ final_post_process() {
     # visitKey and can overwrite its state with stale AeroSpace data.
     # Skip for move — workspace visibility doesn't change.)
     if [[ "$OP" != focus* && "$OP" != move* ]]; then
-        /usr/local/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
+        /opt/homebrew/bin/hs -c "require('ws_grid').showGrid()" 2>/dev/null &
     fi
 
     # Dismiss dock/show-desktop if active (user switched monitors/workspaces)
-    /usr/local/bin/hs -c "require('dock_peek').hide(); require('show_desktop').dismiss()" 2>/dev/null &
+    /opt/homebrew/bin/hs -c "require('dock_peek').hide(); require('show_desktop').dismiss()" 2>/dev/null &
 
     # Save window state after every operation (for restore on restart)
     ~/.local/bin/save-ws-state.sh &

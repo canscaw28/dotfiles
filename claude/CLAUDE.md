@@ -61,7 +61,7 @@ For non-trivial work: **explore → plan → code → verify → commit.**
 - Read files: `Read` / `bat`, never `cat`/`head`/`tail` when a dedicated tool exists.
 - Edit files: `Edit` / `Write`, never `sed`/`awk` heredocs.
 - GitHub: `gh` CLI for everything (issues, PRs, releases, API).
-- macOS: Apple Silicon paths (`/opt/homebrew/...`) — but check; some binaries live in `/usr/local/bin/` (e.g. `hs`).
+- macOS: Apple Silicon paths (`/opt/homebrew/...`).
 - Shell: zsh.
 
 ## Environment
