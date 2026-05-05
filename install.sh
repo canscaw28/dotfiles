@@ -145,6 +145,41 @@ install_iterm() {
     fi
 }
 
+register_login_items() {
+    # AeroSpace registers itself via `start-at-login` in .aerospace.toml.
+    # Karabiner runs as a system LaunchDaemon (installed by its pkg) — no
+    # login item needed. Hammerspoon and Raycast do not auto-start, so add
+    # them as login items here. Idempotent: skips apps already registered.
+    log_info "Registering login items..."
+    local existing
+    existing=$(osascript -e 'tell application "System Events" to get the name of every login item' 2>/dev/null || true)
+    for app in Hammerspoon Raycast; do
+        local app_path="/Applications/${app}.app"
+        if [[ ! -d "$app_path" ]]; then
+            log_warn "${app}.app not found at $app_path, skipping login item"
+            continue
+        fi
+        if echo "$existing" | grep -q "\\b${app}\\b"; then
+            log_info "${app} already a login item"
+        else
+            osascript -e "tell application \"System Events\" to make login item at end with properties {path:\"${app_path}\", hidden:false}" >/dev/null
+            log_info "Added ${app} as login item"
+        fi
+    done
+}
+
+launch_apps() {
+    # First-run launch so the user can grant Accessibility/Input Monitoring/
+    # Driver Extension permissions in System Settings. `open` on an already-
+    # running app is a no-op (just activates), so this is idempotent.
+    log_info "Launching apps for first-run permission setup..."
+    for app in Karabiner-Elements Hammerspoon Raycast AeroSpace; do
+        local app_path="/Applications/${app}.app"
+        [[ -d "$app_path" ]] || continue
+        open "$app_path" && log_info "Opened ${app}"
+    done
+}
+
 install_all() {
     install_shell
     install_git
@@ -155,6 +190,8 @@ install_all() {
     install_hammerspoon
     install_text_expander
     install_iterm
+    register_login_items
+    launch_apps
 }
 
 show_help() {
@@ -171,6 +208,8 @@ show_help() {
     echo "  --hammerspoon  Install Hammerspoon config"
     echo "  --text-expander  Install text-expander config"
     echo "  --iterm        Install iTerm2 config"
+    echo "  --login-items  Register Hammerspoon and Raycast as login items"
+    echo "  --launch-apps  Open Karabiner-Elements, Hammerspoon, Raycast, AeroSpace"
     echo "  --help         Show this help message"
     echo ""
     echo "Examples:"
@@ -241,6 +280,14 @@ else
                 ;;
             --iterm)
                 install_iterm
+                shift
+                ;;
+            --login-items)
+                register_login_items
+                shift
+                ;;
+            --launch-apps)
+                launch_apps
                 shift
                 ;;
             --help|-h)
