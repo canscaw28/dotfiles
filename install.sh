@@ -128,6 +128,36 @@ install_text_expander() {
     "$DOTFILES_DIR/reload.sh" --text-expander
 }
 
+install_fonts() {
+    # MesloLGS NF — the font iTerm2 is configured to use and what
+    # Powerlevel10k expects for its glyphs. Without it, prompt icons
+    # render as question-mark boxes.
+    log_info "Installing MesloLGS NF fonts..."
+    local font_dir="$HOME/Library/Fonts"
+    mkdir -p "$font_dir"
+    local base_url="https://github.com/romkatv/powerlevel10k-media/raw/master"
+    local fonts=(
+        "MesloLGS NF Regular.ttf"
+        "MesloLGS NF Bold.ttf"
+        "MesloLGS NF Italic.ttf"
+        "MesloLGS NF Bold Italic.ttf"
+    )
+    for font in "${fonts[@]}"; do
+        local target="$font_dir/$font"
+        if [[ -f "$target" ]]; then
+            log_info "$font already installed"
+            continue
+        fi
+        local url="${base_url}/${font// /%20}"
+        if curl -fsSL "$url" -o "$target"; then
+            log_info "Installed $font"
+        else
+            log_error "Failed to download $font"
+            rm -f "$target"
+        fi
+    done
+}
+
 install_iterm() {
     log_info "Installing iTerm2 config..."
     if [[ -f "$DOTFILES_DIR/com.googlecode.iterm2.plist" ]]; then
@@ -185,6 +215,7 @@ install_all() {
     install_git
     install_claude
     install_editor
+    install_fonts
     install_aerospace
     install_karabiner
     install_hammerspoon
@@ -203,6 +234,7 @@ show_help() {
     echo "  --git          Install git configs"
     echo "  --claude       Install global Claude Code config (~/.claude/CLAUDE.md)"
     echo "  --editor       Install editor configs (vim, tmux)"
+    echo "  --fonts        Install MesloLGS NF fonts (for Powerlevel10k)"
     echo "  --aerospace    Install AeroSpace config"
     echo "  --karabiner    Install Karabiner Elements config"
     echo "  --hammerspoon  Install Hammerspoon config"
@@ -260,6 +292,10 @@ else
                 ;;
             --editor)
                 install_editor
+                shift
+                ;;
+            --fonts)
+                install_fonts
                 shift
                 ;;
             --aerospace)
