@@ -1,12 +1,21 @@
 #!/bin/bash
 
-# Interactive setup for personal.yml (PII - gitignored)
-# Run this on a new machine to populate your personal triggers.
+# Setup for personal.yml (PII - gitignored). Run this on a new machine to
+# populate your personal triggers.
+#
+# Usage:
+#   setup-personal.sh           # interactive prompts
+#   setup-personal.sh --import  # import existing entries from macOS text
+#                               # replacements (e.g. synced via iCloud from
+#                               # another device). Exits non-zero if the DB
+#                               # is missing or empty so callers can fall back
+#                               # to the interactive flow.
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PERSONAL_FILE="$SCRIPT_DIR/personal.yml"
+BASE_FILE="$SCRIPT_DIR/base.yml"
 
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -14,6 +23,85 @@ NC='\033[0m'
 
 log_info() { echo -e "${GREEN}[INFO]${NC} $1"; }
 log_skip() { echo -e "${YELLOW}[SKIP]${NC} $1"; }
+
+import_from_macos() {
+    local db="$HOME/Library/KeyboardServices/TextReplacements.db"
+    if [[ ! -f "$db" ]]; then
+        log_skip "macOS text replacements DB not found at $db"
+        return 1
+    fi
+
+    /usr/bin/python3 - "$db" "$PERSONAL_FILE" "$BASE_FILE" <<'PYEOF'
+import sys, os, sqlite3, re
+
+db_path, personal_file, base_file = sys.argv[1], sys.argv[2], sys.argv[3]
+
+# Load triggers already in base.yml so we don't shadow them in personal.yml
+base_triggers = set()
+if os.path.exists(base_file):
+    with open(base_file) as f:
+        for line in f:
+            m = re.match(r'\s*-\s*trigger:\s*"(.+)"', line)
+            if m:
+                base_triggers.add(m.group(1))
+
+# Triggers already in personal.yml (so re-running --import is idempotent)
+existing_triggers = set()
+if os.path.exists(personal_file):
+    with open(personal_file) as f:
+        for line in f:
+            m = re.match(r'\s*-\s*trigger:\s*"(.+)"', line)
+            if m:
+                existing_triggers.add(m.group(1))
+
+conn = sqlite3.connect(db_path)
+c = conn.cursor()
+c.execute("SELECT ZSHORTCUT, ZPHRASE FROM ZTEXTREPLACEMENTENTRY WHERE ZWASDELETED = 0 ORDER BY ZSHORTCUT")
+rows = c.fetchall()
+conn.close()
+
+if not rows:
+    print("[SKIP] No entries in macOS text replacements DB")
+    sys.exit(2)
+
+if not os.path.exists(personal_file):
+    with open(personal_file, "w") as f:
+        f.write("# Personal/PII expansions (gitignored - not committed to repo)\n\nmatches:\n")
+
+def yaml_quote(s):
+    return '"' + s.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n') + '"'
+
+added = 0
+skipped_existing = 0
+skipped_base = 0
+
+with open(personal_file, "a") as f:
+    for shortcut, phrase in rows:
+        if not shortcut or not phrase:
+            continue
+        if shortcut in base_triggers:
+            skipped_base += 1
+            continue
+        if shortcut in existing_triggers:
+            skipped_existing += 1
+            continue
+        f.write(f"  - trigger: {yaml_quote(shortcut)}\n")
+        f.write(f"    replace: {yaml_quote(phrase)}\n")
+        added += 1
+
+parts = [f"{added} added"]
+if skipped_existing:
+    parts.append(f"{skipped_existing} already in personal.yml")
+if skipped_base:
+    parts.append(f"{skipped_base} shadowed by base.yml")
+print(f"[INFO] Imported from macOS: {', '.join(parts)}")
+PYEOF
+}
+
+if [[ "${1:-}" == "--import" ]]; then
+    import_from_macos
+    exit $?
+fi
 
 # Check if a trigger already exists in the file
 trigger_exists() {

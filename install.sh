@@ -119,7 +119,11 @@ install_text_expander() {
     # Expander runs inside Hammerspoon (no app to install, no symlinks needed).
     # YAML files are read directly from $DOTFILES_DIR/text-expander/.
     if [[ ! -f "$DOTFILES_DIR/text-expander/personal.yml" ]]; then
-        "$DOTFILES_DIR/text-expander/setup-personal.sh"
+        # Try importing from macOS text replacements first (works on a new
+        # machine where iCloud has already synced entries from another device).
+        # Falls back to interactive prompts if the DB is missing or empty.
+        "$DOTFILES_DIR/text-expander/setup-personal.sh" --import \
+            || "$DOTFILES_DIR/text-expander/setup-personal.sh"
     fi
     "$DOTFILES_DIR/reload.sh" --text-expander
 }
