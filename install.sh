@@ -47,6 +47,39 @@ create_symlink() {
     log_info "Linked $target -> $source"
 }
 
+install_brew() {
+    if command -v brew &>/dev/null; then
+        log_info "Homebrew already installed"
+    else
+        log_info "Installing Homebrew..."
+        /bin/bash -c \
+            "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+    # Ensure brew is on PATH for the remainder of this script (a fresh
+    # install on Apple Silicon won't have /opt/homebrew/bin in PATH yet).
+    if [[ -x /opt/homebrew/bin/brew ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [[ -x /usr/local/bin/brew ]]; then
+        eval "$(/usr/local/bin/brew shellenv)"
+    fi
+
+    log_info "Installing brew packages from Brewfile..."
+    brew bundle --file="$DOTFILES_DIR/Brewfile"
+}
+
+install_oh_my_zsh() {
+    if [[ -d "$HOME/.oh-my-zsh" ]]; then
+        log_info "oh-my-zsh already installed"
+        return
+    fi
+    log_info "Installing oh-my-zsh..."
+    # KEEP_ZSHRC=yes prevents the installer from clobbering our symlinked
+    # .zshrc; RUNZSH=no stops it from dropping into a new zsh shell.
+    RUNZSH=no KEEP_ZSHRC=yes sh -c \
+        "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+        "" --unattended
+}
+
 install_shell() {
     log_info "Installing shell configs..."
     create_symlink "$DOTFILES_DIR/shell/.zshrc" "$HOME/.zshrc"
@@ -211,6 +244,8 @@ launch_apps() {
 }
 
 install_all() {
+    install_brew
+    install_oh_my_zsh
     install_shell
     install_git
     install_claude
@@ -230,6 +265,8 @@ show_help() {
     echo ""
     echo "Options:"
     echo "  --all          Install all configs (default if no option specified)"
+    echo "  --brew         Install Homebrew (if missing) and Brewfile packages"
+    echo "  --oh-my-zsh    Install oh-my-zsh framework"
     echo "  --shell        Install shell configs (zshrc, bash_profile, p10k)"
     echo "  --git          Install git configs"
     echo "  --claude       Install global Claude Code config (~/.claude/CLAUDE.md)"
@@ -276,6 +313,14 @@ else
         case $1 in
             --all)
                 install_all
+                shift
+                ;;
+            --brew)
+                install_brew
+                shift
+                ;;
+            --oh-my-zsh)
+                install_oh_my_zsh
                 shift
                 ;;
             --shell)
