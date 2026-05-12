@@ -19,6 +19,10 @@
 		{
 			"passKeys": "J K j k ",
 			"pattern": ":https://app.todoist.com/"
+		},
+		{
+			"passKeys": "! \" # $ % & ' ( ) * + , - . / : ; < <a-f> <a-m> <a-p> <a-r> <a-v> <c-6> <c-[> <c-a> <c-d> <c-e> <c-enter> <c-f> <c-j> <c-k> <c-u> <c-x> <c-y> = > ? @ A B C F G H I J K L M N O P Q R S T V W X Y Z [ \\ ] ^ _ ` a b c d e g h i j k l m n o p q r s u v x y z { | } ~ ",
+			"pattern": ":https://mail.superhuman.com/"
 		}
 	],
 	"keyLayout": 2,
