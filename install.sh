@@ -128,8 +128,19 @@ install_karabiner() {
     log_info "Installing Karabiner Elements config..."
     mkdir -p "$HOME/.config/karabiner"
     create_symlink "$DOTFILES_DIR/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
+    ensure_app_cli karabiner_cli \
+        "/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli"
     install_git_hooks
     "$DOTFILES_DIR/reload.sh" --karabiner
+}
+
+ensure_app_cli() {
+    local name="$1" src="$2" target="/usr/local/bin/$1"
+    [[ -x "$src" ]] || { log_warn "$name source missing: $src"; return; }
+    [[ -L "$target" && "$(readlink "$target")" == "$src" ]] && return
+    mkdir -p /usr/local/bin
+    ln -sf "$src" "$target"
+    log_info "Linked $target -> $src"
 }
 
 install_git_hooks() {
@@ -145,6 +156,8 @@ install_git_hooks() {
 install_hammerspoon() {
     log_info "Installing Hammerspoon config..."
     create_symlink "$DOTFILES_DIR/.hammerspoon" "$HOME/.hammerspoon"
+    ensure_app_cli hs \
+        "/Applications/Hammerspoon.app/Contents/Frameworks/hs/hs"
 }
 
 install_text_expander() {
