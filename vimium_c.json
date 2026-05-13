@@ -37,6 +37,8 @@
 		"map <c-s-f> LinkHints.activate",
 		"map <c-m-k> LinkHints.activateHover",
 		"map <c-s-;> openUrl url=\"vimium://status toggle\"",
+		"map <c-m-h> moveTabLeft",
+		"map <c-m-l> moveTabRight",
 		""
 	],
 	"userDefinedCss": [
