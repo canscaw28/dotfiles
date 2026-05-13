@@ -50,7 +50,7 @@
                     "key_code": "right_shift"
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "type": "basic"
@@ -86,7 +86,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -146,7 +146,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').start('a')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('a')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -163,7 +163,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -223,7 +223,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').start('s')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('s')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -240,7 +240,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -300,7 +300,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').start('d')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('d')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -317,7 +317,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -383,7 +383,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').start('f'); require('cursor_grid').activate()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('f'); require('cursor_grid').activate()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -400,7 +400,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -460,7 +460,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').start('r'); require('ws_grid').keyDown('r')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('r'); require('ws_grid').keyDown('r')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -477,7 +477,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -537,7 +537,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').start('e'); require('ws_grid').keyDown('e')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('e'); require('ws_grid').keyDown('e')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -554,7 +554,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -614,7 +614,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').start('w'); require('ws_grid').keyDown('w')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('w'); require('ws_grid').keyDown('w')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -631,7 +631,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -691,7 +691,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').start('4'); require('ws_grid').keyDown('4')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('4'); require('ws_grid').keyDown('4')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -708,7 +708,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -768,7 +768,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').start('3'); require('ws_grid').keyDown('3')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('3'); require('ws_grid').keyDown('3')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -785,7 +785,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -845,7 +845,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').start('t'); require('ws_grid').keyDown('t'); require('focus_border').flashOnLayerActivate()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('t'); require('ws_grid').keyDown('t'); require('focus_border').flashOnLayerActivate()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -862,7 +862,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -922,7 +922,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').start('g'); require('focus_border').flash()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('g'); require('focus_border').flash()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -939,7 +939,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -999,7 +999,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').start('q'); require('surround').start()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').start('q'); require('surround').start()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1016,7 +1016,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop(); require('surround').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop(); require('surround').stop(); require('ws_grid').resetAllKeys(); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "to_delayed_action": {
@@ -1107,7 +1107,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').modeKeyDown('s', 32, 'move'); require('cursor_grid').flashIndicator()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').modeKeyDown('s', 32, 'move'); require('cursor_grid').flashIndicator()\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1118,7 +1118,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').modeKeyUp('s')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').modeKeyUp('s')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1196,7 +1196,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').modeKeyDown('d', 8, 'move'); require('cursor_grid').flashIndicator()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').modeKeyDown('d', 8, 'move'); require('cursor_grid').flashIndicator()\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1207,7 +1207,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').modeKeyUp('d')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').modeKeyUp('d')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1275,7 +1275,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').activate()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').activate()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1286,7 +1286,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "type": "basic"
@@ -1315,7 +1315,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('r')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('r')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1326,7 +1326,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('r')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('r')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1355,7 +1355,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('e')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('e')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1366,7 +1366,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('e')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('e')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1395,7 +1395,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('w')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('w')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1406,7 +1406,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('w')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('w')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1440,7 +1440,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('4')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('4')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1451,7 +1451,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('4')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('4')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1485,7 +1485,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('3')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('3')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1496,7 +1496,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('3')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('3')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1525,7 +1525,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyDown('t'); require('focus_border').flashOnLayerActivate()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('t'); require('focus_border').flashOnLayerActivate()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1536,7 +1536,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('ws_grid').keyUp('t')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('t')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1565,7 +1565,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('focus_border').flash()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1602,12 +1602,12 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('surround').start()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround').start()\" &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "(sleep 0.5 && /opt/homebrew/bin/karabiner_cli --set-variables '{\"q_is_held\":0}' && /opt/homebrew/bin/hs -c \"require('surround').stop()\") &"
+                    "shell_command": "(sleep 0.5 && /usr/local/bin/karabiner_cli --set-variables '{\"q_is_held\":0}' && /usr/local/bin/hs -c \"require('surround').stop()\") &"
                   }
                 ],
                 "type": "basic"
@@ -1647,7 +1647,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').modeKeyDown('s', 8, 'jump'); require('cursor_grid').flashIndicator()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').modeKeyDown('s', 8, 'jump'); require('cursor_grid').flashIndicator()\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1658,7 +1658,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').modeKeyUp('s')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').modeKeyUp('s')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1698,7 +1698,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').modeKeyDown('d', 8, 'jump'); require('cursor_grid').flashIndicator()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').modeKeyDown('d', 8, 'jump'); require('cursor_grid').flashIndicator()\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1709,7 +1709,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').modeKeyUp('d')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').modeKeyUp('d')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1749,7 +1749,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop('a')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('a')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1789,7 +1789,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop('s'); require('cursor_grid').modeKeyUp('s')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('s'); require('cursor_grid').modeKeyUp('s')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1829,7 +1829,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop('d'); require('cursor_grid').modeKeyUp('d')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('d'); require('cursor_grid').modeKeyUp('d')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1869,7 +1869,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop('f'); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('f'); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "type": "basic"
@@ -1909,7 +1909,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop('r'); require('ws_grid').keyUp('r')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('r'); require('ws_grid').keyUp('r')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1949,7 +1949,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop('e'); require('ws_grid').keyUp('e'); require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('e'); require('ws_grid').keyUp('e'); require('cursor_grid').modeReset()\" &"
                   }
                 ],
                 "type": "basic"
@@ -1989,7 +1989,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop('w'); require('ws_grid').keyUp('w')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('w'); require('ws_grid').keyUp('w')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2036,7 +2036,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop('4'); require('ws_grid').keyUp('4')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('4'); require('ws_grid').keyUp('4')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2083,7 +2083,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop('3'); require('ws_grid').keyUp('3')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('3'); require('ws_grid').keyUp('3')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2123,7 +2123,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop('t'); require('ws_grid').keyUp('t')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('t'); require('ws_grid').keyUp('t')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2163,7 +2163,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop('g')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('g')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2203,7 +2203,7 @@
                     }
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('key_suppress').stop('q'); require('surround').stop()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('key_suppress').stop('q'); require('surround').stop()\" &"
                   }
                 ],
                 "type": "basic"
@@ -2232,7 +2232,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+M\")'; /usr/bin/swift /Users/craig/dev/dotfiles/raycast/connect-displays.swift &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+M\")'; /usr/bin/swift /Users/craig/dev/dotfiles/raycast/connect-displays.swift &"
                   }
                 ],
                 "type": "basic"
@@ -2261,7 +2261,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+/\")'; /bin/bash /Users/craig/dev/dotfiles/scripts/clean-dock.sh &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+/\")'; /bin/bash /Users/craig/dev/dotfiles/scripts/clean-dock.sh &"
                   }
                 ],
                 "type": "basic"
@@ -2354,7 +2354,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+U\")'; /usr/bin/osascript -e 'tell application \"System Events\" to tell application process \"ControlCenter\" to click (first menu bar item of menu bar 1 whose description is \"Clock\")' &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+U\")'; /usr/bin/osascript -e 'tell application \"System Events\" to tell application process \"ControlCenter\" to click (first menu bar item of menu bar 1 whose description is \"Clock\")' &"
                   }
                 ],
                 "type": "basic"
@@ -2383,7 +2383,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+I\")' &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+I\")' &"
                   },
                   {
                     "key_code": "mission_control"
@@ -2415,7 +2415,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+O\"); require(\"show_desktop\").toggle()' &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+O\"); require(\"show_desktop\").toggle()' &"
                   },
                   {
                     "key_code": "f11",
@@ -2450,7 +2450,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+,\")'; /bin/bash /Users/craig/.local/bin/workspace-setup.sh &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+,\")'; /bin/bash /Users/craig/.local/bin/workspace-setup.sh &"
                   }
                 ],
                 "type": "basic"
@@ -2479,7 +2479,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c 'require(\"a_layer_notify\").showSpinner(\"Reloading\")'; /bin/bash /Users/craig/dev/dotfiles/reload.sh --all &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").showSpinner(\"Reloading\")'; /bin/bash /Users/craig/dev/dotfiles/reload.sh --all &"
                   }
                 ],
                 "type": "basic"
@@ -2538,7 +2538,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+Y\"); require(\"dock_peek\").toggle()' &"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"a_layer_notify\").show(\"⇪+A+Y\"); require(\"dock_peek\").toggle()' &"
                   }
                 ],
                 "type": "basic"
@@ -9579,12 +9579,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('left', 1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('left', 1, 8)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -9633,12 +9633,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('down', 1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('down', 1, 8)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -9687,12 +9687,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('up', 1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('up', 1, 8)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -9741,12 +9741,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('right', 1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('right', 1, 8)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -9795,12 +9795,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('left', -1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('left', -1, 8)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -9849,12 +9849,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('right', -1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('right', -1, 8)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -9903,12 +9903,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('left', 2, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('left', 2, 8)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -9957,12 +9957,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('right', 2, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('right', 2, 8)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10011,12 +10011,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('down', -1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('down', -1, 8)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10065,12 +10065,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('up', -1, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('up', -1, 8)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10119,12 +10119,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('down', 2, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('down', 2, 8)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10173,12 +10173,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('up', 2, 8)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('up', 2, 8)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10227,12 +10227,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('left', 1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('left', 1, 32)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10281,12 +10281,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('down', 1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('down', 1, 32)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10335,12 +10335,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('up', 1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('up', 1, 32)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10389,12 +10389,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('right', 1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('right', 1, 32)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10443,12 +10443,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('left', -1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('left', -1, 32)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10497,12 +10497,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('right', -1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('right', -1, 32)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10551,12 +10551,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('left', 2, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('left', 2, 32)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10605,12 +10605,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('right', 2, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('right', 2, 32)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10659,12 +10659,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('down', -1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('down', -1, 32)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10713,12 +10713,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('up', -1, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('up', -1, 32)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10767,12 +10767,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('down', 2, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('down', 2, 32)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10821,12 +10821,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').startMove('up', 2, 32)\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').startMove('up', 2, 32)\" 2>/dev/null &"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').stopMove()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10875,7 +10875,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').jump('h')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('h')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10924,7 +10924,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').jump('j')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('j')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -10973,7 +10973,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').jump('k')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('k')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11022,7 +11022,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').jump('l')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('l')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11071,7 +11071,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').jump('slash')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('slash')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11120,7 +11120,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').jump('y')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('y')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11169,7 +11169,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').jump('o')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('o')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11218,7 +11218,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').jump('n')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('n')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11267,7 +11267,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').jump('period')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('period')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11316,7 +11316,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').jump('u')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('u')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11365,7 +11365,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').jump('i')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('i')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11414,7 +11414,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').jump('m')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('m')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11463,7 +11463,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').jump('comma')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').jump('comma')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11507,7 +11507,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"hs.eventtap.leftClick(hs.mouse.absolutePosition()); require('cursor_grid').flashClick()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"hs.eventtap.leftClick(hs.mouse.absolutePosition()); require('cursor_grid').flashClick()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11551,7 +11551,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"hs.eventtap.rightClick(hs.mouse.absolutePosition()); require('cursor_grid').flashClick()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"hs.eventtap.rightClick(hs.mouse.absolutePosition()); require('cursor_grid').flashClick()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11605,7 +11605,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').toggleGrid(8, 'move')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').toggleGrid(8, 'move')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11654,7 +11654,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').toggleGrid(8, 'move')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').toggleGrid(8, 'move')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11703,7 +11703,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').toggleGrid(32, 'move')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').toggleGrid(32, 'move')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -11752,7 +11752,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('cursor_grid').toggleGrid(8, 'jump')\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').toggleGrid(8, 'jump')\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -14159,7 +14159,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('focus_border').flash()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "type": "basic"
@@ -14251,7 +14251,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('focus_border').flash()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "type": "basic"
@@ -14343,7 +14343,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('focus_border').flash()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "type": "basic"
@@ -14778,7 +14778,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('focus_border').flash()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "type": "basic"
@@ -14869,7 +14869,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('focus_border').flash()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "type": "basic"
@@ -14960,7 +14960,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('focus_border').flash()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "type": "basic"
@@ -15051,7 +15051,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('focus_border').flash()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
                   }
                 ],
                 "type": "basic"
@@ -32376,7 +32376,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('surround').doSurround('{', '}')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround').doSurround('{', '}')\" &"
                   }
                 ],
                 "type": "basic"
@@ -32443,7 +32443,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('surround').doSurround('{', '}')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround').doSurround('{', '}')\" &"
                   }
                 ],
                 "type": "basic"
@@ -32510,7 +32510,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('surround').doSurround('\\\"', '\\\"')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround').doSurround('\\\"', '\\\"')\" &"
                   }
                 ],
                 "type": "basic"
@@ -32577,7 +32577,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('surround').doSurround('~', '~')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround').doSurround('~', '~')\" &"
                   }
                 ],
                 "type": "basic"
@@ -32644,7 +32644,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('surround').doSurround('_', '_')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround').doSurround('_', '_')\" &"
                   }
                 ],
                 "type": "basic"
@@ -32711,7 +32711,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('surround').doSurround('+', '+')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround').doSurround('+', '+')\" &"
                   }
                 ],
                 "type": "basic"
@@ -32778,7 +32778,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('surround').doSurround(':', ':')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround').doSurround(':', ':')\" &"
                   }
                 ],
                 "type": "basic"
@@ -32845,7 +32845,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('surround').doSurround('<', '>')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround').doSurround('<', '>')\" &"
                   }
                 ],
                 "type": "basic"
@@ -32912,7 +32912,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('surround').doSurround('<', '>')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround').doSurround('<', '>')\" &"
                   }
                 ],
                 "type": "basic"
@@ -32979,7 +32979,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('surround').doSurround('?', '?')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround').doSurround('?', '?')\" &"
                   }
                 ],
                 "type": "basic"
@@ -33046,7 +33046,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('surround').doSurround('|', '|')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('surround').doSurround('|', '|')\" &"
                   }
                 ],
                 "type": "basic"
@@ -34729,7 +34729,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -34780,7 +34780,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -34831,7 +34831,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -34882,7 +34882,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -34937,7 +34937,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -34992,7 +34992,7 @@
                     ]
                   },
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" 2>/dev/null &"
                   }
                 ],
                 "type": "basic"
@@ -35270,7 +35270,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('chrome_tabs').onKeyDown(-1)\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('chrome_tabs').onKeyDown(-1)\" &"
                   }
                 ],
                 "to_if_held_down": [
@@ -35283,7 +35283,7 @@
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('chrome_tabs').onKeyUp()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('chrome_tabs').onKeyUp()\" &"
                   }
                 ],
                 "type": "basic"
@@ -35351,7 +35351,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('chrome_tabs').onKeyDown(1)\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('chrome_tabs').onKeyDown(1)\" &"
                   }
                 ],
                 "to_if_held_down": [
@@ -35364,7 +35364,7 @@
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('chrome_tabs').onKeyUp()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('chrome_tabs').onKeyUp()\" &"
                   }
                 ],
                 "type": "basic"
@@ -35572,7 +35572,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('chrome_tabs').onKeyDown('first')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('chrome_tabs').onKeyDown('first')\" &"
                   }
                 ],
                 "to_if_held_down": [
@@ -35585,7 +35585,7 @@
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('chrome_tabs').onKeyUp()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('chrome_tabs').onKeyUp()\" &"
                   }
                 ],
                 "type": "basic"
@@ -35653,7 +35653,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('chrome_tabs').onKeyDown('last')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('chrome_tabs').onKeyDown('last')\" &"
                   }
                 ],
                 "to_if_held_down": [
@@ -35666,7 +35666,7 @@
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('chrome_tabs').onKeyUp()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('chrome_tabs').onKeyUp()\" &"
                   }
                 ],
                 "type": "basic"
@@ -35734,7 +35734,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('chrome_tabs').onKeyDown(-3)\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('chrome_tabs').onKeyDown(-3)\" &"
                   }
                 ],
                 "to_if_held_down": [
@@ -35747,7 +35747,7 @@
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('chrome_tabs').onKeyUp()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('chrome_tabs').onKeyUp()\" &"
                   }
                 ],
                 "type": "basic"
@@ -35815,7 +35815,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('chrome_tabs').onKeyDown(3)\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('chrome_tabs').onKeyDown(3)\" &"
                   }
                 ],
                 "to_if_held_down": [
@@ -35828,7 +35828,7 @@
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/opt/homebrew/bin/hs -c \"require('chrome_tabs').onKeyUp()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('chrome_tabs').onKeyUp()\" &"
                   }
                 ],
                 "type": "basic"

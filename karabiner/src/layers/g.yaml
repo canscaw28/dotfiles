@@ -12,28 +12,28 @@ sections:
     - shell: /opt/homebrew/bin/aerospace split horizontal 2>/dev/null &
     - - left_arrow
       - left_control+left_option+left_shift
-    - shell: /opt/homebrew/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    - shell: /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
   - from: j
     description: 'G+D+J: Chrome move tab + focus down'
     to:
     - shell: /opt/homebrew/bin/aerospace split vertical 2>/dev/null &
     - - down_arrow
       - left_control+left_option+left_shift
-    - shell: /opt/homebrew/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    - shell: /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
   - from: k
     description: 'G+D+K: Chrome move tab + focus up'
     to:
     - shell: /opt/homebrew/bin/aerospace split vertical 2>/dev/null &
     - - up_arrow
       - left_control+left_option+left_shift
-    - shell: /opt/homebrew/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    - shell: /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
   - from: l
     description: 'G+D+L: Chrome move tab + focus right'
     to:
     - shell: /opt/homebrew/bin/aerospace split horizontal 2>/dev/null &
     - - right_arrow
       - left_control+left_option+left_shift
-    - shell: /opt/homebrew/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    - shell: /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
   - from: j
     description: 'G+F+J: Chrome move tab + focus down'
     layer:
@@ -46,7 +46,7 @@ sections:
     - shell: /opt/homebrew/bin/aerospace split vertical 2>/dev/null &
     - - down_arrow
       - left_control+left_option
-    - shell: /opt/homebrew/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    - shell: /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
   - from: k
     description: 'G+F+K: Chrome move tab + focus up'
     layer:
@@ -59,7 +59,7 @@ sections:
     - shell: /opt/homebrew/bin/aerospace split vertical 2>/dev/null &
     - - up_arrow
       - left_control+left_option
-    - shell: /opt/homebrew/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+    - shell: /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
 - layer:
   - caps
   - g
@@ -105,19 +105,19 @@ sections:
   - from: h
     description: 'G+H: Chrome switch tab left'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('chrome_tabs').onKeyDown(-1)" &
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyDown(-1)" &
     to_if_held_down: noop
     hold_threshold: 200
     to_after_key_up:
-    - shell: /opt/homebrew/bin/hs -c "require('chrome_tabs').onKeyUp()" &
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyUp()" &
   - from: l
     description: 'G+L: Chrome switch tab right'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('chrome_tabs').onKeyDown(1)" &
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyDown(1)" &
     to_if_held_down: noop
     hold_threshold: 200
     to_after_key_up:
-    - shell: /opt/homebrew/bin/hs -c "require('chrome_tabs').onKeyUp()" &
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyUp()" &
   - from: j
     description: 'G+J: Chrome focus window down'
     to:
@@ -131,35 +131,35 @@ sections:
   - from: y
     description: 'G+Y: Chrome switch to first tab'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('chrome_tabs').onKeyDown('first')" &
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyDown('first')" &
     to_if_held_down: noop
     hold_threshold: 200
     to_after_key_up:
-    - shell: /opt/homebrew/bin/hs -c "require('chrome_tabs').onKeyUp()" &
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyUp()" &
   - from: o
     description: 'G+O: Chrome switch to last tab'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('chrome_tabs').onKeyDown('last')" &
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyDown('last')" &
     to_if_held_down: noop
     hold_threshold: 200
     to_after_key_up:
-    - shell: /opt/homebrew/bin/hs -c "require('chrome_tabs').onKeyUp()" &
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyUp()" &
   - from: u
     description: 'G+U: Chrome switch tab left 3'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('chrome_tabs').onKeyDown(-3)" &
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyDown(-3)" &
     to_if_held_down: noop
     hold_threshold: 200
     to_after_key_up:
-    - shell: /opt/homebrew/bin/hs -c "require('chrome_tabs').onKeyUp()" &
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyUp()" &
   - from: i
     description: 'G+I: Chrome switch tab right 3'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('chrome_tabs').onKeyDown(3)" &
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyDown(3)" &
     to_if_held_down: noop
     hold_threshold: 200
     to_after_key_up:
-    - shell: /opt/homebrew/bin/hs -c "require('chrome_tabs').onKeyUp()" &
+    - shell: /usr/local/bin/hs -c "require('chrome_tabs').onKeyUp()" &
 - layer:
   - caps
   - g

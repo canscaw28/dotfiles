@@ -15,7 +15,7 @@
 
 local M = {}
 
-local KARABINER_CLI = "/opt/homebrew/bin/karabiner_cli"
+local KARABINER_CLI = "/usr/local/bin/karabiner_cli"
 
 local lastState = nil
 

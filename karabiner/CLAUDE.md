@@ -39,7 +39,7 @@ manipulators:
   - from: h
     description: "G+H: Chrome switch tab left"
     to:
-      - shell: '/opt/homebrew/bin/hs -c "require(''chrome_tabs'').onKeyDown(-1)" &'
+      - shell: '/usr/local/bin/hs -c "require(''chrome_tabs'').onKeyDown(-1)" &'
     to_if_held_down: noop
     hold_threshold: 200
 ```

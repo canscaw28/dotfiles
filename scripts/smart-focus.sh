@@ -19,11 +19,11 @@ trap 'rm -f "$LOCKFILE"' EXIT
 direction="$1"
 
 # Dismiss Show Desktop if active
-/opt/homebrew/bin/hs -c "require('show_desktop').dismiss()" 2>/dev/null &
+/usr/local/bin/hs -c "require('show_desktop').dismiss()" 2>/dev/null &
 
 # When dock is visible, hide it first to avoid macOS resizing windows
-if /opt/homebrew/bin/hs -c "return require('dock_peek').isActive()" 2>/dev/null | grep -q "true"; then
-    /opt/homebrew/bin/hs -c "require('dock_peek').hide()" 2>/dev/null
+if /usr/local/bin/hs -c "return require('dock_peek').isActive()" 2>/dev/null | grep -q "true"; then
+    /usr/local/bin/hs -c "require('dock_peek').hide()" 2>/dev/null
     sleep 0.4  # Wait for dock to hide and tiling to unfreeze
 fi
 
@@ -41,9 +41,9 @@ if aerospace focus --boundaries-action fail "$direction" 2>/dev/null; then
     aerospace move-mouse window-lazy-center 2>/dev/null || true
     WID=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || WID=""
     if [ -n "$WID" ]; then
-        /opt/homebrew/bin/hs -c "require('focus_border').flashWindowId($WID)" 2>/dev/null &
+        /usr/local/bin/hs -c "require('focus_border').flashWindowId($WID)" 2>/dev/null &
     else
-        /opt/homebrew/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
+        /usr/local/bin/hs -c "require('focus_border').flash()" 2>/dev/null &
     fi
     exit 0
 fi
@@ -54,9 +54,9 @@ if ! aerospace focus-monitor "$direction" 2>/dev/null; then
     aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null
     WID=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || WID=""
     if [ -n "$WID" ]; then
-        /opt/homebrew/bin/hs -c "require('focus_border').flashWindowId($WID)" 2>/dev/null &
+        /usr/local/bin/hs -c "require('focus_border').flashWindowId($WID)" 2>/dev/null &
     else
-        /opt/homebrew/bin/hs -c "require('focus_border').flash(true)" 2>/dev/null &
+        /usr/local/bin/hs -c "require('focus_border').flash(true)" 2>/dev/null &
     fi
     exit 0
 fi
@@ -77,7 +77,7 @@ fi
 aerospace move-mouse window-lazy-center 2>/dev/null || aerospace move-mouse monitor-lazy-center 2>/dev/null
 WID=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null) || WID=""
 if [ -n "$WID" ]; then
-    /opt/homebrew/bin/hs -c "require('focus_border').flashWindowId($WID)" 2>/dev/null &
+    /usr/local/bin/hs -c "require('focus_border').flashWindowId($WID)" 2>/dev/null &
 else
-    /opt/homebrew/bin/hs -c "require('focus_border').flash(true)" 2>/dev/null &
+    /usr/local/bin/hs -c "require('focus_border').flash(true)" 2>/dev/null &
 fi

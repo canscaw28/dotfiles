@@ -99,9 +99,9 @@ sections:
   - from: h
     description: 'f-cursor-grid: F+D+h left 1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('left', 1, 8)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('left', 1, 8)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -113,9 +113,9 @@ sections:
   - from: j
     description: 'f-cursor-grid: F+D+j down 1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('down', 1, 8)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('down', 1, 8)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -127,9 +127,9 @@ sections:
   - from: k
     description: 'f-cursor-grid: F+D+k up 1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('up', 1, 8)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('up', 1, 8)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -141,9 +141,9 @@ sections:
   - from: l
     description: 'f-cursor-grid: F+D+l right 1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('right', 1, 8)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('right', 1, 8)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -155,9 +155,9 @@ sections:
   - from: y
     description: 'f-cursor-grid: F+D+y left -1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('left', -1, 8)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('left', -1, 8)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -169,9 +169,9 @@ sections:
   - from: o
     description: 'f-cursor-grid: F+D+o right -1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('right', -1, 8)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('right', -1, 8)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -183,9 +183,9 @@ sections:
   - from: u
     description: 'f-cursor-grid: F+D+u left 2'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('left', 2, 8)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('left', 2, 8)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -197,9 +197,9 @@ sections:
   - from: i
     description: 'f-cursor-grid: F+D+i right 2'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('right', 2, 8)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('right', 2, 8)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -211,9 +211,9 @@ sections:
   - from: n
     description: 'f-cursor-grid: F+D+n down -1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('down', -1, 8)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('down', -1, 8)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -225,9 +225,9 @@ sections:
   - from: period
     description: 'f-cursor-grid: F+D+period up -1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('up', -1, 8)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('up', -1, 8)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -239,9 +239,9 @@ sections:
   - from: m
     description: 'f-cursor-grid: F+D+m down 2'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('down', 2, 8)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('down', 2, 8)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -253,9 +253,9 @@ sections:
   - from: comma
     description: 'f-cursor-grid: F+D+comma up 2'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('up', 2, 8)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('up', 2, 8)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -267,9 +267,9 @@ sections:
   - from: h
     description: 'f-cursor-grid: F+S+h left 1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('left', 1, 32)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('left', 1, 32)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -281,9 +281,9 @@ sections:
   - from: j
     description: 'f-cursor-grid: F+S+j down 1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('down', 1, 32)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('down', 1, 32)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -295,9 +295,9 @@ sections:
   - from: k
     description: 'f-cursor-grid: F+S+k up 1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('up', 1, 32)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('up', 1, 32)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -309,9 +309,9 @@ sections:
   - from: l
     description: 'f-cursor-grid: F+S+l right 1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('right', 1, 32)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('right', 1, 32)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -323,9 +323,9 @@ sections:
   - from: y
     description: 'f-cursor-grid: F+S+y left -1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('left', -1, 32)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('left', -1, 32)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -337,9 +337,9 @@ sections:
   - from: o
     description: 'f-cursor-grid: F+S+o right -1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('right', -1, 32)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('right', -1, 32)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -351,9 +351,9 @@ sections:
   - from: u
     description: 'f-cursor-grid: F+S+u left 2'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('left', 2, 32)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('left', 2, 32)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -365,9 +365,9 @@ sections:
   - from: i
     description: 'f-cursor-grid: F+S+i right 2'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('right', 2, 32)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('right', 2, 32)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -379,9 +379,9 @@ sections:
   - from: n
     description: 'f-cursor-grid: F+S+n down -1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('down', -1, 32)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('down', -1, 32)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -393,9 +393,9 @@ sections:
   - from: period
     description: 'f-cursor-grid: F+S+period up -1'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('up', -1, 32)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('up', -1, 32)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -407,9 +407,9 @@ sections:
   - from: m
     description: 'f-cursor-grid: F+S+m down 2'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('down', 2, 32)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('down', 2, 32)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -421,9 +421,9 @@ sections:
   - from: comma
     description: 'f-cursor-grid: F+S+comma up 2'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').startMove('up', 2, 32)" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').startMove('up', 2, 32)" 2>/dev/null &
     to_after_key_up:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').stopMove()" 2>/dev/null &
     layer:
     - caps
     - f
@@ -435,55 +435,55 @@ sections:
   - from: h
     description: 'f-cursor-grid: F+D+S+h jump'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').jump('h')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').jump('h')" 2>/dev/null &
   - from: j
     description: 'f-cursor-grid: F+D+S+j jump'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').jump('j')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').jump('j')" 2>/dev/null &
   - from: k
     description: 'f-cursor-grid: F+D+S+k jump'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').jump('k')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').jump('k')" 2>/dev/null &
   - from: l
     description: 'f-cursor-grid: F+D+S+l jump'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').jump('l')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').jump('l')" 2>/dev/null &
   - from: slash
     description: 'f-cursor-grid: F+D+S+slash jump center'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').jump('slash')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').jump('slash')" 2>/dev/null &
   - from: y
     description: 'f-cursor-grid: F+D+S+y jump'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').jump('y')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').jump('y')" 2>/dev/null &
   - from: o
     description: 'f-cursor-grid: F+D+S+o jump'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').jump('o')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').jump('o')" 2>/dev/null &
   - from: n
     description: 'f-cursor-grid: F+D+S+n jump'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').jump('n')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').jump('n')" 2>/dev/null &
   - from: period
     description: 'f-cursor-grid: F+D+S+period jump'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').jump('period')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').jump('period')" 2>/dev/null &
   - from: u
     description: 'f-cursor-grid: F+D+S+u jump'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').jump('u')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').jump('u')" 2>/dev/null &
   - from: i
     description: 'f-cursor-grid: F+D+S+i jump'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').jump('i')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').jump('i')" 2>/dev/null &
   - from: m
     description: 'f-cursor-grid: F+D+S+m jump'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').jump('m')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').jump('m')" 2>/dev/null &
   - from: comma
     description: 'f-cursor-grid: F+D+S+comma jump'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').jump('comma')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').jump('comma')" 2>/dev/null &
   - from: semicolon
     description: 'f-cursor-grid: F+semicolon left click'
     layer:
@@ -494,7 +494,7 @@ sections:
     - g
     - t
     to:
-      shell: /opt/homebrew/bin/hs -c "hs.eventtap.leftClick(hs.mouse.absolutePosition()); require('cursor_grid').flashClick()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "hs.eventtap.leftClick(hs.mouse.absolutePosition()); require('cursor_grid').flashClick()" 2>/dev/null &
   - from: quote
     description: 'f-cursor-grid: F+quote right click'
     layer:
@@ -505,7 +505,7 @@ sections:
     - g
     - t
     to:
-      shell: /opt/homebrew/bin/hs -c "hs.eventtap.rightClick(hs.mouse.absolutePosition()); require('cursor_grid').flashClick()" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "hs.eventtap.rightClick(hs.mouse.absolutePosition()); require('cursor_grid').flashClick()" 2>/dev/null &
   - from: p
     description: 'f-cursor-grid: F+P toggle grid'
     layer:
@@ -518,7 +518,7 @@ sections:
     - g
     - t
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').toggleGrid(8, 'move')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').toggleGrid(8, 'move')" 2>/dev/null &
   - from: p
     description: 'f-cursor-grid: F+D+P toggle grid'
     layer:
@@ -530,7 +530,7 @@ sections:
     - t
     - s
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').toggleGrid(8, 'move')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').toggleGrid(8, 'move')" 2>/dev/null &
   - from: p
     description: 'f-cursor-grid: F+S+P toggle grid'
     layer:
@@ -542,8 +542,8 @@ sections:
     - t
     - d
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').toggleGrid(32, 'move')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').toggleGrid(32, 'move')" 2>/dev/null &
   - from: p
     description: 'f-cursor-grid: F+D+S+P toggle grid'
     to:
-      shell: /opt/homebrew/bin/hs -c "require('cursor_grid').toggleGrid(8, 'jump')" 2>/dev/null &
+      shell: /usr/local/bin/hs -c "require('cursor_grid').toggleGrid(8, 'jump')" 2>/dev/null &

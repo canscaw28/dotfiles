@@ -10,47 +10,47 @@ sections:
   - from: {key_code: open_bracket, modifiers: {mandatory: [shift], optional: [any]}}
     description: 'Q+shift+[: surround {}'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('surround').doSurround('{', '}')" &
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('{', '}')" &
   - from: {key_code: close_bracket, modifiers: {mandatory: [shift], optional: [any]}}
     description: 'Q+shift+]: surround {}'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('surround').doSurround('{', '}')" &
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('{', '}')" &
   - from: {key_code: quote, modifiers: {mandatory: [shift], optional: [any]}}
     description: 'Q+shift+quote: surround ""'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('surround').doSurround('\"', '\"')" &
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('\"', '\"')" &
   - from: {key_code: grave_accent_and_tilde, modifiers: {mandatory: [shift], optional: [any]}}
     description: 'Q+shift+`: surround ~~'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('surround').doSurround('~', '~')" &
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('~', '~')" &
   - from: {key_code: hyphen, modifiers: {mandatory: [shift], optional: [any]}}
     description: 'Q+shift+-: surround __'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('surround').doSurround('_', '_')" &
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('_', '_')" &
   - from: {key_code: equal_sign, modifiers: {mandatory: [shift], optional: [any]}}
     description: 'Q+shift+=: surround ++'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('surround').doSurround('+', '+')" &
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('+', '+')" &
   - from: {key_code: semicolon, modifiers: {mandatory: [shift], optional: [any]}}
     description: 'Q+shift+;: surround ::'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('surround').doSurround(':', ':')" &
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround(':', ':')" &
   - from: {key_code: comma, modifiers: {mandatory: [shift], optional: [any]}}
     description: 'Q+shift+,: surround <>'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('surround').doSurround('<', '>')" &
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('<', '>')" &
   - from: {key_code: period, modifiers: {mandatory: [shift], optional: [any]}}
     description: 'Q+shift+.: surround <>'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('surround').doSurround('<', '>')" &
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('<', '>')" &
   - from: {key_code: slash, modifiers: {mandatory: [shift], optional: [any]}}
     description: 'Q+shift+/: surround ??'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('surround').doSurround('?', '?')" &
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('?', '?')" &
   - from: {key_code: backslash, modifiers: {mandatory: [shift], optional: [any]}}
     description: 'Q+shift+\: surround ||'
     to:
-    - shell: /opt/homebrew/bin/hs -c "require('surround').doSurround('|', '|')" &
+    - shell: /usr/local/bin/hs -c "require('surround').doSurround('|', '|')" &
 
 # Default (unshifted) symbol mappings
 - layer: [caps, q]
