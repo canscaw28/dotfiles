@@ -1,2 +1,6 @@
 # Personal PII triggers (emails, phone, address, etc.)
 text-expander/personal.yml
+
+# Python bytecode
+__pycache__/
+*.pyc

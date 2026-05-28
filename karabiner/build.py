@@ -20,6 +20,8 @@ import tempfile
 
 import yaml
 
+import build_help
+
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SRC_DIR = os.path.join(SCRIPT_DIR, "src")
 LAYERS_DIR = os.path.join(SRC_DIR, "layers")
@@ -443,24 +445,38 @@ def main():
                 ["diff", "-u", OUTPUT_FILE, tmp_path],
                 capture_output=True, text=True,
             )
-            if result.returncode != 0:
+            mismatch = result.returncode != 0
+            if mismatch:
                 if args.diff:
                     print(result.stdout)
                 else:
                     print("MISMATCH: built config differs from existing karabiner.json",
                           file=sys.stderr)
                     print(result.stdout[:2000], file=sys.stderr)
+            # Help overlay data is generated from README.md, not the YAML;
+            # check it here too so drift fails the same gate.
+            help_data = build_help.build_json()
+            existing_help = ""
+            if os.path.exists(build_help.OUTPUT):
+                with open(build_help.OUTPUT) as hf:
+                    existing_help = hf.read()
+            if existing_help != help_data:
+                print("STALE: help_data.json differs from README.md; run build_help.py",
+                      file=sys.stderr)
+                mismatch = True
+            if mismatch:
                 sys.exit(1)
-            else:
-                if args.verbose:
-                    print("OK: output matches existing karabiner.json")
+            if args.verbose:
+                print("OK: output matches existing karabiner.json and help_data.json")
         finally:
             os.unlink(tmp_path)
     else:
         output_path = args.output or OUTPUT_FILE
         write_config(config, output_path)
+        with open(build_help.OUTPUT, "w") as hf:
+            hf.write(build_help.build_json())
         if args.verbose:
-            print(f"Wrote {output_path}")
+            print(f"Wrote {output_path} and {build_help.OUTPUT}")
 
 
 if __name__ == "__main__":
