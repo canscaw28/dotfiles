@@ -173,6 +173,10 @@ def parse():
 
         i += 1
 
+    # Index legend sorted by the layer key's physical position (default first).
+    index.sort(key=lambda e: (0, -1) if e["key"] == "default"
+               else (1, phys_rank(e["key"])))
+
     return {"index": index, "order": order, "layers": layers}
 
 

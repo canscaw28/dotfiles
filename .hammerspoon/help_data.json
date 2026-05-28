@@ -6,6 +6,26 @@
       "domain": "Cursor movement, text selection, deletion"
     },
     {
+      "key": "Q",
+      "name": "Surround",
+      "domain": "Encapsulate text with symbol pairs"
+    },
+    {
+      "key": "R",
+      "name": "App-specific",
+      "domain": "Superhuman split inbox navigation"
+    },
+    {
+      "key": "T",
+      "name": "Aerospace",
+      "domain": "Window tiling and workspace operations"
+    },
+    {
+      "key": "A",
+      "name": "System",
+      "domain": "Dock, Notification Center, input source, etc."
+    },
+    {
       "key": "F",
       "name": "Scroll / Cursor Grid",
       "domain": "Page scrolling, mouse cursor control, link hints"
@@ -14,26 +34,6 @@
       "key": "G",
       "name": "Application",
       "domain": "App-specific behavior (Chrome tabs, iTerm tmux, etc.)"
-    },
-    {
-      "key": "T",
-      "name": "Aerospace",
-      "domain": "Window tiling and workspace operations"
-    },
-    {
-      "key": "Q",
-      "name": "Surround",
-      "domain": "Encapsulate text with symbol pairs"
-    },
-    {
-      "key": "A",
-      "name": "System",
-      "domain": "Dock, Notification Center, input source, etc."
-    },
-    {
-      "key": "R",
-      "name": "App-specific",
-      "domain": "Superhuman split inbox navigation"
     }
   ],
   "order": [
