@@ -1,6 +1,7 @@
 steps:
 - file: q-setter.yaml
 - file: infrastructure.yaml
+- file: help.yaml
 - file: a-system.yaml
 - file: default.yaml
 - file: f.yaml

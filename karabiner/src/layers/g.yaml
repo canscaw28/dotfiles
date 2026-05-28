@@ -459,8 +459,8 @@ sections:
     to:
     - close_bracket
     - command
-  - from: slash
-    description: 'G+slash: detach tab to new window'
+  - from: backslash
+    description: 'G+backslash: detach tab to new window'
     to:
     - '0'
     - left_command+left_control+left_shift

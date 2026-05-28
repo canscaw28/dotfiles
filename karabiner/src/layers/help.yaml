@@ -1,0 +1,74 @@
+# Help overlay triggers (momentary peek).
+#
+# / shows a stylized cheat sheet while held; release hides it.
+#   caps+/          -> layer index (+ default-layer bindings)
+#   caps+<layer>+/  -> that layer's bindings
+#
+# Built right after infrastructure (see build_order.yaml) so these slash
+# manipulators take priority over each layer's own slash binding. To free
+# `/` for help, the actions it displaced were relocated:
+#   A+/ (Clean Dock)  -> A+P
+#   G+/ (Detach tab)  -> G+backslash
+#
+# Freeing `/` for help also relocated:  T+/ (toggle tiles) -> T+P
+#
+# Excluded layer:
+#   Q -> caps+Q+/ is the surround layer's `//`
+#
+# Overlay data is generated from README.md by build_help.py.
+
+sections:
+# Index — only when no layer key is held (all layer vars negated by default)
+- layer: [caps]
+  manipulators:
+  - from: slash
+    description: "caps+/: Show hotkey help index"
+    to:
+    - shell: /usr/local/bin/hs -c 'require("help_overlay").show("index")'
+    to_after_key_up:
+    - shell: /usr/local/bin/hs -c 'require("help_overlay").hide()'
+
+- layer: [caps, a]
+  manipulators:
+  - from: slash
+    description: "A+/: Show System layer help"
+    to:
+    - shell: /usr/local/bin/hs -c 'require("help_overlay").show("A")'
+    to_after_key_up:
+    - shell: /usr/local/bin/hs -c 'require("help_overlay").hide()'
+
+- layer: [caps, f]
+  manipulators:
+  - from: slash
+    description: "F+/: Show Scroll/Grid layer help"
+    to:
+    - shell: /usr/local/bin/hs -c 'require("help_overlay").show("F")'
+    to_after_key_up:
+    - shell: /usr/local/bin/hs -c 'require("help_overlay").hide()'
+
+- layer: [caps, g]
+  manipulators:
+  - from: slash
+    description: "G+/: Show Application layer help"
+    to:
+    - shell: /usr/local/bin/hs -c 'require("help_overlay").show("G")'
+    to_after_key_up:
+    - shell: /usr/local/bin/hs -c 'require("help_overlay").hide()'
+
+- layer: [caps, t]
+  manipulators:
+  - from: slash
+    description: "T+/: Show Aerospace layer help"
+    to:
+    - shell: /usr/local/bin/hs -c 'require("help_overlay").show("T")'
+    to_after_key_up:
+    - shell: /usr/local/bin/hs -c 'require("help_overlay").hide()'
+
+- layer: [caps, r]
+  manipulators:
+  - from: slash
+    description: "R+/: Show App layer help"
+    to:
+    - shell: /usr/local/bin/hs -c 'require("help_overlay").show("R")'
+    to_after_key_up:
+    - shell: /usr/local/bin/hs -c 'require("help_overlay").hide()'

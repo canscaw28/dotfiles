@@ -480,8 +480,8 @@ sections:
     - t
   - from: p
     to:
-    - p
-    - command+option+shift
+    - [slash, command+option+shift]
+    - shell: '/usr/local/bin/hs -c "require(''focus_border'').flash()" &'
     layer:
     - caps
     - t
@@ -498,9 +498,7 @@ sections:
     - q
     - g
   - from: slash
-    to:
-    - [slash, command+option+shift]
-    - shell: '/usr/local/bin/hs -c "require(''focus_border'').flash()" &'
+    to: noop
     layer:
     - caps
     - t

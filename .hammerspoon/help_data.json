@@ -1,0 +1,1921 @@
+{
+  "index": [
+    {
+      "key": "default",
+      "name": "Default",
+      "domain": "Cursor movement, text selection, deletion"
+    },
+    {
+      "key": "F",
+      "name": "Scroll / Cursor Grid",
+      "domain": "Page scrolling, mouse cursor control, link hints"
+    },
+    {
+      "key": "G",
+      "name": "Application",
+      "domain": "App-specific behavior (Chrome tabs, iTerm tmux, etc.)"
+    },
+    {
+      "key": "T",
+      "name": "Aerospace",
+      "domain": "Window tiling and workspace operations"
+    },
+    {
+      "key": "Q",
+      "name": "Surround",
+      "domain": "Encapsulate text with symbol pairs"
+    },
+    {
+      "key": "A",
+      "name": "System",
+      "domain": "Dock, Notification Center, input source, etc."
+    },
+    {
+      "key": "R",
+      "name": "App-specific",
+      "domain": "Superhuman split inbox navigation"
+    }
+  ],
+  "order": [
+    "default",
+    "F",
+    "G",
+    "T",
+    "R",
+    "Q",
+    "A"
+  ],
+  "layers": {
+    "default": {
+      "name": "Default Layer",
+      "key": "default",
+      "sections": [
+        {
+          "group": null,
+          "title": "Cursor Movement",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪] + H",
+              "cols": [
+                "←",
+                "Move cursor to the left"
+              ]
+            },
+            {
+              "keys": "[⇪] + J",
+              "cols": [
+                "↓",
+                "Move cursor down"
+              ]
+            },
+            {
+              "keys": "[⇪] + K",
+              "cols": [
+                "↑",
+                "Move cursor up"
+              ]
+            },
+            {
+              "keys": "[⇪] + L",
+              "cols": [
+                "→",
+                "Move cursor to the right"
+              ]
+            },
+            {
+              "keys": "[⇪] + ;",
+              "cols": [
+                "Esc",
+                "Easy to reach Esc key alternative"
+              ]
+            },
+            {
+              "keys": "[⇪] + Y",
+              "cols": [
+                "⌘ + ←",
+                "Jumps cursor to the start of the line"
+              ]
+            },
+            {
+              "keys": "[⇪] + U",
+              "cols": [
+                "⌥ + ←",
+                "Jump back one word"
+              ]
+            },
+            {
+              "keys": "[⇪] + I",
+              "cols": [
+                "⌥ + →",
+                "Jump forward one word"
+              ]
+            },
+            {
+              "keys": "[⇪] + O",
+              "cols": [
+                "⌘ + →",
+                "Jumps cursor to the end of the line"
+              ]
+            },
+            {
+              "keys": "[⇪] + M",
+              "cols": [
+                "⌘ + ↓",
+                "Moves cursor to the bottom of an input field"
+              ]
+            },
+            {
+              "keys": "[⇪] + ,",
+              "cols": [
+                "⌘ + ↑",
+                "Moves cursor to the top of an input field"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Selection Mode (⇪ + S)",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+S] + H",
+              "cols": [
+                "⇧ + ←",
+                "Select text left one character"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + J",
+              "cols": [
+                "⇧ + ↓",
+                "Select text downwards"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + K",
+              "cols": [
+                "⇧ + ↑",
+                "Select text upwards"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + L",
+              "cols": [
+                "⇧ + →",
+                "Select text right one character"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + ;",
+              "cols": [
+                "⌘ + A",
+                "Select the entire text field"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + Y",
+              "cols": [
+                "⌘ + ⇧ + ←",
+                "Select text to the start of the line"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + U",
+              "cols": [
+                "⌥ + ⇧ + ←",
+                "Select the word to the left"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + I",
+              "cols": [
+                "⌥ + ⇧ + →",
+                "Select the word to the right"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + O",
+              "cols": [
+                "⌘ + ⇧ + →",
+                "Select text to the end of the line"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + P",
+              "cols": [
+                "⌘ + ←, ⌘ + ⇧ + →",
+                "Select the entire line"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + M",
+              "cols": [
+                "⌥ + ⇧ + ↓",
+                "Moves cursor to the bottom of an input field"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + ,",
+              "cols": [
+                "⌥ + ⇧ + ↑",
+                "Moves cursor to the top of an input field"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Deletion Mode (⇪ + D)",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+D] + H",
+              "cols": [
+                "⌫",
+                "Delete one character to the left"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + J",
+              "cols": [
+                "⇧ + ↓, ⌫",
+                "Delete the line down from the cursor"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + K",
+              "cols": [
+                "⇧ + ↑, ⌫",
+                "Delete the line up from the cursor"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + L",
+              "cols": [
+                "⌦",
+                "Delete one character to the right"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + ;",
+              "cols": [
+                "⌘ + A, ⌫",
+                "Delete whole text area"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + Y",
+              "cols": [
+                "⌘ + ⌫",
+                "Delete the line to the left"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + U",
+              "cols": [
+                "⌥ + ⌫",
+                "Delete the word to the left"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + I",
+              "cols": [
+                "⌥ + ⌦",
+                "Delete the word to the right"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + O",
+              "cols": [
+                "⌘ + ⇧ + →, ⌫",
+                "Delete the line to the right"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + P",
+              "cols": [
+                "⌘ + →, ⌘ + ⌫",
+                "Delete the whole line"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + M",
+              "cols": [
+                "⌃ + K",
+                "Delete the paragraph down from the cursor"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + ,",
+              "cols": [
+                "⌥ + ⇧ + ↑, ⌫",
+                "Delete the paragraph up from the cursor"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "F": {
+      "name": "Scroll / Cursor Grid Layer",
+      "key": "F",
+      "sections": [
+        {
+          "group": null,
+          "title": "Scrolling",
+          "header": [
+            "Key / Shortcut",
+            "Action",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+F] + H",
+              "cols": [
+                "Scroll left",
+                "Continuous scroll left"
+              ]
+            },
+            {
+              "keys": "[⇪+F] + J",
+              "cols": [
+                "Scroll down",
+                "Continuous scroll down"
+              ]
+            },
+            {
+              "keys": "[⇪+F] + K",
+              "cols": [
+                "Scroll up",
+                "Continuous scroll up"
+              ]
+            },
+            {
+              "keys": "[⇪+F] + L",
+              "cols": [
+                "Scroll right",
+                "Continuous scroll right"
+              ]
+            },
+            {
+              "keys": "[⇪+F] + Y",
+              "cols": [
+                "Scroll to top",
+                "Jump to top (animated, 0.3s)"
+              ]
+            },
+            {
+              "keys": "[⇪+F] + O",
+              "cols": [
+                "Scroll to bottom",
+                "Jump to bottom (animated, 0.3s)"
+              ]
+            },
+            {
+              "keys": "[⇪+F] + U",
+              "cols": [
+                "Half-page up",
+                "Smooth half-page scroll up"
+              ]
+            },
+            {
+              "keys": "[⇪+F] + I",
+              "cols": [
+                "Half-page down",
+                "Smooth half-page scroll down"
+              ]
+            },
+            {
+              "keys": "[⇪+F] + ;",
+              "cols": [
+                "Left click",
+                "Click at current cursor position"
+              ]
+            },
+            {
+              "keys": "[⇪+F] + '",
+              "cols": [
+                "Right click",
+                "Right-click at current cursor position"
+              ]
+            },
+            {
+              "keys": "[⇪+F] + P",
+              "cols": [
+                "Toggle grid",
+                "Toggle grid overlay on focused window"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Coarse Cursor Grid (⇪+F + D) — 8×8",
+          "header": [
+            "Key",
+            "Action"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+F+D] + H",
+              "cols": [
+                "Move cursor 1 grid cell left"
+              ]
+            },
+            {
+              "keys": "[⇪+F+D] + J",
+              "cols": [
+                "Move cursor 1 grid cell down"
+              ]
+            },
+            {
+              "keys": "[⇪+F+D] + K",
+              "cols": [
+                "Move cursor 1 grid cell up"
+              ]
+            },
+            {
+              "keys": "[⇪+F+D] + L",
+              "cols": [
+                "Move cursor 1 grid cell right"
+              ]
+            },
+            {
+              "keys": "[⇪+F+D] + Y",
+              "cols": [
+                "Jump to left edge"
+              ]
+            },
+            {
+              "keys": "[⇪+F+D] + O",
+              "cols": [
+                "Jump to right edge"
+              ]
+            },
+            {
+              "keys": "[⇪+F+D] + U",
+              "cols": [
+                "Move cursor 2 grid cells left"
+              ]
+            },
+            {
+              "keys": "[⇪+F+D] + I",
+              "cols": [
+                "Move cursor 2 grid cells right"
+              ]
+            },
+            {
+              "keys": "[⇪+F+D] + N",
+              "cols": [
+                "Jump to bottom edge"
+              ]
+            },
+            {
+              "keys": "[⇪+F+D] + .",
+              "cols": [
+                "Jump to top edge"
+              ]
+            },
+            {
+              "keys": "[⇪+F+D] + M",
+              "cols": [
+                "Move cursor 2 grid cells down"
+              ]
+            },
+            {
+              "keys": "[⇪+F+D] + ,",
+              "cols": [
+                "Move cursor 2 grid cells up"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Fine Cursor Grid (⇪+F + S) — 32×32",
+          "header": [
+            "Key",
+            "Action"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+F+S] + H",
+              "cols": [
+                "Move cursor 1 grid cell left"
+              ]
+            },
+            {
+              "keys": "[⇪+F+S] + J",
+              "cols": [
+                "Move cursor 1 grid cell down"
+              ]
+            },
+            {
+              "keys": "[⇪+F+S] + K",
+              "cols": [
+                "Move cursor 1 grid cell up"
+              ]
+            },
+            {
+              "keys": "[⇪+F+S] + L",
+              "cols": [
+                "Move cursor 1 grid cell right"
+              ]
+            },
+            {
+              "keys": "[⇪+F+S] + Y",
+              "cols": [
+                "Jump to left edge"
+              ]
+            },
+            {
+              "keys": "[⇪+F+S] + O",
+              "cols": [
+                "Jump to right edge"
+              ]
+            },
+            {
+              "keys": "[⇪+F+S] + U",
+              "cols": [
+                "Move cursor 2 grid cells left"
+              ]
+            },
+            {
+              "keys": "[⇪+F+S] + I",
+              "cols": [
+                "Move cursor 2 grid cells right"
+              ]
+            },
+            {
+              "keys": "[⇪+F+S] + N",
+              "cols": [
+                "Jump to bottom edge"
+              ]
+            },
+            {
+              "keys": "[⇪+F+S] + .",
+              "cols": [
+                "Jump to top edge"
+              ]
+            },
+            {
+              "keys": "[⇪+F+S] + M",
+              "cols": [
+                "Move cursor 2 grid cells down"
+              ]
+            },
+            {
+              "keys": "[⇪+F+S] + ,",
+              "cols": [
+                "Move cursor 2 grid cells up"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Cursor Fixed Positions — ⇪ + F + E",
+          "header": [
+            "Key",
+            "Position"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+F+E] + H",
+              "cols": [
+                "Left edge, center height"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + L",
+              "cols": [
+                "Right edge, center height"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + J",
+              "cols": [
+                "Bottom edge, center width"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + K",
+              "cols": [
+                "Top edge, center width"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + ;",
+              "cols": [
+                "Window center"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + Y",
+              "cols": [
+                "Top-left corner"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + O",
+              "cols": [
+                "Top-right corner"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + N",
+              "cols": [
+                "Bottom-left corner"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + .",
+              "cols": [
+                "Bottom-right corner"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + U",
+              "cols": [
+                "Top-left quadrant center"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + I",
+              "cols": [
+                "Top-right quadrant center"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + M",
+              "cols": [
+                "Bottom-left quadrant center"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + ,",
+              "cols": [
+                "Bottom-right quadrant center"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Link Hints (⇪+F + E, Chrome/Homerow)",
+          "header": [
+            "Key",
+            "Action"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+F+E] + J",
+              "cols": [
+                "Vimium link hints (Chrome)"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + K",
+              "cols": [
+                "Vimium hover hints (Chrome)"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + ;",
+              "cols": [
+                "Toggle Vimium (Chrome)"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + H",
+              "cols": [
+                "Homerow scroll mode"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "G": {
+      "name": "Application Layer",
+      "key": "G",
+      "sections": [
+        {
+          "group": "Chrome",
+          "title": "Tab Navigation",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+G] + H",
+              "cols": [
+                "Prev tab",
+                "Previous tab (wraps to previous window at boundary)"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + L",
+              "cols": [
+                "Next tab",
+                "Next tab (wraps to next window at boundary)"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + Y",
+              "cols": [
+                "First tab",
+                "First tab in current window"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + O",
+              "cols": [
+                "Last tab",
+                "Last tab in current window"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + U",
+              "cols": [
+                "Jump 3 left",
+                "Jump 3 tabs to the left"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + I",
+              "cols": [
+                "Jump 3 right",
+                "Jump 3 tabs to the right"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + J",
+              "cols": [
+                "Focus window ↓",
+                "Focus nearest Chrome window below"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + K",
+              "cols": [
+                "Focus window ↑",
+                "Focus nearest Chrome window above"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + ;",
+              "cols": [
+                "Esc; T",
+                "Trigger Vimium Tab search"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + '",
+              "cols": [
+                "Esc; o",
+                "Trigger Vimium history search"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + P",
+              "cols": [
+                "⌃ + G",
+                "Toggle Gemini side panel"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + [",
+              "cols": [
+                "⌘ + [",
+                "Navigate back in history"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + ]",
+              "cols": [
+                "⌘ + ]",
+                "Navigate forward in history"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + N",
+              "cols": [
+                "⌘ + T",
+                "New tab"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + M",
+              "cols": [
+                "Duplicate tab",
+                "Duplicate current tab"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + ,",
+              "cols": [
+                "⌘ + ⇧ + T",
+                "Reopen last closed tab"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + .",
+              "cols": [
+                "⌘ + W",
+                "Close current tab"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + \\",
+              "cols": [
+                "Detach tab",
+                "Detach tab to new window"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Chrome",
+          "title": "Tab Reorder Mode (⇪+F+G)",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+F+G] + H",
+              "cols": [
+                "Esc; <<",
+                "Move tab one position to the left"
+              ]
+            },
+            {
+              "keys": "[⇪+F+G] + L",
+              "cols": [
+                "Esc; >>",
+                "Move tab one position to the right"
+              ]
+            },
+            {
+              "keys": "[⇪+F+G] + Y",
+              "cols": [
+                "Esc; 100<<",
+                "Move tab to the beginning"
+              ]
+            },
+            {
+              "keys": "[⇪+F+G] + O",
+              "cols": [
+                "Esc; 100>>",
+                "Move tab to the end"
+              ]
+            },
+            {
+              "keys": "[⇪+F+G] + U",
+              "cols": [
+                "Esc; 3<<",
+                "Move tab 3 positions to the left"
+              ]
+            },
+            {
+              "keys": "[⇪+F+G] + I",
+              "cols": [
+                "Esc; 3>>",
+                "Move tab 3 positions to the right"
+              ]
+            },
+            {
+              "keys": "[⇪+F+G] + J",
+              "cols": [
+                "Move tab + focus ↓",
+                "Move tab to window below and follow"
+              ]
+            },
+            {
+              "keys": "[⇪+F+G] + K",
+              "cols": [
+                "Move tab + focus ↑",
+                "Move tab to window above and follow"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Chrome",
+          "title": "Tab Move Mode (⇪+D+G)",
+          "header": [
+            "Key / Shortcut",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+D+G] + H",
+              "cols": [
+                "Move tab to Chrome window on the left"
+              ]
+            },
+            {
+              "keys": "[⇪+D+G] + J",
+              "cols": [
+                "Move tab to Chrome window below"
+              ]
+            },
+            {
+              "keys": "[⇪+D+G] + K",
+              "cols": [
+                "Move tab to Chrome window above"
+              ]
+            },
+            {
+              "keys": "[⇪+D+G] + L",
+              "cols": [
+                "Move tab to Chrome window on the right"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "iTerm2",
+          "title": "Cursor Movement",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪] + Y",
+              "cols": [
+                "⌃ + A",
+                "Jump to start of line"
+              ]
+            },
+            {
+              "keys": "[⇪] + U",
+              "cols": [
+                "⌥ + ←",
+                "Jump back one word"
+              ]
+            },
+            {
+              "keys": "[⇪] + I",
+              "cols": [
+                "⌥ + →",
+                "Jump forward one word"
+              ]
+            },
+            {
+              "keys": "[⇪] + O",
+              "cols": [
+                "⌃ + E",
+                "Jump to end of line"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "iTerm2",
+          "title": "History Navigation",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪] + ,",
+              "cols": [
+                "⌃ + P",
+                "Search history backward with prefix matching"
+              ]
+            },
+            {
+              "keys": "[⇪] + M",
+              "cols": [
+                "⌃ + N",
+                "Search history forward with prefix matching"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "iTerm2",
+          "title": "Text Deletion",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+D] + Y",
+              "cols": [
+                "⌃ + U",
+                "Delete from cursor to start of line"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + U",
+              "cols": [
+                "⌃ + W",
+                "Delete word to the left"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + I",
+              "cols": [
+                "⌥ + D",
+                "Delete word to the right"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + O",
+              "cols": [
+                "⌃ + K",
+                "Delete from cursor to end of line"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + J",
+              "cols": [
+                "F18",
+                "Delete to line below"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + K",
+              "cols": [
+                "F19",
+                "Delete to line above"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "iTerm2",
+          "title": "Undo/Redo",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "⌘ + Z",
+              "cols": [
+                "⌃ + _",
+                "Undo last text change"
+              ]
+            },
+            {
+              "keys": "⌘ + ⇧ + Z",
+              "cols": [
+                "Esc + _",
+                "Redo last undo"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "iTerm2",
+          "title": "Text Selection",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+S] + H",
+              "cols": [
+                "⇧ + ←",
+                "Select character to the left"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + J",
+              "cols": [
+                "⌃ + ⇧ + ↓",
+                "Select line down (to end of buffer on last line)"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + K",
+              "cols": [
+                "⌃ + ⇧ + ↑",
+                "Select line up (to start of buffer on first line)"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + L",
+              "cols": [
+                "⇧ + →",
+                "Select character to the right"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + Y",
+              "cols": [
+                "⇧ + Home",
+                "Select to start of line"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + U",
+              "cols": [
+                "⌃ + ⇧ + ←",
+                "Select word to the left"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + I",
+              "cols": [
+                "⌃ + ⇧ + →",
+                "Select word to the right"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + O",
+              "cols": [
+                "⇧ + End",
+                "Select to end of line"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + ;",
+              "cols": [
+                "⌥ + A",
+                "Select entire command buffer"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "iTerm2",
+          "title": "Standard Commands",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "⌘ + A",
+              "cols": [
+                "⌥ + A",
+                "Select entire command buffer (not terminal output)"
+              ]
+            },
+            {
+              "keys": "⌘ + C",
+              "cols": [
+                "⌥ + C",
+                "Copy selection if active, else Ctrl+C interrupt"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "iTerm2",
+          "title": "Clipboard Operations",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+⌘] + C",
+              "cols": [
+                "F15",
+                "Copy selection to system clipboard"
+              ]
+            },
+            {
+              "keys": "[⇪+⌘] + X",
+              "cols": [
+                "F16",
+                "Cut selection to system clipboard"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "iTerm2",
+          "title": "G Layer — Tmux Pane Navigation",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+G] + H",
+              "cols": [
+                "⌃ + B, ←",
+                "Select tmux pane left"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + J",
+              "cols": [
+                "⌃ + B, ↓",
+                "Select tmux pane down"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + K",
+              "cols": [
+                "⌃ + B, ↑",
+                "Select tmux pane up"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + L",
+              "cols": [
+                "⌃ + B, →",
+                "Select tmux pane right"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + Y",
+              "cols": [
+                "Edge pane left",
+                "Jump to leftmost tmux pane"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + O",
+              "cols": [
+                "Edge pane right",
+                "Jump to rightmost tmux pane"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Other Apps",
+          "header": [
+            "Key / Shortcut",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+G] + H",
+              "cols": [
+                "Focus window left"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + J",
+              "cols": [
+                "Focus window down"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + K",
+              "cols": [
+                "Focus window up"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + L",
+              "cols": [
+                "Focus window right"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "T": {
+      "name": "Aerospace Layer",
+      "key": "T",
+      "sections": [
+        {
+          "group": null,
+          "title": "Focus",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+T] + H",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + H",
+                "Focus left"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + J",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + J",
+                "Focus down"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + K",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + K",
+                "Focus up"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + L",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + L",
+                "Focus right"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + P",
+              "cols": [
+                "⌘ + ⌥ + ⇧ + /",
+                "Toggle tiles horizontal/vertical"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + '",
+              "cols": [
+                "`switch-monitor.sh`",
+                "Focus next monitor (wrap-around)"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + -",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + ⇧ + -",
+                "Resize smart -50"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + =",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + ⇧ + =",
+                "Resize smart +50"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + .",
+              "cols": [
+                "⌘ + ⌥ + ⇧ + .",
+                "Toggle accordion horizontal/vertical"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + ,",
+              "cols": [
+                "⌘ + ⌥ + ⇧ + ,",
+                "Toggle floating/tiling"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + N",
+              "cols": [
+                "⌘ + ⌥ + ⇧ + N",
+                "Balance window sizes"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + M",
+              "cols": [
+                "⌘ + ⌥ + ⇧ + M",
+                "Flatten workspace tree"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Move Mode (⇪+T + R)",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+T+R] + H",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + Y",
+                "Move window left (crosses to adjacent monitor at edge)"
+              ]
+            },
+            {
+              "keys": "[⇪+T+R] + J",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + U",
+                "Move window down (crosses to adjacent monitor at edge)"
+              ]
+            },
+            {
+              "keys": "[⇪+T+R] + K",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + I",
+                "Move window up (crosses to adjacent monitor at edge)"
+              ]
+            },
+            {
+              "keys": "[⇪+T+R] + L",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + O",
+                "Move window right (crosses to adjacent monitor at edge)"
+              ]
+            },
+            {
+              "keys": "[⇪+T+R] + '",
+              "cols": [
+                "`ws.sh move-monitor-focus`",
+                "Move window to next monitor and follow"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Join Mode (⇪+T + 4)",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+T+4] + H",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + N",
+                "Join with left"
+              ]
+            },
+            {
+              "keys": "[⇪+T+4] + J",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + M",
+                "Join with down"
+              ]
+            },
+            {
+              "keys": "[⇪+T+4] + K",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + ,",
+                "Join with up"
+              ]
+            },
+            {
+              "keys": "[⇪+T+4] + L",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + .",
+                "Join with right"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Focus Workspace (⇪+T + W)",
+          "header": [
+            "Key / Shortcut",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+T+W] + *key*",
+              "cols": [
+                "Focus workspace on current monitor (swaps if visible on another)"
+              ]
+            },
+            {
+              "keys": "[⇪+T+W] + '",
+              "cols": [
+                "Focus next monitor (wrap-around); grid stays visible"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Move to Workspace (⇪+T + E)",
+          "header": [
+            "Key / Shortcut",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+T+E] + *key*",
+              "cols": [
+                "Move focused window to workspace (stay on current)"
+              ]
+            },
+            {
+              "keys": "[⇪+T+E] + '",
+              "cols": [
+                "Move focused window to next monitor (stay on current)"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Move + Follow to Workspace (⇪+T + R + E)",
+          "header": [
+            "Key / Shortcut",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+T+R+E] + *key*",
+              "cols": [
+                "Move window to workspace and follow on current monitor"
+              ]
+            },
+            {
+              "keys": "[⇪+T+R+E] + '",
+              "cols": [
+                "Move window to next monitor and yank that workspace back"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Focus Other Monitor (⇪+T + W + E / R)",
+          "header": [
+            "Key / Shortcut",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+T+W+E] + *key*",
+              "cols": [
+                "Focus workspace on MacBook (or Duet if already on MacBook)"
+              ]
+            },
+            {
+              "keys": "[⇪+T+W+R] + *key*",
+              "cols": [
+                "Focus workspace on external — Sidecar or Dell (or Duet if already on external)"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Swap Windows (⇪+T + 3)",
+          "header": [
+            "Key / Shortcut",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+T+3] + *key*",
+              "cols": [
+                "Swap all windows between focused workspace and target workspace"
+              ]
+            },
+            {
+              "keys": "[⇪+T+3] + '",
+              "cols": [
+                "Swap workspaces between current and next monitor"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "R": {
+      "name": "App Layer",
+      "key": "R",
+      "sections": [
+        {
+          "group": null,
+          "title": "Superhuman Split Inbox (Chrome)",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+R] + H",
+              "cols": [
+                "⇧ + ⇥",
+                "Previous split inbox"
+              ]
+            },
+            {
+              "keys": "[⇪+R] + L",
+              "cols": [
+                "⇥",
+                "Next split inbox"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "Q": {
+      "name": "Surround Layer",
+      "key": "Q",
+      "sections": [
+        {
+          "group": null,
+          "title": "Symbol Pairs",
+          "header": [
+            "Key",
+            "Pair",
+            "Shift+Key",
+            "Pair"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+Q] + `",
+              "cols": [
+                "` `` `",
+                "[⇪+Q] + ~",
+                "`~~`"
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + 1",
+              "cols": [
+                "`!!`",
+                "",
+                ""
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + 2",
+              "cols": [
+                "`@@`",
+                "",
+                ""
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + 3",
+              "cols": [
+                "`##`",
+                "",
+                ""
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + 4",
+              "cols": [
+                "`$$`",
+                "",
+                ""
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + 5",
+              "cols": [
+                "`%%`",
+                "",
+                ""
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + 6",
+              "cols": [
+                "`^^`",
+                "",
+                ""
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + 7",
+              "cols": [
+                "`&&`",
+                "",
+                ""
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + 9",
+              "cols": [
+                "`()`",
+                "",
+                ""
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + 0",
+              "cols": [
+                "`()`",
+                "",
+                ""
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + -",
+              "cols": [
+                "`--`",
+                "[⇪+Q] + _",
+                "`__`"
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + =",
+              "cols": [
+                "`==`",
+                "[⇪+Q] + +",
+                "`++`"
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + [",
+              "cols": [
+                "`[]`",
+                "[⇪+Q] + {",
+                "`{}`"
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + ]",
+              "cols": [
+                "`[]`",
+                "[⇪+Q] + }",
+                "`{}`"
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + \\",
+              "cols": [
+                "`\\\\`",
+                "[⇪+Q] + |",
+                "`||`"
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + ;",
+              "cols": [
+                "`;;`",
+                "[⇪+Q] + :",
+                "`::`"
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + '",
+              "cols": [
+                "`''`",
+                "[⇪+Q] + \"",
+                "`\"\"`"
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + ,",
+              "cols": [
+                "`,,`",
+                "[⇪+Q] + <",
+                "`<>`"
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + .",
+              "cols": [
+                "`..`",
+                "[⇪+Q] + >",
+                "`<>`"
+              ]
+            },
+            {
+              "keys": "[⇪+Q] + /",
+              "cols": [
+                "`//`",
+                "[⇪+Q] + ?",
+                "`??`"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "A": {
+      "name": "System Layer",
+      "key": "A",
+      "sections": [
+        {
+          "group": null,
+          "title": "System Toggles",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+A] + Y",
+              "cols": [
+                "Toggle Dock",
+                "Shows/hides the macOS Dock on the focused monitor. Uses AeroSpace `freeze-tiling` to prevent window resizing. Auto-hides when changing window focus or switching workspaces."
+              ]
+            },
+            {
+              "keys": "[⇪+A] + U",
+              "cols": [
+                "Toggle Notification Center",
+                "Opens/closes the Notification Center via AppleScript"
+              ]
+            },
+            {
+              "keys": "[⇪+A] + I",
+              "cols": [
+                "Mission Control",
+                "Shows Mission Control"
+              ]
+            },
+            {
+              "keys": "[⇪+A] + O",
+              "cols": [
+                "Show Desktop",
+                "Shows the desktop (fn+F11)"
+              ]
+            },
+            {
+              "keys": "[⇪+A] + .",
+              "cols": [
+                "Reload All Configs",
+                "Runs `reload.sh --all` (AeroSpace, Karabiner, Hammerspoon, iTerm2, text-expander, shell, Chrome)"
+              ]
+            },
+            {
+              "keys": "[⇪+A] + M",
+              "cols": [
+                "Connect Displays",
+                "Connects Sidecar to `CW iPad`. Idempotent — never disconnects. Disconnect manually from the iPad."
+              ]
+            },
+            {
+              "keys": "[⇪+A] + P",
+              "cols": [
+                "Clean Dock",
+                "Removes recent apps from Dock"
+              ]
+            },
+            {
+              "keys": "[⇪+A] + ,",
+              "cols": [
+                "Workspace Setup",
+                "Opens apps (iTerm2→k, Messages→n, Rize→n, Slack→m) and moves windows to assigned workspaces"
+              ]
+            }
+          ]
+        },
+        {
+          "group": null,
+          "title": "Input Source",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+A] + H",
+              "cols": [
+                "English (U.S.)",
+                "Switch to English input source"
+              ]
+            },
+            {
+              "keys": "[⇪+A] + N",
+              "cols": [
+                "Toggle Input",
+                "Toggle between input sources (⌃+⌥+Space)"
+              ]
+            },
+            {
+              "keys": "[⇪+A] + R⇧",
+              "cols": [
+                "Toggle Input Source",
+                "Send caps_lock to toggle input source"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

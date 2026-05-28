@@ -8,6 +8,7 @@ Caps Lock becomes a modifier system where the **left hand picks context** and th
 - [Design](#design)
 - [Modes](#modes)
 - [Misc Shortcuts](#misc-shortcuts)
+- [Hotkey Help Overlay](#hotkey-help-overlay)
 - [Default Layer (⇪)](#default-layer-)
 - [Scroll / Cursor Grid Layer (⇪+F)](#scroll--cursor-grid-layer-f)
 - [Application Layer (⇪+G)](#application-layer-g)
@@ -76,6 +77,23 @@ Right hand layout is always the same — vim directions that stay consistent acr
 | Shortcut | Behavior | Description |
 | --- | --- | --- |
 | ⇪ + ⇪ | LanguageTool | Double-tap Caps Lock to trigger LanguageTool tooltip |
+
+---
+
+## Hotkey Help Overlay
+
+A momentary on-screen cheat sheet. Hold `/` with Caps Lock to peek; release to dismiss. The overlay is **generated from this README** by `build_help.py` (→ `.hammerspoon/help_data.json`, rendered by `help_overlay.lua`), so it can never drift from these tables.
+
+| Shortcut | Shows |
+| --- | --- |
+| ⇪ + / | Layer index + Default-layer bindings |
+| ⇪ + A + / | System layer |
+| ⇪ + F + / | Scroll / Cursor Grid layer |
+| ⇪ + G + / | Application layer |
+| ⇪ + T + / | Aerospace layer |
+| ⇪ + R + / | App layer |
+
+Q has no peek: `⇪ + Q + /` is the surround layer's `//`. Freeing `/` for help relocated three actions: **Clean Dock** to `⇪ + A + P`, **Detach tab** to `⇪ + G + \`, and **Toggle tiles** to `⇪ + T + P`. Because the overlay is parsed from the tables above, the per-binding row format (`| combo | behavior | description |`) under each `##`/`###` layer section is load-bearing — keep it intact when editing.
 
 ---
 
@@ -270,7 +288,7 @@ The G layer provides app-specific behavior. In Chrome it controls tabs and windo
 | [⇪+G] + M | Duplicate tab | Duplicate current tab |
 | [⇪+G] + , | ⌘ + ⇧ + T | Reopen last closed tab |
 | [⇪+G] + . | ⌘ + W | Close current tab |
-| [⇪+G] + / | Detach tab | Detach tab to new window |
+| [⇪+G] + \ | Detach tab | Detach tab to new window |
 
 Tab switching (H/L/Y/O/U/I) uses Hammerspoon JXA for reliability, with hold-to-repeat (0.2s delay, 70ms interval) and cross-window wrapping via AeroSpace.
 
@@ -403,10 +421,10 @@ These overrides are gated on a `panel_active` variable set by Hammerspoon's `pan
 | [⇪+T] + K | ⌘ + ⌥ + ⌃ + K | Focus up |
 | [⇪+T] + L | ⌘ + ⌥ + ⌃ + L | Focus right |
 | [⇪+T] + ; | *available* | |
+| [⇪+T] + P | ⌘ + ⌥ + ⇧ + / | Toggle tiles horizontal/vertical |
 | [⇪+T] + ' | `switch-monitor.sh` | Focus next monitor (wrap-around) |
 | [⇪+T] + - | ⌘ + ⌥ + ⌃ + ⇧ + - | Resize smart -50 |
 | [⇪+T] + = | ⌘ + ⌥ + ⌃ + ⇧ + = | Resize smart +50 |
-| [⇪+T] + / | ⌘ + ⌥ + ⇧ + / | Toggle tiles horizontal/vertical |
 | [⇪+T] + . | ⌘ + ⌥ + ⇧ + . | Toggle accordion horizontal/vertical |
 | [⇪+T] + , | ⌘ + ⌥ + ⇧ + , | Toggle floating/tiling |
 | [⇪+T] + N | ⌘ + ⌥ + ⇧ + N | Balance window sizes |
@@ -566,7 +584,7 @@ macOS system toggles and input source management. Unlike other layers, A does no
 | [⇪+A] + O | Show Desktop | Shows the desktop (fn+F11) |
 | [⇪+A] + . | Reload All Configs | Runs `reload.sh --all` (AeroSpace, Karabiner, Hammerspoon, iTerm2, text-expander, shell, Chrome) |
 | [⇪+A] + M | Connect Displays | Connects Sidecar to `CW iPad`. Idempotent — never disconnects. Disconnect manually from the iPad. |
-| [⇪+A] + / | Clean Dock | Removes recent apps from Dock |
+| [⇪+A] + P | Clean Dock | Removes recent apps from Dock |
 | [⇪+A] + , | Workspace Setup | Opens apps (iTerm2→k, Messages→n, Rize→n, Slack→m) and moves windows to assigned workspaces |
 
 ### Input Source

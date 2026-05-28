@@ -7,10 +7,10 @@ manipulators:
   description: 'A+M: Connect Displays'
   to:
   - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+M")'; /usr/bin/swift /Users/craig/dev/dotfiles/raycast/connect-displays.swift &
-- from: slash
-  description: 'A+/: Clean Dock'
+- from: p
+  description: 'A+P: Clean Dock'
   to:
-  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+/")'; /bin/bash /Users/craig/dev/dotfiles/scripts/clean-dock.sh &
+  - shell: /usr/local/bin/hs -c 'require("a_layer_notify").show("⇪+A+P")'; /bin/bash /Users/craig/dev/dotfiles/scripts/clean-dock.sh &
 - from: h
   description: 'A+H: Switch to English (U.S.)'
   to:
