@@ -48,6 +48,29 @@ def strip_emphasis(text):
     return text.replace("*", "").replace("`", "").strip()
 
 
+# Physical QWERTY order, left→right then top→bottom. Rows within a section are
+# sorted by the trigger key's position here so the overlay can be scanned by
+# location: 6 7 8 9 0 - =  before  y u i o p [ ] \  before  h j k l ; '  etc.
+PHYS_ORDER = "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./"
+SHIFT_TO_BASE = {
+    "~": "`", "!": "1", "@": "2", "#": "3", "$": "4", "%": "5", "^": "6",
+    "&": "7", "*": "8", "(": "9", ")": "0", "_": "-", "+": "=", "{": "[",
+    "}": "]", "|": "\\", ":": ";", '"': "'", "<": ",", ">": ".", "?": "/",
+}
+
+
+def phys_rank(keys):
+    """Sort key for a binding row: the physical position of its trigger key.
+    Non-single-key triggers (e.g. '⌘ + Z', '*key*') sort to the end, stably."""
+    m = re.search(r"\]\s*\+\s*(.+)$", keys)
+    tok = (m.group(1) if m else keys).strip().strip("*").strip()
+    if len(tok) != 1:
+        return len(PHYS_ORDER)
+    ch = SHIFT_TO_BASE.get(tok, tok.lower())
+    idx = PHYS_ORDER.find(ch)
+    return idx if idx >= 0 else len(PHYS_ORDER)
+
+
 def row_is_empty(cols):
     """A row with nothing but blanks or an '*available*' marker carries no binding."""
     joined = strip_emphasis(" ".join(cols)).lower()
@@ -139,6 +162,7 @@ def parse():
                 section_rows.append({"keys": keys, "cols": cols})
 
             if section_rows:
+                section_rows.sort(key=lambda r: phys_rank(r["keys"]))
                 layers[cur_layer]["sections"].append({
                     "group": cur_h3 if cur_h4 else None,
                     "title": cur_h4 or cur_h3 or layers[cur_layer]["name"],

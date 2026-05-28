@@ -60,6 +60,34 @@
           ],
           "rows": [
             {
+              "keys": "[⇪] + Y",
+              "cols": [
+                "⌘ + ←",
+                "Jumps cursor to the start of the line"
+              ]
+            },
+            {
+              "keys": "[⇪] + U",
+              "cols": [
+                "⌥ + ←",
+                "Jump back one word"
+              ]
+            },
+            {
+              "keys": "[⇪] + I",
+              "cols": [
+                "⌥ + →",
+                "Jump forward one word"
+              ]
+            },
+            {
+              "keys": "[⇪] + O",
+              "cols": [
+                "⌘ + →",
+                "Jumps cursor to the end of the line"
+              ]
+            },
+            {
               "keys": "[⇪] + H",
               "cols": [
                 "←",
@@ -95,34 +123,6 @@
               ]
             },
             {
-              "keys": "[⇪] + Y",
-              "cols": [
-                "⌘ + ←",
-                "Jumps cursor to the start of the line"
-              ]
-            },
-            {
-              "keys": "[⇪] + U",
-              "cols": [
-                "⌥ + ←",
-                "Jump back one word"
-              ]
-            },
-            {
-              "keys": "[⇪] + I",
-              "cols": [
-                "⌥ + →",
-                "Jump forward one word"
-              ]
-            },
-            {
-              "keys": "[⇪] + O",
-              "cols": [
-                "⌘ + →",
-                "Jumps cursor to the end of the line"
-              ]
-            },
-            {
               "keys": "[⇪] + M",
               "cols": [
                 "⌘ + ↓",
@@ -147,41 +147,6 @@
             "Description"
           ],
           "rows": [
-            {
-              "keys": "[⇪+S] + H",
-              "cols": [
-                "⇧ + ←",
-                "Select text left one character"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + J",
-              "cols": [
-                "⇧ + ↓",
-                "Select text downwards"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + K",
-              "cols": [
-                "⇧ + ↑",
-                "Select text upwards"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + L",
-              "cols": [
-                "⇧ + →",
-                "Select text right one character"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + ;",
-              "cols": [
-                "⌘ + A",
-                "Select the entire text field"
-              ]
-            },
             {
               "keys": "[⇪+S] + Y",
               "cols": [
@@ -218,6 +183,41 @@
               ]
             },
             {
+              "keys": "[⇪+S] + H",
+              "cols": [
+                "⇧ + ←",
+                "Select text left one character"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + J",
+              "cols": [
+                "⇧ + ↓",
+                "Select text downwards"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + K",
+              "cols": [
+                "⇧ + ↑",
+                "Select text upwards"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + L",
+              "cols": [
+                "⇧ + →",
+                "Select text right one character"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + ;",
+              "cols": [
+                "⌘ + A",
+                "Select the entire text field"
+              ]
+            },
+            {
               "keys": "[⇪+S] + M",
               "cols": [
                 "⌥ + ⇧ + ↓",
@@ -242,41 +242,6 @@
             "Description"
           ],
           "rows": [
-            {
-              "keys": "[⇪+D] + H",
-              "cols": [
-                "⌫",
-                "Delete one character to the left"
-              ]
-            },
-            {
-              "keys": "[⇪+D] + J",
-              "cols": [
-                "⇧ + ↓, ⌫",
-                "Delete the line down from the cursor"
-              ]
-            },
-            {
-              "keys": "[⇪+D] + K",
-              "cols": [
-                "⇧ + ↑, ⌫",
-                "Delete the line up from the cursor"
-              ]
-            },
-            {
-              "keys": "[⇪+D] + L",
-              "cols": [
-                "⌦",
-                "Delete one character to the right"
-              ]
-            },
-            {
-              "keys": "[⇪+D] + ;",
-              "cols": [
-                "⌘ + A, ⌫",
-                "Delete whole text area"
-              ]
-            },
             {
               "keys": "[⇪+D] + Y",
               "cols": [
@@ -313,6 +278,41 @@
               ]
             },
             {
+              "keys": "[⇪+D] + H",
+              "cols": [
+                "⌫",
+                "Delete one character to the left"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + J",
+              "cols": [
+                "⇧ + ↓, ⌫",
+                "Delete the line down from the cursor"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + K",
+              "cols": [
+                "⇧ + ↑, ⌫",
+                "Delete the line up from the cursor"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + L",
+              "cols": [
+                "⌦",
+                "Delete one character to the right"
+              ]
+            },
+            {
+              "keys": "[⇪+D] + ;",
+              "cols": [
+                "⌘ + A, ⌫",
+                "Delete whole text area"
+              ]
+            },
+            {
               "keys": "[⇪+D] + M",
               "cols": [
                 "⌃ + K",
@@ -344,6 +344,41 @@
           ],
           "rows": [
             {
+              "keys": "[⇪+F] + Y",
+              "cols": [
+                "Scroll to top",
+                "Jump to top (animated, 0.3s)"
+              ]
+            },
+            {
+              "keys": "[⇪+F] + U",
+              "cols": [
+                "Half-page up",
+                "Smooth half-page scroll up"
+              ]
+            },
+            {
+              "keys": "[⇪+F] + I",
+              "cols": [
+                "Half-page down",
+                "Smooth half-page scroll down"
+              ]
+            },
+            {
+              "keys": "[⇪+F] + O",
+              "cols": [
+                "Scroll to bottom",
+                "Jump to bottom (animated, 0.3s)"
+              ]
+            },
+            {
+              "keys": "[⇪+F] + P",
+              "cols": [
+                "Toggle grid",
+                "Toggle grid overlay on focused window"
+              ]
+            },
+            {
               "keys": "[⇪+F] + H",
               "cols": [
                 "Scroll left",
@@ -372,34 +407,6 @@
               ]
             },
             {
-              "keys": "[⇪+F] + Y",
-              "cols": [
-                "Scroll to top",
-                "Jump to top (animated, 0.3s)"
-              ]
-            },
-            {
-              "keys": "[⇪+F] + O",
-              "cols": [
-                "Scroll to bottom",
-                "Jump to bottom (animated, 0.3s)"
-              ]
-            },
-            {
-              "keys": "[⇪+F] + U",
-              "cols": [
-                "Half-page up",
-                "Smooth half-page scroll up"
-              ]
-            },
-            {
-              "keys": "[⇪+F] + I",
-              "cols": [
-                "Half-page down",
-                "Smooth half-page scroll down"
-              ]
-            },
-            {
               "keys": "[⇪+F] + ;",
               "cols": [
                 "Left click",
@@ -412,13 +419,6 @@
                 "Right click",
                 "Right-click at current cursor position"
               ]
-            },
-            {
-              "keys": "[⇪+F] + P",
-              "cols": [
-                "Toggle grid",
-                "Toggle grid overlay on focused window"
-              ]
             }
           ]
         },
@@ -430,6 +430,30 @@
             "Action"
           ],
           "rows": [
+            {
+              "keys": "[⇪+F+D] + Y",
+              "cols": [
+                "Jump to left edge"
+              ]
+            },
+            {
+              "keys": "[⇪+F+D] + U",
+              "cols": [
+                "Move cursor 2 grid cells left"
+              ]
+            },
+            {
+              "keys": "[⇪+F+D] + I",
+              "cols": [
+                "Move cursor 2 grid cells right"
+              ]
+            },
+            {
+              "keys": "[⇪+F+D] + O",
+              "cols": [
+                "Jump to right edge"
+              ]
+            },
             {
               "keys": "[⇪+F+D] + H",
               "cols": [
@@ -455,39 +479,9 @@
               ]
             },
             {
-              "keys": "[⇪+F+D] + Y",
-              "cols": [
-                "Jump to left edge"
-              ]
-            },
-            {
-              "keys": "[⇪+F+D] + O",
-              "cols": [
-                "Jump to right edge"
-              ]
-            },
-            {
-              "keys": "[⇪+F+D] + U",
-              "cols": [
-                "Move cursor 2 grid cells left"
-              ]
-            },
-            {
-              "keys": "[⇪+F+D] + I",
-              "cols": [
-                "Move cursor 2 grid cells right"
-              ]
-            },
-            {
               "keys": "[⇪+F+D] + N",
               "cols": [
                 "Jump to bottom edge"
-              ]
-            },
-            {
-              "keys": "[⇪+F+D] + .",
-              "cols": [
-                "Jump to top edge"
               ]
             },
             {
@@ -501,6 +495,12 @@
               "cols": [
                 "Move cursor 2 grid cells up"
               ]
+            },
+            {
+              "keys": "[⇪+F+D] + .",
+              "cols": [
+                "Jump to top edge"
+              ]
             }
           ]
         },
@@ -512,6 +512,30 @@
             "Action"
           ],
           "rows": [
+            {
+              "keys": "[⇪+F+S] + Y",
+              "cols": [
+                "Jump to left edge"
+              ]
+            },
+            {
+              "keys": "[⇪+F+S] + U",
+              "cols": [
+                "Move cursor 2 grid cells left"
+              ]
+            },
+            {
+              "keys": "[⇪+F+S] + I",
+              "cols": [
+                "Move cursor 2 grid cells right"
+              ]
+            },
+            {
+              "keys": "[⇪+F+S] + O",
+              "cols": [
+                "Jump to right edge"
+              ]
+            },
             {
               "keys": "[⇪+F+S] + H",
               "cols": [
@@ -537,39 +561,9 @@
               ]
             },
             {
-              "keys": "[⇪+F+S] + Y",
-              "cols": [
-                "Jump to left edge"
-              ]
-            },
-            {
-              "keys": "[⇪+F+S] + O",
-              "cols": [
-                "Jump to right edge"
-              ]
-            },
-            {
-              "keys": "[⇪+F+S] + U",
-              "cols": [
-                "Move cursor 2 grid cells left"
-              ]
-            },
-            {
-              "keys": "[⇪+F+S] + I",
-              "cols": [
-                "Move cursor 2 grid cells right"
-              ]
-            },
-            {
               "keys": "[⇪+F+S] + N",
               "cols": [
                 "Jump to bottom edge"
-              ]
-            },
-            {
-              "keys": "[⇪+F+S] + .",
-              "cols": [
-                "Jump to top edge"
               ]
             },
             {
@@ -583,6 +577,12 @@
               "cols": [
                 "Move cursor 2 grid cells up"
               ]
+            },
+            {
+              "keys": "[⇪+F+S] + .",
+              "cols": [
+                "Jump to top edge"
+              ]
             }
           ]
         },
@@ -595,57 +595,9 @@
           ],
           "rows": [
             {
-              "keys": "[⇪+F+E] + H",
-              "cols": [
-                "Left edge, center height"
-              ]
-            },
-            {
-              "keys": "[⇪+F+E] + L",
-              "cols": [
-                "Right edge, center height"
-              ]
-            },
-            {
-              "keys": "[⇪+F+E] + J",
-              "cols": [
-                "Bottom edge, center width"
-              ]
-            },
-            {
-              "keys": "[⇪+F+E] + K",
-              "cols": [
-                "Top edge, center width"
-              ]
-            },
-            {
-              "keys": "[⇪+F+E] + ;",
-              "cols": [
-                "Window center"
-              ]
-            },
-            {
               "keys": "[⇪+F+E] + Y",
               "cols": [
                 "Top-left corner"
-              ]
-            },
-            {
-              "keys": "[⇪+F+E] + O",
-              "cols": [
-                "Top-right corner"
-              ]
-            },
-            {
-              "keys": "[⇪+F+E] + N",
-              "cols": [
-                "Bottom-left corner"
-              ]
-            },
-            {
-              "keys": "[⇪+F+E] + .",
-              "cols": [
-                "Bottom-right corner"
               ]
             },
             {
@@ -661,6 +613,48 @@
               ]
             },
             {
+              "keys": "[⇪+F+E] + O",
+              "cols": [
+                "Top-right corner"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + H",
+              "cols": [
+                "Left edge, center height"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + J",
+              "cols": [
+                "Bottom edge, center width"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + K",
+              "cols": [
+                "Top edge, center width"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + L",
+              "cols": [
+                "Right edge, center height"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + ;",
+              "cols": [
+                "Window center"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + N",
+              "cols": [
+                "Bottom-left corner"
+              ]
+            },
+            {
               "keys": "[⇪+F+E] + M",
               "cols": [
                 "Bottom-left quadrant center"
@@ -670,6 +664,12 @@
               "keys": "[⇪+F+E] + ,",
               "cols": [
                 "Bottom-right quadrant center"
+              ]
+            },
+            {
+              "keys": "[⇪+F+E] + .",
+              "cols": [
+                "Bottom-right corner"
               ]
             }
           ]
@@ -682,6 +682,12 @@
             "Action"
           ],
           "rows": [
+            {
+              "keys": "[⇪+F+E] + H",
+              "cols": [
+                "Homerow scroll mode"
+              ]
+            },
             {
               "keys": "[⇪+F+E] + J",
               "cols": [
@@ -698,12 +704,6 @@
               "keys": "[⇪+F+E] + ;",
               "cols": [
                 "Toggle Vimium (Chrome)"
-              ]
-            },
-            {
-              "keys": "[⇪+F+E] + H",
-              "cols": [
-                "Homerow scroll mode"
               ]
             }
           ]
@@ -724,31 +724,10 @@
           ],
           "rows": [
             {
-              "keys": "[⇪+G] + H",
-              "cols": [
-                "Prev tab",
-                "Previous tab (wraps to previous window at boundary)"
-              ]
-            },
-            {
-              "keys": "[⇪+G] + L",
-              "cols": [
-                "Next tab",
-                "Next tab (wraps to next window at boundary)"
-              ]
-            },
-            {
               "keys": "[⇪+G] + Y",
               "cols": [
                 "First tab",
                 "First tab in current window"
-              ]
-            },
-            {
-              "keys": "[⇪+G] + O",
-              "cols": [
-                "Last tab",
-                "Last tab in current window"
               ]
             },
             {
@@ -766,31 +745,10 @@
               ]
             },
             {
-              "keys": "[⇪+G] + J",
+              "keys": "[⇪+G] + O",
               "cols": [
-                "Focus window ↓",
-                "Focus nearest Chrome window below"
-              ]
-            },
-            {
-              "keys": "[⇪+G] + K",
-              "cols": [
-                "Focus window ↑",
-                "Focus nearest Chrome window above"
-              ]
-            },
-            {
-              "keys": "[⇪+G] + ;",
-              "cols": [
-                "Esc; T",
-                "Trigger Vimium Tab search"
-              ]
-            },
-            {
-              "keys": "[⇪+G] + '",
-              "cols": [
-                "Esc; o",
-                "Trigger Vimium history search"
+                "Last tab",
+                "Last tab in current window"
               ]
             },
             {
@@ -812,6 +770,55 @@
               "cols": [
                 "⌘ + ]",
                 "Navigate forward in history"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + \\",
+              "cols": [
+                "Detach tab",
+                "Detach tab to new window"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + H",
+              "cols": [
+                "Prev tab",
+                "Previous tab (wraps to previous window at boundary)"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + J",
+              "cols": [
+                "Focus window ↓",
+                "Focus nearest Chrome window below"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + K",
+              "cols": [
+                "Focus window ↑",
+                "Focus nearest Chrome window above"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + L",
+              "cols": [
+                "Next tab",
+                "Next tab (wraps to next window at boundary)"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + ;",
+              "cols": [
+                "Esc; T",
+                "Trigger Vimium Tab search"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + '",
+              "cols": [
+                "Esc; o",
+                "Trigger Vimium history search"
               ]
             },
             {
@@ -841,13 +848,6 @@
                 "⌘ + W",
                 "Close current tab"
               ]
-            },
-            {
-              "keys": "[⇪+G] + \\",
-              "cols": [
-                "Detach tab",
-                "Detach tab to new window"
-              ]
             }
           ]
         },
@@ -861,31 +861,10 @@
           ],
           "rows": [
             {
-              "keys": "[⇪+F+G] + H",
-              "cols": [
-                "Esc; <<",
-                "Move tab one position to the left"
-              ]
-            },
-            {
-              "keys": "[⇪+F+G] + L",
-              "cols": [
-                "Esc; >>",
-                "Move tab one position to the right"
-              ]
-            },
-            {
               "keys": "[⇪+F+G] + Y",
               "cols": [
                 "Esc; 100<<",
                 "Move tab to the beginning"
-              ]
-            },
-            {
-              "keys": "[⇪+F+G] + O",
-              "cols": [
-                "Esc; 100>>",
-                "Move tab to the end"
               ]
             },
             {
@@ -903,6 +882,20 @@
               ]
             },
             {
+              "keys": "[⇪+F+G] + O",
+              "cols": [
+                "Esc; 100>>",
+                "Move tab to the end"
+              ]
+            },
+            {
+              "keys": "[⇪+F+G] + H",
+              "cols": [
+                "Esc; <<",
+                "Move tab one position to the left"
+              ]
+            },
+            {
               "keys": "[⇪+F+G] + J",
               "cols": [
                 "Move tab + focus ↓",
@@ -914,6 +907,13 @@
               "cols": [
                 "Move tab + focus ↑",
                 "Move tab to window above and follow"
+              ]
+            },
+            {
+              "keys": "[⇪+F+G] + L",
+              "cols": [
+                "Esc; >>",
+                "Move tab one position to the right"
               ]
             }
           ]
@@ -1001,17 +1001,17 @@
           ],
           "rows": [
             {
-              "keys": "[⇪] + ,",
-              "cols": [
-                "⌃ + P",
-                "Search history backward with prefix matching"
-              ]
-            },
-            {
               "keys": "[⇪] + M",
               "cols": [
                 "⌃ + N",
                 "Search history forward with prefix matching"
+              ]
+            },
+            {
+              "keys": "[⇪] + ,",
+              "cols": [
+                "⌃ + P",
+                "Search history backward with prefix matching"
               ]
             }
           ]
@@ -1104,34 +1104,6 @@
           ],
           "rows": [
             {
-              "keys": "[⇪+S] + H",
-              "cols": [
-                "⇧ + ←",
-                "Select character to the left"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + J",
-              "cols": [
-                "⌃ + ⇧ + ↓",
-                "Select line down (to end of buffer on last line)"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + K",
-              "cols": [
-                "⌃ + ⇧ + ↑",
-                "Select line up (to start of buffer on first line)"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + L",
-              "cols": [
-                "⇧ + →",
-                "Select character to the right"
-              ]
-            },
-            {
               "keys": "[⇪+S] + Y",
               "cols": [
                 "⇧ + Home",
@@ -1157,6 +1129,34 @@
               "cols": [
                 "⇧ + End",
                 "Select to end of line"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + H",
+              "cols": [
+                "⇧ + ←",
+                "Select character to the left"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + J",
+              "cols": [
+                "⌃ + ⇧ + ↓",
+                "Select line down (to end of buffer on last line)"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + K",
+              "cols": [
+                "⌃ + ⇧ + ↑",
+                "Select line up (to start of buffer on first line)"
+              ]
+            },
+            {
+              "keys": "[⇪+S] + L",
+              "cols": [
+                "⇧ + →",
+                "Select character to the right"
               ]
             },
             {
@@ -1203,17 +1203,17 @@
           ],
           "rows": [
             {
-              "keys": "[⇪+⌘] + C",
-              "cols": [
-                "F15",
-                "Copy selection to system clipboard"
-              ]
-            },
-            {
               "keys": "[⇪+⌘] + X",
               "cols": [
                 "F16",
                 "Cut selection to system clipboard"
+              ]
+            },
+            {
+              "keys": "[⇪+⌘] + C",
+              "cols": [
+                "F15",
+                "Copy selection to system clipboard"
               ]
             }
           ]
@@ -1227,6 +1227,20 @@
             "Description"
           ],
           "rows": [
+            {
+              "keys": "[⇪+G] + Y",
+              "cols": [
+                "Edge pane left",
+                "Jump to leftmost tmux pane"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + O",
+              "cols": [
+                "Edge pane right",
+                "Jump to rightmost tmux pane"
+              ]
+            },
             {
               "keys": "[⇪+G] + H",
               "cols": [
@@ -1253,20 +1267,6 @@
               "cols": [
                 "⌃ + B, →",
                 "Select tmux pane right"
-              ]
-            },
-            {
-              "keys": "[⇪+G] + Y",
-              "cols": [
-                "Edge pane left",
-                "Jump to leftmost tmux pane"
-              ]
-            },
-            {
-              "keys": "[⇪+G] + O",
-              "cols": [
-                "Edge pane right",
-                "Jump to rightmost tmux pane"
               ]
             }
           ]
@@ -1321,6 +1321,27 @@
           ],
           "rows": [
             {
+              "keys": "[⇪+T] + -",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + ⇧ + -",
+                "Resize smart -50"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + =",
+              "cols": [
+                "⌘ + ⌥ + ⌃ + ⇧ + =",
+                "Resize smart +50"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + P",
+              "cols": [
+                "⌘ + ⌥ + ⇧ + /",
+                "Toggle tiles horizontal/vertical"
+              ]
+            },
+            {
               "keys": "[⇪+T] + H",
               "cols": [
                 "⌘ + ⌥ + ⌃ + H",
@@ -1349,45 +1370,10 @@
               ]
             },
             {
-              "keys": "[⇪+T] + P",
-              "cols": [
-                "⌘ + ⌥ + ⇧ + /",
-                "Toggle tiles horizontal/vertical"
-              ]
-            },
-            {
               "keys": "[⇪+T] + '",
               "cols": [
                 "`switch-monitor.sh`",
                 "Focus next monitor (wrap-around)"
-              ]
-            },
-            {
-              "keys": "[⇪+T] + -",
-              "cols": [
-                "⌘ + ⌥ + ⌃ + ⇧ + -",
-                "Resize smart -50"
-              ]
-            },
-            {
-              "keys": "[⇪+T] + =",
-              "cols": [
-                "⌘ + ⌥ + ⌃ + ⇧ + =",
-                "Resize smart +50"
-              ]
-            },
-            {
-              "keys": "[⇪+T] + .",
-              "cols": [
-                "⌘ + ⌥ + ⇧ + .",
-                "Toggle accordion horizontal/vertical"
-              ]
-            },
-            {
-              "keys": "[⇪+T] + ,",
-              "cols": [
-                "⌘ + ⌥ + ⇧ + ,",
-                "Toggle floating/tiling"
               ]
             },
             {
@@ -1402,6 +1388,20 @@
               "cols": [
                 "⌘ + ⌥ + ⇧ + M",
                 "Flatten workspace tree"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + ,",
+              "cols": [
+                "⌘ + ⌥ + ⇧ + ,",
+                "Toggle floating/tiling"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + .",
+              "cols": [
+                "⌘ + ⌥ + ⇧ + .",
+                "Toggle accordion horizontal/vertical"
               ]
             }
           ]
@@ -1500,15 +1500,15 @@
           ],
           "rows": [
             {
-              "keys": "[⇪+T+W] + *key*",
-              "cols": [
-                "Focus workspace on current monitor (swaps if visible on another)"
-              ]
-            },
-            {
               "keys": "[⇪+T+W] + '",
               "cols": [
                 "Focus next monitor (wrap-around); grid stays visible"
+              ]
+            },
+            {
+              "keys": "[⇪+T+W] + *key*",
+              "cols": [
+                "Focus workspace on current monitor (swaps if visible on another)"
               ]
             }
           ]
@@ -1522,15 +1522,15 @@
           ],
           "rows": [
             {
-              "keys": "[⇪+T+E] + *key*",
-              "cols": [
-                "Move focused window to workspace (stay on current)"
-              ]
-            },
-            {
               "keys": "[⇪+T+E] + '",
               "cols": [
                 "Move focused window to next monitor (stay on current)"
+              ]
+            },
+            {
+              "keys": "[⇪+T+E] + *key*",
+              "cols": [
+                "Move focused window to workspace (stay on current)"
               ]
             }
           ]
@@ -1544,15 +1544,15 @@
           ],
           "rows": [
             {
-              "keys": "[⇪+T+R+E] + *key*",
-              "cols": [
-                "Move window to workspace and follow on current monitor"
-              ]
-            },
-            {
               "keys": "[⇪+T+R+E] + '",
               "cols": [
                 "Move window to next monitor and yank that workspace back"
+              ]
+            },
+            {
+              "keys": "[⇪+T+R+E] + *key*",
+              "cols": [
+                "Move window to workspace and follow on current monitor"
               ]
             }
           ]
@@ -1588,15 +1588,15 @@
           ],
           "rows": [
             {
-              "keys": "[⇪+T+3] + *key*",
-              "cols": [
-                "Swap all windows between focused workspace and target workspace"
-              ]
-            },
-            {
               "keys": "[⇪+T+3] + '",
               "cols": [
                 "Swap workspaces between current and next monitor"
+              ]
+            },
+            {
+              "keys": "[⇪+T+3] + *key*",
+              "cols": [
+                "Swap all windows between focused workspace and target workspace"
               ]
             }
           ]
@@ -1854,10 +1854,10 @@
               ]
             },
             {
-              "keys": "[⇪+A] + .",
+              "keys": "[⇪+A] + P",
               "cols": [
-                "Reload All Configs",
-                "Runs `reload.sh --all` (AeroSpace, Karabiner, Hammerspoon, iTerm2, text-expander, shell, Chrome)"
+                "Clean Dock",
+                "Removes recent apps from Dock"
               ]
             },
             {
@@ -1868,17 +1868,17 @@
               ]
             },
             {
-              "keys": "[⇪+A] + P",
-              "cols": [
-                "Clean Dock",
-                "Removes recent apps from Dock"
-              ]
-            },
-            {
               "keys": "[⇪+A] + ,",
               "cols": [
                 "Workspace Setup",
                 "Opens apps (iTerm2→k, Messages→n, Rize→n, Slack→m) and moves windows to assigned workspaces"
+              ]
+            },
+            {
+              "keys": "[⇪+A] + .",
+              "cols": [
+                "Reload All Configs",
+                "Runs `reload.sh --all` (AeroSpace, Karabiner, Hammerspoon, iTerm2, text-expander, shell, Chrome)"
               ]
             }
           ]
