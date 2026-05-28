@@ -82,12 +82,14 @@ local function joinDesc(cols)
 end
 
 local function bindItem(keys, cols)
+    -- Show the human description (last column), not the raw key translation
+    -- (the Behavior column). Fall back to the only column when there's one.
     local parts = joinDesc(cols)
     return {
         header = false,
         trig = trigOf(keys),
-        behavior = parts[1] or "",
-        desc = parts[2] or "",
+        label = parts[#parts] or "",
+        sub = nil,
     }
 end
 
@@ -113,7 +115,7 @@ local function buildItems(which)
                 or (e.key == "Q" and "⇪+Q" or ("⇪+" .. e.key .. "+?"))
             items[#items + 1] = {
                 header = false, trig = cap,
-                behavior = e.name, desc = e.domain ~= "" and e.domain or hint,
+                label = e.name, sub = e.domain ~= "" and e.domain or hint,
             }
         end
         -- The base layer has no peek chord; surface it under the index.
@@ -270,9 +272,9 @@ function M.show(which)
             })
         else
             local textX = drawCap(c, x + CAP_X, y + (SLOT_H - CAP) / 2, item.trig)
-            local label = styled(item.behavior, FONT, FONT_SIZE, BEHAVIOR_COLOR)
-            if item.desc ~= "" then
-                label = label .. styled("  " .. item.desc, FONT, FONT_SIZE, DESC_COLOR)
+            local label = styled(item.label, FONT, FONT_SIZE, BEHAVIOR_COLOR)
+            if item.sub and item.sub ~= "" then
+                label = label .. styled("  " .. item.sub, FONT, FONT_SIZE, DESC_COLOR)
             end
             c:appendElements({
                 type = "text", text = label,
