@@ -34,6 +34,7 @@ local FONT_BOLD = "Helvetica Neue Bold"
 
 local TITLE_H = 44
 local SLOT_H = 24
+local GAP = 9           -- vertical space inserted between QWERTY row groups
 local PAD = 18
 local COL_W = 360
 local CAP = 21          -- keycap size
@@ -70,6 +71,25 @@ end
 local function trigOf(keys)
     local t = keys:match("%]%s*%+%s*(.+)$")
     return stripMarks(t or keys)
+end
+
+-- Which physical QWERTY row a trigger key sits on (1=number .. 4=bottom),
+-- 0 if unknown. Used to insert a gap between row groups in the sorted list.
+local QROW = {}
+do
+    local rows = {"`1234567890-=", "qwertyuiop[]\\", "asdfghjkl;'", "zxcvbnm,./"}
+    for r = 1, 4 do
+        for ch in rows[r]:gmatch(".") do QROW[ch] = r end
+    end
+end
+local QSHIFT = {
+    ["~"]="`", ["!"]="1", ["@"]="2", ["#"]="3", ["$"]="4", ["%"]="5", ["^"]="6",
+    ["&"]="7", ["*"]="8", ["("]="9", [")"]="0", ["_"]="-", ["+"]="=", ["{"]="[",
+    ["}"]="]", ["|"]="\\", [":"]=";", ['"']="'", ["<"]=",", [">"]=".", ["?"]="/",
+}
+local function qwertyRow(trig)
+    if not trig or utf8.len(trig) ~= 1 then return 0 end
+    return QROW[QSHIFT[trig] or trig:lower()] or 0
 end
 
 local function joinDesc(cols)
@@ -208,16 +228,47 @@ function M.show(which)
         title, chord = "Help", ""
     end
 
-    -- Pack items into balanced columns that fit the screen height.
+    -- Insert a gap when the sorted bindings cross into a new QWERTY row,
+    -- so each physical row group reads as a cluster. Headers reset grouping.
+    local prevGroup
+    for _, item in ipairs(items) do
+        if item.header then
+            prevGroup = nil
+            item.gapBefore = false
+        else
+            local g = qwertyRow(item.trig)
+            item.gapBefore = prevGroup ~= nil and prevGroup ~= 0
+                and g ~= 0 and g ~= prevGroup
+            prevGroup = g
+        end
+    end
+
+    -- Pack into columns greedily by accumulated height (so gaps fit cleanly).
     local availH = sf.h * 0.84 - TITLE_H - PAD * 2
-    local perCol = math.max(1, math.floor(availH / SLOT_H))
-    local cols = math.max(1, math.ceil(#items / perCol))
     local maxCols = math.max(1, math.floor((sf.w * 0.96 - PAD * 2) / COL_W))
-    cols = math.min(cols, maxCols)
-    perCol = math.ceil(#items / cols)
+    local total = 0
+    for _, item in ipairs(items) do
+        total = total + SLOT_H + (item.gapBefore and GAP or 0)
+    end
+    local cols = math.max(1, math.min(maxCols, math.ceil(total / availH)))
+    local target = total / cols
+
+    local bodyY = TITLE_H + PAD
+    local curCol, curY, maxColH = 0, 0, 0
+    for _, item in ipairs(items) do
+        local gap = (curY > 0 and item.gapBefore) and GAP or 0
+        if curY > 0 and curCol < cols - 1 and curY + gap + SLOT_H > target then
+            curCol = curCol + 1; curY = 0; gap = 0
+        end
+        curY = curY + gap
+        item._x = PAD + curCol * COL_W
+        item._y = bodyY + curY
+        curY = curY + SLOT_H
+        if curY > maxColH then maxColH = curY end
+    end
 
     local canvasW = cols * COL_W + PAD * 2
-    local canvasH = perCol * SLOT_H + TITLE_H + PAD * 2
+    local canvasH = maxColH + TITLE_H + PAD * 2
     targetX = sf.x + (sf.w - canvasW) / 2
     targetY = sf.y + (sf.h - canvasH) / 2
 
@@ -252,13 +303,9 @@ function M.show(which)
         frame = {x = PAD, y = TITLE_H + PAD - 8, w = canvasW - PAD * 2, h = 1},
     })
 
-    -- Items, column-major
-    local bodyY = TITLE_H + PAD
-    for idx, item in ipairs(items) do
-        local col = math.floor((idx - 1) / perCol)
-        local row = (idx - 1) % perCol
-        local x = PAD + col * COL_W
-        local y = bodyY + row * SLOT_H
+    -- Items
+    for _, item in ipairs(items) do
+        local x, y = item._x, item._y
 
         if item.header then
             local label = item.title or ""
