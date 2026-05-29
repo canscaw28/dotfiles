@@ -533,10 +533,12 @@ sections:
     - set_variable:
         name: a_is_held
         value: 1
+    - shell_command: /usr/local/bin/hs -c "require('help_overlay').layerDown('a')" &
     to_after_key_up:
     - set_variable:
         name: a_is_held
         value: 0
+    - shell_command: /usr/local/bin/hs -c "require('help_overlay').layerUp('a')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -645,12 +647,12 @@ sections:
     - set_variable:
         name: f_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').activate()" &
+    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').activate(); require('help_overlay').layerDown('f')" &
     to_after_key_up:
     - set_variable:
         name: f_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeReset()" &
+    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeReset(); require('help_overlay').layerUp('f')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -665,12 +667,12 @@ sections:
     - set_variable:
         name: r_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('r')" &
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('r'); require('help_overlay').layerDown('r')" &
     to_after_key_up:
     - set_variable:
         name: r_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('r')" &
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('r'); require('help_overlay').layerUp('r')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -771,12 +773,12 @@ sections:
     - set_variable:
         name: t_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('t'); require('focus_border').flashOnLayerActivate()" &
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyDown('t'); require('focus_border').flashOnLayerActivate(); require('help_overlay').layerDown('t')" &
     to_after_key_up:
     - set_variable:
         name: t_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('t')" &
+    - shell_command: /usr/local/bin/hs -c "require('ws_grid').keyUp('t'); require('help_overlay').layerUp('t')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -791,11 +793,12 @@ sections:
     - set_variable:
         name: g_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('focus_border').flash()" &
+    - shell_command: /usr/local/bin/hs -c "require('focus_border').flash(); require('help_overlay').layerDown('g')" &
     to_after_key_up:
     - set_variable:
         name: g_is_held
         value: 0
+    - shell_command: /usr/local/bin/hs -c "require('help_overlay').layerUp('g')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held

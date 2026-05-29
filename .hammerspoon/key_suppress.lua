@@ -16,6 +16,7 @@ function M.start(keyName)
     if keyName then
         local code = hs.keycodes.map[keyName]
         if code then M.suppressedKeys[code] = true end
+        require("help_overlay").layerDown(keyName)  -- physical-press layer path
     end
 end
 
@@ -23,8 +24,10 @@ function M.stop(keyName)
     if keyName then
         local code = hs.keycodes.map[keyName]
         if code then M.suppressedKeys[code] = nil end
+        require("help_overlay").layerUp(keyName)
     else
         M.suppressedKeys = {}
+        require("help_overlay").clearLayers()
     end
 end
 

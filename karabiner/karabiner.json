@@ -1061,6 +1061,9 @@
                       "name": "a_is_held",
                       "value": 1
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('help_overlay').layerDown('a')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1069,6 +1072,9 @@
                       "name": "a_is_held",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('help_overlay').layerUp('a')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1275,7 +1281,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').activate()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').activate(); require('help_overlay').layerDown('f')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1286,7 +1292,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').modeReset()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('cursor_grid').modeReset(); require('help_overlay').layerUp('f')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1315,7 +1321,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('r')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('r'); require('help_overlay').layerDown('r')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1326,7 +1332,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('r')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('r'); require('help_overlay').layerUp('r')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1525,7 +1531,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('t'); require('focus_border').flashOnLayerActivate()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyDown('t'); require('focus_border').flashOnLayerActivate(); require('help_overlay').layerDown('t')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1536,7 +1542,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('t')\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('ws_grid').keyUp('t'); require('help_overlay').layerUp('t')\" &"
                   }
                 ],
                 "type": "basic"
@@ -1565,7 +1571,7 @@
                     }
                   },
                   {
-                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash()\" &"
+                    "shell_command": "/usr/local/bin/hs -c \"require('focus_border').flash(); require('help_overlay').layerDown('g')\" &"
                   }
                 ],
                 "to_after_key_up": [
@@ -1574,6 +1580,9 @@
                       "name": "g_is_held",
                       "value": 0
                     }
+                  },
+                  {
+                    "shell_command": "/usr/local/bin/hs -c \"require('help_overlay').layerUp('g')\" &"
                   }
                 ],
                 "type": "basic"
@@ -2216,47 +2225,12 @@
                     "value": 1
                   },
                   {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
                     "name": "e_is_held",
                     "type": "variable_if",
                     "value": 0
                   },
                   {
                     "name": "w_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
                     "type": "variable_if",
                     "value": 0
                   },
@@ -2276,7 +2250,7 @@
                     "value": 0
                   }
                 ],
-                "description": "caps+/: Show hotkey help index",
+                "description": "caps+/: Toggle hotkey help overlay",
                 "from": {
                   "key_code": "slash",
                   "modifiers": {
@@ -2287,457 +2261,12 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"help_overlay\").show(\"index\")'"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"help_overlay\").open()'"
                   }
                 ],
                 "to_after_key_up": [
                   {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"help_overlay\").hide()'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "w_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "q_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "description": "A+/: Show System layer help",
-                "from": {
-                  "key_code": "slash",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"help_overlay\").show(\"A\")'"
-                  }
-                ],
-                "to_after_key_up": [
-                  {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"help_overlay\").hide()'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "w_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "q_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "description": "F+/: Show Scroll/Grid layer help",
-                "from": {
-                  "key_code": "slash",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"help_overlay\").show(\"F\")'"
-                  }
-                ],
-                "to_after_key_up": [
-                  {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"help_overlay\").hide()'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "w_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "q_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "description": "G+/: Show Application layer help",
-                "from": {
-                  "key_code": "slash",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"help_overlay\").show(\"G\")'"
-                  }
-                ],
-                "to_after_key_up": [
-                  {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"help_overlay\").hide()'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "w_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "q_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "description": "T+/: Show Aerospace layer help",
-                "from": {
-                  "key_code": "slash",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"help_overlay\").show(\"T\")'"
-                  }
-                ],
-                "to_after_key_up": [
-                  {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"help_overlay\").hide()'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "name": "caps_lock_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "a_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "s_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "d_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "f_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "r_is_held",
-                    "type": "variable_if",
-                    "value": 1
-                  },
-                  {
-                    "name": "e_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "w_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "t_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "g_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "3_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "4_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  },
-                  {
-                    "name": "q_is_held",
-                    "type": "variable_if",
-                    "value": 0
-                  }
-                ],
-                "description": "R+/: Show App layer help",
-                "from": {
-                  "key_code": "slash",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"help_overlay\").show(\"R\")'"
-                  }
-                ],
-                "to_after_key_up": [
-                  {
-                    "shell_command": "/usr/local/bin/hs -c 'require(\"help_overlay\").hide()'"
+                    "shell_command": "/usr/local/bin/hs -c 'require(\"help_overlay\").close()'"
                   }
                 ],
                 "type": "basic"

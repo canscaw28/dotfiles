@@ -12,6 +12,13 @@ local targetX, targetY = nil, nil
 local data = nil
 local dataMtime = nil
 
+-- Realtime layer tracking: layer keys notify layerDown/layerUp continuously
+-- (from the Karabiner setters + key_suppress), so while the overlay is open
+-- it follows whichever layer key is currently held without re-pressing /.
+local heldLayers = {}   -- ordered list of held help-layer keys (last = newest)
+local isOpen = false
+local HELP_LAYERS = {a = true, f = true, g = true, t = true, r = true}
+
 local DATA_PATH = hs.configdir .. "/help_data.json"
 
 -- Palette (dark glass panel; blue section headers; gray keycaps)
@@ -340,6 +347,55 @@ function M.hide()
     if not canvas then return end
     if fallTimer then return end  -- already fading
     startFall()
+end
+
+-- Which view to draw given the currently-held layer keys (newest wins).
+local function currentView()
+    for i = #heldLayers, 1, -1 do
+        if HELP_LAYERS[heldLayers[i]] then return heldLayers[i]:upper() end
+    end
+    return "index"
+end
+
+local function removeKey(key)
+    for i = #heldLayers, 1, -1 do
+        if heldLayers[i] == key then table.remove(heldLayers, i) end
+    end
+end
+
+local function rerender()
+    if isOpen then M.show(currentView()) end
+end
+
+-- Called on / down/up: open follows whatever layer is already held.
+function M.open()
+    isOpen = true
+    M.show(currentView())
+end
+
+function M.close()
+    isOpen = false
+    M.hide()
+end
+
+-- Called continuously by the layer-key setters (and key_suppress); only
+-- redraws while open, so it's a cheap table update the rest of the time.
+function M.layerDown(key)
+    if not HELP_LAYERS[key] then return end
+    removeKey(key)
+    heldLayers[#heldLayers + 1] = key
+    rerender()
+end
+
+function M.layerUp(key)
+    if not HELP_LAYERS[key] then return end
+    removeKey(key)
+    rerender()
+end
+
+function M.clearLayers()
+    heldLayers = {}
+    rerender()
 end
 
 return M
