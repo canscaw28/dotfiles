@@ -30,6 +30,16 @@ Intelligent history and cursor navigation that adapts to context:
 - Holding the key continues the initial action (history or cursor movement)
 - When holding in cursor mode and reaching a boundary, transitions to history navigation
 
+### Multi-line Editing (Shift+Enter)
+
+Insert a newline into the command line without running it, so you can compose and edit multi-line commands (then move between lines with the arrows):
+
+| Shortcut | Action |
+|----------|--------|
+| Shift+Enter | Insert a newline into the buffer (does not run the command) |
+
+Requires the iTerm2 mapping (Shift+Return → Send Escape Sequence `[13;2u`) and, inside tmux, `extended-keys` (set in `.tmux.conf`). Both the CSI-u (`^[[13;2u`, bare iTerm) and modifyOtherKeys (`^[[27;2;13~`, inside tmux) encodings are bound. For the whole block to run as one command, use a heredoc or end lines with a trailing backslash.
+
 ### Stale Config Indicator
 
 When `.zshrc` is modified after being sourced, a red indicator appears in your prompt:
