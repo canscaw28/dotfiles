@@ -78,6 +78,9 @@ bindkey "\e_" redo                            # Meta+_ (Cmd+Shift+Z via Karabine
 # trailing `\`) and move between lines with the arrows. Widget is defined here
 # rather than in 10/20 since it's neither selection nor history.
 # Requires iTerm2: map Shift+Return -> Send Escape Sequence "[13;2u".
+# Two encodings are bound: iTerm sends CSI-u ("^[[13;2u") directly; inside tmux
+# (extended-keys on) the same key arrives in modifyOtherKeys form ("^[[27;2;13~").
 insert-newline() { LBUFFER+=$'\n'; }
 zle -N insert-newline
-bindkey "^[[13;2u" insert-newline             # Shift+Enter
+bindkey "^[[13;2u" insert-newline             # Shift+Enter (bare iTerm, CSI-u)
+bindkey "^[[27;2;13~" insert-newline          # Shift+Enter (inside tmux, modifyOtherKeys)
