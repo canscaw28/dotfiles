@@ -71,3 +71,13 @@ bindkey "^[k" backward-kill-line              # Option+K (Caps+D+Y in iTerm2)
 # Cmd+Z and Cmd+Shift+Z via Karabiner
 bindkey "^_" undo                             # Ctrl+_ (Cmd+Z via Karabiner)
 bindkey "\e_" redo                            # Meta+_ (Cmd+Shift+Z via Karabiner)
+
+# --- multi-line editing ------------------------------------------------------
+# Shift+Enter inserts a newline into the buffer instead of running the command,
+# so you can compose/edit multi-line commands (a heredoc, or lines joined with a
+# trailing `\`) and move between lines with the arrows. Widget is defined here
+# rather than in 10/20 since it's neither selection nor history.
+# Requires iTerm2: map Shift+Return -> Send Escape Sequence "[13;2u".
+insert-newline() { LBUFFER+=$'\n'; }
+zle -N insert-newline
+bindkey "^[[13;2u" insert-newline             # Shift+Enter
