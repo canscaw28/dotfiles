@@ -163,7 +163,18 @@ if [[ -d "$_zsh_fragments_dir" ]]; then
 fi
 unset _zshrc_real _zsh_fragments_dir _f
 
-# Track when .zshrc was sourced (for stale config indicator in prompt)
-# Resolve symlink to get actual file path for reliable mtime checking
+# Track when the zsh config was sourced (for the stale-config indicator in the
+# prompt). Watches .zshrc AND the shell/zsh/*.zsh fragments it sources, so
+# editing any fragment — not just .zshrc — trips the reload indicator.
+# prompt_zshrc_stale in .p10k.zsh recomputes this the same way; keep them in sync.
 export ZSHRC_REAL_PATH=$(readlink ~/.zshrc || echo ~/.zshrc)
-export ZSHRC_SOURCED_MTIME=$(stat -f %m "$ZSHRC_REAL_PATH" 2>/dev/null)
+# Newest mtime across .zshrc and every fragment it sources.
+_zsh_config_mtime() {
+  local newest=0 f m
+  for f in "$ZSHRC_REAL_PATH" "${ZSHRC_REAL_PATH:h}/zsh"/*.zsh(N); do
+    m=$(stat -f %m "$f" 2>/dev/null) || continue
+    (( m > newest )) && newest=$m
+  done
+  print -r -- $newest
+}
+export ZSHRC_SOURCED_MTIME=$(_zsh_config_mtime)

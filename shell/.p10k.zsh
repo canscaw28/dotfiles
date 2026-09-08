@@ -1538,7 +1538,9 @@
   function prompt_zshrc_stale() {
     [[ -n "$ZSHRC_SOURCED_MTIME" ]] || return
     [[ -n "$ZSHRC_REAL_PATH" ]] || return
-    local current_mtime=$(stat -f %m "$ZSHRC_REAL_PATH" 2>/dev/null)
+    (( $+functions[_zsh_config_mtime] )) || return
+    # Recompute across .zshrc + fragments (see _zsh_config_mtime in .zshrc)
+    local current_mtime=$(_zsh_config_mtime 2>/dev/null)
     [[ "$current_mtime" != "$ZSHRC_SOURCED_MTIME" ]] || return
     p10k segment -f 1 -i '⟳' -t 'run: source ~/.zshrc'
   }
