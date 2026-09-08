@@ -156,14 +156,12 @@ function cut-region-to-clipboard() {
 }
 zle -N cut-region-to-clipboard
 
-# Smart copy - copies selection if active, otherwise sends Ctrl+C (interrupt)
+# Smart copy - copies selection if active, no-op otherwise (Ctrl+C still interrupts)
 function copy-or-interrupt() {
   if ((REGION_ACTIVE)); then
     zle copy-region-as-kill
     print -rn -- "$CUTBUFFER" | pbcopy
     REGION_ACTIVE=0
-  else
-    zle send-break  # Ctrl+C interrupt
   fi
 }
 zle -N copy-or-interrupt
