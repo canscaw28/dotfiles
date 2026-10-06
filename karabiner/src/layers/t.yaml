@@ -481,7 +481,7 @@ sections:
   - from: p
     to:
     - [slash, command+option+shift]
-    - shell: '/usr/local/bin/hs -c "require(''focus_border'').flash()" &'
+    - shell: '$HOME/.local/bin/hsq "require(''focus_border'').flash()" &'
     layer:
     - caps
     - t
@@ -529,7 +529,7 @@ sections:
     - g
     to:
     - [hyphen, command+control+option+shift]
-    - shell: '/usr/local/bin/hs -c "require(''focus_border'').flash()" &'
+    - shell: '$HOME/.local/bin/hsq "require(''focus_border'').flash()" &'
     layer:
     - caps
     - t
@@ -548,7 +548,7 @@ sections:
     - g
     to:
     - [equal_sign, command+control+option+shift]
-    - shell: '/usr/local/bin/hs -c "require(''focus_border'').flash()" &'
+    - shell: '$HOME/.local/bin/hsq "require(''focus_border'').flash()" &'
     layer:
     - caps
     - t
@@ -623,7 +623,7 @@ sections:
   - from: n
     to:
     - [n, command+option+shift]
-    - shell: '/usr/local/bin/hs -c "require(''focus_border'').flash()" &'
+    - shell: '$HOME/.local/bin/hsq "require(''focus_border'').flash()" &'
     layer:
     - caps
     - t
@@ -642,7 +642,7 @@ sections:
   - from: m
     to:
     - [m, command+option+shift]
-    - shell: '/usr/local/bin/hs -c "require(''focus_border'').flash()" &'
+    - shell: '$HOME/.local/bin/hsq "require(''focus_border'').flash()" &'
     layer:
     - caps
     - t
@@ -661,7 +661,7 @@ sections:
   - from: comma
     to:
     - [comma, command+option+shift]
-    - shell: '/usr/local/bin/hs -c "require(''focus_border'').flash()" &'
+    - shell: '$HOME/.local/bin/hsq "require(''focus_border'').flash()" &'
     layer:
     - caps
     - t
@@ -680,7 +680,7 @@ sections:
   - from: period
     to:
     - [period, command+option+shift]
-    - shell: '/usr/local/bin/hs -c "require(''focus_border'').flash()" &'
+    - shell: '$HOME/.local/bin/hsq "require(''focus_border'').flash()" &'
     layer:
     - caps
     - t

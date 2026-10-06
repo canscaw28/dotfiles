@@ -111,7 +111,7 @@ install_scripts() {
         create_symlink "$script" "$HOME/.local/bin/$(basename "$script")"
     done
     # Compiled binaries
-    for bin in dock-toggle; do
+    for bin in dock-toggle hsq; do
         [[ -f "$DOTFILES_DIR/scripts/$bin" ]] && \
             create_symlink "$DOTFILES_DIR/scripts/$bin" "$HOME/.local/bin/$bin"
     done

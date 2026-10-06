@@ -23,6 +23,6 @@ sections:
   - from: slash
     description: "caps+/: Toggle hotkey help overlay"
     to:
-    - shell: /usr/local/bin/hs -c 'require("help_overlay").open()'
+    - shell: $HOME/.local/bin/hsq 'require("help_overlay").open()'
     to_after_key_up:
-    - shell: /usr/local/bin/hs -c 'require("help_overlay").close()'
+    - shell: $HOME/.local/bin/hsq 'require("help_overlay").close()'
