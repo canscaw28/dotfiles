@@ -30,49 +30,75 @@ local APP_OF_BUNDLE = {
 
 local DATA_PATH = hs.configdir .. "/help_data.json"
 
--- Palette: a quiet dark panel; accent blue is reserved for headers and chords.
+-- Palette: a translucent graphite panel. Color is reserved for the chord
+-- keycaps; everything else is a step on one neutral ramp.
 local function rgba(r, g, b, a) return {red = r, green = g, blue = b, alpha = a or 1} end
-local PANEL_BG = rgba(0.085, 0.09, 0.105, 0.97)
-local PANEL_BORDER = rgba(1, 1, 1, 0.10)
-local RULE = rgba(1, 1, 1, 0.08)
-local TITLE_COLOR = rgba(1, 1, 1)
-local ACCENT = rgba(0.50, 0.68, 1.0)
-local GROUP_COLOR = rgba(0.56, 0.58, 0.64)
-local LABEL_COLOR = rgba(0.91, 0.92, 0.95)
-local SUB_COLOR = rgba(0.56, 0.58, 0.63)
-local CAP_FACE = rgba(0.21, 0.22, 0.26)
-local CAP_EDGE = rgba(0.11, 0.115, 0.14)
-local CAP_BORDER = rgba(1, 1, 1, 0.13)
-local CAP_TEXT = rgba(0.95, 0.96, 0.98)
-local CHORD_FACE = rgba(0.17, 0.24, 0.38)
-local CHORD_BORDER = rgba(0.50, 0.68, 1.0, 0.35)
+local function gray(v, a) return rgba(v, v, v * 1.06, a) end
+local PANEL_TOP = gray(0.135, 0.90)
+local PANEL_BOTTOM = gray(0.095, 0.90)
+local PANEL_BORDER = gray(1, 0.10)
+local PANEL_HIGHLIGHT = gray(1, 0.07)   -- 1px lit edge along the top
+local SHADOW_COLOR = rgba(0, 0, 0, 0.55)
+local RULE = gray(1, 0.07)
+local TITLE_COLOR = gray(0.97)
+local SUBTITLE_COLOR = gray(0.56)
+local HEADER_COLOR = gray(0.60)
+local GROUP_COLOR = gray(0.42)
+local LABEL_COLOR = gray(0.90)
+local SUB_COLOR = gray(0.52)
+local CAP_TOP = gray(0.285)
+local CAP_BOTTOM = gray(0.215)
+local CAP_EDGE = rgba(0, 0, 0, 0.45)
+local CAP_BORDER = gray(1, 0.09)
+local CAP_SHINE = gray(1, 0.10)
+local CAP_TEXT = gray(0.92)
+local ACCENT = rgba(0.56, 0.71, 1.0)
+local CHORD_TOP = rgba(0.27, 0.40, 0.72, 0.55)
+local CHORD_BOTTOM = rgba(0.19, 0.29, 0.56, 0.55)
+local CHORD_BORDER = rgba(0.56, 0.71, 1.0, 0.30)
+local INLINE_TRIG = rgba(0.56, 0.71, 1.0)
 
 local FONT = ".AppleSystemUIFont"
 local FONT_MEDIUM = ".AppleSystemUIFontMedium"
 local FONT_DEMI = ".AppleSystemUIFontDemi"
 local FONT_BOLD = ".AppleSystemUIFontBold"
-local FONT_KEY = ".AppleSystemUIFontMonospaced-Semibold"
+local FONT_KEY = ".AppleSystemUIFontMonospaced-Medium"
 
--- Sizes. A row is one keycap tall plus breathing room; labels are centered
--- on the keycap face, not on the slot, so they line up with the glyph.
-local PAD = 24
-local TITLE_H = 54
-local COL_W = 372
-local COL_GUTTER = 32
-local ROW_H = 30
-local GROUP_GAP = 6     -- extra space between QWERTY row groups
-local HEADER_H = 30
-local HEADER_TOP = 12   -- space above a header that isn't first in its column
-local CAP_H = 22
-local CAP_MIN_W = 22
-local CAP_PAD_X = 6     -- glyph inset for keycaps wider than the minimum
-local CAP_GAP = 4
-local CAP_RADIUS = 5
-local LABEL_GAP = 12    -- keycap to label
-local KEY_SIZE = 12
-local LABEL_SIZE = 13.5
-local HEADER_SIZE = 11.5
-local TITLE_SIZE = 20
+-- Base metrics in points, scaled per screen by show(): about 0.9x on a
+-- MacBook, smaller on shorter displays. Labels are centered on the keycap
+-- face, not the slot, so they line up with the glyph.
+local BASE = {
+    MARGIN = 40,        -- room around the panel for its shadow
+    PAD = 22,
+    TITLE_H = 58,
+    COL_W = 336,
+    COL_GUTTER = 34,
+    ROW_H = 27,
+    GROUP_GAP = 5,      -- extra space between QWERTY row groups
+    HEADER_H = 27,
+    HEADER_TOP = 14,    -- space above a header that isn't first in its column
+    CAP_H = 20,
+    CAP_MIN_W = 20,
+    CAP_PAD_X = 5.5,    -- glyph inset for keycaps wider than the minimum
+    CAP_GAP = 3,
+    CAP_RADIUS = 4.5,
+    LABEL_GAP = 11,
+    KEY_SIZE = 11,
+    LABEL_SIZE = 12.5,
+    HEADER_SIZE = 10,
+    TITLE_SIZE = 17,
+    SUBTITLE_SIZE = 11.5,
+    CHORD_SIZE = 9,
+    TITLE_CHORD_SIZE = 11,
+    RADIUS = 16,
+}
+local m = {}
+
+local function setScale(screenH)
+    local s = math.max(0.78, math.min(0.92, screenH / 1200))
+    for k, v in pairs(BASE) do m[k] = v * s end
+end
+setScale(1100)
 
 -- ── Data ───────────────────────────────────────────────────────────────
 
@@ -153,7 +179,7 @@ local function bindItem(keys, cols, header)
         local shifted = stripMarks(cols[3] or "")
         return {
             header = false, trig = trigOf(keys), label = parts[1] or "",
-            sub = shifted ~= "" and ("⇧ " .. shifted) or nil,
+            sub = shifted ~= "" and ("⇧ " .. shifted) or nil, pairs = true,
         }
     end
     -- Show the human description (last column), not the raw key translation
@@ -166,10 +192,16 @@ local function bindItem(keys, cols, header)
     }
 end
 
-local function sectionItems(section, items)
+-- The title already shows the layer key, so a section's chord lists only
+-- the mode keys held on top of it (Move mode: R, not T+R).
+local function sectionItems(section, items, hideGroup, layer)
+    local modes = {}
+    for _, k in ipairs(section.chord or {}) do
+        if k:lower() ~= layer then modes[#modes + 1] = k end
+    end
     items[#items + 1] = {
-        header = true, title = section.title, group = section.group,
-        chord = section.chord and table.concat(section.chord, "+") or nil,
+        header = true, title = section.title, group = not hideGroup and section.group or nil,
+        chord = table.concat(modes, "+"),
     }
     for _, row in ipairs(section.rows) do
         items[#items + 1] = bindItem(row.keys, row.cols, section.header)
@@ -213,20 +245,30 @@ end
 -- held) to the sections triggered by exactly the held keys. Each step is
 -- skipped when it would leave nothing, so a view is never empty.
 local function pickSections(sections, held, app, narrow)
-    local forApp = {}
+    local forApp, byApp = {}, false
     for _, s in ipairs(sections) do
         if not s.app or s.app == app then forApp[#forApp + 1] = s end
+        if s.app then byApp = true end
     end
-    if #forApp == 0 then forApp = sections end
-    if not narrow then return forApp, false end
+    if #forApp == 0 then forApp, byApp = sections, false end
+    if not narrow then return forApp, false, byApp end
 
     local want = setKey(heldList(held))
     local forMode = {}
     for _, s in ipairs(forApp) do
         if setKey(s.chord or {}) == want then forMode[#forMode + 1] = s end
     end
-    if #forMode == 0 then return forApp, false end
-    return forMode, true
+    if #forMode == 0 then return forApp, false, byApp end
+    return forMode, true, byApp
+end
+
+local APP_NAME = {chrome = "Chrome", iterm = "iTerm2", other = "other apps"}
+
+local function hasModes(sections)
+    for _, s in ipairs(sections) do
+        if s.chord and #s.chord > 1 then return true end
+    end
+    return false
 end
 
 local function buildItems(which, held)
@@ -246,21 +288,32 @@ local function buildItems(which, held)
                     or (e.key == "Q" and "⇪+Q" or ("⇪+" .. e.key .. "+?"))
                 items[#items + 1] = {
                     header = false, trig = cap,
-                    label = e.name, sub = e.domain ~= "" and e.domain or hint,
+                    label = e.name, sub = e.domain ~= "" and e.domain or hint, twoLine = true,
                 }
             end
         end
         -- The base layer has no peek chord; surface it under the index.
         for _, s in ipairs(sections) do sectionItems(s, items) end
         local chord = next(held) and displayChord(nil, held) or "⇪+?"
-        return items, nil, "Hotkey Layers", chord
+        local subtitle = narrowed and "Showing the held mode"
+            or "Hold a layer key with / to see its bindings"
+        return items, nil, "Hotkey Layers", chord, subtitle
     end
 
     local L = d.layers and d.layers[which]
     if not L then return nil, "No help for layer " .. tostring(which) end
-    local sections = pickSections(L.sections, held, app, #heldList(held) > 1)
-    for _, s in ipairs(sections) do sectionItems(s, items) end
-    return items, nil, L.name, displayChord(which:lower(), held)
+    local sections, narrowed, byApp = pickSections(L.sections, held, app, #heldList(held) > 1)
+    for _, s in ipairs(sections) do sectionItems(s, items, byApp, which:lower()) end
+    local parts = {}
+    if byApp then parts[#parts + 1] = "In " .. APP_NAME[app] end
+    if narrowed then
+        parts[#parts + 1] = "showing the held mode"
+    elseif hasModes(sections) then
+        parts[#parts + 1] = "hold a mode key to narrow"
+    end
+    local subtitle = table.concat(parts, " · ")
+    subtitle = subtitle:sub(1, 1):upper() .. subtitle:sub(2)
+    return items, nil, L.name, displayChord(which:lower(), held), subtitle
 end
 
 -- ── Rendering ────────────────────────────────────────────────────────────
@@ -278,11 +331,19 @@ end
 -- Draw styled text vertically centered on cy.
 local function drawText(c, st, x, cy, w, align)
     local sz = textSize(st)
-    if align then st = st:setStyle({paragraphStyle = {alignment = align}}) end
+    if align then st = st:setStyle({paragraphStyle = {alignment = align, lineBreak = "clip"}}) end
     c:appendElements({
         type = "text", text = st,
         frame = {x = x, y = cy - sz.h / 2, w = w or (sz.w + 4), h = sz.h + 2},
     })
+end
+
+local function gradientRect(frame, top, bottom, radius)
+    return {
+        type = "rectangle", action = "fill", frame = frame,
+        roundedRectRadii = {xRadius = radius, yRadius = radius},
+        fillGradient = "linear", fillGradientColors = {top, bottom}, fillGradientAngle = -90,
+    }
 end
 
 -- The monospaced face has no ⇪/⌘/⇧, so symbols use the regular system font.
@@ -292,38 +353,42 @@ end
 
 -- A keycap is at least square and grows to fit wide glyphs.
 local function capWidth(glyph, size)
-    return math.max(CAP_MIN_W * size / KEY_SIZE,
-        textSize(styled(glyph, keyFont(glyph), size, CAP_TEXT)).w + 2 * CAP_PAD_X)
+    return math.max(m.CAP_MIN_W * size / m.KEY_SIZE,
+        textSize(styled(glyph, keyFont(glyph), size, CAP_TEXT)).w + 2 * m.CAP_PAD_X)
 end
 
-local function drawKeycap(c, x, cy, glyph, opts)
-    opts = opts or {}
-    local size = opts.size or KEY_SIZE
-    local h = CAP_H * size / KEY_SIZE
+local KEY_STYLE = {top = CAP_TOP, bottom = CAP_BOTTOM, border = CAP_BORDER, color = CAP_TEXT}
+local CHORD_STYLE = {top = CHORD_TOP, bottom = CHORD_BOTTOM, border = CHORD_BORDER, color = ACCENT}
+
+-- A keycap: a dark lip below, a softly lit face, a hairline border and a
+-- brighter top edge, like light falling from above.
+local function drawKeycap(c, x, cy, glyph, size, style)
+    local h = m.CAP_H * size / m.KEY_SIZE
     local w = capWidth(glyph, size)
     local y = cy - h / 2
-    local r = {xRadius = CAP_RADIUS, yRadius = CAP_RADIUS}
+    local r = m.CAP_RADIUS * size / m.KEY_SIZE
     c:appendElements({
         type = "rectangle", action = "fill", fillColor = CAP_EDGE,
-        roundedRectRadii = r, frame = {x = x, y = y + 1.5, w = w, h = h},
+        roundedRectRadii = {xRadius = r, yRadius = r},
+        frame = {x = x, y = y + 1.5, w = w, h = h},
+    }, gradientRect({x = x, y = y, w = w, h = h}, style.top, style.bottom, r), {
+        type = "rectangle", action = "stroke", strokeWidth = 1, strokeColor = style.border,
+        roundedRectRadii = {xRadius = r, yRadius = r},
+        frame = {x = x + 0.5, y = y + 0.5, w = w - 1, h = h - 1},
     }, {
-        type = "rectangle", action = "fill", fillColor = opts.face or CAP_FACE,
-        roundedRectRadii = r, frame = {x = x, y = y, w = w, h = h},
-    }, {
-        type = "rectangle", action = "stroke", strokeWidth = 1,
-        strokeColor = opts.border or CAP_BORDER,
-        roundedRectRadii = r, frame = {x = x + 0.5, y = y + 0.5, w = w - 1, h = h - 1},
+        type = "rectangle", action = "fill", fillColor = CAP_SHINE,
+        frame = {x = x + r, y = y + 1, w = w - 2 * r, h = 1},
     })
-    drawText(c, styled(glyph, keyFont(glyph), size, opts.color or CAP_TEXT), x, cy, w, "center")
+    drawText(c, styled(glyph, keyFont(glyph), size, style.color), x, cy - 0.5, w, "center")
     return w
 end
 
 -- Draw keys left to right from x; returns the total width.
-local function drawKeys(c, x, cy, keys, opts)
+local function drawKeys(c, x, cy, keys, size, style)
     local cx = x
     for i, k in ipairs(keys) do
-        if i > 1 then cx = cx + CAP_GAP end
-        cx = cx + drawKeycap(c, cx, cy, k, opts)
+        if i > 1 then cx = cx + m.CAP_GAP end
+        cx = cx + drawKeycap(c, cx, cy, k, size, style)
     end
     return cx - x
 end
@@ -331,7 +396,7 @@ end
 local function keysWidth(keys, size)
     local w = 0
     for i, k in ipairs(keys) do
-        w = w + capWidth(k, size or KEY_SIZE) + (i > 1 and CAP_GAP or 0)
+        w = w + capWidth(k, size) + (i > 1 and m.CAP_GAP or 0)
     end
     return w
 end
@@ -350,58 +415,70 @@ local function trigCaps(trig)
 end
 
 local function inlineTrig(trig)
-    return styled(trig, FONT_DEMI, LABEL_SIZE, ACCENT)
+    return styled(trig, FONT_DEMI, m.LABEL_SIZE, INLINE_TRIG)
 end
 
 -- Where the label would start after this trigger, relative to the column.
 local function labelOffset(trig)
     local keys = trigCaps(trig)
-    if keys then return keysWidth(keys) + LABEL_GAP end
-    return textSize(inlineTrig(trig)).w + LABEL_GAP
+    if keys then return keysWidth(keys, m.KEY_SIZE) + m.LABEL_GAP end
+    return textSize(inlineTrig(trig)).w + m.LABEL_GAP
 end
 
 local function drawTrig(c, x, cy, trig)
     local keys = trigCaps(trig)
     if keys then
-        drawKeys(c, x, cy, keys)
+        drawKeys(c, x, cy, keys, m.KEY_SIZE, KEY_STYLE)
     else
         drawText(c, inlineTrig(trig), x, cy)
     end
 end
 
-local function startFall()
+local function stopAnim()
+    if fallTimer then fallTimer:stop(); fallTimer = nil end
+end
+
+-- Ease the canvas from (alpha a0, y offset dy0) to (a1, dy1) over `steps`.
+local function animate(a0, a1, dy0, dy1, steps, done)
+    stopAnim()
     local step = 0
-    fallTimer = hs.timer.doEvery(0.02, function()
+    fallTimer = hs.timer.doEvery(0.016, function()
         step = step + 1
-        if not canvas then
-            if fallTimer then fallTimer:stop(); fallTimer = nil end
-            return
-        end
-        if step >= 8 then
-            if fallTimer then fallTimer:stop(); fallTimer = nil end
-            if canvas then canvas:delete(); canvas = nil end
-        else
-            local t = step / 8
-            canvas:topLeft({x = targetX, y = targetY + 12 * t})
-            canvas:alpha(1 - t)
+        if not canvas then stopAnim(); return end
+        local t = step / steps
+        local e = 1 - (1 - t) * (1 - t)
+        canvas:topLeft({x = targetX, y = targetY + dy0 + (dy1 - dy0) * e})
+        canvas:alpha(a0 + (a1 - a0) * e)
+        if step >= steps then
+            stopAnim()
+            if done then done() end
         end
     end)
 end
 
-local CHORD_OPTS = {size = 10.5, face = CHORD_FACE, border = CHORD_BORDER, color = ACCENT}
-local TITLE_CHORD_OPTS = {size = 13, face = CHORD_FACE, border = CHORD_BORDER, color = ACCENT}
+local closing = false
+
+local function startFall()
+    closing = true
+    animate(canvas and canvas:alpha() or 1, 0, 0, 8, 8, function()
+        if canvas then canvas:delete(); canvas = nil end
+    end)
+end
 
 function M.show(which, held)
-    if fallTimer then fallTimer:stop(); fallTimer = nil end
+    local wasVisible = canvas ~= nil and not closing
+    closing = false
+    stopAnim()
     if canvas then canvas:delete(); canvas = nil end
 
-    local items, err, title, chord = buildItems(which, held or {})
+    local items, err, title, chord, subtitle = buildItems(which, held or {})
     local screen = hs.mouse.getCurrentScreen() or hs.screen.mainScreen()
     local sf = screen:frame()
+    setScale(sf.h)
 
     if err then
         items = {{header = true, title = err}}
-        title, chord = "Help", ""
+        title, chord, subtitle = "Help", "", nil
     end
 
     -- Insert a gap when the sorted bindings cross into a new QWERTY row,
@@ -425,7 +502,7 @@ function M.show(which, held)
     for i = 1, #items + 1 do
         local item = items[i]
         if not item or item.header then
-            local x = CAP_MIN_W + LABEL_GAP
+            local x = m.CAP_MIN_W + m.LABEL_GAP
             for j = sectionStart, i - 1 do x = math.max(x, items[j].textX) end
             for j = sectionStart, i - 1 do items[j].textX = x end
             sectionStart = i + 1
@@ -434,9 +511,12 @@ function M.show(which, held)
         end
     end
 
+    local function rowH(item)
+        return item.twoLine and m.ROW_H * 1.55 or m.ROW_H
+    end
     local function heightOf(item, atTop)
-        if item.header then return HEADER_H + (atTop and 0 or HEADER_TOP) end
-        return ROW_H + ((item.gapBefore and not atTop) and GROUP_GAP or 0)
+        if item.header then return m.HEADER_H + (atTop and 0 or m.HEADER_TOP) end
+        return rowH(item) + ((item.gapBefore and not atTop) and m.GROUP_GAP or 0)
     end
 
     -- Pack whole sections into columns so a section never splits; only one
@@ -452,21 +532,22 @@ function M.show(which, held)
         return h
     end
 
-    local availH = sf.h * 0.84 - TITLE_H - PAD * 2
-    local maxCols = math.max(1, math.floor((sf.w * 0.96 - PAD * 2 + COL_GUTTER) / (COL_W + COL_GUTTER)))
+    local availH = sf.h * 0.82 - m.TITLE_H - m.PAD * 2
+    local maxCols = math.max(1, math.floor((sf.w * 0.94 - m.PAD * 2 + m.COL_GUTTER) / (m.COL_W + m.COL_GUTTER)))
     local total = 0
     for i, sec in ipairs(sections) do total = total + sectionHeight(sec, i == 1) end
     local cols = math.max(1, math.min(maxCols, math.ceil(total / availH)))
     local target = total / cols
 
-    local bodyY = PAD + TITLE_H
+    local O = m.MARGIN
+    local bodyY = O + m.PAD + m.TITLE_H
     local curCol, curY, maxColH = 0, 0, 0
     local function nextColumn()
         curCol = curCol + 1; curY = 0
     end
     for _, sec in ipairs(sections) do
         if curY > 0 and curCol < cols - 1
-            and curY + sectionHeight(sec, false) > target + ROW_H then
+            and curY + sectionHeight(sec, false) > target + m.ROW_H then
             nextColumn()
         end
         for _, item in ipairs(sec) do
@@ -474,16 +555,17 @@ function M.show(which, held)
             if curY > 0 and curCol < cols - 1 and curY + h > availH then
                 nextColumn(); h = heightOf(item, true)
             end
-            item._x = PAD + curCol * (COL_W + COL_GUTTER)
-            item._y = bodyY + curY + (h - (item.header and HEADER_H or ROW_H))
+            item._x = O + m.PAD + curCol * (m.COL_W + m.COL_GUTTER)
+            item._y = bodyY + curY + (h - (item.header and m.HEADER_H or rowH(item)))
             curY = curY + h
             if curY > maxColH then maxColH = curY end
         end
     end
     cols = curCol + 1
 
-    local canvasW = cols * COL_W + (cols - 1) * COL_GUTTER + PAD * 2
-    local canvasH = bodyY + maxColH + PAD - 4
+    local panelW = cols * m.COL_W + (cols - 1) * m.COL_GUTTER + m.PAD * 2
+    local panelH = m.TITLE_H + maxColH + m.PAD * 2 - m.ROW_H * 0.2
+    local canvasW, canvasH = panelW + 2 * O, panelH + 2 * O
     targetX = sf.x + (sf.w - canvasW) / 2
     targetY = sf.y + (sf.h - canvasH) / 2
 
@@ -493,63 +575,98 @@ function M.show(which, held)
     c:clickActivating(false)
     c:canvasMouseEvents(false)
 
+    local panel = {x = O, y = O, w = panelW, h = panelH}
+    local R = m.RADIUS
     c:appendElements({
-        type = "rectangle", action = "fill", fillColor = PANEL_BG,
-        roundedRectRadii = {xRadius = 14, yRadius = 14},
-    }, {
+        type = "rectangle", action = "fill", fillColor = PANEL_BOTTOM, frame = panel,
+        roundedRectRadii = {xRadius = R, yRadius = R},
+        withShadow = true,
+        shadow = {blurRadius = O * 0.75, color = SHADOW_COLOR, offset = {h = -O * 0.2, w = 0}},
+    }, gradientRect(panel, PANEL_TOP, PANEL_BOTTOM, R), {
         type = "rectangle", action = "stroke", strokeWidth = 1, strokeColor = PANEL_BORDER,
-        roundedRectRadii = {xRadius = 14, yRadius = 14},
-        frame = {x = 0.5, y = 0.5, w = canvasW - 1, h = canvasH - 1},
+        roundedRectRadii = {xRadius = R, yRadius = R},
+        frame = {x = O + 0.5, y = O + 0.5, w = panelW - 1, h = panelH - 1},
+    }, {
+        type = "rectangle", action = "fill", fillColor = PANEL_HIGHLIGHT,
+        frame = {x = O + R, y = O + 1, w = panelW - 2 * R, h = 1},
     })
 
-    -- Title: layer name left, held chord as keycaps right.
-    local titleCY = PAD + 14
-    drawText(c, styled(title, FONT_BOLD, TITLE_SIZE, TITLE_COLOR), PAD, titleCY, canvasW - PAD * 2)
+    -- Title block: name and a one-line context note left, held chord right.
+    local left = O + m.PAD
+    local titleCY = O + m.PAD + m.TITLE_SIZE * 0.55
+    drawText(c, styled(title, FONT_BOLD, m.TITLE_SIZE, TITLE_COLOR, {kerning = -0.2}),
+        left, titleCY, panelW - m.PAD * 2)
+    if subtitle and subtitle ~= "" then
+        drawText(c, styled(subtitle, FONT, m.SUBTITLE_SIZE, SUBTITLE_COLOR),
+            left, titleCY + m.TITLE_SIZE * 1.05, panelW - m.PAD * 2)
+    end
     local chordKeys = splitChord(chord)
     if #chordKeys > 0 then
-        local w = keysWidth(chordKeys, TITLE_CHORD_OPTS.size)
-        drawKeys(c, canvasW - PAD - w, titleCY, chordKeys, TITLE_CHORD_OPTS)
+        local w = keysWidth(chordKeys, m.TITLE_CHORD_SIZE)
+        drawKeys(c, O + panelW - m.PAD - w, titleCY + m.TITLE_SIZE * 0.35, chordKeys,
+            m.TITLE_CHORD_SIZE, CHORD_STYLE)
     end
     c:appendElements({
         type = "rectangle", action = "fill", fillColor = RULE,
-        frame = {x = PAD, y = PAD + TITLE_H - 16, w = canvasW - PAD * 2, h = 1},
+        frame = {x = left, y = O + m.PAD + m.TITLE_H - m.PAD * 0.75, w = panelW - m.PAD * 2, h = 1},
     })
 
     for _, item in ipairs(items) do
         local x, y = item._x, item._y
         if item.header then
-            local cy = y + HEADER_H / 2 - 3
-            local label = styled((item.title or ""):upper(), FONT_DEMI, HEADER_SIZE, ACCENT, {kerning = 0.6})
+            local cy = y + m.HEADER_H / 2 - 2
+            local tracking = {kerning = 0.9}
+            local label = styled((item.title or ""):upper(), FONT_DEMI, m.HEADER_SIZE, HEADER_COLOR, tracking)
             if item.group then
-                label = styled(item.group:upper() .. "  ·  ", FONT_DEMI, HEADER_SIZE, GROUP_COLOR, {kerning = 0.6}) .. label
+                label = styled(item.group:upper() .. "  /  ", FONT_DEMI, m.HEADER_SIZE, GROUP_COLOR, tracking) .. label
             end
             local keys = splitChord(item.chord)
-            local chordW = #keys > 0 and keysWidth(keys, CHORD_OPTS.size) or 0
-            drawText(c, label, x, cy, COL_W - chordW - 8)
-            if #keys > 0 then drawKeys(c, x + COL_W - chordW, cy, keys, CHORD_OPTS) end
+            local chordW = #keys > 0 and keysWidth(keys, m.CHORD_SIZE) or 0
+            drawText(c, label, x, cy, m.COL_W - chordW - 8)
+            if #keys > 0 then drawKeys(c, x + m.COL_W - chordW, cy, keys, m.CHORD_SIZE, CHORD_STYLE) end
             c:appendElements({
                 type = "rectangle", action = "fill", fillColor = RULE,
-                frame = {x = x, y = y + HEADER_H - 5, w = COL_W, h = 1},
+                frame = {x = x, y = y + m.HEADER_H - 4, w = m.COL_W, h = 1},
             })
-        else
-            local cy = y + ROW_H / 2
+        elseif item.twoLine then
+            -- Two lines: name, then a muted description, around the keycap's center.
+            local cy = y + rowH(item) / 2
             drawTrig(c, x, cy, item.trig)
-            local label = styled(item.label, item.sub and FONT_MEDIUM or FONT, LABEL_SIZE, LABEL_COLOR)
-            if item.sub and item.sub ~= "" then
-                label = label .. styled("   " .. item.sub, FONT, LABEL_SIZE, SUB_COLOR)
+            local w = m.COL_W - item.textX
+            drawText(c, styled(item.label, FONT_MEDIUM, m.LABEL_SIZE, LABEL_COLOR),
+                x + item.textX, cy - m.LABEL_SIZE * 0.58, w)
+            drawText(c, styled(item.sub, FONT, m.SUBTITLE_SIZE, SUB_COLOR),
+                x + item.textX, cy + m.LABEL_SIZE * 0.62, w)
+        else
+            local cy = y + m.ROW_H / 2
+            drawTrig(c, x, cy, item.trig)
+            if item.pairs then
+                -- Symbol pairs: monospaced, shifted pair in its own column.
+                drawText(c, styled(item.label, FONT_KEY, m.LABEL_SIZE, LABEL_COLOR), x + item.textX, cy)
+                if item.sub then
+                    drawText(c, styled(item.sub, FONT_KEY, m.LABEL_SIZE, SUB_COLOR),
+                        x + item.textX + m.LABEL_SIZE * 4, cy)
+                end
+            else
+                drawText(c, styled(item.label, FONT, m.LABEL_SIZE, LABEL_COLOR),
+                    x + item.textX, cy, m.COL_W - item.textX)
             end
-            drawText(c, label, x + item.textX, cy, COL_W - item.textX)
         end
     end
 
-    c:alpha(1)
-    c:show()
     canvas = c
+    if wasVisible then
+        c:alpha(1)
+        c:show()
+    else
+        c:alpha(0)
+        c:show()
+        animate(0, 1, 6, 0, 9)
+    end
 end
 
 function M.hide()
-    if not canvas then return end
-    if fallTimer then return end  -- already fading
+    if not canvas or closing then return end
     startFall()
 end
 
