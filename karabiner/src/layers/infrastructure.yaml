@@ -559,12 +559,12 @@ sections:
     - set_variable:
         name: s_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('s', 32, 'move'); require('cursor_grid').flashIndicator()" 2>/dev/null &
+    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('s', 32, 'move'); require('cursor_grid').flashIndicator(); require('help_overlay').layerDown('s')" 2>/dev/null &
     to_after_key_up:
     - set_variable:
         name: s_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('s')" &
+    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('s'); require('help_overlay').layerUp('s')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -582,10 +582,12 @@ sections:
     - set_variable:
         name: s_is_held
         value: 1
+    - shell_command: /usr/local/bin/hs -c "require('help_overlay').layerDown('s')" &
     to_after_key_up:
     - set_variable:
         name: s_is_held
         value: 0
+    - shell_command: /usr/local/bin/hs -c "require('help_overlay').layerUp('s')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -606,12 +608,12 @@ sections:
     - set_variable:
         name: d_is_held
         value: 1
-    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('d', 8, 'move'); require('cursor_grid').flashIndicator()" 2>/dev/null &
+    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyDown('d', 8, 'move'); require('cursor_grid').flashIndicator(); require('help_overlay').layerDown('d')" 2>/dev/null &
     to_after_key_up:
     - set_variable:
         name: d_is_held
         value: 0
-    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('d')" &
+    - shell_command: /usr/local/bin/hs -c "require('cursor_grid').modeKeyUp('d'); require('help_overlay').layerUp('d')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held
@@ -629,10 +631,12 @@ sections:
     - set_variable:
         name: d_is_held
         value: 1
+    - shell_command: /usr/local/bin/hs -c "require('help_overlay').layerDown('d')" &
     to_after_key_up:
     - set_variable:
         name: d_is_held
         value: 0
+    - shell_command: /usr/local/bin/hs -c "require('help_overlay').layerUp('d')" &
     type: basic
   - conditions:
     - name: caps_lock_is_held

@@ -94,6 +94,11 @@ A momentary on-screen cheat sheet. Hold `/` with Caps Lock to peek; release to d
 | ⇪ + T + / | Aerospace layer |
 | ⇪ + R + / | App layer |
 
+The overlay narrows itself to what's relevant:
+
+- **Frontmost app** — the G and R layers show only the bindings for the app in front (Chrome, iTerm2, or other apps).
+- **Held mode keys** — holding a mode key too (e.g. `⇪ + T + R + /`, `⇪ + S + /`, `⇪ + G + F + /`) shows just that mode's section. Workspace modes (W/E/3/4) have no peek because `/` is a workspace key there.
+
 Q has no peek: `⇪ + Q + /` is the surround layer's `//`. Freeing `/` for help relocated three actions: **Clean Dock** to `⇪ + A + P`, **Detach tab** to `⇪ + G + \`, and **Toggle tiles** to `⇪ + T + P`. Because the overlay is parsed from the tables above, the per-binding row format (`| combo | behavior | description |`) under each `##`/`###` layer section is load-bearing — keep it intact when editing.
 
 ---

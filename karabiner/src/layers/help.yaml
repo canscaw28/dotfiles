@@ -1,10 +1,11 @@
 # Help overlay trigger (momentary peek, realtime).
 #
 # Hold caps+/ to show the cheat sheet; release to hide. While held, the
-# overlay follows whichever layer key is also held (caps+/ -> index,
-# caps+T+/ -> T layer, switch live by pressing/releasing layer keys) — the
-# layer setters notify help_overlay.layerDown/Up, so no re-press of / is
-# needed. See .hammerspoon/help_overlay.lua + key_suppress.lua.
+# overlay follows whichever layer and mode keys are also held (caps+/ ->
+# index, caps+T+/ -> T layer, caps+T+R+/ -> T's move mode; switch live by
+# pressing/releasing keys) — the layer/mode setters notify
+# help_overlay.layerDown/Up, so no re-press of / is needed. See
+# .hammerspoon/help_overlay.lua + key_suppress.lua.
 #
 # One manipulator handles every layer: it fires for caps+/ with any of
 # a/f/g/t/r (or none) held, but NOT in the workspace submodes (W/E/3/4) or

@@ -12,12 +12,21 @@ local targetX, targetY = nil, nil
 local data = nil
 local dataMtime = nil
 
--- Realtime layer tracking: layer keys notify layerDown/layerUp continuously
--- (from the Karabiner setters + key_suppress), so while the overlay is open
--- it follows whichever layer key is currently held without re-pressing /.
-local heldLayers = {}   -- ordered list of held help-layer keys (last = newest)
+-- Realtime key tracking: layer and mode keys notify layerDown/layerUp
+-- continuously (from the Karabiner setters + key_suppress), so while the
+-- overlay is open it follows what's held without re-pressing /. The layer
+-- picks the view; the full held set narrows it to the matching mode section.
+local heldKeys = {}
 local isOpen = false
-local HELP_LAYERS = {a = true, f = true, g = true, t = true, r = true}
+local TRACKED = {a = true, f = true, g = true, t = true, r = true, s = true, d = true}
+-- When several layer keys are held, the outer one owns the view: T+R is the
+-- T layer's move mode, G+F is G's reorder mode, F+D is F's coarse grid.
+local LAYER_PRIORITY = {"t", "g", "f", "a", "r"}
+
+local APP_OF_BUNDLE = {
+    ["com.google.Chrome"] = "chrome",
+    ["com.googlecode.iterm2"] = "iterm",
+}
 
 local DATA_PATH = hs.configdir .. "/help_data.json"
 
@@ -69,8 +78,12 @@ end
 -- Flatten a layer (or the index) into uniform-height slots so columns pack
 -- evenly. Each item is either a section {header=true} or a binding.
 
+-- Drop markdown emphasis and code-span delimiters, but keep backticks that
+-- are the content itself: "` `` `" -> "``", and a lone "`" key stays "`".
 local function stripMarks(s)
-    return (s:gsub("[%*`]", "")):gsub("^%s+", ""):gsub("%s+$", "")
+    s = s:gsub("%*", ""):gsub("^%s+", ""):gsub("%s+$", "")
+    s = s:gsub("^`+%s?(.-)%s?`+$", "%1")
+    return s
 end
 
 -- Extract the action key from a combo cell: "[⇪+T+R] + H" -> "H".
@@ -94,9 +107,20 @@ local QSHIFT = {
     ["&"]="7", ["*"]="8", ["("]="9", [")"]="0", ["_"]="-", ["+"]="=", ["{"]="[",
     ["}"]="]", ["|"]="\\", [":"]=";", ['"']="'", ["<"]=",", [">"]=".", ["?"]="/",
 }
+-- "R+E" -> {"R", "E"}; nil unless every part is a single key.
+local function capKeys(trig)
+    local parts = {}
+    for p in trig:gmatch("[^+]+") do
+        if utf8.len(p) ~= 1 then return nil end
+        parts[#parts + 1] = p
+    end
+    return #parts > 0 and parts or nil
+end
+
 local function qwertyRow(trig)
-    if not trig or utf8.len(trig) ~= 1 then return 0 end
-    return QROW[QSHIFT[trig] or trig:lower()] or 0
+    local keys = trig and capKeys(trig)
+    if not keys then return 0 end
+    return QROW[QSHIFT[keys[1]] or keys[1]:lower()] or 0
 end
 
 local function joinDesc(cols)
@@ -108,10 +132,18 @@ local function joinDesc(cols)
     return parts
 end
 
-local function bindItem(keys, cols)
+local function bindItem(keys, cols, header)
+    local parts = joinDesc(cols)
+    -- Surround table: | Key | Pair | Shift+Key | Pair | -> "``--``  ⇧ __"
+    if header[3] == "Shift+Key" then
+        local shifted = stripMarks(cols[3] or "")
+        return {
+            header = false, trig = trigOf(keys), label = parts[1] or "",
+            sub = shifted ~= "" and ("⇧ " .. shifted) or nil,
+        }
+    end
     -- Show the human description (last column), not the raw key translation
     -- (the Behavior column). Fall back to the only column when there's one.
-    local parts = joinDesc(cols)
     return {
         header = false,
         trig = trigOf(keys),
@@ -121,44 +153,100 @@ local function bindItem(keys, cols)
 end
 
 local function sectionItems(section, items)
-    items[#items + 1] = {header = true, title = section.title, group = section.group}
+    items[#items + 1] = {
+        header = true, title = section.title, group = section.group,
+        chord = section.chord and table.concat(section.chord, "+") or nil,
+    }
     for _, row in ipairs(section.rows) do
-        items[#items + 1] = bindItem(row.keys, row.cols)
+        items[#items + 1] = bindItem(row.keys, row.cols, section.header)
     end
 end
 
-local function buildItems(which)
+local function frontApp()
+    local app = hs.application.frontmostApplication()
+    return app and APP_OF_BUNDLE[app:bundleID()] or "other"
+end
+
+-- Order-insensitive identity for a set of keys: {"T","R"} and {r=true,t=true}
+-- both become "R+T".
+local function setKey(list)
+    local t = {}
+    for _, k in ipairs(list) do t[#t + 1] = k:upper() end
+    table.sort(t)
+    return table.concat(t, "+")
+end
+
+local function heldList(held)
+    local t = {}
+    for k in pairs(held) do t[#t + 1] = k end
+    return t
+end
+
+-- Title chord: the layer key first, then any held mode keys ("⇪+T+R").
+local function displayChord(layer, held)
+    local parts = {"⇪"}
+    if layer then parts[#parts + 1] = layer:upper() end
+    local modes = {}
+    for k in pairs(held) do
+        if k ~= layer then modes[#modes + 1] = k:upper() end
+    end
+    table.sort(modes)
+    for _, m in ipairs(modes) do parts[#parts + 1] = m end
+    return table.concat(parts, "+")
+end
+
+-- Narrow a layer's sections to the frontmost app, then (when a mode key is
+-- held) to the sections triggered by exactly the held keys. Each step is
+-- skipped when it would leave nothing, so a view is never empty.
+local function pickSections(sections, held, app, narrow)
+    local forApp = {}
+    for _, s in ipairs(sections) do
+        if not s.app or s.app == app then forApp[#forApp + 1] = s end
+    end
+    if #forApp == 0 then forApp = sections end
+    if not narrow then return forApp, false end
+
+    local want = setKey(heldList(held))
+    local forMode = {}
+    for _, s in ipairs(forApp) do
+        if setKey(s.chord or {}) == want then forMode[#forMode + 1] = s end
+    end
+    if #forMode == 0 then return forApp, false end
+    return forMode, true
+end
+
+local function buildItems(which, held)
     local d = loadData()
     if not d then return nil, "Help data not found — run build_help.py" end
     local items = {}
-    local title, chord
+    local app = frontApp()
 
     if which == "index" then
-        title, chord = "Hotkey Layers", "⇪+?"
-        items[#items + 1] = {header = true, title = "Layers", group = nil}
-        for _, e in ipairs(d.index) do
-            local cap = e.key == "default" and "⇪" or e.key
-            local hint = e.key == "default" and "⇪ alone"
-                or (e.key == "Q" and "⇪+Q" or ("⇪+" .. e.key .. "+?"))
-            items[#items + 1] = {
-                header = false, trig = cap,
-                label = e.name, sub = e.domain ~= "" and e.domain or hint,
-            }
+        local base = d.layers and d.layers["default"]
+        local sections, narrowed = pickSections(base and base.sections or {}, held, app, next(held) ~= nil)
+        if not narrowed then
+            items[#items + 1] = {header = true, title = "Layers", group = nil}
+            for _, e in ipairs(d.index) do
+                local cap = e.key == "default" and "⇪" or e.key
+                local hint = e.key == "default" and "⇪ alone"
+                    or (e.key == "Q" and "⇪+Q" or ("⇪+" .. e.key .. "+?"))
+                items[#items + 1] = {
+                    header = false, trig = cap,
+                    label = e.name, sub = e.domain ~= "" and e.domain or hint,
+                }
+            end
         end
         -- The base layer has no peek chord; surface it under the index.
-        local base = d.layers and d.layers["default"]
-        if base then
-            for _, s in ipairs(base.sections) do sectionItems(s, items) end
-        end
-        return items, nil, title, chord
+        for _, s in ipairs(sections) do sectionItems(s, items) end
+        local chord = next(held) and displayChord(nil, held) or "⇪+?"
+        return items, nil, "Hotkey Layers", chord
     end
 
     local L = d.layers and d.layers[which]
     if not L then return nil, "No help for layer " .. tostring(which) end
-    title = L.name
-    chord = which == "default" and "⇪" or ("⇪+" .. which)
-    for _, s in ipairs(L.sections) do sectionItems(s, items) end
-    return items, nil, title, chord
+    local sections = pickSections(L.sections, held, app, #heldList(held) > 1)
+    for _, s in ipairs(sections) do sectionItems(s, items) end
+    return items, nil, L.name, displayChord(which:lower(), held)
 end
 
 -- ── Rendering ────────────────────────────────────────────────────────────
@@ -169,38 +257,49 @@ local function styled(text, font, size, color)
     })
 end
 
-local function drawCap(c, x, y, trig)
-    -- Short triggers get a keycap; longer ones (e.g. "⌘ + Z") render inline.
-    if utf8.len(trig) and utf8.len(trig) <= 2 and not trig:find(" ") then
-        c:appendElements({
-            type = "rectangle", action = "fill", fillColor = CAP_EDGE,
-            roundedRectRadii = {xRadius = 5, yRadius = 5},
-            frame = {x = x, y = y + 2, w = CAP, h = CAP},
-        }, {
-            type = "rectangle", action = "fill", fillColor = CAP_FACE,
-            roundedRectRadii = {xRadius = 5, yRadius = 5},
-            frame = {x = x, y = y, w = CAP, h = CAP},
-        }, {
-            type = "rectangle", action = "stroke", strokeWidth = 1, strokeColor = CAP_BORDER,
-            roundedRectRadii = {xRadius = 5, yRadius = 5},
-            frame = {x = x, y = y, w = CAP, h = CAP},
-        }, {
-            type = "text",
-            text = hs.styledtext.new(trig, {
-                font = {name = FONT_BOLD, size = 12}, color = CAP_TEXT,
-                paragraphStyle = {alignment = "center"},
-            }),
-            frame = {x = x - 1, y = y + (CAP - 14) / 2, w = CAP + 2, h = 16},
-        })
-        return TEXT_X
-    end
-    -- Inline accent label for compound triggers
+local CAP_GAP = 3
+
+local function drawOneCap(c, x, y, trig)
     c:appendElements({
-        type = "text", text = styled(trig, FONT_BOLD, FONT_SIZE, TITLE_CHORD),
+        type = "rectangle", action = "fill", fillColor = CAP_EDGE,
+        roundedRectRadii = {xRadius = 5, yRadius = 5},
+        frame = {x = x, y = y + 2, w = CAP, h = CAP},
+    }, {
+        type = "rectangle", action = "fill", fillColor = CAP_FACE,
+        roundedRectRadii = {xRadius = 5, yRadius = 5},
+        frame = {x = x, y = y, w = CAP, h = CAP},
+    }, {
+        type = "rectangle", action = "stroke", strokeWidth = 1, strokeColor = CAP_BORDER,
+        roundedRectRadii = {xRadius = 5, yRadius = 5},
+        frame = {x = x, y = y, w = CAP, h = CAP},
+    }, {
+        type = "text",
+        text = hs.styledtext.new(trig, {
+            font = {name = FONT_BOLD, size = 12}, color = CAP_TEXT,
+            paragraphStyle = {alignment = "center"},
+        }),
+        frame = {x = x - 1, y = y + (CAP - 14) / 2, w = CAP + 2, h = 16},
+    })
+end
+
+-- Draws the trigger at absolute (x, y); returns where the label starts,
+-- relative to the slot. Short triggers get a keycap, "R+E" a row of keycaps,
+-- anything longer (e.g. "⌘ + Z") renders inline.
+local function drawCap(c, x, y, trig)
+    local keys = (utf8.len(trig) and utf8.len(trig) <= 2 and not trig:find(" "))
+        and {trig} or capKeys(trig)
+    if keys then
+        for i, k in ipairs(keys) do
+            drawOneCap(c, x + (i - 1) * (CAP + CAP_GAP), y, k)
+        end
+        return TEXT_X + (#keys - 1) * (CAP + CAP_GAP)
+    end
+    local text = styled(trig, FONT_BOLD, FONT_SIZE, TITLE_CHORD)
+    c:appendElements({
+        type = "text", text = text,
         frame = {x = x, y = y + (CAP - FONT_SIZE) / 2 - 1, w = 90, h = 18},
     })
-    local w = hs.drawing.getTextDrawingSize(styled(trig, FONT_BOLD, FONT_SIZE, TITLE_CHORD)).w
-    return x + w + 8
+    return CAP_X + hs.drawing.getTextDrawingSize(text).w + 8
 end
 
 local function startFall()
@@ -222,11 +321,11 @@ local function startFall()
     end)
 end
 
-function M.show(which)
+function M.show(which, held)
     if fallTimer then fallTimer:stop(); fallTimer = nil end
     if canvas then canvas:delete(); canvas = nil end
 
-    local items, err, title, chord = buildItems(which)
+    local items, err, title, chord = buildItems(which, held or {})
     local screen = hs.mouse.getCurrentScreen() or hs.screen.mainScreen()
     local sf = screen:frame()
 
@@ -321,6 +420,13 @@ function M.show(which)
                 type = "text", text = styled(label, FONT_BOLD, HEADER_FONT_SIZE, HEADER_COLOR),
                 frame = {x = x, y = y + 4, w = COL_W - 14, h = 18},
             }, {
+                type = "text",
+                text = hs.styledtext.new(item.chord or "", {
+                    font = {name = FONT_BOLD, size = HEADER_FONT_SIZE}, color = TITLE_CHORD,
+                    paragraphStyle = {alignment = "right"},
+                }),
+                frame = {x = x, y = y + 4, w = COL_W - 18, h = 18},
+            }, {
                 type = "rectangle", action = "fill", fillColor = HEADER_RULE,
                 frame = {x = x, y = y + SLOT_H - 2, w = COL_W - 18, h = 1},
             })
@@ -349,28 +455,22 @@ function M.hide()
     startFall()
 end
 
--- Which view to draw given the currently-held layer keys (newest wins).
+-- The view is the highest-priority held layer; the held set picks the mode.
 local function currentView()
-    for i = #heldLayers, 1, -1 do
-        if HELP_LAYERS[heldLayers[i]] then return heldLayers[i]:upper() end
+    for _, k in ipairs(LAYER_PRIORITY) do
+        if heldKeys[k] then return k:upper() end
     end
     return "index"
 end
 
-local function removeKey(key)
-    for i = #heldLayers, 1, -1 do
-        if heldLayers[i] == key then table.remove(heldLayers, i) end
-    end
-end
-
 local function rerender()
-    if isOpen then M.show(currentView()) end
+    if isOpen then M.show(currentView(), heldKeys) end
 end
 
--- Called on / down/up: open follows whatever layer is already held.
+-- Called on / down/up: open follows whatever keys are already held.
 function M.open()
     isOpen = true
-    M.show(currentView())
+    M.show(currentView(), heldKeys)
 end
 
 function M.close()
@@ -378,23 +478,22 @@ function M.close()
     M.hide()
 end
 
--- Called continuously by the layer-key setters (and key_suppress); only
+-- Called continuously by the layer/mode-key setters (and key_suppress); only
 -- redraws while open, so it's a cheap table update the rest of the time.
 function M.layerDown(key)
-    if not HELP_LAYERS[key] then return end
-    removeKey(key)
-    heldLayers[#heldLayers + 1] = key
+    if not TRACKED[key] then return end
+    heldKeys[key] = true
     rerender()
 end
 
 function M.layerUp(key)
-    if not HELP_LAYERS[key] then return end
-    removeKey(key)
+    if not TRACKED[key] then return end
+    heldKeys[key] = nil
     rerender()
 end
 
 function M.clearLayers()
-    heldLayers = {}
+    heldKeys = {}
     rerender()
 end
 
