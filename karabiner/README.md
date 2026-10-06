@@ -56,7 +56,7 @@ Right hand layout is always the same — vim directions that stay consistent acr
 | | D | Coarse Grid | 8x8 mouse cursor grid |
 | | S | Fine Grid | 32x32 mouse cursor grid |
 | | E | Link Hints / Jump | Fixed cursor positions, Vimium/Homerow hints |
-| Application (G) | — | Navigation | App-specific (Chrome: tabs, iTerm: tmux, other: window focus) |
+| Application (G) | — | Navigation | App-specific (Chrome: tabs, iTerm: tmux panes + layout, other: window focus) |
 | | F | Reorder | Chrome: reorder tabs; iTerm: swap tmux panes |
 | | D | Tab Move | Chrome: move tab to another window |
 | Aerospace (T) | — | Focus | Window focus management |
@@ -65,8 +65,8 @@ Right hand layout is always the same — vim directions that stay consistent acr
 | | W | Focus WS | Focus workspace on current monitor |
 | | E | Move to WS | Move window to workspace (stay) |
 | | R+E | Move+Follow | Move window to workspace and follow |
-| | W+E | Focus Mon 1 | Focus workspace on monitor 1 |
-| | W+R | Focus Mon 2 | Focus workspace on monitor 2 |
+| | W+E | Focus on MacBook | Focus workspace on MacBook (else Duet) |
+| | W+R | Focus on external | Focus workspace on external (else Duet) |
 | | 3 | Swap Windows | Swap all windows between workspaces |
 | | W+4 | Nav Grid | HJKL cursor over workspace grid |
 | Surround (Q) | — | Surround | Insert/wrap symbol pairs via Hammerspoon |

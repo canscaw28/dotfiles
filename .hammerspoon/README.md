@@ -81,7 +81,7 @@ Amber rounded-rectangle border that flashes around the focused window after keyb
 - 50ms delay before drawing (waits for AeroSpace focus to settle)
 - Holds 0.25s, then fades out over 8 steps
 
-Called from `ws.sh`, `smart-focus.sh`, `smart-move.sh`, and AeroSpace keybindings via the HTTP server.
+Called via `hsq` from `ws.sh`, `smart-focus.sh`, `smart-move.sh`, and AeroSpace join keybindings, and over HTTP from the Chrome tab-mover extension.
 
 ---
 
@@ -183,6 +183,15 @@ Save and restore keyboard input source. Used to temporarily switch to English fo
 
 State tracker for macOS Show Desktop mode (triggered by Caps+A+O → fn+F11). Tracks toggle state so other modules can dismiss it programmatically.
 
+### Help Overlay (`help_overlay.lua`)
+
+Momentary hotkey cheat sheet shown while `⇪+/` is held (`⇪+<layer>+/` for a layer). Its data, `help_data.json`, is generated from `karabiner/README.md` by `karabiner/build_help.py`, so it can't drift from the documented bindings.
+
+- **Follows held keys** — Karabiner's layer and mode setters call `layerDown`/`layerUp`; the outermost held layer picks the view and held mode keys narrow it to that mode's section (`⇪+T+R+/` shows only Move mode)
+- **Follows the front app** — sections tagged Chrome / iTerm2 / other apps show only for that app
+- **Layout** — whole sections packed into columns, rows sorted by physical key position with gaps between keyboard rows, labels aligned per section past the widest trigger
+- **Look** — translucent graphite panel with shadow, keycaps sized to their glyph, chords drawn as accent keycaps; every metric scales with screen height (about 0.9x on a MacBook)
+
 ### Key Suppress (`key_suppress.lua`)
 
 Eventtap that suppresses OS key auto-repeat for all keys while any Caps Lock layer is active. Started by Karabiner's caps-lock setters, stopped on caps release. This allows Hammerspoon and Karabiner to handle repeat behavior themselves.
@@ -208,7 +217,7 @@ Local HTTP server on port 27183 for IPC from shell scripts and browser extension
 | `/focus-border-flash` | Flash focus border on focused window |
 | `/chrome-tab-new-window?direction=...&follow=...` | Position new Chrome window from tab-mover extension |
 
-Used by `ws.sh`, `smart-focus.sh`, `smart-move.sh`, and the Chrome tab-mover extension.
+Used by the Chrome tab-mover extension (shell scripts use `hsq` instead).
 
 ---
 
@@ -221,11 +230,11 @@ Keypress → Karabiner (layer/mode selection, F-key encoding)
          → Hammerspoon (visual feedback, compound actions, async operations)
          → AeroSpace (window/workspace management)
          → Shell scripts (ws.sh, smart-focus.sh, etc.)
-         → Hammerspoon HTTP server (focus border, grid updates)
+         → Hammerspoon via hsq (focus border, grid updates)
 ```
 
 Key integration points:
 - **Karabiner → Hammerspoon**: F-keys for line nav, modifier-encoded workspace keys for ws_grid, Ctrl+Shift for scrolling
-- **Shell → Hammerspoon**: HTTP calls to `localhost:27183` for focus border, `hs` CLI for grid updates
+- **Karabiner / shell → Hammerspoon**: `$HOME/.local/bin/hsq "<lua>"` (`hsq -r` to read a result). Never `hs -c`: each `hs` process registers its own reply port, and when one died before Hammerspoon answered, Hammerspoon crashed and every later hotkey popped a "launch Hammerspoon?" dialog. `hsq` uses hs.ipc's legacy message id, whose reply rides the request itself, and silently relaunches Hammerspoon if it's down
 - **Chrome extension → Hammerspoon**: HTTP calls for new window positioning
 - **Hammerspoon → AeroSpace**: CLI calls via `hs.task.new()` (never `hs.execute()` — blocks main thread)

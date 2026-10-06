@@ -24,7 +24,9 @@ A keybinding change touches **two** places, both required:
 1. **The binding** — the relevant `karabiner/src/layers/*.yaml` file.
 2. **`karabiner/README.md`** — add/update/remove the row. Keep the existing table format and `##`/`###` section structure intact.
 
-There is **no third place to update.** The on-screen help overlay (`⇪ + ?`) is generated from the README by `karabiner/build_help.py` (→ `.hammerspoon/help_data.json`), so updating the README keeps the overlay in sync automatically. The per-binding row format (`| combo | behavior | description |`) under each layer section is load-bearing — `build_help.py` parses it. `build.py --check` fails if `help_data.json` is stale, so always run `./reload.sh --karabiner` (or `build.py`) after editing the README to regenerate it.
+There is **no third place to update.** The on-screen help overlay (`⇪ + ?`) is generated from the README by `karabiner/build_help.py` (→ `.hammerspoon/help_data.json`), so updating the README keeps the overlay in sync automatically. The per-binding row format (`| combo | behavior | description |`) under each layer section is load-bearing — `build_help.py` parses it. `build.py --check` fails if `help_data.json` is stale, so always run `./reload.sh --karabiner` after editing the README or YAML. It regenerates `help_data.json` and installs the live Karabiner config; `build.py` alone only regenerates the repo files, so new bindings silently don't fire.
+
+Karabiner bindings and scripts call Hammerspoon with `$HOME/.local/bin/hsq "<lua>"`, never `hs -c` (it crashed Hammerspoon; see `scripts/hsq.c`).
 
 ## Worktree Awareness
 

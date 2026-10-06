@@ -40,6 +40,7 @@ Not a typical dotfiles repo — it's a keyboard-driven utility layer on top of m
 - `.hammerspoon/` - [Hammerspoon](https://www.hammerspoon.org/) automation scripts (see [.hammerspoon/README.md](.hammerspoon/README.md))
   - Scroll layer, cursor grid, line navigation hold-to-repeat
   - Workspace grid overlay, focus border flash, workspace notifications
+  - Hotkey help overlay (`⇪+/`), generated from the Karabiner README
   - Key repeat suppression for Caps Lock layers
 - `text-expander/` - Hammerspoon-backed text expansion snippets (personal triggers auto-synced to macOS text replacements for iOS via iCloud)
 
@@ -50,6 +51,8 @@ Not a typical dotfiles repo — it's a keyboard-driven utility layer on top of m
   - `save-ws-state.sh` / `restore-ws-state.sh` - Window-to-workspace state preservation across AeroSpace restarts
   - `dock-peek.sh` / `clean-dock.sh` / `dock-toggle` - Dock management utilities
   - `toggle-input-source.sh` - Input source switching
+  - `g-focus-tmux.sh` / `g-move-tmux.sh` / `g-tmux-layout.sh` - tmux pane focus, swap, and layout from the G layer (fall back to AeroSpace outside tmux)
+  - `hsq` (`hsq.c`) - Sends Lua to Hammerspoon for Karabiner and scripts; replaces `hs -c`, which crashed Hammerspoon when a caller died mid-request
 
 ### Browser Extensions
 - `vimium_c.json` - [Vimium C](https://github.com/nicolerenee/vimium-c) settings

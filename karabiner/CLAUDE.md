@@ -2,12 +2,12 @@
 
 **NEVER edit `karabiner.json` directly — it is a generated build artifact.**
 
-The source of truth is `src/layers/*.yaml` (6 files, ~6k lines vs the 36k-line generated JSON). One file per layer.
+The source of truth is `src/layers/*.yaml` (one file per layer, plus infrastructure and the help trigger).
 
 ## Workflow
 
 1. Edit the relevant YAML file under `src/layers/`
-2. Run `./reload.sh --karabiner` from the repo root (builds via `build.py` then reloads Karabiner)
+2. Run `./reload.sh --karabiner` from the repo root (builds via `build.py` then reloads Karabiner). Running `build.py` alone only updates the repo copy — the live `~/.config/karabiner/karabiner.json` keeps the old bindings until `reload.sh` runs.
 3. Verify with `python3 build.py --check` (exits 0 if `karabiner.json` matches what would be built from sources)
 
 If you find yourself wanting to edit `karabiner.json` directly, stop and find the corresponding YAML source file.
@@ -16,15 +16,21 @@ If you find yourself wanting to edit `karabiner.json` directly, stop and find th
 
 ```
 karabiner/src/layers/
+├── q-setter.yaml         # Q layer setter (built first so it wins over everything)
 ├── infrastructure.yaml   # Caps lock setup, layer setters, physical trackers
-├── a-system.yaml         # A layer (Dock, Notification Center, etc.)
+├── help.yaml             # caps+/ help overlay trigger
+├── a-system.yaml         # A layer (Dock, Notification Center, input source)
 ├── default.yaml          # Default layer (cursor, selection, deletion, iTerm overrides)
 ├── f.yaml                # F layer (scroll, cursor grid, link hints)
 ├── t.yaml                # T layer (focus/move/join, workspace operations, nav)
-└── g.yaml                # G layer (Chrome, iTerm tmux, generic, tab move/reorder)
+├── q.yaml                # Q layer (surround with symbol pairs)
+├── r.yaml                # R layer (Superhuman)
+└── g.yaml                # G layer (Chrome tabs, iTerm tmux panes, generic, tab move/reorder)
 ```
 
-That's it. Six files. `build_order.yaml` controls the ordering.
+`build_order.yaml` controls the ordering.
+
+Calls into Hammerspoon go through `$HOME/.local/bin/hsq "<lua>"`, never `hs -c` (see `scripts/hsq.c` for why).
 
 ## Source format
 
@@ -135,9 +141,11 @@ to: [escape, o]     # Escape, then O (two events)
 
 ```
 src/layers/*.yaml  →  build.py  →  karabiner.json  →  reload Karabiner
+README.md          →  build_help.py  →  ../.hammerspoon/help_data.json  (help overlay)
 ```
 
-- `build.py` — assembles YAML sources into the final `karabiner.json`
+- `build.py` — assembles YAML sources into the final `karabiner.json`, and runs `build_help.py`
+- `build_help.py` — parses the README's layer tables into the help overlay's data; `--check` fails if it's stale
 
 ## Files
 
@@ -147,5 +155,6 @@ src/layers/*.yaml  →  build.py  →  karabiner.json  →  reload Karabiner
 | `build.py` | YAML → JSON builder |
 | `src/profile.yaml` | Profile metadata (name, virtual_hid_keyboard, simple_modifications) |
 | `src/build_order.yaml` | Controls manipulator priority ordering |
-| `src/layers/*.yaml` | Per-layer source files (6 files, one per layer) |
-| `README.md` | User-facing documentation of all keyboard shortcuts |
+| `build_help.py` | README → `.hammerspoon/help_data.json` for the `⇪+/` overlay |
+| `src/layers/*.yaml` | Per-layer source files |
+| `README.md` | User-facing documentation of all keyboard shortcuts (also the help overlay's source) |
