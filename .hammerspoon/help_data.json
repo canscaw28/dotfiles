@@ -1761,10 +1761,10 @@
               ]
             },
             {
-              "keys": "[⇪+A] + R⇧",
+              "keys": "[⇪+A] + ⇧",
               "cols": [
                 "Toggle Input Source",
-                "Send caps_lock to toggle input source"
+                "Right ⇧: toggle input source (sends caps_lock)"
               ]
             }
           ]

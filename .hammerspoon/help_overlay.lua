@@ -282,24 +282,33 @@ local function drawOneCap(c, x, y, trig)
     })
 end
 
--- Draws the trigger at absolute (x, y); returns where the label starts,
--- relative to the slot. Short triggers get a keycap, "R+E" a row of keycaps,
--- anything longer (e.g. "⌘ + Z") renders inline.
+-- Short triggers get a keycap, "R+E" a row of keycaps; nil means anything
+-- longer (e.g. "⌘ + Z"), which renders inline.
+local function trigCaps(trig)
+    if utf8.len(trig) and utf8.len(trig) <= 2 and not trig:find(" ") then return {trig} end
+    return capKeys(trig)
+end
+
+-- Where the label would start after this trigger, relative to the slot.
+local function labelOffset(trig)
+    local keys = trigCaps(trig)
+    if keys then return TEXT_X + (#keys - 1) * (CAP + CAP_GAP) end
+    return CAP_X + hs.drawing.getTextDrawingSize(styled(trig, FONT_BOLD, FONT_SIZE, TITLE_CHORD)).w + 8
+end
+
+-- Draws the trigger at absolute (x, y).
 local function drawCap(c, x, y, trig)
-    local keys = (utf8.len(trig) and utf8.len(trig) <= 2 and not trig:find(" "))
-        and {trig} or capKeys(trig)
+    local keys = trigCaps(trig)
     if keys then
         for i, k in ipairs(keys) do
             drawOneCap(c, x + (i - 1) * (CAP + CAP_GAP), y, k)
         end
-        return TEXT_X + (#keys - 1) * (CAP + CAP_GAP)
+        return
     end
-    local text = styled(trig, FONT_BOLD, FONT_SIZE, TITLE_CHORD)
     c:appendElements({
-        type = "text", text = text,
+        type = "text", text = styled(trig, FONT_BOLD, FONT_SIZE, TITLE_CHORD),
         frame = {x = x, y = y + (CAP - FONT_SIZE) / 2 - 1, w = 90, h = 18},
     })
-    return CAP_X + hs.drawing.getTextDrawingSize(text).w + 8
 end
 
 local function startFall()
@@ -346,6 +355,21 @@ function M.show(which, held)
             item.gapBefore = prevGroup ~= nil and prevGroup ~= 0
                 and g ~= 0 and g ~= prevGroup
             prevGroup = g
+        end
+    end
+
+    -- Every label in a section starts at the same x, past its widest trigger,
+    -- so a "W E" row doesn't push its description out of line.
+    local sectionStart = 1
+    for i = 1, #items + 1 do
+        local item = items[i]
+        if not item or item.header then
+            local x = TEXT_X
+            for j = sectionStart, i - 1 do x = math.max(x, items[j].textX) end
+            for j = sectionStart, i - 1 do items[j].textX = x end
+            sectionStart = i + 1
+        else
+            item.textX = labelOffset(item.trig)
         end
     end
 
@@ -431,7 +455,8 @@ function M.show(which, held)
                 frame = {x = x, y = y + SLOT_H - 2, w = COL_W - 18, h = 1},
             })
         else
-            local textX = drawCap(c, x + CAP_X, y + (SLOT_H - CAP) / 2, item.trig)
+            drawCap(c, x + CAP_X, y + (SLOT_H - CAP) / 2, item.trig)
+            local textX = item.textX
             local label = styled(item.label, FONT, FONT_SIZE, BEHAVIOR_COLOR)
             if item.sub and item.sub ~= "" then
                 label = label .. styled("  " .. item.sub, FONT, FONT_SIZE, DESC_COLOR)
