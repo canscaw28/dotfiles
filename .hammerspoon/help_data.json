@@ -906,35 +906,35 @@
             {
               "keys": "[⇪+G+F] + Y",
               "cols": [
-                "⌃ + ⌘ + Y",
+                "Esc; 100<<",
                 "Move tab to the beginning"
               ]
             },
             {
               "keys": "[⇪+G+F] + U",
               "cols": [
-                "⌃ + ⌘ + U",
+                "Esc; 3<<",
                 "Move tab 3 positions to the left"
               ]
             },
             {
               "keys": "[⇪+G+F] + I",
               "cols": [
-                "⌃ + ⌘ + I",
+                "Esc; 3>>",
                 "Move tab 3 positions to the right"
               ]
             },
             {
               "keys": "[⇪+G+F] + O",
               "cols": [
-                "⌃ + ⌘ + O",
+                "Esc; 100>>",
                 "Move tab to the end"
               ]
             },
             {
               "keys": "[⇪+G+F] + H",
               "cols": [
-                "⌃ + ⌘ + H",
+                "Esc; <<",
                 "Move tab one position to the left"
               ]
             },
@@ -955,7 +955,7 @@
             {
               "keys": "[⇪+G+F] + L",
               "cols": [
-                "⌃ + ⌘ + L",
+                "Esc; >>",
                 "Move tab one position to the right"
               ]
             }

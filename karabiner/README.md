@@ -376,16 +376,16 @@ Tab switching (H/L/Y/O/U/I) uses Hammerspoon JXA for reliability, with hold-to-r
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| [⇪+G+F] + H | ⌃ + ⌘ + H | Move tab one position to the left |
-| [⇪+G+F] + L | ⌃ + ⌘ + L | Move tab one position to the right |
-| [⇪+G+F] + Y | ⌃ + ⌘ + Y | Move tab to the beginning |
-| [⇪+G+F] + O | ⌃ + ⌘ + O | Move tab to the end |
-| [⇪+G+F] + U | ⌃ + ⌘ + U | Move tab 3 positions to the left |
-| [⇪+G+F] + I | ⌃ + ⌘ + I | Move tab 3 positions to the right |
+| [⇪+G+F] + H | Esc; << | Move tab one position to the left |
+| [⇪+G+F] + L | Esc; >> | Move tab one position to the right |
+| [⇪+G+F] + Y | Esc; 100<< | Move tab to the beginning |
+| [⇪+G+F] + O | Esc; 100>> | Move tab to the end |
+| [⇪+G+F] + U | Esc; 3<< | Move tab 3 positions to the left |
+| [⇪+G+F] + I | Esc; 3>> | Move tab 3 positions to the right |
 | [⇪+G+F] + J | Move tab + focus ↓ | Move tab to window below and follow |
 | [⇪+G+F] + K | Move tab + focus ↑ | Move tab to window above and follow |
 
-H/L/Y/O/U/I are handled by the tab-mover extension (`content.js`). A tap wraps to the adjacent window at the boundary; holding (adds ⇧) stops at the boundary.
+H/L/Y/O/U/I send Vimium's tab-move keys, so they stop at the window's first/last tab. A tab-mover (`content.js`) binding with cross-window wrapping (⌃⌘H…) also exists in `g.yaml`, but the Vimium one is ordered first and wins.
 
 #### Tab Move Mode (⇪+G+D)
 

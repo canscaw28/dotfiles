@@ -249,6 +249,7 @@ sections:
     - d
     - r
     - t
+    app: ^com\.google\.Chrome$
     to:
     - escape
     - - comma
@@ -266,6 +267,7 @@ sections:
     - d
     - r
     - t
+    app: ^com\.google\.Chrome$
     to:
     - escape
     - - period
@@ -283,6 +285,7 @@ sections:
     - d
     - r
     - t
+    app: ^com\.google\.Chrome$
     to:
     - escape
     - '1'
@@ -303,6 +306,7 @@ sections:
     - d
     - r
     - t
+    app: ^com\.google\.Chrome$
     to:
     - escape
     - '1'
@@ -323,6 +327,7 @@ sections:
     - d
     - r
     - t
+    app: ^com\.google\.Chrome$
     to:
     - escape
     - '3'
@@ -341,6 +346,7 @@ sections:
     - d
     - r
     - t
+    app: ^com\.google\.Chrome$
     to:
     - escape
     - '3'
@@ -348,6 +354,78 @@ sections:
       - shift
     - - period
       - shift
+  - from: h
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: l
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: y
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: o
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: u
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
+  - from: i
+    layer:
+    - caps
+    - f
+    - g
+    negative_conditions:
+    - a
+    - s
+    - d
+    - r
+    - t
+    to: noop
   - from: p
     layer:
     - caps

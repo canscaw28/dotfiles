@@ -36,6 +36,7 @@ sections:
   - s
   - d
   - f
+  - g
   app: ^com\.googlecode\.iterm2$
   always_negative: [panel_active]
   manipulators:
@@ -92,6 +93,7 @@ sections:
     - d
     - f
     - q
+    - g
   - from: m
     to:
     - n
