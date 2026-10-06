@@ -28,7 +28,7 @@
     {
       "key": "F",
       "name": "Scroll / Cursor Grid",
-      "domain": "Scrolling, mouse cursor, link hints"
+      "domain": "Scrolling, mouse cursor, hints"
     },
     {
       "key": "G",
@@ -65,7 +65,7 @@
               "keys": "[⇪] + Y",
               "cols": [
                 "⌘ + ←",
-                "Jumps cursor to the start of the line"
+                "Jump to the start of the line"
               ]
             },
             {
@@ -86,7 +86,7 @@
               "keys": "[⇪] + O",
               "cols": [
                 "⌘ + →",
-                "Jumps cursor to the end of the line"
+                "Jump to the end of the line"
               ]
             },
             {
@@ -121,21 +121,21 @@
               "keys": "[⇪] + ;",
               "cols": [
                 "Esc",
-                "Easy to reach Esc key alternative"
+                "Escape"
               ]
             },
             {
               "keys": "[⇪] + M",
               "cols": [
                 "⌘ + ↓",
-                "Moves cursor to the bottom of an input field"
+                "Jump to the bottom of an input field"
               ]
             },
             {
               "keys": "[⇪] + ,",
               "cols": [
                 "⌘ + ↑",
-                "Moves cursor to the top of an input field"
+                "Jump to the top of an input field"
               ]
             }
           ]
@@ -1728,7 +1728,7 @@
               "keys": "[⇪+A] + I",
               "cols": [
                 "Mission Control",
-                "Shows Mission Control"
+                "Show Mission Control"
               ]
             },
             {

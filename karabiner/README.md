@@ -24,7 +24,7 @@ Caps Lock becomes a modifier system where the **left hand picks context** and th
 | Layer Key | Layer | Domain |
 | --- | --- | --- |
 | ⇪ | Default | Cursor movement, text selection, deletion |
-| ⇪ + F | Scroll / Cursor Grid | Scrolling, mouse cursor, link hints |
+| ⇪ + F | Scroll / Cursor Grid | Scrolling, mouse cursor, hints |
 | ⇪ + G | Application | Chrome tabs, tmux panes, windows |
 | ⇪ + T | Aerospace | Window tiling and workspace operations |
 | ⇪ + Q | Surround | Encapsulate text with symbol pairs |
@@ -113,15 +113,15 @@ Q has no peek: `⇪ + Q + /` is the surround layer's `//`. Freeing `/` for help 
 | [⇪] + J | ↓ | Move cursor down |
 | [⇪] + K | ↑ | Move cursor up |
 | [⇪] + L | →  | Move cursor to the right |
-| [⇪] + ; | Esc | Easy to reach Esc key alternative |
-| [⇪] + Y | ⌘ + ← | Jumps cursor to the start of the line |
+| [⇪] + ; | Esc | Escape |
+| [⇪] + Y | ⌘ + ← | Jump to the start of the line |
 | [⇪] + U | ⌥ + ← | Jump back one word |
 | [⇪] + I | ⌥ + → | Jump forward one word |
-| [⇪] + O | ⌘ + → | Jumps cursor to the end of the line |
+| [⇪] + O | ⌘ + → | Jump to the end of the line |
 | [⇪] + P |  |  |
 | [⇪] + N |  |  |
-| [⇪] + M | ⌘ + ↓ | Moves cursor to the bottom of an input field |
-| [⇪] + , | ⌘ + ↑ | Moves cursor to the top of an input field |
+| [⇪] + M | ⌘ + ↓ | Jump to the bottom of an input field |
+| [⇪] + , | ⌘ + ↑ | Jump to the top of an input field |
 | [⇪] + . |  |  |
 | [⇪] + / |  |  |
 
@@ -597,7 +597,7 @@ macOS system toggles and input source management. Unlike other layers, A does no
 | --- | --- | --- |
 | [⇪+A] + Y | Toggle Dock | Show/hide the Dock on this monitor |
 | [⇪+A] + U | Toggle Notification Center | Open/close Notification Center |
-| [⇪+A] + I | Mission Control | Shows Mission Control |
+| [⇪+A] + I | Mission Control | Show Mission Control |
 | [⇪+A] + O | Show Desktop | Show the desktop (fn+F11) |
 | [⇪+A] + . | Reload All Configs | Reload every config |
 | [⇪+A] + M | Connect Displays | Connect Sidecar to the iPad |
