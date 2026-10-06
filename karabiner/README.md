@@ -402,7 +402,9 @@ Moves the current tab to another Chrome window in the specified direction, using
 
 When iTerm2 is frontmost the G layer drives tmux panes. (Default-layer keys are also remapped there — see [iTerm2 Overrides](#iterm2-overrides).)
 
-#### Tmux Pane Navigation
+#### Tmux Panes
+
+Mirrors ⇪+T for windows: HJKL focus, -/= resize, P toggles side by side/stacked, N balances, M tiles (T's flatten). In an iTerm window without tmux, the layout keys fall back to the AeroSpace commands. G+N replaces "new tab" here; ⌘T still opens one.
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -412,8 +414,13 @@ When iTerm2 is frontmost the G layer drives tmux panes. (Default-layer keys are 
 | [⇪+G] + L | ⌃ + B, → | Select tmux pane right |
 | [⇪+G] + Y | Edge pane left | Jump to leftmost tmux pane |
 | [⇪+G] + O | Edge pane right | Jump to rightmost tmux pane |
+| [⇪+G] + - | Shrink pane | Shrink tmux pane |
+| [⇪+G] + = | Grow pane | Grow tmux pane |
+| [⇪+G] + P | Toggle layout | Panes side by side ↔ stacked |
+| [⇪+G] + N | Balance | Even out pane sizes |
+| [⇪+G] + M | Tiled | Arrange panes in a grid |
 
-#### Tmux Pane Move & Layout (⇪+G+F)
+#### Tmux Pane Move (⇪+G+F)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -421,13 +428,6 @@ When iTerm2 is frontmost the G layer drives tmux panes. (Default-layer keys are 
 | [⇪+G+F] + J | Swap pane ↓ | Swap tmux pane down (moves window at edge) |
 | [⇪+G+F] + K | Swap pane ↑ | Swap tmux pane up (moves window at edge) |
 | [⇪+G+F] + L | Swap pane → | Swap tmux pane right (moves window at edge) |
-| [⇪+G+F] + - | Shrink pane | Shrink tmux pane |
-| [⇪+G+F] + = | Grow pane | Grow tmux pane |
-| [⇪+G+F] + P | Toggle layout | Panes side by side ↔ stacked |
-| [⇪+G+F] + N | Balance | Even out pane sizes |
-| [⇪+G+F] + M | Tiled | Arrange panes in a grid |
-
-The layout keys mirror ⇪+T's window keys (-/= resize, P toggle tiles, N balance). In an iTerm window without tmux they fall back to those AeroSpace commands.
 
 ### Other Apps
 

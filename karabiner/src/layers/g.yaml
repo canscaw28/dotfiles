@@ -83,26 +83,6 @@ sections:
     description: 'G+F+L: iTerm move tmux pane right'
     to:
       shell: ~/.local/bin/g-move-tmux.sh right &
-  - from: hyphen
-    description: 'G+F+-: iTerm shrink tmux pane'
-    to:
-      shell: ~/.local/bin/g-tmux-layout.sh shrink &
-  - from: equal_sign
-    description: 'G+F+=: iTerm grow tmux pane'
-    to:
-      shell: ~/.local/bin/g-tmux-layout.sh grow &
-  - from: p
-    description: 'G+F+P: iTerm toggle tmux panes side by side / stacked'
-    to:
-      shell: ~/.local/bin/g-tmux-layout.sh toggle &
-  - from: n
-    description: 'G+F+N: iTerm balance tmux panes'
-    to:
-      shell: ~/.local/bin/g-tmux-layout.sh balance &
-  - from: m
-    description: 'G+F+M: iTerm tile tmux panes in a grid'
-    to:
-      shell: ~/.local/bin/g-tmux-layout.sh tiled &
 - layer:
   - caps
   - g
@@ -133,6 +113,26 @@ sections:
     description: 'G+O: iTerm tmux rightmost pane'
     to:
       shell: ~/.local/bin/g-focus-tmux-edge.sh right &
+  - from: hyphen
+    description: 'G+-: iTerm shrink tmux pane'
+    to:
+      shell: ~/.local/bin/g-tmux-layout.sh shrink &
+  - from: equal_sign
+    description: 'G+=: iTerm grow tmux pane'
+    to:
+      shell: ~/.local/bin/g-tmux-layout.sh grow &
+  - from: p
+    description: 'G+P: iTerm toggle tmux panes side by side / stacked'
+    to:
+      shell: ~/.local/bin/g-tmux-layout.sh toggle &
+  - from: n
+    description: 'G+N: iTerm balance tmux panes'
+    to:
+      shell: ~/.local/bin/g-tmux-layout.sh balance &
+  - from: m
+    description: 'G+M: iTerm tile tmux panes in a grid'
+    to:
+      shell: ~/.local/bin/g-tmux-layout.sh tiled &
 - layer:
   - caps
   - g
