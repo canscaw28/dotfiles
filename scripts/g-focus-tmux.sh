@@ -23,21 +23,15 @@ if [ -n "$itty" ]; then
         | awk -v t="$itty" '$1==t {print $2; exit}')
 fi
 
-tmux_q() {
-    if [ -n "$session" ]; then
-        $tmux display-message -t "$session:" -p "$1" 2>/dev/null
-    else
-        $tmux display-message -p "$1" 2>/dev/null
-    fi
-}
+# Without the front window's own session there's no pane to act on; an
+# untargeted tmux call would hit whichever session was used last.
+if [ -z "$session" ]; then
+    smart-focus.sh "$direction"
+    exit 0
+fi
 
-tmux_select() {
-    if [ -n "$session" ]; then
-        $tmux select-pane -t "$session:" "$1" 2>/dev/null
-    else
-        $tmux select-pane "$1" 2>/dev/null
-    fi
-}
+tmux_q() { $tmux display-message -t "$session:" -p "$1" 2>/dev/null; }
+tmux_select() { $tmux select-pane -t "$session:" "$1" 2>/dev/null; }
 
 at_edge=$(tmux_q "#{$edge_var}")
 if [ "$at_edge" = "0" ]; then
@@ -45,5 +39,5 @@ if [ "$at_edge" = "0" ]; then
     exit 0
 fi
 
-# At edge or no tmux — fall back to AeroSpace window focus
+# At edge — fall back to AeroSpace window focus
 smart-focus.sh "$direction"
