@@ -61,14 +61,49 @@ SHIFT_TO_BASE = {
 
 def phys_rank(keys):
     """Sort key for a binding row: the physical position of its trigger key.
-    Non-single-key triggers (e.g. '⌘ + Z', '*key*') sort to the end, stably."""
+    A multi-key trigger ('R+E') sorts by its first key, after the single key.
+    Anything else (e.g. '⌘ + Z') sorts to the end, stably."""
     m = re.search(r"\]\s*\+\s*(.+)$", keys)
     tok = (m.group(1) if m else keys).strip().strip("*").strip()
-    if len(tok) != 1:
-        return len(PHYS_ORDER)
-    ch = SHIFT_TO_BASE.get(tok, tok.lower())
+    parts = tok.split("+")
+    if not all(len(p) == 1 for p in parts):
+        return (len(PHYS_ORDER), 0)
+    ch = SHIFT_TO_BASE.get(parts[0], parts[0].lower())
     idx = PHYS_ORDER.find(ch)
-    return idx if idx >= 0 else len(PHYS_ORDER)
+    return (idx if idx >= 0 else len(PHYS_ORDER), len(parts))
+
+
+# "Move Mode (⇪+T+R)" -> "Move Mode": the overlay draws the chord itself.
+TITLE_CHORD_RE = re.compile(r"\s*\(⇪[^)]*\)\s*$")
+ROW_CHORD_RE = re.compile(r"^\[([^\]]*)\]")
+
+
+def section_chord(rows):
+    """Layer + mode keys a section's rows are triggered under, e.g. ['T', 'R'].
+    Taken from the most common '[⇪+T+R]' prefix; modifier glyphs are dropped."""
+    counts = {}
+    for r in rows:
+        m = ROW_CHORD_RE.match(r["keys"])
+        if m:
+            counts[m.group(1)] = counts.get(m.group(1), 0) + 1
+    if not counts:
+        return []
+    best = max(counts, key=counts.get)
+    return [k.upper() for k in best.split("+") if re.fullmatch(r"[A-Za-z0-9]", k)]
+
+
+def section_app(*headings):
+    """Which frontmost app a section applies to, from its headings."""
+    for h in headings:
+        if not h:
+            continue
+        if re.search(r"\bChrome\b", h):
+            return "chrome"
+        if "iTerm2" in h:
+            return "iterm"
+        if h == "Other Apps":
+            return "other"
+    return None
 
 
 def row_is_empty(cols):
@@ -163,9 +198,12 @@ def parse():
 
             if section_rows:
                 section_rows.sort(key=lambda r: phys_rank(r["keys"]))
+                title = cur_h4 or cur_h3 or layers[cur_layer]["name"]
                 layers[cur_layer]["sections"].append({
                     "group": cur_h3 if cur_h4 else None,
-                    "title": cur_h4 or cur_h3 or layers[cur_layer]["name"],
+                    "title": TITLE_CHORD_RE.sub("", title),
+                    "chord": section_chord(section_rows),
+                    "app": section_app(cur_h4, cur_h3),
                     "header": header,
                     "rows": section_rows,
                 })

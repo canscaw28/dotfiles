@@ -10,6 +10,7 @@ Caps Lock becomes a modifier system where the **left hand picks context** and th
 - [Misc Shortcuts](#misc-shortcuts)
 - [Hotkey Help Overlay](#hotkey-help-overlay)
 - [Default Layer (⇪)](#default-layer-)
+- [iTerm2 Overrides](#iterm2-overrides)
 - [Scroll / Cursor Grid Layer (⇪+F)](#scroll--cursor-grid-layer-f)
 - [Application Layer (⇪+G)](#application-layer-g)
 - [Aerospace Layer (⇪+T)](#aerospace-layer-t)
@@ -23,8 +24,8 @@ Caps Lock becomes a modifier system where the **left hand picks context** and th
 | Layer Key | Layer | Domain |
 | --- | --- | --- |
 | ⇪ | Default | Cursor movement, text selection, deletion |
-| ⇪ + F | Scroll / Cursor Grid | Page scrolling, mouse cursor control, link hints |
-| ⇪ + G | Application | App-specific behavior (Chrome tabs, iTerm tmux, etc.) |
+| ⇪ + F | Scroll / Cursor Grid | Scrolling, mouse cursor, link hints |
+| ⇪ + G | Application | Chrome tabs, tmux panes, windows |
 | ⇪ + T | Aerospace | Window tiling and workspace operations |
 | ⇪ + Q | Surround | Encapsulate text with symbol pairs |
 | ⇪ + A | System | Dock, Notification Center, input source, etc. |
@@ -119,7 +120,7 @@ Q has no peek: `⇪ + Q + /` is the surround layer's `//`. Freeing `/` for help 
 | [⇪] + . |  |  |
 | [⇪] + / |  |  |
 
-### Selection Mode (⇪ + S)
+### Selection Mode (⇪+S)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -134,12 +135,12 @@ Q has no peek: `⇪ + Q + /` is the surround layer's `//`. Freeing `/` for help 
 | [⇪+S] + O | ⌘ + ⇧ + → | Select text to the end of the line |
 | [⇪+S] + P | ⌘ + ←, ⌘ + ⇧ + → | Select the entire line |
 | [⇪+S] + N |  |  |
-| [⇪+S] + M | ⌥ + ⇧ + ↓ | Moves cursor to the bottom of an input field |
-| [⇪+S] + , | ⌥ + ⇧ + ↑ | Moves cursor to the top of an input field |
+| [⇪+S] + M | ⌥ + ⇧ + ↓ | Select to the bottom of an input field |
+| [⇪+S] + , | ⌥ + ⇧ + ↑ | Select to the top of an input field |
 | [⇪+S] + . |  |  |
 | [⇪+S] + / |  |  |
 
-### Deletion Mode (⇪ + D)
+### Deletion Mode (⇪+D)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -158,6 +159,80 @@ Q has no peek: `⇪ + Q + /` is the surround layer's `//`. Freeing `/` for help 
 | [⇪+D] + , | ⌥ + ⇧ + ↑, ⌫ | Delete the paragraph up from the cursor |
 | [⇪+D] + . |  |  |
 | [⇪+D] + / |  |  |
+
+---
+
+## iTerm2 Overrides
+
+When iTerm2 is frontmost, several default layer keys are overridden with terminal-compatible sequences. They do the same job as the default bindings, so the help overlay leaves them out (this section has no `(⇪…)` layer marker).
+
+These overrides are gated on a `panel_active` variable set by Hammerspoon's `panel_watcher.lua`, which detects when any nonactivating panel (Raycast, Alfred, Spotlight, 1Password quick access, etc.) has grabbed key focus over iTerm2. When a panel is active the overrides disable so keys fall through to their standard (non-iTerm) mappings — the panel's text input then behaves like any other macOS text field. Implemented via an `always_negative: [panel_active]` field on each iTerm-scoped section in `src/layers/default.yaml`.
+
+### Cursor Movement
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| [⇪] + Y | ⌃ + A | Jump to start of line |
+| [⇪] + U | ⌥ + ← | Jump back one word |
+| [⇪] + I | ⌥ + → | Jump forward one word |
+| [⇪] + O | ⌃ + E | Jump to end of line |
+
+*⇪+J/K use smart navigation: on single-line commands they navigate history with prefix search. On multi-line commands they move the cursor, with double-tap at boundaries to switch to history navigation.*
+
+### History Navigation
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| [⇪] + , | ⌃ + P | Search history backward with prefix matching |
+| [⇪] + M | ⌃ + N | Search history forward with prefix matching |
+
+*Type a partial command, then use these keys to find matching history entries (e.g., type "git" then ⇪+, to find commands starting with "git").*
+
+### Text Deletion
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| [⇪+D] + Y | ⌃ + U | Delete from cursor to start of line |
+| [⇪+D] + U | ⌃ + W | Delete word to the left |
+| [⇪+D] + I | ⌥ + D | Delete word to the right |
+| [⇪+D] + O | ⌃ + K | Delete from cursor to end of line |
+| [⇪+D] + J | F18 | Delete to line below |
+| [⇪+D] + K | F19 | Delete to line above |
+
+### Undo/Redo
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⌘ + Z | ⌃ + _ | Undo last text change |
+| ⌘ + ⇧ + Z | Esc + _ | Redo last undo |
+
+### Text Selection
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| [⇪+S] + H | ⇧ + ← | Select character to the left |
+| [⇪+S] + J | ⌃ + ⇧ + ↓ | Select line down (to end of buffer on last line) |
+| [⇪+S] + K | ⌃ + ⇧ + ↑ | Select line up (to start of buffer on first line) |
+| [⇪+S] + L | ⇧ + → | Select character to the right |
+| [⇪+S] + Y | ⇧ + Home | Select to start of line |
+| [⇪+S] + U | ⌃ + ⇧ + ← | Select word to the left |
+| [⇪+S] + I | ⌃ + ⇧ + → | Select word to the right |
+| [⇪+S] + O | ⇧ + End | Select to end of line |
+| [⇪+S] + ; | ⌥ + A | Select entire command buffer |
+
+### Standard Commands
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| ⌘ + A | ⌥ + A | Select entire command buffer (not terminal output) |
+| ⌘ + C | ⌥ + C | Copy selection if active, else Ctrl+C interrupt |
+
+### Clipboard Operations
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| [⇪+⌘] + C | F15 | Copy selection to system clipboard |
+| [⇪+⌘] + X | F16 | Cut selection to system clipboard |
 
 ---
 
@@ -186,7 +261,7 @@ Karabiner sends ⌃+⇧+key which Hammerspoon's eventtap intercepts to perform s
 | [⇪+F] + / |  |  |
 | [⇪+F] + P | Toggle grid | Toggle grid overlay on focused window |
 
-### Coarse Cursor Grid (⇪+F + D) — 8×8
+### Coarse Cursor Grid 8×8 (⇪+F+D)
 
 Moves the mouse cursor within the focused window on an 8×8 grid. On first keypress, snaps to the nearest grid cell from the current mouse position. An amber indicator flashes at the cursor position after each move.
 
@@ -205,7 +280,7 @@ Moves the mouse cursor within the focused window on an 8×8 grid. On first keypr
 | [⇪+F+D] + M | Move cursor 2 grid cells down |
 | [⇪+F+D] + , | Move cursor 2 grid cells up |
 
-### Fine Cursor Grid (⇪+F + S) — 32×32
+### Fine Cursor Grid 32×32 (⇪+F+S)
 
 Same keys as the coarse grid but on a 32×32 grid for fine precision.
 
@@ -224,7 +299,7 @@ Same keys as the coarse grid but on a 32×32 grid for fine precision.
 | [⇪+F+S] + M | Move cursor 2 grid cells down |
 | [⇪+F+S] + , | Move cursor 2 grid cells up |
 
-### Cursor Fixed Positions — ⇪ + F + E
+### Cursor Fixed Positions (⇪+F+E)
 
 Jumps the mouse cursor to fixed positions within the focused window. An amber indicator flashes at the target position.
 
@@ -244,7 +319,7 @@ Jumps the mouse cursor to fixed positions within the focused window. An amber in
 | [⇪+F+E] + M | Bottom-left quadrant center |
 | [⇪+F+E] + , | Bottom-right quadrant center |
 
-### Link Hints (⇪+F + E, Chrome/Homerow)
+### Link Hints (⇪+F+E)
 
 In Chrome, F+E also provides Vimium and Homerow integration:
 
@@ -255,7 +330,7 @@ In Chrome, F+E also provides Vimium and Homerow integration:
 | [⇪+F+E] + ; | Toggle Vimium (Chrome) |
 | [⇪+F+E] + H | Homerow scroll mode |
 
-### Grid Overlay (⇪+F + D/S/E + P)
+### Grid Overlay (⇪+F+D/S/E+P)
 
 Toggles a grid overlay on the focused window. Shows an 8×8 grid in D/E modes, and a hierarchical 32×32 grid in S mode with color-coded line density (green = 2×2 major, light blue = 8×8, dashed = 16×16).
 
@@ -292,103 +367,37 @@ The G layer provides app-specific behavior. In Chrome it controls tabs and windo
 
 Tab switching (H/L/Y/O/U/I) uses Hammerspoon JXA for reliability, with hold-to-repeat (0.2s delay, 70ms interval) and cross-window wrapping via AeroSpace.
 
-#### Tab Reorder Mode (⇪+F+G)
+#### Tab Reorder Mode (⇪+G+F)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| [⇪+F+G] + H | Esc; << | Move tab one position to the left |
-| [⇪+F+G] + L | Esc; >> | Move tab one position to the right |
-| [⇪+F+G] + Y | Esc; 100<< | Move tab to the beginning |
-| [⇪+F+G] + O | Esc; 100>> | Move tab to the end |
-| [⇪+F+G] + U | Esc; 3<< | Move tab 3 positions to the left |
-| [⇪+F+G] + I | Esc; 3>> | Move tab 3 positions to the right |
-| [⇪+F+G] + J | Move tab + focus ↓ | Move tab to window below and follow |
-| [⇪+F+G] + K | Move tab + focus ↑ | Move tab to window above and follow |
+| [⇪+G+F] + H | ⌃ + ⌘ + H | Move tab one position to the left |
+| [⇪+G+F] + L | ⌃ + ⌘ + L | Move tab one position to the right |
+| [⇪+G+F] + Y | ⌃ + ⌘ + Y | Move tab to the beginning |
+| [⇪+G+F] + O | ⌃ + ⌘ + O | Move tab to the end |
+| [⇪+G+F] + U | ⌃ + ⌘ + U | Move tab 3 positions to the left |
+| [⇪+G+F] + I | ⌃ + ⌘ + I | Move tab 3 positions to the right |
+| [⇪+G+F] + J | Move tab + focus ↓ | Move tab to window below and follow |
+| [⇪+G+F] + K | Move tab + focus ↑ | Move tab to window above and follow |
 
-#### Tab Move Mode (⇪+D+G)
+H/L/Y/O/U/I are handled by the tab-mover extension (`content.js`). A tap wraps to the adjacent window at the boundary; holding (adds ⇧) stops at the boundary.
+
+#### Tab Move Mode (⇪+G+D)
 
 Moves the current tab to another Chrome window in the specified direction, using the tab-mover Chrome extension:
 
 | Key / Shortcut | Description |
 | --- | --- |
-| [⇪+D+G] + H | Move tab to Chrome window on the left |
-| [⇪+D+G] + J | Move tab to Chrome window below |
-| [⇪+D+G] + K | Move tab to Chrome window above |
-| [⇪+D+G] + L | Move tab to Chrome window on the right |
+| [⇪+G+D] + H | Move tab to Chrome window on the left |
+| [⇪+G+D] + J | Move tab to Chrome window below |
+| [⇪+G+D] + K | Move tab to Chrome window above |
+| [⇪+G+D] + L | Move tab to Chrome window on the right |
 
 ### iTerm2
 
-When iTerm2 is frontmost, several default layer keys are overridden with terminal-compatible sequences, and the G layer switches to tmux pane navigation.
+When iTerm2 is frontmost the G layer drives tmux panes. (Default-layer keys are also remapped there — see [iTerm2 Overrides](#iterm2-overrides).)
 
-These overrides are gated on a `panel_active` variable set by Hammerspoon's `panel_watcher.lua`, which detects when any nonactivating panel (Raycast, Alfred, Spotlight, 1Password quick access, etc.) has grabbed key focus over iTerm2. When a panel is active the overrides disable so keys fall through to their standard (non-iTerm) mappings — the panel's text input then behaves like any other macOS text field. Implemented via an `always_negative: [panel_active]` field on each iTerm-scoped section in `src/layers/default.yaml`.
-
-#### Cursor Movement
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| [⇪] + Y | ⌃ + A | Jump to start of line |
-| [⇪] + U | ⌥ + ← | Jump back one word |
-| [⇪] + I | ⌥ + → | Jump forward one word |
-| [⇪] + O | ⌃ + E | Jump to end of line |
-
-*⇪+J/K use smart navigation: on single-line commands they navigate history with prefix search. On multi-line commands they move the cursor, with double-tap at boundaries to switch to history navigation.*
-
-#### History Navigation
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| [⇪] + , | ⌃ + P | Search history backward with prefix matching |
-| [⇪] + M | ⌃ + N | Search history forward with prefix matching |
-
-*Type a partial command, then use these keys to find matching history entries (e.g., type "git" then ⇪+, to find commands starting with "git").*
-
-#### Text Deletion
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| [⇪+D] + Y | ⌃ + U | Delete from cursor to start of line |
-| [⇪+D] + U | ⌃ + W | Delete word to the left |
-| [⇪+D] + I | ⌥ + D | Delete word to the right |
-| [⇪+D] + O | ⌃ + K | Delete from cursor to end of line |
-| [⇪+D] + J | F18 | Delete to line below |
-| [⇪+D] + K | F19 | Delete to line above |
-
-#### Undo/Redo
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| ⌘ + Z | ⌃ + _ | Undo last text change |
-| ⌘ + ⇧ + Z | Esc + _ | Redo last undo |
-
-#### Text Selection
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| [⇪+S] + H | ⇧ + ← | Select character to the left |
-| [⇪+S] + J | ⌃ + ⇧ + ↓ | Select line down (to end of buffer on last line) |
-| [⇪+S] + K | ⌃ + ⇧ + ↑ | Select line up (to start of buffer on first line) |
-| [⇪+S] + L | ⇧ + → | Select character to the right |
-| [⇪+S] + Y | ⇧ + Home | Select to start of line |
-| [⇪+S] + U | ⌃ + ⇧ + ← | Select word to the left |
-| [⇪+S] + I | ⌃ + ⇧ + → | Select word to the right |
-| [⇪+S] + O | ⇧ + End | Select to end of line |
-| [⇪+S] + ; | ⌥ + A | Select entire command buffer |
-
-#### Standard Commands
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| ⌘ + A | ⌥ + A | Select entire command buffer (not terminal output) |
-| ⌘ + C | ⌥ + C | Copy selection if active, else Ctrl+C interrupt |
-
-#### Clipboard Operations
-
-| Key / Shortcut | Behavior | Description |
-| --- | --- | --- |
-| [⇪+⌘] + C | F15 | Copy selection to system clipboard |
-| [⇪+⌘] + X | F16 | Cut selection to system clipboard |
-
-#### G Layer — Tmux Pane Navigation
+#### Tmux Pane Navigation
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -421,7 +430,7 @@ These overrides are gated on a `panel_active` variable set by Hammerspoon's `pan
 
 ## Aerospace Layer (⇪+T)
 
-### Focus
+### Focus & Layout
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -444,17 +453,17 @@ These overrides are gated on a `panel_active` variable set by Hammerspoon's `pan
 | [⇪+T] + I | *available* | |
 | [⇪+T] + O | *available* | |
 
-### Move Mode (⇪+T + R)
+### Move Mode (⇪+T+R)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| [⇪+T+R] + H | ⌘ + ⌥ + ⌃ + Y | Move window left (crosses to adjacent monitor at edge) |
-| [⇪+T+R] + J | ⌘ + ⌥ + ⌃ + U | Move window down (crosses to adjacent monitor at edge) |
-| [⇪+T+R] + K | ⌘ + ⌥ + ⌃ + I | Move window up (crosses to adjacent monitor at edge) |
-| [⇪+T+R] + L | ⌘ + ⌥ + ⌃ + O | Move window right (crosses to adjacent monitor at edge) |
+| [⇪+T+R] + H | ⌘ + ⌥ + ⌃ + Y | Move window left (next monitor at edge) |
+| [⇪+T+R] + J | ⌘ + ⌥ + ⌃ + U | Move window down (next monitor at edge) |
+| [⇪+T+R] + K | ⌘ + ⌥ + ⌃ + I | Move window up (next monitor at edge) |
+| [⇪+T+R] + L | ⌘ + ⌥ + ⌃ + O | Move window right (next monitor at edge) |
 | [⇪+T+R] + ' | `ws.sh move-monitor-focus` | Move window to next monitor and follow |
 
-### Join Mode (⇪+T + 4)
+### Join Mode (⇪+T+4)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -476,44 +485,31 @@ h  j  k  l  ;
 n  m  ,  .  /
 ```
 
-### Focus Workspace (⇪+T + W)
+### Workspace Modes (then a workspace key)
 
-| Key / Shortcut | Description |
-| --- | --- |
-| [⇪+T+W] + *key* | Focus workspace on current monitor (swaps if visible on another) |
-| [⇪+T+W] + ' | Focus next monitor (wrap-around); grid stays visible |
+Hold the mode key(s) with ⇪+T, then press a workspace key from the grid above.
 
-### Move to Workspace (⇪+T + E)
+E and R (with W) target the two "other" monitors relative to where you currently are. E prefers MacBook, R prefers external (Sidecar / Dell); when that preferred target is the current monitor, it falls back to Duet. On 2-monitor setups this collapses to the obvious meaning: E → MacBook, R → external (and pressing the key for the current monitor is a no-op).
 
-| Key / Shortcut | Description |
-| --- | --- |
-| [⇪+T+E] + *key* | Move focused window to workspace (stay on current) |
-| [⇪+T+E] + ' | Move focused window to next monitor (stay on current) |
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| [⇪+T] + W | `ws.sh focus` | Focus workspace here (swaps if visible) |
+| [⇪+T] + E | `ws.sh move` | Move window to workspace (stay) |
+| [⇪+T] + R+E | `ws.sh move-focus` | Move window to workspace and follow |
+| [⇪+T] + W+E | `ws.sh focus-1` | Focus workspace on MacBook (else Duet) |
+| [⇪+T] + W+R | `ws.sh focus-2` | Focus workspace on external (else Duet) |
+| [⇪+T] + 3 | `ws.sh swap-windows` | Swap all windows with workspace |
 
-### Move + Follow to Workspace (⇪+T + R + E)
+### Monitor Modes (then ')
 
-| Key / Shortcut | Description |
-| --- | --- |
-| [⇪+T+R+E] + *key* | Move window to workspace and follow on current monitor |
-| [⇪+T+R+E] + ' | Move window to next monitor and yank that workspace back |
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| [⇪+T] + W | `switch-monitor.sh` | Focus next monitor (grid stays visible) |
+| [⇪+T] + E | `ws.sh move-monitor` | Move window to next monitor (stay) |
+| [⇪+T] + R+E | `ws.sh move-monitor-yank` | Move window over, yank its workspace back |
+| [⇪+T] + 3 | `ws.sh swap-monitors` | Swap workspaces with next monitor |
 
-### Focus Other Monitor (⇪+T + W + E / R)
-
-E and R target the two "other" monitors relative to where you currently are. E prefers MacBook, R prefers external (Sidecar / Dell); when that preferred target is the current monitor, it falls back to Duet. On 2-monitor setups this collapses to the obvious meaning: E → MacBook, R → external (and pressing the key for the current monitor is a no-op).
-
-| Key / Shortcut | Description |
-| --- | --- |
-| [⇪+T+W+E] + *key* | Focus workspace on MacBook (or Duet if already on MacBook) |
-| [⇪+T+W+R] + *key* | Focus workspace on external — Sidecar or Dell (or Duet if already on external) |
-
-### Swap Windows (⇪+T + 3)
-
-| Key / Shortcut | Description |
-| --- | --- |
-| [⇪+T+3] + *key* | Swap all windows between focused workspace and target workspace |
-| [⇪+T+3] + ' | Swap workspaces between current and next monitor |
-
-### Nav Grid (⇪+T + W + 4)
+### Nav Grid (⇪+T+W+4)
 
 Activates a navigation cursor on the workspace grid overlay. Use HJKL to move the cursor across the 4x5 grid. When exiting the mode (releasing keys), `ws.sh focus` runs on the selected workspace.
 
@@ -587,14 +583,19 @@ macOS system toggles and input source management. Unlike other layers, A does no
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
-| [⇪+A] + Y | Toggle Dock | Shows/hides the macOS Dock on the focused monitor. Uses AeroSpace `freeze-tiling` to prevent window resizing. Auto-hides when changing window focus or switching workspaces. |
-| [⇪+A] + U | Toggle Notification Center | Opens/closes the Notification Center via AppleScript |
+| [⇪+A] + Y | Toggle Dock | Show/hide the Dock on this monitor |
+| [⇪+A] + U | Toggle Notification Center | Open/close Notification Center |
 | [⇪+A] + I | Mission Control | Shows Mission Control |
-| [⇪+A] + O | Show Desktop | Shows the desktop (fn+F11) |
-| [⇪+A] + . | Reload All Configs | Runs `reload.sh --all` (AeroSpace, Karabiner, Hammerspoon, iTerm2, text-expander, shell, Chrome) |
-| [⇪+A] + M | Connect Displays | Connects Sidecar to `CW iPad`. Idempotent — never disconnects. Disconnect manually from the iPad. |
-| [⇪+A] + P | Clean Dock | Removes recent apps from Dock |
-| [⇪+A] + , | Workspace Setup | Opens apps (iTerm2→k, Messages→n, Rize→n, Slack→m) and moves windows to assigned workspaces |
+| [⇪+A] + O | Show Desktop | Show the desktop (fn+F11) |
+| [⇪+A] + . | Reload All Configs | Reload every config |
+| [⇪+A] + M | Connect Displays | Connect Sidecar to the iPad |
+| [⇪+A] + P | Clean Dock | Remove recent apps from the Dock |
+| [⇪+A] + , | Workspace Setup | Open apps and move them to their workspaces |
+
+- **Toggle Dock** uses AeroSpace `freeze-tiling` so windows don't resize, and auto-hides when window focus or the workspace changes.
+- **Reload All Configs** runs `reload.sh --all`: AeroSpace, Karabiner, Hammerspoon, iTerm2, text-expander, shell, and Chrome.
+- **Connect Displays** connects Sidecar to `CW iPad`. Idempotent — never disconnects; disconnect manually from the iPad.
+- **Workspace Setup** opens iTerm2→k, Messages→n, Rize→n, Slack→m.
 
 ### Input Source
 

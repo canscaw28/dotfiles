@@ -28,12 +28,12 @@
     {
       "key": "F",
       "name": "Scroll / Cursor Grid",
-      "domain": "Page scrolling, mouse cursor control, link hints"
+      "domain": "Scrolling, mouse cursor, link hints"
     },
     {
       "key": "G",
       "name": "Application",
-      "domain": "App-specific behavior (Chrome tabs, iTerm tmux, etc.)"
+      "domain": "Chrome tabs, tmux panes, windows"
     }
   ],
   "order": [
@@ -53,6 +53,8 @@
         {
           "group": null,
           "title": "Cursor Movement",
+          "chord": [],
+          "app": null,
           "header": [
             "Key / Shortcut",
             "Behavior",
@@ -140,7 +142,11 @@
         },
         {
           "group": null,
-          "title": "Selection Mode (⇪ + S)",
+          "title": "Selection Mode",
+          "chord": [
+            "S"
+          ],
+          "app": null,
           "header": [
             "Key / Shortcut",
             "Behavior",
@@ -221,21 +227,25 @@
               "keys": "[⇪+S] + M",
               "cols": [
                 "⌥ + ⇧ + ↓",
-                "Moves cursor to the bottom of an input field"
+                "Select to the bottom of an input field"
               ]
             },
             {
               "keys": "[⇪+S] + ,",
               "cols": [
                 "⌥ + ⇧ + ↑",
-                "Moves cursor to the top of an input field"
+                "Select to the top of an input field"
               ]
             }
           ]
         },
         {
           "group": null,
-          "title": "Deletion Mode (⇪ + D)",
+          "title": "Deletion Mode",
+          "chord": [
+            "D"
+          ],
+          "app": null,
           "header": [
             "Key / Shortcut",
             "Behavior",
@@ -337,6 +347,10 @@
         {
           "group": null,
           "title": "Scrolling",
+          "chord": [
+            "F"
+          ],
+          "app": null,
           "header": [
             "Key / Shortcut",
             "Action",
@@ -424,7 +438,12 @@
         },
         {
           "group": null,
-          "title": "Coarse Cursor Grid (⇪+F + D) — 8×8",
+          "title": "Coarse Cursor Grid 8×8",
+          "chord": [
+            "F",
+            "D"
+          ],
+          "app": null,
           "header": [
             "Key",
             "Action"
@@ -506,7 +525,12 @@
         },
         {
           "group": null,
-          "title": "Fine Cursor Grid (⇪+F + S) — 32×32",
+          "title": "Fine Cursor Grid 32×32",
+          "chord": [
+            "F",
+            "S"
+          ],
+          "app": null,
           "header": [
             "Key",
             "Action"
@@ -588,7 +612,12 @@
         },
         {
           "group": null,
-          "title": "Cursor Fixed Positions — ⇪ + F + E",
+          "title": "Cursor Fixed Positions",
+          "chord": [
+            "F",
+            "E"
+          ],
+          "app": null,
           "header": [
             "Key",
             "Position"
@@ -676,7 +705,12 @@
         },
         {
           "group": null,
-          "title": "Link Hints (⇪+F + E, Chrome/Homerow)",
+          "title": "Link Hints",
+          "chord": [
+            "F",
+            "E"
+          ],
+          "app": null,
           "header": [
             "Key",
             "Action"
@@ -717,6 +751,10 @@
         {
           "group": "Chrome",
           "title": "Tab Navigation",
+          "chord": [
+            "G"
+          ],
+          "app": "chrome",
           "header": [
             "Key / Shortcut",
             "Behavior",
@@ -853,7 +891,12 @@
         },
         {
           "group": "Chrome",
-          "title": "Tab Reorder Mode (⇪+F+G)",
+          "title": "Tab Reorder Mode",
+          "chord": [
+            "G",
+            "F"
+          ],
+          "app": "chrome",
           "header": [
             "Key / Shortcut",
             "Behavior",
@@ -861,58 +904,58 @@
           ],
           "rows": [
             {
-              "keys": "[⇪+F+G] + Y",
+              "keys": "[⇪+G+F] + Y",
               "cols": [
-                "Esc; 100<<",
+                "⌃ + ⌘ + Y",
                 "Move tab to the beginning"
               ]
             },
             {
-              "keys": "[⇪+F+G] + U",
+              "keys": "[⇪+G+F] + U",
               "cols": [
-                "Esc; 3<<",
+                "⌃ + ⌘ + U",
                 "Move tab 3 positions to the left"
               ]
             },
             {
-              "keys": "[⇪+F+G] + I",
+              "keys": "[⇪+G+F] + I",
               "cols": [
-                "Esc; 3>>",
+                "⌃ + ⌘ + I",
                 "Move tab 3 positions to the right"
               ]
             },
             {
-              "keys": "[⇪+F+G] + O",
+              "keys": "[⇪+G+F] + O",
               "cols": [
-                "Esc; 100>>",
+                "⌃ + ⌘ + O",
                 "Move tab to the end"
               ]
             },
             {
-              "keys": "[⇪+F+G] + H",
+              "keys": "[⇪+G+F] + H",
               "cols": [
-                "Esc; <<",
+                "⌃ + ⌘ + H",
                 "Move tab one position to the left"
               ]
             },
             {
-              "keys": "[⇪+F+G] + J",
+              "keys": "[⇪+G+F] + J",
               "cols": [
                 "Move tab + focus ↓",
                 "Move tab to window below and follow"
               ]
             },
             {
-              "keys": "[⇪+F+G] + K",
+              "keys": "[⇪+G+F] + K",
               "cols": [
                 "Move tab + focus ↑",
                 "Move tab to window above and follow"
               ]
             },
             {
-              "keys": "[⇪+F+G] + L",
+              "keys": "[⇪+G+F] + L",
               "cols": [
-                "Esc; >>",
+                "⌃ + ⌘ + L",
                 "Move tab one position to the right"
               ]
             }
@@ -920,32 +963,37 @@
         },
         {
           "group": "Chrome",
-          "title": "Tab Move Mode (⇪+D+G)",
+          "title": "Tab Move Mode",
+          "chord": [
+            "G",
+            "D"
+          ],
+          "app": "chrome",
           "header": [
             "Key / Shortcut",
             "Description"
           ],
           "rows": [
             {
-              "keys": "[⇪+D+G] + H",
+              "keys": "[⇪+G+D] + H",
               "cols": [
                 "Move tab to Chrome window on the left"
               ]
             },
             {
-              "keys": "[⇪+D+G] + J",
+              "keys": "[⇪+G+D] + J",
               "cols": [
                 "Move tab to Chrome window below"
               ]
             },
             {
-              "keys": "[⇪+D+G] + K",
+              "keys": "[⇪+G+D] + K",
               "cols": [
                 "Move tab to Chrome window above"
               ]
             },
             {
-              "keys": "[⇪+D+G] + L",
+              "keys": "[⇪+G+D] + L",
               "cols": [
                 "Move tab to Chrome window on the right"
               ]
@@ -954,273 +1002,11 @@
         },
         {
           "group": "iTerm2",
-          "title": "Cursor Movement",
-          "header": [
-            "Key / Shortcut",
-            "Behavior",
-            "Description"
+          "title": "Tmux Pane Navigation",
+          "chord": [
+            "G"
           ],
-          "rows": [
-            {
-              "keys": "[⇪] + Y",
-              "cols": [
-                "⌃ + A",
-                "Jump to start of line"
-              ]
-            },
-            {
-              "keys": "[⇪] + U",
-              "cols": [
-                "⌥ + ←",
-                "Jump back one word"
-              ]
-            },
-            {
-              "keys": "[⇪] + I",
-              "cols": [
-                "⌥ + →",
-                "Jump forward one word"
-              ]
-            },
-            {
-              "keys": "[⇪] + O",
-              "cols": [
-                "⌃ + E",
-                "Jump to end of line"
-              ]
-            }
-          ]
-        },
-        {
-          "group": "iTerm2",
-          "title": "History Navigation",
-          "header": [
-            "Key / Shortcut",
-            "Behavior",
-            "Description"
-          ],
-          "rows": [
-            {
-              "keys": "[⇪] + M",
-              "cols": [
-                "⌃ + N",
-                "Search history forward with prefix matching"
-              ]
-            },
-            {
-              "keys": "[⇪] + ,",
-              "cols": [
-                "⌃ + P",
-                "Search history backward with prefix matching"
-              ]
-            }
-          ]
-        },
-        {
-          "group": "iTerm2",
-          "title": "Text Deletion",
-          "header": [
-            "Key / Shortcut",
-            "Behavior",
-            "Description"
-          ],
-          "rows": [
-            {
-              "keys": "[⇪+D] + Y",
-              "cols": [
-                "⌃ + U",
-                "Delete from cursor to start of line"
-              ]
-            },
-            {
-              "keys": "[⇪+D] + U",
-              "cols": [
-                "⌃ + W",
-                "Delete word to the left"
-              ]
-            },
-            {
-              "keys": "[⇪+D] + I",
-              "cols": [
-                "⌥ + D",
-                "Delete word to the right"
-              ]
-            },
-            {
-              "keys": "[⇪+D] + O",
-              "cols": [
-                "⌃ + K",
-                "Delete from cursor to end of line"
-              ]
-            },
-            {
-              "keys": "[⇪+D] + J",
-              "cols": [
-                "F18",
-                "Delete to line below"
-              ]
-            },
-            {
-              "keys": "[⇪+D] + K",
-              "cols": [
-                "F19",
-                "Delete to line above"
-              ]
-            }
-          ]
-        },
-        {
-          "group": "iTerm2",
-          "title": "Undo/Redo",
-          "header": [
-            "Key / Shortcut",
-            "Behavior",
-            "Description"
-          ],
-          "rows": [
-            {
-              "keys": "⌘ + Z",
-              "cols": [
-                "⌃ + _",
-                "Undo last text change"
-              ]
-            },
-            {
-              "keys": "⌘ + ⇧ + Z",
-              "cols": [
-                "Esc + _",
-                "Redo last undo"
-              ]
-            }
-          ]
-        },
-        {
-          "group": "iTerm2",
-          "title": "Text Selection",
-          "header": [
-            "Key / Shortcut",
-            "Behavior",
-            "Description"
-          ],
-          "rows": [
-            {
-              "keys": "[⇪+S] + Y",
-              "cols": [
-                "⇧ + Home",
-                "Select to start of line"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + U",
-              "cols": [
-                "⌃ + ⇧ + ←",
-                "Select word to the left"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + I",
-              "cols": [
-                "⌃ + ⇧ + →",
-                "Select word to the right"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + O",
-              "cols": [
-                "⇧ + End",
-                "Select to end of line"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + H",
-              "cols": [
-                "⇧ + ←",
-                "Select character to the left"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + J",
-              "cols": [
-                "⌃ + ⇧ + ↓",
-                "Select line down (to end of buffer on last line)"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + K",
-              "cols": [
-                "⌃ + ⇧ + ↑",
-                "Select line up (to start of buffer on first line)"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + L",
-              "cols": [
-                "⇧ + →",
-                "Select character to the right"
-              ]
-            },
-            {
-              "keys": "[⇪+S] + ;",
-              "cols": [
-                "⌥ + A",
-                "Select entire command buffer"
-              ]
-            }
-          ]
-        },
-        {
-          "group": "iTerm2",
-          "title": "Standard Commands",
-          "header": [
-            "Key / Shortcut",
-            "Behavior",
-            "Description"
-          ],
-          "rows": [
-            {
-              "keys": "⌘ + A",
-              "cols": [
-                "⌥ + A",
-                "Select entire command buffer (not terminal output)"
-              ]
-            },
-            {
-              "keys": "⌘ + C",
-              "cols": [
-                "⌥ + C",
-                "Copy selection if active, else Ctrl+C interrupt"
-              ]
-            }
-          ]
-        },
-        {
-          "group": "iTerm2",
-          "title": "Clipboard Operations",
-          "header": [
-            "Key / Shortcut",
-            "Behavior",
-            "Description"
-          ],
-          "rows": [
-            {
-              "keys": "[⇪+⌘] + X",
-              "cols": [
-                "F16",
-                "Cut selection to system clipboard"
-              ]
-            },
-            {
-              "keys": "[⇪+⌘] + C",
-              "cols": [
-                "F15",
-                "Copy selection to system clipboard"
-              ]
-            }
-          ]
-        },
-        {
-          "group": "iTerm2",
-          "title": "G Layer — Tmux Pane Navigation",
+          "app": "iterm",
           "header": [
             "Key / Shortcut",
             "Behavior",
@@ -1273,7 +1059,12 @@
         },
         {
           "group": "iTerm2",
-          "title": "Tmux Pane Move Mode (⇪+G+F)",
+          "title": "Tmux Pane Move Mode",
+          "chord": [
+            "G",
+            "F"
+          ],
+          "app": "iterm",
           "header": [
             "Key / Shortcut",
             "Behavior",
@@ -1313,6 +1104,10 @@
         {
           "group": null,
           "title": "Other Apps",
+          "chord": [
+            "G"
+          ],
+          "app": "other",
           "header": [
             "Key / Shortcut",
             "Description"
@@ -1352,7 +1147,11 @@
       "sections": [
         {
           "group": null,
-          "title": "Focus",
+          "title": "Focus & Layout",
+          "chord": [
+            "T"
+          ],
+          "app": null,
           "header": [
             "Key / Shortcut",
             "Behavior",
@@ -1447,7 +1246,12 @@
         },
         {
           "group": null,
-          "title": "Move Mode (⇪+T + R)",
+          "title": "Move Mode",
+          "chord": [
+            "T",
+            "R"
+          ],
+          "app": null,
           "header": [
             "Key / Shortcut",
             "Behavior",
@@ -1458,28 +1262,28 @@
               "keys": "[⇪+T+R] + H",
               "cols": [
                 "⌘ + ⌥ + ⌃ + Y",
-                "Move window left (crosses to adjacent monitor at edge)"
+                "Move window left (next monitor at edge)"
               ]
             },
             {
               "keys": "[⇪+T+R] + J",
               "cols": [
                 "⌘ + ⌥ + ⌃ + U",
-                "Move window down (crosses to adjacent monitor at edge)"
+                "Move window down (next monitor at edge)"
               ]
             },
             {
               "keys": "[⇪+T+R] + K",
               "cols": [
                 "⌘ + ⌥ + ⌃ + I",
-                "Move window up (crosses to adjacent monitor at edge)"
+                "Move window up (next monitor at edge)"
               ]
             },
             {
               "keys": "[⇪+T+R] + L",
               "cols": [
                 "⌘ + ⌥ + ⌃ + O",
-                "Move window right (crosses to adjacent monitor at edge)"
+                "Move window right (next monitor at edge)"
               ]
             },
             {
@@ -1493,7 +1297,12 @@
         },
         {
           "group": null,
-          "title": "Join Mode (⇪+T + 4)",
+          "title": "Join Mode",
+          "chord": [
+            "T",
+            "4"
+          ],
+          "app": null,
           "header": [
             "Key / Shortcut",
             "Behavior",
@@ -1532,110 +1341,100 @@
         },
         {
           "group": null,
-          "title": "Focus Workspace (⇪+T + W)",
+          "title": "Workspace Modes (then a workspace key)",
+          "chord": [
+            "T"
+          ],
+          "app": null,
           "header": [
             "Key / Shortcut",
+            "Behavior",
             "Description"
           ],
           "rows": [
             {
-              "keys": "[⇪+T+W] + '",
+              "keys": "[⇪+T] + 3",
               "cols": [
-                "Focus next monitor (wrap-around); grid stays visible"
+                "`ws.sh swap-windows`",
+                "Swap all windows with workspace"
               ]
             },
             {
-              "keys": "[⇪+T+W] + *key*",
+              "keys": "[⇪+T] + W",
               "cols": [
-                "Focus workspace on current monitor (swaps if visible on another)"
+                "`ws.sh focus`",
+                "Focus workspace here (swaps if visible)"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + W+E",
+              "cols": [
+                "`ws.sh focus-1`",
+                "Focus workspace on MacBook (else Duet)"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + W+R",
+              "cols": [
+                "`ws.sh focus-2`",
+                "Focus workspace on external (else Duet)"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + E",
+              "cols": [
+                "`ws.sh move`",
+                "Move window to workspace (stay)"
+              ]
+            },
+            {
+              "keys": "[⇪+T] + R+E",
+              "cols": [
+                "`ws.sh move-focus`",
+                "Move window to workspace and follow"
               ]
             }
           ]
         },
         {
           "group": null,
-          "title": "Move to Workspace (⇪+T + E)",
+          "title": "Monitor Modes (then ')",
+          "chord": [
+            "T"
+          ],
+          "app": null,
           "header": [
             "Key / Shortcut",
+            "Behavior",
             "Description"
           ],
           "rows": [
             {
-              "keys": "[⇪+T+E] + '",
+              "keys": "[⇪+T] + 3",
               "cols": [
-                "Move focused window to next monitor (stay on current)"
+                "`ws.sh swap-monitors`",
+                "Swap workspaces with next monitor"
               ]
             },
             {
-              "keys": "[⇪+T+E] + *key*",
+              "keys": "[⇪+T] + W",
               "cols": [
-                "Move focused window to workspace (stay on current)"
-              ]
-            }
-          ]
-        },
-        {
-          "group": null,
-          "title": "Move + Follow to Workspace (⇪+T + R + E)",
-          "header": [
-            "Key / Shortcut",
-            "Description"
-          ],
-          "rows": [
-            {
-              "keys": "[⇪+T+R+E] + '",
-              "cols": [
-                "Move window to next monitor and yank that workspace back"
+                "`switch-monitor.sh`",
+                "Focus next monitor (grid stays visible)"
               ]
             },
             {
-              "keys": "[⇪+T+R+E] + *key*",
+              "keys": "[⇪+T] + E",
               "cols": [
-                "Move window to workspace and follow on current monitor"
-              ]
-            }
-          ]
-        },
-        {
-          "group": null,
-          "title": "Focus Other Monitor (⇪+T + W + E / R)",
-          "header": [
-            "Key / Shortcut",
-            "Description"
-          ],
-          "rows": [
-            {
-              "keys": "[⇪+T+W+E] + *key*",
-              "cols": [
-                "Focus workspace on MacBook (or Duet if already on MacBook)"
+                "`ws.sh move-monitor`",
+                "Move window to next monitor (stay)"
               ]
             },
             {
-              "keys": "[⇪+T+W+R] + *key*",
+              "keys": "[⇪+T] + R+E",
               "cols": [
-                "Focus workspace on external — Sidecar or Dell (or Duet if already on external)"
-              ]
-            }
-          ]
-        },
-        {
-          "group": null,
-          "title": "Swap Windows (⇪+T + 3)",
-          "header": [
-            "Key / Shortcut",
-            "Description"
-          ],
-          "rows": [
-            {
-              "keys": "[⇪+T+3] + '",
-              "cols": [
-                "Swap workspaces between current and next monitor"
-              ]
-            },
-            {
-              "keys": "[⇪+T+3] + *key*",
-              "cols": [
-                "Swap all windows between focused workspace and target workspace"
+                "`ws.sh move-monitor-yank`",
+                "Move window over, yank its workspace back"
               ]
             }
           ]
@@ -1649,6 +1448,10 @@
         {
           "group": null,
           "title": "Superhuman Split Inbox (Chrome)",
+          "chord": [
+            "R"
+          ],
+          "app": "chrome",
           "header": [
             "Key / Shortcut",
             "Behavior",
@@ -1680,6 +1483,10 @@
         {
           "group": null,
           "title": "Symbol Pairs",
+          "chord": [
+            "Q"
+          ],
+          "app": null,
           "header": [
             "Key",
             "Pair",
@@ -1858,6 +1665,10 @@
         {
           "group": null,
           "title": "System Toggles",
+          "chord": [
+            "A"
+          ],
+          "app": null,
           "header": [
             "Key / Shortcut",
             "Behavior",
@@ -1868,14 +1679,14 @@
               "keys": "[⇪+A] + Y",
               "cols": [
                 "Toggle Dock",
-                "Shows/hides the macOS Dock on the focused monitor. Uses AeroSpace `freeze-tiling` to prevent window resizing. Auto-hides when changing window focus or switching workspaces."
+                "Show/hide the Dock on this monitor"
               ]
             },
             {
               "keys": "[⇪+A] + U",
               "cols": [
                 "Toggle Notification Center",
-                "Opens/closes the Notification Center via AppleScript"
+                "Open/close Notification Center"
               ]
             },
             {
@@ -1889,35 +1700,35 @@
               "keys": "[⇪+A] + O",
               "cols": [
                 "Show Desktop",
-                "Shows the desktop (fn+F11)"
+                "Show the desktop (fn+F11)"
               ]
             },
             {
               "keys": "[⇪+A] + P",
               "cols": [
                 "Clean Dock",
-                "Removes recent apps from Dock"
+                "Remove recent apps from the Dock"
               ]
             },
             {
               "keys": "[⇪+A] + M",
               "cols": [
                 "Connect Displays",
-                "Connects Sidecar to `CW iPad`. Idempotent — never disconnects. Disconnect manually from the iPad."
+                "Connect Sidecar to the iPad"
               ]
             },
             {
               "keys": "[⇪+A] + ,",
               "cols": [
                 "Workspace Setup",
-                "Opens apps (iTerm2→k, Messages→n, Rize→n, Slack→m) and moves windows to assigned workspaces"
+                "Open apps and move them to their workspaces"
               ]
             },
             {
               "keys": "[⇪+A] + .",
               "cols": [
                 "Reload All Configs",
-                "Runs `reload.sh --all` (AeroSpace, Karabiner, Hammerspoon, iTerm2, text-expander, shell, Chrome)"
+                "Reload every config"
               ]
             }
           ]
@@ -1925,6 +1736,10 @@
         {
           "group": null,
           "title": "Input Source",
+          "chord": [
+            "A"
+          ],
+          "app": null,
           "header": [
             "Key / Shortcut",
             "Behavior",
