@@ -24,7 +24,10 @@ if [ -n "$itty" ]; then
         | awk -v t="$itty" '$1==t {print $2; exit}')
 fi
 
-at_edge=$($tmux display-message -t "$session:" -p "#{$edge_var}" 2>/dev/null || true)
+at_edge=""
+if [ -n "$session" ]; then
+    at_edge=$($tmux display-message -t "$session:" -p "#{$edge_var}" 2>/dev/null || true)
+fi
 if [ "$at_edge" = "0" ]; then
     # -d keeps focus on the moved pane rather than on the slot it left.
     $tmux swap-pane -d -s "$session:" -t "$session:.$neighbor" 2>/dev/null
