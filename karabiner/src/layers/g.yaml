@@ -63,6 +63,29 @@ sections:
 - layer:
   - caps
   - g
+  - f
+  negative_conditions: []
+  app: ^com\.googlecode\.iterm2$
+  manipulators:
+  - from: h
+    description: 'G+F+H: iTerm move tmux pane left'
+    to:
+      shell: ~/.local/bin/g-move-tmux.sh left &
+  - from: j
+    description: 'G+F+J: iTerm move tmux pane down'
+    to:
+      shell: ~/.local/bin/g-move-tmux.sh down &
+  - from: k
+    description: 'G+F+K: iTerm move tmux pane up'
+    to:
+      shell: ~/.local/bin/g-move-tmux.sh up &
+  - from: l
+    description: 'G+F+L: iTerm move tmux pane right'
+    to:
+      shell: ~/.local/bin/g-move-tmux.sh right &
+- layer:
+  - caps
+  - g
   negative_conditions: []
   app: ^com\.googlecode\.iterm2$
   manipulators:

@@ -1272,6 +1272,45 @@
           ]
         },
         {
+          "group": "iTerm2",
+          "title": "Tmux Pane Move Mode (⇪+G+F)",
+          "header": [
+            "Key / Shortcut",
+            "Behavior",
+            "Description"
+          ],
+          "rows": [
+            {
+              "keys": "[⇪+G+F] + H",
+              "cols": [
+                "Swap pane ←",
+                "Swap tmux pane left (moves window at edge)"
+              ]
+            },
+            {
+              "keys": "[⇪+G+F] + J",
+              "cols": [
+                "Swap pane ↓",
+                "Swap tmux pane down (moves window at edge)"
+              ]
+            },
+            {
+              "keys": "[⇪+G+F] + K",
+              "cols": [
+                "Swap pane ↑",
+                "Swap tmux pane up (moves window at edge)"
+              ]
+            },
+            {
+              "keys": "[⇪+G+F] + L",
+              "cols": [
+                "Swap pane →",
+                "Swap tmux pane right (moves window at edge)"
+              ]
+            }
+          ]
+        },
+        {
           "group": null,
           "title": "Other Apps",
           "header": [

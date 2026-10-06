@@ -56,7 +56,7 @@ Right hand layout is always the same — vim directions that stay consistent acr
 | | S | Fine Grid | 32x32 mouse cursor grid |
 | | E | Link Hints / Jump | Fixed cursor positions, Vimium/Homerow hints |
 | Application (G) | — | Navigation | App-specific (Chrome: tabs, iTerm: tmux, other: window focus) |
-| | F | Reorder | Chrome: reorder tabs within a window |
+| | F | Reorder | Chrome: reorder tabs; iTerm: swap tmux panes |
 | | D | Tab Move | Chrome: move tab to another window |
 | Aerospace (T) | — | Focus | Window focus management |
 | | R | Move | Move windows directionally |
@@ -398,6 +398,15 @@ These overrides are gated on a `panel_active` variable set by Hammerspoon's `pan
 | [⇪+G] + L | ⌃ + B, → | Select tmux pane right |
 | [⇪+G] + Y | Edge pane left | Jump to leftmost tmux pane |
 | [⇪+G] + O | Edge pane right | Jump to rightmost tmux pane |
+
+#### Tmux Pane Move Mode (⇪+G+F)
+
+| Key / Shortcut | Behavior | Description |
+| --- | --- | --- |
+| [⇪+G+F] + H | Swap pane ← | Swap tmux pane left (moves window at edge) |
+| [⇪+G+F] + J | Swap pane ↓ | Swap tmux pane down (moves window at edge) |
+| [⇪+G+F] + K | Swap pane ↑ | Swap tmux pane up (moves window at edge) |
+| [⇪+G+F] + L | Swap pane → | Swap tmux pane right (moves window at edge) |
 
 ### Other Apps
 
