@@ -413,7 +413,7 @@ When iTerm2 is frontmost the G layer drives tmux panes. (Default-layer keys are 
 | [⇪+G] + Y | Edge pane left | Jump to leftmost tmux pane |
 | [⇪+G] + O | Edge pane right | Jump to rightmost tmux pane |
 
-#### Tmux Pane Move Mode (⇪+G+F)
+#### Tmux Pane Move & Layout (⇪+G+F)
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -421,6 +421,13 @@ When iTerm2 is frontmost the G layer drives tmux panes. (Default-layer keys are 
 | [⇪+G+F] + J | Swap pane ↓ | Swap tmux pane down (moves window at edge) |
 | [⇪+G+F] + K | Swap pane ↑ | Swap tmux pane up (moves window at edge) |
 | [⇪+G+F] + L | Swap pane → | Swap tmux pane right (moves window at edge) |
+| [⇪+G+F] + - | Shrink pane | Shrink tmux pane |
+| [⇪+G+F] + = | Grow pane | Grow tmux pane |
+| [⇪+G+F] + P | Toggle layout | Panes side by side ↔ stacked |
+| [⇪+G+F] + N | Balance | Even out pane sizes |
+| [⇪+G+F] + M | Tiled | Arrange panes in a grid |
+
+The layout keys mirror ⇪+T's window keys (-/= resize, P toggle tiles, N balance). In an iTerm window without tmux they fall back to those AeroSpace commands.
 
 ### Other Apps
 

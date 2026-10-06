@@ -1059,7 +1059,7 @@
         },
         {
           "group": "iTerm2",
-          "title": "Tmux Pane Move Mode",
+          "title": "Tmux Pane Move & Layout",
           "chord": [
             "G",
             "F"
@@ -1071,6 +1071,27 @@
             "Description"
           ],
           "rows": [
+            {
+              "keys": "[⇪+G+F] + -",
+              "cols": [
+                "Shrink pane",
+                "Shrink tmux pane"
+              ]
+            },
+            {
+              "keys": "[⇪+G+F] + =",
+              "cols": [
+                "Grow pane",
+                "Grow tmux pane"
+              ]
+            },
+            {
+              "keys": "[⇪+G+F] + P",
+              "cols": [
+                "Toggle layout",
+                "Panes side by side ↔ stacked"
+              ]
+            },
             {
               "keys": "[⇪+G+F] + H",
               "cols": [
@@ -1097,6 +1118,20 @@
               "cols": [
                 "Swap pane →",
                 "Swap tmux pane right (moves window at edge)"
+              ]
+            },
+            {
+              "keys": "[⇪+G+F] + N",
+              "cols": [
+                "Balance",
+                "Even out pane sizes"
+              ]
+            },
+            {
+              "keys": "[⇪+G+F] + M",
+              "cols": [
+                "Tiled",
+                "Arrange panes in a grid"
               ]
             }
           ]
