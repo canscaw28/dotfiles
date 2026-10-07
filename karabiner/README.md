@@ -606,7 +606,7 @@ macOS system toggles and input source management. Unlike other layers, A does no
 
 - **Toggle Dock** uses AeroSpace `freeze-tiling` so windows don't resize, and auto-hides when window focus or the workspace changes.
 - **Reload All Configs** runs `reload.sh --all`: AeroSpace, Karabiner, Hammerspoon, iTerm2, text-expander, shell, and Chrome.
-- **Connect Displays** connects Sidecar to `CW iPad`. Idempotent — never disconnects; disconnect manually from the iPad.
+- **Connect Displays** connects Sidecar to whichever iPad is available (tries each until one connects). Idempotent — never disconnects; disconnect manually from the iPad.
 - **Workspace Setup** opens iTerm2→k, Messages→n, Rize→n, Slack→m.
 
 ### Input Source
