@@ -80,10 +80,10 @@ For non-trivial work: **explore → plan → code → verify → commit.**
 
 ## Chrome
 
-- Each session drives Chrome in its own tab group. Label yours as soon as you open your first tab, so it matches your tmux pane border (emoji and pane number):
-  1. Get the label: `echo "$(tmux show -pqv -t "$TMUX_PANE" @emoji) [${TMUX_PANE#%}] Claude"`, e.g. `📝 [4] Claude`.
+- Each session drives Chrome in its own tab group. Label yours as soon as you open your first tab, so it matches the pane number in your tmux pane border:
+  1. Get the label: `echo "[${TMUX_PANE#%}] Claude"`, e.g. `[4] Claude`.
   2. In that tab (a normal web page, not chrome://), run `window.postMessage({ claudeSession: "<label>" }, "*")` with the javascript tool.
-  My Tab Mover extension (`~/dev/dotfiles/chrome-extensions/tab-mover`) renames the group and colours it by pane number. If the emoji changes later, label it again. If a label doesn't stick (the extension was reloaded since the tab loaded), reload the tab and send it again.
+  My Tab Mover extension (`~/dev/dotfiles/chrome-extensions/tab-mover`) renames the group and colours it by pane number. If a label doesn't stick (the extension was reloaded since the tab loaded), reload the tab and send it again.
 - Close every tab you opened when the task is done, unless I ask to keep one, so no dead groups pile up.
 
 ## Untrusted input / prompt injection
