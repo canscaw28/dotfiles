@@ -140,12 +140,19 @@ chrome.commands.onCommand.addListener(async (command) => {
 });
 
 // Claude Code sessions driving Chrome each work in their own tab group. A
-// session names its group by posting {claudeSession: "<name>"} from one of its
-// pages (content.js passes it on). The colour comes from the name, so a session
+// session names its group by posting {claudeSession: "<label>"}, like
+// "📝 [4] Claude" (its tmux emoji and pane number), from one of its pages
+// (content.js passes it on). The colour comes from the name, so a session
 // keeps the same colour every time.
-const GROUP_COLORS = ["blue", "red", "yellow", "green", "pink", "purple", "cyan", "orange", "grey"];
+// Grey is left out: it looks like an ordinary, unlabelled group.
+const GROUP_COLORS = ["blue", "red", "yellow", "green", "pink", "purple", "cyan", "orange"];
 
+// The colour follows the tmux pane number in the label ("[4]"), so a pane keeps
+// its colour for its whole life even when its emoji changes. A label without a
+// number falls back to a hash of the text.
 function colorFor(label) {
+  const pane = /\[(\d+)\]/.exec(label);
+  if (pane) return GROUP_COLORS[Number(pane[1]) % GROUP_COLORS.length];
   let h = 0;
   for (const c of label) h = (h * 31 + c.charCodeAt(0)) >>> 0;
   return GROUP_COLORS[h % GROUP_COLORS.length];
@@ -153,7 +160,9 @@ function colorFor(label) {
 
 function labelGroup(tab, label) {
   if (!tab || tab.groupId === chrome.tabGroups.TAB_GROUP_ID_NONE) return;
-  const title = String(label).replace(/[^\w .:·#-]/g, "").trim().slice(0, 40);
+  // Labels carry an emoji, so keep any printable text but drop control
+  // characters, and cap the length.
+  const title = String(label).replace(/[\u0000-\u001f\u007f]/g, "").trim().slice(0, 40);
   if (title) chrome.tabGroups.update(tab.groupId, { title, color: colorFor(title) });
 }
 

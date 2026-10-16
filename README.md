@@ -19,7 +19,7 @@ Not a typical dotfiles repo — it's a keyboard-driven utility layer on top of m
 
 ### Editor & Terminal
 - `.vimrc` - Vim configuration
-- `.tmux.conf` - Tmux configuration
+- `.tmux.conf` - Tmux configuration. Claude panes show an emoji and the pane number in their border (`📝 [4] title`), matching their Chrome tab group label
 - `com.googlecode.iterm2.plist` - iTerm2 settings
 - `iterm_keymap.itermkeymap` - iTerm2 keybindings
 
@@ -57,7 +57,7 @@ Not a typical dotfiles repo — it's a keyboard-driven utility layer on top of m
 ### Browser Extensions
 - `vimium_c.json` - [Vimium C](https://github.com/nicolerenee/vimium-c) settings
 - `stylus/` - Custom CSS styles for websites
-- `chrome-extensions/tab-mover/` - Custom Chrome extension for moving tabs between windows directionally (left/right/up/down across displays) with vim-style reordering
+- `chrome-extensions/tab-mover/` - Custom Chrome extension for moving tabs between windows directionally (left/right/up/down across displays) with vim-style reordering. It also labels Claude Code tab groups: a session posts `{ claudeSession: "📝 [4] Claude" }` from one of its pages, and the group is renamed and coloured by tmux pane number (see the Chrome section of `claude/CLAUDE.md`)
 
 ### Raycast
 - `raycast/` - [Raycast](https://www.raycast.com/) scripts (Sidecar toggle)

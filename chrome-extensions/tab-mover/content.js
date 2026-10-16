@@ -42,7 +42,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 // A Claude Code session labels its tab group with
-// window.postMessage({ claudeSession: "rome-finance-3c" }, "*")
+// window.postMessage({ claudeSession: "📝 [4] Claude" }, "*")
 // run in one of its pages. Only the group holding this tab is renamed.
 window.addEventListener("message", (e) => {
   if (e.source !== window || typeof e.data?.claudeSession !== "string") return;

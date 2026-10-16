@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Tab Mover",
-  "version": "1.2",
+  "version": "1.4",
   "description": "Move tabs between Chrome windows directionally, and label Claude Code tab groups",
   "permissions": ["tabs", "tabGroups", "system.display"],
   "background": {
