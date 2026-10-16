@@ -40,3 +40,11 @@ document.addEventListener("keydown", (e) => {
     }
   }
 });
+
+// A Claude Code session labels its tab group with
+// window.postMessage({ claudeSession: "rome-finance-3c" }, "*")
+// run in one of its pages. Only the group holding this tab is renamed.
+window.addEventListener("message", (e) => {
+  if (e.source !== window || typeof e.data?.claudeSession !== "string") return;
+  sendMsg({ action: "labelGroup", label: e.data.claudeSession });
+});

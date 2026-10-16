@@ -139,8 +139,28 @@ chrome.commands.onCommand.addListener(async (command) => {
   await moveTabInDirection(direction, { create: true });
 });
 
-chrome.runtime.onMessage.addListener((msg) => {
-  if (msg.action === "duplicateTab") {
+// Claude Code sessions driving Chrome each work in their own tab group. A
+// session names its group by posting {claudeSession: "<name>"} from one of its
+// pages (content.js passes it on). The colour comes from the name, so a session
+// keeps the same colour every time.
+const GROUP_COLORS = ["blue", "red", "yellow", "green", "pink", "purple", "cyan", "orange", "grey"];
+
+function colorFor(label) {
+  let h = 0;
+  for (const c of label) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return GROUP_COLORS[h % GROUP_COLORS.length];
+}
+
+function labelGroup(tab, label) {
+  if (!tab || tab.groupId === chrome.tabGroups.TAB_GROUP_ID_NONE) return;
+  const title = String(label).replace(/[^\w .:·#-]/g, "").trim().slice(0, 40);
+  if (title) chrome.tabGroups.update(tab.groupId, { title, color: colorFor(title) });
+}
+
+chrome.runtime.onMessage.addListener((msg, sender) => {
+  if (msg.action === "labelGroup") {
+    labelGroup(sender.tab, msg.label);
+  } else if (msg.action === "duplicateTab") {
     chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
       if (tab) chrome.tabs.duplicate(tab.id);
     });
