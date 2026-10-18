@@ -19,7 +19,7 @@ Not a typical dotfiles repo — it's a keyboard-driven utility layer on top of m
 
 ### Editor & Terminal
 - `.vimrc` - Vim configuration
-- `.tmux.conf` - Tmux configuration. Claude and Codex panes show their pane number in their border (`[4] title`), matching their Chrome tab group label
+- `.tmux.conf` - Tmux configuration. Claude and Codex panes show an emoji picked for their title and their pane number in their border (`📝 [4] title`); their Chrome tab group label is just the number (`[4] Claude`), since Claude in Chrome adds its own emoji
 - `com.googlecode.iterm2.plist` - iTerm2 settings
 - `iterm_keymap.itermkeymap` - iTerm2 keybindings
 
