@@ -31,3 +31,10 @@ fi
 # run should win.
 [ "$(tmux display -p -t "$pane" '#{s/^[^A-Za-z0-9 ]* //:pane_title}')" = "$title" ] || exit 0
 tmux set -p -t "$pane" @emoji "$emoji"
+
+# A pane whose agent exited may still hold this emoji. Clear it there, with
+# @emoji_for, so an agent restarted in that pane picks again rather than
+# showing a duplicate under its unchanged title.
+tmux list-panes -a -F '#{pane_id} #{pane_current_command} #{@emoji}' |
+    awk -v p="$pane" -v e="$emoji" '$1 != p && $2 !~ /^(claude|codex)/ && $3 == e { print $1 }' |
+    while read -r old; do tmux set -pu -t "$old" @emoji \; set -pu -t "$old" @emoji_for; done
