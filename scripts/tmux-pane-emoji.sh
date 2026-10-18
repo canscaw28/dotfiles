@@ -7,7 +7,8 @@ pane="$1"
 title=$(tmux display -p -t "$pane" '#{s/^[^A-Za-z0-9 ]* //:pane_title}')
 [ -z "$title" ] && exit 0
 
-used() { tmux list-panes -a -F '#{pane_id} #{@emoji}' | awk -v p="$pane" '$1 != p && $2 != "" { printf "%s ", $2 }'; }
+# A pane keeps its @emoji after its agent exits; only live agents hold theirs.
+used() { tmux list-panes -a -F '#{pane_id} #{pane_current_command} #{@emoji}' | awk -v p="$pane" '$1 != p && $2 ~ /^(claude|codex)/ && $3 != "" { printf "%s ", $3 }'; }
 used=$(used)
 
 # Off the cwd so the call doesn't pick up a project's CLAUDE.md or settings.
