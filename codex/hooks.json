@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__chrome.devtools__(press_key|evaluate_script)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/chrome-clipboard-guard.sh deny",
+            "statusMessage": "Checking for clipboard use"
+          }
+        ]
+      }
+    ]
+  }
+}

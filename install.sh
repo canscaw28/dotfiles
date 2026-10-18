@@ -98,6 +98,7 @@ install_claude() {
     create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
     create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.codex/AGENTS.md"
     create_symlink "$DOTFILES_DIR/claude/hooks/chrome-clipboard-guard.sh" "$HOME/.claude/hooks/chrome-clipboard-guard.sh"
+    create_symlink "$DOTFILES_DIR/codex/hooks.json" "$HOME/.codex/hooks.json"
 
     # settings.json stays untracked (Claude Code rewrites it, and it holds machine-specific
     # context), so merge the hook entry into it instead of symlinking the file.
