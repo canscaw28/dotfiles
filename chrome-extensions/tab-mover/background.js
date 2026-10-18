@@ -158,11 +158,22 @@ function colorFor(label) {
   return GROUP_COLORS[h % GROUP_COLORS.length];
 }
 
-function labelGroup(tab, label) {
-  if (!tab || tab.groupId === chrome.tabGroups.TAB_GROUP_ID_NONE) return;
+// Claude in Chrome opens its tabs in a group already. Other agents (Codex over
+// DevTools) open plain tabs, so an ungrouped tab joins the window's group with
+// this label, or starts one.
+async function labelGroup(tab, label) {
+  if (!tab) return;
   // Keep any printable text, drop control characters, and cap the length.
   const title = String(label).replace(/[\u0000-\u001f\u007f]/g, "").trim().slice(0, 40);
-  if (title) chrome.tabGroups.update(tab.groupId, { title, color: colorFor(title) });
+  if (!title) return;
+  let groupId = tab.groupId;
+  if (groupId === chrome.tabGroups.TAB_GROUP_ID_NONE) {
+    const [existing] = await chrome.tabGroups.query({ windowId: tab.windowId, title });
+    groupId = await chrome.tabs.group(
+      existing ? { tabIds: tab.id, groupId: existing.id } : { tabIds: tab.id }
+    );
+  }
+  chrome.tabGroups.update(groupId, { title, color: colorFor(title) });
 }
 
 chrome.runtime.onMessage.addListener((msg, sender) => {
