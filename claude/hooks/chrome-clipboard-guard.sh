@@ -4,7 +4,7 @@
 jq -c '
   .tool_input as $in
   | ([$in | .. | objects | select(.action == "key") | .text // empty]
-     | any(test("(^|[ +])(cmd|command|ctrl|control|meta|super)\\+v($| )"; "i"))) as $paste
+     | any(test("(^|[ +])(cmd|command|ctrl|control|meta|super)\\+([a-z]+\\+)*v($| )"; "i"))) as $paste
   | ([$in | .. | objects | .text? // empty | strings]
      | any(test("clipboard\\.read|execCommand\\(.paste"; "i"))) as $read
   | if $paste or $read then
