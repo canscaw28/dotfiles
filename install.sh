@@ -96,6 +96,7 @@ install_git() {
 install_claude() {
     log_info "Installing global Claude Code config..."
     create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+    create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.codex/AGENTS.md"
 }
 
 install_editor() {
@@ -282,7 +283,7 @@ show_help() {
     echo "  --oh-my-zsh    Install oh-my-zsh framework"
     echo "  --shell        Install shell configs (zshrc, bash_profile, p10k)"
     echo "  --git          Install git configs"
-    echo "  --claude       Install global Claude Code config (~/.claude/CLAUDE.md)"
+    echo "  --claude       Install global Claude Code and Codex instructions (CLAUDE.md, AGENTS.md)"
     echo "  --editor       Install editor configs (vim, tmux)"
     echo "  --fonts        Install MesloLGS NF fonts (for Powerlevel10k)"
     echo "  --aerospace    Install AeroSpace config"

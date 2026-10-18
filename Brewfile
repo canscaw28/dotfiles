@@ -25,3 +25,4 @@ cask "raycast"
 # Terminal & editor
 cask "iterm2"
 cask "claude-code"
+cask "codex"

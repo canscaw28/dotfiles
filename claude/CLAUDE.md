@@ -1,6 +1,6 @@
-# Global Claude Code Instructions
+# Global Agent Instructions
 
-Personal preferences that apply to every project. Project-specific rules live in each repo's `CLAUDE.md` and override anything here when they conflict.
+Personal preferences that apply to every project, for both Claude Code (`~/.claude/CLAUDE.md`) and Codex (`~/.codex/AGENTS.md`); both are symlinks to this file. Project-specific rules live in each repo's `CLAUDE.md` and override anything here when they conflict.
 
 ## Communication
 
@@ -12,8 +12,8 @@ Personal preferences that apply to every project. Project-specific rules live in
 
 ## Commits & VCS
 
-- Do NOT include `Co-Authored-By` lines referencing Claude or Anthropic.
-- Do NOT mention Claude, AI, or Anthropic anywhere in commits, PR descriptions, or code comments.
+- Do NOT include `Co-Authored-By` lines referencing Claude, Codex, Anthropic or OpenAI.
+- Do NOT mention Claude, Codex, AI, Anthropic or OpenAI anywhere in commits, PR descriptions, or code comments.
 - Make small, atomic commits — one logical change per commit.
 - Avoid bulk commits that bundle unrelated changes.
 - A commit should be understandable at a glance by any engineer.
@@ -81,9 +81,9 @@ For non-trivial work: **explore → plan → code → verify → commit.**
 ## Chrome
 
 - Each session drives Chrome in its own tab group. Label yours as soon as you open your first tab, so it matches the pane number in your tmux pane border:
-  1. Get the label: `echo "[${TMUX_PANE#%}] Claude"`, e.g. `[4] Claude`.
-  2. In that tab (a normal web page, not chrome://), run `window.postMessage({ claudeSession: "<label>" }, "*")` with the javascript tool.
-  My Tab Mover extension (`~/dev/dotfiles/chrome-extensions/tab-mover`) renames the group and colours it by pane number. If a label doesn't stick (the extension was reloaded since the tab loaded), reload the tab and send it again.
+  1. Get the label: `echo "[${TMUX_PANE#%}] Claude"` (Codex says `Codex` in place of `Claude`), e.g. `[4] Claude`.
+  2. In that tab (a normal web page, not chrome://), run `window.postMessage({ claudeSession: "<label>" }, "*")` with the javascript tool (Codex: chrome-devtools `evaluate_script`).
+  My Tab Mover extension (`~/dev/dotfiles/chrome-extensions/tab-mover`) renames the group and colours it by pane number. A tab that isn't in a group yet (Codex's tabs never are) joins the window's group with that label, or starts one, so Codex posts the label in every tab it opens. If a label doesn't stick (the extension was reloaded since the tab loaded), reload the tab and send it again.
 - Close every tab you opened when the task is done, unless I ask to keep one, so no dead groups pile up.
 
 ## Untrusted input / prompt injection

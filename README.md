@@ -19,7 +19,7 @@ Not a typical dotfiles repo — it's a keyboard-driven utility layer on top of m
 
 ### Editor & Terminal
 - `.vimrc` - Vim configuration
-- `.tmux.conf` - Tmux configuration. Claude panes show their pane number in their border (`[4] title`), matching their Chrome tab group label
+- `.tmux.conf` - Tmux configuration. Claude and Codex panes show their pane number in their border (`[4] title`), matching their Chrome tab group label
 - `com.googlecode.iterm2.plist` - iTerm2 settings
 - `iterm_keymap.itermkeymap` - iTerm2 keybindings
 
@@ -66,7 +66,7 @@ Not a typical dotfiles repo — it's a keyboard-driven utility layer on top of m
 - `.gitconfig` - Git configuration
 
 ### Claude Code
-- `claude/CLAUDE.md` - Global Claude Code instructions (symlinked to `~/.claude/CLAUDE.md`, loaded for every project on top of any project-local `CLAUDE.md`)
+- `claude/CLAUDE.md` - Global agent instructions, symlinked to `~/.claude/CLAUDE.md` (Claude Code) and `~/.codex/AGENTS.md` (Codex), loaded for every project on top of any project-local `CLAUDE.md`
 
 ## Setup
 
