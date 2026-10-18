@@ -85,6 +85,7 @@ For non-trivial work: **explore → plan → code → verify → commit.**
   2. In that tab (a normal web page, not chrome://), run `window.postMessage({ claudeSession: "<label>" }, "*")` with the javascript tool (Codex: chrome-devtools `evaluate_script`).
   My Tab Mover extension (`~/dev/dotfiles/chrome-extensions/tab-mover`) renames the group and colours it by pane number. A tab that isn't in a group yet (Codex's tabs never are) joins the window's group with that label, or starts one, so Codex posts the label in every tab it opens. If a label doesn't stick (the extension was reloaded since the tab loaded), reload the tab and send it again.
 - Close every tab you opened when the task is done, unless I ask to keep one, so no dead groups pile up.
+- Never touch my clipboard unless I ask. Open URLs with the navigate tool; never click, focus or type in the address bar, because Chrome offers the clipboard there as a suggestion and an Enter sends it to Google. No paste keys (cmd+v, ctrl+v) and no clipboard reads in page scripts. A hook (`~/.claude/hooks/chrome-clipboard-guard.sh`) asks me before any of these runs.
 
 ## Untrusted input / prompt injection
 

@@ -97,6 +97,20 @@ install_claude() {
     log_info "Installing global Claude Code config..."
     create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
     create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.codex/AGENTS.md"
+    create_symlink "$DOTFILES_DIR/claude/hooks/chrome-clipboard-guard.sh" "$HOME/.claude/hooks/chrome-clipboard-guard.sh"
+
+    # settings.json stays untracked (Claude Code rewrites it, and it holds machine-specific
+    # context), so merge the hook entry into it instead of symlinking the file.
+    local settings="$HOME/.claude/settings.json"
+    local hook_cmd="~/.claude/hooks/chrome-clipboard-guard.sh"
+    [[ -f "$settings" ]] || echo '{}' > "$settings"
+    if ! jq -e --arg c "$hook_cmd" '[.hooks.PreToolUse[]?.hooks[]?.command] | index($c)' "$settings" > /dev/null; then
+        jq --arg c "$hook_cmd" '.hooks.PreToolUse += [{
+            matcher: "mcp__claude-in-chrome__computer|mcp__claude-in-chrome__browser_batch|mcp__claude-in-chrome__javascript_tool",
+            hooks: [{type: "command", command: $c}]
+        }]' "$settings" > "$settings.tmp" && mv "$settings.tmp" "$settings"
+        log_info "Registered chrome-clipboard-guard hook in $settings"
+    fi
 }
 
 install_editor() {
@@ -283,7 +297,7 @@ show_help() {
     echo "  --oh-my-zsh    Install oh-my-zsh framework"
     echo "  --shell        Install shell configs (zshrc, bash_profile, p10k)"
     echo "  --git          Install git configs"
-    echo "  --claude       Install global Claude Code and Codex instructions (CLAUDE.md, AGENTS.md)"
+    echo "  --claude       Install global Claude Code and Codex instructions (CLAUDE.md, AGENTS.md) and hooks"
     echo "  --editor       Install editor configs (vim, tmux)"
     echo "  --fonts        Install MesloLGS NF fonts (for Powerlevel10k)"
     echo "  --aerospace    Install AeroSpace config"
