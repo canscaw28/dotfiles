@@ -176,6 +176,34 @@ async function labelGroup(tab, label) {
   chrome.tabGroups.update(groupId, { title, color: colorFor(title) });
 }
 
+// A session's group outlives it. Every 30s, ask Hammerspoon which pane numbers
+// still run an agent and retitle the groups of the rest, so a new session
+// given a freed number starts its own group instead of joining the old one.
+// The tabs are kept; grey and collapsed, the group reads as leftover.
+const SESSION_GROUP = /\[(\d+)\] (Claude|Codex)\b/;
+
+async function unassignEndedGroups() {
+  let live;
+  try {
+    const res = await fetch("http://localhost:27183/agent-panes");
+    if (!res.ok) return;
+    live = new Set(Object.values(await res.json()));
+  } catch {
+    return;
+  }
+  for (const group of await chrome.tabGroups.query({})) {
+    const m = SESSION_GROUP.exec(group.title || "");
+    if (m && !live.has(Number(m[1]))) {
+      chrome.tabGroups.update(group.id, { title: "unassigned", color: "grey", collapsed: true });
+    }
+  }
+}
+
+chrome.alarms.create("unassign-ended-groups", { periodInMinutes: 0.5 });
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name === "unassign-ended-groups") unassignEndedGroups();
+});
+
 chrome.runtime.onMessage.addListener((msg, sender) => {
   if (msg.action === "labelGroup") {
     labelGroup(sender.tab, msg.label);

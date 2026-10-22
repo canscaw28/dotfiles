@@ -216,6 +216,7 @@ Local HTTP server on port 27183 for IPC from shell scripts and browser extension
 |----------|--------|
 | `/focus-border-flash` | Flash focus border on focused window |
 | `/chrome-tab-new-window?direction=...&follow=...` | Position new Chrome window from tab-mover extension |
+| `/agent-panes` | JSON list of pane numbers (`@num`) of tmux panes running Claude or Codex |
 
 Used by the Chrome tab-mover extension (shell scripts use `hsq` instead).
 

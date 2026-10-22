@@ -13,6 +13,18 @@ M.server:setCallback(function(method, path)
         require("chrome_tab_move").positionNewWindow(direction, follow)
         return "", 200, {}
     end
+    -- Pane numbers (tmux-pane-num.sh) of panes running an agent, so tab-mover
+    -- can mark tab groups of ended sessions as unassigned. Synchronous, but
+    -- tmux answers in milliseconds and this is polled only every 30s.
+    if path == "/agent-panes" then
+        local out, ok = hs.execute("/opt/homebrew/bin/tmux list-panes -a -F '#{pane_current_command} #{@num}'")
+        if not ok then return "", 503, {} end
+        local nums = {}
+        for cmd, num in out:gmatch("(%S+) (%d+)") do
+            if cmd:match("^claude") or cmd:match("^codex") then table.insert(nums, tonumber(num)) end
+        end
+        return hs.json.encode(nums), 200, { ["Content-Type"] = "application/json" }
+    end
     return "", 404, {}
 end)
 M.server:start()
