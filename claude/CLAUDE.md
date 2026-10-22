@@ -81,7 +81,7 @@ For non-trivial work: **explore → plan → code → verify → commit.**
 ## Chrome
 
 - Each session drives Chrome in its own tab group. Label yours as soon as you open your first tab, so it matches the pane number in your tmux pane border:
-  1. Get the label: `echo "[${TMUX_PANE#%}] Claude"` (Codex says `Codex` in place of `Claude`), e.g. `[4] Claude`.
+  1. Get the label: `echo "[$(tmux display -p -t "$TMUX_PANE" '#{@num}')] Claude"` (Codex says `Codex` in place of `Claude`), e.g. `[4] Claude`.
   2. In that tab (a normal web page, not chrome://), run `window.postMessage({ claudeSession: "<label>" }, "*")` with the javascript tool (Codex: chrome-devtools `evaluate_script`).
   My Tab Mover extension (`~/dev/dotfiles/chrome-extensions/tab-mover`) renames the group and colours it by pane number. A tab that isn't in a group yet (Codex's tabs never are) joins the window's group with that label, or starts one, so Codex posts the label in every tab it opens. If a label doesn't stick (the extension was reloaded since the tab loaded), reload the tab and send it again.
 - Close every tab you opened when the task is done, unless I ask to keep one, so no dead groups pile up.
