@@ -35263,6 +35263,86 @@
                     "value": 1
                   },
                   {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.googlecode\\.iterm2$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "description": "G+F+U: iTerm move tmux pane to previous window",
+                "from": {
+                  "key_code": "u",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "~/.local/bin/g-tmux-window.sh move-prev &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "f_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.googlecode\\.iterm2$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "description": "G+F+I: iTerm move tmux pane to next window",
+                "from": {
+                  "key_code": "i",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "~/.local/bin/g-tmux-window.sh move-next &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
                     "bundle_identifiers": [
                       "^com\\.googlecode\\.iterm2$"
                     ],
@@ -35456,6 +35536,111 @@
                 "to": [
                   {
                     "shell_command": "~/.local/bin/g-focus-tmux-edge.sh right &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.googlecode\\.iterm2$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "description": "G+U: iTerm previous tmux window",
+                "from": {
+                  "key_code": "u",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "~/.local/bin/g-tmux-window.sh prev &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.googlecode\\.iterm2$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "description": "G+I: iTerm next tmux window",
+                "from": {
+                  "key_code": "i",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "~/.local/bin/g-tmux-window.sh next &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.googlecode\\.iterm2$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "description": "G+backslash: iTerm break tmux pane into a new window",
+                "from": {
+                  "key_code": "backslash",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "~/.local/bin/g-tmux-window.sh break &"
                   }
                 ],
                 "type": "basic"

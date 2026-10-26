@@ -83,6 +83,14 @@ sections:
     description: 'G+F+L: iTerm move tmux pane right'
     to:
       shell: ~/.local/bin/g-move-tmux.sh right &
+  - from: u
+    description: 'G+F+U: iTerm move tmux pane to previous window'
+    to:
+      shell: ~/.local/bin/g-tmux-window.sh move-prev &
+  - from: i
+    description: 'G+F+I: iTerm move tmux pane to next window'
+    to:
+      shell: ~/.local/bin/g-tmux-window.sh move-next &
 - layer:
   - caps
   - g
@@ -113,6 +121,18 @@ sections:
     description: 'G+O: iTerm tmux rightmost pane'
     to:
       shell: ~/.local/bin/g-focus-tmux-edge.sh right &
+  - from: u
+    description: 'G+U: iTerm previous tmux window'
+    to:
+      shell: ~/.local/bin/g-tmux-window.sh prev &
+  - from: i
+    description: 'G+I: iTerm next tmux window'
+    to:
+      shell: ~/.local/bin/g-tmux-window.sh next &
+  - from: backslash
+    description: 'G+backslash: iTerm break tmux pane into a new window'
+    to:
+      shell: ~/.local/bin/g-tmux-window.sh break &
   - from: hyphen
     description: 'G+-: iTerm shrink tmux pane'
     to:

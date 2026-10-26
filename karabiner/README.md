@@ -419,6 +419,9 @@ Mirrors ⇪+T for windows: HJKL focus, -/= resize, P toggles side by side/stacke
 | [⇪+G] + P | Toggle layout | Panes side by side ↔ stacked |
 | [⇪+G] + N | Balance | Even out pane sizes |
 | [⇪+G] + M | Tiled | Arrange panes in a grid |
+| [⇪+G] + U | Prev window | Previous tmux window (wraps) |
+| [⇪+G] + I | Next window | Next tmux window (wraps) |
+| [⇪+G] + \ | Break pane | Move tmux pane to a new window |
 
 #### Tmux Pane Move (⇪+G+F)
 
@@ -428,6 +431,8 @@ Mirrors ⇪+T for windows: HJKL focus, -/= resize, P toggles side by side/stacke
 | [⇪+G+F] + J | Swap pane ↓ | Swap tmux pane down (moves window at edge) |
 | [⇪+G+F] + K | Swap pane ↑ | Swap tmux pane up (moves window at edge) |
 | [⇪+G+F] + L | Swap pane → | Swap tmux pane right (moves window at edge) |
+| [⇪+G+F] + U | Pane to prev window | Move tmux pane to the previous window and follow it |
+| [⇪+G+F] + I | Pane to next window | Move tmux pane to the next window and follow it |
 
 ### Other Apps
 

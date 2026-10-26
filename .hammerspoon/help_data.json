@@ -1035,6 +1035,20 @@
               ]
             },
             {
+              "keys": "[⇪+G] + U",
+              "cols": [
+                "Prev window",
+                "Previous tmux window (wraps)"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + I",
+              "cols": [
+                "Next window",
+                "Next tmux window (wraps)"
+              ]
+            },
+            {
               "keys": "[⇪+G] + O",
               "cols": [
                 "Edge pane right",
@@ -1046,6 +1060,13 @@
               "cols": [
                 "Toggle layout",
                 "Panes side by side ↔ stacked"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + \\",
+              "cols": [
+                "Break pane",
+                "Move tmux pane to a new window"
               ]
             },
             {
@@ -1106,6 +1127,20 @@
             "Description"
           ],
           "rows": [
+            {
+              "keys": "[⇪+G+F] + U",
+              "cols": [
+                "Pane to prev window",
+                "Move tmux pane to the previous window and follow it"
+              ]
+            },
+            {
+              "keys": "[⇪+G+F] + I",
+              "cols": [
+                "Pane to next window",
+                "Move tmux pane to the next window and follow it"
+              ]
+            },
             {
               "keys": "[⇪+G+F] + H",
               "cols": [
