@@ -41,6 +41,10 @@ case "$action" in
     split-h|split-v)
         [ "$action" = split-h ] && dir="-h" || dir="-v"
         pane=$($tmux display -p -t "$session:" '#{pane_id}')
+        # A new pane inherits this script's environment, which is Karabiner's
+        # near-empty one (no nvm on PATH, so no node or claude). Take tmux's
+        # global environment instead, as a split from inside tmux would.
+        eval "$($tmux show-environment -g -s)"
         $tmux split-window "$dir" -t "$pane" -c "$($tmux display -p -t "$pane" '#{pane_current_path}')"
         ;;
     # The pane is named up front: a bare kill-pane run from outside tmux hits
