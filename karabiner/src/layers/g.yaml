@@ -133,6 +133,16 @@ sections:
     description: 'G+backslash: iTerm break tmux pane into a new window'
     to:
       shell: ~/.local/bin/g-tmux-window.sh break &
+  - from: semicolon
+    description: 'G+;: iTerm close tmux pane (y/n prompt)'
+    to:
+      shell: ~/.local/bin/g-tmux-window.sh close &
+  # Without these, Chrome's bindings below leak in: Vimium's history search
+  # types Esc+o into the terminal, and close tab's Cmd+W closes the iTerm tab.
+  - from: quote
+    to: noop
+  - from: period
+    to: noop
   - from: hyphen
     description: 'G+-: iTerm shrink tmux pane'
     to:

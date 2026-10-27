@@ -422,6 +422,7 @@ Mirrors ⇪+T for windows: HJKL focus, -/= resize, P toggles side by side/stacke
 | [⇪+G] + U | Prev window | Previous tmux window (wraps) |
 | [⇪+G] + I | Next window | Next tmux window (wraps) |
 | [⇪+G] + \ | Break pane | Move tmux pane to a new window |
+| [⇪+G] + ; | Close pane | Close tmux pane, after tmux's y/n prompt |
 
 #### Tmux Pane Move (⇪+G+F)
 

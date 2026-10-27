@@ -1098,6 +1098,13 @@
               ]
             },
             {
+              "keys": "[⇪+G] + ;",
+              "cols": [
+                "Close pane",
+                "Close tmux pane, after tmux's y/n prompt"
+              ]
+            },
+            {
               "keys": "[⇪+G] + N",
               "cols": [
                 "Balance",
