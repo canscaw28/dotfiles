@@ -35699,8 +35699,9 @@
                     "type": "frontmost_application_if"
                   }
                 ],
+                "description": "G+comma: iTerm split tmux pane side by side",
                 "from": {
-                  "key_code": "quote",
+                  "key_code": "comma",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -35709,10 +35710,42 @@
                 },
                 "to": [
                   {
-                    "set_variable": {
-                      "name": "guard_noop",
-                      "value": 0
-                    }
+                    "shell_command": "~/.local/bin/g-tmux-window.sh split-h &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.googlecode\\.iterm2$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "description": "G+period: iTerm split tmux pane stacked",
+                "from": {
+                  "key_code": "period",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "~/.local/bin/g-tmux-window.sh split-v &"
                   }
                 ],
                 "type": "basic"
@@ -35737,7 +35770,7 @@
                   }
                 ],
                 "from": {
-                  "key_code": "period",
+                  "key_code": "quote",
                   "modifiers": {
                     "optional": [
                       "any"

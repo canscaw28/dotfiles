@@ -1117,6 +1117,20 @@
                 "Tiled",
                 "Arrange panes in a grid"
               ]
+            },
+            {
+              "keys": "[⇪+G] + ,",
+              "cols": [
+                "Split side by side",
+                "New tmux pane to the right, same directory"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + .",
+              "cols": [
+                "Split stacked",
+                "New tmux pane below, same directory"
+              ]
             }
           ]
         },

@@ -423,6 +423,8 @@ Mirrors ⇪+T for windows: HJKL focus, -/= resize, P toggles side by side/stacke
 | [⇪+G] + I | Next window | Next tmux window (wraps) |
 | [⇪+G] + \ | Break pane | Move tmux pane to a new window |
 | [⇪+G] + ; | Close pane | Close tmux pane, after tmux's y/n prompt |
+| [⇪+G] + , | Split side by side | New tmux pane to the right, same directory |
+| [⇪+G] + . | Split stacked | New tmux pane below, same directory |
 
 #### Tmux Pane Move (⇪+G+F)
 

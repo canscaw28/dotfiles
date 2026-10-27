@@ -2,7 +2,8 @@
 # G-layer tmux windows for iTerm, mirroring Chrome's tab keys: U/I switch to the
 # previous/next window, G+F+U/I move the pane there and follow it, and
 # backslash breaks the pane out into a new window (Chrome: detach tab).
-# semicolon closes the pane after tmux's own y/n prompt.
+# semicolon closes the pane after tmux's own y/n prompt; comma and period
+# split it side by side and stacked.
 set -eo pipefail
 
 action="$1"
@@ -36,6 +37,12 @@ case "$action" in
         $tmux break-pane -s "$session:" -t "$session:"
         ;;
     # The same y/n prompt as prefix+x, shown in the front iTerm window.
+    # In the current pane's directory, unlike prefix+% and prefix+".
+    split-h|split-v)
+        [ "$action" = split-h ] && dir="-h" || dir="-v"
+        pane=$($tmux display -p -t "$session:" '#{pane_id}')
+        $tmux split-window "$dir" -t "$pane" -c "$($tmux display -p -t "$pane" '#{pane_current_path}')"
+        ;;
     # The pane is named up front: a bare kill-pane run from outside tmux hits
     # the most recent session's pane, not this window's.
     close)
