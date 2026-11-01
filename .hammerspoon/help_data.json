@@ -1017,14 +1017,14 @@
               "keys": "[⇪+G] + -",
               "cols": [
                 "Shrink pane",
-                "Shrink tmux pane"
+                "Shrink tmux pane along its split (width side by side, height stacked)"
               ]
             },
             {
               "keys": "[⇪+G] + =",
               "cols": [
                 "Grow pane",
-                "Grow tmux pane"
+                "Grow tmux pane along its split (width side by side, height stacked)"
               ]
             },
             {

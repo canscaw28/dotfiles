@@ -414,8 +414,8 @@ Mirrors ⇪+T for windows: HJKL focus, -/= resize, P toggles side by side/stacke
 | [⇪+G] + L | ⌃ + B, → | Select tmux pane right |
 | [⇪+G] + Y | Edge pane left | Jump to leftmost tmux pane |
 | [⇪+G] + O | Edge pane right | Jump to rightmost tmux pane |
-| [⇪+G] + - | Shrink pane | Shrink tmux pane |
-| [⇪+G] + = | Grow pane | Grow tmux pane |
+| [⇪+G] + - | Shrink pane | Shrink tmux pane along its split (width side by side, height stacked) |
+| [⇪+G] + = | Grow pane | Grow tmux pane along its split (width side by side, height stacked) |
 | [⇪+G] + P | Toggle layout | Panes side by side ↔ stacked |
 | [⇪+G] + N | Balance | Even out pane sizes |
 | [⇪+G] + M | Tiled | Arrange panes in a grid |
