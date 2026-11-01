@@ -1014,6 +1014,20 @@
           ],
           "rows": [
             {
+              "keys": "[⇪+G] + 6",
+              "cols": [
+                "Less contrast",
+                "Step terminal text down: bright → medium → muted"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + 7",
+              "cols": [
+                "More contrast",
+                "Step terminal text up: muted → medium → bright"
+              ]
+            },
+            {
               "keys": "[⇪+G] + -",
               "cols": [
                 "Shrink pane",
@@ -1102,13 +1116,6 @@
               "cols": [
                 "Close pane",
                 "Close tmux pane, after tmux's y/n prompt"
-              ]
-            },
-            {
-              "keys": "[⇪+G] + '",
-              "cols": [
-                "Toggle theme",
-                "Switch iTerm and tmux between muted and bright colors"
               ]
             },
             {

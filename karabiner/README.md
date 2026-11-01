@@ -425,7 +425,8 @@ Mirrors ⇪+T for windows: HJKL focus, -/= resize, P toggles side by side/stacke
 | [⇪+G] + ; | Close pane | Close tmux pane, after tmux's y/n prompt |
 | [⇪+G] + , | Split side by side | New tmux pane to the right, same directory |
 | [⇪+G] + . | Split stacked | New tmux pane below, same directory |
-| [⇪+G] + ' | Toggle theme | Switch iTerm and tmux between muted and bright colors |
+| [⇪+G] + 6 | Less contrast | Step terminal text down: bright → medium → muted |
+| [⇪+G] + 7 | More contrast | Step terminal text up: muted → medium → bright |
 
 #### Tmux Pane Move (⇪+G+F)
 
