@@ -150,13 +150,17 @@ sections:
   - from: quote
     to: noop
   - from: '6'
-    description: 'G+6: iTerm lower terminal text contrast'
+    description: 'G+6: iTerm muted terminal colors'
     to:
-      shell: ~/.local/bin/terminal-theme.sh down &
+      shell: ~/.local/bin/terminal-theme.sh muted &
   - from: '7'
-    description: 'G+7: iTerm raise terminal text contrast'
+    description: 'G+7: iTerm medium-contrast terminal colors'
     to:
-      shell: ~/.local/bin/terminal-theme.sh up &
+      shell: ~/.local/bin/terminal-theme.sh medium &
+  - from: '8'
+    description: 'G+8: iTerm bright terminal colors'
+    to:
+      shell: ~/.local/bin/terminal-theme.sh bright &
   - from: hyphen
     description: 'G+-: iTerm shrink tmux pane'
     to:

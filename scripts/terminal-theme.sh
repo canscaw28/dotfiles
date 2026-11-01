@@ -1,12 +1,12 @@
 #!/bin/bash
-# Steps iTerm and tmux through contrast levels: muted (the iTerm profile's own
-# palette, ~7:1 text on background), medium (~10:1) and bright (~12.5:1, with
-# brighter accents too), for dimmer displays where the muted grey text reads
-# as dull. iTerm's colors change per session through its SetColors escape,
-# written straight to every tmux client's tty so all open windows switch at
-# once. The level lives in a state file; tmux re-applies it whenever a client
-# attaches.
-#   terminal-theme.sh up | down | muted | medium | bright | apply
+# Switches iTerm and tmux between contrast levels: muted (the iTerm profile's
+# own palette, ~7:1 text on background), medium (~10:1) and bright (~12.5:1,
+# with brighter accents too), for dimmer displays where the muted grey text
+# reads as dull. iTerm's colors change per session through its SetColors
+# escape, written straight to every tmux client's tty so all open windows
+# switch at once. The level lives in a state file; tmux re-applies it whenever
+# a client attaches.
+#   terminal-theme.sh muted | medium | bright | apply
 set -eo pipefail
 
 tmux=/opt/homebrew/bin/tmux
@@ -36,26 +36,18 @@ bright=(
     br_blue=5cc8f0 br_magenta=bd84ea br_cyan=6fe0c6 br_white=ffffff
 )
 
-levels=(muted medium bright)
-current=$(cat "$state" 2>/dev/null || echo muted)
-i=0
-for n in "${!levels[@]}"; do [ "${levels[$n]}" = "$current" ] && i=$n; done
 case "$1" in
-    up)   (( i < ${#levels[@]} - 1 )) && i=$(( i + 1 )) ;;
-    down) (( i > 0 )) && i=$(( i - 1 )) ;;
-    muted|medium|bright)
-        for n in "${!levels[@]}"; do [ "${levels[$n]}" = "$1" ] && i=$n; done ;;
-    apply) ;;
-    *) echo "usage: $(basename "$0") up|down|muted|medium|bright|apply" >&2; exit 1 ;;
+    muted|medium|bright) theme="$1" ;;
+    apply) theme=$(cat "$state" 2>/dev/null || echo muted) ;;
+    *) echo "usage: $(basename "$0") muted|medium|bright|apply" >&2; exit 1 ;;
 esac
-theme=${levels[$i]}
 mkdir -p "$(dirname "$state")"
 echo "$theme" > "$state"
 
 case "$theme" in
-    muted)  palette=("${muted[@]}") ;;
     medium) palette=("${medium[@]}") ;;
     bright) palette=("${bright[@]}") ;;
+    *)      palette=("${muted[@]}") ;;
 esac
 
 # One write per tty, so tmux's own output can't land inside an escape.
@@ -67,8 +59,11 @@ for kv in "${palette[@]}"; do
         br_black) $tmux set -g @muted "#${kv#*=}" ;;
     esac
 done
+# Changing @fg/@muted doesn't redraw anything, so without the refresh tmux's
+# status bar and pane labels keep the old colors until the next status-interval.
 $tmux list-clients -F '#{client_tty}' | while read -r tty; do
     printf '%s' "$seq" > "$tty"
+    $tmux refresh-client -t "$tty"
 done
 
 [ "$1" = apply ] || $tmux display-message "Theme: $theme"

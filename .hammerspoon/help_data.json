@@ -1016,15 +1016,22 @@
             {
               "keys": "[⇪+G] + 6",
               "cols": [
-                "Less contrast",
-                "Step terminal text down: bright → medium → muted"
+                "Muted theme",
+                "Terminal text at the profile's own low contrast (~7:1)"
               ]
             },
             {
               "keys": "[⇪+G] + 7",
               "cols": [
-                "More contrast",
-                "Step terminal text up: muted → medium → bright"
+                "Medium theme",
+                "Brighter terminal text (~10:1)"
+              ]
+            },
+            {
+              "keys": "[⇪+G] + 8",
+              "cols": [
+                "Bright theme",
+                "Brightest terminal text and accents (~12.5:1)"
               ]
             },
             {

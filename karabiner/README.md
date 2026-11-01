@@ -425,8 +425,9 @@ Mirrors ⇪+T for windows: HJKL focus, -/= resize, P toggles side by side/stacke
 | [⇪+G] + ; | Close pane | Close tmux pane, after tmux's y/n prompt |
 | [⇪+G] + , | Split side by side | New tmux pane to the right, same directory |
 | [⇪+G] + . | Split stacked | New tmux pane below, same directory |
-| [⇪+G] + 6 | Less contrast | Step terminal text down: bright → medium → muted |
-| [⇪+G] + 7 | More contrast | Step terminal text up: muted → medium → bright |
+| [⇪+G] + 6 | Muted theme | Terminal text at the profile's own low contrast (~7:1) |
+| [⇪+G] + 7 | Medium theme | Brighter terminal text (~10:1) |
+| [⇪+G] + 8 | Bright theme | Brightest terminal text and accents (~12.5:1) |
 
 #### Tmux Pane Move (⇪+G+F)
 

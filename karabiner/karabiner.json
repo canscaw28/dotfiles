@@ -35806,7 +35806,7 @@
                     "type": "frontmost_application_if"
                   }
                 ],
-                "description": "G+6: iTerm lower terminal text contrast",
+                "description": "G+6: iTerm muted terminal colors",
                 "from": {
                   "key_code": "6",
                   "modifiers": {
@@ -35817,7 +35817,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "~/.local/bin/terminal-theme.sh down &"
+                    "shell_command": "~/.local/bin/terminal-theme.sh muted &"
                   }
                 ],
                 "type": "basic"
@@ -35841,7 +35841,7 @@
                     "type": "frontmost_application_if"
                   }
                 ],
-                "description": "G+7: iTerm raise terminal text contrast",
+                "description": "G+7: iTerm medium-contrast terminal colors",
                 "from": {
                   "key_code": "7",
                   "modifiers": {
@@ -35852,7 +35852,42 @@
                 },
                 "to": [
                   {
-                    "shell_command": "~/.local/bin/terminal-theme.sh up &"
+                    "shell_command": "~/.local/bin/terminal-theme.sh medium &"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "caps_lock_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "name": "g_is_held",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.googlecode\\.iterm2$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "description": "G+8: iTerm bright terminal colors",
+                "from": {
+                  "key_code": "8",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "~/.local/bin/terminal-theme.sh bright &"
                   }
                 ],
                 "type": "basic"
