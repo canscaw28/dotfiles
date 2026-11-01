@@ -145,10 +145,12 @@ sections:
     description: 'G+period: iTerm split tmux pane stacked'
     to:
       shell: ~/.local/bin/g-tmux-window.sh split-v &
-  # Without this, Chrome's Vimium history search below leaks in and types
+  # Also keeps Chrome's Vimium history search below from leaking in and typing
   # Esc+o into the terminal.
   - from: quote
-    to: noop
+    description: "G+': iTerm toggle muted / bright terminal colors"
+    to:
+      shell: ~/.local/bin/terminal-theme.sh toggle &
   - from: hyphen
     description: 'G+-: iTerm shrink tmux pane'
     to:

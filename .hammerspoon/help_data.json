@@ -1105,6 +1105,13 @@
               ]
             },
             {
+              "keys": "[⇪+G] + '",
+              "cols": [
+                "Toggle theme",
+                "Switch iTerm and tmux between muted and bright colors"
+              ]
+            },
+            {
               "keys": "[⇪+G] + N",
               "cols": [
                 "Balance",
