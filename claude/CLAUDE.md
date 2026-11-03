@@ -45,6 +45,17 @@ Never use destructive ops as a shortcut to make an obstacle go away. Diagnose ro
 - Never proactively create `*.md` documentation. Only if I ask.
 - Delete unused code completely — don't rename to `_var` or leave dead branches.
 
+## READMEs
+
+A README answers, in order: what is this, how do I run it, how do I work on it. Nothing else unless a reader would be stuck without it.
+
+- Lead with one or two sentences on what it is and who it's for. No badges, no table of contents, no "Features" marketing list.
+- Every line must help someone use or change the project. Cut anything that restates the code, the directory tree, the tech stack, or obvious steps (`git clone`, "contributions welcome").
+- Commands go in a table or a code block, not prose. Show, don't explain.
+- Mention gotchas and non-obvious decisions only where a reader would otherwise get it wrong.
+- Aim for one screen. A section longer than ~10 lines probably belongs in a doc of its own, or in a code comment.
+- When changing the project, update the README only if a line in it became wrong; don't add a section per feature.
+
 ## Default workflow
 
 For non-trivial work: **explore → plan → code → verify → commit.**
