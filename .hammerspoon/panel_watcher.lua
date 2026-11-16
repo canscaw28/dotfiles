@@ -17,16 +17,26 @@ local M = {}
 
 local KARABINER_CLI = "/usr/local/bin/karabiner_cli"
 
-local lastState = nil
+-- One karabiner_cli at a time: parallel ones can finish out of order, leaving
+-- Karabiner stuck on a stale value that the unchanged-state check never
+-- corrects. The running task is kept on M so it isn't garbage collected before
+-- its callback fires, which would block every later send.
+local sent, wanted = nil, nil
+
+local function flush()
+    if M.task or wanted == sent then return end
+    local value = wanted
+    M.task = hs.task.new(KARABINER_CLI, function()
+        M.task = nil
+        sent = value
+        flush()
+    end, { "--set-variables", string.format('{"panel_active":%d}', value and 1 or 0) })
+    if not M.task:start() then M.task = nil end
+end
 
 local function setActive(active)
-    if active == lastState then return end
-    lastState = active
-    hs.task.new(
-        KARABINER_CLI,
-        nil,
-        { "--set-variables", string.format('{"panel_active":%d}', active and 1 or 0) }
-    ):start()
+    wanted = active
+    flush()
 end
 
 local function evaluate()
