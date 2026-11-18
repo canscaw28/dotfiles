@@ -36051,7 +36051,7 @@
                     "type": "frontmost_application_if"
                   }
                 ],
-                "description": "G+M: iTerm tile tmux panes in a grid (again: column-first)",
+                "description": "G+M: iTerm tile tmux panes in a grid (again: swap rows/columns)",
                 "from": {
                   "key_code": "m",
                   "modifiers": {

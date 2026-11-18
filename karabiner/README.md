@@ -404,7 +404,7 @@ When iTerm2 is frontmost the G layer drives tmux panes. (Default-layer keys are 
 
 #### Tmux Panes
 
-Mirrors ⇪+T for windows: HJKL focus, -/= resize, P toggles side by side/stacked, N balances, M tiles (T's flatten; press again to fill columns first). In an iTerm window without tmux, the layout keys fall back to the AeroSpace commands. G+N replaces "new tab" here; ⌘T still opens one.
+Mirrors ⇪+T for windows: HJKL focus, -/= resize, P toggles side by side/stacked, N balances, M tiles (T's flatten; press again to swap rows and columns). In an iTerm window without tmux, the layout keys fall back to the AeroSpace commands. G+N replaces "new tab" here; ⌘T still opens one.
 
 | Key / Shortcut | Behavior | Description |
 | --- | --- | --- |
@@ -418,7 +418,7 @@ Mirrors ⇪+T for windows: HJKL focus, -/= resize, P toggles side by side/stacke
 | [⇪+G] + = | Grow pane | Grow tmux pane along its split (width side by side, height stacked) |
 | [⇪+G] + P | Toggle layout | Panes side by side ↔ stacked |
 | [⇪+G] + N | Balance | Even out pane sizes |
-| [⇪+G] + M | Tiled | Arrange panes in a grid, left to right; again for top to bottom, and back |
+| [⇪+G] + M | Tiled | Arrange panes in a grid; again to swap rows and columns (3x2 ↔ 2x3), and back |
 | [⇪+G] + U | Prev window | Previous tmux window (wraps) |
 | [⇪+G] + I | Next window | Next tmux window (wraps) |
 | [⇪+G] + \ | Break pane | Move tmux pane to a new window |

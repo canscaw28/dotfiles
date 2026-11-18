@@ -178,7 +178,7 @@ sections:
     to:
       shell: ~/.local/bin/g-tmux-layout.sh balance &
   - from: m
-    description: 'G+M: iTerm tile tmux panes in a grid (again: column-first)'
+    description: 'G+M: iTerm tile tmux panes in a grid (again: swap rows/columns)'
     to:
       shell: ~/.local/bin/g-tmux-layout.sh tiled &
 - layer:
