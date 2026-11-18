@@ -74,32 +74,33 @@ resize() {
     $tmux resize-pane -t "$session:" "$flag" "$amount"
 }
 
-# tmux's tiled grid turned on its side: tmux picks rows >= columns (6 panes ->
-# 3 rows x 2), this swaps them (2 rows x 3), still filled left to right with the
-# short row last. Leaf order in a layout string decides which pane lands where,
-# so the pane IDs go in in order.
+# tmux's tiled grid turned on its side: each of tmux's rows becomes a column
+# (6 panes: 3 rows of 2 -> 3 columns of 2; 7 panes: rows of 3,3,1 -> columns of
+# 3,3,1). Leaf order in a layout string decides which pane lands where, so the
+# pane IDs go in in order, filling each column top to bottom.
 transposed_tiled_layout() {
     local w h ids
     IFS=' ' read -r w h <<<"$(q '#{window_width} #{window_height}')"
     ids=$($tmux list-panes -t "$session:" -F '#{pane_id}' | tr -d % | tr '\n' ' ')
     awk -v W="$w" -v H="$h" -v ids="$ids" 'BEGIN {
-        n = split(ids, id, " "); cols = rows = 1
-        while (cols * rows < n) { cols++; if (cols * rows < n) rows++ }
-        rh = int((H - (rows - 1)) / rows); y = 0; p = 0; body = ""
-        for (r = 1; r <= rows; r++) {
-            k = (n - p < cols) ? n - p : cols
-            h = (r == rows) ? H - y : rh
-            cw = int((W - (k - 1)) / k); x = 0; row = ""
-            for (c = 1; c <= k; c++) {
-                w = (c == k) ? W - x : cw
-                row = row (c > 1 ? "," : "") w "x" h "," x "," y "," id[++p]
-                x += w + 1
+        n = split(ids, id, " "); rows = per = 1
+        while (rows * per < n) { rows++; if (rows * per < n) per++ }
+        cols = rows
+        cw = int((W - (cols - 1)) / cols); x = 0; p = 0; body = ""
+        for (c = 1; c <= cols; c++) {
+            k = (n - p < per) ? n - p : per
+            w = (c == cols) ? W - x : cw
+            ch = int((H - (k - 1)) / k); y = 0; col = ""
+            for (r = 1; r <= k; r++) {
+                h = (r == k) ? H - y : ch
+                col = col (r > 1 ? "," : "") w "x" h "," x "," y "," id[++p]
+                y += h + 1
             }
-            if (k > 1) row = W "x" h ",0," y "{" row "}"
-            body = body (r > 1 ? "," : "") row
-            y += h + 1
+            if (k > 1) col = w "x" H "," x ",0[" col "]"
+            body = body (c > 1 ? "," : "") col
+            x += w + 1
         }
-        layout = (rows > 1) ? W "x" H ",0,0[" body "]" : body
+        layout = (cols > 1) ? W "x" H ",0,0{" body "}" : body
         # tmux layout_checksum: 16-bit rotate-right then add each byte.
         for (i = 32; i < 127; i++) ord[sprintf("%c", i)] = i
         sum = 0
