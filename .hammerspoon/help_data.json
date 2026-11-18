@@ -1136,7 +1136,7 @@
               "keys": "[⇪+G] + M",
               "cols": [
                 "Tiled",
-                "Arrange panes in a grid"
+                "Arrange panes in a grid, left to right; again for top to bottom, and back"
               ]
             },
             {

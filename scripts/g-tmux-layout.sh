@@ -74,6 +74,42 @@ resize() {
     $tmux resize-pane -t "$session:" "$flag" "$amount"
 }
 
+# tmux's tiled grid, but filled top to bottom then left to right: same rows x
+# columns as tmux picks, with the short column (not row) last. Leaf order in a
+# layout string decides which pane lands where, so the pane IDs go in in order.
+column_tiled_layout() {
+    local w h ids
+    IFS=' ' read -r w h <<<"$(q '#{window_width} #{window_height}')"
+    ids=$($tmux list-panes -t "$session:" -F '#{pane_id}' | tr -d % | tr '\n' ' ')
+    awk -v W="$w" -v H="$h" -v ids="$ids" 'BEGIN {
+        n = split(ids, id, " "); rows = cols = 1
+        while (rows * cols < n) { rows++; if (rows * cols < n) cols++ }
+        cw = int((W - (cols - 1)) / cols); x = 0; p = 0; body = ""
+        for (c = 1; c <= cols; c++) {
+            k = (n - p < rows) ? n - p : rows
+            w = (c == cols) ? W - x : cw
+            ch = int((H - (k - 1)) / k); y = 0; col = ""
+            for (r = 1; r <= k; r++) {
+                h = (r == k) ? H - y : ch
+                col = col (r > 1 ? "," : "") w "x" h "," x "," y "," id[++p]
+                y += h + 1
+            }
+            if (k > 1) col = w "x" H "," x ",0[" col "]"
+            body = body (c > 1 ? "," : "") col
+            x += w + 1
+        }
+        layout = (cols > 1) ? W "x" H ",0,0{" body "}" : body
+        # tmux layout_checksum: 16-bit rotate-right then add each byte.
+        for (i = 32; i < 127; i++) ord[sprintf("%c", i)] = i
+        sum = 0
+        for (i = 1; i <= length(layout); i++) {
+            sum = int(sum / 2) + (sum % 2) * 32768
+            sum = (sum + ord[substr(layout, i, 1)]) % 65536
+        }
+        printf "%04x,%s\n", sum, layout
+    }'
+}
+
 case "$action" in
     grow)   resize + ;;
     shrink) resize - ;;
@@ -87,7 +123,21 @@ case "$action" in
             $tmux select-layout -t "$session:" even-horizontal
         fi
         ;;
-    tiled)   $tmux select-layout -t "$session:" tiled ;;
+    # Row-first grid; pressing again while that grid is untouched switches to
+    # column-first, and back. The layout we applied is remembered on the window
+    # so any resize or new pane in between starts over at row-first.
+    tiled)
+        if [ "$(q '#{window_layout}')" = "$(q '#{@tiled_layout}')" ] &&
+            [ "$(q '#{@tiled_order}')" = rows ]; then
+            $tmux select-layout -t "$session:" "$(column_tiled_layout)"
+            order=columns
+        else
+            $tmux select-layout -t "$session:" tiled
+            order=rows
+        fi
+        $tmux set-option -w -t "$session:" @tiled_order "$order"
+        $tmux set-option -w -t "$session:" @tiled_layout "$(q '#{window_layout}')"
+        ;;
     balance) $tmux select-layout -t "$session:" -E ;;
     *) exit 1 ;;
 esac
